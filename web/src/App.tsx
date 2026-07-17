@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
 import type { Exam, Question } from './types';
 import { loadQuestions, loadRegistry } from './lib/loadBank';
-import { scoreAttempt, type AttemptScore } from './lib/quiz';
+import { scoreAttempt, WEAK_DOMAIN_THRESHOLD, type AttemptScore } from './lib/quiz';
 import { backendEnabled } from './lib/config';
 import { fetchAttempts, fetchProgress, submitAttempt, type ProgressResponse } from './lib/api';
 import { QuestionCard } from './components/QuestionCard';
 import { Results } from './components/Results';
+import { ExamTabs } from './components/ExamTabs';
+import { ComingSoon } from './components/ComingSoon';
 
 type Answers = Record<string, string | null>;
 
-// v1 drives the active exam only. The six-exam tab switcher is step 5.
-const ACTIVE_EXAM = 'github-actions';
-
 export default function App() {
-  const [exam, setExam] = useState<Exam | null>(null);
+  const [exams, setExams] = useState<Exam[] | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [questions, setQuestions] = useState<Question[] | null>(null);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const [index, setIndex] = useState(0);
@@ -28,27 +29,65 @@ export default function App() {
   const [progress, setProgress] = useState<ProgressResponse | null>(null);
   const [attemptCount, setAttemptCount] = useState<number | null>(null);
 
+  const selectedExam = exams?.find((e) => e.id === selectedId) ?? null;
+
   useEffect(() => {
     let live = true;
-    (async () => {
-      try {
-        const registry = await loadRegistry();
-        const active = registry.exams.find((e) => e.id === ACTIVE_EXAM) ?? null;
-        const qs = await loadQuestions(ACTIVE_EXAM);
+    loadRegistry()
+      .then((r) => {
         if (!live) return;
-        setExam(active);
-        setQuestions(qs);
-      } catch (e) {
+        setExams(r.exams);
+        const firstActive = r.exams.find((e) => e.status === 'active') ?? r.exams[0];
+        setSelectedId(firstActive?.id ?? null);
+      })
+      .catch((e) => {
         if (live) setError(e instanceof Error ? e.message : String(e));
-      }
-    })();
+      });
     return () => {
       live = false;
     };
   }, []);
 
+  // Load the selected exam's bank (active exams only) and start it fresh.
+  useEffect(() => {
+    if (!selectedExam) return;
+    resetQuiz();
+    if (selectedExam.status !== 'active') {
+      setQuestions(null);
+      return;
+    }
+    let live = true;
+    setLoading(true);
+    loadQuestions(selectedExam.id)
+      .then((qs) => {
+        if (!live) return;
+        setQuestions(qs);
+        setLoading(false);
+      })
+      .catch((e) => {
+        if (!live) return;
+        setError(e instanceof Error ? e.message : String(e));
+        setLoading(false);
+      });
+    return () => {
+      live = false;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId]);
+
+  function resetQuiz() {
+    setIndex(0);
+    setAnswers({});
+    setFinished(false);
+    setFinalScore(null);
+    setSaved(false);
+    setProgress(null);
+    setAttemptCount(null);
+    setAttempt((n) => n + 1);
+  }
+
   async function finish() {
-    if (!questions) return;
+    if (!questions || !selectedId) return;
     const clientScore = scoreAttempt(questions, answers);
 
     if (!backendEnabled()) {
@@ -58,17 +97,21 @@ export default function App() {
       return;
     }
 
-    // Backend on: the server is the authority on the score, and it saves history.
     setSubmitting(true);
     try {
-      const serverScore = await submitAttempt(ACTIVE_EXAM, answers);
+      const serverScore = await submitAttempt(selectedId, answers);
       setFinalScore(serverScore);
       setSaved(true);
       const [prog, hist] = await Promise.all([fetchProgress(), fetchAttempts()]);
-      setProgress(prog);
-      setAttemptCount(hist.length);
+      // Show only this exam's cumulative rows, and derive its weak domains.
+      const rows = prog.progress.filter((p) => p.examId === selectedId);
+      const weak = rows
+        .filter((p) => p.questionsSeen > 0 && p.accuracy <= WEAK_DOMAIN_THRESHOLD)
+        .sort((a, b) => a.accuracy - b.accuracy)
+        .map((p) => p.domain);
+      setProgress({ progress: rows, weakDomains: weak });
+      setAttemptCount(hist.filter((a) => a.examId === selectedId).length);
     } catch {
-      // Never trap the user on a network hiccup: fall back to the client score.
       setFinalScore(clientScore);
       setSaved(false);
     } finally {
@@ -77,102 +120,109 @@ export default function App() {
     }
   }
 
-  function restart() {
-    setAnswers({});
-    setIndex(0);
-    setFinished(false);
-    setFinalScore(null);
-    setSaved(false);
-    setProgress(null);
-    setAttemptCount(null);
-    setAttempt((n) => n + 1);
-  }
-
   if (error) {
     return (
-      <Shell>
+      <Shell exams={exams} selectedId={selectedId} onSelect={setSelectedId}>
         <p className="notice notice--error">Could not load the question bank: {error}</p>
       </Shell>
     );
   }
 
-  if (!questions || !exam) {
+  if (!exams || !selectedExam) {
     return (
-      <Shell>
+      <Shell exams={exams} selectedId={selectedId} onSelect={setSelectedId}>
         <p className="notice">Loading…</p>
       </Shell>
     );
   }
 
-  if (finished && finalScore) {
-    return (
-      <Shell examLabel={exam.label}>
-        <Results
-          score={finalScore}
-          saved={saved}
-          progress={progress}
-          attemptCount={attemptCount}
-          onRestart={restart}
+  let body: React.ReactNode;
+  if (selectedExam.status !== 'active') {
+    body = <ComingSoon label={selectedExam.label} />;
+  } else if (loading || !questions) {
+    body = <p className="notice">Loading…</p>;
+  } else if (finished && finalScore) {
+    body = (
+      <Results
+        score={finalScore}
+        saved={saved}
+        progress={progress}
+        attemptCount={attemptCount}
+        onRestart={resetQuiz}
+      />
+    );
+  } else {
+    const current = questions[index];
+    const chosen = answers[current.id] ?? null;
+    const answered = chosen !== null;
+    const isLast = index === questions.length - 1;
+    body = (
+      <>
+        <div className="progress-row">
+          <span className="progress-row__count">
+            Question {index + 1} of {questions.length}
+          </span>
+          <span className="progress-row__mode">Practice mode</span>
+        </div>
+
+        <QuestionCard
+          question={current}
+          shuffleNonce={attempt}
+          chosenOptionId={chosen}
+          onChoose={(optionId) => setAnswers((prev) => ({ ...prev, [current.id]: optionId }))}
         />
-      </Shell>
+
+        <div className="nav">
+          <button
+            type="button"
+            className="btn"
+            disabled={index === 0 || submitting}
+            onClick={() => setIndex((i) => Math.max(0, i - 1))}
+          >
+            Back
+          </button>
+          {isLast ? (
+            <button
+              type="button"
+              className="btn btn--primary"
+              disabled={!answered || submitting}
+              onClick={finish}
+            >
+              {submitting ? 'Saving…' : 'Finish'}
+            </button>
+          ) : (
+            <button
+              type="button"
+              className="btn btn--primary"
+              disabled={!answered || submitting}
+              onClick={() => setIndex((i) => Math.min(questions.length - 1, i + 1))}
+            >
+              Next
+            </button>
+          )}
+        </div>
+      </>
     );
   }
 
-  const current = questions[index];
-  const chosen = answers[current.id] ?? null;
-  const answered = chosen !== null;
-  const isLast = index === questions.length - 1;
-
   return (
-    <Shell examLabel={exam.label}>
-      <div className="progress-row">
-        <span className="progress-row__count">
-          Question {index + 1} of {questions.length}
-        </span>
-        <span className="progress-row__mode">Practice mode</span>
-      </div>
-
-      <QuestionCard
-        question={current}
-        shuffleNonce={attempt}
-        chosenOptionId={chosen}
-        onChoose={(optionId) => setAnswers((prev) => ({ ...prev, [current.id]: optionId }))}
-      />
-
-      <div className="nav">
-        <button
-          type="button"
-          className="btn"
-          disabled={index === 0 || submitting}
-          onClick={() => setIndex((i) => Math.max(0, i - 1))}
-        >
-          Back
-        </button>
-        {isLast ? (
-          <button
-            type="button"
-            className="btn btn--primary"
-            disabled={!answered || submitting}
-            onClick={finish}
-          >
-            {submitting ? 'Saving…' : 'Finish'}
-          </button>
-        ) : (
-          <button
-            type="button"
-            className="btn btn--primary"
-            disabled={!answered || submitting}
-            onClick={() => setIndex((i) => Math.min(questions.length - 1, i + 1))}
-          >
-            Next
-          </button>
-        )}
-      </div>
+    <Shell exams={exams} selectedId={selectedId} onSelect={setSelectedId}>
+      {body}
     </Shell>
   );
 }
 
-function Shell({ children, examLabel }: { children: React.ReactNode; examLabel?: string }) {
+function Shell({
+  children,
+  exams,
+  selectedId,
+  onSelect,
+}: {
+  children: React.ReactNode;
+  exams: Exam[] | null;
+  selectedId: string | null;
+  onSelect: (id: string) => void;
+}) {
   return (
     <div className="app">
       <header className="masthead">
@@ -180,8 +230,10 @@ function Shell({ children, examLabel }: { children: React.ReactNode; examLabel?:
           <span className="masthead__mark" aria-hidden>◆</span>
           <span className="masthead__name">ExamForge</span>
         </div>
-        {examLabel && <span className="masthead__exam">{examLabel}</span>}
       </header>
+      {exams && selectedId && (
+        <ExamTabs exams={exams} selectedId={selectedId} onSelect={onSelect} />
+      )}
       <main className="content">{children}</main>
       <footer className="footer">
         Practice mode. Answers are shuffled every attempt. v1 has no AI, by design.
