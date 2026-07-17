@@ -3,6 +3,55 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Phase 4 — persistence, proven against real DynamoDB
+
+### 2026-07-17 — attempts, per-domain progress, and history end to end
+
+- Filled in the three stub routes with real logic. `submit_attempt` grades the
+  attempt server-side against the bundled answer key (a client cannot claim a
+  score it did not earn), writes the attempt row, and rolls each domain's
+  cumulative totals forward with a single ADD update per domain (no
+  read-before-write). `get_attempts` queries the user's partition newest first;
+  `get_progress` reads the per-domain aggregates and derives weak domains. The
+  grading itself is a pure `grade.py` that mirrors the frontend's quiz.ts, so
+  server and client agree on what a score means.
+
+- Proved the grading in isolation: `test_grade.py` (pure, no AWS) checks
+  id-based matching, unanswered-as-wrong, per-domain tallies, weak-domain
+  ordering, subset grading with unknown ids ignored, and the real seed bank at
+  100 and 0 percent. 11 checks pass.
+
+- Proved persistence for real against DynamoDB Local in a container (no boto3
+  mock of our code): two attempts for a user store and read back newest first;
+  an all-correct attempt scores 100 and an all-wrong one scores 0, so the score
+  is genuinely server-computed; validation returns 400 and 404; the per-domain
+  aggregates accumulate across attempts (workflows seen 4 correct 2 at 0.5, then
+  seen 6 correct 4 at 0.667 after a third attempt); the attempts counter
+  increments per domain; and a second user sees none of the first user's data
+  (per-user isolation). 18 integration checks pass.
+
+- Wired the frontend to the API. A runtime `config.js` (injected at deploy,
+  overwritten in the bucket with the real API base) drives whether the app runs
+  backed or client-only. The device id is a UUID generated once in localStorage.
+  On finish, when a backend is configured the app POSTs the attempt, shows the
+  server score, a green "Saved to your history" note with the running attempt
+  count, and a cumulative "your progress over all attempts" panel; when it is not
+  configured, or the API is unreachable, it silently falls back to the client
+  score and shows "local practice, not saved". So the live client-only dev site
+  keeps working unchanged.
+
+- Proved the whole loop in headless Chrome against the built site talking to the
+  real handlers behind a thin local shim over DynamoDB Local: config.js was
+  served pointing at the shim exactly as the deploy injects it. Two attempts
+  saved and the note read "1 attempt total" then "2 attempts total"; the progress
+  panel rendered; the server independently confirmed two stored attempts, four
+  tracked domains, and ten question-views; and pointing config at an unreachable
+  port fell back to "not saved". 9 browser checks pass, on top of the 12 frontend
+  unit tests and a clean build.
+
+- Still local: nothing is deployed to AWS. Deploy is step 6, after the six-exam
+  tab UI in step 5.
+
 ## Phase 3 — CDK infrastructure, synthesized clean
 
 ### 2026-07-17 — three stacks stand up, mirroring the proven serverless shape
