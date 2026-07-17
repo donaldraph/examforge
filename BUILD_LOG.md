@@ -3,6 +3,33 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Phase 5 — the six-exam tab switcher
+
+### 2026-07-17 — one engine, six tabs, five of them waiting on content
+
+- Built the tab UI straight off the registry (`data/exams.json`), so the tabs and
+  their state are data, not hardcoded. Six tabs render; GitHub Actions is the one
+  `active` exam and the rest carry a small "soon" pill from their `coming-soon`
+  status. When the banks for the other five land, flipping their status in the
+  registry lights up their tabs with no code change.
+
+- Selecting an active exam loads its bank and starts it fresh; selecting a
+  coming-soon exam shows a placeholder panel (the exam name and a short note)
+  instead of a quiz. Switching exams resets the quiz cleanly and reshuffles, so
+  you never carry one exam's answers into another. Persistence stays per exam:
+  the results progress panel and the saved-attempt count are filtered to the exam
+  you just took, keyed the same way the API stores them.
+
+- Generalized `App` from the single hardcoded exam to a selected one throughout,
+  including the submit path, which now sends the selected exam id.
+
+- Proof: 12 frontend unit tests still pass and the build is clean. Drove the live
+  site in headless Chrome: exactly six tabs, one active (GitHub Actions, not
+  marked soon), five marked soon; the active exam renders a question; clicking a
+  coming-soon exam shows its placeholder and no quiz; switching back to GitHub
+  Actions returns to a fresh question one. 10 browser checks pass. Screens look
+  right in both states.
+
 ## Phase 4 — persistence, proven against real DynamoDB
 
 ### 2026-07-17 — attempts, per-domain progress, and history end to end
