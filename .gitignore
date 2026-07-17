@@ -1,0 +1,25 @@
+# node / cdk
+node_modules/
+cdk.out/
+*.tsbuildinfo
+cdk-outputs.json
+
+# frontend build output
+web/dist/
+dist/
+build/
+
+# python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# secrets and local env (never commit)
+.env
+*.env
+.env.*
+secrets.json
+
+# os
+.DS_Store
