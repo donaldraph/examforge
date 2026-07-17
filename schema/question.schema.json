@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://examforge/schema/question.schema.json",
+  "title": "ExamForge question",
+  "description": "One practice-exam question. Correctness is tracked by option id, never by position, so the frontend is free to shuffle options[] on every render.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "exam",
+    "domain",
+    "difficulty",
+    "stem",
+    "options",
+    "correctAnswerId",
+    "explanationCorrect",
+    "explanationIncorrect"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable unique id, unique within an exam. Convention: <exam-prefix>-<zero-padded-number>, e.g. gha-001.",
+      "pattern": "^[a-z0-9]+-[0-9]{3,}$"
+    },
+    "exam": {
+      "type": "string",
+      "description": "Which exam this question belongs to. Must match an exam id in data/exams.json.",
+      "enum": [
+        "github-actions",
+        "github-advanced-security",
+        "aws-ai-practitioner",
+        "aws-cloud-practitioner",
+        "aws-solutions-architect-associate",
+        "terraform-associate"
+      ]
+    },
+    "domain": {
+      "type": "string",
+      "description": "The exam domain this question tests, used for per-domain scoring and weak-domain tracking. Free text so a new exam can bring its own domain taxonomy.",
+      "minLength": 1
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": ["easy", "medium", "hard"]
+    },
+    "stem": {
+      "type": "string",
+      "description": "The question text shown to the candidate.",
+      "minLength": 1
+    },
+    "options": {
+      "type": "array",
+      "description": "Answer choices. Order here is authoring order only; the frontend shuffles them per render.",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "text"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Option id, unique within this question. Correctness is matched on this, not on position.",
+            "pattern": "^[a-z0-9]+$"
+          },
+          "text": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "correctAnswerId": {
+      "type": "string",
+      "description": "The id of the single correct option. Must be one of options[].id."
+    },
+    "explanationCorrect": {
+      "type": "string",
+      "description": "Shown when the candidate answers correctly. Standard, confirming explanation.",
+      "minLength": 1
+    },
+    "explanationIncorrect": {
+      "type": "string",
+      "description": "Shown when the candidate answers incorrectly. Deliberately longer and more detailed teaching text.",
+      "minLength": 1
+    },
+    "tags": {
+      "type": "array",
+      "description": "Optional free-form tags for future filtering. Not required by the engine.",
+      "items": { "type": "string" }
+    },
+    "isSeed": {
+      "type": "boolean",
+      "description": "True for hand-written seed questions that exist only to prove the engine. Replaced by the full research-backed set later."
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "exams": [
+    {
+      "id": "github-actions",
+      "label": "GitHub Actions",
+      "status": "active",
+      "domains": [
+        "Author and maintain workflows",
+        "Consume workflows",
+        "Author and maintain actions",
+        "Manage GitHub Actions in the enterprise"
+      ]
+    },
+    {
+      "id": "github-advanced-security",
+      "label": "GitHub Advanced Security",
+      "status": "coming-soon",
+      "domains": []
+    },
+    {
+      "id": "aws-ai-practitioner",
+      "label": "AWS AI Practitioner",
+      "status": "coming-soon",
+      "domains": []
+    },
+    {
+      "id": "aws-cloud-practitioner",
+      "label": "AWS Cloud Practitioner",
+      "status": "coming-soon",
+      "domains": []
+    },
+    {
+      "id": "aws-solutions-architect-associate",
+      "label": "AWS Solutions Architect Associate",
+      "status": "coming-soon",
+      "domains": []
+    },
+    {
+      "id": "terraform-associate",
+      "label": "HashiCorp Terraform Associate",
+      "status": "coming-soon",
+      "domains": []
+    }
+  ]
+}
