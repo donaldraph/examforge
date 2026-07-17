@@ -220,14 +220,22 @@ body {
 .results__score { margin: 8px 0 24px; }
 .results__percent { display: block; font-size: 56px; font-weight: 800; letter-spacing: -0.03em; color: var(--accent); }
 .results__fraction { color: var(--ink-soft); font-size: 15px; }
+.save-note {
+  font-size: 13px;
+  color: var(--ink-faint);
+  margin: -12px 0 22px;
+  font-weight: 600;
+}
+.save-note--saved { color: var(--good); }
 .results__heading {
   text-align: left;
   font-size: 13px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   color: var(--ink-faint);
-  margin: 0 0 10px;
+  margin: 22px 0 10px;
 }
+.results__heading:first-of-type { margin-top: 0; }
 .domain-list { list-style: none; margin: 0 0 20px; padding: 0; display: flex; flex-direction: column; gap: 8px; }
 .domain-row {
   display: flex;

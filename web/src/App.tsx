@@ -1,7 +1,9 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 import type { Exam, Question } from './types';
 import { loadQuestions, loadRegistry } from './lib/loadBank';
-import { scoreAttempt } from './lib/quiz';
+import { scoreAttempt, type AttemptScore } from './lib/quiz';
+import { backendEnabled } from './lib/config';
+import { fetchAttempts, fetchProgress, submitAttempt, type ProgressResponse } from './lib/api';
 import { QuestionCard } from './components/QuestionCard';
 import { Results } from './components/Results';
 
@@ -17,8 +19,14 @@ export default function App() {
 
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
-  const [finished, setFinished] = useState(false);
   const [attempt, setAttempt] = useState(0); // reshuffle nonce, bumped on restart
+
+  const [finished, setFinished] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [finalScore, setFinalScore] = useState<AttemptScore | null>(null);
+  const [saved, setSaved] = useState(false);
+  const [progress, setProgress] = useState<ProgressResponse | null>(null);
+  const [attemptCount, setAttemptCount] = useState<number | null>(null);
 
   useEffect(() => {
     let live = true;
@@ -39,10 +47,46 @@ export default function App() {
     };
   }, []);
 
-  const score = useMemo(
-    () => (questions ? scoreAttempt(questions, answers) : null),
-    [questions, answers],
-  );
+  async function finish() {
+    if (!questions) return;
+    const clientScore = scoreAttempt(questions, answers);
+
+    if (!backendEnabled()) {
+      setFinalScore(clientScore);
+      setSaved(false);
+      setFinished(true);
+      return;
+    }
+
+    // Backend on: the server is the authority on the score, and it saves history.
+    setSubmitting(true);
+    try {
+      const serverScore = await submitAttempt(ACTIVE_EXAM, answers);
+      setFinalScore(serverScore);
+      setSaved(true);
+      const [prog, hist] = await Promise.all([fetchProgress(), fetchAttempts()]);
+      setProgress(prog);
+      setAttemptCount(hist.length);
+    } catch {
+      // Never trap the user on a network hiccup: fall back to the client score.
+      setFinalScore(clientScore);
+      setSaved(false);
+    } finally {
+      setSubmitting(false);
+      setFinished(true);
+    }
+  }
+
+  function restart() {
+    setAnswers({});
+    setIndex(0);
+    setFinished(false);
+    setFinalScore(null);
+    setSaved(false);
+    setProgress(null);
+    setAttemptCount(null);
+    setAttempt((n) => n + 1);
+  }
 
   if (error) {
     return (
@@ -60,17 +104,15 @@ export default function App() {
     );
   }
 
-  if (finished && score) {
+  if (finished && finalScore) {
     return (
       <Shell examLabel={exam.label}>
         <Results
-          score={score}
-          onRestart={() => {
-            setAnswers({});
-            setIndex(0);
-            setFinished(false);
-            setAttempt((n) => n + 1);
-          }}
+          score={finalScore}
+          saved={saved}
+          progress={progress}
+          attemptCount={attemptCount}
+          onRestart={restart}
         />
       </Shell>
     );
@@ -94,16 +136,14 @@ export default function App() {
         question={current}
         shuffleNonce={attempt}
         chosenOptionId={chosen}
-        onChoose={(optionId) =>
-          setAnswers((prev) => ({ ...prev, [current.id]: optionId }))
-        }
+        onChoose={(optionId) => setAnswers((prev) => ({ ...prev, [current.id]: optionId }))}
       />
 
       <div className="nav">
         <button
           type="button"
           className="btn"
-          disabled={index === 0}
+          disabled={index === 0 || submitting}
           onClick={() => setIndex((i) => Math.max(0, i - 1))}
         >
           Back
@@ -112,16 +152,16 @@ export default function App() {
           <button
             type="button"
             className="btn btn--primary"
-            disabled={!answered}
-            onClick={() => setFinished(true)}
+            disabled={!answered || submitting}
+            onClick={finish}
           >
-            Finish
+            {submitting ? 'Saving…' : 'Finish'}
           </button>
         ) : (
           <button
             type="button"
             className="btn btn--primary"
-            disabled={!answered}
+            disabled={!answered || submitting}
             onClick={() => setIndex((i) => Math.min(questions.length - 1, i + 1))}
           >
             Next
