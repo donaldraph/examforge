@@ -1,0 +1,25 @@
+{
+  "name": "examforge-infra",
+  "version": "0.1.0",
+  "private": true,
+  "bin": { "infra": "bin/app.js" },
+  "scripts": {
+    "sync:banks": "node scripts/sync-banks.mjs",
+    "presynth": "npm run sync:banks",
+    "predeploy": "npm run sync:banks",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^22.9.0",
+    "aws-cdk": "^2.1000.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.6.3"
+  },
+  "dependencies": {
+    "aws-cdk-lib": "^2.170.0",
+    "constructs": "^10.4.2",
+    "source-map-support": "^0.5.21"
+  }
+}

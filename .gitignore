@@ -9,8 +9,9 @@ web/dist/
 dist/
 build/
 
-# question banks synced into the frontend from the canonical repo-root data/
+# question banks synced from the canonical repo-root data/ into consumers
 web/public/data/
+infra/lambdas/banks/
 
 # python
 __pycache__/
