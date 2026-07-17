@@ -3,6 +3,48 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Phase 3 — CDK infrastructure, synthesized clean
+
+### 2026-07-17 — three stacks stand up, mirroring the proven serverless shape
+
+- Authored the infrastructure as AWS CDK in TypeScript under `infra/`, same
+  data / api / hosting split as standup-brief and study-conscience, minus the
+  parts v1 does not have (no secrets, no scheduler, no model call).
+
+- DataStack: one DynamoDB table `ef-attempts-<stage>`, single-table design,
+  keyed per user. PK is `USER#<uuid>` (the anonymous device id), SK is
+  `ATTEMPT#<iso8601>#<exam>` for a finished attempt and `DOMAIN#<exam>#<domain>`
+  for a rolling per-domain aggregate. Everything one user touches is one
+  partition, so history and progress are each a single Query. PAY_PER_REQUEST,
+  retained and point-in-time-recovered only in prod. The user id is opaque, so
+  swapping the device id for a Cognito subject later needs no key change.
+
+- ApiStack: a REST API with four Python 3.12 routes wired and IAM-granted:
+  `POST /attempts` (read-write on the table), `GET /attempts` and
+  `GET /progress` (read-only), and `GET /health`. No API key and no login, since
+  v1 identifies a user by an opaque device id, so a write is always a user
+  writing their own partition; the stage is throttled instead. Grading is meant
+  to be server-authoritative, so the canonical banks are bundled into the lambda
+  from repo-root `data/` via `scripts/sync-banks.mjs` (gitignored copy,
+  regenerated before every synth and deploy), ready for the step-4 logic.
+
+- HostingStack: a private S3 bucket (all public access blocked) behind CloudFront
+  with Origin Access Control, serving the built React SPA from `web/dist`. The
+  API base URL is injected as `config.js` at deploy so the frontend never
+  hardcodes it, with 403 and 404 mapped back to `index.html` for the SPA.
+
+- Step 3 is infrastructure only. `health` returns ok; `submit_attempt`,
+  `get_attempts`, and `get_progress` are honest 501 stubs so nothing pretends to
+  persist before step 4 fills in the scoring, aggregation, and history.
+
+- Proof: `tsc --noEmit` is clean and `cdk synth` produces all three templates
+  (`ef-dev-data`, `ef-dev-api`, `ef-dev-hosting`) with no errors and no
+  deprecations after switching the table to `pointInTimeRecoverySpecification`.
+  The synthesized resources check out: one DynamoDB table; four lambdas plus the
+  REST API, stage, and grant policies; a private bucket with a CloudFront
+  distribution and OAC. All five lambda handlers compile. Not deployed yet:
+  deploy is step 6, and it needs the step-4 persistence logic first.
+
 ## Phase 2 — the quiz engine, proven against the seed bank
 
 ### 2026-07-17 — core loop runs end to end in a real browser, no backend
