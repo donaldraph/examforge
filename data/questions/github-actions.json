@@ -1,0 +1,92 @@
+[
+  {
+    "id": "gha-001",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a job to run only when a pull request is actually merged, not when it is closed without merging. Which trigger and condition combination achieves this?",
+    "options": [
+      { "id": "o1", "text": "Trigger on pull_request with types: [closed] and guard the job with if: github.event.pull_request.merged == true" },
+      { "id": "o2", "text": "Trigger on pull_request with types: [merged]" },
+      { "id": "o3", "text": "Trigger on push to the base branch and guard with if: github.event.merged" },
+      { "id": "o4", "text": "Trigger on pull_request_target with types: [closed] and no condition" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "There is no merged activity type. You listen for the closed activity and then check the boolean github.event.pull_request.merged to tell a real merge from an abandoned close.",
+    "explanationIncorrect": "The pull_request event has no merged activity type, so types: [merged] never fires. The closed activity fires for both merged and abandoned pull requests, which is exactly why you check github.event.pull_request.merged to distinguish them. A push to the base branch fires on every push, not only on merges, and carries no pull_request context, so github.event.merged is undefined there. pull_request_target runs in the base repository context for fork safety, but it still only offers the closed activity, so without the merged check it would also run on abandoned closes.",
+    "tags": ["events", "pull_request", "conditionals"],
+    "isSeed": true
+  },
+  {
+    "id": "gha-002",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a new push to a pull request branch to cancel that branch's still-running workflow, but you never want runs on main to be cancelled. Which configuration is correct?",
+    "options": [
+      { "id": "o1", "text": "A concurrency group of ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}" },
+      { "id": "o2", "text": "concurrency with cancel-in-progress: true at the workflow root and nothing else" },
+      { "id": "o3", "text": "Set max-parallel: 1 in the job's strategy" },
+      { "id": "o4", "text": "Set timeout-minutes: 0 on the job" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A concurrency group that includes github.ref serializes runs per branch, and expressing cancel-in-progress as an expression lets main opt out while feature branches cancel their own older runs.",
+    "explanationIncorrect": "cancel-in-progress: true with no expression cancels in-progress runs for every group, including main, so it does not meet the requirement. max-parallel only limits how many legs of a matrix run at once within a single workflow run; it does nothing to cancel a previous run. timeout-minutes bounds how long a job may run before it is killed for taking too long; it is unrelated to concurrency. The correct tool is a per-ref concurrency group with cancel-in-progress evaluated as an expression so the main ref is excluded.",
+    "tags": ["concurrency", "expressions"],
+    "isSeed": true
+  },
+  {
+    "id": "gha-003",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "In a composite action, you compute a value in one step and need to read it in a later step of the same action. Which mechanism is correct?",
+    "options": [
+      { "id": "o1", "text": "In the first step, write name=value to the file at $GITHUB_OUTPUT and give the step an id, then reference ${{ steps.<id>.outputs.<name> }} in the later step" },
+      { "id": "o2", "text": "Assign a plain shell variable RESULT=value in the first step and read $RESULT in the later step" },
+      { "id": "o3", "text": "Reference ${{ steps.<id>.result }} in the later step without declaring any output" },
+      { "id": "o4", "text": "Use the save-state command in the first step to expose the value to later steps" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Appending name=value to $GITHUB_OUTPUT publishes a named step output, and a later step reads it as steps.<id>.outputs.<name> because the first step carries an id.",
+    "explanationIncorrect": "Each step runs in its own shell process, so a plain shell variable set in one step does not survive into the next; you must publish the value through the runner. There is no generic steps.<id>.result field for arbitrary values; result exists for a job's outcome, not for step data you produced. save-state is for passing state from a JavaScript action's main phase to its own post phase within the same step, not for step-to-step sharing. The correct approach is writing to $GITHUB_OUTPUT with a step id and reading steps.<id>.outputs.<name>.",
+    "tags": ["composite-actions", "outputs"],
+    "isSeed": true
+  },
+  {
+    "id": "gha-004",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You need a workflow to authenticate to AWS to deploy, without storing long-lived AWS access keys as secrets. Which approach should you use?",
+    "options": [
+      { "id": "o1", "text": "Configure an OIDC identity provider in AWS that trusts GitHub's token, grant the job permissions: id-token: write, and use aws-actions/configure-aws-credentials to assume an IAM role" },
+      { "id": "o2", "text": "Store AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as repository secrets and read them in the job" },
+      { "id": "o3", "text": "Commit the credentials in a .env file that is listed in .gitignore" },
+      { "id": "o4", "text": "Pass ${{ secrets.GITHUB_TOKEN }} directly to the AWS SDK as the credential" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub's OIDC lets the workflow present a short-lived token that AWS trusts, so the job assumes an IAM role and receives temporary credentials with no long-lived keys stored anywhere.",
+    "explanationIncorrect": "Storing AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as secrets is exactly the long-lived-key pattern OIDC removes; those keys do not rotate on their own and are a standing exposure. A gitignored .env still means the credentials have to reach the runner somehow, so it neither avoids long-lived keys nor makes them safer, and it invites accidental leakage. The GITHUB_TOKEN only authenticates to GitHub's own APIs for the current repository; AWS has no reason to trust it as a credential. The correct answer is OIDC: request id-token: write, then assume an IAM role that trusts GitHub's provider to get temporary credentials.",
+    "tags": ["security", "oidc", "secrets"],
+    "isSeed": true
+  },
+  {
+    "id": "gha-005",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want to call a reusable workflow that lives in another repository and pass a secret to it. Which is correct?",
+    "options": [
+      { "id": "o1", "text": "Reference it at the job level with jobs.<id>.uses: owner/repo/.github/workflows/file.yml@ref and pass secrets under a secrets: block (or secrets: inherit)" },
+      { "id": "o2", "text": "Add - uses: owner/repo/.github/workflows/file.yml@ref as a step inside a job" },
+      { "id": "o3", "text": "Call it with run: gh workflow run file.yml and set the secret with an env variable" },
+      { "id": "o4", "text": "Nest it under steps: and pass the secret through a with: block" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A reusable workflow is invoked at the job level with uses, and secrets are handed to it through the secrets keyword, or secrets: inherit to forward the caller's secrets.",
+    "explanationIncorrect": "Reusable workflows are referenced at the job level with jobs.<id>.uses, not as a step, so any option that puts uses under steps: is wrong. gh workflow run triggers a separate workflow_dispatch run rather than composing the called workflow into this run, and it does not compose outputs back. Secrets are passed to a reusable workflow through the secrets keyword (or secrets: inherit), not through with:, which is for non-sensitive inputs. The correct form is jobs.<id>.uses pointing at the workflow file at a ref, with a secrets: block.",
+    "tags": ["reusable-workflows", "secrets"],
+    "isSeed": true
+  }
+]
