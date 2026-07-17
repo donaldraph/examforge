@@ -9,6 +9,9 @@ web/dist/
 dist/
 build/
 
+# question banks synced into the frontend from the canonical repo-root data/
+web/public/data/
+
 # python
 __pycache__/
 *.pyc
