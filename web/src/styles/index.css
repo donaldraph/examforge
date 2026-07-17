@@ -77,6 +77,52 @@ body {
   border-radius: 999px;
 }
 
+/* Exam tabs */
+.tabs {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding: 12px 20px 0;
+  max-width: 760px;
+  margin: 0 auto;
+  width: 100%;
+  border-bottom: 1px solid var(--line);
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font: inherit;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  padding: 10px 12px 12px;
+  margin-bottom: -1px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.12s ease, border-color 0.12s ease;
+}
+.tab:hover { color: var(--ink); }
+.tab--active { color: var(--accent-deep); border-bottom-color: var(--accent); }
+.tab--soon { color: var(--ink-faint); }
+.tab__soon {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--ink-faint);
+  background: var(--line);
+  border-radius: 999px;
+  padding: 2px 6px;
+}
+.tab--active .tab__soon { color: var(--accent-deep); background: var(--accent-wash); }
+
 .content {
   flex: 1;
   width: 100%;
@@ -84,6 +130,12 @@ body {
   margin: 0 auto;
   padding: 28px 20px 48px;
 }
+
+/* Coming soon */
+.coming-soon { text-align: center; padding: 44px 28px; }
+.coming-soon__mark { color: var(--accent); font-size: 30px; opacity: 0.7; }
+.coming-soon__title { font-size: 24px; margin: 14px 0 10px; letter-spacing: -0.01em; }
+.coming-soon__body { color: var(--ink-soft); max-width: 42ch; margin: 0 auto; font-size: 15px; }
 
 .footer {
   text-align: center;
