@@ -18,6 +18,125 @@
     "isSeed": true
   },
   {
+    "id": "clf-006",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "Moving from buying and owning servers up front to paying only for the compute you actually consume represents which cloud value proposition?",
+    "options": [
+      { "id": "o1", "text": "Trading capital expense (CapEx) for variable operating expense (OpEx)" },
+      { "id": "o2", "text": "Increasing CapEx while removing all OpEx" },
+      { "id": "o3", "text": "Eliminating all costs entirely" },
+      { "id": "o4", "text": "Signing fixed multi-year hardware leases" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The cloud lets you replace large up-front hardware purchases (CapEx) with pay-as-you-go spending (OpEx), so you pay for consumption instead of owning depreciating assets.",
+    "explanationIncorrect": "The model reduces CapEx, it does not increase it. It does not eliminate costs; you still pay for what you use. Fixed multi-year hardware leases are the opposite of variable, consumption-based spending. The value proposition is trading CapEx for OpEx.",
+    "tags": ["cloud-concepts", "capex-opex"]
+  },
+  {
+    "id": "clf-007",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "What is the relationship between an AWS Region and an Availability Zone?",
+    "options": [
+      { "id": "o1", "text": "A Region is a geographic area that contains multiple, physically separate Availability Zones" },
+      { "id": "o2", "text": "An Availability Zone contains many Regions" },
+      { "id": "o3", "text": "A Region and an Availability Zone are the same thing" },
+      { "id": "o4", "text": "A Region is a single building and an Availability Zone is a single server" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A Region is a geographic area, and within it are multiple Availability Zones, each one or more physically separate data centers, which is what enables highly available designs.",
+    "explanationIncorrect": "The containment is the other way around: Regions contain Availability Zones, not the reverse. They are not the same thing; a Region groups several AZs. An AZ is more than a single server and a Region more than a single building; each AZ is one or more data centers. A Region contains multiple AZs.",
+    "tags": ["cloud-concepts", "global-infrastructure", "regions-azs"]
+  },
+  {
+    "id": "clf-008",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "To keep an application available even if one data center fails, how should you deploy it across AWS?",
+    "options": [
+      { "id": "o1", "text": "Across multiple Availability Zones within a Region" },
+      { "id": "o2", "text": "On a single large instance in one Availability Zone" },
+      { "id": "o3", "text": "In a single edge location" },
+      { "id": "o4", "text": "On one Availability Zone with a larger disk" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spreading across multiple Availability Zones means a failure confined to one AZ does not take the whole application down, which is the standard high-availability pattern.",
+    "explanationIncorrect": "A single instance in one AZ is a single point of failure; if that AZ fails, so does the app. An edge location caches content for delivery; it is not where you run a resilient application tier. A bigger disk in one AZ adds capacity but no fault isolation. High availability comes from multiple Availability Zones.",
+    "tags": ["cloud-concepts", "high-availability", "availability-zones"]
+  },
+  {
+    "id": "clf-009",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Adding more instances to handle increased load, rather than making one instance bigger, is called what?",
+    "options": [
+      { "id": "o1", "text": "Horizontal scaling (scaling out)" },
+      { "id": "o2", "text": "Vertical scaling (scaling up)" },
+      { "id": "o3", "text": "Diagonal scaling" },
+      { "id": "o4", "text": "Manual failover" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Adding more instances to share the load is horizontal scaling, or scaling out, which improves both capacity and fault tolerance.",
+    "explanationIncorrect": "Vertical scaling means resizing a single instance to a larger type, which is the opposite of adding more instances. Diagonal scaling is not a standard term. Manual failover is switching to a standby after a failure, not a scaling strategy. Adding instances is horizontal scaling.",
+    "tags": ["cloud-concepts", "scaling"]
+  },
+  {
+    "id": "clf-010",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which of the following is one of the pillars of the AWS Well-Architected Framework?",
+    "options": [
+      { "id": "o1", "text": "Operational Excellence" },
+      { "id": "o2", "text": "Maximum Vendor Lock-in" },
+      { "id": "o3", "text": "Manual Provisioning" },
+      { "id": "o4", "text": "Single Point of Failure" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Operational Excellence is one of the Well-Architected pillars, alongside Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability.",
+    "explanationIncorrect": "Maximum vendor lock-in, manual provisioning, and single point of failure are anti-patterns, not framework pillars; the framework exists to help you avoid exactly those. The genuine pillar listed is Operational Excellence.",
+    "tags": ["cloud-concepts", "well-architected"]
+  },
+  {
+    "id": "clf-011",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "An organization runs some workloads in its own on-premises data center and others in AWS, integrated together. Which deployment model is this?",
+    "options": [
+      { "id": "o1", "text": "Hybrid cloud" },
+      { "id": "o2", "text": "Pure public cloud" },
+      { "id": "o3", "text": "Pure private cloud" },
+      { "id": "o4", "text": "Multi-tenant SaaS" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Combining on-premises infrastructure with cloud resources that work together is the hybrid cloud deployment model.",
+    "explanationIncorrect": "Pure public cloud would run everything in AWS with no on-premises component. Pure private cloud would keep everything in the organization's own data center. Multi-tenant SaaS describes a software delivery model, not a mix of on-premises and cloud infrastructure. Mixing on-premises and cloud is hybrid.",
+    "tags": ["cloud-concepts", "deployment-models", "hybrid"]
+  },
+  {
+    "id": "clf-012",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "A startup wants to serve users in Europe and Asia quickly without building its own data centers on those continents. Which cloud benefit enables this?",
+    "options": [
+      { "id": "o1", "text": "Going global in minutes by deploying into AWS Regions around the world" },
+      { "id": "o2", "text": "Buying land and constructing new data centers abroad" },
+      { "id": "o3", "text": "Shipping physical servers overseas by freight" },
+      { "id": "o4", "text": "Restricting the application to a single Region" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS's global footprint lets you deploy into Regions near your users in minutes, so you reach new geographies without owning infrastructure there.",
+    "explanationIncorrect": "Constructing data centers and shipping servers are exactly the slow, capital-heavy steps the cloud removes. Restricting to one Region would increase latency for distant users, the opposite of the goal. The benefit is going global in minutes across AWS Regions.",
+    "tags": ["cloud-concepts", "global-reach", "agility"]
+  },
+  {
     "id": "clf-002",
     "exam": "aws-cloud-practitioner",
     "domain": "Security and Compliance",
