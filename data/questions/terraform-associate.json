@@ -530,5 +530,73 @@
     "explanationCorrect": "Terraform's built-in length function returns the number of elements in a list, map, or string, so length(var.mylist) gives the element count.",
     "explanationIncorrect": "count is a resource meta-argument, not a function that measures a collection. size and len are not Terraform built-in functions. The correct function name is length.",
     "tags": ["configuration", "functions", "length"]
+  },
+  {
+    "id": "tf-032",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "What does HCP Terraform (Terraform Cloud) provide over running Terraform purely locally?",
+    "options": [
+      { "id": "o1", "text": "Managed remote state storage and remote execution of plans and applies with a shared, audited team workflow" },
+      { "id": "o2", "text": "A completely different configuration language from open-source Terraform" },
+      { "id": "o3", "text": "The ability to skip writing any configuration" },
+      { "id": "o4", "text": "Local-only execution with no collaboration features" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform stores state remotely and runs plans and applies on managed infrastructure with a consistent, auditable workflow, which supports team collaboration beyond what local runs offer.",
+    "explanationIncorrect": "It uses the same HCL configuration as open-source Terraform, not a different language. It does not remove the need to write configuration. And its whole value is collaboration and remote execution, the opposite of local-only. HCP Terraform adds managed remote state and remote runs.",
+    "tags": ["hcp-terraform", "remote-state", "remote-runs"]
+  },
+  {
+    "id": "tf-033",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "Your organization wants to enforce guardrails, such as forbidding any resource that lacks required tags, on every run before apply. Which HCP Terraform capability does this?",
+    "options": [
+      { "id": "o1", "text": "Policy as code with Sentinel (or OPA) policy sets, evaluated between plan and apply" },
+      { "id": "o2", "text": "terraform fmt run on every commit" },
+      { "id": "o3", "text": "The .terraform.lock.hcl dependency lock file" },
+      { "id": "o4", "text": "A local pre-commit hook on each developer's machine only" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform evaluates policy-as-code (Sentinel or OPA) between plan and apply, so a run that violates a guardrail like missing required tags can be blocked automatically and centrally.",
+    "explanationIncorrect": "terraform fmt only formats configuration and enforces no policy. The lock file pins provider versions; it does not evaluate resource policy. A local pre-commit hook is per-developer and easily bypassed, not a central enforced control. Centralized guardrails are policy as code with Sentinel or OPA.",
+    "tags": ["hcp-terraform", "policy-as-code", "sentinel"]
+  },
+  {
+    "id": "tf-034",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "In HCP Terraform, how can runs be triggered automatically when changes are pushed to a connected repository?",
+    "options": [
+      { "id": "o1", "text": "Connect a VCS provider so commits to the repository queue plan and apply runs for the workspace" },
+      { "id": "o2", "text": "Email the state file to HashiCorp after each push" },
+      { "id": "o3", "text": "Run terraform destroy automatically on every push" },
+      { "id": "o4", "text": "HCP Terraform cannot integrate with version control" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A VCS-connected workspace watches the repository and automatically queues runs when commits land, giving a pull-request and merge driven infrastructure workflow.",
+    "explanationIncorrect": "Emailing state files is not a real integration and would be insecure. Destroying infrastructure on every push would be catastrophic and is not how VCS integration behaves. HCP Terraform integrates well with version control, so claiming it cannot is wrong. Automatic runs come from a connected VCS provider.",
+    "tags": ["hcp-terraform", "vcs", "automation"]
+  },
+  {
+    "id": "tf-035",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "In HCP Terraform, what does a workspace represent?",
+    "options": [
+      { "id": "o1", "text": "A managed collection of a configuration, its state, variables, and run history for a distinct environment" },
+      { "id": "o2", "text": "Only a code-formatting preference" },
+      { "id": "o3", "text": "A provider plugin" },
+      { "id": "o4", "text": "A single infrastructure resource" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An HCP Terraform workspace groups a configuration together with its own state, variables, and run history, typically representing one environment such as staging or production.",
+    "explanationIncorrect": "A workspace is far more than a formatting preference. It is not a provider plugin, which implements resource types. It is not a single resource; it manages a whole configuration's state and runs. An HCP Terraform workspace is a managed environment with its own state, variables, and history.",
+    "tags": ["hcp-terraform", "workspaces"]
   }
 ]
