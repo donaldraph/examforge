@@ -18,6 +18,142 @@
     "isSeed": true
   },
   {
+    "id": "saa-016",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "You want a web tier that automatically replaces failed instances and stays available even if an entire Availability Zone fails, while distributing traffic across healthy instances. Which combination achieves this?",
+    "options": [
+      { "id": "o1", "text": "An Auto Scaling group spanning multiple Availability Zones behind an Application Load Balancer" },
+      { "id": "o2", "text": "A single large instance with a static Elastic IP" },
+      { "id": "o3", "text": "One instance per Region with manual DNS switching" },
+      { "id": "o4", "text": "A NAT gateway placed in front of the instances" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An Auto Scaling group across multiple AZs replaces unhealthy instances and survives an AZ failure, and the load balancer spreads traffic only to healthy targets, giving both self-healing and high availability.",
+    "explanationIncorrect": "A single instance is a single point of failure regardless of its Elastic IP. One instance per Region with manual DNS switching is slow and error-prone, not automatic. A NAT gateway provides outbound internet access for private subnets; it does not balance or heal the web tier. The resilient pattern is a multi-AZ Auto Scaling group behind a load balancer.",
+    "tags": ["resilience", "auto-scaling", "load-balancing"]
+  },
+  {
+    "id": "saa-017",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "You run a primary site and a standby site and want DNS to automatically direct users to the standby if the primary fails a health check. Which Route 53 feature does this?",
+    "options": [
+      { "id": "o1", "text": "Failover routing with health checks" },
+      { "id": "o2", "text": "Simple routing" },
+      { "id": "o3", "text": "Weighted routing with fixed weights" },
+      { "id": "o4", "text": "A single CNAME pointing at both sites" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Route 53 failover routing uses health checks to serve the primary while it is healthy and automatically switch DNS answers to the standby when the primary fails, which is the active-passive pattern described.",
+    "explanationIncorrect": "Simple routing returns a fixed record with no health awareness, so it cannot fail over. Weighted routing splits traffic by proportion and does not by itself redirect on failure. A CNAME cannot point at two sites or perform health-based switching. Automatic health-based redirection is failover routing.",
+    "tags": ["resilience", "route53", "failover"]
+  },
+  {
+    "id": "saa-018",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "For disaster recovery you must automatically keep a copy of critical S3 objects in a second AWS Region. Which feature provides this?",
+    "options": [
+      { "id": "o1", "text": "S3 Cross-Region Replication (CRR)" },
+      { "id": "o2", "text": "S3 Versioning within a single Region" },
+      { "id": "o3", "text": "An EBS snapshot of the bucket" },
+      { "id": "o4", "text": "A manual copy onto an EC2 local disk" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Cross-Region Replication automatically copies new objects to a bucket in another Region, giving you a geographically separate copy for disaster recovery.",
+    "explanationIncorrect": "Versioning within one Region protects against overwrites but does not survive a Region-wide event. EBS snapshots apply to block volumes, not S3 buckets. A manual copy to an EC2 disk is neither automatic nor durable. Cross-Region durability for S3 is CRR.",
+    "tags": ["resilience", "s3", "cross-region-replication"]
+  },
+  {
+    "id": "saa-019",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "You need a DynamoDB table that is active in multiple Regions with low-latency local reads and writes and automatic multi-Region replication. Which feature provides this?",
+    "options": [
+      { "id": "o1", "text": "DynamoDB global tables" },
+      { "id": "o2", "text": "A single-Region table with on-demand capacity" },
+      { "id": "o3", "text": "DynamoDB Accelerator (DAX) alone" },
+      { "id": "o4", "text": "Manual export and import between Regions" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "DynamoDB global tables replicate a table across multiple Regions with multi-active read/write and automatic replication, delivering low-latency local access and cross-Region resilience.",
+    "explanationIncorrect": "A single-Region table, whatever its capacity mode, provides no multi-Region resilience. DAX is an in-memory cache in front of DynamoDB for read latency, not cross-Region replication. Manual export and import is neither continuous nor low-latency. Multi-Region active tables are DynamoDB global tables.",
+    "tags": ["resilience", "dynamodb", "global-tables"]
+  },
+  {
+    "id": "saa-020",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "A company needs near-zero recovery time and keeps a scaled-down but fully functional copy of its workload always running in a second Region, ready to scale up on failover. Which disaster-recovery strategy is this?",
+    "options": [
+      { "id": "o1", "text": "Warm standby" },
+      { "id": "o2", "text": "Backup and restore" },
+      { "id": "o3", "text": "Pilot light with nothing actively serving" },
+      { "id": "o4", "text": "A single-AZ deployment" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Warm standby keeps a smaller but running copy of the environment in another Region that can be scaled up quickly, giving low recovery time at moderate cost.",
+    "explanationIncorrect": "Backup and restore has the longest recovery time because you rebuild from backups after a disaster. Pilot light keeps only core elements running (like a replicated database) with the rest switched off, so recovery is slower than warm standby. A single-AZ deployment offers no cross-Region recovery at all. An always-running scaled-down copy is warm standby.",
+    "tags": ["resilience", "disaster-recovery", "warm-standby"]
+  },
+  {
+    "id": "saa-021",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Incoming orders must not be lost if the processing service is temporarily down, and failed messages should be retried and eventually isolated. How do you design the intake?",
+    "options": [
+      { "id": "o1", "text": "Put orders on an SQS queue; workers consume them, and a dead-letter queue captures messages that repeatedly fail" },
+      { "id": "o2", "text": "Call the processing service synchronously and drop the order if it is unavailable" },
+      { "id": "o3", "text": "Hold orders in the web server's memory until processing recovers" },
+      { "id": "o4", "text": "Write each order to a single EC2 instance's local disk" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An SQS queue durably holds orders until workers can process them, decoupling intake from processing, and a dead-letter queue isolates messages that fail repeatedly so they can be inspected without blocking others.",
+    "explanationIncorrect": "A synchronous call that drops the order on failure loses data, which is the exact requirement to avoid. Web server memory is volatile and lost on restart or scale-in. A single instance's local disk is neither durable nor shared and disappears if the instance fails. Durable, retryable intake uses SQS with a dead-letter queue.",
+    "tags": ["resilience", "sqs", "dead-letter-queue"]
+  },
+  {
+    "id": "saa-022",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "You want to be able to restore an RDS database to any second within the retention window after a bad data change. Which capability enables this?",
+    "options": [
+      { "id": "o1", "text": "Automated backups with point-in-time recovery" },
+      { "id": "o2", "text": "A single one-time manual snapshot" },
+      { "id": "o3", "text": "Multi-AZ, because the standby is a backup" },
+      { "id": "o4", "text": "Read replicas, because they serve as backups" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RDS automated backups capture transaction logs, enabling point-in-time recovery to any moment within the retention period, which is what you need to roll back a bad change precisely.",
+    "explanationIncorrect": "A single manual snapshot only restores to that one point in time, not any second. Multi-AZ keeps a synchronous standby for failover; it replicates bad changes too and is not a backup. Read replicas scale reads and also receive the bad change; they are not backups. Precise rollback is automated backups with point-in-time recovery.",
+    "tags": ["resilience", "rds", "point-in-time-recovery"]
+  },
+  {
+    "id": "saa-023",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To let an Auto Scaling group add and remove web servers freely without breaking logged-in user sessions, where should session state be kept?",
+    "options": [
+      { "id": "o1", "text": "In an external store such as Amazon ElastiCache or DynamoDB, keeping the instances stateless" },
+      { "id": "o2", "text": "On each instance's local disk" },
+      { "id": "o3", "text": "In the instance's RAM only" },
+      { "id": "o4", "text": "Baked into the AMI at build time" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Externalizing session state to a shared store like ElastiCache or DynamoDB makes the web instances stateless, so any instance can serve any user and scaling in or out does not lose sessions.",
+    "explanationIncorrect": "Local disk and RAM tie a session to one instance, so terminating that instance during scale-in loses the session. Baking state into the AMI is static and cannot hold live per-user sessions. Stateless instances with an external session store is the resilient design.",
+    "tags": ["resilience", "stateless", "session-state"]
+  },
+  {
     "id": "saa-002",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design High-Performing Architectures",
