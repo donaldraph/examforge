@@ -3,6 +3,41 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Content — question banks
+
+### 2026-07-19 — every exam to 35 web-grounded questions
+
+- Researched each exam's official blueprint on the web before writing (GH-200,
+  GH-500, AIF-C01, CLF-C02, SAA-C03, Terraform Associate 003) and used the real
+  domain taxonomies and their weightings to decide how many questions each
+  domain gets. Two registries were corrected to match the official exams:
+  GitHub Advanced Security moved to the GH-500 domains (features, secret
+  scanning, Dependabot and dependency review, code scanning with CodeQL, best
+  practices and remediation), and Terraform moved to objective-based domains
+  (IaC concepts and purpose, basics, core workflow, state, modules,
+  configuration and functions, HCP Terraform). Existing seeds were remapped, not
+  discarded.
+
+- Brought all six banks from 5 to 35 questions each (210 total), spread across
+  every domain roughly in proportion to its exam weight, so the heavier domains
+  (for example SAA secure architectures, AIF applications of foundation models,
+  GHAS Dependabot) carry more questions. Each new question follows the same
+  shape: a scenario stem, four options keyed by id, a short confirming
+  explanation, and a longer teaching explanation on the wrong answer. Committed
+  in domain-grouped batches so the history reads as real, reviewable work.
+
+- Added a committed validator, `scripts/validate-banks.mjs`, run after every
+  batch. It enforces the schema (required fields, id and option-id patterns),
+  id uniqueness within a bank, that every correctAnswerId resolves to a real
+  option, that each question's domain is one the registry declares for its exam
+  and that every declared domain is covered by at least one question, that the
+  exam id matches both the file and the schema enum, and that the wrong-answer
+  explanation is the longer of the two. All six banks pass.
+
+- Proof: the validator passes on all 210 questions, the 12 frontend unit tests
+  still pass, and the production build is clean with all six banks synced in.
+  Still deferred: a timed exam mode.
+
 ## Content — seed banks for the other five exams
 
 ### 2026-07-18 — every tab is playable now, five questions apiece
