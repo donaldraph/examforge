@@ -54,6 +54,91 @@
     "isSeed": true
   },
   {
+    "id": "saa-006",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "You need instance-level, stateful traffic filtering where return traffic for an allowed inbound request is automatically permitted. Which construct provides this?",
+    "options": [
+      { "id": "o1", "text": "A security group, which is stateful and applied at the instance (ENI) level" },
+      { "id": "o2", "text": "A network ACL, which is stateless and applied at the subnet level" },
+      { "id": "o3", "text": "An IAM policy attached to the instance" },
+      { "id": "o4", "text": "A route table entry" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Security groups are stateful firewalls at the instance's network interface: if you allow an inbound request, the response is automatically allowed out without a matching outbound rule.",
+    "explanationIncorrect": "A network ACL is stateless and operates at the subnet boundary, so you must explicitly allow both directions of traffic, which is not the automatic behavior described. An IAM policy governs API permissions, not network packet filtering. A route table directs traffic between destinations; it does not filter by port or protocol. Stateful, instance-level filtering is a security group.",
+    "tags": ["security", "security-groups", "networking"]
+  },
+  {
+    "id": "saa-007",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Instances in a private subnet must download OS updates from the internet but must never be reachable from the internet. What do you use?",
+    "options": [
+      { "id": "o1", "text": "A NAT gateway in a public subnet, with the private subnet routing 0.0.0.0/0 to it" },
+      { "id": "o2", "text": "An internet gateway attached directly to the private instances" },
+      { "id": "o3", "text": "A public IP address assigned to each private instance" },
+      { "id": "o4", "text": "A VPC peering connection to the internet" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A NAT gateway lets private instances initiate outbound connections (like pulling updates) while blocking inbound connections from the internet, which is exactly the one-way access required.",
+    "explanationIncorrect": "Attaching an internet gateway path and giving instances public IPs would make them directly reachable from the internet, violating the requirement. A public IP on each instance has the same exposure problem. VPC peering connects two VPCs privately and is not a path to the internet. Outbound-only internet access for a private subnet is a NAT gateway.",
+    "tags": ["security", "nat-gateway", "private-subnet"]
+  },
+  {
+    "id": "saa-008",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "EC2 instances in a private subnet need to read objects from Amazon S3 without their traffic traversing the public internet and without paying for a NAT gateway. What do you use?",
+    "options": [
+      { "id": "o1", "text": "A gateway VPC endpoint for S3" },
+      { "id": "o2", "text": "A public S3 bucket reachable over the internet" },
+      { "id": "o3", "text": "An internet gateway for the private subnet" },
+      { "id": "o4", "text": "A second NAT gateway for redundancy" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A gateway VPC endpoint for S3 routes S3 traffic privately over the AWS network via a route-table entry, so instances reach S3 without a NAT gateway and without going over the internet, at no per-gateway cost.",
+    "explanationIncorrect": "Making the bucket public exposes data to the internet and still sends traffic over it. An internet gateway sends traffic to the public internet, which is what you are avoiding. Another NAT gateway would send S3 traffic over the internet and add cost, the opposite of the goal. Private, no-NAT S3 access uses a gateway VPC endpoint.",
+    "tags": ["security", "vpc-endpoint", "s3"]
+  },
+  {
+    "id": "saa-009",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "You need to store a database password, retrieve it at runtime, and rotate it automatically on a schedule. Which service is purpose-built for this?",
+    "options": [
+      { "id": "o1", "text": "AWS Secrets Manager" },
+      { "id": "o2", "text": "An environment variable baked into the AMI" },
+      { "id": "o3", "text": "A plaintext file stored in an S3 bucket" },
+      { "id": "o4", "text": "A value hardcoded in the application source" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Secrets Manager securely stores secrets, provides runtime retrieval via API with IAM control, and supports built-in automatic rotation, including for supported databases.",
+    "explanationIncorrect": "Baking a secret into an AMI freezes it into the image and offers no rotation, and it leaks to anyone who can launch the image. A plaintext file in S3 is unencrypted secret storage with no rotation. Hardcoding in source commits the secret to version control. Managed storage plus automatic rotation is AWS Secrets Manager.",
+    "tags": ["security", "secrets-manager", "rotation"]
+  },
+  {
+    "id": "saa-010",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "An application in account A must access an S3 bucket in account B securely, without sharing long-lived access keys. What is the recommended approach?",
+    "options": [
+      { "id": "o1", "text": "Have account A assume an IAM role in account B via sts:AssumeRole, with account B's role trust policy allowing A" },
+      { "id": "o2", "text": "Create an IAM user in account B and email its access keys to account A" },
+      { "id": "o3", "text": "Make the bucket public so account A can read it" },
+      { "id": "o4", "text": "Share account B's root credentials with account A" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Cross-account access is done with roles: account B defines a role with a trust policy allowing account A, and A assumes it to get temporary credentials, so no long-lived keys are shared.",
+    "explanationIncorrect": "Creating an IAM user and emailing its keys distributes a long-lived credential, exactly what roles avoid, and emailing secrets is unsafe. Making the bucket public exposes it to everyone. Sharing root credentials is the most dangerous option and violates every best practice. Secure cross-account access uses role assumption.",
+    "tags": ["security", "cross-account", "assume-role"]
+  },
+  {
     "id": "saa-004",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design Cost-Optimized Architectures",
