@@ -462,5 +462,141 @@
     "explanationCorrect": "Answering questions about an image requires a multimodal model that can take images as input and generate text, combining vision understanding with language output.",
     "explanationIncorrect": "A text-only LLM cannot see an image. A text-to-speech model converts text to audio and does not analyze images. An embeddings-only model produces vectors, not conversational text answers. The task needs a multimodal (image-to-text) model.",
     "tags": ["applications", "multimodal"]
+  },
+  {
+    "id": "aip-028",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "easy",
+    "stem": "A generative model confidently produces a fluent answer that is factually wrong and not grounded in any real source. What is this behavior called?",
+    "options": [
+      { "id": "o1", "text": "Hallucination" },
+      { "id": "o2", "text": "Overfitting" },
+      { "id": "o3", "text": "Latency" },
+      { "id": "o4", "text": "Quantization" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A hallucination is a confident but ungrounded, factually incorrect output; recognizing and mitigating it (for example with RAG and human review) is a core responsible-AI concern.",
+    "explanationIncorrect": "Overfitting describes a model that memorizes training data and generalizes poorly; it is a training issue, not a fabricated answer. Latency is response time. Quantization is a technique to shrink a model's numeric precision for efficiency. A confident wrong answer is a hallucination.",
+    "tags": ["responsible-ai", "hallucination"]
+  },
+  {
+    "id": "aip-029",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "A hiring model recommends mostly one demographic because its historical training data reflected past biased decisions. Which responsible-AI concern does this illustrate?",
+    "options": [
+      { "id": "o1", "text": "Bias and fairness, arising from biased training data" },
+      { "id": "o2", "text": "Model latency" },
+      { "id": "o3", "text": "Token limits" },
+      { "id": "o4", "text": "Cold-start time" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When a model learns from biased historical data it can reproduce and amplify that bias, which is a fairness problem that responsible-AI practices aim to detect and mitigate.",
+    "explanationIncorrect": "Latency is response speed and unrelated to skewed outcomes. Token limits bound input and output length, not fairness. Cold-start time is an operational delay when a resource initializes. Discriminatory outcomes learned from data are a bias and fairness concern.",
+    "tags": ["responsible-ai", "bias", "fairness"]
+  },
+  {
+    "id": "aip-030",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "AWS publishes documents describing an AI service's intended use cases, limitations, and responsible-AI considerations to improve transparency. What are these called?",
+    "options": [
+      { "id": "o1", "text": "AWS AI Service Cards" },
+      { "id": "o2", "text": "IAM policies" },
+      { "id": "o3", "text": "CloudFormation templates" },
+      { "id": "o4", "text": "Trusted Advisor checks" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS AI Service Cards are transparency documents that describe an AI service's intended uses, limitations, and responsible-AI design choices, helping customers use the service appropriately.",
+    "explanationIncorrect": "IAM policies grant permissions; they are not transparency documentation. CloudFormation templates define infrastructure as code. Trusted Advisor checks give cost and best-practice recommendations. The responsible-AI transparency documents are AI Service Cards.",
+    "tags": ["responsible-ai", "transparency", "ai-service-cards"]
+  },
+  {
+    "id": "aip-031",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "For a high-stakes use case such as a medical or loan decision, which practice best reduces the risk of harmful automated errors?",
+    "options": [
+      { "id": "o1", "text": "Keep a human in the loop to review and approve model outputs before they take effect" },
+      { "id": "o2", "text": "Remove all human oversight to make decisions faster" },
+      { "id": "o3", "text": "Set temperature to the maximum for more creative decisions" },
+      { "id": "o4", "text": "Disable all logging to protect privacy" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A human-in-the-loop review for high-stakes decisions catches errors and inappropriate outputs before they cause harm, which is a central responsible-AI safeguard.",
+    "explanationIncorrect": "Removing oversight increases the risk of unchecked harmful decisions in exactly the situations that most need review. Maximizing temperature makes outputs more random, which is dangerous for consequential decisions. Disabling logging removes the audit trail you need for accountability. The safeguard is keeping a human in the loop.",
+    "tags": ["responsible-ai", "human-in-the-loop", "oversight"]
+  },
+  {
+    "id": "aip-032",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "You must ensure that only specific applications and roles can invoke a given Amazon Bedrock model. Which AWS mechanism enforces that?",
+    "options": [
+      { "id": "o1", "text": "IAM policies granting least-privilege permissions on the Bedrock invoke actions" },
+      { "id": "o2", "text": "Security groups attached to the model" },
+      { "id": "o3", "text": "A CAPTCHA challenge on every request" },
+      { "id": "o4", "text": "Making the model publicly accessible to everyone" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Access to Bedrock actions is controlled by IAM: least-privilege policies scoped to the invoke actions (and specific models) determine which principals may call the model.",
+    "explanationIncorrect": "Security groups are network firewalls for resources like EC2 instances; they do not gate who may call a managed model API. A CAPTCHA is a human-verification widget, not an AWS authorization mechanism. Making the model public is the opposite of restricting access. Authorization is enforced with IAM policies.",
+    "tags": ["governance", "iam", "access-control"]
+  },
+  {
+    "id": "aip-033",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "For governance you need an audit trail of who made Amazon Bedrock API calls and when. Which service records these management events?",
+    "options": [
+      { "id": "o1", "text": "AWS CloudTrail" },
+      { "id": "o2", "text": "Amazon Polly" },
+      { "id": "o3", "text": "AWS Lambda" },
+      { "id": "o4", "text": "Amazon Lex" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudTrail records API activity across AWS services, including Bedrock, giving you the who-did-what-and-when audit trail that governance requires.",
+    "explanationIncorrect": "Amazon Polly is text-to-speech and records no cross-service audit trail. AWS Lambda runs code; it is not an auditing service. Amazon Lex builds conversational bots. The API audit-logging service is AWS CloudTrail.",
+    "tags": ["governance", "cloudtrail", "auditing"]
+  },
+  {
+    "id": "aip-034",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "Your compliance policy requires that traffic to Amazon Bedrock not traverse the public internet. Which feature keeps that traffic on the AWS network?",
+    "options": [
+      { "id": "o1", "text": "An interface VPC endpoint (AWS PrivateLink) for Bedrock" },
+      { "id": "o2", "text": "A public NAT gateway" },
+      { "id": "o3", "text": "An internet gateway" },
+      { "id": "o4", "text": "A public S3 bucket" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An interface VPC endpoint powered by AWS PrivateLink lets resources in your VPC reach Bedrock privately over the AWS network, so the traffic never crosses the public internet.",
+    "explanationIncorrect": "A NAT gateway and an internet gateway both exist precisely to route traffic to the public internet, which is what you are trying to avoid. A public S3 bucket is a storage exposure and unrelated to private connectivity. Private access to Bedrock is achieved with an interface VPC endpoint (PrivateLink).",
+    "tags": ["governance", "privatelink", "vpc-endpoint"]
+  },
+  {
+    "id": "aip-035",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "You want to detect statistical bias in a machine learning model's training data and predictions and to generate explainability reports. Which SageMaker capability provides this?",
+    "options": [
+      { "id": "o1", "text": "Amazon SageMaker Clarify" },
+      { "id": "o2", "text": "Amazon SageMaker Ground Truth" },
+      { "id": "o3", "text": "Amazon Bedrock Provisioned Throughput" },
+      { "id": "o4", "text": "Amazon Macie" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SageMaker Clarify measures bias in data and model predictions and produces feature-importance explainability reports, supporting fairness and transparency governance.",
+    "explanationIncorrect": "SageMaker Ground Truth is for labeling training data, not detecting bias. Bedrock Provisioned Throughput reserves inference capacity. Amazon Macie discovers and classifies sensitive data such as PII in S3; it is a data-security service, not a model-bias tool. Bias detection and explainability come from SageMaker Clarify.",
+    "tags": ["governance", "sagemaker-clarify", "bias-detection"]
   }
 ]
