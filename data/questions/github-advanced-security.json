@@ -1,0 +1,92 @@
+[
+  {
+    "id": "ghas-001",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning",
+    "difficulty": "medium",
+    "stem": "You want to find security vulnerabilities in your own source code by analyzing how untrusted data flows through the application, before the code ever runs. Which GitHub Advanced Security feature and engine does this?",
+    "options": [
+      { "id": "o1", "text": "Code scanning powered by CodeQL, which runs static analysis by querying a database it builds from your code" },
+      { "id": "o2", "text": "Secret scanning, which matches committed strings against known credential patterns" },
+      { "id": "o3", "text": "Dependabot, which compares your manifest against an advisory database" },
+      { "id": "o4", "text": "Required status checks, which block a merge until tests pass" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning uses CodeQL to treat your code as data: it builds a database from the code and runs queries that trace tainted data from a source to a dangerous sink, so it finds issues by static analysis without executing anything.",
+    "explanationIncorrect": "Secret scanning looks for credentials that were committed, matching strings against known token patterns; it does not reason about data flow through your code. Dependabot works at the dependency level, comparing the versions in your manifests and lockfiles against the GitHub Advisory Database, so it flags vulnerable packages you depend on rather than flaws in code you wrote. Required status checks are a branch protection mechanism that gates merges on CI results; they run whatever you configured but do no security analysis themselves. The feature that performs data-flow static analysis of your own source is code scanning with CodeQL.",
+    "tags": ["code-scanning", "codeql", "static-analysis"],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-002",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "A developer is about to commit an AWS access key. You want GitHub to block the push at the moment it is attempted, before the secret ever reaches the remote repository. Which capability do you enable?",
+    "options": [
+      { "id": "o1", "text": "Secret scanning push protection" },
+      { "id": "o2", "text": "Branch protection requiring a pull request review" },
+      { "id": "o3", "text": "Code scanning with a custom CodeQL query that looks for secrets" },
+      { "id": "o4", "text": "Dependabot security updates" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection is the part of secret scanning that checks the pushed content against supported secret patterns and rejects the push in real time, so a recognized credential never lands in the remote history in the first place.",
+    "explanationIncorrect": "A pull request review requirement gates merging into a protected branch, but the secret would already be pushed to the feature branch and stored in history before any review happens, so it does not prevent the leak. CodeQL analyzes code structure and data flow rather than scanning for credential patterns, and it runs as an analysis over a branch rather than as a gate on the push itself. Dependabot security updates open pull requests to bump vulnerable dependencies and have nothing to do with committed secrets. The feature that stops a recognized secret at push time is secret scanning push protection.",
+    "tags": ["secret-scanning", "push-protection"],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-003",
+    "exam": "github-advanced-security",
+    "domain": "Dependency management",
+    "difficulty": "medium",
+    "stem": "When a new advisory affects a package your repository depends on, you want Dependabot to automatically open a pull request that bumps that dependency to a patched version. Which Dependabot feature is this?",
+    "options": [
+      { "id": "o1", "text": "Dependabot security updates" },
+      { "id": "o2", "text": "Dependabot version updates" },
+      { "id": "o3", "text": "Dependabot alerts" },
+      { "id": "o4", "text": "Dependency review in a pull request" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot security updates react specifically to advisories: when a vulnerability is known for a dependency you use, Dependabot raises a pull request to move it to the nearest patched version.",
+    "explanationIncorrect": "Dependabot version updates are scheduled and driven by a dependabot.yml config; they keep dependencies current on a cadence regardless of whether a vulnerability exists, so they are not triggered by an advisory. Dependabot alerts notify you that a vulnerable dependency is present, but an alert on its own is a notification, not an automatically opened fix pull request. Dependency review runs in a pull request and shows the security impact of the dependency changes that pull request introduces, helping a reviewer decide before merge; it does not itself open remediation pull requests. The feature that opens patch pull requests in response to advisories is Dependabot security updates.",
+    "tags": ["dependabot", "dependencies", "advisories"],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-004",
+    "exam": "github-advanced-security",
+    "domain": "Security administration",
+    "difficulty": "medium",
+    "stem": "As an organization owner you want a single place to see which repositories have open code scanning, secret scanning, and Dependabot alerts across the whole organization, and where those features are enabled. Where do you look?",
+    "options": [
+      { "id": "o1", "text": "The organization-level security overview" },
+      { "id": "o2", "text": "The Insights tab of each repository, one repository at a time" },
+      { "id": "o3", "text": "The Actions tab filtered by workflow run" },
+      { "id": "o4", "text": "A CSV export of the git commit log" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The security overview aggregates alert state and feature enablement across the organization's repositories in one view, which is exactly the cross-repository posture picture an owner needs.",
+    "explanationIncorrect": "The repository Insights tab shows traffic and contribution analytics for a single repository and does not aggregate security alerts across the org, so using it means visiting every repository by hand. The Actions tab lists workflow runs; it can tell you whether a scanning workflow executed but not the consolidated alert posture across repositories. A commit log export tells you what changed, not which security alerts are open or which features are turned on. The consolidated cross-repository view is the organization-level security overview.",
+    "tags": ["security-overview", "administration", "organization"],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-005",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning",
+    "difficulty": "hard",
+    "stem": "You need to customize which CodeQL query suites run and add a build step for a compiled language before analysis. Which code scanning configuration should you use?",
+    "options": [
+      { "id": "o1", "text": "Advanced setup, which commits an editable CodeQL analysis workflow you can customize" },
+      { "id": "o2", "text": "Default setup, because its managed configuration can be edited per query and per build step" },
+      { "id": "o3", "text": "Secret scanning custom patterns" },
+      { "id": "o4", "text": "A branch protection rule that adds the build step" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Advanced setup generates a CodeQL workflow file in your repository that you own and edit, so you can choose query suites, set languages, and insert build steps for compiled languages that need to be built before CodeQL can analyze them.",
+    "explanationIncorrect": "Default setup is deliberately managed and low-configuration: it enables code scanning quickly and handles common cases, but it does not give you a workflow file to hand-tune query suites or inject a custom build step, which is the whole requirement here. Secret scanning custom patterns define new credential shapes to detect; they are unrelated to CodeQL queries or building code. A branch protection rule can require the code scanning check to pass, but it cannot define how the analysis runs or add a build step. To customize query suites and add a build step you use advanced setup with its editable CodeQL workflow.",
+    "tags": ["code-scanning", "codeql", "advanced-setup"],
+    "isSeed": true
+  }
+]
