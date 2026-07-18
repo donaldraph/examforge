@@ -428,5 +428,107 @@
     "explanationCorrect": "The common convention is immutable semver tags for exact releases plus a moving major tag (v1) that you advance to the newest backward-compatible version, so consumers pinning to v1 get patches without breaking changes.",
     "explanationIncorrect": "An @latest tag hides which version runs and offers no compatibility promise. Pinning consumers to a branch gives them a moving target with no versioning discipline. Not tagging at all and tracking the default branch is the least stable option and gives consumers no way to pin. The recommended pattern is semver tags with a maintained major-version tag.",
     "tags": ["actions", "versioning", "releases"]
+  },
+  {
+    "id": "gha-026",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Your CI must reach a database and services inside a private corporate network that GitHub-hosted runners cannot access. What is the appropriate runner choice?",
+    "options": [
+      { "id": "o1", "text": "Self-hosted runners deployed inside your own network" },
+      { "id": "o2", "text": "GitHub-hosted runners on a larger machine size" },
+      { "id": "o3", "text": "GitHub-hosted runners pinned to a particular region" },
+      { "id": "o4", "text": "Disable runners and run the CI steps manually on a laptop" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Self-hosted runners live in your environment, so they can reach private network resources and use your own hardware and tools, which is exactly what accessing internal services requires.",
+    "explanationIncorrect": "A larger GitHub-hosted machine has more CPU and memory but still runs in GitHub's cloud with no route to your private network. Choosing a region for a GitHub-hosted runner does not place it inside your corporate network either. Running steps by hand on a laptop abandons automation entirely and is not a runner option. When jobs must reach private resources, the answer is self-hosted runners inside your network.",
+    "tags": ["enterprise", "self-hosted-runners"]
+  },
+  {
+    "id": "gha-027",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You operate self-hosted runners that can reach production, and you want only a specific set of repositories to be allowed to use them. Which feature enforces that access boundary?",
+    "options": [
+      { "id": "o1", "text": "Runner groups, which control which organizations and repositories may use a set of runners" },
+      { "id": "o2", "text": "Runner labels applied to the runners" },
+      { "id": "o3", "text": "Branch protection rules on the repositories" },
+      { "id": "o4", "text": "A concurrency group on the sensitive workflow" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Runner groups are the access-control boundary for self-hosted runners: you place the sensitive runners in a group and grant only chosen repositories or organizations permission to use that group.",
+    "explanationIncorrect": "Labels only route a job to a runner that advertises the label; any repository can target a label, so labels do not restrict who may use the runners. Branch protection governs merging into branches, not which runners a workflow may schedule on. A concurrency group serializes runs; it has nothing to do with runner access. The enforcement mechanism is runner groups.",
+    "tags": ["enterprise", "runner-groups", "access-control"]
+  },
+  {
+    "id": "gha-028",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An organization owner wants to allow only actions authored by GitHub plus an explicit allow list of specific third-party actions, and block everything else. Where is this configured?",
+    "options": [
+      { "id": "o1", "text": "The organization's Actions permissions policy, set to allow select actions with an explicit allow list" },
+      { "id": "o2", "text": "A CODEOWNERS file in each repository" },
+      { "id": "o3", "text": "The permissions block inside each individual workflow" },
+      { "id": "o4", "text": "A .gitignore entry listing disallowed actions" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The organization (or enterprise) Actions policy lets an owner restrict which actions may run, including an option to allow only GitHub-created actions plus a curated allow list, which applies across all repositories.",
+    "explanationIncorrect": "CODEOWNERS assigns review ownership of files; it cannot restrict which actions workflows may use. A workflow's permissions block scopes the GITHUB_TOKEN, not which external actions are permitted, and it is per-workflow rather than an org-wide control. .gitignore only excludes files from version control. The org-wide allow list lives in the Actions permissions policy.",
+    "tags": ["enterprise", "policy", "allowed-actions"]
+  },
+  {
+    "id": "gha-029",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Deployments to production should pause for manual approval by a designated team before the deploy job runs. Which feature provides this gate?",
+    "options": [
+      { "id": "o1", "text": "An environment with a required reviewers protection rule that the deploy job targets" },
+      { "id": "o2", "text": "A branch protection required status check" },
+      { "id": "o3", "text": "concurrency with cancel-in-progress on the deploy job" },
+      { "id": "o4", "text": "A matrix strategy with max-parallel set to 1" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub environments support protection rules, and required reviewers pauses any job that targets the environment until a named person or team approves, which is the manual deployment gate described.",
+    "explanationIncorrect": "A branch protection status check gates merging a pull request, not the execution of a deploy job at runtime. concurrency and cancel-in-progress control how overlapping runs are serialized or cancelled, not approvals. max-parallel limits matrix parallelism and has nothing to do with human sign-off. The approval gate is an environment with required reviewers.",
+    "tags": ["enterprise", "environments", "required-reviewers"]
+  },
+  {
+    "id": "gha-030",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "A secret named API_KEY is defined at the organization, repository, and environment levels. A job that targets that environment reads API_KEY. Which value applies?",
+    "options": [
+      { "id": "o1", "text": "The environment-level secret, which takes precedence over repository, which takes precedence over organization" },
+      { "id": "o2", "text": "The organization-level secret, which always overrides the others" },
+      { "id": "o3", "text": "All three values concatenated together" },
+      { "id": "o4", "text": "None; the run fails because of the naming conflict" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When the same secret name exists at multiple levels, the most specific wins: an environment secret overrides a repository secret, which overrides an organization secret, so the environment value applies for a job targeting that environment.",
+    "explanationIncorrect": "The organization level is the least specific, so it does not override the more specific repository and environment secrets. Secrets are not concatenated; a single value is resolved by precedence. A name existing at several levels is expected and does not fail the run; precedence resolves it. The order is environment, then repository, then organization.",
+    "tags": ["enterprise", "secrets", "precedence"]
+  },
+  {
+    "id": "gha-031",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "You want teams across the organization to reuse one standard CI workflow stored in a single internal repository. What makes other repositories able to call it?",
+    "options": [
+      { "id": "o1", "text": "Set the source repository's Actions access to allow the organization, and have callers reference it with uses at the job level" },
+      { "id": "o2", "text": "Copy the workflow file into every repository by hand" },
+      { "id": "o3", "text": "Publish the workflow to the public GitHub Marketplace" },
+      { "id": "o4", "text": "Have each team fork the source repository" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A reusable workflow in one repository can be called by others when that repository's Actions access setting permits it (for example, allowing access from the whole organization) and callers reference it with jobs.<id>.uses.",
+    "explanationIncorrect": "Copying the file everywhere defeats reuse and means every change must be propagated by hand. The Marketplace is for actions, not for sharing internal reusable workflows, and publishing an internal CI process publicly is undesirable. Forking creates independent copies that drift, which is again not reuse. The correct approach is to grant Actions access and call the workflow with uses.",
+    "tags": ["enterprise", "reusable-workflows", "sharing"]
   }
 ]
