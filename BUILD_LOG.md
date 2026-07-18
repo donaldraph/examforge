@@ -3,6 +3,39 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Content — seed banks for the other five exams
+
+### 2026-07-18 — every tab is playable now, five questions apiece
+
+- Paused the full 250-question GitHub Actions bank on purpose (it waits on the
+  research hand-off) and instead gave each of the other five exams a small,
+  real, hand-written seed bank so the whole engine is exercisable end to end
+  rather than one live tab and five placeholders.
+
+- Wrote five questions each for GitHub Advanced Security, AWS AI Practitioner,
+  AWS Cloud Practitioner, AWS Solutions Architect Associate, and HashiCorp
+  Terraform Associate, all marked isSeed: true, following the same shape as the
+  GitHub Actions seeds: a distinct id prefix per exam (ghas-, aip-, clf-, saa-,
+  tf-), real domains drawn from each exam's official blueprint, and a short
+  confirming explanationCorrect against a longer teaching explanationIncorrect.
+  Each bank spreads its five questions so every domain listed for that exam is
+  covered by at least one question.
+
+- Filled in each exam's domains in the registry and flipped its status from
+  coming-soon to active. Because the tab UI is driven entirely by the registry,
+  this is what lights up the five tabs; no component changed.
+
+- Proof: a schema check over all six banks passes. It enforces the required
+  fields, the id and option-id patterns, id uniqueness within a bank, that each
+  correctAnswerId resolves to a real option, that each question's domain is one
+  the registry declares for that exam and that every declared domain is covered,
+  that each question's exam id matches its file and the schema enum, and that
+  explanationIncorrect is the longer field. The 12 frontend unit tests still
+  pass and the production build is clean with all six banks synced in.
+
+- Deferred still: the full research-backed GitHub Actions set, and a timed exam
+  mode.
+
 ## Phase 5 — the six-exam tab switcher
 
 ### 2026-07-17 — one engine, six tabs, five of them waiting on content
