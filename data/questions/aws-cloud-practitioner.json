@@ -1,0 +1,92 @@
+[
+  {
+    "id": "clf-001",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "Your application's traffic spikes during the day and drops at night. You want to add capacity when demand rises and remove it when demand falls, paying only for what you use. Which cloud benefit best describes this?",
+    "options": [
+      { "id": "o1", "text": "Elasticity" },
+      { "id": "o2", "text": "A large upfront capital investment in fixed hardware" },
+      { "id": "o3", "text": "Vendor lock-in" },
+      { "id": "o4", "text": "Fixed on-premises capacity sized for peak" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elasticity is the ability to acquire resources as demand rises and release them as it falls, so you match capacity to load and pay only for what you use.",
+    "explanationIncorrect": "A large upfront capital investment in fixed hardware is the traditional on-premises model the cloud moves away from; it is capital expenditure that does not shrink when demand drops. Vendor lock-in is a risk to weigh, not a benefit, and it is unrelated to scaling with demand. Provisioning fixed on-premises capacity sized for peak means you pay for the peak all the time and still cannot easily scale beyond it. The property of growing and shrinking with demand and paying for use is elasticity.",
+    "tags": ["cloud-concepts", "elasticity"],
+    "isSeed": true
+  },
+  {
+    "id": "clf-002",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Under the AWS shared responsibility model, who is responsible for patching the guest operating system running on an Amazon EC2 instance?",
+    "options": [
+      { "id": "o1", "text": "The customer" },
+      { "id": "o2", "text": "AWS" },
+      { "id": "o3", "text": "The AWS Marketplace listing vendor" },
+      { "id": "o4", "text": "No one, because EC2 guest operating systems never need patching" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In the shared responsibility model AWS secures the infrastructure (security of the cloud) while the customer is responsible for what they run on it (security in the cloud), which for EC2 includes patching the guest operating system.",
+    "explanationIncorrect": "AWS is responsible for the physical facilities, hardware, and the virtualization layer, not the operating system you install and manage on an instance. A Marketplace vendor supplies an image but does not manage patching on your running instances over time. And guest operating systems certainly do require patching, so leaving it to no one is not an option. For EC2, patching the guest OS is squarely the customer's responsibility.",
+    "tags": ["security", "shared-responsibility-model"],
+    "isSeed": true
+  },
+  {
+    "id": "clf-003",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "easy",
+    "stem": "You need durable, virtually unlimited object storage for backups and static website assets, and you want to be billed for the amount of data you store. Which AWS service fits?",
+    "options": [
+      { "id": "o1", "text": "Amazon S3" },
+      { "id": "o2", "text": "Amazon EC2" },
+      { "id": "o3", "text": "Amazon RDS" },
+      { "id": "o4", "text": "AWS IAM" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon S3 is object storage designed for high durability and effectively unlimited capacity, billed largely on how much you store, which matches backups and static assets exactly.",
+    "explanationIncorrect": "Amazon EC2 provides virtual compute instances; it runs your code but is not an object store, and you pay for compute rather than stored objects. Amazon RDS is a managed relational database service for structured, queryable data, not a bucket for files and backups. AWS IAM manages identities and permissions and stores no application data at all. The durable, virtually unlimited object storage service is Amazon S3.",
+    "tags": ["services", "storage", "s3"],
+    "isSeed": true
+  },
+  {
+    "id": "clf-004",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "You have a steady, predictable EC2 workload that will run continuously for the next year and you want the lowest price in exchange for a commitment. Which purchasing option is most cost-effective?",
+    "options": [
+      { "id": "o1", "text": "A one-year Reserved Instance or Compute Savings Plan commitment" },
+      { "id": "o2", "text": "On-Demand Instances" },
+      { "id": "o3", "text": "Spot Instances for the always-on production workload" },
+      { "id": "o4", "text": "Dedicated Hosts billed hourly with no commitment" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "For steady, predictable usage over a term, a Reserved Instance or Savings Plan gives a substantial discount over On-Demand in exchange for a one- or three-year commitment, which is the cheapest fit for a known long-running workload.",
+    "explanationIncorrect": "On-Demand has no commitment and the highest per-hour rate, so it is the wrong choice when usage is predictable and you could commit for a discount. Spot Instances are cheapest per hour but can be reclaimed with little notice, which makes them unsuitable for an always-on production workload that must not be interrupted. Dedicated Hosts address licensing and isolation needs and cost more, not less, so they do not minimize price for a normal workload. The cost-effective choice for predictable long-running usage is a Reserved Instance or Savings Plan commitment.",
+    "tags": ["pricing", "reserved-instances", "savings-plans"],
+    "isSeed": true
+  },
+  {
+    "id": "clf-005",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "easy",
+    "stem": "You want to reduce latency for users around the world by serving your application's static content from locations physically close to them. Which AWS service provides this content delivery network?",
+    "options": [
+      { "id": "o1", "text": "Amazon CloudFront" },
+      { "id": "o2", "text": "Amazon VPC" },
+      { "id": "o3", "text": "AWS CloudTrail" },
+      { "id": "o4", "text": "Amazon SQS" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon CloudFront is AWS's content delivery network: it caches content at edge locations worldwide and serves each user from a nearby edge, cutting latency.",
+    "explanationIncorrect": "Amazon VPC is a private virtual network for isolating and connecting your AWS resources; it does not distribute content to global edge locations. AWS CloudTrail records API activity for auditing and governance and has nothing to do with content delivery. Amazon SQS is a message queue for decoupling application components, not a CDN. The global content delivery network is Amazon CloudFront.",
+    "tags": ["services", "cloudfront", "cdn"],
+    "isSeed": true
+  }
+]
