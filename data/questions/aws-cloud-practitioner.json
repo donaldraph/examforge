@@ -326,6 +326,108 @@
     "isSeed": true
   },
   {
+    "id": "clf-022",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "You want to run code in response to events without provisioning or managing any servers, paying only for the compute time your code uses. Which service fits?",
+    "options": [
+      { "id": "o1", "text": "AWS Lambda" },
+      { "id": "o2", "text": "Amazon EC2" },
+      { "id": "o3", "text": "Amazon EBS" },
+      { "id": "o4", "text": "AWS Direct Connect" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Lambda is serverless compute: you upload code that runs in response to events, and you pay only for execution time with no servers to manage.",
+    "explanationIncorrect": "Amazon EC2 gives you virtual machines you must size and manage, which is the opposite of serverless. Amazon EBS is block storage for EC2, not compute. AWS Direct Connect is a network link to AWS. The serverless, event-driven compute service is AWS Lambda.",
+    "tags": ["services", "lambda", "serverless"]
+  },
+  {
+    "id": "clf-023",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "You need a fully managed NoSQL key-value database that delivers single-digit millisecond performance at virtually any scale. Which service is it?",
+    "options": [
+      { "id": "o1", "text": "Amazon DynamoDB" },
+      { "id": "o2", "text": "Amazon RDS" },
+      { "id": "o3", "text": "Amazon Redshift" },
+      { "id": "o4", "text": "Amazon Neptune" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon DynamoDB is the managed NoSQL key-value and document database built for consistent single-digit millisecond latency at scale, with no servers to manage.",
+    "explanationIncorrect": "Amazon RDS is managed relational database service (SQL), not NoSQL key-value. Amazon Redshift is an analytical data warehouse. Amazon Neptune is a graph database. The managed NoSQL key-value store is Amazon DynamoDB.",
+    "tags": ["services", "dynamodb", "nosql"]
+  },
+  {
+    "id": "clf-024",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is a managed data warehouse for running analytical queries over large volumes of structured data?",
+    "options": [
+      { "id": "o1", "text": "Amazon Redshift" },
+      { "id": "o2", "text": "Amazon DynamoDB" },
+      { "id": "o3", "text": "Amazon SQS" },
+      { "id": "o4", "text": "Amazon Cognito" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Redshift is the managed, petabyte-scale data warehouse optimized for complex analytical (OLAP) queries over structured data.",
+    "explanationIncorrect": "Amazon DynamoDB is a NoSQL operational database, not an analytics warehouse. Amazon SQS is a message queue. Amazon Cognito handles user sign-up and authentication. The data warehouse is Amazon Redshift.",
+    "tags": ["services", "redshift", "data-warehouse"]
+  },
+  {
+    "id": "clf-025",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "You want to automatically distribute incoming application traffic across multiple EC2 instances spread over several Availability Zones. Which service does this?",
+    "options": [
+      { "id": "o1", "text": "Elastic Load Balancing (ELB)" },
+      { "id": "o2", "text": "Amazon S3" },
+      { "id": "o3", "text": "AWS Artifact" },
+      { "id": "o4", "text": "Amazon Comprehend" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elastic Load Balancing spreads incoming traffic across healthy targets in multiple Availability Zones, improving both scalability and fault tolerance.",
+    "explanationIncorrect": "Amazon S3 is object storage. AWS Artifact provides compliance documents. Amazon Comprehend is natural language processing. Traffic distribution across instances is Elastic Load Balancing.",
+    "tags": ["services", "elb", "load-balancing"]
+  },
+  {
+    "id": "clf-026",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service automatically adjusts the number of EC2 instances to match demand, adding capacity during spikes and removing it when idle?",
+    "options": [
+      { "id": "o1", "text": "EC2 Auto Scaling" },
+      { "id": "o2", "text": "AWS Shield" },
+      { "id": "o3", "text": "Amazon Macie" },
+      { "id": "o4", "text": "AWS Config" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "EC2 Auto Scaling adds and removes instances automatically based on demand or schedules, which keeps capacity matched to load and cost efficient.",
+    "explanationIncorrect": "AWS Shield is DDoS protection. Amazon Macie classifies sensitive data. AWS Config tracks resource configuration and compliance. Automatic capacity adjustment is EC2 Auto Scaling.",
+    "tags": ["services", "auto-scaling", "elasticity"]
+  },
+  {
+    "id": "clf-027",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which AWS service lets you define and provision your infrastructure using declarative templates, treating infrastructure as code?",
+    "options": [
+      { "id": "o1", "text": "AWS CloudFormation" },
+      { "id": "o2", "text": "Amazon EC2" },
+      { "id": "o3", "text": "Amazon SNS" },
+      { "id": "o4", "text": "AWS Artifact" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudFormation provisions and manages AWS resources from declarative templates, so your infrastructure is version-controlled, repeatable code.",
+    "explanationIncorrect": "Amazon EC2 is a compute service you might provision with CloudFormation, not the IaC tool itself. Amazon SNS sends notifications. AWS Artifact provides compliance reports. The infrastructure-as-code service is AWS CloudFormation.",
+    "tags": ["services", "cloudformation", "iac"]
+  },
+  {
     "id": "clf-004",
     "exam": "aws-cloud-practitioner",
     "domain": "Billing, Pricing, and Support",
