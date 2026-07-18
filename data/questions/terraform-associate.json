@@ -88,5 +88,90 @@
     "explanationIncorrect": "terraform.tfstate records the current state of managed infrastructure; it is not a catalog of shareable modules. The .terraform.lock.hcl file pins the exact provider versions selected for a configuration so runs are reproducible; it does not host or distribute modules. The local .terraform directory is a working cache of installed providers and modules for one directory, not a place others discover and pull from. The place to publish and find versioned modules and providers is the Terraform Registry.",
     "tags": ["registry", "modules", "terraform-cloud"],
     "isSeed": true
+  },
+  {
+    "id": "tf-006",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "easy",
+    "stem": "Which is a primary benefit of managing infrastructure as code with Terraform?",
+    "options": [
+      { "id": "o1", "text": "Infrastructure is defined in version-controlled files, making provisioning repeatable, reviewable, and automatable" },
+      { "id": "o2", "text": "It removes the need to define any infrastructure at all" },
+      { "id": "o3", "text": "It guarantees infrastructure can never be changed again" },
+      { "id": "o4", "text": "It only works by clicking through a web console" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Infrastructure as code puts your infrastructure definitions in files you can version, review, and reuse, so environments are provisioned consistently and changes go through the same process as application code.",
+    "explanationIncorrect": "IaC does not remove the need to define infrastructure; it is how you define it. It does not freeze infrastructure; you change it by updating the code and applying. And its whole point is codified, automatable provisioning rather than manual console clicking. The benefit is version-controlled, repeatable infrastructure.",
+    "tags": ["iac", "concepts", "benefits"]
+  },
+  {
+    "id": "tf-007",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Terraform configurations describe the desired end state of infrastructure rather than the step-by-step commands to reach it. What is this style called?",
+    "options": [
+      { "id": "o1", "text": "Declarative" },
+      { "id": "o2", "text": "Imperative" },
+      { "id": "o3", "text": "Procedural" },
+      { "id": "o4", "text": "Object-oriented" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform is declarative: you specify what the end state should be, and Terraform figures out the operations needed to reach it, comparing desired state against current state.",
+    "explanationIncorrect": "Imperative and procedural styles require you to spell out each step and their order, which is what declarative configuration avoids. Object-oriented describes a programming paradigm around objects and classes, not how infrastructure intent is expressed. Describing desired end state is declarative.",
+    "tags": ["iac", "declarative"]
+  },
+  {
+    "id": "tf-008",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Compared with a tool like AWS CloudFormation, what distinguishes Terraform's purpose?",
+    "options": [
+      { "id": "o1", "text": "It is provider-agnostic, managing many providers (AWS, Azure, Google Cloud, and more) through one workflow and language" },
+      { "id": "o2", "text": "It can only manage AWS resources" },
+      { "id": "o3", "text": "It cannot manage any cloud resources" },
+      { "id": "o4", "text": "It requires a completely different configuration language for each provider" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform works across many providers through a single workflow and HCL configuration, so you are not tied to one vendor's tooling the way a cloud-specific tool is.",
+    "explanationIncorrect": "Terraform is not limited to AWS; that describes a single-cloud tool. It clearly does manage cloud resources across providers. And it uses the same configuration language regardless of provider, with providers supplying the resource types, not a new language each. The distinguishing trait is being provider-agnostic.",
+    "tags": ["iac", "multi-cloud", "providers"]
+  },
+  {
+    "id": "tf-009",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "easy",
+    "stem": "Which Terraform capability lets you preview the exact additions, changes, and deletions before any infrastructure is modified?",
+    "options": [
+      { "id": "o1", "text": "terraform plan, which produces an execution plan without making changes" },
+      { "id": "o2", "text": "terraform apply, because it is the only way to see what will change" },
+      { "id": "o3", "text": "terraform destroy, which safely previews changes" },
+      { "id": "o4", "text": "There is no way to preview changes before applying" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform plan compares desired configuration with current state and prints exactly what will be created, changed, or destroyed, all without touching real infrastructure, so you can review before applying.",
+    "explanationIncorrect": "terraform apply actually makes the changes (though it shows a plan first, it is not a preview-only command). terraform destroy tears down managed infrastructure; it is not a general preview. And Terraform certainly can preview changes, so claiming otherwise is wrong. The preview command is terraform plan.",
+    "tags": ["iac", "plan", "workflow"]
+  },
+  {
+    "id": "tf-010",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Terraform configurations are written primarily in which language, and providers serve what role?",
+    "options": [
+      { "id": "o1", "text": "HashiCorp Configuration Language (HCL); providers are plugins that let Terraform manage a specific platform's APIs" },
+      { "id": "o2", "text": "YAML; providers are cloud billing accounts" },
+      { "id": "o3", "text": "Python; providers are the state files" },
+      { "id": "o4", "text": "JSON only; providers are workspaces" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform configuration is written in HCL (with an optional JSON syntax), and providers are plugins that implement the resource types and API calls for a given platform such as AWS or Azure.",
+    "explanationIncorrect": "Terraform does not use YAML, and providers are not billing accounts. It is not written in Python, and providers are not state files. It is not JSON-only, and providers are not workspaces. The language is HCL and providers are the platform plugins.",
+    "tags": ["iac", "hcl", "providers"]
   }
 ]
