@@ -155,6 +155,159 @@
     "isSeed": true
   },
   {
+    "id": "clf-013",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "easy",
+    "stem": "Which practice adds a second factor beyond a password to protect an AWS account sign-in?",
+    "options": [
+      { "id": "o1", "text": "Enabling multi-factor authentication (MFA)" },
+      { "id": "o2", "text": "Choosing a slightly longer password" },
+      { "id": "o3", "text": "Sharing the root credentials with the whole team" },
+      { "id": "o4", "text": "Disabling IAM entirely" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "MFA requires a second factor (such as a device-generated code) in addition to the password, so a stolen password alone is not enough to sign in.",
+    "explanationIncorrect": "A longer password is still a single factor and does not add a second one. Sharing root credentials is a serious security risk, not a protection. Disabling IAM removes access control entirely. The second-factor protection is MFA.",
+    "tags": ["security", "mfa", "iam"]
+  },
+  {
+    "id": "clf-014",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "What is an AWS best practice regarding the account root user?",
+    "options": [
+      { "id": "o1", "text": "Avoid it for everyday tasks, enable MFA on it, and use least-privilege IAM identities instead" },
+      { "id": "o2", "text": "Use the root user for all daily administration" },
+      { "id": "o3", "text": "Share the root password across the whole team for convenience" },
+      { "id": "o4", "text": "Delete IAM and rely only on the root user" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The root user has unrestricted access, so best practice is to secure it with MFA, avoid using it day to day, and create IAM users and roles with only the permissions they need.",
+    "explanationIncorrect": "Using root for daily work exposes an all-powerful credential unnecessarily. Sharing the root password removes accountability and multiplies risk. Deleting IAM and relying on root abandons least privilege entirely. The best practice is to lock down root and use least-privilege IAM identities.",
+    "tags": ["security", "root-user", "least-privilege"]
+  },
+  {
+    "id": "clf-015",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "You need to download AWS compliance reports such as SOC and PCI for an audit. Which service provides them?",
+    "options": [
+      { "id": "o1", "text": "AWS Artifact" },
+      { "id": "o2", "text": "AWS Lambda" },
+      { "id": "o3", "text": "Amazon SNS" },
+      { "id": "o4", "text": "AWS Batch" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Artifact is the self-service portal for AWS compliance reports and agreements, including SOC and PCI documentation, which is exactly what an audit needs.",
+    "explanationIncorrect": "AWS Lambda runs code. Amazon SNS sends notifications. AWS Batch runs batch compute jobs. None of them provide compliance documentation. The source of compliance reports is AWS Artifact.",
+    "tags": ["security", "compliance", "aws-artifact"]
+  },
+  {
+    "id": "clf-016",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service continuously analyzes account activity and logs to detect threats such as unusual API calls or potentially compromised instances?",
+    "options": [
+      { "id": "o1", "text": "Amazon GuardDuty" },
+      { "id": "o2", "text": "Amazon S3" },
+      { "id": "o3", "text": "AWS CloudFormation" },
+      { "id": "o4", "text": "Amazon Route 53" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon GuardDuty is a managed threat-detection service that analyzes logs like CloudTrail, VPC Flow Logs, and DNS logs to flag suspicious or malicious activity.",
+    "explanationIncorrect": "Amazon S3 is object storage. AWS CloudFormation provisions infrastructure as code. Amazon Route 53 is DNS. None of these perform threat detection. The threat-detection service is Amazon GuardDuty.",
+    "tags": ["security", "guardduty", "threat-detection"]
+  },
+  {
+    "id": "clf-017",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which AWS service helps protect applications against distributed denial-of-service (DDoS) attacks?",
+    "options": [
+      { "id": "o1", "text": "AWS Shield" },
+      { "id": "o2", "text": "Amazon Comprehend" },
+      { "id": "o3", "text": "AWS Glue" },
+      { "id": "o4", "text": "Amazon QuickSight" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Shield is the managed DDoS protection service, with a Standard tier enabled for all customers and an Advanced tier for enhanced protection.",
+    "explanationIncorrect": "Amazon Comprehend is a natural language processing service. AWS Glue is for data integration and ETL. Amazon QuickSight is business-intelligence dashboards. The DDoS protection service is AWS Shield.",
+    "tags": ["security", "shield", "ddos"]
+  },
+  {
+    "id": "clf-018",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service lets you create and manage encryption keys used to encrypt data at rest across many AWS services?",
+    "options": [
+      { "id": "o1", "text": "AWS Key Management Service (KMS)" },
+      { "id": "o2", "text": "Amazon Athena" },
+      { "id": "o3", "text": "AWS Step Functions" },
+      { "id": "o4", "text": "Amazon Kinesis" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS KMS creates and manages cryptographic keys and integrates with services like S3, EBS, and RDS to encrypt data at rest under your control.",
+    "explanationIncorrect": "Amazon Athena queries data in S3 with SQL. AWS Step Functions orchestrates workflows. Amazon Kinesis handles streaming data. None manage encryption keys. Key management is AWS KMS.",
+    "tags": ["security", "kms", "encryption"]
+  },
+  {
+    "id": "clf-019",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "You want to filter malicious web requests such as SQL injection and cross-site scripting before they reach your application. Which service does this?",
+    "options": [
+      { "id": "o1", "text": "AWS WAF (Web Application Firewall)" },
+      { "id": "o2", "text": "Amazon EBS" },
+      { "id": "o3", "text": "AWS Config" },
+      { "id": "o4", "text": "Amazon EFS" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS WAF inspects incoming HTTP/S requests and blocks common web exploits like SQL injection and cross-site scripting based on rules you configure.",
+    "explanationIncorrect": "Amazon EBS provides block storage volumes for EC2. AWS Config records and evaluates resource configuration; it does not filter web traffic. Amazon EFS is a shared file system. The web request filter is AWS WAF.",
+    "tags": ["security", "waf", "web-exploits"]
+  },
+  {
+    "id": "clf-020",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "easy",
+    "stem": "Granting a user only the permissions required to perform their job, and nothing more, is which security principle?",
+    "options": [
+      { "id": "o1", "text": "Least privilege" },
+      { "id": "o2", "text": "Security through obscurity" },
+      { "id": "o3", "text": "Administrator access by default" },
+      { "id": "o4", "text": "Shared credentials" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Least privilege means giving each identity the minimum permissions needed, which limits the blast radius if a credential is misused or compromised.",
+    "explanationIncorrect": "Security through obscurity relies on hiding details and is not a permissions model. Administrator access by default is the opposite of minimal permissions. Shared credentials remove accountability and increase risk. The principle described is least privilege.",
+    "tags": ["security", "least-privilege"]
+  },
+  {
+    "id": "clf-021",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service uses machine learning to discover and classify sensitive data such as personally identifiable information stored in Amazon S3?",
+    "options": [
+      { "id": "o1", "text": "Amazon Macie" },
+      { "id": "o2", "text": "Amazon Rekognition" },
+      { "id": "o3", "text": "AWS Direct Connect" },
+      { "id": "o4", "text": "Amazon MQ" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Macie uses machine learning to find and classify sensitive data like PII in S3 and reports on exposure, supporting data-protection compliance.",
+    "explanationIncorrect": "Amazon Rekognition analyzes images and video. AWS Direct Connect provides a dedicated network link to AWS. Amazon MQ is a managed message broker. The sensitive-data discovery service is Amazon Macie.",
+    "tags": ["security", "macie", "data-classification"]
+  },
+  {
     "id": "clf-003",
     "exam": "aws-cloud-practitioner",
     "domain": "Cloud Technology and Services",
