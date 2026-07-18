@@ -88,5 +88,107 @@
     "explanationIncorrect": "Reusable workflows are referenced at the job level with jobs.<id>.uses, not as a step, so any option that puts uses under steps: is wrong. gh workflow run triggers a separate workflow_dispatch run rather than composing the called workflow into this run, and it does not compose outputs back. Secrets are passed to a reusable workflow through the secrets keyword (or secrets: inherit), not through with:, which is for non-sensitive inputs. The correct form is jobs.<id>.uses pointing at the workflow file at a ref, with a secrets: block.",
     "tags": ["reusable-workflows", "secrets"],
     "isSeed": true
+  },
+  {
+    "id": "gha-006",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You need a job to run the test suite against Node 18, 20, and 22 on both ubuntu-latest and windows-latest, covering every combination. Which workflow feature expresses this most concisely?",
+    "options": [
+      { "id": "o1", "text": "A build matrix under strategy.matrix with a node-version list and an os list, referencing them in runs-on and the setup step" },
+      { "id": "o2", "text": "Six separate jobs copied by hand, one per combination" },
+      { "id": "o3", "text": "A single job with a shell for loop over the versions inside one run step" },
+      { "id": "o4", "text": "The fromJSON function applied directly to runs-on with no strategy block" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A matrix defines the axes (node-version and os) and GitHub expands them into one job per combination automatically, so three versions across two operating systems produce all six runs from a single job definition.",
+    "explanationIncorrect": "Copying six jobs by hand works but is exactly the repetition the matrix exists to remove, and it becomes unmaintainable as axes grow. A shell for loop runs everything inside one job on one runner, so it neither tests on both operating systems nor parallelizes the combinations. fromJSON can build a matrix value from a computed JSON string, but on its own applied to runs-on it does not expand combinations; you still need strategy.matrix. The concise, idiomatic mechanism is a build matrix under strategy.matrix.",
+    "tags": ["matrix", "strategy"]
+  },
+  {
+    "id": "gha-007",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "Job B must run only after job A finishes successfully and must consume a value that job A computed. Which combination makes this work?",
+    "options": [
+      { "id": "o1", "text": "Give B needs: A, have A expose the value under jobs.A.outputs, and read it in B as needs.A.outputs.<name>" },
+      { "id": "o2", "text": "Set depends-on: A on B and read A's plain shell variables directly" },
+      { "id": "o3", "text": "Add continue-on-error: true to B so it waits for A" },
+      { "id": "o4", "text": "Rely on job order in the file, since jobs run top to bottom by default" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "needs: A both orders B after A and gates it on A's success, and a job output declared under jobs.A.outputs is the supported way to pass a value that B reads as needs.A.outputs.<name>.",
+    "explanationIncorrect": "There is no depends-on key for jobs (it is needs), and a job's shell variables live on its own runner and are gone once it finishes, so they cannot be read from another job. continue-on-error lets a step or job fail without failing the run; it does not create an ordering or data dependency. Jobs actually run in parallel by default, not top to bottom, so file order guarantees nothing. The correct approach is needs plus declared job outputs read through the needs context.",
+    "tags": ["jobs", "needs", "outputs"]
+  },
+  {
+    "id": "gha-008",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "Your workflow only needs to read repository contents, and you want the automatic GITHUB_TOKEN scoped to least privilege. How do you restrict it?",
+    "options": [
+      { "id": "o1", "text": "Set permissions: contents: read at the workflow or job level" },
+      { "id": "o2", "text": "Delete the GITHUB_TOKEN secret from the repository" },
+      { "id": "o3", "text": "Replace it with a personal access token that has no scopes" },
+      { "id": "o4", "text": "Add permissions: write-all to be safe" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A permissions block sets the GITHUB_TOKEN scopes for the run, and declaring only contents: read grants read access to the repository and nothing else, which is least privilege.",
+    "explanationIncorrect": "GITHUB_TOKEN is generated per run and is not a stored secret you can delete; there is nothing to remove. A personal access token with no scopes would fail to do even the read the workflow needs, and it also reintroduces a long-lived credential you did not want. write-all is the opposite of least privilege: it grants broad write access across scopes. The correct control is an explicit permissions block narrowing the token to contents: read.",
+    "tags": ["security", "github-token", "permissions"]
+  },
+  {
+    "id": "gha-009",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a workflow to run automatically every day at 07:30 UTC. Which trigger is correct?",
+    "options": [
+      { "id": "o1", "text": "on: schedule with - cron: '30 7 * * *'" },
+      { "id": "o2", "text": "on: schedule with - cron: '7 30 * * *'" },
+      { "id": "o3", "text": "on: timer set to daily at 07:30" },
+      { "id": "o4", "text": "on: push configured with a 24-hour delay" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "POSIX cron fields are minute, hour, day-of-month, month, day-of-week, so '30 7 * * *' means minute 30 of hour 7 every day, which is 07:30 UTC.",
+    "explanationIncorrect": "'7 30 * * *' puts 7 in the minute field and 30 in the hour field; 30 is not a valid hour, so this is wrong and would not mean 07:30. There is no timer trigger in GitHub Actions; scheduled runs use the schedule event with cron. push fires on commits and has no delay mechanism, so it cannot produce a fixed daily time. Scheduled workflows always run in UTC, and the correct expression for 07:30 is '30 7 * * *'.",
+    "tags": ["events", "schedule", "cron"]
+  },
+  {
+    "id": "gha-010",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A deployment step should run only on pushes to the main branch. Which step- or job-level condition is correct?",
+    "options": [
+      { "id": "o1", "text": "if: github.event_name == 'push' && github.ref == 'refs/heads/main'" },
+      { "id": "o2", "text": "if: branch == 'main'" },
+      { "id": "o3", "text": "only-on: main" },
+      { "id": "o4", "text": "if: github.head_ref == 'main'" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "github.ref carries the full ref (refs/heads/main) and github.event_name identifies the trigger, so combining them gates the step to pushes that land on main.",
+    "explanationIncorrect": "There is no bare branch context in expressions, so if: branch == 'main' does not evaluate as intended. only-on is not a real key. github.head_ref is only populated for pull_request events and holds the source branch of the PR, so it is empty on a push and would never match here. The correct guard checks github.event_name and the full github.ref value refs/heads/main.",
+    "tags": ["expressions", "conditionals", "contexts"]
+  },
+  {
+    "id": "gha-011",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "In one step you compute a value and you want it exposed as an environment variable to all later steps in the same job. What do you do?",
+    "options": [
+      { "id": "o1", "text": "Append name=value to the file referenced by $GITHUB_ENV" },
+      { "id": "o2", "text": "Run export NAME=value in the step's run block" },
+      { "id": "o3", "text": "Add it to the workflow-level env: after the step runs" },
+      { "id": "o4", "text": "Write it to $GITHUB_OUTPUT, which later steps read as an env var automatically" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Writing name=value to the $GITHUB_ENV file publishes an environment variable that the runner injects into every subsequent step in the same job.",
+    "explanationIncorrect": "export sets the variable only inside that one step's shell process, so it is gone by the next step. The workflow-level env: block is static configuration evaluated up front; you cannot retroactively add a value to it mid-run. $GITHUB_OUTPUT publishes a named step output read as steps.<id>.outputs.<name>, not an automatically injected environment variable. To share an environment variable across later steps you append to $GITHUB_ENV.",
+    "tags": ["environment-variables", "github-env"]
   }
 ]
