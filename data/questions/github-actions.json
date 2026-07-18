@@ -683,5 +683,90 @@
     "explanationCorrect": "contains(haystack, needle) is a built-in expression function that returns true when the substring is present, so it correctly matches a commit message that includes [deploy].",
     "explanationIncorrect": "The == comparison requires the message to equal [deploy] exactly, which fails when it is part of a longer message. includes is not a GitHub Actions expression function. There is no .has() method syntax in expressions. The substring test is contains().",
     "tags": ["workflows", "expressions", "contains"]
+  },
+  {
+    "id": "gha-041",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "Your exact cache key misses on the first build after a lockfile change, but you want to fall back to the most recent older cache to avoid downloading every dependency again. Which cache feature provides this fallback?",
+    "options": [
+      { "id": "o1", "text": "restore-keys, a prioritized list of prefix keys tried when the primary key misses" },
+      { "id": "o2", "text": "A second actions/upload-artifact step for the cache" },
+      { "id": "o3", "text": "Setting the cache key to the literal '*'" },
+      { "id": "o4", "text": "A cache: always option on the job" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "restore-keys lists prefix keys that actions/cache tries in order when the exact key is not found, so a changed lockfile can still restore a recent partial cache and rebuild only what changed.",
+    "explanationIncorrect": "upload-artifact stores per-run outputs and is not a fallback cache-restore mechanism. A key of '*' is not how cache matching works and would not define an ordered fallback. There is no cache: always job option that provides prefix fallback. The fallback feature is restore-keys.",
+    "tags": ["cache", "restore-keys", "performance"]
+  },
+  {
+    "id": "gha-042",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want a run to publish a formatted Markdown summary, such as a table of test results, visible directly on the workflow run's page. How do you do this?",
+    "options": [
+      { "id": "o1", "text": "Append Markdown to the file referenced by $GITHUB_STEP_SUMMARY" },
+      { "id": "o2", "text": "echo the Markdown to stdout, which becomes the summary automatically" },
+      { "id": "o3", "text": "Upload a summary.md artifact, which the run page renders" },
+      { "id": "o4", "text": "Set summary: true on the job" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Writing Markdown to the $GITHUB_STEP_SUMMARY file renders it in the job summary on the run page, which is the supported way to publish a formatted result summary.",
+    "explanationIncorrect": "Plain stdout goes to the logs, not the rendered summary. An uploaded artifact is a downloadable file, not auto-rendered Markdown on the run page. There is no summary: true job option. Job summaries come from $GITHUB_STEP_SUMMARY.",
+    "tags": ["consume", "job-summary", "step-summary"]
+  },
+  {
+    "id": "gha-043",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "An action you call sets an output named tag. How do you use that value in a later step of the same job?",
+    "options": [
+      { "id": "o1", "text": "Give the action step an id, then reference steps.<id>.outputs.tag" },
+      { "id": "o2", "text": "Reference env.tag, which the action populates automatically" },
+      { "id": "o3", "text": "Reference needs.tag" },
+      { "id": "o4", "text": "Reference github.outputs.tag" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Step outputs are read through the steps context by the producing step's id, so tagging the action step with an id lets a later step read steps.<id>.outputs.tag.",
+    "explanationIncorrect": "Action outputs are not automatically exposed as environment variables, so env.tag is not populated. needs is for reading outputs of other jobs, not steps within the same job. There is no github.outputs context. Within a job, step outputs are read via steps.<id>.outputs.",
+    "tags": ["consume", "step-outputs", "actions"]
+  },
+  {
+    "id": "gha-044",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A downstream job shows as skipped rather than failed. What most likely happened?",
+    "options": [
+      { "id": "o1", "text": "Its if condition evaluated to false, or a job it needs did not succeed, so it was never run" },
+      { "id": "o2", "text": "The job ran and its tests failed" },
+      { "id": "o3", "text": "The runner crashed in the middle of the job" },
+      { "id": "o4", "text": "The workflow file contains a YAML syntax error" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Skipped means the job did not execute, typically because its if condition was false or a needed upstream job did not succeed, so its gating condition was not met.",
+    "explanationIncorrect": "A failed test would mark the job failed, not skipped. A runner crash mid-job would surface as a failure or cancellation, not a clean skip. A YAML syntax error prevents the run from starting or the workflow from being valid, rather than skipping one job. Skipped indicates an unmet condition or dependency.",
+    "tags": ["consume", "job-status", "troubleshooting"]
+  },
+  {
+    "id": "gha-045",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "Uploaded artifacts are consuming storage. How do you control how long an artifact is kept before it is automatically deleted?",
+    "options": [
+      { "id": "o1", "text": "Set retention-days on the upload-artifact step, within the repository or organization maximum" },
+      { "id": "o2", "text": "Manually delete each workflow run after it completes" },
+      { "id": "o3", "text": "Nothing; artifacts are kept forever and cannot be limited" },
+      { "id": "o4", "text": "Lower the job's timeout-minutes" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The upload-artifact action accepts retention-days to set how long that artifact is retained, capped by the repository or organization's configured maximum, after which it is deleted automatically.",
+    "explanationIncorrect": "Manually deleting runs is tedious and not the intended control. Artifacts do have a retention period and are not kept forever, so that claim is false. timeout-minutes bounds job duration, not artifact lifetime. Artifact lifetime is set with retention-days.",
+    "tags": ["consume", "artifacts", "retention"]
   }
 ]
