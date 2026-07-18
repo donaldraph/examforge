@@ -1,0 +1,92 @@
+[
+  {
+    "id": "tf-001",
+    "exam": "terraform-associate",
+    "domain": "Terraform workflow",
+    "difficulty": "easy",
+    "stem": "Which Terraform command initializes a working directory, downloading the provider plugins and configuring the backend, and must be run before plan or apply?",
+    "options": [
+      { "id": "o1", "text": "terraform init" },
+      { "id": "o2", "text": "terraform plan" },
+      { "id": "o3", "text": "terraform validate" },
+      { "id": "o4", "text": "terraform fmt" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform init prepares the working directory: it downloads the required provider plugins, installs modules, and configures the backend, which is why it is the first command in the core workflow.",
+    "explanationIncorrect": "terraform plan computes and shows the changes needed to reach the desired state, but it depends on an already-initialized directory with providers installed, so it cannot be the first step. terraform validate checks that the configuration is syntactically valid and internally consistent; it does not download providers or set up the backend. terraform fmt only rewrites configuration files into canonical formatting. The command that initializes providers, modules, and the backend is terraform init.",
+    "tags": ["workflow", "init"],
+    "isSeed": true
+  },
+  {
+    "id": "tf-002",
+    "exam": "terraform-associate",
+    "domain": "Terraform state",
+    "difficulty": "medium",
+    "stem": "Several engineers run Terraform against the same infrastructure. You want to prevent two apply operations from writing to state at the same time and corrupting it. Which approach addresses this?",
+    "options": [
+      { "id": "o1", "text": "Use a remote backend that supports state locking, such as S3 with DynamoDB or HCP Terraform" },
+      { "id": "o2", "text": "Commit terraform.tfstate to the Git repository so everyone shares it" },
+      { "id": "o3", "text": "Always run terraform apply with -parallelism=1" },
+      { "id": "o4", "text": "Delete the state file before each apply so there is nothing to conflict" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A remote backend with state locking takes a lock for the duration of an operation, so a second apply is blocked until the first releases, which prevents concurrent writes from corrupting the shared state.",
+    "explanationIncorrect": "Committing terraform.tfstate to Git shares the file but provides no locking; two people can still apply simultaneously and then clash on push, and state often contains sensitive values you should not store in version control. -parallelism=1 only limits how many resource operations run at once within a single apply; it does nothing to coordinate between two separate people running apply. Deleting the state file makes Terraform lose track of existing resources and try to recreate them, which is destructive, not protective. The correct mechanism is a remote backend with state locking.",
+    "tags": ["state", "locking", "remote-backend"],
+    "isSeed": true
+  },
+  {
+    "id": "tf-003",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "One resource needs an attribute of another resource (for example a VPC id) so Terraform creates them in the correct order. What is the idiomatic way to express this dependency?",
+    "options": [
+      { "id": "o1", "text": "Reference the other resource's attribute directly, e.g. aws_vpc.main.id, which creates an implicit dependency" },
+      { "id": "o2", "text": "Run terraform apply twice and rely on ordering by hand" },
+      { "id": "o3", "text": "Add a provisioner that sleeps until the first resource exists" },
+      { "id": "o4", "text": "Hardcode the id string after the first apply completes" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Referencing another resource's attribute makes Terraform build a dependency edge in its graph automatically, so it creates the referenced resource first without you declaring the order explicitly.",
+    "explanationIncorrect": "Running apply twice by hand defeats the purpose of a declarative tool and does not encode the dependency in configuration, so it breaks the moment someone else runs it. A sleeping provisioner is a fragile hack that guesses at timing and still does not tell Terraform about the real ordering relationship. Hardcoding the id couples your config to one apply's output, breaks when the resource is recreated, and loses the dependency entirely. The idiomatic approach is to reference the attribute and let the implicit dependency form (use depends_on only when there is no such reference).",
+    "tags": ["basics", "dependencies", "resources"],
+    "isSeed": true
+  },
+  {
+    "id": "tf-004",
+    "exam": "terraform-associate",
+    "domain": "Terraform modules",
+    "difficulty": "medium",
+    "stem": "You want to package a set of resources so it can be reused across projects, accept values like instance size from the caller, and hand the created resource's id back to the caller. Which Terraform constructs do you use?",
+    "options": [
+      { "id": "o1", "text": "Input variables to receive values and output values to expose results, consumed through a module block" },
+      { "id": "o2", "text": "Provider aliases to pass values in and out" },
+      { "id": "o3", "text": "Workspaces to parameterize the reusable code" },
+      { "id": "o4", "text": "The terraform import command to wire modules together" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A reusable module declares input variables for what callers pass in and output values for what it returns; the caller instantiates it with a module block, setting inputs and reading its outputs.",
+    "explanationIncorrect": "Provider aliases let you configure multiple instances of a provider (for example two regions); they are not the mechanism for passing arbitrary values into and out of a module. Workspaces give you multiple named state instances of the same configuration; they isolate state, they do not define a module's interface. terraform import brings existing infrastructure under Terraform management and has nothing to do with a module's inputs and outputs. The reusable-module interface is input variables plus output values, used via a module block.",
+    "tags": ["modules", "variables", "outputs"],
+    "isSeed": true
+  },
+  {
+    "id": "tf-005",
+    "exam": "terraform-associate",
+    "domain": "Terraform Cloud",
+    "difficulty": "easy",
+    "stem": "Where can you publish and discover reusable, versioned modules and providers for Terraform, with both a public option and a private option for your organization?",
+    "options": [
+      { "id": "o1", "text": "The Terraform Registry (public registry, plus a private registry in HCP Terraform / Terraform Cloud)" },
+      { "id": "o2", "text": "The terraform.tfstate file" },
+      { "id": "o3", "text": "The .terraform.lock.hcl dependency lock file" },
+      { "id": "o4", "text": "The local .terraform directory" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Terraform Registry hosts versioned, shareable modules and providers; the public registry is open to everyone, and HCP Terraform / Terraform Cloud adds a private registry for an organization's own modules.",
+    "explanationIncorrect": "terraform.tfstate records the current state of managed infrastructure; it is not a catalog of shareable modules. The .terraform.lock.hcl file pins the exact provider versions selected for a configuration so runs are reproducible; it does not host or distribute modules. The local .terraform directory is a working cache of installed providers and modules for one directory, not a place others discover and pull from. The place to publish and find versioned modules and providers is the Terraform Registry.",
+    "tags": ["registry", "modules", "terraform-cloud"],
+    "isSeed": true
+  }
+]
