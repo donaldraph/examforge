@@ -1,0 +1,92 @@
+[
+  {
+    "id": "aip-001",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "You have a dataset of emails each already labeled spam or not spam, and you want to train a model to predict that label for new emails. Which type of machine learning is this?",
+    "options": [
+      { "id": "o1", "text": "Supervised learning" },
+      { "id": "o2", "text": "Unsupervised learning" },
+      { "id": "o3", "text": "Reinforcement learning" },
+      { "id": "o4", "text": "Clustering" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The training data carries known labels (spam or not spam) and the goal is to predict that label on new inputs, which is the defining setup of supervised learning.",
+    "explanationIncorrect": "Unsupervised learning works on data without labels and tries to find structure on its own, such as grouping similar items, so it does not fit a problem where every example already has the answer. Reinforcement learning trains an agent by rewarding or penalizing actions it takes in an environment over time; there is no environment or reward signal here, just labeled examples. Clustering is a specific unsupervised technique for grouping unlabeled data, so it is the wrong paradigm for label prediction. Learning a mapping from labeled examples to a target label is supervised learning.",
+    "tags": ["machine-learning", "supervised-learning"],
+    "isSeed": true
+  },
+  {
+    "id": "aip-002",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "easy",
+    "stem": "Which AWS service gives you access to foundation models from providers such as Anthropic, Meta, and Amazon through a single API, without provisioning or managing any model infrastructure?",
+    "options": [
+      { "id": "o1", "text": "Amazon Bedrock" },
+      { "id": "o2", "text": "Amazon Rekognition" },
+      { "id": "o3", "text": "Amazon Comprehend" },
+      { "id": "o4", "text": "AWS Glue" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Bedrock is the fully managed service that exposes foundation models from multiple providers behind one API, so you can call them for text or image generation without standing up any infrastructure.",
+    "explanationIncorrect": "Amazon Rekognition is a purpose-built computer vision service for detecting objects, faces, and text in images and video; it is not a gateway to general foundation models. Amazon Comprehend is a managed natural language service for tasks like sentiment analysis and entity extraction, not a catalog of generative foundation models. AWS Glue is a serverless data integration and ETL service and has nothing to do with model inference. The single-API, multi-provider foundation model service is Amazon Bedrock.",
+    "tags": ["generative-ai", "amazon-bedrock", "foundation-models"],
+    "isSeed": true
+  },
+  {
+    "id": "aip-003",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "You want a generative AI assistant to answer questions using your company's internal documents, keeping answers grounded in that private data, without retraining or fine-tuning the underlying model. Which approach fits best?",
+    "options": [
+      { "id": "o1", "text": "Retrieval Augmented Generation (RAG), retrieving relevant documents and supplying them as context to the model" },
+      { "id": "o2", "text": "Continuously pre-training the model on the public internet" },
+      { "id": "o3", "text": "Raising the model's temperature so it invents more answers" },
+      { "id": "o4", "text": "Reducing the model's context window" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RAG retrieves the most relevant passages from your document store at query time and passes them to the model as context, so answers are grounded in your private data with no model retraining.",
+    "explanationIncorrect": "Pre-training the model further on the public internet neither incorporates your private documents nor is something a practitioner does casually; it is expensive and does not target your data. Raising the temperature makes outputs more random and actually increases the chance of ungrounded, made-up answers, which is the opposite of what you want. Reducing the context window gives the model less room to read supplied material, hurting grounded answering. The technique that grounds a model in private data without retraining is Retrieval Augmented Generation.",
+    "tags": ["rag", "grounding", "context"],
+    "isSeed": true
+  },
+  {
+    "id": "aip-004",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "You are deploying a generative AI chat feature and must block certain harmful topics and filter unsafe content in both prompts and responses. Which Amazon Bedrock capability is purpose-built for this?",
+    "options": [
+      { "id": "o1", "text": "Guardrails for Amazon Bedrock" },
+      { "id": "o2", "text": "Provisioned Throughput" },
+      { "id": "o3", "text": "Amazon Bedrock Agents" },
+      { "id": "o4", "text": "Model customization (fine-tuning)" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Guardrails for Amazon Bedrock let you define denied topics and content filters that are applied to both user prompts and model responses, which is exactly the responsible-use control described.",
+    "explanationIncorrect": "Provisioned Throughput reserves model capacity for predictable, high-volume inference; it is a performance and cost feature, not a safety filter. Bedrock Agents orchestrate multi-step tasks by calling tools and APIs on the model's behalf; they coordinate actions rather than screen content for harm. Fine-tuning adapts a model to your data and style, but it is not a reliable topic or safety filter and does not give you configurable denied topics. The capability for content filtering and blocked topics is Guardrails for Amazon Bedrock.",
+    "tags": ["responsible-ai", "guardrails", "safety"],
+    "isSeed": true
+  },
+  {
+    "id": "aip-005",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Your security team asks whether prompts and completions sent to a foundation model in Amazon Bedrock are used to train the base models or exposed outside your account. Which statement is correct?",
+    "options": [
+      { "id": "o1", "text": "Bedrock does not use your prompts or completions to train the base foundation models, and your data is encrypted in transit and at rest within your account boundary" },
+      { "id": "o2", "text": "Bedrock adds all prompts to a shared public dataset that anyone can query" },
+      { "id": "o3", "text": "Bedrock requires you to email prompts to each model provider for processing" },
+      { "id": "o4", "text": "Bedrock stores your prompts unencrypted by default and shares them with other customers" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Bedrock does not use your inputs or outputs to train its base foundation models, and it encrypts your data in transit and at rest, keeping it within your account, which is what a security review needs to confirm.",
+    "explanationIncorrect": "Bedrock does not publish your prompts to any shared or public dataset; that would directly contradict its data-isolation model. It also does not require emailing data to providers; inference happens through the managed service API within AWS. And it does not store your data unencrypted or share it with other customers; encryption at rest and in transit is applied and data stays isolated to your account. The accurate statement is that Bedrock keeps your data private, encrypted, and out of base-model training.",
+    "tags": ["governance", "data-privacy", "security"],
+    "isSeed": true
+  }
+]
