@@ -497,6 +497,91 @@
     "isSeed": true
   },
   {
+    "id": "saa-031",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Objects in a bucket have unpredictable, shifting access patterns, and you want automatic cost savings without managing lifecycle rules or paying retrieval fees on the frequent-access tier. Which S3 storage class fits?",
+    "options": [
+      { "id": "o1", "text": "S3 Intelligent-Tiering" },
+      { "id": "o2", "text": "S3 Standard for everything, permanently" },
+      { "id": "o3", "text": "S3 Glacier Deep Archive for all objects" },
+      { "id": "o4", "text": "S3 One Zone-Infrequent Access for all objects" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Intelligent-Tiering automatically moves objects between access tiers based on usage, optimizing cost for unpredictable patterns with no lifecycle management and no retrieval fees for its frequent and infrequent tiers.",
+    "explanationIncorrect": "Keeping everything in Standard forgoes savings on data that goes cold. Deep Archive is for rarely accessed data with long retrieval times, wrong for objects that might be accessed anytime. One Zone-IA sacrifices AZ redundancy and charges retrieval fees, and it assumes infrequent access you cannot predict here. Unpredictable access is best served by Intelligent-Tiering.",
+    "tags": ["cost-optimization", "s3-intelligent-tiering"]
+  },
+  {
+    "id": "saa-032",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Log files must be retained for seven years but are rarely accessed after 30 days. What minimizes storage cost automatically?",
+    "options": [
+      { "id": "o1", "text": "An S3 lifecycle policy that transitions objects to Glacier or Glacier Deep Archive after 30 days" },
+      { "id": "o2", "text": "Keep all logs in S3 Standard for the full seven years" },
+      { "id": "o3", "text": "Delete the logs after 30 days" },
+      { "id": "o4", "text": "Store the logs on an always-on EC2 instance's disk" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A lifecycle policy automatically transitions aging objects to cheaper archival classes like Glacier after 30 days, cutting cost while still retaining the data for the required seven years.",
+    "explanationIncorrect": "Keeping everything in Standard pays premium rates for cold data for years. Deleting after 30 days violates the seven-year retention requirement. An always-on EC2 disk is more expensive and less durable than S3 archival storage. Automatic cost reduction with retention is an S3 lifecycle transition to Glacier.",
+    "tags": ["cost-optimization", "s3-lifecycle", "glacier"]
+  },
+  {
+    "id": "saa-033",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "You run a predictable baseline of compute across Lambda, Fargate, and EC2 and want a flexible discount in exchange for a one- or three-year commitment. Which purchasing option fits best?",
+    "options": [
+      { "id": "o1", "text": "A Compute Savings Plan" },
+      { "id": "o2", "text": "On-Demand pricing" },
+      { "id": "o3", "text": "Spot Instances for the steady baseline" },
+      { "id": "o4", "text": "Dedicated Hosts" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A Compute Savings Plan gives a significant discount for a usage commitment and applies flexibly across EC2, Fargate, and Lambda, which suits a predictable baseline spread over those services.",
+    "explanationIncorrect": "On-Demand has no commitment discount, so it does not minimize cost for predictable usage. Spot is cheapest per hour but can be interrupted, making it unsuitable for a steady always-on baseline. Dedicated Hosts address licensing and isolation and cost more. The flexible commitment discount is a Compute Savings Plan.",
+    "tags": ["cost-optimization", "savings-plans", "compute"]
+  },
+  {
+    "id": "saa-034",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "You suspect many EC2 instances are over-provisioned. Which AWS service analyzes utilization and recommends right-sized instance types to reduce cost?",
+    "options": [
+      { "id": "o1", "text": "AWS Compute Optimizer" },
+      { "id": "o2", "text": "AWS Shield" },
+      { "id": "o3", "text": "Amazon Macie" },
+      { "id": "o4", "text": "AWS Artifact" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Compute Optimizer analyzes historical utilization and recommends optimal instance types and sizes, helping you eliminate the waste of over-provisioned resources.",
+    "explanationIncorrect": "AWS Shield is DDoS protection. Amazon Macie discovers sensitive data. AWS Artifact provides compliance documents. None analyze utilization for right-sizing. Right-sizing recommendations come from AWS Compute Optimizer.",
+    "tags": ["cost-optimization", "compute-optimizer", "right-sizing"]
+  },
+  {
+    "id": "saa-035",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A rarely used internal API currently runs 24/7 on an EC2 instance that sits mostly idle. How can you cut cost while keeping it available on demand?",
+    "options": [
+      { "id": "o1", "text": "Re-architect it to AWS Lambda behind Amazon API Gateway so you pay only per request" },
+      { "id": "o2", "text": "Move it to a larger EC2 instance type" },
+      { "id": "o3", "text": "Add a second EC2 instance for redundancy" },
+      { "id": "o4", "text": "Keep it on On-Demand EC2 but run it in a different Region" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A serverless design with Lambda behind API Gateway charges only for actual requests and execution time, eliminating the cost of an idle always-on instance while remaining available on demand.",
+    "explanationIncorrect": "A larger instance costs more and stays idle, worsening the problem. A second instance adds cost for a low-traffic service. Running the same idle instance in another Region does not remove the idle cost. Paying only when used is achieved by going serverless with Lambda and API Gateway.",
+    "tags": ["cost-optimization", "serverless", "lambda"]
+  },
+  {
     "id": "saa-005",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design High-Performing Architectures",
