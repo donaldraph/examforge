@@ -18,6 +18,108 @@
     "isSeed": true
   },
   {
+    "id": "aip-006",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "Which statement best describes the relationship between artificial intelligence, machine learning, deep learning, and generative AI?",
+    "options": [
+      { "id": "o1", "text": "They are nested: AI is the broadest field, machine learning is a subset of AI, deep learning is a subset of machine learning, and generative AI is built on deep learning" },
+      { "id": "o2", "text": "They are four unrelated fields with no overlap" },
+      { "id": "o3", "text": "Generative AI is the broadest field and contains artificial intelligence" },
+      { "id": "o4", "text": "Machine learning and artificial intelligence are two names for exactly the same thing" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The terms nest from broad to narrow: AI is the umbrella, machine learning is one way to achieve AI, deep learning is a subset of ML using neural networks, and generative AI is a deep-learning application that creates new content.",
+    "explanationIncorrect": "They are clearly related, not unrelated fields. Generative AI is a narrow, recent branch, not the broadest category that contains AI. Machine learning is one approach within AI, not a synonym for all of AI, since AI also includes techniques that are not learned from data. The correct picture is the nested hierarchy from AI down to generative AI.",
+    "tags": ["ai-ml", "concepts"]
+  },
+  {
+    "id": "aip-007",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "You want to predict a house's sale price, a continuous numeric value, from its features. Which kind of supervised learning task is this?",
+    "options": [
+      { "id": "o1", "text": "Regression" },
+      { "id": "o2", "text": "Classification" },
+      { "id": "o3", "text": "Clustering" },
+      { "id": "o4", "text": "Reinforcement learning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Predicting a continuous number such as a price is a regression task, where the model outputs a value along a range rather than a discrete label.",
+    "explanationIncorrect": "Classification predicts a discrete category (such as spam or not spam), not a continuous number. Clustering is unsupervised and groups unlabeled data; it does not predict a target value. Reinforcement learning trains an agent through rewards in an environment and does not fit a labeled price-prediction problem. Predicting a continuous value is regression.",
+    "tags": ["ai-ml", "regression", "supervised-learning"]
+  },
+  {
+    "id": "aip-008",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "You have unlabeled customer data and want to discover natural groupings of similar customers without predefined categories. Which approach fits?",
+    "options": [
+      { "id": "o1", "text": "Unsupervised learning using clustering" },
+      { "id": "o2", "text": "Supervised classification" },
+      { "id": "o3", "text": "Supervised regression" },
+      { "id": "o4", "text": "Reinforcement learning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "With no labels and the goal of finding structure, clustering (an unsupervised technique) groups similar records together so natural segments emerge from the data itself.",
+    "explanationIncorrect": "Supervised classification and regression both require labeled examples to learn a target, which you do not have here. Reinforcement learning optimizes an agent's actions against a reward signal, not grouping of static unlabeled records. Discovering groups in unlabeled data is unsupervised clustering.",
+    "tags": ["ai-ml", "clustering", "unsupervised-learning"]
+  },
+  {
+    "id": "aip-009",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "A model has already been trained and is now returning predictions for new incoming data in production. What is this phase called?",
+    "options": [
+      { "id": "o1", "text": "Inference" },
+      { "id": "o2", "text": "Training" },
+      { "id": "o3", "text": "Feature engineering" },
+      { "id": "o4", "text": "Data labeling" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Using a trained model to produce predictions on new data is inference; it is the serving phase that follows training.",
+    "explanationIncorrect": "Training is the earlier phase where the model learns its parameters from data, which has already happened here. Feature engineering is the preparation of input variables before training. Data labeling is annotating examples with target values for supervised training. Producing predictions from a finished model is inference.",
+    "tags": ["ai-ml", "inference", "training"]
+  },
+  {
+    "id": "aip-010",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "A model scores very high on its training data but performs poorly on new, unseen data. What does this most likely indicate?",
+    "options": [
+      { "id": "o1", "text": "Overfitting" },
+      { "id": "o2", "text": "Underfitting" },
+      { "id": "o3", "text": "Insufficient inference hardware" },
+      { "id": "o4", "text": "Too small a model output" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Overfitting is exactly this pattern: the model has memorized the training data, including its noise, so it generalizes poorly to data it has not seen.",
+    "explanationIncorrect": "Underfitting is the opposite, where the model is too simple and does poorly even on the training data. Inference hardware affects speed and cost, not the gap between training and test accuracy. Output size is unrelated to generalization. Strong training performance with weak generalization is overfitting.",
+    "tags": ["ai-ml", "overfitting", "generalization"]
+  },
+  {
+    "id": "aip-011",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which AWS service is the managed platform for building, training, and deploying your own custom machine learning models at scale?",
+    "options": [
+      { "id": "o1", "text": "Amazon SageMaker" },
+      { "id": "o2", "text": "Amazon Bedrock" },
+      { "id": "o3", "text": "Amazon Polly" },
+      { "id": "o4", "text": "Amazon Textract" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SageMaker is the end-to-end managed ML platform for building, training, tuning, and deploying custom models, covering the full model lifecycle.",
+    "explanationIncorrect": "Amazon Bedrock provides access to pre-built foundation models for generative AI; it is not where you build and train your own custom models from data. Amazon Polly is a text-to-speech service. Amazon Textract extracts text and data from documents. The custom-model build-and-train platform is Amazon SageMaker.",
+    "tags": ["ai-ml", "sagemaker", "services"]
+  },
+  {
     "id": "aip-002",
     "exam": "aws-ai-practitioner",
     "domain": "Fundamentals of Generative AI",
