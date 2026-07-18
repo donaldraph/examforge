@@ -14,32 +14,59 @@
     {
       "id": "github-advanced-security",
       "label": "GitHub Advanced Security",
-      "status": "coming-soon",
-      "domains": []
+      "status": "active",
+      "domains": [
+        "Code scanning",
+        "Secret scanning",
+        "Dependency management",
+        "Security administration"
+      ]
     },
     {
       "id": "aws-ai-practitioner",
       "label": "AWS AI Practitioner",
-      "status": "coming-soon",
-      "domains": []
+      "status": "active",
+      "domains": [
+        "Fundamentals of AI and ML",
+        "Fundamentals of Generative AI",
+        "Applications of Foundation Models",
+        "Guidelines for Responsible AI",
+        "Security, Compliance, and Governance for AI Solutions"
+      ]
     },
     {
       "id": "aws-cloud-practitioner",
       "label": "AWS Cloud Practitioner",
-      "status": "coming-soon",
-      "domains": []
+      "status": "active",
+      "domains": [
+        "Cloud Concepts",
+        "Security and Compliance",
+        "Cloud Technology and Services",
+        "Billing, Pricing, and Support"
+      ]
     },
     {
       "id": "aws-solutions-architect-associate",
       "label": "AWS Solutions Architect Associate",
-      "status": "coming-soon",
-      "domains": []
+      "status": "active",
+      "domains": [
+        "Design Secure Architectures",
+        "Design Resilient Architectures",
+        "Design High-Performing Architectures",
+        "Design Cost-Optimized Architectures"
+      ]
     },
     {
       "id": "terraform-associate",
       "label": "HashiCorp Terraform Associate",
-      "status": "coming-soon",
-      "domains": []
+      "status": "active",
+      "domains": [
+        "Terraform basics",
+        "Terraform workflow",
+        "Terraform state",
+        "Terraform modules",
+        "Terraform Cloud"
+      ]
     }
   ]
 }
