@@ -445,5 +445,90 @@
     "explanationCorrect": "A child module exposes values through output blocks, and the calling module reads them with module.<name>.<output>, which is how the security group id flows back to the root.",
     "explanationIncorrect": "Input variables carry values into a module, not out of it, so the root cannot read the child's outputs through its variables. Modules in a single configuration share one state; there is no separate child state file to read. Values certainly can be returned from a child, so claiming otherwise is wrong. The mechanism is module outputs.",
     "tags": ["modules", "outputs", "composition"]
+  },
+  {
+    "id": "tf-027",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "You need to create several similar resources, each keyed by a stable identifier so that removing one in the middle does not force the others to be recreated. Which meta-argument fits best?",
+    "options": [
+      { "id": "o1", "text": "for_each over a map or set, which keys each instance by its identifier" },
+      { "id": "o2", "text": "count with a numeric index, which keys each instance by position" },
+      { "id": "o3", "text": "A separate hand-written resource block for each item" },
+      { "id": "o4", "text": "A provisioner that loops internally" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "for_each keys instances by a stable map key or set value, so removing one entry only destroys that instance and leaves the rest untouched, which is exactly the requirement.",
+    "explanationIncorrect": "count keys instances by list position, so removing a middle element shifts every later index and can cause unwanted recreation. Writing separate blocks defeats the purpose of iteration and is unmaintainable. A provisioner loop does not create separate managed resources. Stable-keyed iteration is for_each.",
+    "tags": ["configuration", "for-each", "count"]
+  },
+  {
+    "id": "tf-028",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "easy",
+    "stem": "How do you define a configurable input that has a type and a default value?",
+    "options": [
+      { "id": "o1", "text": "A variable block specifying type and default" },
+      { "id": "o2", "text": "An output block" },
+      { "id": "o3", "text": "A locals block only" },
+      { "id": "o4", "text": "A data source" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Input variables are declared with variable blocks, where you can set a type constraint and a default so callers may override it or accept the default.",
+    "explanationIncorrect": "An output block exposes values to callers, not receives them. A locals block defines computed internal values, not user-supplied inputs with defaults. A data source reads external information. Configurable inputs are variable blocks.",
+    "tags": ["configuration", "variables"]
+  },
+  {
+    "id": "tf-029",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "You compute a naming prefix once and reuse it in many places within a configuration to avoid repetition. Which construct holds that computed value?",
+    "options": [
+      { "id": "o1", "text": "A local value in a locals block, referenced as local.<name>" },
+      { "id": "o2", "text": "An input variable the user must set on every run" },
+      { "id": "o3", "text": "An output value" },
+      { "id": "o4", "text": "A provider alias" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A local value assigns a computed expression to a name you reference as local.<name>, which is ideal for a derived value like a naming prefix used throughout the configuration.",
+    "explanationIncorrect": "An input variable requires the value to be supplied rather than computed internally, which is not what a derived prefix should be. An output exposes values to callers, not for internal reuse. A provider alias configures additional provider instances. The internal computed value is a local.",
+    "tags": ["configuration", "locals"]
+  },
+  {
+    "id": "tf-030",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which expression sets count to 1 when var.enabled is true and 0 otherwise?",
+    "options": [
+      { "id": "o1", "text": "count = var.enabled ? 1 : 0" },
+      { "id": "o2", "text": "count = if var.enabled then 1 else 0" },
+      { "id": "o3", "text": "count = var.enabled == 1" },
+      { "id": "o4", "text": "count = bool(var.enabled)" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCL uses the ternary conditional expression condition ? true_value : false_value, so var.enabled ? 1 : 0 yields 1 when enabled and 0 otherwise, a common toggle for count.",
+    "explanationIncorrect": "HCL has no if/then/else statement expression, so that syntax is invalid. var.enabled == 1 compares a boolean to a number and does not produce the intended 1 or 0 for count. bool(var.enabled) is not how you convert to a count and returns a boolean, not the integer count needs. The correct form is the ternary conditional.",
+    "tags": ["configuration", "conditional", "expressions"]
+  },
+  {
+    "id": "tf-031",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "easy",
+    "stem": "You want the number of elements in a list variable in order to size something. Which built-in function returns that count?",
+    "options": [
+      { "id": "o1", "text": "length(var.mylist)" },
+      { "id": "o2", "text": "count(var.mylist)" },
+      { "id": "o3", "text": "size(var.mylist)" },
+      { "id": "o4", "text": "len(var.mylist)" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform's built-in length function returns the number of elements in a list, map, or string, so length(var.mylist) gives the element count.",
+    "explanationIncorrect": "count is a resource meta-argument, not a function that measures a collection. size and len are not Terraform built-in functions. The correct function name is length.",
+    "tags": ["configuration", "functions", "length"]
   }
 ]
