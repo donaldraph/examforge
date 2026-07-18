@@ -190,5 +190,124 @@
     "explanationIncorrect": "Bedrock does not publish your prompts to any shared or public dataset; that would directly contradict its data-isolation model. It also does not require emailing data to providers; inference happens through the managed service API within AWS. And it does not store your data unencrypted or share it with other customers; encryption at rest and in transit is applied and data stays isolated to your account. The accurate statement is that Bedrock keeps your data private, encrypted, and out of base-model training.",
     "tags": ["governance", "data-privacy", "security"],
     "isSeed": true
+  },
+  {
+    "id": "aip-012",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "easy",
+    "stem": "What is a foundation model?",
+    "options": [
+      { "id": "o1", "text": "A large model pre-trained on broad, unlabeled data that can be adapted to many downstream tasks" },
+      { "id": "o2", "text": "A small model trained to perform exactly one narrow task" },
+      { "id": "o3", "text": "A rules engine built entirely from hand-written if-then logic" },
+      { "id": "o4", "text": "A database that stores cached answers to look up" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A foundation model is trained once on a broad corpus and can then be applied or adapted to many tasks (summarization, Q&A, generation), which is what makes it foundational.",
+    "explanationIncorrect": "A model built for a single narrow task is a traditional task-specific model, the opposite of a broadly applicable foundation model. A hand-coded rules engine is not a learned model at all. A cache of answers is a lookup table, not a model that generalizes. A foundation model is the broadly pre-trained, widely adaptable model.",
+    "tags": ["generative-ai", "foundation-models"]
+  },
+  {
+    "id": "aip-013",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "easy",
+    "stem": "Large language models process text as sequences of which unit, which also drives context limits and per-request pricing?",
+    "options": [
+      { "id": "o1", "text": "Tokens, which are pieces of words" },
+      { "id": "o2", "text": "Pixels" },
+      { "id": "o3", "text": "Whole paragraphs, indivisibly" },
+      { "id": "o4", "text": "Gigabytes of memory" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "LLMs break text into tokens (subword pieces), and the number of tokens determines how much fits in the context window and how much a request costs.",
+    "explanationIncorrect": "Pixels are the unit of images, not text for a language model. Models do not treat paragraphs as indivisible units; they subdivide text into tokens. Gigabytes measure memory, not the linguistic unit a model consumes. The unit is the token.",
+    "tags": ["generative-ai", "tokens"]
+  },
+  {
+    "id": "aip-014",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "You want a model's responses to be more deterministic and focused rather than creative and varied. Which inference parameter do you lower?",
+    "options": [
+      { "id": "o1", "text": "Temperature" },
+      { "id": "o2", "text": "The number of tokens in your prompt" },
+      { "id": "o3", "text": "The model's total parameter count" },
+      { "id": "o4", "text": "The AWS Region" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Temperature controls randomness in generation: lowering it makes the model favor the most probable next tokens, producing more focused and repeatable output.",
+    "explanationIncorrect": "Prompt length changes how much context the model has, not how random its sampling is. The parameter count is a fixed property of the model you cannot tune per request. The Region affects where inference runs, not output randomness. The randomness control is temperature.",
+    "tags": ["generative-ai", "inference-parameters", "temperature"]
+  },
+  {
+    "id": "aip-015",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "To find documents semantically similar to a query, you convert text into numeric vectors that place similar meanings close together in vector space. What are these vectors called?",
+    "options": [
+      { "id": "o1", "text": "Embeddings" },
+      { "id": "o2", "text": "Tokens" },
+      { "id": "o3", "text": "Hyperparameters" },
+      { "id": "o4", "text": "Gradients" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Embeddings are dense numeric vectors that capture meaning, so semantically similar text ends up near each other, which is what powers semantic search and retrieval.",
+    "explanationIncorrect": "Tokens are the subword units of input text, not the meaning vectors used for similarity. Hyperparameters are training configuration values like learning rate. Gradients are values used to update weights during training. The similarity vectors are embeddings.",
+    "tags": ["generative-ai", "embeddings", "vectors"]
+  },
+  {
+    "id": "aip-016",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "A model can only consider a limited amount of input text at once when generating a response. What is this limit called?",
+    "options": [
+      { "id": "o1", "text": "The context window" },
+      { "id": "o2", "text": "The learning rate" },
+      { "id": "o3", "text": "The batch size" },
+      { "id": "o4", "text": "The epoch count" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The context window is the maximum amount of text (measured in tokens) a model can take into account at once, bounding how much prompt and history it can use.",
+    "explanationIncorrect": "The learning rate is a training hyperparameter that controls step size, unrelated to input length at inference. Batch size is how many examples are processed together during training. Epoch count is how many passes over the training data occur. The input-length limit is the context window.",
+    "tags": ["generative-ai", "context-window"]
+  },
+  {
+    "id": "aip-017",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which AWS service is a generative-AI-powered assistant for business and, in its developer form, for coding and answering AWS questions?",
+    "options": [
+      { "id": "o1", "text": "Amazon Q" },
+      { "id": "o2", "text": "Amazon Athena" },
+      { "id": "o3", "text": "Amazon Kinesis" },
+      { "id": "o4", "text": "Amazon Neptune" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Q is AWS's generative-AI assistant, offered for business use and in a developer variant that helps with coding and AWS-specific questions.",
+    "explanationIncorrect": "Amazon Athena is a serverless SQL query service over data in S3. Amazon Kinesis handles real-time streaming data. Amazon Neptune is a graph database. The generative-AI assistant is Amazon Q.",
+    "tags": ["generative-ai", "amazon-q", "services"]
+  },
+  {
+    "id": "aip-018",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "You take an existing foundation model and train it further on your own labeled domain data to specialize its behavior. What is this called?",
+    "options": [
+      { "id": "o1", "text": "Fine-tuning" },
+      { "id": "o2", "text": "Pre-training a new model from scratch" },
+      { "id": "o3", "text": "Inference" },
+      { "id": "o4", "text": "Tokenization" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Fine-tuning continues training a pre-trained model on your own data so it adapts to a specific domain or task without the cost of training from scratch.",
+    "explanationIncorrect": "Pre-training from scratch builds a model from the ground up on massive data, which is far more expensive and not what adapting an existing model means. Inference is using a finished model to make predictions, not training it. Tokenization is splitting text into tokens. Specializing an existing model on your data is fine-tuning.",
+    "tags": ["generative-ai", "fine-tuning"]
   }
 ]
