@@ -16,10 +16,11 @@
       "label": "GitHub Advanced Security",
       "status": "active",
       "domains": [
-        "Code scanning",
+        "GHAS features and functionality",
         "Secret scanning",
-        "Dependency management",
-        "Security administration"
+        "Dependabot and dependency review",
+        "Code scanning with CodeQL",
+        "Best practices and remediation"
       ]
     },
     {

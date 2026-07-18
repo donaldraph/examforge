@@ -2,7 +2,7 @@
   {
     "id": "ghas-001",
     "exam": "github-advanced-security",
-    "domain": "Code scanning",
+    "domain": "Code scanning with CodeQL",
     "difficulty": "medium",
     "stem": "You want to find security vulnerabilities in your own source code by analyzing how untrusted data flows through the application, before the code ever runs. Which GitHub Advanced Security feature and engine does this?",
     "options": [
@@ -38,7 +38,7 @@
   {
     "id": "ghas-003",
     "exam": "github-advanced-security",
-    "domain": "Dependency management",
+    "domain": "Dependabot and dependency review",
     "difficulty": "medium",
     "stem": "When a new advisory affects a package your repository depends on, you want Dependabot to automatically open a pull request that bumps that dependency to a patched version. Which Dependabot feature is this?",
     "options": [
@@ -56,7 +56,7 @@
   {
     "id": "ghas-004",
     "exam": "github-advanced-security",
-    "domain": "Security administration",
+    "domain": "GHAS features and functionality",
     "difficulty": "medium",
     "stem": "As an organization owner you want a single place to see which repositories have open code scanning, secret scanning, and Dependabot alerts across the whole organization, and where those features are enabled. Where do you look?",
     "options": [
@@ -74,7 +74,7 @@
   {
     "id": "ghas-005",
     "exam": "github-advanced-security",
-    "domain": "Code scanning",
+    "domain": "Code scanning with CodeQL",
     "difficulty": "hard",
     "stem": "You need to customize which CodeQL query suites run and add a build step for a compiled language before analysis. Which code scanning configuration should you use?",
     "options": [
