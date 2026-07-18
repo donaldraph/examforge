@@ -172,6 +172,125 @@
     "isSeed": true
   },
   {
+    "id": "saa-024",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Users worldwide report slow load times for images and static assets served from a single-Region S3 bucket. How do you improve delivery performance globally?",
+    "options": [
+      { "id": "o1", "text": "Put Amazon CloudFront in front of the bucket to cache content at edge locations near users" },
+      { "id": "o2", "text": "Move the bucket to a more expensive storage class" },
+      { "id": "o3", "text": "Enable S3 Versioning on the bucket" },
+      { "id": "o4", "text": "Increase the size of an EC2 instance" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CloudFront caches content at edge locations close to users and serves each request from the nearest edge, dramatically reducing latency for a globally distributed audience.",
+    "explanationIncorrect": "A different storage class changes cost and retrieval characteristics, not global delivery latency. Versioning tracks object history and does nothing for performance. Resizing an EC2 instance is unrelated to serving static objects from S3. Global delivery acceleration is CloudFront.",
+    "tags": ["performance", "cloudfront", "caching"]
+  },
+  {
+    "id": "saa-025",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "A read-heavy DynamoDB workload needs microsecond read latency for frequently repeated reads. Which caching layer is purpose-built for DynamoDB?",
+    "options": [
+      { "id": "o1", "text": "DynamoDB Accelerator (DAX)" },
+      { "id": "o2", "text": "Amazon CloudFront" },
+      { "id": "o3", "text": "Amazon RDS read replicas" },
+      { "id": "o4", "text": "Amazon S3 Transfer Acceleration" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "DAX is an in-memory cache built specifically for DynamoDB, delivering microsecond read latency for cached items without changing application logic significantly.",
+    "explanationIncorrect": "CloudFront caches web content at edges, not DynamoDB item reads. RDS read replicas apply to relational databases, not DynamoDB. S3 Transfer Acceleration speeds uploads to S3 over long distances and is unrelated to DynamoDB. The DynamoDB-specific cache is DAX.",
+    "tags": ["performance", "dax", "dynamodb"]
+  },
+  {
+    "id": "saa-026",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Your relational database is read-bound by heavy reporting queries that slow the primary. What scales read throughput while keeping writes on the primary?",
+    "options": [
+      { "id": "o1", "text": "One or more RDS read replicas that offload read queries" },
+      { "id": "o2", "text": "Multi-AZ, whose standby serves read traffic" },
+      { "id": "o3", "text": "A larger EBS volume on the primary" },
+      { "id": "o4", "text": "Disabling automated backups" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RDS read replicas take read traffic off the primary by serving queries from asynchronous copies, which scales read throughput while writes continue on the primary.",
+    "explanationIncorrect": "A Multi-AZ standby is for failover and does not serve read traffic, so it does not offload reads. A larger EBS volume adds storage, not read scalability. Disabling backups risks data and does nothing for read load. Read scaling comes from read replicas.",
+    "tags": ["performance", "rds", "read-replicas"]
+  },
+  {
+    "id": "saa-027",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "You must ingest and process a high-throughput stream of clickstream events in near real time, with multiple consumers able to read the stream. Which service is designed for this?",
+    "options": [
+      { "id": "o1", "text": "Amazon Kinesis Data Streams" },
+      { "id": "o2", "text": "An Amazon SQS queue used as a long-term data warehouse" },
+      { "id": "o3", "text": "Amazon Redshift, ingesting each event individually in real time" },
+      { "id": "o4", "text": "Amazon S3 Glacier" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Kinesis Data Streams is built for high-throughput real-time streaming, retaining records so multiple consumers can read and process the same stream in near real time.",
+    "explanationIncorrect": "SQS is a message queue for decoupling work, not a data warehouse, and a message is typically consumed once. Redshift is an analytical warehouse optimized for batch loads and queries, not per-event real-time ingestion. Glacier is cold archival storage. Real-time streaming is Amazon Kinesis Data Streams.",
+    "tags": ["performance", "kinesis", "streaming"]
+  },
+  {
+    "id": "saa-028",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "A latency-sensitive transactional database running on EC2 needs consistently high, predictable IOPS. Which EBS volume type is most appropriate?",
+    "options": [
+      { "id": "o1", "text": "Provisioned IOPS SSD (io1 or io2)" },
+      { "id": "o2", "text": "Cold HDD (sc1)" },
+      { "id": "o3", "text": "Throughput Optimized HDD (st1)" },
+      { "id": "o4", "text": "An S3 bucket mounted as a disk" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Provisioned IOPS SSD volumes let you specify a high, consistent IOPS level, which is what a latency-sensitive transactional database needs for predictable performance.",
+    "explanationIncorrect": "Cold HDD is optimized for infrequently accessed data at low cost, the wrong fit for a demanding database. Throughput Optimized HDD favors large sequential throughput, not the small random IOPS transactional databases require. S3 is object storage and is not a block device for a database. Consistent high IOPS is Provisioned IOPS SSD.",
+    "tags": ["performance", "ebs", "provisioned-iops"]
+  },
+  {
+    "id": "saa-029",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "You want to improve global performance and availability for a TCP/UDP application by routing users over the AWS backbone to the nearest healthy endpoint using static anycast IP addresses. Which service fits?",
+    "options": [
+      { "id": "o1", "text": "AWS Global Accelerator" },
+      { "id": "o2", "text": "Amazon CloudFront, which accelerates only cacheable HTTP content" },
+      { "id": "o3", "text": "Amazon Route 53 simple routing" },
+      { "id": "o4", "text": "A single Elastic IP address" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Global Accelerator provides static anycast IPs and routes traffic over the AWS global network to the nearest healthy endpoint, improving performance and availability for TCP and UDP applications.",
+    "explanationIncorrect": "CloudFront accelerates cacheable HTTP/S content at edges but is not the general TCP/UDP anycast accelerator described. Route 53 simple routing returns records without health-based backbone routing. A single Elastic IP is one static address with no global routing intelligence. The anycast, backbone-routing service is AWS Global Accelerator.",
+    "tags": ["performance", "global-accelerator", "networking"]
+  },
+  {
+    "id": "saa-030",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Multiple EC2 instances across Availability Zones need concurrent access to the same POSIX file system that scales its capacity automatically. Which storage service fits?",
+    "options": [
+      { "id": "o1", "text": "Amazon EFS" },
+      { "id": "o2", "text": "An Amazon EBS volume attached to a single instance" },
+      { "id": "o3", "text": "EC2 instance store" },
+      { "id": "o4", "text": "Amazon S3 Glacier" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon EFS is a managed, elastic NFS file system that many instances across AZs can mount and share concurrently, growing and shrinking automatically with usage.",
+    "explanationIncorrect": "A standard EBS volume attaches to a single instance and is not a shared multi-instance file system. Instance store is ephemeral local disk tied to one instance. S3 Glacier is cold object archival, not a mountable POSIX file system. Shared, elastic file access is Amazon EFS.",
+    "tags": ["performance", "efs", "shared-storage"]
+  },
+  {
     "id": "saa-003",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design Secure Architectures",
