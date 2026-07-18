@@ -292,5 +292,90 @@
     "explanationCorrect": "Run interactively, terraform apply generates and displays the plan, then waits for you to type yes to approve before it changes any infrastructure.",
     "explanationIncorrect": "It does not apply silently unless you pass -auto-approve or a saved plan. It does not merely reformat files; that is terraform fmt. It does not destroy everything first; it makes only the changes needed to reach desired state. By default, apply shows a plan and asks for approval.",
     "tags": ["workflow", "apply", "approval"]
+  },
+  {
+    "id": "tf-018",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "What is the primary purpose of the Terraform state file?",
+    "options": [
+      { "id": "o1", "text": "It maps the resources in your configuration to real-world infrastructure objects and stores metadata Terraform needs to plan changes" },
+      { "id": "o2", "text": "It stores your cloud provider credentials" },
+      { "id": "o3", "text": "It is a human-authored file you edit directly to change infrastructure" },
+      { "id": "o4", "text": "It holds your application's source code" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "State is Terraform's record of which real resources correspond to your configuration, plus metadata; it is what lets Terraform diff desired against actual and compute an accurate plan.",
+    "explanationIncorrect": "State is not a credential store; credentials are supplied to providers separately. You generally do not hand-edit state to change infrastructure; you change configuration and apply. It does not contain application code. State's purpose is mapping configuration to real infrastructure.",
+    "tags": ["state", "purpose"]
+  },
+  {
+    "id": "tf-019",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "A resource already exists in the cloud but was created manually. How do you bring it under Terraform management without destroying and recreating it?",
+    "options": [
+      { "id": "o1", "text": "Write a matching resource block, then use terraform import (or an import block) to associate the existing object with it" },
+      { "id": "o2", "text": "Delete the resource and let Terraform recreate it from scratch" },
+      { "id": "o3", "text": "Hand-edit terraform.tfstate to add the id, with no configuration for it" },
+      { "id": "o4", "text": "Run terraform apply, which imports unmanaged resources automatically" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Import brings an existing object into state under a resource address you have defined in configuration, so Terraform manages it going forward without recreating it.",
+    "explanationIncorrect": "Deleting and recreating causes downtime and is exactly what you are trying to avoid. Adding an id to state with no matching configuration leaves Terraform without a definition to manage the resource and causes drift or errors. apply does not automatically adopt resources it did not create. The correct path is a resource block plus terraform import.",
+    "tags": ["state", "import"]
+  },
+  {
+    "id": "tf-020",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "You renamed a resource in your configuration and want Terraform to treat it as the same object rather than destroy and recreate it. Which approach does this?",
+    "options": [
+      { "id": "o1", "text": "terraform state mv (or a moved block) to update the resource's address in state" },
+      { "id": "o2", "text": "terraform destroy followed by terraform apply" },
+      { "id": "o3", "text": "terraform fmt to fix the naming" },
+      { "id": "o4", "text": "Deleting the state file and starting over" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform state mv (or a moved block in configuration) updates the address Terraform uses for an existing object, so a rename is treated as a move rather than a destroy-and-create.",
+    "explanationIncorrect": "destroy then apply literally destroys and recreates the resource, causing downtime. terraform fmt only reformats files and does not change state addresses. Deleting the state file loses track of all resources. The rename-safe operation is terraform state mv or a moved block.",
+    "tags": ["state", "state-mv", "refactor"]
+  },
+  {
+    "id": "tf-021",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Which statement about Terraform state and sensitive data is accurate?",
+    "options": [
+      { "id": "o1", "text": "State can contain sensitive values in plaintext, so it should live in a secured, encrypted backend with restricted access" },
+      { "id": "o2", "text": "State never contains any sensitive values" },
+      { "id": "o3", "text": "State is always encrypted no matter where it is stored" },
+      { "id": "o4", "text": "Sensitive values in state are safe to commit to a public repository" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "State can capture sensitive attributes (like passwords) in plaintext, which is why it should be kept in a secured remote backend that encrypts it and limits who can read it.",
+    "explanationIncorrect": "State can and often does include sensitive values, so claiming it never does is false. It is not inherently encrypted everywhere; local state on disk is plaintext, and encryption depends on the backend. And precisely because it can hold secrets, committing it to a public repository would leak them. The accurate view is that state may hold secrets and must be protected.",
+    "tags": ["state", "sensitive-data", "security"]
+  },
+  {
+    "id": "tf-022",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "easy",
+    "stem": "Which command lists the resources currently tracked in Terraform state?",
+    "options": [
+      { "id": "o1", "text": "terraform state list" },
+      { "id": "o2", "text": "terraform show config" },
+      { "id": "o3", "text": "terraform plan -state" },
+      { "id": "o4", "text": "terraform fmt -list" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform state list prints the addresses of all resources recorded in the current state, which is the standard way to inspect what Terraform is managing.",
+    "explanationIncorrect": "terraform show config is not a valid command for listing state resources. terraform plan -state is not how you enumerate managed resources. terraform fmt -list reports which files formatting would change, unrelated to state. The state inventory command is terraform state list.",
+    "tags": ["state", "state-list", "inspection"]
   }
 ]
