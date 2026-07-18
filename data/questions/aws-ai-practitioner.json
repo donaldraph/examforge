@@ -309,5 +309,158 @@
     "explanationCorrect": "Fine-tuning continues training a pre-trained model on your own data so it adapts to a specific domain or task without the cost of training from scratch.",
     "explanationIncorrect": "Pre-training from scratch builds a model from the ground up on massive data, which is far more expensive and not what adapting an existing model means. Inference is using a finished model to make predictions, not training it. Tokenization is splitting text into tokens. Specializing an existing model on your data is fine-tuning.",
     "tags": ["generative-ai", "fine-tuning"]
+  },
+  {
+    "id": "aip-019",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "You include several examples of the desired input-and-output pattern directly in the prompt so the model follows that pattern. What is this technique called?",
+    "options": [
+      { "id": "o1", "text": "Few-shot prompting" },
+      { "id": "o2", "text": "Fine-tuning" },
+      { "id": "o3", "text": "Pre-training" },
+      { "id": "o4", "text": "Reinforcement learning from human feedback" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Providing a handful of worked examples in the prompt is few-shot prompting; the model infers the pattern from those examples at inference time without any weight changes.",
+    "explanationIncorrect": "Fine-tuning changes the model's weights by training on data; few-shot happens purely in the prompt with no training. Pre-training builds the base model on massive data up front. RLHF is a training-time alignment method using human preference data. Putting examples in the prompt is few-shot prompting.",
+    "tags": ["applications", "prompt-engineering", "few-shot"]
+  },
+  {
+    "id": "aip-020",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "easy",
+    "stem": "You ask a model to perform a task using only an instruction, with no examples provided. What is this called?",
+    "options": [
+      { "id": "o1", "text": "Zero-shot prompting" },
+      { "id": "o2", "text": "Few-shot prompting" },
+      { "id": "o3", "text": "Fine-tuning" },
+      { "id": "o4", "text": "Data augmentation" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Giving only an instruction and no examples is zero-shot prompting; the model relies entirely on what it learned during pre-training to perform the task.",
+    "explanationIncorrect": "Few-shot prompting includes example pairs, which this does not. Fine-tuning is additional training on data, not a prompting style. Data augmentation expands a training dataset with transformed samples and is unrelated to how you phrase a single prompt. An instruction with no examples is zero-shot.",
+    "tags": ["applications", "prompt-engineering", "zero-shot"]
+  },
+  {
+    "id": "aip-021",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "You want a managed way to implement RAG on Bedrock: ingest your documents, chunk and embed them, store the vectors, and retrieve relevant context at query time. Which Bedrock feature provides this end to end?",
+    "options": [
+      { "id": "o1", "text": "Knowledge Bases for Amazon Bedrock" },
+      { "id": "o2", "text": "Provisioned Throughput" },
+      { "id": "o3", "text": "Amazon Polly" },
+      { "id": "o4", "text": "AWS Batch" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Knowledge Bases for Amazon Bedrock is the managed RAG capability: it handles ingestion, chunking, embedding, vector storage, and retrieval, so you get grounded answers without building the pipeline yourself.",
+    "explanationIncorrect": "Provisioned Throughput reserves dedicated model capacity; it does not build a retrieval pipeline. Amazon Polly is text-to-speech. AWS Batch runs batch compute jobs and is unrelated to retrieval-augmented generation. The managed RAG feature is Knowledge Bases for Amazon Bedrock.",
+    "tags": ["applications", "rag", "knowledge-bases"]
+  },
+  {
+    "id": "aip-022",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "You need a generative AI application to break a request into steps and call external APIs or functions to complete a task, such as looking up an order and then issuing a refund. Which Bedrock capability orchestrates this?",
+    "options": [
+      { "id": "o1", "text": "Agents for Amazon Bedrock" },
+      { "id": "o2", "text": "Embeddings" },
+      { "id": "o3", "text": "Temperature tuning" },
+      { "id": "o4", "text": "Model evaluation" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Agents for Amazon Bedrock plan a task into steps and invoke the APIs or functions you provide, letting the model take actions rather than only generate text.",
+    "explanationIncorrect": "Embeddings turn text into vectors for similarity; they do not orchestrate multi-step actions. Temperature tuning adjusts output randomness. Model evaluation compares model quality. The capability that plans steps and calls tools is Agents for Amazon Bedrock.",
+    "tags": ["applications", "agents", "tool-use"]
+  },
+  {
+    "id": "aip-023",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "Your knowledge base changes daily and answers must always reflect the latest documents. Between RAG and fine-tuning, which is generally the better fit, and why?",
+    "options": [
+      { "id": "o1", "text": "RAG, because it retrieves the current documents at query time without retraining the model" },
+      { "id": "o2", "text": "Fine-tuning, because you should retrain the model every day on the new documents" },
+      { "id": "o3", "text": "Neither; only adjusting temperature keeps answers current" },
+      { "id": "o4", "text": "Fine-tuning, because documents baked into the weights stay fresh automatically" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RAG pulls the latest documents at query time, so new content is reflected immediately with no retraining, which suits a knowledge base that changes daily.",
+    "explanationIncorrect": "Retraining or fine-tuning every day is slow, costly, and impractical for daily churn. Temperature only affects randomness, not what facts the model can access. Facts baked into weights are frozen at training time and do not update themselves, so fine-tuning is the opposite of fresh. For frequently changing data, RAG is the fit.",
+    "tags": ["applications", "rag", "fine-tuning"]
+  },
+  {
+    "id": "aip-024",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "You want to compare two foundation models on your task before choosing one, using both automatic metrics and human review. Which Amazon Bedrock capability supports this?",
+    "options": [
+      { "id": "o1", "text": "Model evaluation in Amazon Bedrock" },
+      { "id": "o2", "text": "Provisioned Throughput" },
+      { "id": "o3", "text": "Guardrails" },
+      { "id": "o4", "text": "Knowledge Bases" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Bedrock model evaluation lets you compare models on your data using automatic metrics and human-based evaluation, which is how you choose the right model for a task.",
+    "explanationIncorrect": "Provisioned Throughput reserves capacity; it does not measure quality. Guardrails filter unsafe content rather than benchmark models. Knowledge Bases implement retrieval, not evaluation. The comparison feature is model evaluation.",
+    "tags": ["applications", "model-evaluation", "selection"]
+  },
+  {
+    "id": "aip-025",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Model responses are being cut off too short. Which inference parameter most directly controls the maximum length of the generated output?",
+    "options": [
+      { "id": "o1", "text": "The maximum output tokens setting" },
+      { "id": "o2", "text": "Temperature" },
+      { "id": "o3", "text": "Top-p" },
+      { "id": "o4", "text": "The embedding dimension" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The maximum output tokens parameter caps how many tokens the model may generate, so raising it lets responses run longer before being truncated.",
+    "explanationIncorrect": "Temperature changes randomness, not length. Top-p changes which tokens are sampled by cumulative probability, again affecting variety rather than the length cap. Embedding dimension is a property of vector representations, unrelated to generation length. The length cap is the maximum output tokens setting.",
+    "tags": ["applications", "inference-parameters", "max-tokens"]
+  },
+  {
+    "id": "aip-026",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "For a high-volume, latency-sensitive, and relatively simple classification prompt, which model choice is usually most appropriate?",
+    "options": [
+      { "id": "o1", "text": "A smaller, faster, cheaper model that is sufficient for the task" },
+      { "id": "o2", "text": "Always the largest, most expensive model regardless of the task" },
+      { "id": "o3", "text": "A text-to-image model repurposed for text classification" },
+      { "id": "o4", "text": "No model at all; classify by hand in a spreadsheet" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Model selection balances cost, latency, and accuracy: for a simple, high-volume task a smaller and faster model that meets the accuracy bar is the economical, responsive choice.",
+    "explanationIncorrect": "Defaulting to the largest model wastes money and adds latency when a simpler task does not need it. A text-to-image model is the wrong modality for classifying text. Manual classification does not scale to high volume. The appropriate choice is the smallest capable model.",
+    "tags": ["applications", "model-selection", "cost-latency"]
+  },
+  {
+    "id": "aip-027",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "You want an application that accepts an image and answers questions about its contents in text. What kind of foundation model do you need?",
+    "options": [
+      { "id": "o1", "text": "A multimodal model that accepts image input and produces text output" },
+      { "id": "o2", "text": "A text-only large language model" },
+      { "id": "o3", "text": "A text-to-speech model" },
+      { "id": "o4", "text": "An embeddings-only model" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Answering questions about an image requires a multimodal model that can take images as input and generate text, combining vision understanding with language output.",
+    "explanationIncorrect": "A text-only LLM cannot see an image. A text-to-speech model converts text to audio and does not analyze images. An embeddings-only model produces vectors, not conversational text answers. The task needs a multimodal (image-to-text) model.",
+    "tags": ["applications", "multimodal"]
   }
 ]
