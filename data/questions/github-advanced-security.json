@@ -190,5 +190,73 @@
     "explanationCorrect": "dependabot.yml supports an ignore list where you name a dependency and restrict which versions or update-types Dependabot may raise, so you can block the major bump while still receiving patch and minor updates.",
     "explanationIncorrect": "You cannot selectively remove a real dependency from the graph while still using it; the graph reflects your manifests. .gitignore excludes files from version control and has no effect on Dependabot. Disabling Dependabot entirely throws away all updates, including the safe ones you still want. The targeted control is an ignore entry with version or update-type constraints.",
     "tags": ["dependabot", "ignore", "config"]
+  },
+  {
+    "id": "ghas-012",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Beyond vulnerabilities, you also need pull requests to fail when they introduce a dependency under a license your organization disallows. Can the dependency review action enforce this?",
+    "options": [
+      { "id": "o1", "text": "Yes; the dependency review action supports allow and deny license configuration and can fail on a disallowed license" },
+      { "id": "o2", "text": "No; license policy requires a separate paid third-party tool" },
+      { "id": "o3", "text": "No; only CodeQL can evaluate dependency licenses" },
+      { "id": "o4", "text": "No; license information is only exposed through secret scanning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency review action can be configured with license allow or deny lists, so a pull request that adds a dependency under a denied license fails the check, giving you license policy enforcement alongside vulnerability checks.",
+    "explanationIncorrect": "License enforcement is built into the dependency review action, so a separate paid tool is not required. CodeQL analyzes source code for flaws and does not evaluate dependency licenses. Secret scanning finds leaked credentials and has nothing to do with license metadata. The dependency review action itself handles license allow and deny policy.",
+    "tags": ["dependency-review", "licenses"]
+  },
+  {
+    "id": "ghas-013",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "Some of your dependencies come from a private package registry that requires authentication. How does Dependabot reach it securely?",
+    "options": [
+      { "id": "o1", "text": "Declare a registries block in dependabot.yml and reference Dependabot secrets for the credentials" },
+      { "id": "o2", "text": "Put the registry password in plaintext directly in dependabot.yml" },
+      { "id": "o3", "text": "Dependabot cannot authenticate to private registries at all" },
+      { "id": "o4", "text": "Commit an .npmrc containing the token into the repository" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "dependabot.yml has a registries section for private sources, and credentials are supplied through Dependabot secrets referenced from that section, so Dependabot can authenticate without exposing the secret in the config.",
+    "explanationIncorrect": "A plaintext password in the config would be committed to the repository and leaked, which is exactly what Dependabot secrets exist to avoid. Dependabot does support private registries, so claiming it cannot is wrong. Committing an .npmrc with a live token is the same plaintext-secret leak in a different file. The secure pattern is a registries block referencing Dependabot secrets.",
+    "tags": ["dependabot", "private-registries", "secrets"]
+  },
+  {
+    "id": "ghas-014",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "A Dependabot security update opens a pull request for a vulnerable dependency. To which version does it typically bump the dependency?",
+    "options": [
+      { "id": "o1", "text": "The minimum version that resolves the advisory, to limit unrelated change" },
+      { "id": "o2", "text": "Always the newest available major version" },
+      { "id": "o3", "text": "The oldest version still in the registry" },
+      { "id": "o4", "text": "It removes the dependency from the manifest" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A security update aims to fix the vulnerability with the smallest necessary change, bumping to the lowest version that is no longer affected, which keeps the pull request low-risk and easy to review.",
+    "explanationIncorrect": "Jumping to the newest major version would often introduce breaking changes unrelated to the fix, which is not what a security update targets. The oldest version would not resolve the advisory and may itself be vulnerable. Dependabot does not delete a dependency you rely on; it patches it. The behavior is to move to the minimum patched version.",
+    "tags": ["dependabot", "security-updates"]
+  },
+  {
+    "id": "ghas-015",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "An auditor asks for a machine-readable inventory of every dependency your repository uses. Which capability produces that inventory?",
+    "options": [
+      { "id": "o1", "text": "Export an SBOM in SPDX format from the repository's dependency graph" },
+      { "id": "o2", "text": "Download the CodeQL database for the repository" },
+      { "id": "o3", "text": "Export the list of secret scanning alerts" },
+      { "id": "o4", "text": "Save the workflow run logs from the Actions tab" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency graph can be exported as a Software Bill of Materials in SPDX format, which is exactly the standardized, machine-readable dependency inventory an auditor is asking for.",
+    "explanationIncorrect": "A CodeQL database is an analysis artifact of your source code, not a dependency inventory. Secret scanning alerts list leaked credentials, not dependencies. Workflow run logs record what a job did, not a structured list of the packages you depend on. The SBOM export from the dependency graph is the right artifact.",
+    "tags": ["dependency-graph", "sbom", "spdx"]
   }
 ]
