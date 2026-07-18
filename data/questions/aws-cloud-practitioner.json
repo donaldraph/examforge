@@ -428,6 +428,91 @@
     "tags": ["services", "cloudformation", "iac"]
   },
   {
+    "id": "clf-028",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service lets you provision a logically isolated private network in AWS where you control IP address ranges, subnets, and routing?",
+    "options": [
+      { "id": "o1", "text": "Amazon VPC" },
+      { "id": "o2", "text": "Amazon S3" },
+      { "id": "o3", "text": "AWS Lambda" },
+      { "id": "o4", "text": "Amazon SES" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon VPC gives you a logically isolated virtual network where you define IP ranges, subnets, route tables, and gateways for your resources.",
+    "explanationIncorrect": "Amazon S3 is object storage for files and does not define a private network. AWS Lambda is serverless compute that runs your code, not a networking construct. Amazon SES is a service for sending and receiving email. None of them let you control IP ranges, subnets, and routing. The isolated virtual network where you own the addressing and routing is Amazon VPC.",
+    "tags": ["services", "vpc", "networking"]
+  },
+  {
+    "id": "clf-029",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is a fully managed message queue used to decouple and buffer messages between application components?",
+    "options": [
+      { "id": "o1", "text": "Amazon SQS" },
+      { "id": "o2", "text": "Amazon CloudFront" },
+      { "id": "o3", "text": "Amazon Redshift" },
+      { "id": "o4", "text": "AWS IAM" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SQS is a managed message queue that lets components communicate asynchronously, buffering messages so producers and consumers can work independently.",
+    "explanationIncorrect": "Amazon CloudFront is a content delivery network. Amazon Redshift is a data warehouse. AWS IAM manages identities and permissions. The managed message queue is Amazon SQS.",
+    "tags": ["services", "sqs", "messaging"]
+  },
+  {
+    "id": "clf-030",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "You need very low-cost storage for data you rarely access and can wait minutes or hours to retrieve, such as long-term archives. Which option fits?",
+    "options": [
+      { "id": "o1", "text": "Amazon S3 Glacier storage classes" },
+      { "id": "o2", "text": "Amazon S3 Standard" },
+      { "id": "o3", "text": "Amazon EBS Provisioned IOPS volumes" },
+      { "id": "o4", "text": "Amazon EC2 instance store" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The S3 Glacier storage classes are designed for archival: they cost far less per gigabyte in exchange for longer retrieval times, which fits rarely accessed long-term data.",
+    "explanationIncorrect": "S3 Standard is for frequently accessed data and costs more, so it is not the cheapest archival choice. EBS Provisioned IOPS is high-performance block storage for demanding workloads, the opposite of low-cost archive. EC2 instance store is ephemeral disk tied to an instance and is lost when it stops. Low-cost archival is S3 Glacier.",
+    "tags": ["services", "s3-glacier", "archival-storage"]
+  },
+  {
+    "id": "clf-031",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "easy",
+    "stem": "Which of the following are valid ways to interact with AWS services?",
+    "options": [
+      { "id": "o1", "text": "The AWS Management Console, the AWS CLI, and the AWS SDKs" },
+      { "id": "o2", "text": "Only a badge reader at a physical data center" },
+      { "id": "o3", "text": "Only by mailing a paper request form to AWS" },
+      { "id": "o4", "text": "Only through one desktop app with no programmatic access" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "You can use AWS through the web-based Management Console, the command line with the AWS CLI, or programmatically through the AWS SDKs for various languages.",
+    "explanationIncorrect": "A physical badge reader, mailing a paper form, and a single app with no API are all incorrect; AWS is designed for self-service through the console, CLI, and SDKs. The valid access methods are the Console, CLI, and SDKs.",
+    "tags": ["services", "console-cli-sdk", "access"]
+  },
+  {
+    "id": "clf-032",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service collects metrics, logs, and alarms so you can monitor the health and performance of your AWS resources?",
+    "options": [
+      { "id": "o1", "text": "Amazon CloudWatch" },
+      { "id": "o2", "text": "AWS CloudTrail" },
+      { "id": "o3", "text": "Amazon Cognito" },
+      { "id": "o4", "text": "AWS Snowball" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon CloudWatch is the monitoring and observability service, collecting metrics and logs and triggering alarms and actions based on them.",
+    "explanationIncorrect": "AWS CloudTrail records API activity for auditing, which is about who did what, not performance metrics. Amazon Cognito manages user identities. AWS Snowball moves large data volumes physically. The monitoring service is Amazon CloudWatch.",
+    "tags": ["services", "cloudwatch", "monitoring"]
+  },
+  {
     "id": "clf-004",
     "exam": "aws-cloud-practitioner",
     "domain": "Billing, Pricing, and Support",
