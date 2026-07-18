@@ -531,6 +531,57 @@
     "isSeed": true
   },
   {
+    "id": "clf-033",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "You want to be alerted when your monthly AWS spending is forecast to exceed a threshold you set. Which service provides this?",
+    "options": [
+      { "id": "o1", "text": "AWS Budgets" },
+      { "id": "o2", "text": "Amazon Inspector" },
+      { "id": "o3", "text": "AWS CloudFormation" },
+      { "id": "o4", "text": "Amazon Polly" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Budgets lets you set custom cost and usage budgets and sends alerts when actual or forecasted spend crosses your thresholds.",
+    "explanationIncorrect": "Amazon Inspector scans workloads for software vulnerabilities. AWS CloudFormation provisions infrastructure. Amazon Polly converts text to speech. The budgeting and spend-alert service is AWS Budgets.",
+    "tags": ["billing", "aws-budgets", "cost-management"]
+  },
+  {
+    "id": "clf-034",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "hard",
+    "stem": "Your production workload needs 24/7 access to AWS support engineers by phone and chat with fast response on critical issues, but you do not need a dedicated technical account manager. Which is the minimum support plan that fits?",
+    "options": [
+      { "id": "o1", "text": "Business Support" },
+      { "id": "o2", "text": "Basic Support" },
+      { "id": "o3", "text": "Developer Support" },
+      { "id": "o4", "text": "No support plan is required for production" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Business Support provides 24/7 access to engineers via phone, chat, and email with fast response times for production issues, and it does not require the higher Enterprise tier, so it is the minimum fit here.",
+    "explanationIncorrect": "Basic Support offers no technical case support from engineers, so it cannot meet a 24/7 production requirement. Developer Support gives business-hours email access to a support associate, not 24/7 engineer access. A dedicated technical account manager comes with Enterprise plans, which is more than required. The minimum plan that meets the need is Business Support.",
+    "tags": ["support", "support-plans", "business-support"]
+  },
+  {
+    "id": "clf-035",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "A company has many AWS accounts and wants a single monthly bill plus volume pricing discounts pooled across all of them. Which feature provides this?",
+    "options": [
+      { "id": "o1", "text": "Consolidated billing through AWS Organizations" },
+      { "id": "o2", "text": "A separate credit card per account with no linkage" },
+      { "id": "o3", "text": "Amazon CloudFront" },
+      { "id": "o4", "text": "AWS WAF" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Organizations offers consolidated billing, which combines multiple accounts into one bill and can aggregate usage so the group qualifies for volume pricing tiers.",
+    "explanationIncorrect": "Separate cards with no linkage give you many bills and no pooled discounts, the opposite of what is asked. Amazon CloudFront is a content delivery network. AWS WAF filters web traffic. Single-bill, pooled-discount management is consolidated billing through AWS Organizations.",
+    "tags": ["billing", "organizations", "consolidated-billing"]
+  },
+  {
     "id": "clf-005",
     "exam": "aws-cloud-practitioner",
     "domain": "Cloud Technology and Services",
