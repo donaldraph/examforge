@@ -598,5 +598,90 @@
     "explanationCorrect": "A reusable workflow is defined with on: workflow_call, which declares its inputs and outputs; the workflow-level outputs map to values produced by its jobs, so the caller can pass an input and read the returned url.",
     "explanationIncorrect": "workflow_dispatch defines a manual UI trigger with inputs but has no outputs contract for a caller and is not how one workflow calls another. push fires on commits and cannot receive caller inputs. workflow_run triggers a workflow after another completes but does not define a called-workflow input and output interface. The reusable-workflow contract is on: workflow_call with inputs and outputs.",
     "tags": ["reusable-workflows", "workflow-call", "outputs"]
+  },
+  {
+    "id": "gha-036",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a workflow to run only when files under the docs/ directory change on a push. Which trigger filter achieves this?",
+    "options": [
+      { "id": "o1", "text": "on: push with a paths filter of ['docs/**']" },
+      { "id": "o2", "text": "on: push with a branches filter of ['docs']" },
+      { "id": "o3", "text": "A step-level if: changed('docs')" },
+      { "id": "o4", "text": "on: pull_request with types: [docs]" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The paths filter scopes a push (or pull_request) trigger to runs where the changed files match the given globs, so 'docs/**' fires the workflow only when documentation files change.",
+    "explanationIncorrect": "A branches filter limits which branches trigger the workflow, not which files changed, so it would not target the docs directory. There is no changed() function usable as shown; path scoping is done in the trigger, not a step condition. pull_request types are activity types like opened or synchronize, not directory names. The correct scoping is a paths filter.",
+    "tags": ["workflows", "paths-filter", "triggers"]
+  },
+  {
+    "id": "gha-037",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "Your matrix builds every operating-system and version combination, but one specific pair (windows-latest with Node 18) is unsupported and must be skipped while all other combinations still run. How do you do this?",
+    "options": [
+      { "id": "o1", "text": "Add an exclude entry to strategy.matrix naming that os and version pair" },
+      { "id": "o2", "text": "Delete the entire matrix and hardcode the combinations" },
+      { "id": "o3", "text": "Add a job-level if: that skips the whole job" },
+      { "id": "o4", "text": "Set max-parallel to 0" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The matrix exclude list removes specific combinations from the generated set, so you can drop just the windows/Node 18 pair while every other combination is still built.",
+    "explanationIncorrect": "Deleting the matrix throws away the whole benefit of combinatorial builds. A job-level if that skips the whole job would skip all combinations, not just one. max-parallel controls concurrency and setting it to 0 does not remove a combination. The targeted removal is a matrix exclude entry.",
+    "tags": ["workflows", "matrix", "exclude"]
+  },
+  {
+    "id": "gha-038",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "By default, when one matrix leg fails the others are cancelled. You want every matrix leg to run to completion regardless of failures. What do you set?",
+    "options": [
+      { "id": "o1", "text": "strategy.fail-fast: false" },
+      { "id": "o2", "text": "continue-on-error: true at the workflow root" },
+      { "id": "o3", "text": "concurrency with cancel-in-progress: false" },
+      { "id": "o4", "text": "max-parallel: 1" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "fail-fast defaults to true, cancelling remaining matrix jobs on the first failure; setting strategy.fail-fast to false lets every leg finish so you see all results.",
+    "explanationIncorrect": "continue-on-error changes whether a failing step or job fails the run, not whether sibling matrix legs are cancelled. concurrency cancel-in-progress relates to overlapping runs of the same group, not matrix siblings. max-parallel limits how many legs run at once but does not stop the cancel-on-failure behavior. The control is strategy.fail-fast: false.",
+    "tags": ["workflows", "matrix", "fail-fast"]
+  },
+  {
+    "id": "gha-039",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "easy",
+    "stem": "You want a job to be forcibly stopped if it runs longer than 30 minutes, so a hung run does not keep consuming minutes. Which setting expresses this?",
+    "options": [
+      { "id": "o1", "text": "timeout-minutes: 30 on the job" },
+      { "id": "o2", "text": "concurrency: 30" },
+      { "id": "o3", "text": "retries: 30" },
+      { "id": "o4", "text": "schedule: 30" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "timeout-minutes sets the maximum number of minutes a job (or step) may run before the runner cancels it, which bounds hung runs.",
+    "explanationIncorrect": "concurrency groups and serializes runs; it is not a time limit. There is no retries key on a job for this purpose. schedule is a trigger using cron, not a duration cap. The job time limit is timeout-minutes.",
+    "tags": ["workflows", "timeout-minutes"]
+  },
+  {
+    "id": "gha-040",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "You want a step to run only when the pushed commit message contains the text [deploy]. Which expression is correct?",
+    "options": [
+      { "id": "o1", "text": "if: contains(github.event.head_commit.message, '[deploy]')" },
+      { "id": "o2", "text": "if: github.event.head_commit.message == '[deploy]'" },
+      { "id": "o3", "text": "if: includes(github.event.head_commit.message, '[deploy]')" },
+      { "id": "o4", "text": "if: github.event.head_commit.message.has('[deploy]')" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "contains(haystack, needle) is a built-in expression function that returns true when the substring is present, so it correctly matches a commit message that includes [deploy].",
+    "explanationIncorrect": "The == comparison requires the message to equal [deploy] exactly, which fails when it is part of a longer message. includes is not a GitHub Actions expression function. There is no .has() method syntax in expressions. The substring test is contains().",
+    "tags": ["workflows", "expressions", "contains"]
   }
 ]
