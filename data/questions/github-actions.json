@@ -768,5 +768,90 @@
     "explanationCorrect": "The upload-artifact action accepts retention-days to set how long that artifact is retained, capped by the repository or organization's configured maximum, after which it is deleted automatically.",
     "explanationIncorrect": "Manually deleting runs is tedious and not the intended control. Artifacts do have a retention period and are not kept forever, so that claim is false. timeout-minutes bounds job duration, not artifact lifetime. Artifact lifetime is set with retention-days.",
     "tags": ["consume", "artifacts", "retention"]
+  },
+  {
+    "id": "gha-046",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "easy",
+    "stem": "When a workflow uses your action, how does it supply values for the action's declared inputs?",
+    "options": [
+      { "id": "o1", "text": "Through a with: block on the step that uses the action" },
+      { "id": "o2", "text": "Through an env: block, which is the only way to pass inputs" },
+      { "id": "o3", "text": "Through the needs: keyword" },
+      { "id": "o4", "text": "Through a strategy matrix" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A caller passes input values with a with: block on the uses step, and those keys map to the inputs the action declares in its action.yml.",
+    "explanationIncorrect": "env sets environment variables, which is not how action inputs are supplied. needs declares job dependencies, not inputs. A matrix expands job combinations and does not pass an action's inputs. Inputs are provided through with:.",
+    "tags": ["actions", "inputs", "with"]
+  },
+  {
+    "id": "gha-047",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "In a composite action, each run step must specify one thing that is optional in an ordinary workflow step. What is it?",
+    "options": [
+      { "id": "o1", "text": "The shell for each run step (shell is required in composite actions)" },
+      { "id": "o2", "text": "A unique matrix per step" },
+      { "id": "o3", "text": "A container image per step" },
+      { "id": "o4", "text": "A concurrency group per step" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Composite action run steps require an explicit shell value, whereas in a normal workflow the shell can be inferred, so authoring a composite means setting shell on each run step.",
+    "explanationIncorrect": "A matrix is a workflow job feature, not a per-step requirement in a composite action. A container image is not required per step in a composite action. Concurrency groups apply to workflow runs, not individual composite steps. The required field is shell.",
+    "tags": ["actions", "composite-actions", "shell"]
+  },
+  {
+    "id": "gha-048",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "In a JavaScript action, which library provides helpers such as getInput and setOutput to interact with the runner?",
+    "options": [
+      { "id": "o1", "text": "The @actions/core package from the GitHub Actions toolkit" },
+      { "id": "o2", "text": "axios" },
+      { "id": "o3", "text": "express" },
+      { "id": "o4", "text": "lodash" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The @actions/core toolkit package exposes helpers like core.getInput, core.setOutput, and core.setFailed that a JavaScript action uses to read inputs and communicate with the runner.",
+    "explanationIncorrect": "axios is an HTTP client, express is a web server framework, and lodash is a utility library; none of them provide the Actions runner integration helpers. The toolkit package for that is @actions/core.",
+    "tags": ["actions", "javascript-action", "toolkit"]
+  },
+  {
+    "id": "gha-049",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You keep a custom action inside the same repository as the workflow that uses it. How does the workflow reference it?",
+    "options": [
+      { "id": "o1", "text": "uses: ./path/to/action, a relative path to the directory containing action.yml" },
+      { "id": "o2", "text": "uses: owner/repo@main, since local actions still need the full path" },
+      { "id": "o3", "text": "run: ./action.yml" },
+      { "id": "o4", "text": "It must be published to the Marketplace before it can be used" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A local action in the same repository is referenced by a relative path in uses, pointing at the directory that holds its action.yml, after the repository is checked out.",
+    "explanationIncorrect": "The owner/repo@ref form is for actions in other repositories; a local action uses a relative path. run executes shell commands and cannot invoke an action metadata file. Local actions do not need Marketplace publishing to be used. The reference is uses: ./path.",
+    "tags": ["actions", "local-action", "uses"]
+  },
+  {
+    "id": "gha-050",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "Your JavaScript action must run cleanup logic after the job's other steps complete, even if the main step failed. Which action.yml field enables this post step?",
+    "options": [
+      { "id": "o1", "text": "runs.post pointing at a script, optionally guarded by post-if" },
+      { "id": "o2", "text": "A second jobs block inside the action" },
+      { "id": "o3", "text": "continue-on-error on the action" },
+      { "id": "o4", "text": "A schedule trigger in the action" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A JavaScript action declares a post entry point with runs.post that the runner executes after the job's steps as cleanup, and post-if controls the condition under which it runs.",
+    "explanationIncorrect": "Actions do not contain jobs; jobs live in workflows. continue-on-error affects failure handling, not scheduling a post-completion cleanup step. A schedule trigger is a workflow event, not an action cleanup mechanism. The post-completion hook is runs.post.",
+    "tags": ["actions", "post-step", "cleanup"]
   }
 ]
