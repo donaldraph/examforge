@@ -88,5 +88,107 @@
     "explanationIncorrect": "Default setup is deliberately managed and low-configuration: it enables code scanning quickly and handles common cases, but it does not give you a workflow file to hand-tune query suites or inject a custom build step, which is the whole requirement here. Secret scanning custom patterns define new credential shapes to detect; they are unrelated to CodeQL queries or building code. A branch protection rule can require the code scanning check to pass, but it cannot define how the analysis runs or add a build step. To customize query suites and add a build step you use advanced setup with its editable CodeQL workflow.",
     "tags": ["code-scanning", "codeql", "advanced-setup"],
     "isSeed": true
+  },
+  {
+    "id": "ghas-006",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "You want scheduled version updates for your npm dependencies. What is the minimum you configure, and where?",
+    "options": [
+      { "id": "o1", "text": "A .github/dependabot.yml with an updates entry specifying package-ecosystem, directory, and schedule.interval" },
+      { "id": "o2", "text": "A workflow that runs npm update on a cron schedule" },
+      { "id": "o3", "text": "Enable Dependabot alerts and nothing else" },
+      { "id": "o4", "text": "A CODEOWNERS entry that lists package.json" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot version updates are driven by .github/dependabot.yml, where each updates entry names the package-ecosystem (npm), the directory of the manifest, and a schedule.interval, which together tell Dependabot what to keep current and how often.",
+    "explanationIncorrect": "Running npm update on a cron would change the lockfile but produces no reviewed pull requests and is not how Dependabot version updates work. Enabling alerts only tells you about known vulnerabilities; it does not open routine version-bump pull requests. CODEOWNERS assigns review responsibility and does nothing to schedule updates. The minimum for version updates is a dependabot.yml updates entry with ecosystem, directory, and interval.",
+    "tags": ["dependabot", "version-updates", "config"]
+  },
+  {
+    "id": "ghas-007",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Dependabot alerts tell you a dependency you use is vulnerable. Where does that vulnerability information primarily come from?",
+    "options": [
+      { "id": "o1", "text": "The GitHub Advisory Database, matched against your repository's dependency graph" },
+      { "id": "o2", "text": "CodeQL query results over your source code" },
+      { "id": "o3", "text": "Secret scanning credential patterns" },
+      { "id": "o4", "text": "A one-time npm audit run on your laptop" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot compares the packages in your dependency graph against advisories in the GitHub Advisory Database, and raises an alert when a version you depend on is covered by a known vulnerability.",
+    "explanationIncorrect": "CodeQL analyzes your own source for flaws; it does not track third-party package advisories. Secret scanning looks for leaked credentials, not vulnerable dependencies. A local npm audit is a manual, point-in-time check that is not what powers continuous Dependabot alerts in GitHub. The source is the GitHub Advisory Database applied to your dependency graph.",
+    "tags": ["dependabot", "alerts", "advisory-database"]
+  },
+  {
+    "id": "ghas-008",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Dependabot alerts and security updates are not appearing for a repository. Which prerequisite feature must be enabled for them to function?",
+    "options": [
+      { "id": "o1", "text": "The dependency graph" },
+      { "id": "o2", "text": "GitHub Pages" },
+      { "id": "o3", "text": "Repository Discussions" },
+      { "id": "o4", "text": "A self-hosted runner" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency graph is what identifies the packages a repository uses; Dependabot alerts and security updates build on it, so they cannot work until the dependency graph is enabled.",
+    "explanationIncorrect": "GitHub Pages publishes a website and is unrelated to dependency analysis. Discussions is a community forum feature with no bearing on Dependabot. A self-hosted runner executes workflow jobs; Dependabot's alerting does not depend on your runners. The required foundation is the dependency graph.",
+    "tags": ["dependabot", "dependency-graph", "prerequisites"]
+  },
+  {
+    "id": "ghas-009",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "You want a pull request to fail before merge if it introduces a dependency with a known high-severity vulnerability. Which mechanism does this?",
+    "options": [
+      { "id": "o1", "text": "The dependency review action running on pull_request, configured to fail on a severity threshold and set as a required check" },
+      { "id": "o2", "text": "Dependabot version updates on a weekly schedule" },
+      { "id": "o3", "text": "Secret scanning push protection" },
+      { "id": "o4", "text": "CodeQL default setup analyzing the diff" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency review action inspects the dependency changes a pull request introduces and can fail the check when a new dependency meets or exceeds a configured severity, and making it a required check blocks the merge.",
+    "explanationIncorrect": "Dependabot version updates open bump pull requests on a schedule; they do not gate other people's pull requests on newly introduced vulnerabilities. Secret scanning push protection blocks committed credentials, not vulnerable dependencies. CodeQL analyzes source code for code-level flaws, not the security of dependencies a pull request adds. The gate for newly introduced vulnerable dependencies is the dependency review action as a required check.",
+    "tags": ["dependency-review", "pull-request", "gating"]
+  },
+  {
+    "id": "ghas-010",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Dependabot is opening too many individual version-update pull requests. How do you make it combine related updates into fewer pull requests?",
+    "options": [
+      { "id": "o1", "text": "Configure groups in dependabot.yml so related updates are batched into a single pull request" },
+      { "id": "o2", "text": "Set schedule.interval to monthly, which automatically merges the pull requests" },
+      { "id": "o3", "text": "Disable Dependabot alerts to reduce the noise" },
+      { "id": "o4", "text": "Set open-pull-requests-limit to 1 so updates are combined" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The groups setting in dependabot.yml tells Dependabot to bundle updates that match a group into one pull request, which is the intended way to cut down on the number of separate update PRs.",
+    "explanationIncorrect": "Changing the interval to monthly only changes how often updates run; it does not merge multiple updates into one pull request. Disabling alerts hides vulnerability information and does not affect version-update pull request volume. open-pull-requests-limit caps how many update PRs are open at once and simply drops the rest; it does not combine them into one. The batching feature is groups.",
+    "tags": ["dependabot", "grouped-updates"]
+  },
+  {
+    "id": "ghas-011",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "A specific package must not be bumped past its current major version because the next major has breaking changes. How do you express that to Dependabot?",
+    "options": [
+      { "id": "o1", "text": "Add an ignore entry for that dependency in dependabot.yml constraining the versions or update-types it may propose" },
+      { "id": "o2", "text": "Remove the package from the dependency graph" },
+      { "id": "o3", "text": "Add the package to .gitignore" },
+      { "id": "o4", "text": "Turn off Dependabot entirely for the repository" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "dependabot.yml supports an ignore list where you name a dependency and restrict which versions or update-types Dependabot may raise, so you can block the major bump while still receiving patch and minor updates.",
+    "explanationIncorrect": "You cannot selectively remove a real dependency from the graph while still using it; the graph reflects your manifests. .gitignore excludes files from version control and has no effect on Dependabot. Disabling Dependabot entirely throws away all updates, including the safe ones you still want. The targeted control is an ignore entry with version or update-type constraints.",
+    "tags": ["dependabot", "ignore", "config"]
   }
 ]
