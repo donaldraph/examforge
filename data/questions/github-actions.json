@@ -190,5 +190,107 @@
     "explanationCorrect": "Writing name=value to the $GITHUB_ENV file publishes an environment variable that the runner injects into every subsequent step in the same job.",
     "explanationIncorrect": "export sets the variable only inside that one step's shell process, so it is gone by the next step. The workflow-level env: block is static configuration evaluated up front; you cannot retroactively add a value to it mid-run. $GITHUB_OUTPUT publishes a named step output read as steps.<id>.outputs.<name>, not an automatically injected environment variable. To share an environment variable across later steps you append to $GITHUB_ENV.",
     "tags": ["environment-variables", "github-env"]
+  },
+  {
+    "id": "gha-012",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "For supply-chain safety when consuming a third-party action, how should you reference it so that a compromised or moved tag cannot silently change the code that runs?",
+    "options": [
+      { "id": "o1", "text": "Pin uses to a full-length commit SHA of the action" },
+      { "id": "o2", "text": "Pin uses to the action's @main branch" },
+      { "id": "o3", "text": "Pin uses to a floating major tag such as @v4" },
+      { "id": "o4", "text": "Reference the action with @latest" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A full commit SHA is immutable: it names one exact tree, so even if the maintainer's tag is moved or their account is compromised, your workflow keeps running the code you pinned until you deliberately update the SHA.",
+    "explanationIncorrect": "Pinning to @main runs whatever is on the default branch at the moment, which changes constantly and is the least controlled option. A floating major tag like @v4 is convenient and gets patches, but tags are mutable and can be repointed, so a compromised maintainer could change what @v4 resolves to. @latest has the same mutability problem and is even less specific. Only a full-length commit SHA is immutable, which is why it is the recommended pin for untrusted third-party actions.",
+    "tags": ["security", "actions", "pinning"]
+  },
+  {
+    "id": "gha-013",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "Job build produces a compiled binary that job deploy needs, and the two jobs run on different runners. How do you pass the file between them?",
+    "options": [
+      { "id": "o1", "text": "Upload it with actions/upload-artifact in build and retrieve it with actions/download-artifact in deploy" },
+      { "id": "o2", "text": "Write the binary into $GITHUB_ENV so deploy inherits it" },
+      { "id": "o3", "text": "Commit the binary back to the repository between the two jobs" },
+      { "id": "o4", "text": "Return the binary as a job output that deploy reads via needs" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Artifacts are the mechanism for moving files between jobs: build uploads the binary as an artifact and deploy downloads it, which works even though each job runs on a fresh, separate runner.",
+    "explanationIncorrect": "$GITHUB_ENV carries small string environment variables within a single job, not binary files across jobs. Committing build output back to the repository pollutes history, is slow, and is considered an anti-pattern. Job outputs are strings passed through the needs context and are size-limited and text-only, so they cannot carry a compiled binary. The correct tool for passing files between jobs is upload-artifact and download-artifact.",
+    "tags": ["artifacts", "jobs"]
+  },
+  {
+    "id": "gha-014",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want to speed up builds by reusing downloaded npm dependencies across separate workflow runs, invalidating the reuse only when the lockfile changes. Which approach fits?",
+    "options": [
+      { "id": "o1", "text": "Use actions/cache with a key built from a hash of package-lock.json" },
+      { "id": "o2", "text": "Use actions/upload-artifact on node_modules at the end of every run" },
+      { "id": "o3", "text": "Commit node_modules into the repository" },
+      { "id": "o4", "text": "Rely on the runner keeping files between runs automatically" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "actions/cache saves and restores a path across runs keyed on a value you choose; hashing package-lock.json means the cache is reused while the lockfile is unchanged and refreshed the moment dependencies change.",
+    "explanationIncorrect": "upload-artifact persists a run's output for later download but is not a content-keyed cache designed to be restored at the start of future runs, and re-uploading node_modules every run is wasteful. Committing node_modules bloats the repository and creates churn on every dependency change. GitHub-hosted runners are ephemeral and start clean each time, so nothing is kept automatically. The right tool for cross-run dependency reuse keyed on the lockfile is actions/cache.",
+    "tags": ["cache", "performance"]
+  },
+  {
+    "id": "gha-015",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A matrix workflow had one leg fail due to a flaky network call while every other leg passed. You want to retry only the failed leg without rerunning the whole matrix. What do you do?",
+    "options": [
+      { "id": "o1", "text": "Use Re-run failed jobs on the workflow run, which reruns only the jobs that failed" },
+      { "id": "o2", "text": "Re-run all jobs, because GitHub cannot rerun a subset" },
+      { "id": "o3", "text": "Delete the workflow file and recreate it to reset the run" },
+      { "id": "o4", "text": "Push an empty commit to trigger a completely fresh run" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The run page (and the API) offer Re-run failed jobs, which re-executes only the failed jobs while reusing the successful ones, which is exactly what a single flaky matrix leg calls for.",
+    "explanationIncorrect": "Re-running all jobs is possible but wasteful here and is not the only option, so the claim that a subset cannot be rerun is false. Deleting and recreating the workflow does not rerun the existing run and loses its history. Pushing an empty commit starts an entirely new run from scratch rather than retrying the failed leg. The targeted action is Re-run failed jobs.",
+    "tags": ["troubleshooting", "re-run", "matrix"]
+  },
+  {
+    "id": "gha-016",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You need more detailed runner and step diagnostics to investigate a failing workflow. What is the supported way to enable step debug logging?",
+    "options": [
+      { "id": "o1", "text": "Set the secret or variable ACTIONS_STEP_DEBUG to true and re-run the workflow" },
+      { "id": "o2", "text": "Add set -x to every run step and leave it there permanently" },
+      { "id": "o3", "text": "Echo all repository secrets to the log so you can inspect them" },
+      { "id": "o4", "text": "Lower the job's timeout-minutes to force more logging" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Setting ACTIONS_STEP_DEBUG to true (as a secret or variable) turns on GitHub's built-in step debug logging for subsequent runs, giving the extra detail without changing your workflow steps.",
+    "explanationIncorrect": "Adding set -x only affects shell tracing inside your own scripts and does nothing for the runner-level diagnostics, and leaving it on permanently is noisy. Echoing secrets is dangerous and pointless: Actions masks known secret values in logs, and deliberately printing them is a security incident, not a debugging technique. Lowering the timeout just makes jobs fail sooner and produces no additional logging. The supported switch for verbose diagnostics is the ACTIONS_STEP_DEBUG setting.",
+    "tags": ["troubleshooting", "debug-logging"]
+  },
+  {
+    "id": "gha-017",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want maintainers to trigger a workflow manually from the Actions tab and choose an environment name to pass in. Which trigger and feature provide this?",
+    "options": [
+      { "id": "o1", "text": "on: workflow_dispatch with an inputs block, reading the value from the inputs context" },
+      { "id": "o2", "text": "on: push with a special manual flag" },
+      { "id": "o3", "text": "on: repository_dispatch, which adds a manual button with inputs to the Actions tab" },
+      { "id": "o4", "text": "on: schedule, which prompts for input each run" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "workflow_dispatch adds a Run workflow button in the UI and its inputs block defines the fields a user fills in, which the workflow reads from the inputs context (or github.event.inputs).",
+    "explanationIncorrect": "push fires on commits and has no manual button or input prompt. repository_dispatch triggers a workflow through an API call carrying a custom payload, typically from an external system, not through a UI button on the Actions tab. schedule runs on a cron timer and never prompts for input. The manual, UI-driven trigger with user inputs is workflow_dispatch.",
+    "tags": ["events", "workflow-dispatch", "inputs"]
   }
 ]
