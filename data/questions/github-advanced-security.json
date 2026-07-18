@@ -258,5 +258,124 @@
     "explanationCorrect": "The dependency graph can be exported as a Software Bill of Materials in SPDX format, which is exactly the standardized, machine-readable dependency inventory an auditor is asking for.",
     "explanationIncorrect": "A CodeQL database is an analysis artifact of your source code, not a dependency inventory. Secret scanning alerts list leaked credentials, not dependencies. Workflow run logs record what a job did, not a structured list of the packages you depend on. The SBOM export from the dependency graph is the right artifact.",
     "tags": ["dependency-graph", "sbom", "spdx"]
+  },
+  {
+    "id": "ghas-016",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "You run a third-party static analysis tool and want its findings to show up in GitHub's code scanning alerts. What format must the tool emit, and how does GitHub ingest it?",
+    "options": [
+      { "id": "o1", "text": "Emit SARIF and upload it to code scanning via the upload-sarif action or the API" },
+      { "id": "o2", "text": "Emit JUnit XML and attach it as a build artifact" },
+      { "id": "o3", "text": "Emit a CodeQL database for GitHub to query" },
+      { "id": "o4", "text": "Print the findings to the workflow job log" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning ingests results in SARIF, the standard static-analysis interchange format, so a third-party tool that outputs SARIF can be uploaded (with the upload-sarif action or API) and its findings appear alongside CodeQL alerts.",
+    "explanationIncorrect": "JUnit XML describes test results, not security findings, and code scanning does not consume it. A CodeQL database is an internal analysis artifact CodeQL builds from source; a third-party tool does not produce one, and it is not how external results are uploaded. Printing to the log leaves the findings unstructured and unlinked to the Security tab. The interchange format for code scanning is SARIF.",
+    "tags": ["code-scanning", "sarif", "third-party"]
+  },
+  {
+    "id": "ghas-017",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "You want code scanning to include additional code-quality queries alongside the security queries. Which CodeQL query suite do you select?",
+    "options": [
+      { "id": "o1", "text": "The security-and-quality suite" },
+      { "id": "o2", "text": "The security-extended suite" },
+      { "id": "o3", "text": "The default suite" },
+      { "id": "o4", "text": "There is no suite that includes quality queries" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The security-and-quality suite runs the security queries plus additional maintainability and quality queries, which is what you choose when you want both categories.",
+    "explanationIncorrect": "security-extended broadens the security coverage with more security queries but does not add code-quality queries. The default suite is the smaller, high-precision security set and includes the fewest queries. Quality queries do exist as a suite, so the claim that none includes them is wrong. The suite that adds quality queries is security-and-quality.",
+    "tags": ["code-scanning", "codeql", "query-suites"]
+  },
+  {
+    "id": "ghas-018",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Scanning a Java project with CodeQL requires the code to be built so CodeQL can observe compilation. How does CodeQL handle the build?",
+    "options": [
+      { "id": "o1", "text": "It runs an autobuild step that attempts the build automatically, and you can supply manual build commands if autobuild fails" },
+      { "id": "o2", "text": "CodeQL never needs to build code for any language" },
+      { "id": "o3", "text": "Dependabot compiles the project for CodeQL" },
+      { "id": "o4", "text": "The runner refuses to analyze compiled languages" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "For compiled languages CodeQL uses autobuild to try to build the project automatically, and when autobuild cannot figure out the build you replace it with explicit build commands so CodeQL can trace the compilation.",
+    "explanationIncorrect": "Interpreted languages need no build, but compiled languages like Java do, so the claim that CodeQL never builds is false. Dependabot manages dependencies and does not build code for CodeQL. Compiled languages are fully supported, so the runner does not refuse them. The mechanism is autobuild, with manual build steps as a fallback.",
+    "tags": ["code-scanning", "codeql", "autobuild"]
+  },
+  {
+    "id": "ghas-019",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "easy",
+    "stem": "Which statement about CodeQL language support is accurate?",
+    "options": [
+      { "id": "o1", "text": "CodeQL supports a defined set of compiled and interpreted languages, and code in unsupported languages is simply not analyzed" },
+      { "id": "o2", "text": "CodeQL analyzes every programming language that exists" },
+      { "id": "o3", "text": "CodeQL supports only JavaScript" },
+      { "id": "o4", "text": "CodeQL supports only compiled languages" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CodeQL covers a specific list of supported languages spanning both compiled and interpreted ones (such as Java, C/C++, C#, Go, JavaScript/TypeScript, Python, Ruby, and Swift); anything outside that list is not analyzed rather than analyzed poorly.",
+    "explanationIncorrect": "No analyzer supports every language in existence, so that claim is false. CodeQL supports far more than JavaScript alone. It supports interpreted languages as well as compiled ones, so restricting it to compiled languages is wrong. The accurate description is a defined set of supported languages, with unsupported code left unanalyzed.",
+    "tags": ["code-scanning", "codeql", "languages"]
+  },
+  {
+    "id": "ghas-020",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "A code scanning alert is a confirmed false positive. How should you handle it so it stops recurring while keeping an audit trail?",
+    "options": [
+      { "id": "o1", "text": "Dismiss the alert with a reason such as false positive, which records who dismissed it and why" },
+      { "id": "o2", "text": "Delete the source file that triggered it" },
+      { "id": "o3", "text": "Disable code scanning for the whole repository" },
+      { "id": "o4", "text": "Do nothing, since alerts expire automatically" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dismissing an alert with a documented reason (false positive, used in tests, or won't fix) clears it from the active list, keeps it from recurring for the same finding, and records the actor and rationale for audit.",
+    "explanationIncorrect": "Deleting the source file to silence an alert is destructive and usually wrong; the code may be needed. Disabling code scanning entirely removes coverage for every real issue, not just the false positive. Alerts do not silently expire; leaving it open keeps noise and hides real signal. The correct action is a documented dismissal.",
+    "tags": ["code-scanning", "alert-triage", "dismissal"]
+  },
+  {
+    "id": "ghas-021",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "easy",
+    "stem": "Code scanning runs on a pull request and finds a new problem introduced by that pull request. Where does the developer see it?",
+    "options": [
+      { "id": "o1", "text": "As a check on the pull request with inline annotations, and in the repository's Security tab under code scanning alerts" },
+      { "id": "o2", "text": "Only in a nightly summary email" },
+      { "id": "o3", "text": "Only buried in the Actions run logs" },
+      { "id": "o4", "text": "In the repository Wiki" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning surfaces pull request findings as a check with inline annotations on the changed lines, and all alerts are also collected in the Security tab, so developers see issues right where they are working.",
+    "explanationIncorrect": "Findings are shown in real time on the pull request, not only in a nightly email. They are more than log lines; they are structured alerts with locations, so the Actions log is not where you triage them. The Wiki is unrelated documentation space. Results appear on the pull request check and in the Security tab.",
+    "tags": ["code-scanning", "pull-request", "alerts"]
+  },
+  {
+    "id": "ghas-022",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "Your security team wrote custom CodeQL queries to catch a framework-specific bug pattern. How do you run them in code scanning?",
+    "options": [
+      { "id": "o1", "text": "Package them as a CodeQL query pack (or reference the .ql files) and point the code scanning workflow's queries input at them" },
+      { "id": "o2", "text": "Paste them into the secret scanning custom patterns UI" },
+      { "id": "o3", "text": "Add them to dependabot.yml as an updates entry" },
+      { "id": "o4", "text": "Custom CodeQL queries cannot be run in code scanning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Custom queries are distributed as CodeQL query packs (or referenced directly), and the code scanning workflow's queries input tells CodeQL to run them in addition to or instead of the standard suites.",
+    "explanationIncorrect": "Secret scanning custom patterns are regexes for credentials, not CodeQL queries. dependabot.yml configures dependency updates and cannot run analysis queries. Custom queries are explicitly supported, so claiming they cannot run is wrong. You run them by packaging a query pack and referencing it from the queries input.",
+    "tags": ["code-scanning", "codeql", "custom-queries"]
   }
 ]
