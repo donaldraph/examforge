@@ -479,5 +479,124 @@
     "explanationCorrect": "Validity checks ask the provider whether a detected secret is still active, so responders can prioritize a live, exploitable credential over one that has already been revoked.",
     "explanationIncorrect": "CodeQL data-flow analysis reasons about code, not whether a credential is currently valid at its provider. Dependency review evaluates dependency changes in pull requests. Push protection blocks new secrets at push time; it does not report the live status of an already-detected one. The status feature is validity checks.",
     "tags": ["secret-scanning", "validity-checks"]
+  },
+  {
+    "id": "ghas-029",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "For public repositories on GitHub.com, which of these security capabilities are available at no cost?",
+    "options": [
+      { "id": "o1", "text": "Code scanning, secret scanning, and dependency review are available free on public repositories" },
+      { "id": "o2", "text": "None of them; every feature needs a paid license even on public repos" },
+      { "id": "o3", "text": "Only Dependabot alerts, and nothing else" },
+      { "id": "o4", "text": "They are free only for repositories owned by enterprise accounts" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub makes the core security features, including code scanning, secret scanning, and dependency review, available free for public repositories, which is why open-source projects can adopt them without a license.",
+    "explanationIncorrect": "It is not the case that everything requires payment on public repos; the point of free public-repo access is broad open-source security. Access is not limited to Dependabot alerts alone. And it is not restricted to enterprise-owned repositories. On public repositories these features are free.",
+    "tags": ["ghas", "licensing", "public-repos"]
+  },
+  {
+    "id": "ghas-030",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "You want code scanning and secret scanning enabled on your organization's private repositories. What is required?",
+    "options": [
+      { "id": "o1", "text": "A GitHub Advanced Security license (or the corresponding Code Security and Secret Protection products) for those private repositories" },
+      { "id": "o2", "text": "Nothing; the features are free on private repositories too" },
+      { "id": "o3", "text": "Only the free GitHub plan" },
+      { "id": "o4", "text": "A separate license for each self-hosted runner" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "On private repositories the advanced security features are paid: they require GitHub Advanced Security licensing (now also offered as the Code Security and Secret Protection products), unlike on public repositories where they are free.",
+    "explanationIncorrect": "The features are not free on private repositories, which is the distinction from public ones. The free plan alone does not unlock them for private code. Runner licensing is unrelated to enabling these security features. Private repositories need GHAS (or Code Security / Secret Protection) licensing.",
+    "tags": ["ghas", "licensing", "private-repos"]
+  },
+  {
+    "id": "ghas-031",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "GHAS can propose a concrete code fix directly on a code scanning alert to speed up remediation. What is this capability?",
+    "options": [
+      { "id": "o1", "text": "Copilot Autofix for code scanning, which suggests a fix for many CodeQL alerts" },
+      { "id": "o2", "text": "Dependabot security updates" },
+      { "id": "o3", "text": "Secret scanning push protection" },
+      { "id": "o4", "text": "A required status check" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Copilot Autofix generates a suggested code change for many code scanning (CodeQL) alerts, so a developer can review and apply a fix inline instead of researching the remediation from scratch.",
+    "explanationIncorrect": "Dependabot security updates fix vulnerable dependencies, not code-level alerts in your own source. Secret scanning push protection blocks committed secrets and does not propose code fixes. A required status check is a merge gate, not a fix suggestion. The suggested-fix feature for code scanning is Copilot Autofix.",
+    "tags": ["ghas", "copilot-autofix", "remediation"]
+  },
+  {
+    "id": "ghas-032",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "easy",
+    "stem": "In a single repository, where do the code scanning, secret scanning, and Dependabot alerts all appear together?",
+    "options": [
+      { "id": "o1", "text": "The repository's Security tab" },
+      { "id": "o2", "text": "The Settings > Actions page" },
+      { "id": "o3", "text": "The repository Pulse view" },
+      { "id": "o4", "text": "A Projects board" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Security tab is the per-repository hub that collects code scanning, secret scanning, and Dependabot alerts, so responders have one place to review a repository's security posture.",
+    "explanationIncorrect": "Settings > Actions configures workflow permissions and runners, not security alerts. Pulse summarizes recent repository activity like merged pull requests, not security findings. A Projects board tracks planned work items. The consolidated per-repo location is the Security tab.",
+    "tags": ["ghas", "security-tab"]
+  },
+  {
+    "id": "ghas-033",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which practice best embodies GHAS's prevention-first approach to secrets?",
+    "options": [
+      { "id": "o1", "text": "Enable push protection so secrets are blocked before they ever enter history, rather than only alerting after the fact" },
+      { "id": "o2", "text": "Rotate every secret once a year regardless of whether anything leaked" },
+      { "id": "o3", "text": "Wait for the partner program to revoke any leaked secrets for you" },
+      { "id": "o4", "text": "Rely solely on periodic manual code review to spot secrets" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Prevention-first means stopping the problem at the source: push protection blocks a secret at push time so it never reaches the remote, which is far stronger than detecting and cleaning it up afterward.",
+    "explanationIncorrect": "Scheduled rotation is good hygiene but is reactive and does nothing to stop a secret from being committed in the first place. Waiting on partner revocation is an after-the-fact safety net, not prevention, and only covers supported public-repo cases. Manual review is inconsistent and misses things at scale. The prevention-first control is push protection.",
+    "tags": ["best-practices", "prevention", "push-protection"]
+  },
+  {
+    "id": "ghas-034",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "You inherit hundreds of open security alerts and limited time. What is the most defensible way to prioritize remediation?",
+    "options": [
+      { "id": "o1", "text": "Prioritize by severity and exploitability or reachability, fixing high-severity, exploitable issues first" },
+      { "id": "o2", "text": "Fix alerts alphabetically by file name" },
+      { "id": "o3", "text": "Fix the oldest alerts first regardless of their severity" },
+      { "id": "o4", "text": "Dismiss all alerts to clear the backlog quickly" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Risk-based prioritization focuses scarce effort where it matters: high-severity issues that are actually exploitable or reachable are fixed before low-impact ones, which reduces real risk fastest.",
+    "explanationIncorrect": "Alphabetical order by file name has no relationship to risk. Oldest-first ignores that a newer critical vulnerability may be far more dangerous than an old low-severity one. Dismissing everything hides real risk and defeats the point of scanning. The defensible approach is to prioritize by severity and exploitability.",
+    "tags": ["best-practices", "prioritization", "remediation"]
+  },
+  {
+    "id": "ghas-035",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "To make security scanning consistently enforced rather than optional across many repositories, what is the recommended approach?",
+    "options": [
+      { "id": "o1", "text": "Enable the features at the organization level and require the relevant scans as status checks through branch protection or rulesets" },
+      { "id": "o2", "text": "Ask each developer to remember to run the scans locally" },
+      { "id": "o3", "text": "Enable scanning on a single flagship repository only" },
+      { "id": "o4", "text": "Review the Security tab manually once a quarter" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Consistent enforcement comes from org-level enablement plus making the scans required checks via branch protection or rulesets, so pull requests cannot merge without passing and coverage does not depend on individual memory.",
+    "explanationIncorrect": "Relying on developers to run scans locally is inconsistent and unauditable. Enabling scanning on one repository leaves the rest unprotected. A quarterly manual review is too infrequent to catch issues at merge time. Enforcement is achieved through org-wide enablement and required status checks.",
+    "tags": ["best-practices", "enforcement", "rulesets"]
   }
 ]
