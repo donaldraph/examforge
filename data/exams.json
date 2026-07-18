@@ -62,11 +62,13 @@
       "label": "HashiCorp Terraform Associate",
       "status": "active",
       "domains": [
+        "IaC concepts and Terraform's purpose",
         "Terraform basics",
-        "Terraform workflow",
-        "Terraform state",
-        "Terraform modules",
-        "Terraform Cloud"
+        "Core workflow",
+        "State management",
+        "Modules",
+        "Configuration and functions",
+        "HCP Terraform"
       ]
     }
   ]

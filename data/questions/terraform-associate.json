@@ -2,7 +2,7 @@
   {
     "id": "tf-001",
     "exam": "terraform-associate",
-    "domain": "Terraform workflow",
+    "domain": "Core workflow",
     "difficulty": "easy",
     "stem": "Which Terraform command initializes a working directory, downloading the provider plugins and configuring the backend, and must be run before plan or apply?",
     "options": [
@@ -20,7 +20,7 @@
   {
     "id": "tf-002",
     "exam": "terraform-associate",
-    "domain": "Terraform state",
+    "domain": "State management",
     "difficulty": "medium",
     "stem": "Several engineers run Terraform against the same infrastructure. You want to prevent two apply operations from writing to state at the same time and corrupting it. Which approach addresses this?",
     "options": [
@@ -56,7 +56,7 @@
   {
     "id": "tf-004",
     "exam": "terraform-associate",
-    "domain": "Terraform modules",
+    "domain": "Modules",
     "difficulty": "medium",
     "stem": "You want to package a set of resources so it can be reused across projects, accept values like instance size from the caller, and hand the created resource's id back to the caller. Which Terraform constructs do you use?",
     "options": [
@@ -74,7 +74,7 @@
   {
     "id": "tf-005",
     "exam": "terraform-associate",
-    "domain": "Terraform Cloud",
+    "domain": "HCP Terraform",
     "difficulty": "easy",
     "stem": "Where can you publish and discover reusable, versioned modules and providers for Terraform, with both a public option and a private option for your organization?",
     "options": [
