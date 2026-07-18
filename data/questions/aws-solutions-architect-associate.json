@@ -1,0 +1,92 @@
+[
+  {
+    "id": "saa-001",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "You need an Amazon RDS database to automatically fail over to a standby in another Availability Zone if the primary fails, with no application-side changes and synchronous replication. Which feature do you enable?",
+    "options": [
+      { "id": "o1", "text": "A Multi-AZ deployment" },
+      { "id": "o2", "text": "A read replica in the same Availability Zone" },
+      { "id": "o3", "text": "A larger instance class" },
+      { "id": "o4", "text": "S3 Cross-Region Replication of the database files" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Multi-AZ maintains a synchronously replicated standby in a second Availability Zone and fails over to it automatically using the same endpoint, so the application keeps using one address and needs no changes.",
+    "explanationIncorrect": "A read replica is asynchronous and exists to scale read traffic; it is not an automatic failover target and would have to be promoted manually, losing the automation and risking data behind the primary. A larger instance class improves performance but does nothing for availability if that single instance's AZ fails. S3 Cross-Region Replication copies objects between buckets and is not a mechanism for RDS failover at all. Automatic, synchronous, cross-AZ standby with seamless failover is the Multi-AZ deployment.",
+    "tags": ["resilience", "rds", "multi-az"],
+    "isSeed": true
+  },
+  {
+    "id": "saa-002",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Your web tier sends work to a processing tier, but traffic spikes overwhelm the workers and requests are lost. You want to decouple the tiers so bursts are buffered and processed at the workers' own pace. Which service fits best?",
+    "options": [
+      { "id": "o1", "text": "Amazon SQS" },
+      { "id": "o2", "text": "Amazon Route 53" },
+      { "id": "o3", "text": "AWS Direct Connect" },
+      { "id": "o4", "text": "Amazon CloudWatch" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An Amazon SQS queue sits between the tiers and absorbs bursts: producers enqueue messages and workers pull them at whatever rate they can sustain, so spikes are buffered instead of dropped.",
+    "explanationIncorrect": "Amazon Route 53 is DNS; it resolves names and can route or health-check endpoints, but it does not buffer application work between tiers. AWS Direct Connect is a dedicated private network link between your data center and AWS; it is about connectivity, not decoupling application components. Amazon CloudWatch observes metrics and logs and can trigger scaling, but it does not hold in-flight requests. The buffer that decouples producers from consumers is an Amazon SQS queue.",
+    "tags": ["performance", "decoupling", "sqs"],
+    "isSeed": true
+  },
+  {
+    "id": "saa-003",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "An application running on an EC2 instance needs to read objects from an S3 bucket. What is the most secure way to grant this access?",
+    "options": [
+      { "id": "o1", "text": "Attach an IAM role to the EC2 instance with a least-privilege policy scoped to that bucket" },
+      { "id": "o2", "text": "Hardcode an IAM user's long-lived access keys in the application code" },
+      { "id": "o3", "text": "Store the AWS account root credentials on the instance" },
+      { "id": "o4", "text": "Make the S3 bucket public so no credentials are needed" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An instance role delivers temporary, automatically rotated credentials through the instance metadata service, so the application authenticates without any stored secrets and with permissions limited to just what it needs.",
+    "explanationIncorrect": "Hardcoding long-lived access keys embeds a standing secret in code that can leak and does not rotate, which is exactly the pattern roles exist to remove. Placing root credentials on an instance is the most dangerous option possible, since root can do anything in the account and should never be used programmatically. Making the bucket public exposes the data to the entire internet to avoid managing a credential, trading a small convenience for a severe breach. The secure approach is an IAM role on the instance with a least-privilege policy.",
+    "tags": ["security", "iam-roles", "least-privilege"],
+    "isSeed": true
+  },
+  {
+    "id": "saa-004",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "You run a large batch-processing job that is fault-tolerant and can be interrupted and resumed at any time. You want to minimize EC2 compute cost. Which purchasing option is most appropriate?",
+    "options": [
+      { "id": "o1", "text": "Spot Instances" },
+      { "id": "o2", "text": "On-Demand Instances" },
+      { "id": "o3", "text": "Reserved Instances with a three-year commitment" },
+      { "id": "o4", "text": "Dedicated Hosts" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spot Instances offer the deepest discount by using spare capacity that AWS can reclaim, and a fault-tolerant, resumable batch job is precisely the workload that can tolerate those interruptions in exchange for the low price.",
+    "explanationIncorrect": "On-Demand carries the highest per-hour cost and no discount, so it does not minimize spend for interruption-tolerant work. A three-year Reserved Instance commitment suits steady, always-on baseline usage; committing for years to a batch job that runs intermittently wastes the reservation. Dedicated Hosts are for licensing and physical isolation requirements and cost more, so they are the opposite of cost-optimizing here. For interruptible, fault-tolerant batch work the cheapest fit is Spot Instances.",
+    "tags": ["cost-optimization", "spot-instances", "batch"],
+    "isSeed": true
+  },
+  {
+    "id": "saa-005",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "A read-heavy application repeatedly runs the same queries against a single relational database, and latency is climbing. You want to offload those frequent reads and lower latency with minimal application change. Which addition helps most?",
+    "options": [
+      { "id": "o1", "text": "Add Amazon ElastiCache to cache frequent read results in memory" },
+      { "id": "o2", "text": "Enable Multi-AZ, whose standby serves read traffic" },
+      { "id": "o3", "text": "Move the database to a smaller instance class" },
+      { "id": "o4", "text": "Place the database in a public subnet" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon ElastiCache holds hot query results in memory so repeated reads are served from the cache instead of hitting the database, which cuts latency and offloads the database with only small application changes.",
+    "explanationIncorrect": "Multi-AZ is a resilience feature: its standby is kept in sync for failover and does not serve read traffic, so it does nothing to offload reads. Moving to a smaller instance reduces capacity and would make latency worse under a read-heavy load. Putting the database in a public subnet is a security regression that exposes it to the internet and has no effect on read performance. The right tool to offload repeated reads with minimal change is a cache such as Amazon ElastiCache (read replicas are the other common option).",
+    "tags": ["performance", "elasticache", "caching"],
+    "isSeed": true
+  }
+]
