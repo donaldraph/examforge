@@ -377,5 +377,73 @@
     "explanationCorrect": "terraform state list prints the addresses of all resources recorded in the current state, which is the standard way to inspect what Terraform is managing.",
     "explanationIncorrect": "terraform show config is not a valid command for listing state resources. terraform plan -state is not how you enumerate managed resources. terraform fmt -list reports which files formatting would change, unrelated to state. The state inventory command is terraform state list.",
     "tags": ["state", "state-list", "inspection"]
+  },
+  {
+    "id": "tf-023",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "How do you use a module published in the public Terraform Registry in your configuration?",
+    "options": [
+      { "id": "o1", "text": "Set the module block's source to the registry address (and optionally a version), then run terraform init" },
+      { "id": "o2", "text": "Copy the module's code into terraform.tfstate" },
+      { "id": "o3", "text": "Reference it through an input variable" },
+      { "id": "o4", "text": "Bring it in with terraform import" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "You call a module with a module block whose source points at the registry address (and usually a version), and terraform init downloads it so it can be used.",
+    "explanationIncorrect": "State is Terraform's record of real resources, not a place to paste module code. A variable supplies values, not a module reference. terraform import adopts existing infrastructure into state; it does not fetch modules. You consume a registry module via a module block's source and init.",
+    "tags": ["modules", "source", "registry"]
+  },
+  {
+    "id": "tf-024",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "Why should you specify the version argument when calling a module from a registry?",
+    "options": [
+      { "id": "o1", "text": "To pin a specific, tested module version so later releases do not change your infrastructure unexpectedly" },
+      { "id": "o2", "text": "Because modules cannot be used at all without a paid license key" },
+      { "id": "o3", "text": "Because version is required for local file-path modules" },
+      { "id": "o4", "text": "To store the module inside the state file" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Pinning the version of a registry module makes your configuration reproducible: you get the exact tested version, and a new upstream release will not silently alter your infrastructure until you choose to update.",
+    "explanationIncorrect": "Public registry modules do not require a paid license. The version argument applies to registry (and some remote) modules, not to local file-path modules, which are versioned with your own code. Versioning has nothing to do with storing modules in state. The reason is reproducibility through version pinning.",
+    "tags": ["modules", "versioning", "pinning"]
+  },
+  {
+    "id": "tf-025",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "easy",
+    "stem": "In Terraform, what is the root module?",
+    "options": [
+      { "id": "o1", "text": "The top-level working directory where you run Terraform, which can call other (child) modules" },
+      { "id": "o2", "text": "Any module downloaded from the registry" },
+      { "id": "o3", "text": "The Terraform state file" },
+      { "id": "o4", "text": "A provider plugin" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The root module is the configuration in your working directory where you run Terraform; it is the entry point and can call child modules to compose infrastructure.",
+    "explanationIncorrect": "A registry module you call is a child module, not the root. State records resources; it is not a module. A provider plugin implements resource types and is not a module. The root module is the top-level configuration directory.",
+    "tags": ["modules", "root-module"]
+  },
+  {
+    "id": "tf-026",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "A child module creates a security group, and the root module needs its id to attach to an instance. How does the id get from the child to the root?",
+    "options": [
+      { "id": "o1", "text": "The child module declares an output, and the root reads it as module.<name>.<output>" },
+      { "id": "o2", "text": "The root reads the child module's input variables directly" },
+      { "id": "o3", "text": "Through the path of the child module's own state file" },
+      { "id": "o4", "text": "Values cannot be passed from a child module back to the root" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A child module exposes values through output blocks, and the calling module reads them with module.<name>.<output>, which is how the security group id flows back to the root.",
+    "explanationIncorrect": "Input variables carry values into a module, not out of it, so the root cannot read the child's outputs through its variables. Modules in a single configuration share one state; there is no separate child state file to read. Values certainly can be returned from a child, so claiming otherwise is wrong. The mechanism is module outputs.",
+    "tags": ["modules", "outputs", "composition"]
   }
 ]
