@@ -377,5 +377,107 @@
     "explanationCorrect": "Custom queries are distributed as CodeQL query packs (or referenced directly), and the code scanning workflow's queries input tells CodeQL to run them in addition to or instead of the standard suites.",
     "explanationIncorrect": "Secret scanning custom patterns are regexes for credentials, not CodeQL queries. dependabot.yml configures dependency updates and cannot run analysis queries. Custom queries are explicitly supported, so claiming they cannot run is wrong. You run them by packaging a query pack and referencing it from the queries input.",
     "tags": ["code-scanning", "codeql", "custom-queries"]
+  },
+  {
+    "id": "ghas-023",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Your company issues an internal API token with a distinctive format that GitHub does not detect out of the box. How do you get secret scanning to catch it?",
+    "options": [
+      { "id": "o1", "text": "Define a custom secret scanning pattern with a regular expression at the repository, organization, or enterprise level" },
+      { "id": "o2", "text": "Add the token format to your CodeQL query suite" },
+      { "id": "o3", "text": "List the token format in dependabot.yml" },
+      { "id": "o4", "text": "Nothing can be done; only GitHub partner patterns are detectable" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Custom patterns let you describe an organization-specific secret with a regular expression so secret scanning detects it just like a built-in pattern, at whichever scope you define it.",
+    "explanationIncorrect": "CodeQL analyzes code logic and data flow, not credential string shapes, so a token format does not belong in a query suite. dependabot.yml configures dependency updates and cannot define secret patterns. Secret scanning is not limited to partner patterns; custom patterns are exactly the extension point for internal formats. The answer is a custom secret scanning pattern.",
+    "tags": ["secret-scanning", "custom-patterns"]
+  },
+  {
+    "id": "ghas-024",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Secret scanning detects a real cloud-provider key that leaked in a public repository. Through GitHub's partner program, what can happen automatically?",
+    "options": [
+      { "id": "o1", "text": "GitHub notifies the provider, who may automatically revoke or rotate the exposed credential" },
+      { "id": "o2", "text": "GitHub emails all of your customers about the leak" },
+      { "id": "o3", "text": "The repository is automatically deleted" },
+      { "id": "o4", "text": "Nothing happens unless you open a support ticket" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "For public repositories, GitHub participates in a partner program: when a supported provider's secret is detected, GitHub notifies that provider, who can revoke or rotate the credential to limit the damage.",
+    "explanationIncorrect": "GitHub does not email your customers; the notification goes to the credential's provider. It does not delete your repository. And the partner notification is automatic for supported secrets, so it does not wait on a support ticket. The automatic action is provider notification and possible revocation.",
+    "tags": ["secret-scanning", "partner-program", "revocation"]
+  },
+  {
+    "id": "ghas-025",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Push protection blocks a commit, but the developer determines the flagged string is a harmless test placeholder. What is the intended way forward?",
+    "options": [
+      { "id": "o1", "text": "Allow the push by supplying a bypass reason such as false positive or used in tests, which is recorded for auditing" },
+      { "id": "o2", "text": "Force-push to a brand new branch to slip past the check" },
+      { "id": "o3", "text": "Delete and recreate the repository" },
+      { "id": "o4", "text": "Permanently disable secret scanning for everyone" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection lets an author bypass the block by selecting a reason, and that bypass is logged, so a genuine false positive can proceed while security teams retain an audit trail of who allowed it and why.",
+    "explanationIncorrect": "Trying to force-push around the control is an evasion, not the intended workflow, and push protection still applies. Recreating the repository is drastic and pointless. Disabling secret scanning removes protection for everyone to resolve one placeholder. The intended path is a documented push-protection bypass.",
+    "tags": ["secret-scanning", "push-protection", "bypass"]
+  },
+  {
+    "id": "ghas-026",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "You just enabled secret scanning on an existing repository with years of commit history. Does it look only at new commits going forward?",
+    "options": [
+      { "id": "o1", "text": "No; secret scanning also scans the repository's full existing git history for known secret patterns" },
+      { "id": "o2", "text": "Yes; only commits made after enablement are ever scanned" },
+      { "id": "o3", "text": "It scans only the latest commit on the default branch" },
+      { "id": "o4", "text": "It scans only currently open pull requests" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When enabled, secret scanning scans the entire repository history, not just future commits, so a secret committed long ago is still surfaced as an alert.",
+    "explanationIncorrect": "Limiting to post-enablement commits would miss the many secrets already sitting in history, which is not how it works. Scanning only the latest commit or only open pull requests would likewise miss historical leaks. Secret scanning covers the full git history.",
+    "tags": ["secret-scanning", "history"]
+  },
+  {
+    "id": "ghas-027",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "A directory of test fixtures contains deliberately fake tokens that keep raising secret scanning alerts. How do you stop alerts for that path without weakening scanning elsewhere?",
+    "options": [
+      { "id": "o1", "text": "Configure paths to exclude for secret scanning (a secret_scanning.yml paths-ignore entry)" },
+      { "id": "o2", "text": "Add the directory to .gitignore" },
+      { "id": "o3", "text": "Delete the fixtures directory" },
+      { "id": "o4", "text": "Turn secret scanning off for the whole repository" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning supports excluding specific paths through its configuration (paths-ignore), so you can silence alerts on a known-fake fixtures directory while keeping full scanning on the rest of the repository.",
+    "explanationIncorrect": ".gitignore only prevents files from being tracked; files already committed are still scanned, and you likely need the fixtures committed. Deleting the fixtures removes test data you rely on. Disabling scanning repository-wide removes protection everywhere to fix one directory. The precise control is a paths exclusion.",
+    "tags": ["secret-scanning", "paths-ignore", "config"]
+  },
+  {
+    "id": "ghas-028",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "For supported providers, secret scanning can tell you whether a detected token is still usable right now. What is this capability called?",
+    "options": [
+      { "id": "o1", "text": "Validity checks (secret validation), which query the provider to report the secret as active or inactive" },
+      { "id": "o2", "text": "CodeQL data-flow analysis of the token" },
+      { "id": "o3", "text": "Dependency review of the token" },
+      { "id": "o4", "text": "Push protection" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Validity checks ask the provider whether a detected secret is still active, so responders can prioritize a live, exploitable credential over one that has already been revoked.",
+    "explanationIncorrect": "CodeQL data-flow analysis reasons about code, not whether a credential is currently valid at its provider. Dependency review evaluates dependency changes in pull requests. Push protection blocks new secrets at push time; it does not report the live status of an already-detected one. The status feature is validity checks.",
+    "tags": ["secret-scanning", "validity-checks"]
   }
 ]
