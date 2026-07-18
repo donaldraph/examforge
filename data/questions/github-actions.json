@@ -292,5 +292,141 @@
     "explanationCorrect": "workflow_dispatch adds a Run workflow button in the UI and its inputs block defines the fields a user fills in, which the workflow reads from the inputs context (or github.event.inputs).",
     "explanationIncorrect": "push fires on commits and has no manual button or input prompt. repository_dispatch triggers a workflow through an API call carrying a custom payload, typically from an external system, not through a UI button on the Actions tab. schedule runs on a cron timer and never prompts for input. The manual, UI-driven trigger with user inputs is workflow_dispatch.",
     "tags": ["events", "workflow-dispatch", "inputs"]
+  },
+  {
+    "id": "gha-018",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "easy",
+    "stem": "Which are the three supported types of custom GitHub Actions?",
+    "options": [
+      { "id": "o1", "text": "Docker container actions, JavaScript actions, and composite actions" },
+      { "id": "o2", "text": "Bash actions, Python actions, and PowerShell actions" },
+      { "id": "o3", "text": "YAML actions, JSON actions, and TOML actions" },
+      { "id": "o4", "text": "Public actions, private actions, and internal actions" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub supports exactly three action types: Docker container actions, JavaScript actions, and composite actions, each declared through the runs section of the action's metadata.",
+    "explanationIncorrect": "Bash, Python, and PowerShell are languages you might use inside an action's steps, but they are not action types. YAML, JSON, and TOML are file formats, not action types. Public, private, and internal describe an action's visibility or where it can be used, not how it is implemented. The three implementation types are Docker container, JavaScript, and composite.",
+    "tags": ["actions", "action-types"]
+  },
+  {
+    "id": "gha-019",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "Every custom action needs a metadata file at its root. What is that file, and what must it declare at minimum?",
+    "options": [
+      { "id": "o1", "text": "action.yml (or action.yaml), declaring at least name, description, and a runs section" },
+      { "id": "o2", "text": "workflow.yml, declaring jobs and steps" },
+      { "id": "o3", "text": "package.json, declaring only the action's dependencies" },
+      { "id": "o4", "text": "A Dockerfile alone, with no metadata file required" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The metadata file action.yml (or action.yaml) defines the action's interface and must include name, description, and runs, which tells GitHub how the action executes.",
+    "explanationIncorrect": "workflow.yml with jobs and steps describes a workflow, not an action; actions are the reusable units workflows call. package.json only lists Node dependencies and cannot tell GitHub how to run the action. A Dockerfile can be part of a Docker container action, but it does not replace the required action.yml metadata that declares name, description, and runs. Every action needs action.yml.",
+    "tags": ["actions", "metadata", "action-yml"]
+  },
+  {
+    "id": "gha-020",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You are authoring a JavaScript action. Which runs configuration names a current, supported runtime and an entry point?",
+    "options": [
+      { "id": "o1", "text": "runs: using: 'node20' with main: 'dist/index.js'" },
+      { "id": "o2", "text": "runs: using: 'node12' with main: 'index.js'" },
+      { "id": "o3", "text": "runs: using: 'python3' with main: 'main.py'" },
+      { "id": "o4", "text": "runs: using: 'bash' with main: 'run.sh'" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A JavaScript action declares using: 'node20' (the current supported Node runtime) and points main at the built entry file, so the runner executes it directly with Node.",
+    "explanationIncorrect": "node12 is a deprecated, end-of-life runtime that GitHub warns against and is being removed, so it is not a good answer. python3 and bash are not valid using values for a JavaScript action; running Python or shell code that way would instead be a composite or container action. The correct declaration for a modern JavaScript action is using: 'node20' with a main entry point.",
+    "tags": ["actions", "javascript-action", "node20"]
+  },
+  {
+    "id": "gha-021",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "Inside a composite action, how do you reference an input named version that the caller passed in?",
+    "options": [
+      { "id": "o1", "text": "${{ inputs.version }}" },
+      { "id": "o2", "text": "${{ env.version }}" },
+      { "id": "o3", "text": "${{ github.inputs.version }}" },
+      { "id": "o4", "text": "The first positional shell argument, $1" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Within an action, declared inputs are available through the inputs context, so an input named version is read as ${{ inputs.version }}.",
+    "explanationIncorrect": "The env context holds environment variables, which an input is not unless you explicitly map it there. There is no github.inputs context; github holds event and repository data, not the action's declared inputs. A positional shell argument is not how composite action inputs are delivered; they come through the inputs context. The correct reference is ${{ inputs.version }}.",
+    "tags": ["actions", "composite-actions", "inputs"]
+  },
+  {
+    "id": "gha-022",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "In action.yml, how do you declare an input that is optional and defaults to the string true?",
+    "options": [
+      { "id": "o1", "text": "Under inputs, define the input with required: false and default: 'true'" },
+      { "id": "o2", "text": "Under env, set a variable with the input's name" },
+      { "id": "o3", "text": "Under jobs, add a with block for the input" },
+      { "id": "o4", "text": "There is no way to give an action input a default value" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An action's inputs are declared under inputs in action.yml, and each can set required: false and a default, so callers who omit it get the default value.",
+    "explanationIncorrect": "env declares environment variables, not the action's input contract, so a default there would not populate the input. Actions have no jobs section; jobs live in workflows, and with is how a caller passes inputs, not how an action declares them. Action inputs certainly support defaults, so claiming otherwise is wrong. The correct place is the inputs block with required and default.",
+    "tags": ["actions", "inputs", "defaults"]
+  },
+  {
+    "id": "gha-023",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "A composite action needs to expose an output named result so callers can read it as steps.<id>.outputs.result. How is that wired?",
+    "options": [
+      { "id": "o1", "text": "Write result to $GITHUB_OUTPUT in a step, then map it under the action's outputs with value: ${{ steps.<step-id>.outputs.result }}" },
+      { "id": "o2", "text": "Print result to stdout and let GitHub capture it as an output" },
+      { "id": "o3", "text": "Set an environment variable RESULT and expect callers to read it" },
+      { "id": "o4", "text": "Return result from a Dockerfile ENTRYPOINT" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A composite action produces a step output by writing to $GITHUB_OUTPUT, then declares its own action-level output whose value maps to that step output, which is what lets a caller read steps.<id>.outputs.result.",
+    "explanationIncorrect": "Printing to stdout does nothing special; GitHub does not scrape arbitrary output into named outputs. An environment variable is not an action output and would not appear under the caller's steps.<id>.outputs. A Dockerfile ENTRYPOINT is irrelevant to a composite action and does not define outputs. You must both write to $GITHUB_OUTPUT in the step and map it in the action's outputs block.",
+    "tags": ["actions", "composite-actions", "outputs"]
+  },
+  {
+    "id": "gha-024",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want an action that runs inside a container with system tools baked in and shipped with the action. Which action type and metadata express this?",
+    "options": [
+      { "id": "o1", "text": "A Docker container action with runs: using: 'docker' and image pointing at a Dockerfile or a published image" },
+      { "id": "o2", "text": "A composite action that lists a Dockerfile under steps" },
+      { "id": "o3", "text": "A JavaScript action that references a Dockerfile from main" },
+      { "id": "o4", "text": "A workflow-level container: block used instead of writing an action" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A Docker container action declares using: 'docker' and an image (a Dockerfile in the action or a prebuilt image), so it runs in that container with whatever tools the image provides.",
+    "explanationIncorrect": "A composite action runs a sequence of steps on the runner and does not itself boot a container image; it cannot list a Dockerfile as a step. A JavaScript action runs with Node and does not execute a Dockerfile from main. A workflow-level container: runs a job inside a container but is not how you author a reusable action. The container-based action type is a Docker container action with using: 'docker'.",
+    "tags": ["actions", "docker-action"]
+  },
+  {
+    "id": "gha-025",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You maintain a public action and want consumers to pin to a stable major version while you keep shipping patches under it. What release convention supports this?",
+    "options": [
+      { "id": "o1", "text": "Publish specific semver tags like v1.2.3 and also move a major-version tag like v1 to point at the latest compatible release" },
+      { "id": "o2", "text": "Only ever publish an @latest tag" },
+      { "id": "o3", "text": "Require every consumer to pin to a long-lived branch" },
+      { "id": "o4", "text": "Never tag releases and tell consumers to track the default branch" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The common convention is immutable semver tags for exact releases plus a moving major tag (v1) that you advance to the newest backward-compatible version, so consumers pinning to v1 get patches without breaking changes.",
+    "explanationIncorrect": "An @latest tag hides which version runs and offers no compatibility promise. Pinning consumers to a branch gives them a moving target with no versioning discipline. Not tagging at all and tracking the default branch is the least stable option and gives consumers no way to pin. The recommended pattern is semver tags with a maintained major-version tag.",
+    "tags": ["actions", "versioning", "releases"]
   }
 ]
