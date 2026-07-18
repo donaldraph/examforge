@@ -530,5 +530,73 @@
     "explanationCorrect": "A reusable workflow in one repository can be called by others when that repository's Actions access setting permits it (for example, allowing access from the whole organization) and callers reference it with jobs.<id>.uses.",
     "explanationIncorrect": "Copying the file everywhere defeats reuse and means every change must be propagated by hand. The Marketplace is for actions, not for sharing internal reusable workflows, and publishing an internal CI process publicly is undesirable. Forking creates independent copies that drift, which is again not reuse. The correct approach is to grant Actions access and call the workflow with uses.",
     "tags": ["enterprise", "reusable-workflows", "sharing"]
+  },
+  {
+    "id": "gha-032",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "Your integration tests need a PostgreSQL database reachable during the job. Which workflow feature runs the database alongside the job's steps?",
+    "options": [
+      { "id": "o1", "text": "A service container defined under jobs.<id>.services" },
+      { "id": "o2", "text": "A matrix entry named postgres under strategy" },
+      { "id": "o3", "text": "An artifact that contains a database file" },
+      { "id": "o4", "text": "A composite action referenced from steps" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Service containers, declared under a job's services key, start alongside the job and are reachable over the network (by service label), which is exactly how you provide a database like Postgres to integration tests.",
+    "explanationIncorrect": "A matrix expands job combinations across input values; naming one postgres does not start a database. An artifact is a stored file from a run, not a running service you can connect to. A composite action bundles steps but does not by itself run a persistent networked service for the job. The feature that runs a database next to the job is a service container under services.",
+    "tags": ["workflows", "service-containers"]
+  },
+  {
+    "id": "gha-033",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "You want a cleanup step to run whether earlier steps succeeded or failed, but you do not want it to run if the workflow was cancelled. Which condition is correct?",
+    "options": [
+      { "id": "o1", "text": "if: ${{ !cancelled() }}" },
+      { "id": "o2", "text": "if: always()" },
+      { "id": "o3", "text": "if: success()" },
+      { "id": "o4", "text": "No condition, relying on the default behavior" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "By default a step is skipped once a previous step failed, so you need a status expression. !cancelled() evaluates true on both success and failure but false when the run is cancelled, which matches the requirement exactly.",
+    "explanationIncorrect": "always() runs the step even when the workflow was cancelled, so it does too much. success() runs only when everything so far succeeded, so it would skip on failure, which is the opposite of what a cleanup step needs. Omitting the condition relies on the default, which skips the step after any earlier failure. The precise guard is !cancelled().",
+    "tags": ["expressions", "status-functions", "conditionals"]
+  },
+  {
+    "id": "gha-034",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "easy",
+    "stem": "You want every run step in a job to use bash explicitly, without repeating shell: bash on each step. What do you set?",
+    "options": [
+      { "id": "o1", "text": "defaults.run.shell: bash at the job or workflow level" },
+      { "id": "o2", "text": "runs-on: bash" },
+      { "id": "o3", "text": "shell: bash on only the first step, which applies to the rest" },
+      { "id": "o4", "text": "shell: bash under the strategy block" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "defaults.run.shell sets the default shell for all run steps in its scope, so declaring it once at the job or workflow level applies bash to every run step without repetition.",
+    "explanationIncorrect": "runs-on selects the runner operating system, not the shell, so bash is not a valid runner label there. Setting shell: bash on the first step affects only that step; it does not cascade to later steps. There is no shell setting under strategy, which controls matrix behavior. The single-place default is defaults.run.shell.",
+    "tags": ["workflows", "defaults", "shell"]
+  },
+  {
+    "id": "gha-035",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "You are authoring a reusable workflow that must accept an environment input from its caller and return a url output back. Which trigger and structure declare this?",
+    "options": [
+      { "id": "o1", "text": "on: workflow_call with inputs and outputs blocks, wiring the output from a job's outputs up to the workflow-level outputs" },
+      { "id": "o2", "text": "on: workflow_dispatch with an inputs block only" },
+      { "id": "o3", "text": "on: push, reading the caller's inputs from environment variables" },
+      { "id": "o4", "text": "on: workflow_run with a with block for inputs and outputs" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A reusable workflow is defined with on: workflow_call, which declares its inputs and outputs; the workflow-level outputs map to values produced by its jobs, so the caller can pass an input and read the returned url.",
+    "explanationIncorrect": "workflow_dispatch defines a manual UI trigger with inputs but has no outputs contract for a caller and is not how one workflow calls another. push fires on commits and cannot receive caller inputs. workflow_run triggers a workflow after another completes but does not define a called-workflow input and output interface. The reusable-workflow contract is on: workflow_call with inputs and outputs.",
+    "tags": ["reusable-workflows", "workflow-call", "outputs"]
   }
 ]
