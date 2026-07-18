@@ -139,6 +139,91 @@
     "tags": ["security", "cross-account", "assume-role"]
   },
   {
+    "id": "saa-011",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "You want to provision and automatically renew a TLS certificate so your Application Load Balancer can serve HTTPS. Which service provides this?",
+    "options": [
+      { "id": "o1", "text": "AWS Certificate Manager (ACM)" },
+      { "id": "o2", "text": "AWS KMS" },
+      { "id": "o3", "text": "Amazon Route 53" },
+      { "id": "o4", "text": "AWS Secrets Manager" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Certificate Manager provisions public TLS certificates, integrates directly with load balancers and CloudFront, and renews eligible certificates automatically, so HTTPS stays valid without manual work.",
+    "explanationIncorrect": "AWS KMS manages encryption keys, not public TLS certificates for endpoints. Amazon Route 53 is DNS; it can validate ACM certificates but does not issue them. AWS Secrets Manager stores secrets like passwords, not managed TLS certificates. Certificate provisioning and renewal is AWS Certificate Manager.",
+    "tags": ["security", "acm", "tls"]
+  },
+  {
+    "id": "saa-012",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "You must ensure every object in an S3 bucket is encrypted at rest with keys you can manage, audit, and control access to. Which approach fits?",
+    "options": [
+      { "id": "o1", "text": "Server-side encryption with AWS KMS keys (SSE-KMS)" },
+      { "id": "o2", "text": "Leaving objects unencrypted and relying on the bucket being private" },
+      { "id": "o3", "text": "Base64-encoding objects on the client" },
+      { "id": "o4", "text": "Turning off bucket versioning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SSE-KMS encrypts objects at rest using KMS keys, giving you key management, access control through key policies, and an audit trail of key usage via CloudTrail.",
+    "explanationIncorrect": "Relying on the bucket being private leaves data unencrypted at rest, failing the requirement. Base64 encoding is not encryption; it is trivially reversible. Versioning protects against overwrites and deletes and has nothing to do with encryption. Managed, auditable encryption at rest is SSE-KMS.",
+    "tags": ["security", "s3-encryption", "kms"]
+  },
+  {
+    "id": "saa-013",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "To reduce the risk of accidental public exposure of S3 data across an entire account, what should you enable?",
+    "options": [
+      { "id": "o1", "text": "S3 Block Public Access at the account and bucket level" },
+      { "id": "o2", "text": "A bucket policy that grants public read to everyone" },
+      { "id": "o3", "text": "Static website hosting on every bucket" },
+      { "id": "o4", "text": "Disabling bucket policies entirely" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Block Public Access provides account-wide and per-bucket guardrails that override permissive ACLs and policies, preventing buckets from being made public by mistake.",
+    "explanationIncorrect": "A policy granting public read is the exposure you are trying to prevent. Enabling static website hosting is about serving content, not securing it, and often implies public access. Disabling bucket policies removes a control mechanism but does not stop public access via ACLs. The guardrail is S3 Block Public Access.",
+    "tags": ["security", "s3", "block-public-access"]
+  },
+  {
+    "id": "saa-014",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "A mobile app needs user sign-up, sign-in, and federated identity (for example Google or Apple), issuing tokens your API can validate. Which managed service is designed for this?",
+    "options": [
+      { "id": "o1", "text": "Amazon Cognito" },
+      { "id": "o2", "text": "One IAM user created per application end user" },
+      { "id": "o3", "text": "A self-managed password database on EC2" },
+      { "id": "o4", "text": "AWS Organizations" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Cognito user pools handle end-user sign-up and sign-in, support identity federation, and issue standard tokens your application and APIs can verify.",
+    "explanationIncorrect": "IAM users are for AWS account principals, not application end users, and do not scale to app user bases. A self-managed password database on EC2 reinvents authentication and burdens you with security you do not need to own. AWS Organizations manages multiple AWS accounts, not app users. Application user identity is Amazon Cognito.",
+    "tags": ["security", "cognito", "authentication"]
+  },
+  {
+    "id": "saa-015",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "You allow developers to create IAM roles, but you must cap the maximum permissions any role they create can ever have. Which feature enforces that ceiling?",
+    "options": [
+      { "id": "o1", "text": "An IAM permissions boundary" },
+      { "id": "o2", "text": "A security group" },
+      { "id": "o3", "text": "A network ACL" },
+      { "id": "o4", "text": "An S3 bucket policy" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A permissions boundary sets the maximum permissions an identity can have; even if a developer attaches broader policies, the effective permissions cannot exceed the boundary, which safely delegates role creation.",
+    "explanationIncorrect": "Security groups and network ACLs filter network traffic and have nothing to do with IAM permission ceilings. An S3 bucket policy controls access to one bucket, not the permissions of roles a developer creates. The maximum-permission ceiling is an IAM permissions boundary.",
+    "tags": ["security", "permissions-boundary", "delegation"]
+  },
+  {
     "id": "saa-004",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design Cost-Optimized Architectures",
