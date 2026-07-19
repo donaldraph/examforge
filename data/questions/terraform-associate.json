@@ -634,6 +634,91 @@
     "tags": ["state", "state-list", "inspection"]
   },
   {
+    "id": "tf-051",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Where do you configure a remote backend (such as S3) for storing Terraform state?",
+    "options": [
+      { "id": "o1", "text": "In a backend block inside the terraform block" },
+      { "id": "o2", "text": "In the provider block" },
+      { "id": "o3", "text": "In terraform.tfvars" },
+      { "id": "o4", "text": "In an input variable" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The backend is declared in a backend block nested in the terraform block, which tells Terraform where to store and lock state.",
+    "explanationIncorrect": "The provider block configures a provider, not state storage. terraform.tfvars supplies variable values. A variable declares an input. Backend configuration lives in the terraform block's backend block.",
+    "tags": ["state", "backend", "remote-state"]
+  },
+  {
+    "id": "tf-052",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "You want Terraform to stop managing a resource but leave the real infrastructure untouched. Which command removes it from state only?",
+    "options": [
+      { "id": "o1", "text": "terraform state rm <address>" },
+      { "id": "o2", "text": "terraform destroy <address>" },
+      { "id": "o3", "text": "terraform apply -destroy" },
+      { "id": "o4", "text": "Delete the resource block and run apply" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform state rm removes a resource from state so Terraform forgets it, while the real infrastructure keeps running untouched, which is exactly what stop-managing-but-keep requires.",
+    "explanationIncorrect": "terraform destroy with an address destroys the real resource. apply -destroy also tears down infrastructure. Deleting the block and applying would plan to destroy the now-unmanaged resource. Removing only from state is terraform state rm.",
+    "tags": ["state", "state-rm"]
+  },
+  {
+    "id": "tf-053",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "You change your configuration from a local backend to an S3 remote backend. What does terraform init offer to do?",
+    "options": [
+      { "id": "o1", "text": "Migrate the existing state to the new backend" },
+      { "id": "o2", "text": "Delete all managed resources" },
+      { "id": "o3", "text": "Rewrite all of your .tf configuration files" },
+      { "id": "o4", "text": "Nothing; the existing state is simply lost" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When the backend changes, terraform init detects it and prompts to migrate the existing state into the new backend so you keep tracking your resources.",
+    "explanationIncorrect": "Changing the backend does not delete resources. It does not rewrite your configuration files. And state is not silently lost; init offers migration. The prompt is to migrate state to the new backend.",
+    "tags": ["state", "backend-migration", "init"]
+  },
+  {
+    "id": "tf-054",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "You use Terraform workspaces (for example dev and prod) with the same configuration. What is isolated between the workspaces?",
+    "options": [
+      { "id": "o1", "text": "The state; each workspace has its own separate state instance" },
+      { "id": "o2", "text": "The provider plugins" },
+      { "id": "o3", "text": "The HCL source files" },
+      { "id": "o4", "text": "The Terraform CLI binary" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Workspaces give the same configuration multiple independent state instances, so dev and prod track their own resources separately while sharing the code.",
+    "explanationIncorrect": "Provider plugins are shared and installed per working directory, not per workspace. The HCL files are the same across workspaces; that is the point. The CLI binary is the same tool. What differs per workspace is the state.",
+    "tags": ["state", "workspaces", "isolation"]
+  },
+  {
+    "id": "tf-055",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "easy",
+    "stem": "You want to inspect the attributes Terraform has recorded for a single managed resource. Which command shows them?",
+    "options": [
+      { "id": "o1", "text": "terraform state show <address>" },
+      { "id": "o2", "text": "terraform output" },
+      { "id": "o3", "text": "terraform fmt" },
+      { "id": "o4", "text": "terraform validate" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform state show prints the recorded attributes of a single resource from state, which is how you inspect what Terraform knows about it.",
+    "explanationIncorrect": "terraform output prints root module output values, not a resource's full attributes. terraform fmt reformats files. terraform validate checks configuration validity. Inspecting one resource's state is terraform state show.",
+    "tags": ["state", "state-show"]
+  },
+  {
     "id": "tf-023",
     "exam": "terraform-associate",
     "domain": "Modules",
