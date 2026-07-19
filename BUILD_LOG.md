@@ -3,6 +3,26 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Question banks — expansion to 655
+
+### 2026-07-19 — another 50 questions per exam, domain-grouped
+
+- Added 50 more questions to every exam, keeping each spread across its domains
+  by blueprint weight: GitHub Actions 105, GitHub Advanced Security 110, AWS AI
+  Practitioner 110, AWS Cloud Practitioner 105, AWS Solutions Architect
+  Associate 105, Terraform Associate 120. That is 300 new questions, 655 total.
+
+- Every batch was appended, run through the committed validator
+  (`scripts/validate-banks.mjs`: schema, id and option-id patterns, id
+  uniqueness, correctAnswerId resolves, each domain declared and fully covered,
+  exam id matches file and enum, wrong-answer text strictly longer), and
+  committed on its own so each commit is one exam-domain slice. All 655 pass.
+
+- Content is hand-written to the same shape as before: real certification
+  concepts, four options, correctness tracked by option id, a short teaching
+  note on the correct answer and a longer one walking through why each distractor
+  is wrong. 18 frontend unit tests still green, clean build.
+
 ## Timed exam mode
 
 ### 2026-07-19 — a real-exam clock that auto-submits
