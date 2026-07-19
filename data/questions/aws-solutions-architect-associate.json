@@ -3106,5 +3106,413 @@
       "security"
     ],
     "isSeed": true
+  },
+  {
+    "id": "saa-094",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Objects in S3 are accessed frequently for 30 days then rarely afterward. Which approach optimizes cost automatically?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A lifecycle policy transitioning objects to a lower-cost storage class after 30 days"
+      },
+      {
+        "id": "o2",
+        "text": "Keep everything in S3 Standard forever"
+      },
+      {
+        "id": "o3",
+        "text": "Delete objects after 30 days regardless of need"
+      },
+      {
+        "id": "o4",
+        "text": "Copy objects to EBS for archival"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A lifecycle policy can transition objects to classes like S3 Standard-IA or Glacier after 30 days, cutting storage cost for data that is rarely accessed while retaining it.",
+    "explanationIncorrect": "Keeping everything in Standard forever pays premium rates for cold data. Deleting objects that may still be needed risks data loss and does not fit the requirement to retain them. Copying to EBS is more expensive per gigabyte and not designed for archival, so a lifecycle transition is the right optimization.",
+    "tags": [
+      "s3",
+      "lifecycle",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-095",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A steady baseline of EC2 usage runs 24x7 for years, with occasional short spikes. What is the most cost-effective mix?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Cover the baseline with a Compute Savings Plan and handle spikes with On-Demand or Spot"
+      },
+      {
+        "id": "o2",
+        "text": "Run everything On-Demand"
+      },
+      {
+        "id": "o3",
+        "text": "Run everything on Spot with no fallback"
+      },
+      {
+        "id": "o4",
+        "text": "Buy Reserved Instances for the peak capacity"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Committing the predictable baseline to a Savings Plan captures the largest discount, while bursts are handled flexibly with On-Demand or interruption-tolerant Spot, minimizing total cost.",
+    "explanationIncorrect": "Running everything On-Demand forgoes discounts on the predictable baseline. Running everything on Spot risks interruption for the always-on baseline that must stay up. Reserving for peak capacity pays for reserved capacity that sits idle most of the time, wasting money.",
+    "tags": [
+      "savings-plans",
+      "spot",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-096",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which storage class is designed for long-term archival with retrieval times of minutes to hours at the lowest storage cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Glacier storage classes"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Standard"
+      },
+      {
+        "id": "o3",
+        "text": "Provisioned IOPS EBS"
+      },
+      {
+        "id": "o4",
+        "text": "Instance store"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Glacier classes offer the lowest storage cost for archival data that is accessed infrequently and can tolerate retrieval delays measured in minutes to hours.",
+    "explanationIncorrect": "S3 Standard is priced for frequent access and costs more for archival data. Provisioned IOPS EBS is expensive high-performance block storage, the opposite of low-cost archival. Instance store is ephemeral and cannot be used for durable archival at all.",
+    "tags": [
+      "s3-glacier",
+      "archival",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-097",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "An unpredictable access pattern makes it hard to choose an S3 storage class. Which class automatically optimizes cost by moving objects between tiers?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Intelligent-Tiering"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Standard only"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Glacier Deep Archive only"
+      },
+      {
+        "id": "o4",
+        "text": "S3 One Zone-IA only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Intelligent-Tiering monitors access patterns and moves objects between frequent and infrequent tiers automatically, optimizing cost without performance impact when patterns are unknown.",
+    "explanationIncorrect": "S3 Standard alone does not move data to cheaper tiers automatically. Glacier Deep Archive alone imposes long retrieval times unsuitable for potentially frequent access. One Zone-IA stores in a single AZ for infrequent access but does not adapt to changing patterns the way Intelligent-Tiering does.",
+    "tags": [
+      "intelligent-tiering",
+      "s3",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-098",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A batch workload runs for two hours each night and is idle otherwise. Which compute approach avoids paying for idle time?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use serverless or scheduled Auto Scaling so capacity runs only during the job"
+      },
+      {
+        "id": "o2",
+        "text": "Keep a large always-on cluster running 24x7"
+      },
+      {
+        "id": "o3",
+        "text": "Buy Reserved Instances for the full day"
+      },
+      {
+        "id": "o4",
+        "text": "Over-provision to be safe"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Running compute only during the two-hour window, via serverless or scheduled scaling that spins capacity up and back down, avoids paying for the many idle hours.",
+    "explanationIncorrect": "An always-on cluster pays for 22 idle hours a day. Reserved Instances for the full day commit to capacity that is unused most of the time. Over-provisioning increases cost without addressing the idle-time waste, so scheduled or serverless capacity is the cost-optimal choice.",
+    "tags": [
+      "scheduled-scaling",
+      "serverless",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-099",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice reduces data transfer costs for a high-traffic website serving global users?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Serve content through CloudFront to cache at the edge and reduce origin egress"
+      },
+      {
+        "id": "o2",
+        "text": "Serve all content directly from a single origin in one Region"
+      },
+      {
+        "id": "o3",
+        "text": "Disable caching entirely"
+      },
+      {
+        "id": "o4",
+        "text": "Route all traffic through a NAT gateway"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CloudFront caches content at edge locations so repeated requests are served from the edge, reducing costly data transfer out of the origin and improving performance.",
+    "explanationIncorrect": "Serving everything directly from one origin maximizes origin egress and latency for distant users. Disabling caching increases origin load and transfer. Routing web traffic through a NAT gateway adds processing charges and does not reduce content delivery costs, so a CDN is the cost-effective answer.",
+    "tags": [
+      "cloudfront",
+      "data-transfer",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-100",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which tool identifies underutilized or idle resources that could be downsized or removed to save money?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Trusted Advisor and Cost Explorer rightsizing recommendations"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Trusted Advisor and Cost Explorer surface idle or low-utilization resources and rightsizing recommendations, helping you eliminate waste and cut spend.",
+    "explanationIncorrect": "Route 53 is DNS and does not analyze utilization. Shield is DDoS protection, unrelated to cost. SNS sends notifications; none of these identify underused resources for savings.",
+    "tags": [
+      "trusted-advisor",
+      "rightsizing",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-101",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A microservice has bursty, short-lived requests. Why can moving it to Lambda reduce cost versus always-on EC2?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Lambda bills only for actual execution time, so idle periods incur no compute charge"
+      },
+      {
+        "id": "o2",
+        "text": "Lambda is always cheaper for every workload"
+      },
+      {
+        "id": "o3",
+        "text": "Lambda never has cold starts"
+      },
+      {
+        "id": "o4",
+        "text": "Lambda includes free unlimited memory"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because Lambda charges per invocation and execution duration, a bursty service pays nothing while idle, which can beat paying for continuously running EC2 capacity.",
+    "explanationIncorrect": "Lambda is not always cheaper; sustained high-throughput workloads can be more economical on reserved compute. Lambda can experience cold starts, so that claim is false. Lambda does not include free unlimited memory; you pay based on configured memory and time.",
+    "tags": [
+      "lambda",
+      "serverless",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-102",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which EC2 option can lower cost for a licensing-independent workload by using AWS-designed processors?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Graviton-based instances"
+      },
+      {
+        "id": "o2",
+        "text": "Dedicated Hosts for licensing"
+      },
+      {
+        "id": "o3",
+        "text": "The largest available x86 instance"
+      },
+      {
+        "id": "o4",
+        "text": "Instances with the most GPUs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Graviton processors often deliver better price-performance than comparable x86 instances, lowering cost for workloads that can run on the Arm architecture.",
+    "explanationIncorrect": "Dedicated Hosts address licensing and isolation at premium cost, not general savings. Choosing the largest x86 instance increases cost rather than optimizing it. GPU-heavy instances are expensive and only warranted for GPU workloads, so Graviton is the price-performance option.",
+    "tags": [
+      "graviton",
+      "price-performance",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-103",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "How do cost allocation tags help control spend?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "They let you attribute costs to teams or projects so you can identify and manage spend by owner"
+      },
+      {
+        "id": "o2",
+        "text": "They automatically shut down expensive resources"
+      },
+      {
+        "id": "o3",
+        "text": "They encrypt billing data"
+      },
+      {
+        "id": "o4",
+        "text": "They provide free compute"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "By tagging resources with keys like team or project, you can break down the bill by those tags, making it clear who is driving costs and where to optimize.",
+    "explanationIncorrect": "Tags do not automatically shut down resources; they label them for reporting. They do not encrypt billing data. They do not provide free compute; they are purely an allocation and visibility mechanism.",
+    "tags": [
+      "cost-allocation-tags",
+      "governance",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-104",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A fleet of instances is consistently at 15% CPU utilization. Which action most directly reduces cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Rightsize to smaller instance types or fewer instances"
+      },
+      {
+        "id": "o2",
+        "text": "Upgrade to larger instances"
+      },
+      {
+        "id": "o3",
+        "text": "Add more instances to the fleet"
+      },
+      {
+        "id": "o4",
+        "text": "Attach larger EBS volumes"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Persistently low utilization signals over-provisioning; rightsizing to smaller types or reducing instance count aligns capacity with actual demand and lowers cost.",
+    "explanationIncorrect": "Upgrading to larger instances increases cost while utilization is already low. Adding more instances worsens the over-provisioning. Attaching larger EBS volumes adds storage cost and does nothing about idle CPU, so rightsizing is the correct move.",
+    "tags": [
+      "rightsizing",
+      "utilization",
+      "cost-optimization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-105",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which design reduces cost for infrequently accessed data that must remain instantly retrievable in one Availability Zone?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 One Zone-IA"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Standard"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Glacier Deep Archive"
+      },
+      {
+        "id": "o4",
+        "text": "Provisioned IOPS EBS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 One Zone-IA stores infrequently accessed data in a single AZ at lower cost than Standard-IA while keeping millisecond retrieval, suitable when the data can be recreated if the AZ is lost.",
+    "explanationIncorrect": "S3 Standard costs more and is meant for frequent access. Glacier Deep Archive is cheaper but has long retrieval times, so it is not instantly retrievable. Provisioned IOPS EBS is costly high-performance block storage, not a low-cost class for infrequent object access.",
+    "tags": [
+      "s3-one-zone-ia",
+      "storage-classes",
+      "cost-optimization"
+    ],
+    "isSeed": true
   }
 ]
