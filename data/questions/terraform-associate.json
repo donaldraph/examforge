@@ -3505,5 +3505,239 @@
       "workflow"
     ],
     "isSeed": true
+  },
+  {
+    "id": "tf-107",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "easy",
+    "stem": "What is the core idea of infrastructure as code?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Defining and managing infrastructure through machine-readable configuration files"
+      },
+      {
+        "id": "o2",
+        "text": "Manually clicking through a cloud console for each change"
+      },
+      {
+        "id": "o3",
+        "text": "Storing infrastructure diagrams in a wiki"
+      },
+      {
+        "id": "o4",
+        "text": "Emailing change requests to an admin"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Infrastructure as code expresses infrastructure in configuration files that can be versioned, reviewed, and applied repeatably, replacing manual, ad hoc changes.",
+    "explanationIncorrect": "Clicking through a console for each change is the manual approach IaC replaces. Storing diagrams in a wiki documents intent but does not provision anything. Emailing change requests is a manual process, not codified, reproducible infrastructure.",
+    "tags": [
+      "iac",
+      "concepts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-108",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Terraform is described as declarative. What does that mean?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "You describe the desired end state and Terraform determines how to reach it"
+      },
+      {
+        "id": "o2",
+        "text": "You write step-by-step imperative commands for each change"
+      },
+      {
+        "id": "o3",
+        "text": "You must specify the exact API calls in order"
+      },
+      {
+        "id": "o4",
+        "text": "You cannot use variables"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In a declarative model you specify what the infrastructure should look like, and Terraform computes the actions needed to converge the real world to that state.",
+    "explanationIncorrect": "Writing step-by-step commands describes an imperative approach, which is the opposite of declarative. You do not enumerate exact API calls in order; Terraform derives them. Declarative configuration certainly can use variables, so that claim is false.",
+    "tags": [
+      "declarative",
+      "concepts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-109",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "What advantage does Terraform's provider ecosystem give it over a single-cloud tool?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It can manage many providers and platforms with one workflow and language"
+      },
+      {
+        "id": "o2",
+        "text": "It only works with a single cloud"
+      },
+      {
+        "id": "o3",
+        "text": "It requires a different language per provider"
+      },
+      {
+        "id": "o4",
+        "text": "It cannot manage SaaS resources"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform's broad provider ecosystem lets you manage infrastructure across many clouds and services using the same configuration language and workflow.",
+    "explanationIncorrect": "It is not limited to a single cloud; that is the point of many providers. It uses one configuration language, HCL, across providers, not a different language each. It can manage many SaaS resources through providers, so that limitation is false.",
+    "tags": [
+      "providers",
+      "multi-cloud",
+      "concepts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-110",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "hard",
+    "stem": "What does idempotency mean in the context of applying Terraform?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Applying the same unchanged configuration repeatedly results in no further changes"
+      },
+      {
+        "id": "o2",
+        "text": "Every apply recreates all resources"
+      },
+      {
+        "id": "o3",
+        "text": "Each apply produces a random result"
+      },
+      {
+        "id": "o4",
+        "text": "Applies can only run once ever"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Idempotency means that once the real infrastructure matches the configuration, running apply again makes no changes because the desired state is already met.",
+    "explanationIncorrect": "It does not recreate all resources each time; that would be the opposite of idempotent. It does not produce random results; the outcome is deterministic relative to the desired state. Applies can run many times; idempotency is about repeatable results, not a one-time limit.",
+    "tags": [
+      "idempotency",
+      "concepts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-111",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Why does managing infrastructure in version control benefit teams?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It provides history, code review, and the ability to roll back configuration changes"
+      },
+      {
+        "id": "o2",
+        "text": "It hides changes from the team"
+      },
+      {
+        "id": "o3",
+        "text": "It prevents collaboration"
+      },
+      {
+        "id": "o4",
+        "text": "It removes the need for a plan"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Storing configuration in version control gives an auditable history, enables peer review of changes, and lets teams revert to a known-good configuration.",
+    "explanationIncorrect": "Version control surfaces changes rather than hiding them. It enables rather than prevents collaboration. It does not remove the need for a plan; planning still shows what will change before apply.",
+    "tags": [
+      "version-control",
+      "collaboration",
+      "concepts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-112",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "What is configuration drift?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "When real infrastructure diverges from the state and configuration due to out-of-band changes"
+      },
+      {
+        "id": "o2",
+        "text": "When the Terraform binary is out of date"
+      },
+      {
+        "id": "o3",
+        "text": "When variables are renamed"
+      },
+      {
+        "id": "o4",
+        "text": "When code is reformatted"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Drift occurs when someone changes infrastructure outside Terraform, so the real world no longer matches state and configuration; a plan reveals the difference.",
+    "explanationIncorrect": "An out-of-date binary is a versioning issue, not drift. Renaming variables changes configuration but is not drift in the infrastructure. Reformatting code with fmt does not cause drift; drift is specifically about real infrastructure diverging from expected state.",
+    "tags": [
+      "drift",
+      "concepts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-113",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "hard",
+    "stem": "How does provisioning infrastructure differ from configuration management tools like Ansible or Chef?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Terraform focuses on provisioning and lifecycle of infrastructure resources, while configuration management focuses on installing and configuring software on existing systems"
+      },
+      {
+        "id": "o2",
+        "text": "They are identical in scope"
+      },
+      {
+        "id": "o3",
+        "text": "Terraform only configures software inside servers"
+      },
+      {
+        "id": "o4",
+        "text": "Configuration management provisions cloud networks by default"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform provisions and manages the lifecycle of infrastructure such as servers, networks, and managed services, whereas configuration management tools specialize in configuring software on machines that already exist, and the two are often used together.",
+    "explanationIncorrect": "They are not identical in scope; they emphasize different layers. Terraform is not primarily about configuring software inside servers; that is the configuration management role. Configuration management tools do not, by default, provision cloud networks; provisioning is Terraform's strength.",
+    "tags": [
+      "provisioning",
+      "configuration-management",
+      "concepts"
+    ],
+    "isSeed": true
   }
 ]
