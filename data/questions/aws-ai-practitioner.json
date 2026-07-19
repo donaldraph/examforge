@@ -2306,5 +2306,342 @@
       "production"
     ],
     "isSeed": true
+  },
+  {
+    "id": "aip-071",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What is a foundation model?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A large model pre-trained on broad data that can be adapted to many downstream tasks"
+      },
+      {
+        "id": "o2",
+        "text": "A small model trained for a single narrow task only"
+      },
+      {
+        "id": "o3",
+        "text": "A database of training examples"
+      },
+      {
+        "id": "o4",
+        "text": "A hardware specification for GPUs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A foundation model is trained on large, diverse data and serves as a general-purpose base that can be adapted through prompting or fine-tuning to many tasks.",
+    "explanationIncorrect": "A model trained for a single narrow task is a task-specific model, the opposite of a broadly adaptable foundation model. A database of examples is training data, not a model. A GPU hardware specification is infrastructure, not a model at all, so it does not describe a foundation model.",
+    "tags": [
+      "foundation-models",
+      "genai-basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-072",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "In a large language model, what is a token?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A unit of text such as a word or subword that the model processes"
+      },
+      {
+        "id": "o2",
+        "text": "An authentication credential for the API"
+      },
+      {
+        "id": "o3",
+        "text": "A GPU memory block"
+      },
+      {
+        "id": "o4",
+        "text": "A labeled training example"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Language models break text into tokens, roughly words or subword pieces, and both input length and cost are commonly measured in tokens.",
+    "explanationIncorrect": "An authentication credential is an access token in a security sense, a different meaning from the linguistic token an LLM processes. A GPU memory block is hardware, not a text unit. A labeled training example is a data point, not the subword unit the model consumes at inference time.",
+    "tags": [
+      "tokens",
+      "llm",
+      "genai-basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-073",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "What does the temperature parameter control when generating text from an LLM?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The randomness of the output; higher values produce more varied, lower values more deterministic text"
+      },
+      {
+        "id": "o2",
+        "text": "The maximum number of tokens generated"
+      },
+      {
+        "id": "o3",
+        "text": "The physical temperature of the GPU"
+      },
+      {
+        "id": "o4",
+        "text": "The size of the model in parameters"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Temperature scales the probability distribution over next tokens; higher temperature increases diversity and creativity, while lower temperature makes outputs more focused and repeatable.",
+    "explanationIncorrect": "The maximum number of tokens generated is controlled by a separate max-tokens setting, not temperature. It has nothing to do with the GPU's physical temperature. Model size in parameters is a fixed property of the model, not a generation-time parameter you tune.",
+    "tags": [
+      "temperature",
+      "sampling",
+      "llm"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-074",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "When a language model produces fluent but factually incorrect or fabricated content, this is known as?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Hallucination"
+      },
+      {
+        "id": "o2",
+        "text": "Overfitting"
+      },
+      {
+        "id": "o3",
+        "text": "Quantization"
+      },
+      {
+        "id": "o4",
+        "text": "Tokenization"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Hallucination is when a model generates confident, plausible-sounding output that is not grounded in facts, a key risk to mitigate with grounding techniques and human review.",
+    "explanationIncorrect": "Overfitting is a training generalization issue, not the generation of fabricated facts at inference. Quantization is a technique to reduce model precision for efficiency, unrelated to factual errors. Tokenization is how text is split into tokens and has nothing to do with the truthfulness of generated content.",
+    "tags": [
+      "hallucination",
+      "genai-risks"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-075",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which AWS service provides access to multiple foundation models through a single API for building generative AI applications?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Redshift"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Bedrock is a managed service offering access to foundation models from several providers via one API, with features for customization, agents, and guardrails.",
+    "explanationIncorrect": "EC2 provides raw virtual servers; you could host models yourself but it is not a managed foundation-model API. Athena is a serverless query service for data in S3, unrelated to serving foundation models. Redshift is a data warehouse for analytics, not a generative AI model platform.",
+    "tags": [
+      "bedrock",
+      "aws-services",
+      "genai"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-076",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "What is an embedding in the context of generative AI?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A numeric vector representation of text or data that captures semantic meaning"
+      },
+      {
+        "id": "o2",
+        "text": "A compressed image thumbnail"
+      },
+      {
+        "id": "o3",
+        "text": "A prompt template"
+      },
+      {
+        "id": "o4",
+        "text": "A model checkpoint file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An embedding maps text or other data into a dense numeric vector so that semantically similar items are close together, enabling search, clustering, and retrieval.",
+    "explanationIncorrect": "A compressed image thumbnail is a scaled-down picture, not a semantic vector. A prompt template is reusable text with placeholders, unrelated to a vector representation. A model checkpoint file stores learned weights, which is not the same as an embedding vector of an input.",
+    "tags": [
+      "embeddings",
+      "vectors",
+      "genai"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-077",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which generation capability describes creating an image from a text description?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Text-to-image generation"
+      },
+      {
+        "id": "o2",
+        "text": "Optical character recognition"
+      },
+      {
+        "id": "o3",
+        "text": "Speech-to-text transcription"
+      },
+      {
+        "id": "o4",
+        "text": "Sentiment analysis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Text-to-image generation takes a natural-language prompt and synthesizes a corresponding image, a common multimodal generative AI capability.",
+    "explanationIncorrect": "Optical character recognition extracts text from images, the reverse direction and not generative. Speech-to-text transcription converts audio to text, which involves neither image creation nor a text prompt input. Sentiment analysis classifies the emotional tone of text and produces no image.",
+    "tags": [
+      "multimodal",
+      "text-to-image",
+      "genai"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-078",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Why is the context window size of an LLM important?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It limits how much text the model can consider at once, including prompt and generated output"
+      },
+      {
+        "id": "o2",
+        "text": "It sets the model's training data cutoff date"
+      },
+      {
+        "id": "o3",
+        "text": "It determines the GPU vendor required"
+      },
+      {
+        "id": "o4",
+        "text": "It controls the pricing currency"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The context window is the maximum number of tokens the model can attend to in one request, bounding how much input plus output it can handle, which matters for long documents.",
+    "explanationIncorrect": "The training data cutoff is a separate property of when the model's data ends, not the context window. It does not dictate a GPU vendor; that is an infrastructure choice. It has nothing to do with pricing currency, which is a billing detail unrelated to token capacity.",
+    "tags": [
+      "context-window",
+      "tokens",
+      "llm"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-079",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "What is the underlying neural architecture behind most modern large language models?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The transformer, based on self-attention"
+      },
+      {
+        "id": "o2",
+        "text": "The decision tree"
+      },
+      {
+        "id": "o3",
+        "text": "The k-means algorithm"
+      },
+      {
+        "id": "o4",
+        "text": "The support vector machine"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Modern LLMs are built on the transformer architecture, whose self-attention mechanism lets the model weigh relationships between tokens across a sequence efficiently.",
+    "explanationIncorrect": "A decision tree is a classical model for tabular data and is not the basis of LLMs. K-means is an unsupervised clustering algorithm, not a language-model architecture. A support vector machine is a classical classifier and does not power large language models.",
+    "tags": [
+      "transformer",
+      "architecture",
+      "llm"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-080",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What is prompt engineering?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Crafting and refining the input given to a model to steer its output without changing model weights"
+      },
+      {
+        "id": "o2",
+        "text": "Retraining the model on new data"
+      },
+      {
+        "id": "o3",
+        "text": "Compressing the model to run on smaller hardware"
+      },
+      {
+        "id": "o4",
+        "text": "Encrypting the model's parameters"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Prompt engineering is the practice of designing inputs, including instructions and examples, to elicit better responses from a model without any weight updates.",
+    "explanationIncorrect": "Retraining on new data changes the model's weights, which is fine-tuning, not prompt engineering. Compressing the model to smaller hardware is quantization or distillation, unrelated to input design. Encrypting parameters is a security operation and has nothing to do with shaping prompts.",
+    "tags": [
+      "prompt-engineering",
+      "genai"
+    ],
+    "isSeed": true
   }
 ]
