@@ -683,5 +683,90 @@
     "explanationCorrect": "Code scanning uses the SARIF category to tell analyses apart, so uploading each tool under its own category keeps their alerts separate instead of one replacing the other for the same commit and ref.",
     "explanationIncorrect": "The commit SHA and branch are the same for both uploads here, so they cannot separate the analyses. Retention-days governs artifact lifetime, not analysis identity. The distinguishing field is the category.",
     "tags": ["code-scanning", "sarif", "category"]
+  },
+  {
+    "id": "ghas-041",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "You want push protection bypasses to require review by a designated security team rather than letting any developer self-approve them. Which capability supports this?",
+    "options": [
+      { "id": "o1", "text": "Delegated bypass for push protection, which routes bypass requests to a designated reviewer group" },
+      { "id": "o2", "text": "Branch protection required reviews" },
+      { "id": "o3", "text": "A CODEOWNERS entry for the whole repository" },
+      { "id": "o4", "text": "Disabling push protection so nothing is blocked" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Delegated bypass makes a push-protection bypass a request that a designated reviewer must approve, so developers cannot silently self-approve pushing a flagged secret.",
+    "explanationIncorrect": "Branch protection reviews gate merging a pull request, not the push-protection bypass decision. CODEOWNERS assigns file review ownership, not secret bypass approval. Disabling push protection removes the control entirely, the opposite of adding oversight. The feature is delegated bypass.",
+    "tags": ["secret-scanning", "delegated-bypass", "push-protection"]
+  },
+  {
+    "id": "ghas-042",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Before enabling a new custom secret scanning pattern across the organization, you want to preview what it would match without creating real alerts. What do you use?",
+    "options": [
+      { "id": "o1", "text": "A dry run of the custom pattern, which previews matches before you publish it" },
+      { "id": "o2", "text": "Publish it immediately and delete any false alerts afterward" },
+      { "id": "o3", "text": "A CodeQL query to test the regular expression" },
+      { "id": "o4", "text": "A Dependabot preview run" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A custom-pattern dry run scans and shows what the pattern would match without generating alerts, so you can refine a noisy regex before publishing it broadly.",
+    "explanationIncorrect": "Publishing first and cleaning up later floods people with false positives, which the dry run exists to avoid. CodeQL analyzes code logic, not secret pattern matching. Dependabot handles dependencies, not secret patterns. The preview is a custom-pattern dry run.",
+    "tags": ["secret-scanning", "custom-patterns", "dry-run"]
+  },
+  {
+    "id": "ghas-043",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Your codebase leaks unstructured secrets, such as generic passwords, that do not match any known provider token format. Which capability helps detect these?",
+    "options": [
+      { "id": "o1", "text": "Generic secret detection (Copilot secret scanning) that uses AI to find unstructured secrets" },
+      { "id": "o2", "text": "Only partner provider patterns, which cover every case" },
+      { "id": "o3", "text": "Dependency review of the passwords" },
+      { "id": "o4", "text": "Nothing; only structured provider tokens can ever be detected" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AI-powered generic secret detection (Copilot secret scanning) finds unstructured secrets like passwords that lack a fixed token format, extending coverage beyond regex provider patterns.",
+    "explanationIncorrect": "Partner provider patterns match specific known token shapes and miss free-form secrets. Dependency review evaluates dependency changes, not credentials in code. Unstructured secrets can be detected, so claiming only structured tokens are findable is wrong. The capability is AI-based generic secret detection.",
+    "tags": ["secret-scanning", "generic-secrets", "ai"]
+  },
+  {
+    "id": "ghas-044",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "easy",
+    "stem": "When resolving a secret scanning alert, which is a valid resolution reason?",
+    "options": [
+      { "id": "o1", "text": "Revoked, false positive, used in tests, or won't fix" },
+      { "id": "o2", "text": "Merged, rebased, or squashed" },
+      { "id": "o3", "text": "Approved, denied, or pending" },
+      { "id": "o4", "text": "Cached, purged, or archived" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning alerts are closed with a resolution such as revoked, false positive, used in tests, or won't fix, which records why the alert was dismissed for audit.",
+    "explanationIncorrect": "Merged, rebased, and squashed are Git operations, not alert resolutions. Approved, denied, and pending describe review or request states, not secret alert closures. Cached, purged, and archived are storage terms. The valid reasons are revoked, false positive, used in tests, or won't fix.",
+    "tags": ["secret-scanning", "alert-resolution"]
+  },
+  {
+    "id": "ghas-045",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Where does secret scanning look for secrets in a repository?",
+    "options": [
+      { "id": "o1", "text": "Across the full git history, and depending on configuration additional locations such as issue and pull request bodies, not just the latest commit" },
+      { "id": "o2", "text": "Only in the README file" },
+      { "id": "o3", "text": "Only in files larger than 1 MB" },
+      { "id": "o4", "text": "Only inside the .github directory" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning examines the entire commit history and can also cover other text such as issues and pull request descriptions, giving broad coverage rather than only the current tip.",
+    "explanationIncorrect": "It is not limited to the README, to large files, or to the .github directory; those arbitrary limits would miss most secrets. Coverage spans the full history and, per configuration, additional content areas.",
+    "tags": ["secret-scanning", "coverage", "history"]
   }
 ]
