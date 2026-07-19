@@ -3328,5 +3328,345 @@
       "private-repos"
     ],
     "isSeed": true
+  },
+  {
+    "id": "ghas-101",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "When triaging a large backlog of code scanning alerts, which prioritization approach is most defensible?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Prioritize by severity and exploitability, focusing first on high-severity, reachable issues"
+      },
+      {
+        "id": "o2",
+        "text": "Fix alerts in the order their files appear alphabetically"
+      },
+      {
+        "id": "o3",
+        "text": "Dismiss every alert older than a week"
+      },
+      {
+        "id": "o4",
+        "text": "Only fix alerts reported by external contributors"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Ranking by severity and whether the vulnerable path is actually reachable directs limited effort to the issues most likely to cause real harm first.",
+    "explanationIncorrect": "Alphabetical file order ignores risk entirely and would delay critical fixes behind trivial ones. Dismissing alerts merely because they are old hides risk without evaluating it. Restricting fixes to alerts from external contributors ignores where the vulnerability actually is; the source of the report does not determine its severity.",
+    "tags": [
+      "remediation",
+      "prioritization",
+      "triage"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-102",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "To stop new vulnerabilities from being merged while allowing existing ones to be paid down over time, what is a common strategy?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Fail pull requests only on newly introduced alerts, tracking pre-existing ones separately"
+      },
+      {
+        "id": "o2",
+        "text": "Block all merges until every historical alert is fixed"
+      },
+      {
+        "id": "o3",
+        "text": "Disable code scanning until the backlog is clear"
+      },
+      {
+        "id": "o4",
+        "text": "Delete the alerts and start fresh"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Gating on new alerts introduced by a pull request prevents regressions immediately while letting the team address the legacy backlog on its own schedule, a practical balance.",
+    "explanationIncorrect": "Blocking all merges until every historical alert is fixed halts delivery and is rarely feasible for a large backlog. Disabling code scanning removes the very signal you need and lets new issues slip in. Deleting alerts to start fresh throws away information about real risks without fixing anything.",
+    "tags": [
+      "remediation",
+      "new-alerts",
+      "strategy"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-103",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "A dependency has a vulnerability with no fixed version yet available. What is a reasonable interim mitigation?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Apply a workaround such as input validation or feature disabling while tracking the alert until a patch lands"
+      },
+      {
+        "id": "o2",
+        "text": "Dismiss the alert permanently and forget it"
+      },
+      {
+        "id": "o3",
+        "text": "Downgrade to any older version regardless of its own vulnerabilities"
+      },
+      {
+        "id": "o4",
+        "text": "Remove all logging so the issue is not visible"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When no patch exists, applying a compensating control such as validating input or disabling the affected feature reduces exposure, and keeping the alert open ensures you upgrade once a fix is released.",
+    "explanationIncorrect": "Dismissing permanently and forgetting removes the reminder to upgrade when a fix arrives, leaving you exposed. Blindly downgrading may reintroduce older, possibly worse vulnerabilities. Removing logging hides evidence rather than reducing risk and would hamper incident response, so it is never a mitigation.",
+    "tags": [
+      "remediation",
+      "mitigation",
+      "no-fix"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-104",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Why is pinning actions to a full commit SHA considered a remediation best practice for workflow supply-chain risk?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A SHA is immutable, so a compromised or re-pointed tag cannot swap in malicious code"
+      },
+      {
+        "id": "o2",
+        "text": "It makes workflows run faster"
+      },
+      {
+        "id": "o3",
+        "text": "It grants the workflow more permissions"
+      },
+      {
+        "id": "o4",
+        "text": "It disables the need for GITHUB_TOKEN"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because a commit SHA cannot change, pinning to it guarantees the reviewed code runs even if an attacker later moves a tag to point at a malicious commit.",
+    "explanationIncorrect": "Pinning has no meaningful effect on execution speed; the runner still fetches the action. It does not grant more permissions; permissions are controlled separately by the permissions block. It does not remove the need for GITHUB_TOKEN, which is still provided to the job independently of how actions are pinned.",
+    "tags": [
+      "remediation",
+      "supply-chain",
+      "pinning"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-105",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "A workflow needs write access only to issues but currently runs with broad permissions. What is the recommended remediation?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Set a least-privilege permissions block granting issues: write and nothing else"
+      },
+      {
+        "id": "o2",
+        "text": "Grant contents: write to be safe"
+      },
+      {
+        "id": "o3",
+        "text": "Use a personal access token with full scope"
+      },
+      {
+        "id": "o4",
+        "text": "Disable the workflow"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Applying least privilege by scoping the permissions block to issues: write limits the blast radius if the token is misused, which is the recommended hardening for workflow tokens.",
+    "explanationIncorrect": "Granting contents: write adds access the workflow does not need, widening the attack surface rather than reducing it. A full-scope personal access token is far broader than the job requires and is riskier than the scoped GITHUB_TOKEN. Disabling the workflow removes needed functionality instead of securing it, so it is not a remediation.",
+    "tags": [
+      "remediation",
+      "least-privilege",
+      "permissions"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-106",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "What is the value of enabling both push protection and historical secret scanning together?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Push protection stops new leaks while historical scanning surfaces secrets already in the repository"
+      },
+      {
+        "id": "o2",
+        "text": "They are redundant and one should be disabled"
+      },
+      {
+        "id": "o3",
+        "text": "Together they encrypt the repository"
+      },
+      {
+        "id": "o4",
+        "text": "They replace the need to rotate credentials"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The two are complementary: push protection prevents secrets from entering going forward, and scanning of existing content and history finds secrets that were committed before protection was in place.",
+    "explanationIncorrect": "They are not redundant; each addresses a different point in time, so disabling one leaves a gap. Enabling them does not encrypt the repository; they detect and block secrets rather than encrypt content. They do not remove the need to rotate credentials; any secret that was exposed must still be revoked and rotated.",
+    "tags": [
+      "remediation",
+      "secret-scanning",
+      "defense-in-depth"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-107",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "After code scanning flags SQL built from concatenated user input, what is the correct fix rather than a dismissal?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use parameterized queries or prepared statements so input is not interpreted as SQL"
+      },
+      {
+        "id": "o2",
+        "text": "Escape only single quotes and keep concatenating"
+      },
+      {
+        "id": "o3",
+        "text": "Add a comment explaining the risk"
+      },
+      {
+        "id": "o4",
+        "text": "Move the query into a stored procedure that still concatenates"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Parameterized queries separate code from data so user input is bound as a value and cannot alter the query structure, which is the durable fix for SQL injection.",
+    "explanationIncorrect": "Escaping only single quotes is incomplete and historically bypassable, so it does not reliably prevent injection. A comment documents the risk without removing it. A stored procedure that still concatenates user input into dynamic SQL remains injectable, so moving the concatenation does not fix the underlying flaw.",
+    "tags": [
+      "remediation",
+      "sql-injection",
+      "secure-coding"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-108",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "To reduce alert fatigue without lowering security, which practice is recommended?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Tune configuration with path filters and appropriate query suites so alerts are relevant, and triage consistently"
+      },
+      {
+        "id": "o2",
+        "text": "Raise the dismissal threshold so most alerts auto-close"
+      },
+      {
+        "id": "o3",
+        "text": "Only scan once per quarter"
+      },
+      {
+        "id": "o4",
+        "text": "Turn off notifications for the security team"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Scoping analysis with path filters and choosing the right query suites keeps alerts meaningful, and consistent triage prevents a noisy backlog, addressing fatigue without hiding real issues.",
+    "explanationIncorrect": "Auto-closing most alerts by raising a dismissal threshold suppresses genuine findings and lowers security. Scanning only quarterly lets vulnerabilities linger undetected between scans. Turning off the security team's notifications means real alerts go unseen, which increases risk rather than managing fatigue.",
+    "tags": [
+      "remediation",
+      "alert-fatigue",
+      "tuning"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-109",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which practice best prevents secrets from being committed in the first place, complementing scanning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use environment variables or a secret manager and reference secrets rather than hard-coding them"
+      },
+      {
+        "id": "o2",
+        "text": "Commit secrets but mark the repository private"
+      },
+      {
+        "id": "o3",
+        "text": "Rename secret files to avoid detection"
+      },
+      {
+        "id": "o4",
+        "text": "Store secrets in the commit message instead of files"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Keeping secrets out of source by injecting them from environment variables or a secret manager means there is nothing sensitive to commit, which is the strongest preventive measure.",
+    "explanationIncorrect": "Committing secrets to a private repository still stores them in history where they can leak through access or forks. Renaming files to dodge detection leaves the secret in the code and defeats the purpose of scanning. Putting secrets in commit messages simply moves them to another part of the git history that is also scanned and exposed.",
+    "tags": [
+      "remediation",
+      "secrets",
+      "prevention"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-110",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Why should security scanning be integrated into the pull request workflow rather than only run after merge?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Catching issues before merge is cheaper and prevents vulnerabilities from reaching the main branch"
+      },
+      {
+        "id": "o2",
+        "text": "Post-merge scanning is impossible"
+      },
+      {
+        "id": "o3",
+        "text": "Pull request scanning uses no compute"
+      },
+      {
+        "id": "o4",
+        "text": "It removes the need to ever scan the default branch"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Shifting scanning left to the pull request stage surfaces problems while they are small and unmerged, which is cheaper to fix and keeps the protected branch clean.",
+    "explanationIncorrect": "Post-merge scanning is entirely possible and often still done on a schedule, so that claim is false. Pull request scanning does consume compute like any workflow. It does not remove the need to scan the default branch; scheduled scans there remain valuable for catching drift and applying improved queries.",
+    "tags": [
+      "remediation",
+      "shift-left",
+      "pull-request"
+    ],
+    "isSeed": true
   }
 ]
