@@ -837,6 +837,91 @@
     "tags": ["cost-optimization", "serverless", "lambda"]
   },
   {
+    "id": "saa-051",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Your app serves a lot of repeated static content to internet users, and data-transfer-out costs are high. Which change reduces cost and latency?",
+    "options": [
+      { "id": "o1", "text": "Serve the content through Amazon CloudFront so cached edge delivery lowers origin data transfer" },
+      { "id": "o2", "text": "Move everything onto a single large EC2 instance" },
+      { "id": "o3", "text": "Disable caching entirely" },
+      { "id": "o4", "text": "Place the origin in a public subnet" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CloudFront caches content at edge locations, so repeated requests are served from the edge, reducing data transfer from the origin (which is cheaper) while also lowering latency.",
+    "explanationIncorrect": "A single large instance does not reduce data-transfer-out costs and hurts availability. Disabling caching increases origin load and cost. Putting the origin in a public subnet is a security change that does not lower transfer costs. Edge caching with CloudFront reduces both cost and latency.",
+    "tags": ["cost-optimization", "cloudfront", "data-transfer"]
+  },
+  {
+    "id": "saa-052",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "You have data accessed only a few times a month that must still be instantly retrievable in milliseconds. Which S3 storage class minimizes cost for this pattern?",
+    "options": [
+      { "id": "o1", "text": "S3 Standard-Infrequent Access (Standard-IA)" },
+      { "id": "o2", "text": "S3 Glacier Deep Archive" },
+      { "id": "o3", "text": "S3 Standard" },
+      { "id": "o4", "text": "EC2 instance store" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Standard-IA offers the same millisecond access as Standard at a lower storage price, with a per-GB retrieval fee, which suits data that is retained but accessed infrequently.",
+    "explanationIncorrect": "Glacier Deep Archive is far cheaper to store but has long retrieval times, so it fails the instant-access requirement. S3 Standard costs more for storage and is meant for frequent access. EC2 instance store is ephemeral local disk, not durable object storage. Infrequent but instant access is Standard-IA.",
+    "tags": ["cost-optimization", "s3-standard-ia"]
+  },
+  {
+    "id": "saa-053",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "You can rebuild your workload to run on ARM. Which EC2 option often gives better price-performance than comparable x86 instances?",
+    "options": [
+      { "id": "o1", "text": "AWS Graviton-based instances" },
+      { "id": "o2", "text": "The largest available x86 instance" },
+      { "id": "o3", "text": "Dedicated Hosts" },
+      { "id": "o4", "text": "GPU instances for a CPU-only workload" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Graviton processors are ARM-based and typically deliver better price-performance than comparable x86 instances for many workloads, lowering cost when your software can run on ARM.",
+    "explanationIncorrect": "Choosing the largest x86 instance increases cost without necessarily improving price-performance. Dedicated Hosts are for licensing and isolation and cost more. GPU instances are wasteful for a CPU-only workload. Better price-performance on ARM comes from Graviton instances.",
+    "tags": ["cost-optimization", "graviton", "price-performance"]
+  },
+  {
+    "id": "saa-054",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Non-production dev and test EC2 instances run 24/7 but are only used during business hours. What reduces cost with minimal effort?",
+    "options": [
+      { "id": "o1", "text": "Stop them outside business hours on a schedule (for example scheduled scaling or an instance scheduler)" },
+      { "id": "o2", "text": "Buy three-year Reserved Instances for them" },
+      { "id": "o3", "text": "Move them to Dedicated Hosts" },
+      { "id": "o4", "text": "Add more instances for redundancy" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Stopping dev and test instances when no one uses them (on a schedule) means you stop paying for their compute during off-hours, a large saving for a workload only needed during business hours.",
+    "explanationIncorrect": "A three-year reservation commits you to paying for capacity you use only part of the day, the opposite of saving here. Dedicated Hosts increase cost. Adding instances raises spend. Scheduling shutdown during off-hours is the low-effort saving.",
+    "tags": ["cost-optimization", "scheduling", "dev-test"]
+  },
+  {
+    "id": "saa-055",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "Instances in private subnets make heavy calls to Amazon S3 and DynamoDB, and NAT gateway data-processing charges are high. How do you cut those charges?",
+    "options": [
+      { "id": "o1", "text": "Use gateway VPC endpoints for S3 and DynamoDB so that traffic bypasses the NAT gateway" },
+      { "id": "o2", "text": "Add a second NAT gateway for more capacity" },
+      { "id": "o3", "text": "Give the instances public IP addresses" },
+      { "id": "o4", "text": "Enable S3 Versioning on the buckets" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Gateway VPC endpoints route S3 and DynamoDB traffic privately over the AWS network via the route table, avoiding the NAT gateway entirely, which removes the NAT data-processing charges for that traffic.",
+    "explanationIncorrect": "A second NAT gateway adds cost rather than removing the per-GB processing charges. Public IPs weaken security and still may route through paid paths. S3 Versioning is unrelated to NAT costs. Bypassing NAT for S3 and DynamoDB uses gateway VPC endpoints.",
+    "tags": ["cost-optimization", "vpc-endpoints", "nat-cost"]
+  },
+  {
     "id": "saa-005",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design High-Performing Architectures",
