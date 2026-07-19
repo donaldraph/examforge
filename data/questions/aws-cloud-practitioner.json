@@ -393,6 +393,91 @@
     "tags": ["security", "macie", "data-classification"]
   },
   {
+    "id": "clf-041",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service records a history of API calls made in your account for auditing and governance, capturing who did what and when?",
+    "options": [
+      { "id": "o1", "text": "AWS CloudTrail" },
+      { "id": "o2", "text": "Amazon CloudWatch" },
+      { "id": "o3", "text": "Amazon S3" },
+      { "id": "o4", "text": "AWS Lambda" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudTrail logs API activity across AWS services, giving you the audit trail of who made which call and when for governance and investigations.",
+    "explanationIncorrect": "Amazon CloudWatch monitors metrics, logs, and alarms for performance, not an API audit trail of principal actions. Amazon S3 is object storage. AWS Lambda runs code. API auditing is AWS CloudTrail.",
+    "tags": ["security", "cloudtrail", "auditing"]
+  },
+  {
+    "id": "clf-042",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service automatically scans EC2 instances and container images for software vulnerabilities and unintended network exposure?",
+    "options": [
+      { "id": "o1", "text": "Amazon Inspector" },
+      { "id": "o2", "text": "Amazon Macie" },
+      { "id": "o3", "text": "Amazon Polly" },
+      { "id": "o4", "text": "Amazon Athena" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Inspector continuously scans workloads like EC2 instances and container images for known software vulnerabilities and unintended network reachability.",
+    "explanationIncorrect": "Amazon Macie discovers and classifies sensitive data such as PII in S3, not software vulnerabilities. Amazon Polly is text-to-speech. Amazon Athena queries data with SQL. Vulnerability scanning of workloads is Amazon Inspector.",
+    "tags": ["security", "inspector", "vulnerabilities"]
+  },
+  {
+    "id": "clf-043",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "In AWS Organizations, which feature sets permission guardrails that restrict what member accounts can do, even for their administrators?",
+    "options": [
+      { "id": "o1", "text": "Service Control Policies (SCPs)" },
+      { "id": "o2", "text": "Security groups" },
+      { "id": "o3", "text": "IAM access keys" },
+      { "id": "o4", "text": "Route tables" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SCPs define the maximum permissions available to accounts in an organization, so even an account admin cannot exceed the guardrail the SCP sets.",
+    "explanationIncorrect": "Security groups are network firewalls for resources, not account-wide permission limits. IAM access keys are credentials, not organization guardrails. Route tables direct network traffic. Organization-wide permission ceilings are Service Control Policies.",
+    "tags": ["security", "organizations", "scp"]
+  },
+  {
+    "id": "clf-044",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service continuously records your resource configurations and evaluates them against rules to check compliance, such as flagging public S3 buckets?",
+    "options": [
+      { "id": "o1", "text": "AWS Config" },
+      { "id": "o2", "text": "AWS Shield" },
+      { "id": "o3", "text": "Amazon SQS" },
+      { "id": "o4", "text": "Amazon CloudFront" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Config records configuration changes and evaluates resources against rules, so it can continuously flag non-compliant states like a bucket that became public.",
+    "explanationIncorrect": "AWS Shield protects against DDoS attacks. Amazon SQS is a message queue. Amazon CloudFront is a content delivery network. Configuration recording and compliance evaluation is AWS Config.",
+    "tags": ["security", "config", "compliance"]
+  },
+  {
+    "id": "clf-045",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "easy",
+    "stem": "Protecting data as it travels over the network between a client and a service, commonly implemented with TLS, is called what?",
+    "options": [
+      { "id": "o1", "text": "Encryption in transit" },
+      { "id": "o2", "text": "Encryption at rest" },
+      { "id": "o3", "text": "Tokenization of the database" },
+      { "id": "o4", "text": "Compression" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Encryption in transit protects data moving across the network, typically using TLS, so it cannot be read if intercepted between client and service.",
+    "explanationIncorrect": "Encryption at rest protects stored data on disk, not data moving over the network. Tokenization replaces sensitive values with tokens and is a different technique. Compression reduces size and provides no confidentiality. Protecting data on the wire is encryption in transit.",
+    "tags": ["security", "encryption-in-transit", "tls"]
+  },
+  {
     "id": "clf-003",
     "exam": "aws-cloud-practitioner",
     "domain": "Cloud Technology and Services",
