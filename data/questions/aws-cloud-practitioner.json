@@ -2635,5 +2635,435 @@
       "tls"
     ],
     "isSeed": true
+  },
+  {
+    "id": "clf-081",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "easy",
+    "stem": "Which AWS service provides resizable virtual machines in the cloud?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o4",
+        "text": "AWS IAM"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon EC2 provides virtual servers, called instances, that you can resize and scale to run applications in the cloud.",
+    "explanationIncorrect": "S3 is object storage, not compute. Route 53 is a DNS service for routing traffic, not virtual machines. IAM manages identities and permissions and does not provide compute capacity.",
+    "tags": [
+      "ec2",
+      "compute"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-082",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is best for running code without provisioning or managing servers, paying only for execution time?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Direct Connect"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Lambda is a serverless compute service that runs your code in response to events and bills for the compute time consumed, with no servers to manage.",
+    "explanationIncorrect": "EC2 requires you to manage virtual servers, which is not serverless. RDS is a managed relational database, not a general code-execution service. Direct Connect is a dedicated network connection to AWS and does not run application code.",
+    "tags": [
+      "lambda",
+      "serverless"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-083",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which AWS service is object storage designed for high durability and virtually unlimited scale?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon S3 stores objects in buckets with very high durability and scales to hold effectively unlimited data, accessed over HTTP APIs.",
+    "explanationIncorrect": "EBS provides block storage volumes attached to a single EC2 instance, not massively scalable object storage. EC2 is compute, not storage. Lambda is serverless compute and does not store objects.",
+    "tags": [
+      "s3",
+      "storage"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-084",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service provides a managed relational database supporting engines like MySQL and PostgreSQL?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon CloudFront"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon RDS is a managed relational database service that handles patching, backups, and failover for engines such as MySQL, PostgreSQL, and others.",
+    "explanationIncorrect": "DynamoDB is a NoSQL key-value and document database, not a relational engine. S3 is object storage, not a database. CloudFront is a content delivery network for caching content near users, unrelated to relational databases.",
+    "tags": [
+      "rds",
+      "database"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-085",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is a fully managed NoSQL database offering single-digit millisecond performance at scale?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Aurora"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EMR"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon DynamoDB is a serverless NoSQL database that delivers consistent single-digit millisecond latency and scales automatically with demand.",
+    "explanationIncorrect": "Aurora is a relational database compatible with MySQL and PostgreSQL, not NoSQL. Redshift is a data warehouse for analytics, not a low-latency operational NoSQL store. EMR is a big-data processing service for frameworks like Spark, not a NoSQL database.",
+    "tags": [
+      "dynamodb",
+      "nosql"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-086",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is a content delivery network that caches content at edge locations close to users?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon VPC"
+      },
+      {
+        "id": "o3",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon CloudFront is a CDN that caches and serves content from edge locations near end users, reducing latency and offloading origin servers.",
+    "explanationIncorrect": "VPC is your isolated virtual network in AWS, not a CDN. CloudTrail logs API activity for auditing. SQS is a message queue service; none of these deliver cached content from edge locations.",
+    "tags": [
+      "cloudfront",
+      "cdn"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-087",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "Which service lets you provision your AWS infrastructure using templates as code so it is repeatable and version-controlled?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudFormation"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Trusted Advisor"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kinesis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudFormation defines infrastructure in templates so resources are provisioned consistently and can be versioned, reviewed, and reproduced across environments.",
+    "explanationIncorrect": "CloudWatch monitors metrics and logs but does not provision infrastructure from templates. Trusted Advisor gives best-practice recommendations, not infrastructure provisioning. Kinesis ingests and processes streaming data and is unrelated to infrastructure as code.",
+    "tags": [
+      "cloudformation",
+      "iac"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-088",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service provides a logically isolated section of the AWS cloud where you define your own network?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon VPC"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Polly"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon VPC lets you define an isolated virtual network with your own IP ranges, subnets, route tables, and gateways to control connectivity.",
+    "explanationIncorrect": "S3 is object storage, not a network. Lambda is serverless compute and does not define a network. Polly is a text-to-speech service, unrelated to networking.",
+    "tags": [
+      "vpc",
+      "networking"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-089",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service distributes incoming application traffic across multiple targets such as EC2 instances?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Elastic Load Balancing"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowmobile"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Comprehend"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elastic Load Balancing automatically spreads incoming traffic across healthy targets in one or more Availability Zones, improving availability and scalability.",
+    "explanationIncorrect": "Glacier is low-cost archival storage, not a load distributor. Snowmobile is an exabyte-scale physical data transfer service. Comprehend is a natural language processing service; none of these balance application traffic.",
+    "tags": [
+      "elb",
+      "load-balancing"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-090",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service automatically adjusts the number of EC2 instances to match demand?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon EC2 Auto Scaling"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SES"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "EC2 Auto Scaling launches or terminates instances based on policies and demand, keeping capacity matched to load while controlling cost.",
+    "explanationIncorrect": "Athena queries data in S3 and does not scale compute fleets. AWS Config tracks resource configurations, not capacity. SES is an email-sending service and has no role in adjusting instance counts.",
+    "tags": [
+      "auto-scaling",
+      "elasticity"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-091",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "A team wants to migrate large volumes of on-premises data to AWS where network transfer would take too long. Which service helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Snowball, a physical device for offline bulk data transfer"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o3",
+        "text": "AWS IAM"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Snowball ships a rugged physical device you load with data and return to AWS, which is faster and more practical than network transfer for very large datasets.",
+    "explanationIncorrect": "CloudWatch is for monitoring, not data migration. IAM manages access, not bulk transfer. SNS sends notifications; none of these move large datasets physically into AWS.",
+    "tags": [
+      "snowball",
+      "migration"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-092",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service provides scalable DNS and domain routing for applications?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon QuickSight"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Route 53 is a scalable DNS and domain name service that routes users to applications and supports health checks and routing policies.",
+    "explanationIncorrect": "EBS is block storage for EC2, not DNS. Glue is an ETL service. QuickSight is a business intelligence tool; none of these provide DNS routing.",
+    "tags": [
+      "route53",
+      "dns"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-093",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which are the three main ways customers can interact with AWS services?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The Management Console, the CLI, and the SDKs/APIs"
+      },
+      {
+        "id": "o2",
+        "text": "Only the Management Console"
+      },
+      {
+        "id": "o3",
+        "text": "Only physical mail"
+      },
+      {
+        "id": "o4",
+        "text": "Only by calling AWS Support"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "You can use AWS through the web-based Management Console, the command line interface for scripting, and the SDKs or APIs for programmatic access from your applications.",
+    "explanationIncorrect": "Limiting interaction to only the console ignores the CLI and SDKs that enable automation. Physical mail is not a way to operate AWS services. Calling AWS Support is for help, not the primary means of managing resources.",
+    "tags": [
+      "console",
+      "cli",
+      "sdk"
+    ],
+    "isSeed": true
   }
 ]
