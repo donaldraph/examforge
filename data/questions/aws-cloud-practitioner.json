@@ -137,6 +137,91 @@
     "tags": ["cloud-concepts", "global-reach", "agility"]
   },
   {
+    "id": "clf-036",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "AWS can offer lower pay-as-you-go prices because aggregated usage from many customers drives down per-unit costs. Which cloud benefit is this?",
+    "options": [
+      { "id": "o1", "text": "Economies of scale" },
+      { "id": "o2", "text": "Vendor lock-in" },
+      { "id": "o3", "text": "A fixed lifetime price guarantee" },
+      { "id": "o4", "text": "Capital expenditure" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Economies of scale mean that huge aggregated demand lets AWS achieve lower costs and pass savings on as lower pay-as-you-go prices.",
+    "explanationIncorrect": "Vendor lock-in is a risk, not a pricing benefit. AWS pricing changes over time, so a fixed lifetime guarantee is not what this describes. Capital expenditure is the upfront-purchase model the cloud moves away from. Lower prices from aggregated demand are economies of scale.",
+    "tags": ["cloud-concepts", "economies-of-scale"]
+  },
+  {
+    "id": "clf-037",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "Instead of buying servers for a guessed peak that might be wrong, the cloud lets you scale capacity up or down as needed. Which cloud design principle is this?",
+    "options": [
+      { "id": "o1", "text": "Stop guessing capacity" },
+      { "id": "o2", "text": "Maximize upfront investment" },
+      { "id": "o3", "text": "Build for a single fixed size forever" },
+      { "id": "o4", "text": "Avoid automation" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Stop guessing capacity is a core cloud principle: you scale to actual demand instead of over- or under-provisioning based on a forecast.",
+    "explanationIncorrect": "Maximizing upfront investment and building for a single fixed size are the rigid on-premises habits the cloud removes. Avoiding automation works against elastic scaling. Scaling to real demand is the stop-guessing-capacity principle.",
+    "tags": ["cloud-concepts", "capacity", "design-principles"]
+  },
+  {
+    "id": "clf-038",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "What is the primary purpose of AWS edge locations?",
+    "options": [
+      { "id": "o1", "text": "To cache and deliver content close to users (via CloudFront) for lower latency" },
+      { "id": "o2", "text": "To run your primary production databases" },
+      { "id": "o3", "text": "To store the only copy of your data" },
+      { "id": "o4", "text": "To replace Availability Zones for compute" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Edge locations are points of presence used by services like CloudFront to cache and serve content near end users, reducing latency.",
+    "explanationIncorrect": "Edge locations are not where you run primary databases or compute workloads; that happens in Regions and Availability Zones. They are not the sole store of your data. And they complement, not replace, Availability Zones. Their purpose is low-latency content delivery.",
+    "tags": ["cloud-concepts", "edge-locations", "global-infrastructure"]
+  },
+  {
+    "id": "clf-039",
+    "exam": "aws-cloud-practitioner",
+    "difficulty": "medium",
+    "domain": "Cloud Concepts",
+    "stem": "Designing a system with redundancy so that a component failure does not cause downtime describes which property?",
+    "options": [
+      { "id": "o1", "text": "High availability" },
+      { "id": "o2", "text": "Vendor lock-in" },
+      { "id": "o3", "text": "A single point of failure" },
+      { "id": "o4", "text": "Manual recovery" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "High availability means the system stays operational despite component failures, achieved through redundancy so no single failure causes downtime.",
+    "explanationIncorrect": "Vendor lock-in is a dependency risk, not a resilience property. A single point of failure is the weakness high availability eliminates. Manual recovery implies downtime while a human intervenes, the opposite of staying available. Redundant, failure-tolerant design is high availability.",
+    "tags": ["cloud-concepts", "high-availability", "redundancy"]
+  },
+  {
+    "id": "clf-040",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "A key benefit of serverless services such as AWS Lambda is that you do not manage servers and pay only for what you use. Which cloud value does this reflect?",
+    "options": [
+      { "id": "o1", "text": "No infrastructure management and pay-for-use, increasing agility" },
+      { "id": "o2", "text": "Larger upfront hardware purchases" },
+      { "id": "o3", "text": "Always-on fixed capacity you pay for continuously" },
+      { "id": "o4", "text": "Manual scaling only, done by an operator" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Serverless removes server management and bills only for actual usage, which lets teams move faster and pay only for what they consume.",
+    "explanationIncorrect": "Serverless avoids upfront hardware purchases rather than increasing them. It does not bill for always-on fixed capacity; you pay per execution. And it scales automatically rather than requiring manual operator scaling. The value is no server management plus pay-for-use.",
+    "tags": ["cloud-concepts", "serverless", "agility"]
+  },
+  {
     "id": "clf-002",
     "exam": "aws-cloud-practitioner",
     "domain": "Security and Compliance",
