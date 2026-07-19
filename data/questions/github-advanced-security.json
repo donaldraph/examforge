@@ -768,5 +768,90 @@
     "explanationCorrect": "Secret scanning examines the entire commit history and can also cover other text such as issues and pull request descriptions, giving broad coverage rather than only the current tip.",
     "explanationIncorrect": "It is not limited to the README, to large files, or to the .github directory; those arbitrary limits would miss most secrets. Coverage spans the full history and, per configuration, additional content areas.",
     "tags": ["secret-scanning", "coverage", "history"]
+  },
+  {
+    "id": "ghas-046",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "In dependabot.yml, which key controls how often version-update checks run for an ecosystem?",
+    "options": [
+      { "id": "o1", "text": "schedule.interval, set to values like daily, weekly, or monthly" },
+      { "id": "o2", "text": "cron.frequency" },
+      { "id": "o3", "text": "update.rate" },
+      { "id": "o4", "text": "on.schedule" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Each updates entry sets schedule.interval (daily, weekly, or monthly) to control how frequently Dependabot checks that ecosystem for version updates.",
+    "explanationIncorrect": "cron.frequency, update.rate, and on.schedule are not valid dependabot.yml keys; on.schedule is workflow trigger syntax, not Dependabot configuration. The cadence key is schedule.interval.",
+    "tags": ["dependabot", "schedule", "config"]
+  },
+  {
+    "id": "ghas-047",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "You want Dependabot version-update pull requests opened against a develop branch instead of the repository's default branch. Which configuration achieves this?",
+    "options": [
+      { "id": "o1", "text": "Set target-branch in the ecosystem's updates entry in dependabot.yml" },
+      { "id": "o2", "text": "Set base-ref in the workflow" },
+      { "id": "o3", "text": "Edit .git/config to change the default branch" },
+      { "id": "o4", "text": "It always targets the default branch and cannot be changed" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The target-branch option in an updates entry tells Dependabot which branch to open pull requests against, so you can direct them to develop.",
+    "explanationIncorrect": "There is no base-ref workflow setting for Dependabot's target. Editing .git/config does not change where Dependabot opens PRs. Dependabot's target is configurable, so the claim it cannot change is wrong. The key is target-branch.",
+    "tags": ["dependabot", "target-branch"]
+  },
+  {
+    "id": "ghas-048",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "You want low-risk Dependabot patch updates to merge automatically once required checks pass. What is a supported approach?",
+    "options": [
+      { "id": "o1", "text": "Enable auto-merge on the pull request (for example a workflow that approves and enables auto-merge for patch updates), gated on required status checks" },
+      { "id": "o2", "text": "Grant Dependabot admin rights to force-push directly to main" },
+      { "id": "o3", "text": "Disable CI so pull requests merge instantly" },
+      { "id": "o4", "text": "There is no way to auto-merge Dependabot pull requests" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Auto-merge lets a Dependabot pull request merge itself once its required checks pass; a common pattern is a workflow that, for patch updates, approves and enables auto-merge, keeping the merge gated on CI.",
+    "explanationIncorrect": "Force-pushing to main bypasses review and CI, which is unsafe. Disabling CI removes the very safety gate you want before an automatic merge. Auto-merge for Dependabot is supported, so claiming it is impossible is wrong. The approach is gated auto-merge.",
+    "tags": ["dependabot", "auto-merge"]
+  },
+  {
+    "id": "ghas-049",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "Your build uses a package manager the dependency graph does not parse natively. How can you still get an accurate dependency graph, and therefore Dependabot alerts, for it?",
+    "options": [
+      { "id": "o1", "text": "Submit the resolved dependencies through the Dependency submission API, for example from a build-time action" },
+      { "id": "o2", "text": "Rename your lockfile to package-lock.json so it looks like npm" },
+      { "id": "o3", "text": "Nothing can be done for unsupported ecosystems" },
+      { "id": "o4", "text": "Use secret scanning to infer the dependencies" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Dependency submission API lets a build-time job report the exact dependencies it resolved, so the dependency graph is accurate even for ecosystems GitHub does not parse from manifests, which in turn enables alerts.",
+    "explanationIncorrect": "Renaming a lockfile to look like npm would misrepresent the dependencies and break parsing. It is not true that nothing can be done; the submission API exists for this. Secret scanning finds credentials, not dependencies. The mechanism is the Dependency submission API.",
+    "tags": ["dependabot", "dependency-submission-api"]
+  },
+  {
+    "id": "ghas-050",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "You want every Dependabot pull request to automatically receive a specific label and reviewer. Where do you configure that?",
+    "options": [
+      { "id": "o1", "text": "In the ecosystem's updates entry in dependabot.yml, using the labels and reviewers keys" },
+      { "id": "o2", "text": "Only in a CODEOWNERS file" },
+      { "id": "o3", "text": "In a branch protection rule" },
+      { "id": "o4", "text": "It cannot be automated for Dependabot" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "dependabot.yml supports labels and reviewers (and assignees) on an updates entry, so Dependabot applies them automatically to the pull requests it opens.",
+    "explanationIncorrect": "CODEOWNERS can request review based on changed paths but does not set Dependabot-specific labels and is not where you configure Dependabot's own reviewers. Branch protection governs merging, not PR metadata. This is automatable, so claiming otherwise is wrong. It is set in dependabot.yml.",
+    "tags": ["dependabot", "labels", "reviewers"]
   }
 ]
