@@ -2650,5 +2650,413 @@
       "checkout"
     ],
     "isSeed": true
+  },
+  {
+    "id": "gha-081",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An organization wants to allow only actions authored by GitHub plus a short list of trusted third-party actions. Which setting enforces this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Allow select actions, enabling GitHub-authored actions and specifying an explicit allow list of others"
+      },
+      {
+        "id": "o2",
+        "text": "Disable Actions entirely for the organization"
+      },
+      {
+        "id": "o3",
+        "text": "Require all workflows to be approved manually before every run"
+      },
+      {
+        "id": "o4",
+        "text": "Set the default GITHUB_TOKEN to read-only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Actions permissions policy offers an Allow select actions mode where you can enable GitHub-created actions and add specific owner/repo patterns to an allow list, blocking everything else.",
+    "explanationIncorrect": "Disabling Actions entirely stops all workflows, not just untrusted actions, so it overshoots the requirement. Manual approval of every run is about run gating and does not restrict which actions may be referenced. Making GITHUB_TOKEN read-only reduces token permissions but places no restriction on which third-party actions a workflow can use.",
+    "tags": [
+      "policy",
+      "allow-list",
+      "governance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-082",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You register a self-hosted runner and want it available to every repository in an organization without registering it per repo. At which level do you add it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "At the organization level, optionally scoped with a runner group"
+      },
+      {
+        "id": "o2",
+        "text": "At each repository, since runners cannot be shared"
+      },
+      {
+        "id": "o3",
+        "text": "At the enterprise level only, never the organization"
+      },
+      {
+        "id": "o4",
+        "text": "Inside each workflow file with a runner: block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Registering the runner at the organization level makes it usable by that org's repositories, and runner groups let you control which repositories may target it.",
+    "explanationIncorrect": "Runners can be shared, so registering per repository is unnecessary and defeats the goal. Enterprise-level runners exist too, but they are not the only option and the requirement is org-wide sharing, which the org level satisfies. There is no runner: block that registers a runner from within a workflow; workflows only select runners via runs-on labels.",
+    "tags": [
+      "self-hosted-runners",
+      "runner-groups",
+      "organization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-083",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "How does a workflow target a specific self-hosted runner that has the label gpu?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "runs-on: [self-hosted, gpu]"
+      },
+      {
+        "id": "o2",
+        "text": "runs-on: gpu-runner-only"
+      },
+      {
+        "id": "o3",
+        "text": "uses: self-hosted/gpu"
+      },
+      {
+        "id": "o4",
+        "text": "runner: label: gpu"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Self-hosted runners are selected by labels; listing multiple labels like [self-hosted, gpu] requires a runner that carries all of them, targeting your GPU machine.",
+    "explanationIncorrect": "A single arbitrary string like gpu-runner-only only matches if a runner literally has that exact label, and it omits the self-hosted label that distinguishes your fleet from GitHub-hosted runners. uses: is for referencing actions, not selecting runners. There is no runner: label key; runner selection is expressed solely through runs-on labels.",
+    "tags": [
+      "self-hosted-runners",
+      "labels",
+      "runs-on"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-084",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Which mechanism lets an organization publish a starter workflow that repositories can adopt from the Actions tab?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A workflow-templates directory in the organization's .github repository"
+      },
+      {
+        "id": "o2",
+        "text": "A required-workflows setting on each repo"
+      },
+      {
+        "id": "o3",
+        "text": "A branch named starter in every repository"
+      },
+      {
+        "id": "o4",
+        "text": "Enabling GitHub Pages for the organization"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Placing workflow YAML plus a JSON properties file in the workflow-templates directory of the org's special .github repository surfaces those templates as starter workflows for member repositories.",
+    "explanationIncorrect": "Required workflows enforce running a workflow but are a different feature from offering an adoptable starter template. A branch named starter has no special meaning to Actions and would not appear as a template. GitHub Pages publishes static websites and is entirely unrelated to distributing starter workflows.",
+    "tags": [
+      "starter-workflows",
+      "org-.github",
+      "templates"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-085",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "For security, why is it recommended not to run self-hosted runners on public repositories?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Forked pull requests could run untrusted code on your infrastructure"
+      },
+      {
+        "id": "o2",
+        "text": "Public repositories cannot use self-hosted runners at all"
+      },
+      {
+        "id": "o3",
+        "text": "Self-hosted runners cannot access the internet"
+      },
+      {
+        "id": "o4",
+        "text": "GitHub bills extra minutes for public self-hosted runs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A malicious fork can open a pull request whose workflow executes arbitrary code; on a self-hosted runner that code runs on your own machine and network, which is why GitHub warns against it for public repos.",
+    "explanationIncorrect": "It is technically possible to attach self-hosted runners to public repositories; the guidance is about risk, not an outright block. Self-hosted runners typically do have internet access, so that is not the concern. GitHub does not bill minutes for self-hosted runners at all since you provide the hardware, so extra billing is not the reason.",
+    "tags": [
+      "security",
+      "self-hosted-runners",
+      "forks"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-086",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An organization admin wants secrets that many repositories share, managed centrally. What is the right feature?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Organization-level secrets with a repository access policy"
+      },
+      {
+        "id": "o2",
+        "text": "Copying the same repository secret into each repo by hand"
+      },
+      {
+        "id": "o3",
+        "text": "Committing the secret to a shared config file"
+      },
+      {
+        "id": "o4",
+        "text": "Storing the secret as an environment variable in each workflow"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization secrets are defined once and made available to selected or all repositories through an access policy, giving central management without duplication.",
+    "explanationIncorrect": "Hand-copying a repository secret into every repo is exactly the duplication and drift that org secrets eliminate. Committing a secret to a file exposes it in the repository history and is a serious security mistake. Putting the value in a plain env variable in each workflow neither centralises it nor keeps it secret, since env values are visible in the workflow definition.",
+    "tags": [
+      "secrets",
+      "organization",
+      "governance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-087",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Which report helps an enterprise understand how many Actions minutes and storage are being consumed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The billing and usage metrics for Actions in the organization or enterprise settings"
+      },
+      {
+        "id": "o2",
+        "text": "The repository's Insights traffic graph"
+      },
+      {
+        "id": "o3",
+        "text": "The Dependency graph"
+      },
+      {
+        "id": "o4",
+        "text": "The Security overview"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Actions minute and storage consumption is reported under the billing and usage sections of organization or enterprise settings, where you can also download usage reports.",
+    "explanationIncorrect": "The Insights traffic graph tracks views and clones of a repository, not Actions consumption. The Dependency graph lists software dependencies for security and does not measure compute usage. The Security overview aggregates code and secret scanning alerts, which is unrelated to minutes and storage billing.",
+    "tags": [
+      "billing",
+      "usage",
+      "enterprise"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-088",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You want to restrict the default permissions of GITHUB_TOKEN across all repositories in an organization to read-only by default. Where is this best set?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In the organization Actions settings, choosing the read-only default workflow permissions"
+      },
+      {
+        "id": "o2",
+        "text": "By editing every workflow to add permissions: read-all"
+      },
+      {
+        "id": "o3",
+        "text": "By rotating the token manually each day"
+      },
+      {
+        "id": "o4",
+        "text": "By disabling the GITHUB_TOKEN feature"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization Actions settings include a default workflow permissions choice; setting it to read-only applies that baseline to repositories, and workflows can still request more with an explicit permissions block.",
+    "explanationIncorrect": "Editing every workflow is error-prone and does not enforce a baseline for new or unmodified workflows the way the org setting does. GITHUB_TOKEN is minted per run and does not need manual daily rotation, so that does not address default permissions. Disabling the token would break most workflows that need any repository access, which is far broader than tightening the default.",
+    "tags": [
+      "GITHUB_TOKEN",
+      "permissions",
+      "governance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-089",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "What is the purpose of a runner group?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To control which organizations or repositories may use a set of self-hosted runners"
+      },
+      {
+        "id": "o2",
+        "text": "To automatically scale GitHub-hosted runners"
+      },
+      {
+        "id": "o3",
+        "text": "To group workflow jobs so they share a runner"
+      },
+      {
+        "id": "o4",
+        "text": "To assign labels to GitHub-hosted runners"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Runner groups are an access-control boundary for self-hosted runners, letting admins decide which repositories or organizations are allowed to send jobs to the runners in that group.",
+    "explanationIncorrect": "Runner groups do not scale GitHub-hosted runners; those scale automatically and are not organised into your groups. They do not cause jobs to share a runner; each job still gets its own runner assignment. Labels apply to runners for targeting, but a runner group is about access scope, not label assignment on GitHub-hosted machines.",
+    "tags": [
+      "runner-groups",
+      "access-control",
+      "self-hosted-runners"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-090",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Which approach keeps sensitive cloud credentials out of long-lived secrets when workflows deploy to a cloud provider?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "OpenID Connect (OIDC) federation to obtain short-lived credentials at run time"
+      },
+      {
+        "id": "o2",
+        "text": "Storing the access keys as organization secrets"
+      },
+      {
+        "id": "o3",
+        "text": "Printing the credentials to the log for auditing"
+      },
+      {
+        "id": "o4",
+        "text": "Hard-coding the keys in the workflow file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "OIDC lets a workflow exchange a signed identity token for short-lived cloud credentials via a trust policy, removing the need to store static long-lived keys as secrets.",
+    "explanationIncorrect": "Storing static access keys as org secrets still keeps long-lived credentials around, which is exactly the risk OIDC removes. Printing credentials to logs exposes them even though the runner masks known secrets, and it is never an auditing practice. Hard-coding keys in the workflow file commits them to the repository, the worst option for secret handling.",
+    "tags": [
+      "oidc",
+      "security",
+      "cloud"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-091",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "An enterprise wants certain reusable workflows to run on every repository regardless of what the repo's own workflows contain. Which feature fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Required workflows configured at the organization level"
+      },
+      {
+        "id": "o2",
+        "text": "A branch protection rule requiring status checks"
+      },
+      {
+        "id": "o3",
+        "text": "A CODEOWNERS file listing the security team"
+      },
+      {
+        "id": "o4",
+        "text": "A repository ruleset limiting who can push"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Required (organization) workflows let admins enforce that a specified reusable workflow runs on pull requests across selected repositories, independent of the repositories' own workflow files.",
+    "explanationIncorrect": "Branch protection status checks can require a check to pass but do not themselves inject or run a centrally defined workflow across many repositories. CODEOWNERS routes review requests and does not run any workflow. A ruleset limiting who can push governs write access, not the automatic execution of an enforced workflow.",
+    "tags": [
+      "required-workflows",
+      "governance",
+      "organization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-092",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Why might an organization mirror popular third-party actions into an internal repository and reference those copies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To pin a reviewed version and reduce supply-chain risk from upstream changes"
+      },
+      {
+        "id": "o2",
+        "text": "Because external actions cannot be used without mirroring"
+      },
+      {
+        "id": "o3",
+        "text": "To make workflows run faster by avoiding the network"
+      },
+      {
+        "id": "o4",
+        "text": "Because GitHub deletes third-party actions after 90 days"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Mirroring lets a team vet a specific version of an action, control when it updates, and insulate their workflows from unexpected or malicious upstream changes, tightening the software supply chain.",
+    "explanationIncorrect": "External actions can be used directly, so mirroring is a security choice rather than a requirement. Performance is not the motivation; the runner still checks out the action, and any speed difference is negligible compared with the supply-chain benefit. GitHub does not delete third-party actions after 90 days, so that is not a reason to mirror.",
+    "tags": [
+      "supply-chain",
+      "security",
+      "governance"
+    ],
+    "isSeed": true
   }
 ]
