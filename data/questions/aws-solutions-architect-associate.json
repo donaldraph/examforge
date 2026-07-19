@@ -6,15 +6,31 @@
     "difficulty": "medium",
     "stem": "You need an Amazon RDS database to automatically fail over to a standby in another Availability Zone if the primary fails, with no application-side changes and synchronous replication. Which feature do you enable?",
     "options": [
-      { "id": "o1", "text": "A Multi-AZ deployment" },
-      { "id": "o2", "text": "A read replica in the same Availability Zone" },
-      { "id": "o3", "text": "A larger instance class" },
-      { "id": "o4", "text": "S3 Cross-Region Replication of the database files" }
+      {
+        "id": "o1",
+        "text": "A Multi-AZ deployment"
+      },
+      {
+        "id": "o2",
+        "text": "A read replica in the same Availability Zone"
+      },
+      {
+        "id": "o3",
+        "text": "A larger instance class"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Cross-Region Replication of the database files"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Multi-AZ maintains a synchronously replicated standby in a second Availability Zone and fails over to it automatically using the same endpoint, so the application keeps using one address and needs no changes.",
     "explanationIncorrect": "A read replica is asynchronous and exists to scale read traffic; it is not an automatic failover target and would have to be promoted manually, losing the automation and risking data behind the primary. A larger instance class improves performance but does nothing for availability if that single instance's AZ fails. S3 Cross-Region Replication copies objects between buckets and is not a mechanism for RDS failover at all. Automatic, synchronous, cross-AZ standby with seamless failover is the Multi-AZ deployment.",
-    "tags": ["resilience", "rds", "multi-az"],
+    "tags": [
+      "resilience",
+      "rds",
+      "multi-az"
+    ],
     "isSeed": true
   },
   {
@@ -24,15 +40,31 @@
     "difficulty": "medium",
     "stem": "You want a web tier that automatically replaces failed instances and stays available even if an entire Availability Zone fails, while distributing traffic across healthy instances. Which combination achieves this?",
     "options": [
-      { "id": "o1", "text": "An Auto Scaling group spanning multiple Availability Zones behind an Application Load Balancer" },
-      { "id": "o2", "text": "A single large instance with a static Elastic IP" },
-      { "id": "o3", "text": "One instance per Region with manual DNS switching" },
-      { "id": "o4", "text": "A NAT gateway placed in front of the instances" }
+      {
+        "id": "o1",
+        "text": "An Auto Scaling group spanning multiple Availability Zones behind an Application Load Balancer"
+      },
+      {
+        "id": "o2",
+        "text": "A single large instance with a static Elastic IP"
+      },
+      {
+        "id": "o3",
+        "text": "One instance per Region with manual DNS switching"
+      },
+      {
+        "id": "o4",
+        "text": "A NAT gateway placed in front of the instances"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "An Auto Scaling group across multiple AZs replaces unhealthy instances and survives an AZ failure, and the load balancer spreads traffic only to healthy targets, giving both self-healing and high availability.",
     "explanationIncorrect": "A single instance is a single point of failure regardless of its Elastic IP. One instance per Region with manual DNS switching is slow and error-prone, not automatic. A NAT gateway provides outbound internet access for private subnets; it does not balance or heal the web tier. The resilient pattern is a multi-AZ Auto Scaling group behind a load balancer.",
-    "tags": ["resilience", "auto-scaling", "load-balancing"]
+    "tags": [
+      "resilience",
+      "auto-scaling",
+      "load-balancing"
+    ]
   },
   {
     "id": "saa-017",
@@ -41,15 +73,31 @@
     "difficulty": "medium",
     "stem": "You run a primary site and a standby site and want DNS to automatically direct users to the standby if the primary fails a health check. Which Route 53 feature does this?",
     "options": [
-      { "id": "o1", "text": "Failover routing with health checks" },
-      { "id": "o2", "text": "Simple routing" },
-      { "id": "o3", "text": "Weighted routing with fixed weights" },
-      { "id": "o4", "text": "A single CNAME pointing at both sites" }
+      {
+        "id": "o1",
+        "text": "Failover routing with health checks"
+      },
+      {
+        "id": "o2",
+        "text": "Simple routing"
+      },
+      {
+        "id": "o3",
+        "text": "Weighted routing with fixed weights"
+      },
+      {
+        "id": "o4",
+        "text": "A single CNAME pointing at both sites"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Route 53 failover routing uses health checks to serve the primary while it is healthy and automatically switch DNS answers to the standby when the primary fails, which is the active-passive pattern described.",
     "explanationIncorrect": "Simple routing returns a fixed record with no health awareness, so it cannot fail over. Weighted routing splits traffic by proportion and does not by itself redirect on failure. A CNAME cannot point at two sites or perform health-based switching. Automatic health-based redirection is failover routing.",
-    "tags": ["resilience", "route53", "failover"]
+    "tags": [
+      "resilience",
+      "route53",
+      "failover"
+    ]
   },
   {
     "id": "saa-018",
@@ -58,15 +106,31 @@
     "difficulty": "medium",
     "stem": "For disaster recovery you must automatically keep a copy of critical S3 objects in a second AWS Region. Which feature provides this?",
     "options": [
-      { "id": "o1", "text": "S3 Cross-Region Replication (CRR)" },
-      { "id": "o2", "text": "S3 Versioning within a single Region" },
-      { "id": "o3", "text": "An EBS snapshot of the bucket" },
-      { "id": "o4", "text": "A manual copy onto an EC2 local disk" }
+      {
+        "id": "o1",
+        "text": "S3 Cross-Region Replication (CRR)"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Versioning within a single Region"
+      },
+      {
+        "id": "o3",
+        "text": "An EBS snapshot of the bucket"
+      },
+      {
+        "id": "o4",
+        "text": "A manual copy onto an EC2 local disk"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "S3 Cross-Region Replication automatically copies new objects to a bucket in another Region, giving you a geographically separate copy for disaster recovery.",
     "explanationIncorrect": "Versioning within one Region protects against overwrites but does not survive a Region-wide event. EBS snapshots apply to block volumes, not S3 buckets. A manual copy to an EC2 disk is neither automatic nor durable. Cross-Region durability for S3 is CRR.",
-    "tags": ["resilience", "s3", "cross-region-replication"]
+    "tags": [
+      "resilience",
+      "s3",
+      "cross-region-replication"
+    ]
   },
   {
     "id": "saa-019",
@@ -75,15 +139,31 @@
     "difficulty": "hard",
     "stem": "You need a DynamoDB table that is active in multiple Regions with low-latency local reads and writes and automatic multi-Region replication. Which feature provides this?",
     "options": [
-      { "id": "o1", "text": "DynamoDB global tables" },
-      { "id": "o2", "text": "A single-Region table with on-demand capacity" },
-      { "id": "o3", "text": "DynamoDB Accelerator (DAX) alone" },
-      { "id": "o4", "text": "Manual export and import between Regions" }
+      {
+        "id": "o1",
+        "text": "DynamoDB global tables"
+      },
+      {
+        "id": "o2",
+        "text": "A single-Region table with on-demand capacity"
+      },
+      {
+        "id": "o3",
+        "text": "DynamoDB Accelerator (DAX) alone"
+      },
+      {
+        "id": "o4",
+        "text": "Manual export and import between Regions"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "DynamoDB global tables replicate a table across multiple Regions with multi-active read/write and automatic replication, delivering low-latency local access and cross-Region resilience.",
     "explanationIncorrect": "A single-Region table, whatever its capacity mode, provides no multi-Region resilience. DAX is an in-memory cache in front of DynamoDB for read latency, not cross-Region replication. Manual export and import is neither continuous nor low-latency. Multi-Region active tables are DynamoDB global tables.",
-    "tags": ["resilience", "dynamodb", "global-tables"]
+    "tags": [
+      "resilience",
+      "dynamodb",
+      "global-tables"
+    ]
   },
   {
     "id": "saa-020",
@@ -92,15 +172,31 @@
     "difficulty": "hard",
     "stem": "A company needs near-zero recovery time and keeps a scaled-down but fully functional copy of its workload always running in a second Region, ready to scale up on failover. Which disaster-recovery strategy is this?",
     "options": [
-      { "id": "o1", "text": "Warm standby" },
-      { "id": "o2", "text": "Backup and restore" },
-      { "id": "o3", "text": "Pilot light with nothing actively serving" },
-      { "id": "o4", "text": "A single-AZ deployment" }
+      {
+        "id": "o1",
+        "text": "Warm standby"
+      },
+      {
+        "id": "o2",
+        "text": "Backup and restore"
+      },
+      {
+        "id": "o3",
+        "text": "Pilot light with nothing actively serving"
+      },
+      {
+        "id": "o4",
+        "text": "A single-AZ deployment"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Warm standby keeps a smaller but running copy of the environment in another Region that can be scaled up quickly, giving low recovery time at moderate cost.",
     "explanationIncorrect": "Backup and restore has the longest recovery time because you rebuild from backups after a disaster. Pilot light keeps only core elements running (like a replicated database) with the rest switched off, so recovery is slower than warm standby. A single-AZ deployment offers no cross-Region recovery at all. An always-running scaled-down copy is warm standby.",
-    "tags": ["resilience", "disaster-recovery", "warm-standby"]
+    "tags": [
+      "resilience",
+      "disaster-recovery",
+      "warm-standby"
+    ]
   },
   {
     "id": "saa-021",
@@ -109,15 +205,31 @@
     "difficulty": "medium",
     "stem": "Incoming orders must not be lost if the processing service is temporarily down, and failed messages should be retried and eventually isolated. How do you design the intake?",
     "options": [
-      { "id": "o1", "text": "Put orders on an SQS queue; workers consume them, and a dead-letter queue captures messages that repeatedly fail" },
-      { "id": "o2", "text": "Call the processing service synchronously and drop the order if it is unavailable" },
-      { "id": "o3", "text": "Hold orders in the web server's memory until processing recovers" },
-      { "id": "o4", "text": "Write each order to a single EC2 instance's local disk" }
+      {
+        "id": "o1",
+        "text": "Put orders on an SQS queue; workers consume them, and a dead-letter queue captures messages that repeatedly fail"
+      },
+      {
+        "id": "o2",
+        "text": "Call the processing service synchronously and drop the order if it is unavailable"
+      },
+      {
+        "id": "o3",
+        "text": "Hold orders in the web server's memory until processing recovers"
+      },
+      {
+        "id": "o4",
+        "text": "Write each order to a single EC2 instance's local disk"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "An SQS queue durably holds orders until workers can process them, decoupling intake from processing, and a dead-letter queue isolates messages that fail repeatedly so they can be inspected without blocking others.",
     "explanationIncorrect": "A synchronous call that drops the order on failure loses data, which is the exact requirement to avoid. Web server memory is volatile and lost on restart or scale-in. A single instance's local disk is neither durable nor shared and disappears if the instance fails. Durable, retryable intake uses SQS with a dead-letter queue.",
-    "tags": ["resilience", "sqs", "dead-letter-queue"]
+    "tags": [
+      "resilience",
+      "sqs",
+      "dead-letter-queue"
+    ]
   },
   {
     "id": "saa-022",
@@ -126,15 +238,31 @@
     "difficulty": "medium",
     "stem": "You want to be able to restore an RDS database to any second within the retention window after a bad data change. Which capability enables this?",
     "options": [
-      { "id": "o1", "text": "Automated backups with point-in-time recovery" },
-      { "id": "o2", "text": "A single one-time manual snapshot" },
-      { "id": "o3", "text": "Multi-AZ, because the standby is a backup" },
-      { "id": "o4", "text": "Read replicas, because they serve as backups" }
+      {
+        "id": "o1",
+        "text": "Automated backups with point-in-time recovery"
+      },
+      {
+        "id": "o2",
+        "text": "A single one-time manual snapshot"
+      },
+      {
+        "id": "o3",
+        "text": "Multi-AZ, because the standby is a backup"
+      },
+      {
+        "id": "o4",
+        "text": "Read replicas, because they serve as backups"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "RDS automated backups capture transaction logs, enabling point-in-time recovery to any moment within the retention period, which is what you need to roll back a bad change precisely.",
     "explanationIncorrect": "A single manual snapshot only restores to that one point in time, not any second. Multi-AZ keeps a synchronous standby for failover; it replicates bad changes too and is not a backup. Read replicas scale reads and also receive the bad change; they are not backups. Precise rollback is automated backups with point-in-time recovery.",
-    "tags": ["resilience", "rds", "point-in-time-recovery"]
+    "tags": [
+      "resilience",
+      "rds",
+      "point-in-time-recovery"
+    ]
   },
   {
     "id": "saa-023",
@@ -143,15 +271,31 @@
     "difficulty": "medium",
     "stem": "To let an Auto Scaling group add and remove web servers freely without breaking logged-in user sessions, where should session state be kept?",
     "options": [
-      { "id": "o1", "text": "In an external store such as Amazon ElastiCache or DynamoDB, keeping the instances stateless" },
-      { "id": "o2", "text": "On each instance's local disk" },
-      { "id": "o3", "text": "In the instance's RAM only" },
-      { "id": "o4", "text": "Baked into the AMI at build time" }
+      {
+        "id": "o1",
+        "text": "In an external store such as Amazon ElastiCache or DynamoDB, keeping the instances stateless"
+      },
+      {
+        "id": "o2",
+        "text": "On each instance's local disk"
+      },
+      {
+        "id": "o3",
+        "text": "In the instance's RAM only"
+      },
+      {
+        "id": "o4",
+        "text": "Baked into the AMI at build time"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Externalizing session state to a shared store like ElastiCache or DynamoDB makes the web instances stateless, so any instance can serve any user and scaling in or out does not lose sessions.",
     "explanationIncorrect": "Local disk and RAM tie a session to one instance, so terminating that instance during scale-in loses the session. Baking state into the AMI is static and cannot hold live per-user sessions. Stateless instances with an external session store is the resilient design.",
-    "tags": ["resilience", "stateless", "session-state"]
+    "tags": [
+      "resilience",
+      "stateless",
+      "session-state"
+    ]
   },
   {
     "id": "saa-041",
@@ -160,15 +304,30 @@
     "difficulty": "medium",
     "stem": "You need centralized, policy-based backups across EBS, RDS, DynamoDB, and EFS with consistent retention rules. Which service provides this?",
     "options": [
-      { "id": "o1", "text": "AWS Backup" },
-      { "id": "o2", "text": "Manually taking snapshots in each service separately" },
-      { "id": "o3", "text": "S3 Versioning" },
-      { "id": "o4", "text": "CloudWatch alarms" }
+      {
+        "id": "o1",
+        "text": "AWS Backup"
+      },
+      {
+        "id": "o2",
+        "text": "Manually taking snapshots in each service separately"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Versioning"
+      },
+      {
+        "id": "o4",
+        "text": "CloudWatch alarms"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Backup centrally manages and automates backups across many services with backup plans and retention policies, so you do not script per-service snapshots.",
     "explanationIncorrect": "Manual per-service snapshots are exactly the fragmented approach AWS Backup consolidates. S3 Versioning protects object overwrites in one bucket, not multi-service backups. CloudWatch alarms trigger on metrics; they do not take backups. Centralized policy-based backup is AWS Backup.",
-    "tags": ["resilience", "aws-backup"]
+    "tags": [
+      "resilience",
+      "aws-backup"
+    ]
   },
   {
     "id": "saa-042",
@@ -177,15 +336,31 @@
     "difficulty": "medium",
     "stem": "You want a highly available MySQL-compatible database that fails over in seconds and whose read replicas can also serve as failover targets. Which service fits?",
     "options": [
-      { "id": "o1", "text": "Amazon Aurora" },
-      { "id": "o2", "text": "A single MySQL instance you run on one EC2 instance" },
-      { "id": "o3", "text": "Amazon DynamoDB" },
-      { "id": "o4", "text": "Amazon Redshift" }
+      {
+        "id": "o1",
+        "text": "Amazon Aurora"
+      },
+      {
+        "id": "o2",
+        "text": "A single MySQL instance you run on one EC2 instance"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Redshift"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Aurora is a MySQL- and PostgreSQL-compatible managed database with fast automatic failover and replicas that can be promoted, giving strong availability with minimal disruption.",
     "explanationIncorrect": "A single self-managed MySQL instance on one EC2 is a single point of failure with no automatic failover. DynamoDB is NoSQL, not MySQL-compatible. Redshift is an analytics warehouse, not an OLTP database with second-level failover. The fit is Amazon Aurora.",
-    "tags": ["resilience", "aurora", "failover"]
+    "tags": [
+      "resilience",
+      "aurora",
+      "failover"
+    ]
   },
   {
     "id": "saa-043",
@@ -194,15 +369,31 @@
     "difficulty": "medium",
     "stem": "An EC2 instance behind an Application Load Balancer in an Auto Scaling group becomes unhealthy, and the group uses ELB health checks. What happens?",
     "options": [
-      { "id": "o1", "text": "The Auto Scaling group terminates the unhealthy instance and launches a replacement automatically" },
-      { "id": "o2", "text": "The whole application goes down until an administrator intervenes" },
-      { "id": "o3", "text": "Traffic keeps being sent to the unhealthy instance indefinitely" },
-      { "id": "o4", "text": "The Auto Scaling group deletes itself" }
+      {
+        "id": "o1",
+        "text": "The Auto Scaling group terminates the unhealthy instance and launches a replacement automatically"
+      },
+      {
+        "id": "o2",
+        "text": "The whole application goes down until an administrator intervenes"
+      },
+      {
+        "id": "o3",
+        "text": "Traffic keeps being sent to the unhealthy instance indefinitely"
+      },
+      {
+        "id": "o4",
+        "text": "The Auto Scaling group deletes itself"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "With ELB health checks, the Auto Scaling group treats a failing instance as unhealthy, terminates it, and launches a replacement to maintain the desired capacity, so the tier self-heals.",
     "explanationIncorrect": "The application does not go down because healthy instances keep serving and a replacement is launched. The load balancer stops routing to an unhealthy target rather than sending traffic to it indefinitely. The Auto Scaling group does not delete itself. It replaces the unhealthy instance automatically.",
-    "tags": ["resilience", "auto-scaling", "self-healing"]
+    "tags": [
+      "resilience",
+      "auto-scaling",
+      "self-healing"
+    ]
   },
   {
     "id": "saa-044",
@@ -211,15 +402,31 @@
     "difficulty": "hard",
     "stem": "For the highest resilience and lowest latency, you run full application stacks in two Regions serving live traffic simultaneously. Which disaster-recovery strategy is this?",
     "options": [
-      { "id": "o1", "text": "Multi-site active-active" },
-      { "id": "o2", "text": "Backup and restore" },
-      { "id": "o3", "text": "Pilot light" },
-      { "id": "o4", "text": "A single-AZ deployment" }
+      {
+        "id": "o1",
+        "text": "Multi-site active-active"
+      },
+      {
+        "id": "o2",
+        "text": "Backup and restore"
+      },
+      {
+        "id": "o3",
+        "text": "Pilot light"
+      },
+      {
+        "id": "o4",
+        "text": "A single-AZ deployment"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Multi-site active-active runs full stacks in multiple Regions handling live traffic at once, giving the lowest recovery time and the ability to absorb a Region loss, at the highest cost and complexity.",
     "explanationIncorrect": "Backup and restore has the longest recovery time, rebuilding from backups after a disaster. Pilot light keeps only core components running and scales up on failover, so it is not serving full live traffic in both Regions. A single-AZ deployment offers no cross-Region resilience. Live traffic in multiple Regions is active-active.",
-    "tags": ["resilience", "active-active", "multi-region"]
+    "tags": [
+      "resilience",
+      "active-active",
+      "multi-region"
+    ]
   },
   {
     "id": "saa-045",
@@ -228,15 +435,31 @@
     "difficulty": "medium",
     "stem": "Why does placing an Amazon SQS queue between a producer and a consumer improve resilience?",
     "options": [
-      { "id": "o1", "text": "Messages persist in the queue while the consumer is unavailable and are processed once it recovers, so work is not lost" },
-      { "id": "o2", "text": "It automatically encrypts the database for you" },
-      { "id": "o3", "text": "It provides DNS-based failover between Regions" },
-      { "id": "o4", "text": "It reduces the number of Availability Zones you need to one" }
+      {
+        "id": "o1",
+        "text": "Messages persist in the queue while the consumer is unavailable and are processed once it recovers, so work is not lost"
+      },
+      {
+        "id": "o2",
+        "text": "It automatically encrypts the database for you"
+      },
+      {
+        "id": "o3",
+        "text": "It provides DNS-based failover between Regions"
+      },
+      {
+        "id": "o4",
+        "text": "It reduces the number of Availability Zones you need to one"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The queue durably holds messages independently of the consumer, so a temporary consumer outage does not drop work; the backlog is processed when the consumer comes back, decoupling the two tiers.",
     "explanationIncorrect": "SQS does not encrypt databases; that is unrelated. It does not perform DNS failover; that is Route 53. It does not reduce your Availability Zone needs; SQS is itself regionally redundant but that is not the reason it helps here. The resilience benefit is durable buffering of messages.",
-    "tags": ["resilience", "sqs", "decoupling"]
+    "tags": [
+      "resilience",
+      "sqs",
+      "decoupling"
+    ]
   },
   {
     "id": "saa-002",
@@ -245,15 +468,31 @@
     "difficulty": "medium",
     "stem": "Your web tier sends work to a processing tier, but traffic spikes overwhelm the workers and requests are lost. You want to decouple the tiers so bursts are buffered and processed at the workers' own pace. Which service fits best?",
     "options": [
-      { "id": "o1", "text": "Amazon SQS" },
-      { "id": "o2", "text": "Amazon Route 53" },
-      { "id": "o3", "text": "AWS Direct Connect" },
-      { "id": "o4", "text": "Amazon CloudWatch" }
+      {
+        "id": "o1",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Direct Connect"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon CloudWatch"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "An Amazon SQS queue sits between the tiers and absorbs bursts: producers enqueue messages and workers pull them at whatever rate they can sustain, so spikes are buffered instead of dropped.",
     "explanationIncorrect": "Amazon Route 53 is DNS; it resolves names and can route or health-check endpoints, but it does not buffer application work between tiers. AWS Direct Connect is a dedicated private network link between your data center and AWS; it is about connectivity, not decoupling application components. Amazon CloudWatch observes metrics and logs and can trigger scaling, but it does not hold in-flight requests. The buffer that decouples producers from consumers is an Amazon SQS queue.",
-    "tags": ["performance", "decoupling", "sqs"],
+    "tags": [
+      "performance",
+      "decoupling",
+      "sqs"
+    ],
     "isSeed": true
   },
   {
@@ -263,15 +502,31 @@
     "difficulty": "medium",
     "stem": "Users worldwide report slow load times for images and static assets served from a single-Region S3 bucket. How do you improve delivery performance globally?",
     "options": [
-      { "id": "o1", "text": "Put Amazon CloudFront in front of the bucket to cache content at edge locations near users" },
-      { "id": "o2", "text": "Move the bucket to a more expensive storage class" },
-      { "id": "o3", "text": "Enable S3 Versioning on the bucket" },
-      { "id": "o4", "text": "Increase the size of an EC2 instance" }
+      {
+        "id": "o1",
+        "text": "Put Amazon CloudFront in front of the bucket to cache content at edge locations near users"
+      },
+      {
+        "id": "o2",
+        "text": "Move the bucket to a more expensive storage class"
+      },
+      {
+        "id": "o3",
+        "text": "Enable S3 Versioning on the bucket"
+      },
+      {
+        "id": "o4",
+        "text": "Increase the size of an EC2 instance"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "CloudFront caches content at edge locations close to users and serves each request from the nearest edge, dramatically reducing latency for a globally distributed audience.",
     "explanationIncorrect": "A different storage class changes cost and retrieval characteristics, not global delivery latency. Versioning tracks object history and does nothing for performance. Resizing an EC2 instance is unrelated to serving static objects from S3. Global delivery acceleration is CloudFront.",
-    "tags": ["performance", "cloudfront", "caching"]
+    "tags": [
+      "performance",
+      "cloudfront",
+      "caching"
+    ]
   },
   {
     "id": "saa-025",
@@ -280,15 +535,31 @@
     "difficulty": "medium",
     "stem": "A read-heavy DynamoDB workload needs microsecond read latency for frequently repeated reads. Which caching layer is purpose-built for DynamoDB?",
     "options": [
-      { "id": "o1", "text": "DynamoDB Accelerator (DAX)" },
-      { "id": "o2", "text": "Amazon CloudFront" },
-      { "id": "o3", "text": "Amazon RDS read replicas" },
-      { "id": "o4", "text": "Amazon S3 Transfer Acceleration" }
+      {
+        "id": "o1",
+        "text": "DynamoDB Accelerator (DAX)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon RDS read replicas"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon S3 Transfer Acceleration"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "DAX is an in-memory cache built specifically for DynamoDB, delivering microsecond read latency for cached items without changing application logic significantly.",
     "explanationIncorrect": "CloudFront caches web content at edges, not DynamoDB item reads. RDS read replicas apply to relational databases, not DynamoDB. S3 Transfer Acceleration speeds uploads to S3 over long distances and is unrelated to DynamoDB. The DynamoDB-specific cache is DAX.",
-    "tags": ["performance", "dax", "dynamodb"]
+    "tags": [
+      "performance",
+      "dax",
+      "dynamodb"
+    ]
   },
   {
     "id": "saa-026",
@@ -297,15 +568,31 @@
     "difficulty": "medium",
     "stem": "Your relational database is read-bound by heavy reporting queries that slow the primary. What scales read throughput while keeping writes on the primary?",
     "options": [
-      { "id": "o1", "text": "One or more RDS read replicas that offload read queries" },
-      { "id": "o2", "text": "Multi-AZ, whose standby serves read traffic" },
-      { "id": "o3", "text": "A larger EBS volume on the primary" },
-      { "id": "o4", "text": "Disabling automated backups" }
+      {
+        "id": "o1",
+        "text": "One or more RDS read replicas that offload read queries"
+      },
+      {
+        "id": "o2",
+        "text": "Multi-AZ, whose standby serves read traffic"
+      },
+      {
+        "id": "o3",
+        "text": "A larger EBS volume on the primary"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling automated backups"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "RDS read replicas take read traffic off the primary by serving queries from asynchronous copies, which scales read throughput while writes continue on the primary.",
     "explanationIncorrect": "A Multi-AZ standby is for failover and does not serve read traffic, so it does not offload reads. A larger EBS volume adds storage, not read scalability. Disabling backups risks data and does nothing for read load. Read scaling comes from read replicas.",
-    "tags": ["performance", "rds", "read-replicas"]
+    "tags": [
+      "performance",
+      "rds",
+      "read-replicas"
+    ]
   },
   {
     "id": "saa-027",
@@ -314,15 +601,31 @@
     "difficulty": "medium",
     "stem": "You must ingest and process a high-throughput stream of clickstream events in near real time, with multiple consumers able to read the stream. Which service is designed for this?",
     "options": [
-      { "id": "o1", "text": "Amazon Kinesis Data Streams" },
-      { "id": "o2", "text": "An Amazon SQS queue used as a long-term data warehouse" },
-      { "id": "o3", "text": "Amazon Redshift, ingesting each event individually in real time" },
-      { "id": "o4", "text": "Amazon S3 Glacier" }
+      {
+        "id": "o1",
+        "text": "Amazon Kinesis Data Streams"
+      },
+      {
+        "id": "o2",
+        "text": "An Amazon SQS queue used as a long-term data warehouse"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Redshift, ingesting each event individually in real time"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon S3 Glacier"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Kinesis Data Streams is built for high-throughput real-time streaming, retaining records so multiple consumers can read and process the same stream in near real time.",
     "explanationIncorrect": "SQS is a message queue for decoupling work, not a data warehouse, and a message is typically consumed once. Redshift is an analytical warehouse optimized for batch loads and queries, not per-event real-time ingestion. Glacier is cold archival storage. Real-time streaming is Amazon Kinesis Data Streams.",
-    "tags": ["performance", "kinesis", "streaming"]
+    "tags": [
+      "performance",
+      "kinesis",
+      "streaming"
+    ]
   },
   {
     "id": "saa-028",
@@ -331,15 +634,31 @@
     "difficulty": "medium",
     "stem": "A latency-sensitive transactional database running on EC2 needs consistently high, predictable IOPS. Which EBS volume type is most appropriate?",
     "options": [
-      { "id": "o1", "text": "Provisioned IOPS SSD (io1 or io2)" },
-      { "id": "o2", "text": "Cold HDD (sc1)" },
-      { "id": "o3", "text": "Throughput Optimized HDD (st1)" },
-      { "id": "o4", "text": "An S3 bucket mounted as a disk" }
+      {
+        "id": "o1",
+        "text": "Provisioned IOPS SSD (io1 or io2)"
+      },
+      {
+        "id": "o2",
+        "text": "Cold HDD (sc1)"
+      },
+      {
+        "id": "o3",
+        "text": "Throughput Optimized HDD (st1)"
+      },
+      {
+        "id": "o4",
+        "text": "An S3 bucket mounted as a disk"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Provisioned IOPS SSD volumes let you specify a high, consistent IOPS level, which is what a latency-sensitive transactional database needs for predictable performance.",
     "explanationIncorrect": "Cold HDD is optimized for infrequently accessed data at low cost, the wrong fit for a demanding database. Throughput Optimized HDD favors large sequential throughput, not the small random IOPS transactional databases require. S3 is object storage and is not a block device for a database. Consistent high IOPS is Provisioned IOPS SSD.",
-    "tags": ["performance", "ebs", "provisioned-iops"]
+    "tags": [
+      "performance",
+      "ebs",
+      "provisioned-iops"
+    ]
   },
   {
     "id": "saa-029",
@@ -348,15 +667,31 @@
     "difficulty": "hard",
     "stem": "You want to improve global performance and availability for a TCP/UDP application by routing users over the AWS backbone to the nearest healthy endpoint using static anycast IP addresses. Which service fits?",
     "options": [
-      { "id": "o1", "text": "AWS Global Accelerator" },
-      { "id": "o2", "text": "Amazon CloudFront, which accelerates only cacheable HTTP content" },
-      { "id": "o3", "text": "Amazon Route 53 simple routing" },
-      { "id": "o4", "text": "A single Elastic IP address" }
+      {
+        "id": "o1",
+        "text": "AWS Global Accelerator"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront, which accelerates only cacheable HTTP content"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Route 53 simple routing"
+      },
+      {
+        "id": "o4",
+        "text": "A single Elastic IP address"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Global Accelerator provides static anycast IPs and routes traffic over the AWS global network to the nearest healthy endpoint, improving performance and availability for TCP and UDP applications.",
     "explanationIncorrect": "CloudFront accelerates cacheable HTTP/S content at edges but is not the general TCP/UDP anycast accelerator described. Route 53 simple routing returns records without health-based backbone routing. A single Elastic IP is one static address with no global routing intelligence. The anycast, backbone-routing service is AWS Global Accelerator.",
-    "tags": ["performance", "global-accelerator", "networking"]
+    "tags": [
+      "performance",
+      "global-accelerator",
+      "networking"
+    ]
   },
   {
     "id": "saa-030",
@@ -365,15 +700,31 @@
     "difficulty": "medium",
     "stem": "Multiple EC2 instances across Availability Zones need concurrent access to the same POSIX file system that scales its capacity automatically. Which storage service fits?",
     "options": [
-      { "id": "o1", "text": "Amazon EFS" },
-      { "id": "o2", "text": "An Amazon EBS volume attached to a single instance" },
-      { "id": "o3", "text": "EC2 instance store" },
-      { "id": "o4", "text": "Amazon S3 Glacier" }
+      {
+        "id": "o1",
+        "text": "Amazon EFS"
+      },
+      {
+        "id": "o2",
+        "text": "An Amazon EBS volume attached to a single instance"
+      },
+      {
+        "id": "o3",
+        "text": "EC2 instance store"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon S3 Glacier"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon EFS is a managed, elastic NFS file system that many instances across AZs can mount and share concurrently, growing and shrinking automatically with usage.",
     "explanationIncorrect": "A standard EBS volume attaches to a single instance and is not a shared multi-instance file system. Instance store is ephemeral local disk tied to one instance. S3 Glacier is cold object archival, not a mountable POSIX file system. Shared, elastic file access is Amazon EFS.",
-    "tags": ["performance", "efs", "shared-storage"]
+    "tags": [
+      "performance",
+      "efs",
+      "shared-storage"
+    ]
   },
   {
     "id": "saa-046",
@@ -382,15 +733,30 @@
     "difficulty": "medium",
     "stem": "Users far from your S3 bucket's Region upload large files slowly. Which S3 feature speeds up long-distance uploads by routing through edge locations?",
     "options": [
-      { "id": "o1", "text": "S3 Transfer Acceleration" },
-      { "id": "o2", "text": "S3 Cross-Region Replication" },
-      { "id": "o3", "text": "S3 Glacier" },
-      { "id": "o4", "text": "S3 Versioning" }
+      {
+        "id": "o1",
+        "text": "S3 Transfer Acceleration"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Cross-Region Replication"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Glacier"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Versioning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "S3 Transfer Acceleration routes uploads through the nearest CloudFront edge and over the AWS backbone to the bucket, which speeds up transfers from distant clients.",
     "explanationIncorrect": "Cross-Region Replication copies objects to another Region for durability, not faster uploads from users. Glacier is cold archival storage. Versioning tracks object history. Faster long-distance uploads use S3 Transfer Acceleration.",
-    "tags": ["performance", "s3-transfer-acceleration"]
+    "tags": [
+      "performance",
+      "s3-transfer-acceleration"
+    ]
   },
   {
     "id": "saa-047",
@@ -399,15 +765,31 @@
     "difficulty": "medium",
     "stem": "A workload holds a very large dataset in memory and is memory-bound. Which EC2 instance selection is most appropriate for performance efficiency?",
     "options": [
-      { "id": "o1", "text": "A memory-optimized instance family" },
-      { "id": "o2", "text": "A compute-optimized instance family" },
-      { "id": "o3", "text": "The smallest general-purpose instance available" },
-      { "id": "o4", "text": "A storage-optimized instance regardless of memory needs" }
+      {
+        "id": "o1",
+        "text": "A memory-optimized instance family"
+      },
+      {
+        "id": "o2",
+        "text": "A compute-optimized instance family"
+      },
+      {
+        "id": "o3",
+        "text": "The smallest general-purpose instance available"
+      },
+      {
+        "id": "o4",
+        "text": "A storage-optimized instance regardless of memory needs"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Memory-optimized instances provide a high ratio of RAM to vCPU, which is the right match for a memory-bound, large in-memory dataset workload.",
     "explanationIncorrect": "Compute-optimized instances favor CPU over memory, wrong for a memory-bound job. The smallest general-purpose instance would lack the memory needed. Storage-optimized instances target high disk throughput, not large RAM. Memory-bound workloads use memory-optimized instances.",
-    "tags": ["performance", "instance-selection", "memory-optimized"]
+    "tags": [
+      "performance",
+      "instance-selection",
+      "memory-optimized"
+    ]
   },
   {
     "id": "saa-048",
@@ -416,15 +798,31 @@
     "difficulty": "medium",
     "stem": "You want your Auto Scaling group to automatically keep average CPU utilization near 50 percent as load changes. Which scaling policy type does this most simply?",
     "options": [
-      { "id": "o1", "text": "A target tracking scaling policy" },
-      { "id": "o2", "text": "A one-time manual scaling adjustment" },
-      { "id": "o3", "text": "Only a scheduled action at fixed times" },
-      { "id": "o4", "text": "Terminating and launching instances by hand" }
+      {
+        "id": "o1",
+        "text": "A target tracking scaling policy"
+      },
+      {
+        "id": "o2",
+        "text": "A one-time manual scaling adjustment"
+      },
+      {
+        "id": "o3",
+        "text": "Only a scheduled action at fixed times"
+      },
+      {
+        "id": "o4",
+        "text": "Terminating and launching instances by hand"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A target tracking policy adjusts capacity automatically to keep a chosen metric, like average CPU, at a target value, which is the simplest way to hold utilization near 50 percent.",
     "explanationIncorrect": "A one-time manual adjustment does not respond to changing load. A scheduled action changes capacity at fixed times regardless of actual utilization. Manual instance management does not scale automatically. Holding a metric at a target is target tracking.",
-    "tags": ["performance", "auto-scaling", "target-tracking"]
+    "tags": [
+      "performance",
+      "auto-scaling",
+      "target-tracking"
+    ]
   },
   {
     "id": "saa-049",
@@ -433,15 +831,31 @@
     "difficulty": "medium",
     "stem": "A REST API on Amazon API Gateway returns identical responses for many repeated requests, and you want to reduce backend load and latency. Which feature helps?",
     "options": [
-      { "id": "o1", "text": "Enable API Gateway caching for the stage" },
-      { "id": "o2", "text": "Increase the backend Lambda's memory only" },
-      { "id": "o3", "text": "Add a NAT gateway in front of the API" },
-      { "id": "o4", "text": "Enable S3 Versioning" }
+      {
+        "id": "o1",
+        "text": "Enable API Gateway caching for the stage"
+      },
+      {
+        "id": "o2",
+        "text": "Increase the backend Lambda's memory only"
+      },
+      {
+        "id": "o3",
+        "text": "Add a NAT gateway in front of the API"
+      },
+      {
+        "id": "o4",
+        "text": "Enable S3 Versioning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "API Gateway stage caching stores responses for a configurable TTL, so repeated identical requests are served from the cache, cutting backend calls and latency.",
     "explanationIncorrect": "More Lambda memory speeds each invocation but does not avoid repeated identical calls. A NAT gateway provides outbound internet access for private subnets and is irrelevant here. S3 Versioning tracks object history. Response caching is an API Gateway caching feature.",
-    "tags": ["performance", "api-gateway", "caching"]
+    "tags": [
+      "performance",
+      "api-gateway",
+      "caching"
+    ]
   },
   {
     "id": "saa-050",
@@ -450,15 +864,31 @@
     "difficulty": "hard",
     "stem": "Your Amazon Aurora cluster's read traffic varies widely during the day. How do you scale read capacity automatically?",
     "options": [
-      { "id": "o1", "text": "Use Aurora Replicas with Aurora Auto Scaling to add and remove read replicas based on load" },
-      { "id": "o2", "text": "Vertically resize the writer instance by hand every hour" },
-      { "id": "o3", "text": "Switch the workload to DynamoDB to avoid scaling" },
-      { "id": "o4", "text": "Attach more EBS volumes to the writer" }
+      {
+        "id": "o1",
+        "text": "Use Aurora Replicas with Aurora Auto Scaling to add and remove read replicas based on load"
+      },
+      {
+        "id": "o2",
+        "text": "Vertically resize the writer instance by hand every hour"
+      },
+      {
+        "id": "o3",
+        "text": "Switch the workload to DynamoDB to avoid scaling"
+      },
+      {
+        "id": "o4",
+        "text": "Attach more EBS volumes to the writer"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Aurora Auto Scaling adds and removes Aurora Replicas in response to a target metric, so read capacity follows demand automatically without manual intervention.",
     "explanationIncorrect": "Manually resizing the writer every hour is toil and does not target read scaling elastically. Switching to DynamoDB is a major redesign, not a way to scale Aurora reads. Adding EBS volumes changes storage, not read throughput across replicas. Automatic read scaling is Aurora Replicas with Aurora Auto Scaling.",
-    "tags": ["performance", "aurora", "read-auto-scaling"]
+    "tags": [
+      "performance",
+      "aurora",
+      "read-auto-scaling"
+    ]
   },
   {
     "id": "saa-003",
@@ -467,15 +897,31 @@
     "difficulty": "medium",
     "stem": "An application running on an EC2 instance needs to read objects from an S3 bucket. What is the most secure way to grant this access?",
     "options": [
-      { "id": "o1", "text": "Attach an IAM role to the EC2 instance with a least-privilege policy scoped to that bucket" },
-      { "id": "o2", "text": "Hardcode an IAM user's long-lived access keys in the application code" },
-      { "id": "o3", "text": "Store the AWS account root credentials on the instance" },
-      { "id": "o4", "text": "Make the S3 bucket public so no credentials are needed" }
+      {
+        "id": "o1",
+        "text": "Attach an IAM role to the EC2 instance with a least-privilege policy scoped to that bucket"
+      },
+      {
+        "id": "o2",
+        "text": "Hardcode an IAM user's long-lived access keys in the application code"
+      },
+      {
+        "id": "o3",
+        "text": "Store the AWS account root credentials on the instance"
+      },
+      {
+        "id": "o4",
+        "text": "Make the S3 bucket public so no credentials are needed"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "An instance role delivers temporary, automatically rotated credentials through the instance metadata service, so the application authenticates without any stored secrets and with permissions limited to just what it needs.",
     "explanationIncorrect": "Hardcoding long-lived access keys embeds a standing secret in code that can leak and does not rotate, which is exactly the pattern roles exist to remove. Placing root credentials on an instance is the most dangerous option possible, since root can do anything in the account and should never be used programmatically. Making the bucket public exposes the data to the entire internet to avoid managing a credential, trading a small convenience for a severe breach. The secure approach is an IAM role on the instance with a least-privilege policy.",
-    "tags": ["security", "iam-roles", "least-privilege"],
+    "tags": [
+      "security",
+      "iam-roles",
+      "least-privilege"
+    ],
     "isSeed": true
   },
   {
@@ -485,15 +931,31 @@
     "difficulty": "medium",
     "stem": "You need instance-level, stateful traffic filtering where return traffic for an allowed inbound request is automatically permitted. Which construct provides this?",
     "options": [
-      { "id": "o1", "text": "A security group, which is stateful and applied at the instance (ENI) level" },
-      { "id": "o2", "text": "A network ACL, which is stateless and applied at the subnet level" },
-      { "id": "o3", "text": "An IAM policy attached to the instance" },
-      { "id": "o4", "text": "A route table entry" }
+      {
+        "id": "o1",
+        "text": "A security group, which is stateful and applied at the instance (ENI) level"
+      },
+      {
+        "id": "o2",
+        "text": "A network ACL, which is stateless and applied at the subnet level"
+      },
+      {
+        "id": "o3",
+        "text": "An IAM policy attached to the instance"
+      },
+      {
+        "id": "o4",
+        "text": "A route table entry"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Security groups are stateful firewalls at the instance's network interface: if you allow an inbound request, the response is automatically allowed out without a matching outbound rule.",
     "explanationIncorrect": "A network ACL is stateless and operates at the subnet boundary, so you must explicitly allow both directions of traffic, which is not the automatic behavior described. An IAM policy governs API permissions, not network packet filtering. A route table directs traffic between destinations; it does not filter by port or protocol. Stateful, instance-level filtering is a security group.",
-    "tags": ["security", "security-groups", "networking"]
+    "tags": [
+      "security",
+      "security-groups",
+      "networking"
+    ]
   },
   {
     "id": "saa-007",
@@ -502,15 +964,31 @@
     "difficulty": "medium",
     "stem": "Instances in a private subnet must download OS updates from the internet but must never be reachable from the internet. What do you use?",
     "options": [
-      { "id": "o1", "text": "A NAT gateway in a public subnet, with the private subnet routing 0.0.0.0/0 to it" },
-      { "id": "o2", "text": "An internet gateway attached directly to the private instances" },
-      { "id": "o3", "text": "A public IP address assigned to each private instance" },
-      { "id": "o4", "text": "A VPC peering connection to the internet" }
+      {
+        "id": "o1",
+        "text": "A NAT gateway in a public subnet, with the private subnet routing 0.0.0.0/0 to it"
+      },
+      {
+        "id": "o2",
+        "text": "An internet gateway attached directly to the private instances"
+      },
+      {
+        "id": "o3",
+        "text": "A public IP address assigned to each private instance"
+      },
+      {
+        "id": "o4",
+        "text": "A VPC peering connection to the internet"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A NAT gateway lets private instances initiate outbound connections (like pulling updates) while blocking inbound connections from the internet, which is exactly the one-way access required.",
     "explanationIncorrect": "Attaching an internet gateway path and giving instances public IPs would make them directly reachable from the internet, violating the requirement. A public IP on each instance has the same exposure problem. VPC peering connects two VPCs privately and is not a path to the internet. Outbound-only internet access for a private subnet is a NAT gateway.",
-    "tags": ["security", "nat-gateway", "private-subnet"]
+    "tags": [
+      "security",
+      "nat-gateway",
+      "private-subnet"
+    ]
   },
   {
     "id": "saa-008",
@@ -519,15 +997,31 @@
     "difficulty": "hard",
     "stem": "EC2 instances in a private subnet need to read objects from Amazon S3 without their traffic traversing the public internet and without paying for a NAT gateway. What do you use?",
     "options": [
-      { "id": "o1", "text": "A gateway VPC endpoint for S3" },
-      { "id": "o2", "text": "A public S3 bucket reachable over the internet" },
-      { "id": "o3", "text": "An internet gateway for the private subnet" },
-      { "id": "o4", "text": "A second NAT gateway for redundancy" }
+      {
+        "id": "o1",
+        "text": "A gateway VPC endpoint for S3"
+      },
+      {
+        "id": "o2",
+        "text": "A public S3 bucket reachable over the internet"
+      },
+      {
+        "id": "o3",
+        "text": "An internet gateway for the private subnet"
+      },
+      {
+        "id": "o4",
+        "text": "A second NAT gateway for redundancy"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A gateway VPC endpoint for S3 routes S3 traffic privately over the AWS network via a route-table entry, so instances reach S3 without a NAT gateway and without going over the internet, at no per-gateway cost.",
     "explanationIncorrect": "Making the bucket public exposes data to the internet and still sends traffic over it. An internet gateway sends traffic to the public internet, which is what you are avoiding. Another NAT gateway would send S3 traffic over the internet and add cost, the opposite of the goal. Private, no-NAT S3 access uses a gateway VPC endpoint.",
-    "tags": ["security", "vpc-endpoint", "s3"]
+    "tags": [
+      "security",
+      "vpc-endpoint",
+      "s3"
+    ]
   },
   {
     "id": "saa-009",
@@ -536,15 +1030,31 @@
     "difficulty": "medium",
     "stem": "You need to store a database password, retrieve it at runtime, and rotate it automatically on a schedule. Which service is purpose-built for this?",
     "options": [
-      { "id": "o1", "text": "AWS Secrets Manager" },
-      { "id": "o2", "text": "An environment variable baked into the AMI" },
-      { "id": "o3", "text": "A plaintext file stored in an S3 bucket" },
-      { "id": "o4", "text": "A value hardcoded in the application source" }
+      {
+        "id": "o1",
+        "text": "AWS Secrets Manager"
+      },
+      {
+        "id": "o2",
+        "text": "An environment variable baked into the AMI"
+      },
+      {
+        "id": "o3",
+        "text": "A plaintext file stored in an S3 bucket"
+      },
+      {
+        "id": "o4",
+        "text": "A value hardcoded in the application source"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Secrets Manager securely stores secrets, provides runtime retrieval via API with IAM control, and supports built-in automatic rotation, including for supported databases.",
     "explanationIncorrect": "Baking a secret into an AMI freezes it into the image and offers no rotation, and it leaks to anyone who can launch the image. A plaintext file in S3 is unencrypted secret storage with no rotation. Hardcoding in source commits the secret to version control. Managed storage plus automatic rotation is AWS Secrets Manager.",
-    "tags": ["security", "secrets-manager", "rotation"]
+    "tags": [
+      "security",
+      "secrets-manager",
+      "rotation"
+    ]
   },
   {
     "id": "saa-010",
@@ -553,15 +1063,31 @@
     "difficulty": "hard",
     "stem": "An application in account A must access an S3 bucket in account B securely, without sharing long-lived access keys. What is the recommended approach?",
     "options": [
-      { "id": "o1", "text": "Have account A assume an IAM role in account B via sts:AssumeRole, with account B's role trust policy allowing A" },
-      { "id": "o2", "text": "Create an IAM user in account B and email its access keys to account A" },
-      { "id": "o3", "text": "Make the bucket public so account A can read it" },
-      { "id": "o4", "text": "Share account B's root credentials with account A" }
+      {
+        "id": "o1",
+        "text": "Have account A assume an IAM role in account B via sts:AssumeRole, with account B's role trust policy allowing A"
+      },
+      {
+        "id": "o2",
+        "text": "Create an IAM user in account B and email its access keys to account A"
+      },
+      {
+        "id": "o3",
+        "text": "Make the bucket public so account A can read it"
+      },
+      {
+        "id": "o4",
+        "text": "Share account B's root credentials with account A"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Cross-account access is done with roles: account B defines a role with a trust policy allowing account A, and A assumes it to get temporary credentials, so no long-lived keys are shared.",
     "explanationIncorrect": "Creating an IAM user and emailing its keys distributes a long-lived credential, exactly what roles avoid, and emailing secrets is unsafe. Making the bucket public exposes it to everyone. Sharing root credentials is the most dangerous option and violates every best practice. Secure cross-account access uses role assumption.",
-    "tags": ["security", "cross-account", "assume-role"]
+    "tags": [
+      "security",
+      "cross-account",
+      "assume-role"
+    ]
   },
   {
     "id": "saa-011",
@@ -570,15 +1096,31 @@
     "difficulty": "medium",
     "stem": "You want to provision and automatically renew a TLS certificate so your Application Load Balancer can serve HTTPS. Which service provides this?",
     "options": [
-      { "id": "o1", "text": "AWS Certificate Manager (ACM)" },
-      { "id": "o2", "text": "AWS KMS" },
-      { "id": "o3", "text": "Amazon Route 53" },
-      { "id": "o4", "text": "AWS Secrets Manager" }
+      {
+        "id": "o1",
+        "text": "AWS Certificate Manager (ACM)"
+      },
+      {
+        "id": "o2",
+        "text": "AWS KMS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Secrets Manager"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Certificate Manager provisions public TLS certificates, integrates directly with load balancers and CloudFront, and renews eligible certificates automatically, so HTTPS stays valid without manual work.",
     "explanationIncorrect": "AWS KMS manages encryption keys, not public TLS certificates for endpoints. Amazon Route 53 is DNS; it can validate ACM certificates but does not issue them. AWS Secrets Manager stores secrets like passwords, not managed TLS certificates. Certificate provisioning and renewal is AWS Certificate Manager.",
-    "tags": ["security", "acm", "tls"]
+    "tags": [
+      "security",
+      "acm",
+      "tls"
+    ]
   },
   {
     "id": "saa-012",
@@ -587,15 +1129,31 @@
     "difficulty": "medium",
     "stem": "You must ensure every object in an S3 bucket is encrypted at rest with keys you can manage, audit, and control access to. Which approach fits?",
     "options": [
-      { "id": "o1", "text": "Server-side encryption with AWS KMS keys (SSE-KMS)" },
-      { "id": "o2", "text": "Leaving objects unencrypted and relying on the bucket being private" },
-      { "id": "o3", "text": "Base64-encoding objects on the client" },
-      { "id": "o4", "text": "Turning off bucket versioning" }
+      {
+        "id": "o1",
+        "text": "Server-side encryption with AWS KMS keys (SSE-KMS)"
+      },
+      {
+        "id": "o2",
+        "text": "Leaving objects unencrypted and relying on the bucket being private"
+      },
+      {
+        "id": "o3",
+        "text": "Base64-encoding objects on the client"
+      },
+      {
+        "id": "o4",
+        "text": "Turning off bucket versioning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "SSE-KMS encrypts objects at rest using KMS keys, giving you key management, access control through key policies, and an audit trail of key usage via CloudTrail.",
     "explanationIncorrect": "Relying on the bucket being private leaves data unencrypted at rest, failing the requirement. Base64 encoding is not encryption; it is trivially reversible. Versioning protects against overwrites and deletes and has nothing to do with encryption. Managed, auditable encryption at rest is SSE-KMS.",
-    "tags": ["security", "s3-encryption", "kms"]
+    "tags": [
+      "security",
+      "s3-encryption",
+      "kms"
+    ]
   },
   {
     "id": "saa-013",
@@ -604,15 +1162,31 @@
     "difficulty": "medium",
     "stem": "To reduce the risk of accidental public exposure of S3 data across an entire account, what should you enable?",
     "options": [
-      { "id": "o1", "text": "S3 Block Public Access at the account and bucket level" },
-      { "id": "o2", "text": "A bucket policy that grants public read to everyone" },
-      { "id": "o3", "text": "Static website hosting on every bucket" },
-      { "id": "o4", "text": "Disabling bucket policies entirely" }
+      {
+        "id": "o1",
+        "text": "S3 Block Public Access at the account and bucket level"
+      },
+      {
+        "id": "o2",
+        "text": "A bucket policy that grants public read to everyone"
+      },
+      {
+        "id": "o3",
+        "text": "Static website hosting on every bucket"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling bucket policies entirely"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "S3 Block Public Access provides account-wide and per-bucket guardrails that override permissive ACLs and policies, preventing buckets from being made public by mistake.",
     "explanationIncorrect": "A policy granting public read is the exposure you are trying to prevent. Enabling static website hosting is about serving content, not securing it, and often implies public access. Disabling bucket policies removes a control mechanism but does not stop public access via ACLs. The guardrail is S3 Block Public Access.",
-    "tags": ["security", "s3", "block-public-access"]
+    "tags": [
+      "security",
+      "s3",
+      "block-public-access"
+    ]
   },
   {
     "id": "saa-014",
@@ -621,15 +1195,31 @@
     "difficulty": "medium",
     "stem": "A mobile app needs user sign-up, sign-in, and federated identity (for example Google or Apple), issuing tokens your API can validate. Which managed service is designed for this?",
     "options": [
-      { "id": "o1", "text": "Amazon Cognito" },
-      { "id": "o2", "text": "One IAM user created per application end user" },
-      { "id": "o3", "text": "A self-managed password database on EC2" },
-      { "id": "o4", "text": "AWS Organizations" }
+      {
+        "id": "o1",
+        "text": "Amazon Cognito"
+      },
+      {
+        "id": "o2",
+        "text": "One IAM user created per application end user"
+      },
+      {
+        "id": "o3",
+        "text": "A self-managed password database on EC2"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Organizations"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Cognito user pools handle end-user sign-up and sign-in, support identity federation, and issue standard tokens your application and APIs can verify.",
     "explanationIncorrect": "IAM users are for AWS account principals, not application end users, and do not scale to app user bases. A self-managed password database on EC2 reinvents authentication and burdens you with security you do not need to own. AWS Organizations manages multiple AWS accounts, not app users. Application user identity is Amazon Cognito.",
-    "tags": ["security", "cognito", "authentication"]
+    "tags": [
+      "security",
+      "cognito",
+      "authentication"
+    ]
   },
   {
     "id": "saa-015",
@@ -638,15 +1228,31 @@
     "difficulty": "hard",
     "stem": "You allow developers to create IAM roles, but you must cap the maximum permissions any role they create can ever have. Which feature enforces that ceiling?",
     "options": [
-      { "id": "o1", "text": "An IAM permissions boundary" },
-      { "id": "o2", "text": "A security group" },
-      { "id": "o3", "text": "A network ACL" },
-      { "id": "o4", "text": "An S3 bucket policy" }
+      {
+        "id": "o1",
+        "text": "An IAM permissions boundary"
+      },
+      {
+        "id": "o2",
+        "text": "A security group"
+      },
+      {
+        "id": "o3",
+        "text": "A network ACL"
+      },
+      {
+        "id": "o4",
+        "text": "An S3 bucket policy"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A permissions boundary sets the maximum permissions an identity can have; even if a developer attaches broader policies, the effective permissions cannot exceed the boundary, which safely delegates role creation.",
     "explanationIncorrect": "Security groups and network ACLs filter network traffic and have nothing to do with IAM permission ceilings. An S3 bucket policy controls access to one bucket, not the permissions of roles a developer creates. The maximum-permission ceiling is an IAM permissions boundary.",
-    "tags": ["security", "permissions-boundary", "delegation"]
+    "tags": [
+      "security",
+      "permissions-boundary",
+      "delegation"
+    ]
   },
   {
     "id": "saa-036",
@@ -655,15 +1261,31 @@
     "difficulty": "hard",
     "stem": "You want administrators to reach private EC2 instances for troubleshooting without opening inbound SSH ports or running a bastion host. Which approach fits?",
     "options": [
-      { "id": "o1", "text": "AWS Systems Manager Session Manager" },
-      { "id": "o2", "text": "Open port 22 to 0.0.0.0/0 on the security group" },
-      { "id": "o3", "text": "Assign public IP addresses to all private instances" },
-      { "id": "o4", "text": "A NAT gateway in front of the instances" }
+      {
+        "id": "o1",
+        "text": "AWS Systems Manager Session Manager"
+      },
+      {
+        "id": "o2",
+        "text": "Open port 22 to 0.0.0.0/0 on the security group"
+      },
+      {
+        "id": "o3",
+        "text": "Assign public IP addresses to all private instances"
+      },
+      {
+        "id": "o4",
+        "text": "A NAT gateway in front of the instances"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Session Manager provides shell access to instances through the SSM agent and IAM, with no inbound ports, no bastion, and full auditing, which is the secure way to reach private instances.",
     "explanationIncorrect": "Opening port 22 to the world is a major exposure and the opposite of the requirement. Public IPs on private instances defeat their isolation. A NAT gateway enables outbound internet access; it does not provide inbound administrative access. The no-inbound, no-bastion option is Session Manager.",
-    "tags": ["security", "session-manager", "bastionless"]
+    "tags": [
+      "security",
+      "session-manager",
+      "bastionless"
+    ]
   },
   {
     "id": "saa-037",
@@ -672,15 +1294,31 @@
     "difficulty": "medium",
     "stem": "To protect a public web application behind an Application Load Balancer from common web exploits like SQL injection and cross-site scripting, plus rate-based abuse, which service do you attach?",
     "options": [
-      { "id": "o1", "text": "AWS WAF" },
-      { "id": "o2", "text": "Amazon EBS" },
-      { "id": "o3", "text": "AWS Config" },
-      { "id": "o4", "text": "Amazon Athena" }
+      {
+        "id": "o1",
+        "text": "AWS WAF"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Athena"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS WAF attaches to an Application Load Balancer (or CloudFront/API Gateway) and filters HTTP requests with managed and custom rules for exploits like SQL injection and cross-site scripting, plus rate-based rules.",
     "explanationIncorrect": "Amazon EBS is block storage for EC2 volumes and inspects no traffic. AWS Config records resource configuration and compliance, not individual web requests. Amazon Athena queries data in S3 with SQL. None of them filter malicious HTTP requests. Web-layer protection for exploits and abuse is AWS WAF.",
-    "tags": ["security", "waf", "web-exploits"]
+    "tags": [
+      "security",
+      "waf",
+      "web-exploits"
+    ]
   },
   {
     "id": "saa-038",
@@ -689,15 +1327,31 @@
     "difficulty": "medium",
     "stem": "You want continuous, managed threat detection that analyzes CloudTrail, VPC flow logs, and DNS logs as part of a secure architecture. Which service provides this?",
     "options": [
-      { "id": "o1", "text": "Amazon GuardDuty" },
-      { "id": "o2", "text": "Amazon CloudFront" },
-      { "id": "o3", "text": "AWS Batch" },
-      { "id": "o4", "text": "Amazon SQS" }
+      {
+        "id": "o1",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon GuardDuty continuously analyzes CloudTrail, VPC flow logs, and DNS logs using threat intelligence and machine learning to flag suspicious activity, with no infrastructure to manage.",
     "explanationIncorrect": "Amazon CloudFront is a content delivery network that caches content at the edge. AWS Batch runs batch computing jobs. Amazon SQS is a managed message queue for decoupling components. None of them analyze account and network logs for threats. Managed threat detection over CloudTrail, VPC flow, and DNS logs is Amazon GuardDuty.",
-    "tags": ["security", "guardduty", "threat-detection"]
+    "tags": [
+      "security",
+      "guardduty",
+      "threat-detection"
+    ]
   },
   {
     "id": "saa-039",
@@ -706,15 +1360,31 @@
     "difficulty": "medium",
     "stem": "You want workforce users to sign in once and receive federated, role-based access across multiple AWS accounts. Which service is designed for this?",
     "options": [
-      { "id": "o1", "text": "AWS IAM Identity Center (successor to AWS SSO)" },
-      { "id": "o2", "text": "A separate IAM user for each person in each account" },
-      { "id": "o3", "text": "The account root user shared across accounts" },
-      { "id": "o4", "text": "Access keys emailed to each user" }
+      {
+        "id": "o1",
+        "text": "AWS IAM Identity Center (successor to AWS SSO)"
+      },
+      {
+        "id": "o2",
+        "text": "A separate IAM user for each person in each account"
+      },
+      {
+        "id": "o3",
+        "text": "The account root user shared across accounts"
+      },
+      {
+        "id": "o4",
+        "text": "Access keys emailed to each user"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "IAM Identity Center provides single sign-on with federated, permission-set-based access across accounts in an organization, so users authenticate once and assume the right roles.",
     "explanationIncorrect": "Creating an IAM user per person per account multiplies credentials and is hard to manage. Sharing the root user is dangerous and removes accountability. Emailing access keys distributes long-lived credentials. Centralized workforce SSO across accounts is IAM Identity Center.",
-    "tags": ["security", "iam-identity-center", "sso"]
+    "tags": [
+      "security",
+      "iam-identity-center",
+      "sso"
+    ]
   },
   {
     "id": "saa-040",
@@ -723,15 +1393,31 @@
     "difficulty": "medium",
     "stem": "You want your KMS customer managed keys rotated automatically on a yearly basis to reduce risk. What do you enable?",
     "options": [
-      { "id": "o1", "text": "Automatic key rotation on the KMS key" },
-      { "id": "o2", "text": "A new S3 bucket policy" },
-      { "id": "o3", "text": "An additional security group rule" },
-      { "id": "o4", "text": "A Route 53 health check" }
+      {
+        "id": "o1",
+        "text": "Automatic key rotation on the KMS key"
+      },
+      {
+        "id": "o2",
+        "text": "A new S3 bucket policy"
+      },
+      {
+        "id": "o3",
+        "text": "An additional security group rule"
+      },
+      {
+        "id": "o4",
+        "text": "A Route 53 health check"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "KMS supports automatic annual rotation of customer managed key material, so the key is rotated on a schedule without re-encrypting data or changing key references.",
     "explanationIncorrect": "A bucket policy controls S3 access, not key rotation. A security group rule filters network traffic. A Route 53 health check monitors endpoints. Scheduled key rotation is enabled on the KMS key itself.",
-    "tags": ["security", "kms", "key-rotation"]
+    "tags": [
+      "security",
+      "kms",
+      "key-rotation"
+    ]
   },
   {
     "id": "saa-004",
@@ -740,15 +1426,31 @@
     "difficulty": "medium",
     "stem": "You run a large batch-processing job that is fault-tolerant and can be interrupted and resumed at any time. You want to minimize EC2 compute cost. Which purchasing option is most appropriate?",
     "options": [
-      { "id": "o1", "text": "Spot Instances" },
-      { "id": "o2", "text": "On-Demand Instances" },
-      { "id": "o3", "text": "Reserved Instances with a three-year commitment" },
-      { "id": "o4", "text": "Dedicated Hosts" }
+      {
+        "id": "o1",
+        "text": "Spot Instances"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o3",
+        "text": "Reserved Instances with a three-year commitment"
+      },
+      {
+        "id": "o4",
+        "text": "Dedicated Hosts"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Spot Instances offer the deepest discount by using spare capacity that AWS can reclaim, and a fault-tolerant, resumable batch job is precisely the workload that can tolerate those interruptions in exchange for the low price.",
     "explanationIncorrect": "On-Demand carries the highest per-hour cost and no discount, so it does not minimize spend for interruption-tolerant work. A three-year Reserved Instance commitment suits steady, always-on baseline usage; committing for years to a batch job that runs intermittently wastes the reservation. Dedicated Hosts are for licensing and physical isolation requirements and cost more, so they are the opposite of cost-optimizing here. For interruptible, fault-tolerant batch work the cheapest fit is Spot Instances.",
-    "tags": ["cost-optimization", "spot-instances", "batch"],
+    "tags": [
+      "cost-optimization",
+      "spot-instances",
+      "batch"
+    ],
     "isSeed": true
   },
   {
@@ -758,15 +1460,30 @@
     "difficulty": "medium",
     "stem": "Objects in a bucket have unpredictable, shifting access patterns, and you want automatic cost savings without managing lifecycle rules or paying retrieval fees on the frequent-access tier. Which S3 storage class fits?",
     "options": [
-      { "id": "o1", "text": "S3 Intelligent-Tiering" },
-      { "id": "o2", "text": "S3 Standard for everything, permanently" },
-      { "id": "o3", "text": "S3 Glacier Deep Archive for all objects" },
-      { "id": "o4", "text": "S3 One Zone-Infrequent Access for all objects" }
+      {
+        "id": "o1",
+        "text": "S3 Intelligent-Tiering"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Standard for everything, permanently"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Glacier Deep Archive for all objects"
+      },
+      {
+        "id": "o4",
+        "text": "S3 One Zone-Infrequent Access for all objects"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "S3 Intelligent-Tiering automatically moves objects between access tiers based on usage, optimizing cost for unpredictable patterns with no lifecycle management and no retrieval fees for its frequent and infrequent tiers.",
     "explanationIncorrect": "Keeping everything in Standard forgoes savings on data that goes cold. Deep Archive is for rarely accessed data with long retrieval times, wrong for objects that might be accessed anytime. One Zone-IA sacrifices AZ redundancy and charges retrieval fees, and it assumes infrequent access you cannot predict here. Unpredictable access is best served by Intelligent-Tiering.",
-    "tags": ["cost-optimization", "s3-intelligent-tiering"]
+    "tags": [
+      "cost-optimization",
+      "s3-intelligent-tiering"
+    ]
   },
   {
     "id": "saa-032",
@@ -775,15 +1492,31 @@
     "difficulty": "medium",
     "stem": "Log files must be retained for seven years but are rarely accessed after 30 days. What minimizes storage cost automatically?",
     "options": [
-      { "id": "o1", "text": "An S3 lifecycle policy that transitions objects to Glacier or Glacier Deep Archive after 30 days" },
-      { "id": "o2", "text": "Keep all logs in S3 Standard for the full seven years" },
-      { "id": "o3", "text": "Delete the logs after 30 days" },
-      { "id": "o4", "text": "Store the logs on an always-on EC2 instance's disk" }
+      {
+        "id": "o1",
+        "text": "An S3 lifecycle policy that transitions objects to Glacier or Glacier Deep Archive after 30 days"
+      },
+      {
+        "id": "o2",
+        "text": "Keep all logs in S3 Standard for the full seven years"
+      },
+      {
+        "id": "o3",
+        "text": "Delete the logs after 30 days"
+      },
+      {
+        "id": "o4",
+        "text": "Store the logs on an always-on EC2 instance's disk"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A lifecycle policy automatically transitions aging objects to cheaper archival classes like Glacier after 30 days, cutting cost while still retaining the data for the required seven years.",
     "explanationIncorrect": "Keeping everything in Standard pays premium rates for cold data for years. Deleting after 30 days violates the seven-year retention requirement. An always-on EC2 disk is more expensive and less durable than S3 archival storage. Automatic cost reduction with retention is an S3 lifecycle transition to Glacier.",
-    "tags": ["cost-optimization", "s3-lifecycle", "glacier"]
+    "tags": [
+      "cost-optimization",
+      "s3-lifecycle",
+      "glacier"
+    ]
   },
   {
     "id": "saa-033",
@@ -792,15 +1525,31 @@
     "difficulty": "medium",
     "stem": "You run a predictable baseline of compute across Lambda, Fargate, and EC2 and want a flexible discount in exchange for a one- or three-year commitment. Which purchasing option fits best?",
     "options": [
-      { "id": "o1", "text": "A Compute Savings Plan" },
-      { "id": "o2", "text": "On-Demand pricing" },
-      { "id": "o3", "text": "Spot Instances for the steady baseline" },
-      { "id": "o4", "text": "Dedicated Hosts" }
+      {
+        "id": "o1",
+        "text": "A Compute Savings Plan"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand pricing"
+      },
+      {
+        "id": "o3",
+        "text": "Spot Instances for the steady baseline"
+      },
+      {
+        "id": "o4",
+        "text": "Dedicated Hosts"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A Compute Savings Plan gives a significant discount for a usage commitment and applies flexibly across EC2, Fargate, and Lambda, which suits a predictable baseline spread over those services.",
     "explanationIncorrect": "On-Demand has no commitment discount, so it does not minimize cost for predictable usage. Spot is cheapest per hour but can be interrupted, making it unsuitable for a steady always-on baseline. Dedicated Hosts address licensing and isolation and cost more. The flexible commitment discount is a Compute Savings Plan.",
-    "tags": ["cost-optimization", "savings-plans", "compute"]
+    "tags": [
+      "cost-optimization",
+      "savings-plans",
+      "compute"
+    ]
   },
   {
     "id": "saa-034",
@@ -809,15 +1558,31 @@
     "difficulty": "medium",
     "stem": "You suspect many EC2 instances are over-provisioned. Which AWS service analyzes utilization and recommends right-sized instance types to reduce cost?",
     "options": [
-      { "id": "o1", "text": "AWS Compute Optimizer" },
-      { "id": "o2", "text": "AWS Shield" },
-      { "id": "o3", "text": "Amazon Macie" },
-      { "id": "o4", "text": "AWS Artifact" }
+      {
+        "id": "o1",
+        "text": "AWS Compute Optimizer"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Artifact"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Compute Optimizer analyzes historical utilization and recommends optimal instance types and sizes, helping you eliminate the waste of over-provisioned resources.",
     "explanationIncorrect": "AWS Shield is DDoS protection. Amazon Macie discovers sensitive data. AWS Artifact provides compliance documents. None analyze utilization for right-sizing. Right-sizing recommendations come from AWS Compute Optimizer.",
-    "tags": ["cost-optimization", "compute-optimizer", "right-sizing"]
+    "tags": [
+      "cost-optimization",
+      "compute-optimizer",
+      "right-sizing"
+    ]
   },
   {
     "id": "saa-035",
@@ -826,15 +1591,31 @@
     "difficulty": "hard",
     "stem": "A rarely used internal API currently runs 24/7 on an EC2 instance that sits mostly idle. How can you cut cost while keeping it available on demand?",
     "options": [
-      { "id": "o1", "text": "Re-architect it to AWS Lambda behind Amazon API Gateway so you pay only per request" },
-      { "id": "o2", "text": "Move it to a larger EC2 instance type" },
-      { "id": "o3", "text": "Add a second EC2 instance for redundancy" },
-      { "id": "o4", "text": "Keep it on On-Demand EC2 but run it in a different Region" }
+      {
+        "id": "o1",
+        "text": "Re-architect it to AWS Lambda behind Amazon API Gateway so you pay only per request"
+      },
+      {
+        "id": "o2",
+        "text": "Move it to a larger EC2 instance type"
+      },
+      {
+        "id": "o3",
+        "text": "Add a second EC2 instance for redundancy"
+      },
+      {
+        "id": "o4",
+        "text": "Keep it on On-Demand EC2 but run it in a different Region"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A serverless design with Lambda behind API Gateway charges only for actual requests and execution time, eliminating the cost of an idle always-on instance while remaining available on demand.",
     "explanationIncorrect": "A larger instance costs more and stays idle, worsening the problem. A second instance adds cost for a low-traffic service. Running the same idle instance in another Region does not remove the idle cost. Paying only when used is achieved by going serverless with Lambda and API Gateway.",
-    "tags": ["cost-optimization", "serverless", "lambda"]
+    "tags": [
+      "cost-optimization",
+      "serverless",
+      "lambda"
+    ]
   },
   {
     "id": "saa-051",
@@ -843,15 +1624,31 @@
     "difficulty": "medium",
     "stem": "Your app serves a lot of repeated static content to internet users, and data-transfer-out costs are high. Which change reduces cost and latency?",
     "options": [
-      { "id": "o1", "text": "Serve the content through Amazon CloudFront so cached edge delivery lowers origin data transfer" },
-      { "id": "o2", "text": "Move everything onto a single large EC2 instance" },
-      { "id": "o3", "text": "Disable caching entirely" },
-      { "id": "o4", "text": "Place the origin in a public subnet" }
+      {
+        "id": "o1",
+        "text": "Serve the content through Amazon CloudFront so cached edge delivery lowers origin data transfer"
+      },
+      {
+        "id": "o2",
+        "text": "Move everything onto a single large EC2 instance"
+      },
+      {
+        "id": "o3",
+        "text": "Disable caching entirely"
+      },
+      {
+        "id": "o4",
+        "text": "Place the origin in a public subnet"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "CloudFront caches content at edge locations, so repeated requests are served from the edge, reducing data transfer from the origin (which is cheaper) while also lowering latency.",
     "explanationIncorrect": "A single large instance does not reduce data-transfer-out costs and hurts availability. Disabling caching increases origin load and cost. Putting the origin in a public subnet is a security change that does not lower transfer costs. Edge caching with CloudFront reduces both cost and latency.",
-    "tags": ["cost-optimization", "cloudfront", "data-transfer"]
+    "tags": [
+      "cost-optimization",
+      "cloudfront",
+      "data-transfer"
+    ]
   },
   {
     "id": "saa-052",
@@ -860,15 +1657,30 @@
     "difficulty": "medium",
     "stem": "You have data accessed only a few times a month that must still be instantly retrievable in milliseconds. Which S3 storage class minimizes cost for this pattern?",
     "options": [
-      { "id": "o1", "text": "S3 Standard-Infrequent Access (Standard-IA)" },
-      { "id": "o2", "text": "S3 Glacier Deep Archive" },
-      { "id": "o3", "text": "S3 Standard" },
-      { "id": "o4", "text": "EC2 instance store" }
+      {
+        "id": "o1",
+        "text": "S3 Standard-Infrequent Access (Standard-IA)"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Glacier Deep Archive"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Standard"
+      },
+      {
+        "id": "o4",
+        "text": "EC2 instance store"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "S3 Standard-IA offers the same millisecond access as Standard at a lower storage price, with a per-GB retrieval fee, which suits data that is retained but accessed infrequently.",
     "explanationIncorrect": "Glacier Deep Archive is far cheaper to store but has long retrieval times, so it fails the instant-access requirement. S3 Standard costs more for storage and is meant for frequent access. EC2 instance store is ephemeral local disk, not durable object storage. Infrequent but instant access is Standard-IA.",
-    "tags": ["cost-optimization", "s3-standard-ia"]
+    "tags": [
+      "cost-optimization",
+      "s3-standard-ia"
+    ]
   },
   {
     "id": "saa-053",
@@ -877,15 +1689,31 @@
     "difficulty": "medium",
     "stem": "You can rebuild your workload to run on ARM. Which EC2 option often gives better price-performance than comparable x86 instances?",
     "options": [
-      { "id": "o1", "text": "AWS Graviton-based instances" },
-      { "id": "o2", "text": "The largest available x86 instance" },
-      { "id": "o3", "text": "Dedicated Hosts" },
-      { "id": "o4", "text": "GPU instances for a CPU-only workload" }
+      {
+        "id": "o1",
+        "text": "AWS Graviton-based instances"
+      },
+      {
+        "id": "o2",
+        "text": "The largest available x86 instance"
+      },
+      {
+        "id": "o3",
+        "text": "Dedicated Hosts"
+      },
+      {
+        "id": "o4",
+        "text": "GPU instances for a CPU-only workload"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Graviton processors are ARM-based and typically deliver better price-performance than comparable x86 instances for many workloads, lowering cost when your software can run on ARM.",
     "explanationIncorrect": "Choosing the largest x86 instance increases cost without necessarily improving price-performance. Dedicated Hosts are for licensing and isolation and cost more. GPU instances are wasteful for a CPU-only workload. Better price-performance on ARM comes from Graviton instances.",
-    "tags": ["cost-optimization", "graviton", "price-performance"]
+    "tags": [
+      "cost-optimization",
+      "graviton",
+      "price-performance"
+    ]
   },
   {
     "id": "saa-054",
@@ -894,15 +1722,31 @@
     "difficulty": "medium",
     "stem": "Non-production dev and test EC2 instances run 24/7 but are only used during business hours. What reduces cost with minimal effort?",
     "options": [
-      { "id": "o1", "text": "Stop them outside business hours on a schedule (for example scheduled scaling or an instance scheduler)" },
-      { "id": "o2", "text": "Buy three-year Reserved Instances for them" },
-      { "id": "o3", "text": "Move them to Dedicated Hosts" },
-      { "id": "o4", "text": "Add more instances for redundancy" }
+      {
+        "id": "o1",
+        "text": "Stop them outside business hours on a schedule (for example scheduled scaling or an instance scheduler)"
+      },
+      {
+        "id": "o2",
+        "text": "Buy three-year Reserved Instances for them"
+      },
+      {
+        "id": "o3",
+        "text": "Move them to Dedicated Hosts"
+      },
+      {
+        "id": "o4",
+        "text": "Add more instances for redundancy"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Stopping dev and test instances when no one uses them (on a schedule) means you stop paying for their compute during off-hours, a large saving for a workload only needed during business hours.",
     "explanationIncorrect": "A three-year reservation commits you to paying for capacity you use only part of the day, the opposite of saving here. Dedicated Hosts increase cost. Adding instances raises spend. Scheduling shutdown during off-hours is the low-effort saving.",
-    "tags": ["cost-optimization", "scheduling", "dev-test"]
+    "tags": [
+      "cost-optimization",
+      "scheduling",
+      "dev-test"
+    ]
   },
   {
     "id": "saa-055",
@@ -911,15 +1755,31 @@
     "difficulty": "hard",
     "stem": "Instances in private subnets make heavy calls to Amazon S3 and DynamoDB, and NAT gateway data-processing charges are high. How do you cut those charges?",
     "options": [
-      { "id": "o1", "text": "Use gateway VPC endpoints for S3 and DynamoDB so that traffic bypasses the NAT gateway" },
-      { "id": "o2", "text": "Add a second NAT gateway for more capacity" },
-      { "id": "o3", "text": "Give the instances public IP addresses" },
-      { "id": "o4", "text": "Enable S3 Versioning on the buckets" }
+      {
+        "id": "o1",
+        "text": "Use gateway VPC endpoints for S3 and DynamoDB so that traffic bypasses the NAT gateway"
+      },
+      {
+        "id": "o2",
+        "text": "Add a second NAT gateway for more capacity"
+      },
+      {
+        "id": "o3",
+        "text": "Give the instances public IP addresses"
+      },
+      {
+        "id": "o4",
+        "text": "Enable S3 Versioning on the buckets"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Gateway VPC endpoints route S3 and DynamoDB traffic privately over the AWS network via the route table, avoiding the NAT gateway entirely, which removes the NAT data-processing charges for that traffic.",
     "explanationIncorrect": "A second NAT gateway adds cost rather than removing the per-GB processing charges. Public IPs weaken security and still may route through paid paths. S3 Versioning is unrelated to NAT costs. Bypassing NAT for S3 and DynamoDB uses gateway VPC endpoints.",
-    "tags": ["cost-optimization", "vpc-endpoints", "nat-cost"]
+    "tags": [
+      "cost-optimization",
+      "vpc-endpoints",
+      "nat-cost"
+    ]
   },
   {
     "id": "saa-005",
@@ -928,15 +1788,473 @@
     "difficulty": "medium",
     "stem": "A read-heavy application repeatedly runs the same queries against a single relational database, and latency is climbing. You want to offload those frequent reads and lower latency with minimal application change. Which addition helps most?",
     "options": [
-      { "id": "o1", "text": "Add Amazon ElastiCache to cache frequent read results in memory" },
-      { "id": "o2", "text": "Enable Multi-AZ, whose standby serves read traffic" },
-      { "id": "o3", "text": "Move the database to a smaller instance class" },
-      { "id": "o4", "text": "Place the database in a public subnet" }
+      {
+        "id": "o1",
+        "text": "Add Amazon ElastiCache to cache frequent read results in memory"
+      },
+      {
+        "id": "o2",
+        "text": "Enable Multi-AZ, whose standby serves read traffic"
+      },
+      {
+        "id": "o3",
+        "text": "Move the database to a smaller instance class"
+      },
+      {
+        "id": "o4",
+        "text": "Place the database in a public subnet"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon ElastiCache holds hot query results in memory so repeated reads are served from the cache instead of hitting the database, which cuts latency and offloads the database with only small application changes.",
     "explanationIncorrect": "Multi-AZ is a resilience feature: its standby is kept in sync for failover and does not serve read traffic, so it does nothing to offload reads. Moving to a smaller instance reduces capacity and would make latency worse under a read-heavy load. Putting the database in a public subnet is a security regression that exposes it to the internet and has no effect on read performance. The right tool to offload repeated reads with minimal change is a cache such as Amazon ElastiCache (read replicas are the other common option).",
-    "tags": ["performance", "elasticache", "caching"],
+    "tags": [
+      "performance",
+      "elasticache",
+      "caching"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-056",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "A web tier must survive the loss of an entire Availability Zone with no downtime. Which design meets this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run instances in an Auto Scaling group spanning multiple AZs behind an Application Load Balancer"
+      },
+      {
+        "id": "o2",
+        "text": "Run a single large instance in one AZ"
+      },
+      {
+        "id": "o3",
+        "text": "Run all instances in one AZ with frequent snapshots"
+      },
+      {
+        "id": "o4",
+        "text": "Use one instance with a scheduled reboot"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An Auto Scaling group across multiple AZs behind an ALB keeps healthy capacity in the surviving zones and routes traffic away from the failed AZ, so the loss of one AZ does not cause downtime.",
+    "explanationIncorrect": "A single instance in one AZ is a single point of failure that goes down with that zone. Keeping all instances in one AZ with snapshots still means the whole tier fails if that AZ is lost; snapshots aid recovery, not continuous availability. One instance with scheduled reboots offers no zone-level redundancy at all.",
+    "tags": [
+      "multi-az",
+      "auto-scaling",
+      "high-availability"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-057",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "You need a relational database that automatically fails over to a standby in another AZ with minimal disruption. Which option provides this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon RDS with Multi-AZ deployment"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon RDS Single-AZ with manual snapshots"
+      },
+      {
+        "id": "o3",
+        "text": "A self-managed database on one EC2 instance"
+      },
+      {
+        "id": "o4",
+        "text": "DynamoDB global tables"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RDS Multi-AZ maintains a synchronous standby in another Availability Zone and fails over automatically, providing high availability for the database with little manual intervention.",
+    "explanationIncorrect": "Single-AZ with manual snapshots offers recovery but not automatic failover, so an AZ failure means downtime and restore work. A self-managed database on one EC2 instance has no built-in cross-AZ failover. DynamoDB global tables provide multi-Region replication for a NoSQL store, not automatic AZ failover for a relational database.",
+    "tags": [
+      "rds",
+      "multi-az",
+      "failover"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-058",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach decouples a producer and consumer so that a spike in requests does not overwhelm downstream processing?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Place an Amazon SQS queue between them to buffer messages"
+      },
+      {
+        "id": "o2",
+        "text": "Have the producer call the consumer synchronously"
+      },
+      {
+        "id": "o3",
+        "text": "Store requests in a single EC2 instance's memory"
+      },
+      {
+        "id": "o4",
+        "text": "Increase the producer's timeout"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An SQS queue buffers messages so consumers process at their own pace, absorbing spikes and decoupling the components so a burst does not overwhelm the downstream system.",
+    "explanationIncorrect": "A synchronous call tightly couples the two, so a spike propagates directly to the consumer. Storing requests in one instance's memory loses them on failure and does not scale. Increasing the producer's timeout does not add buffering; it just waits longer while the consumer is still overwhelmed.",
+    "tags": [
+      "sqs",
+      "decoupling",
+      "resilience"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-059",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which storage service is designed for 99.999999999% durability and is ideal for durable, static object storage?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o2",
+        "text": "Instance store"
+      },
+      {
+        "id": "o3",
+        "text": "A single EBS volume"
+      },
+      {
+        "id": "o4",
+        "text": "EC2 RAM"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon S3 is engineered for eleven nines of durability by redundantly storing objects across devices and facilities, making it ideal for durable static content.",
+    "explanationIncorrect": "Instance store is ephemeral and data is lost when the instance stops, so it is the opposite of durable. A single EBS volume is durable within an AZ but is not designed for the same object-level durability across facilities as S3. EC2 RAM is volatile memory, not persistent storage.",
+    "tags": [
+      "s3",
+      "durability",
+      "storage"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-060",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "An application needs a shared file system that multiple EC2 instances across AZs can mount simultaneously. Which service fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon EFS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS attached to one instance"
+      },
+      {
+        "id": "o3",
+        "text": "Instance store"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon S3 Glacier"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon EFS is a managed elastic NFS file system that many instances across multiple Availability Zones can mount at the same time, providing shared, resilient file storage.",
+    "explanationIncorrect": "A standard EBS volume attaches to a single instance and does not provide cross-AZ shared file access in this scenario. Instance store is ephemeral and local to one instance. Glacier is archival object storage for infrequent retrieval, not a mountable shared file system.",
+    "tags": [
+      "efs",
+      "shared-storage",
+      "multi-az"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-061",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which Route 53 feature routes users to a healthy endpoint and away from one that fails a health check?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Failover routing with health checks"
+      },
+      {
+        "id": "o2",
+        "text": "Simple routing without health checks"
+      },
+      {
+        "id": "o3",
+        "text": "Weighted routing set to equal weights only"
+      },
+      {
+        "id": "o4",
+        "text": "Alias records alone"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Failover routing uses health checks to send traffic to a primary endpoint and automatically shift to a standby when the primary becomes unhealthy, supporting resilient DNS.",
+    "explanationIncorrect": "Simple routing returns a record without evaluating health, so it cannot fail traffic away from a broken endpoint. Equal-weighted routing distributes traffic but does not itself provide primary/standby failover. Alias records map to AWS resources but on their own do not implement health-based failover.",
+    "tags": [
+      "route53",
+      "failover",
+      "health-checks"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-062",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "What is the benefit of designing idempotent message processing when using a queue like SQS standard?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It safely handles the possibility of a message being delivered more than once"
+      },
+      {
+        "id": "o2",
+        "text": "It guarantees messages are never delivered"
+      },
+      {
+        "id": "o3",
+        "text": "It increases message size limits"
+      },
+      {
+        "id": "o4",
+        "text": "It removes the need for a consumer"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SQS standard queues offer at-least-once delivery, so a message may arrive more than once; idempotent processing ensures reprocessing the same message causes no harmful duplicate effects.",
+    "explanationIncorrect": "Idempotency does not stop delivery; messages are still delivered. It has nothing to do with message size limits. It does not remove the need for a consumer; you still need something to process messages, just safely against duplicates.",
+    "tags": [
+      "sqs",
+      "idempotency",
+      "resilience"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-063",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "For a disaster recovery strategy with the lowest RTO and RPO, which approach is appropriate despite higher cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A multi-site active-active deployment across Regions"
+      },
+      {
+        "id": "o2",
+        "text": "Backup and restore only"
+      },
+      {
+        "id": "o3",
+        "text": "Pilot light with manual promotion"
+      },
+      {
+        "id": "o4",
+        "text": "No DR plan"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An active-active multi-site deployment serves traffic from multiple Regions simultaneously, so failover is near-instant, giving the lowest recovery time and data loss at the highest cost.",
+    "explanationIncorrect": "Backup and restore has the highest RTO and RPO because you rebuild and restore after a disaster. Pilot light keeps a minimal core running but requires scaling up and promotion, yielding higher RTO than active-active. Having no DR plan provides no recovery guarantees at all.",
+    "tags": [
+      "disaster-recovery",
+      "rto-rpo",
+      "multi-region"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-064",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which feature lets an Auto Scaling group replace an instance that fails its health check automatically?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Health checks combined with the group's desired capacity"
+      },
+      {
+        "id": "o2",
+        "text": "A larger instance type"
+      },
+      {
+        "id": "o3",
+        "text": "A manual snapshot schedule"
+      },
+      {
+        "id": "o4",
+        "text": "A longer instance timeout"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When an instance fails its health check, Auto Scaling terminates it and launches a replacement to maintain the desired capacity, providing self-healing.",
+    "explanationIncorrect": "A larger instance type does not by itself replace failed instances. A snapshot schedule aids backup, not automatic replacement of unhealthy instances. A longer timeout delays detection rather than triggering replacement, so it does not provide self-healing.",
+    "tags": [
+      "auto-scaling",
+      "self-healing",
+      "health-checks"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-065",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To make a stateless web tier truly stateless, where should user session data be stored?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In a shared store such as Amazon DynamoDB or ElastiCache"
+      },
+      {
+        "id": "o2",
+        "text": "On each web server's local disk"
+      },
+      {
+        "id": "o3",
+        "text": "In the load balancer's memory"
+      },
+      {
+        "id": "o4",
+        "text": "In a cookie holding the full session server-side data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Externalizing session state to a shared store like DynamoDB or ElastiCache means any instance can serve any request, enabling free scaling and resilience to instance loss.",
+    "explanationIncorrect": "Storing sessions on each server's local disk ties users to specific instances and loses sessions when an instance fails. The load balancer is not a session data store. A cookie can hold a small token, but putting full server-side session data in it is impractical and insecure, so an external shared store is the right pattern.",
+    "tags": [
+      "stateless",
+      "session-state",
+      "dynamodb"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-066",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "A read-heavy relational workload risks overloading the primary database. Which resilient scaling approach helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Add RDS read replicas to offload read traffic"
+      },
+      {
+        "id": "o2",
+        "text": "Increase the primary's timeout"
+      },
+      {
+        "id": "o3",
+        "text": "Store reads in instance store"
+      },
+      {
+        "id": "o4",
+        "text": "Disable backups to save load"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Read replicas serve read queries independently of the primary, spreading read load and improving both performance and resilience for read-heavy workloads.",
+    "explanationIncorrect": "Increasing the timeout does not reduce load; it just waits longer under pressure. Instance store is ephemeral and inappropriate for authoritative reads. Disabling backups removes protection and does not address read load, so it is both unhelpful and risky.",
+    "tags": [
+      "rds",
+      "read-replicas",
+      "scaling"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-067",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which service provides a managed, highly available NAT capability for instances in private subnets to reach the internet?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "NAT gateway"
+      },
+      {
+        "id": "o2",
+        "text": "Internet gateway attached directly to private instances"
+      },
+      {
+        "id": "o3",
+        "text": "A self-managed NAT instance with no redundancy"
+      },
+      {
+        "id": "o4",
+        "text": "VPC peering"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A NAT gateway is a managed, highly available service within an AZ that lets private-subnet instances initiate outbound internet connections while remaining unreachable from the internet.",
+    "explanationIncorrect": "An internet gateway provides internet access but attaching it does not give private instances outbound NAT without public addressing, and it does not keep them private. A single self-managed NAT instance lacks the built-in availability of the managed gateway. VPC peering connects two VPCs privately and does not provide internet egress.",
+    "tags": [
+      "nat-gateway",
+      "vpc",
+      "networking"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-068",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice improves resilience by ensuring you can recreate infrastructure reliably after a disaster?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Define infrastructure as code with CloudFormation or similar"
+      },
+      {
+        "id": "o2",
+        "text": "Configure everything manually in the console and document nothing"
+      },
+      {
+        "id": "o3",
+        "text": "Keep the only copy of configuration in one engineer's notes"
+      },
+      {
+        "id": "o4",
+        "text": "Avoid version control for infrastructure"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Infrastructure as code captures your environment in versioned templates so it can be recreated consistently and quickly in another Region or account after a disaster.",
+    "explanationIncorrect": "Manual console configuration with no documentation is error-prone and hard to reproduce. Keeping configuration in one person's notes creates a single point of failure and knowledge loss. Avoiding version control removes the history and repeatability that make recovery reliable.",
+    "tags": [
+      "iac",
+      "cloudformation",
+      "resilience"
+    ],
     "isSeed": true
   }
 ]
