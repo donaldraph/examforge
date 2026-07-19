@@ -6,15 +6,31 @@
     "difficulty": "medium",
     "stem": "You want to find security vulnerabilities in your own source code by analyzing how untrusted data flows through the application, before the code ever runs. Which GitHub Advanced Security feature and engine does this?",
     "options": [
-      { "id": "o1", "text": "Code scanning powered by CodeQL, which runs static analysis by querying a database it builds from your code" },
-      { "id": "o2", "text": "Secret scanning, which matches committed strings against known credential patterns" },
-      { "id": "o3", "text": "Dependabot, which compares your manifest against an advisory database" },
-      { "id": "o4", "text": "Required status checks, which block a merge until tests pass" }
+      {
+        "id": "o1",
+        "text": "Code scanning powered by CodeQL, which runs static analysis by querying a database it builds from your code"
+      },
+      {
+        "id": "o2",
+        "text": "Secret scanning, which matches committed strings against known credential patterns"
+      },
+      {
+        "id": "o3",
+        "text": "Dependabot, which compares your manifest against an advisory database"
+      },
+      {
+        "id": "o4",
+        "text": "Required status checks, which block a merge until tests pass"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Code scanning uses CodeQL to treat your code as data: it builds a database from the code and runs queries that trace tainted data from a source to a dangerous sink, so it finds issues by static analysis without executing anything.",
     "explanationIncorrect": "Secret scanning looks for credentials that were committed, matching strings against known token patterns; it does not reason about data flow through your code. Dependabot works at the dependency level, comparing the versions in your manifests and lockfiles against the GitHub Advisory Database, so it flags vulnerable packages you depend on rather than flaws in code you wrote. Required status checks are a branch protection mechanism that gates merges on CI results; they run whatever you configured but do no security analysis themselves. The feature that performs data-flow static analysis of your own source is code scanning with CodeQL.",
-    "tags": ["code-scanning", "codeql", "static-analysis"],
+    "tags": [
+      "code-scanning",
+      "codeql",
+      "static-analysis"
+    ],
     "isSeed": true
   },
   {
@@ -24,15 +40,30 @@
     "difficulty": "medium",
     "stem": "A developer is about to commit an AWS access key. You want GitHub to block the push at the moment it is attempted, before the secret ever reaches the remote repository. Which capability do you enable?",
     "options": [
-      { "id": "o1", "text": "Secret scanning push protection" },
-      { "id": "o2", "text": "Branch protection requiring a pull request review" },
-      { "id": "o3", "text": "Code scanning with a custom CodeQL query that looks for secrets" },
-      { "id": "o4", "text": "Dependabot security updates" }
+      {
+        "id": "o1",
+        "text": "Secret scanning push protection"
+      },
+      {
+        "id": "o2",
+        "text": "Branch protection requiring a pull request review"
+      },
+      {
+        "id": "o3",
+        "text": "Code scanning with a custom CodeQL query that looks for secrets"
+      },
+      {
+        "id": "o4",
+        "text": "Dependabot security updates"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Push protection is the part of secret scanning that checks the pushed content against supported secret patterns and rejects the push in real time, so a recognized credential never lands in the remote history in the first place.",
     "explanationIncorrect": "A pull request review requirement gates merging into a protected branch, but the secret would already be pushed to the feature branch and stored in history before any review happens, so it does not prevent the leak. CodeQL analyzes code structure and data flow rather than scanning for credential patterns, and it runs as an analysis over a branch rather than as a gate on the push itself. Dependabot security updates open pull requests to bump vulnerable dependencies and have nothing to do with committed secrets. The feature that stops a recognized secret at push time is secret scanning push protection.",
-    "tags": ["secret-scanning", "push-protection"],
+    "tags": [
+      "secret-scanning",
+      "push-protection"
+    ],
     "isSeed": true
   },
   {
@@ -42,15 +73,31 @@
     "difficulty": "medium",
     "stem": "When a new advisory affects a package your repository depends on, you want Dependabot to automatically open a pull request that bumps that dependency to a patched version. Which Dependabot feature is this?",
     "options": [
-      { "id": "o1", "text": "Dependabot security updates" },
-      { "id": "o2", "text": "Dependabot version updates" },
-      { "id": "o3", "text": "Dependabot alerts" },
-      { "id": "o4", "text": "Dependency review in a pull request" }
+      {
+        "id": "o1",
+        "text": "Dependabot security updates"
+      },
+      {
+        "id": "o2",
+        "text": "Dependabot version updates"
+      },
+      {
+        "id": "o3",
+        "text": "Dependabot alerts"
+      },
+      {
+        "id": "o4",
+        "text": "Dependency review in a pull request"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Dependabot security updates react specifically to advisories: when a vulnerability is known for a dependency you use, Dependabot raises a pull request to move it to the nearest patched version.",
     "explanationIncorrect": "Dependabot version updates are scheduled and driven by a dependabot.yml config; they keep dependencies current on a cadence regardless of whether a vulnerability exists, so they are not triggered by an advisory. Dependabot alerts notify you that a vulnerable dependency is present, but an alert on its own is a notification, not an automatically opened fix pull request. Dependency review runs in a pull request and shows the security impact of the dependency changes that pull request introduces, helping a reviewer decide before merge; it does not itself open remediation pull requests. The feature that opens patch pull requests in response to advisories is Dependabot security updates.",
-    "tags": ["dependabot", "dependencies", "advisories"],
+    "tags": [
+      "dependabot",
+      "dependencies",
+      "advisories"
+    ],
     "isSeed": true
   },
   {
@@ -60,15 +107,31 @@
     "difficulty": "medium",
     "stem": "As an organization owner you want a single place to see which repositories have open code scanning, secret scanning, and Dependabot alerts across the whole organization, and where those features are enabled. Where do you look?",
     "options": [
-      { "id": "o1", "text": "The organization-level security overview" },
-      { "id": "o2", "text": "The Insights tab of each repository, one repository at a time" },
-      { "id": "o3", "text": "The Actions tab filtered by workflow run" },
-      { "id": "o4", "text": "A CSV export of the git commit log" }
+      {
+        "id": "o1",
+        "text": "The organization-level security overview"
+      },
+      {
+        "id": "o2",
+        "text": "The Insights tab of each repository, one repository at a time"
+      },
+      {
+        "id": "o3",
+        "text": "The Actions tab filtered by workflow run"
+      },
+      {
+        "id": "o4",
+        "text": "A CSV export of the git commit log"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The security overview aggregates alert state and feature enablement across the organization's repositories in one view, which is exactly the cross-repository posture picture an owner needs.",
     "explanationIncorrect": "The repository Insights tab shows traffic and contribution analytics for a single repository and does not aggregate security alerts across the org, so using it means visiting every repository by hand. The Actions tab lists workflow runs; it can tell you whether a scanning workflow executed but not the consolidated alert posture across repositories. A commit log export tells you what changed, not which security alerts are open or which features are turned on. The consolidated cross-repository view is the organization-level security overview.",
-    "tags": ["security-overview", "administration", "organization"],
+    "tags": [
+      "security-overview",
+      "administration",
+      "organization"
+    ],
     "isSeed": true
   },
   {
@@ -78,15 +141,31 @@
     "difficulty": "hard",
     "stem": "You need to customize which CodeQL query suites run and add a build step for a compiled language before analysis. Which code scanning configuration should you use?",
     "options": [
-      { "id": "o1", "text": "Advanced setup, which commits an editable CodeQL analysis workflow you can customize" },
-      { "id": "o2", "text": "Default setup, because its managed configuration can be edited per query and per build step" },
-      { "id": "o3", "text": "Secret scanning custom patterns" },
-      { "id": "o4", "text": "A branch protection rule that adds the build step" }
+      {
+        "id": "o1",
+        "text": "Advanced setup, which commits an editable CodeQL analysis workflow you can customize"
+      },
+      {
+        "id": "o2",
+        "text": "Default setup, because its managed configuration can be edited per query and per build step"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning custom patterns"
+      },
+      {
+        "id": "o4",
+        "text": "A branch protection rule that adds the build step"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Advanced setup generates a CodeQL workflow file in your repository that you own and edit, so you can choose query suites, set languages, and insert build steps for compiled languages that need to be built before CodeQL can analyze them.",
     "explanationIncorrect": "Default setup is deliberately managed and low-configuration: it enables code scanning quickly and handles common cases, but it does not give you a workflow file to hand-tune query suites or inject a custom build step, which is the whole requirement here. Secret scanning custom patterns define new credential shapes to detect; they are unrelated to CodeQL queries or building code. A branch protection rule can require the code scanning check to pass, but it cannot define how the analysis runs or add a build step. To customize query suites and add a build step you use advanced setup with its editable CodeQL workflow.",
-    "tags": ["code-scanning", "codeql", "advanced-setup"],
+    "tags": [
+      "code-scanning",
+      "codeql",
+      "advanced-setup"
+    ],
     "isSeed": true
   },
   {
@@ -96,15 +175,31 @@
     "difficulty": "medium",
     "stem": "You want scheduled version updates for your npm dependencies. What is the minimum you configure, and where?",
     "options": [
-      { "id": "o1", "text": "A .github/dependabot.yml with an updates entry specifying package-ecosystem, directory, and schedule.interval" },
-      { "id": "o2", "text": "A workflow that runs npm update on a cron schedule" },
-      { "id": "o3", "text": "Enable Dependabot alerts and nothing else" },
-      { "id": "o4", "text": "A CODEOWNERS entry that lists package.json" }
+      {
+        "id": "o1",
+        "text": "A .github/dependabot.yml with an updates entry specifying package-ecosystem, directory, and schedule.interval"
+      },
+      {
+        "id": "o2",
+        "text": "A workflow that runs npm update on a cron schedule"
+      },
+      {
+        "id": "o3",
+        "text": "Enable Dependabot alerts and nothing else"
+      },
+      {
+        "id": "o4",
+        "text": "A CODEOWNERS entry that lists package.json"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Dependabot version updates are driven by .github/dependabot.yml, where each updates entry names the package-ecosystem (npm), the directory of the manifest, and a schedule.interval, which together tell Dependabot what to keep current and how often.",
     "explanationIncorrect": "Running npm update on a cron would change the lockfile but produces no reviewed pull requests and is not how Dependabot version updates work. Enabling alerts only tells you about known vulnerabilities; it does not open routine version-bump pull requests. CODEOWNERS assigns review responsibility and does nothing to schedule updates. The minimum for version updates is a dependabot.yml updates entry with ecosystem, directory, and interval.",
-    "tags": ["dependabot", "version-updates", "config"]
+    "tags": [
+      "dependabot",
+      "version-updates",
+      "config"
+    ]
   },
   {
     "id": "ghas-007",
@@ -113,15 +208,31 @@
     "difficulty": "medium",
     "stem": "Dependabot alerts tell you a dependency you use is vulnerable. Where does that vulnerability information primarily come from?",
     "options": [
-      { "id": "o1", "text": "The GitHub Advisory Database, matched against your repository's dependency graph" },
-      { "id": "o2", "text": "CodeQL query results over your source code" },
-      { "id": "o3", "text": "Secret scanning credential patterns" },
-      { "id": "o4", "text": "A one-time npm audit run on your laptop" }
+      {
+        "id": "o1",
+        "text": "The GitHub Advisory Database, matched against your repository's dependency graph"
+      },
+      {
+        "id": "o2",
+        "text": "CodeQL query results over your source code"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning credential patterns"
+      },
+      {
+        "id": "o4",
+        "text": "A one-time npm audit run on your laptop"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Dependabot compares the packages in your dependency graph against advisories in the GitHub Advisory Database, and raises an alert when a version you depend on is covered by a known vulnerability.",
     "explanationIncorrect": "CodeQL analyzes your own source for flaws; it does not track third-party package advisories. Secret scanning looks for leaked credentials, not vulnerable dependencies. A local npm audit is a manual, point-in-time check that is not what powers continuous Dependabot alerts in GitHub. The source is the GitHub Advisory Database applied to your dependency graph.",
-    "tags": ["dependabot", "alerts", "advisory-database"]
+    "tags": [
+      "dependabot",
+      "alerts",
+      "advisory-database"
+    ]
   },
   {
     "id": "ghas-008",
@@ -130,15 +241,31 @@
     "difficulty": "medium",
     "stem": "Dependabot alerts and security updates are not appearing for a repository. Which prerequisite feature must be enabled for them to function?",
     "options": [
-      { "id": "o1", "text": "The dependency graph" },
-      { "id": "o2", "text": "GitHub Pages" },
-      { "id": "o3", "text": "Repository Discussions" },
-      { "id": "o4", "text": "A self-hosted runner" }
+      {
+        "id": "o1",
+        "text": "The dependency graph"
+      },
+      {
+        "id": "o2",
+        "text": "GitHub Pages"
+      },
+      {
+        "id": "o3",
+        "text": "Repository Discussions"
+      },
+      {
+        "id": "o4",
+        "text": "A self-hosted runner"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The dependency graph is what identifies the packages a repository uses; Dependabot alerts and security updates build on it, so they cannot work until the dependency graph is enabled.",
     "explanationIncorrect": "GitHub Pages publishes a website and is unrelated to dependency analysis. Discussions is a community forum feature with no bearing on Dependabot. A self-hosted runner executes workflow jobs; Dependabot's alerting does not depend on your runners. The required foundation is the dependency graph.",
-    "tags": ["dependabot", "dependency-graph", "prerequisites"]
+    "tags": [
+      "dependabot",
+      "dependency-graph",
+      "prerequisites"
+    ]
   },
   {
     "id": "ghas-009",
@@ -147,15 +274,31 @@
     "difficulty": "hard",
     "stem": "You want a pull request to fail before merge if it introduces a dependency with a known high-severity vulnerability. Which mechanism does this?",
     "options": [
-      { "id": "o1", "text": "The dependency review action running on pull_request, configured to fail on a severity threshold and set as a required check" },
-      { "id": "o2", "text": "Dependabot version updates on a weekly schedule" },
-      { "id": "o3", "text": "Secret scanning push protection" },
-      { "id": "o4", "text": "CodeQL default setup analyzing the diff" }
+      {
+        "id": "o1",
+        "text": "The dependency review action running on pull_request, configured to fail on a severity threshold and set as a required check"
+      },
+      {
+        "id": "o2",
+        "text": "Dependabot version updates on a weekly schedule"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning push protection"
+      },
+      {
+        "id": "o4",
+        "text": "CodeQL default setup analyzing the diff"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The dependency review action inspects the dependency changes a pull request introduces and can fail the check when a new dependency meets or exceeds a configured severity, and making it a required check blocks the merge.",
     "explanationIncorrect": "Dependabot version updates open bump pull requests on a schedule; they do not gate other people's pull requests on newly introduced vulnerabilities. Secret scanning push protection blocks committed credentials, not vulnerable dependencies. CodeQL analyzes source code for code-level flaws, not the security of dependencies a pull request adds. The gate for newly introduced vulnerable dependencies is the dependency review action as a required check.",
-    "tags": ["dependency-review", "pull-request", "gating"]
+    "tags": [
+      "dependency-review",
+      "pull-request",
+      "gating"
+    ]
   },
   {
     "id": "ghas-010",
@@ -164,15 +307,30 @@
     "difficulty": "medium",
     "stem": "Dependabot is opening too many individual version-update pull requests. How do you make it combine related updates into fewer pull requests?",
     "options": [
-      { "id": "o1", "text": "Configure groups in dependabot.yml so related updates are batched into a single pull request" },
-      { "id": "o2", "text": "Set schedule.interval to monthly, which automatically merges the pull requests" },
-      { "id": "o3", "text": "Disable Dependabot alerts to reduce the noise" },
-      { "id": "o4", "text": "Set open-pull-requests-limit to 1 so updates are combined" }
+      {
+        "id": "o1",
+        "text": "Configure groups in dependabot.yml so related updates are batched into a single pull request"
+      },
+      {
+        "id": "o2",
+        "text": "Set schedule.interval to monthly, which automatically merges the pull requests"
+      },
+      {
+        "id": "o3",
+        "text": "Disable Dependabot alerts to reduce the noise"
+      },
+      {
+        "id": "o4",
+        "text": "Set open-pull-requests-limit to 1 so updates are combined"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The groups setting in dependabot.yml tells Dependabot to bundle updates that match a group into one pull request, which is the intended way to cut down on the number of separate update PRs.",
     "explanationIncorrect": "Changing the interval to monthly only changes how often updates run; it does not merge multiple updates into one pull request. Disabling alerts hides vulnerability information and does not affect version-update pull request volume. open-pull-requests-limit caps how many update PRs are open at once and simply drops the rest; it does not combine them into one. The batching feature is groups.",
-    "tags": ["dependabot", "grouped-updates"]
+    "tags": [
+      "dependabot",
+      "grouped-updates"
+    ]
   },
   {
     "id": "ghas-011",
@@ -181,15 +339,31 @@
     "difficulty": "medium",
     "stem": "A specific package must not be bumped past its current major version because the next major has breaking changes. How do you express that to Dependabot?",
     "options": [
-      { "id": "o1", "text": "Add an ignore entry for that dependency in dependabot.yml constraining the versions or update-types it may propose" },
-      { "id": "o2", "text": "Remove the package from the dependency graph" },
-      { "id": "o3", "text": "Add the package to .gitignore" },
-      { "id": "o4", "text": "Turn off Dependabot entirely for the repository" }
+      {
+        "id": "o1",
+        "text": "Add an ignore entry for that dependency in dependabot.yml constraining the versions or update-types it may propose"
+      },
+      {
+        "id": "o2",
+        "text": "Remove the package from the dependency graph"
+      },
+      {
+        "id": "o3",
+        "text": "Add the package to .gitignore"
+      },
+      {
+        "id": "o4",
+        "text": "Turn off Dependabot entirely for the repository"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "dependabot.yml supports an ignore list where you name a dependency and restrict which versions or update-types Dependabot may raise, so you can block the major bump while still receiving patch and minor updates.",
     "explanationIncorrect": "You cannot selectively remove a real dependency from the graph while still using it; the graph reflects your manifests. .gitignore excludes files from version control and has no effect on Dependabot. Disabling Dependabot entirely throws away all updates, including the safe ones you still want. The targeted control is an ignore entry with version or update-type constraints.",
-    "tags": ["dependabot", "ignore", "config"]
+    "tags": [
+      "dependabot",
+      "ignore",
+      "config"
+    ]
   },
   {
     "id": "ghas-012",
@@ -198,15 +372,30 @@
     "difficulty": "medium",
     "stem": "Beyond vulnerabilities, you also need pull requests to fail when they introduce a dependency under a license your organization disallows. Can the dependency review action enforce this?",
     "options": [
-      { "id": "o1", "text": "Yes; the dependency review action supports allow and deny license configuration and can fail on a disallowed license" },
-      { "id": "o2", "text": "No; license policy requires a separate paid third-party tool" },
-      { "id": "o3", "text": "No; only CodeQL can evaluate dependency licenses" },
-      { "id": "o4", "text": "No; license information is only exposed through secret scanning" }
+      {
+        "id": "o1",
+        "text": "Yes; the dependency review action supports allow and deny license configuration and can fail on a disallowed license"
+      },
+      {
+        "id": "o2",
+        "text": "No; license policy requires a separate paid third-party tool"
+      },
+      {
+        "id": "o3",
+        "text": "No; only CodeQL can evaluate dependency licenses"
+      },
+      {
+        "id": "o4",
+        "text": "No; license information is only exposed through secret scanning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The dependency review action can be configured with license allow or deny lists, so a pull request that adds a dependency under a denied license fails the check, giving you license policy enforcement alongside vulnerability checks.",
     "explanationIncorrect": "License enforcement is built into the dependency review action, so a separate paid tool is not required. CodeQL analyzes source code for flaws and does not evaluate dependency licenses. Secret scanning finds leaked credentials and has nothing to do with license metadata. The dependency review action itself handles license allow and deny policy.",
-    "tags": ["dependency-review", "licenses"]
+    "tags": [
+      "dependency-review",
+      "licenses"
+    ]
   },
   {
     "id": "ghas-013",
@@ -215,15 +404,31 @@
     "difficulty": "hard",
     "stem": "Some of your dependencies come from a private package registry that requires authentication. How does Dependabot reach it securely?",
     "options": [
-      { "id": "o1", "text": "Declare a registries block in dependabot.yml and reference Dependabot secrets for the credentials" },
-      { "id": "o2", "text": "Put the registry password in plaintext directly in dependabot.yml" },
-      { "id": "o3", "text": "Dependabot cannot authenticate to private registries at all" },
-      { "id": "o4", "text": "Commit an .npmrc containing the token into the repository" }
+      {
+        "id": "o1",
+        "text": "Declare a registries block in dependabot.yml and reference Dependabot secrets for the credentials"
+      },
+      {
+        "id": "o2",
+        "text": "Put the registry password in plaintext directly in dependabot.yml"
+      },
+      {
+        "id": "o3",
+        "text": "Dependabot cannot authenticate to private registries at all"
+      },
+      {
+        "id": "o4",
+        "text": "Commit an .npmrc containing the token into the repository"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "dependabot.yml has a registries section for private sources, and credentials are supplied through Dependabot secrets referenced from that section, so Dependabot can authenticate without exposing the secret in the config.",
     "explanationIncorrect": "A plaintext password in the config would be committed to the repository and leaked, which is exactly what Dependabot secrets exist to avoid. Dependabot does support private registries, so claiming it cannot is wrong. Committing an .npmrc with a live token is the same plaintext-secret leak in a different file. The secure pattern is a registries block referencing Dependabot secrets.",
-    "tags": ["dependabot", "private-registries", "secrets"]
+    "tags": [
+      "dependabot",
+      "private-registries",
+      "secrets"
+    ]
   },
   {
     "id": "ghas-014",
@@ -232,15 +437,30 @@
     "difficulty": "medium",
     "stem": "A Dependabot security update opens a pull request for a vulnerable dependency. To which version does it typically bump the dependency?",
     "options": [
-      { "id": "o1", "text": "The minimum version that resolves the advisory, to limit unrelated change" },
-      { "id": "o2", "text": "Always the newest available major version" },
-      { "id": "o3", "text": "The oldest version still in the registry" },
-      { "id": "o4", "text": "It removes the dependency from the manifest" }
+      {
+        "id": "o1",
+        "text": "The minimum version that resolves the advisory, to limit unrelated change"
+      },
+      {
+        "id": "o2",
+        "text": "Always the newest available major version"
+      },
+      {
+        "id": "o3",
+        "text": "The oldest version still in the registry"
+      },
+      {
+        "id": "o4",
+        "text": "It removes the dependency from the manifest"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A security update aims to fix the vulnerability with the smallest necessary change, bumping to the lowest version that is no longer affected, which keeps the pull request low-risk and easy to review.",
     "explanationIncorrect": "Jumping to the newest major version would often introduce breaking changes unrelated to the fix, which is not what a security update targets. The oldest version would not resolve the advisory and may itself be vulnerable. Dependabot does not delete a dependency you rely on; it patches it. The behavior is to move to the minimum patched version.",
-    "tags": ["dependabot", "security-updates"]
+    "tags": [
+      "dependabot",
+      "security-updates"
+    ]
   },
   {
     "id": "ghas-015",
@@ -249,15 +469,31 @@
     "difficulty": "medium",
     "stem": "An auditor asks for a machine-readable inventory of every dependency your repository uses. Which capability produces that inventory?",
     "options": [
-      { "id": "o1", "text": "Export an SBOM in SPDX format from the repository's dependency graph" },
-      { "id": "o2", "text": "Download the CodeQL database for the repository" },
-      { "id": "o3", "text": "Export the list of secret scanning alerts" },
-      { "id": "o4", "text": "Save the workflow run logs from the Actions tab" }
+      {
+        "id": "o1",
+        "text": "Export an SBOM in SPDX format from the repository's dependency graph"
+      },
+      {
+        "id": "o2",
+        "text": "Download the CodeQL database for the repository"
+      },
+      {
+        "id": "o3",
+        "text": "Export the list of secret scanning alerts"
+      },
+      {
+        "id": "o4",
+        "text": "Save the workflow run logs from the Actions tab"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The dependency graph can be exported as a Software Bill of Materials in SPDX format, which is exactly the standardized, machine-readable dependency inventory an auditor is asking for.",
     "explanationIncorrect": "A CodeQL database is an analysis artifact of your source code, not a dependency inventory. Secret scanning alerts list leaked credentials, not dependencies. Workflow run logs record what a job did, not a structured list of the packages you depend on. The SBOM export from the dependency graph is the right artifact.",
-    "tags": ["dependency-graph", "sbom", "spdx"]
+    "tags": [
+      "dependency-graph",
+      "sbom",
+      "spdx"
+    ]
   },
   {
     "id": "ghas-016",
@@ -266,15 +502,31 @@
     "difficulty": "hard",
     "stem": "You run a third-party static analysis tool and want its findings to show up in GitHub's code scanning alerts. What format must the tool emit, and how does GitHub ingest it?",
     "options": [
-      { "id": "o1", "text": "Emit SARIF and upload it to code scanning via the upload-sarif action or the API" },
-      { "id": "o2", "text": "Emit JUnit XML and attach it as a build artifact" },
-      { "id": "o3", "text": "Emit a CodeQL database for GitHub to query" },
-      { "id": "o4", "text": "Print the findings to the workflow job log" }
+      {
+        "id": "o1",
+        "text": "Emit SARIF and upload it to code scanning via the upload-sarif action or the API"
+      },
+      {
+        "id": "o2",
+        "text": "Emit JUnit XML and attach it as a build artifact"
+      },
+      {
+        "id": "o3",
+        "text": "Emit a CodeQL database for GitHub to query"
+      },
+      {
+        "id": "o4",
+        "text": "Print the findings to the workflow job log"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Code scanning ingests results in SARIF, the standard static-analysis interchange format, so a third-party tool that outputs SARIF can be uploaded (with the upload-sarif action or API) and its findings appear alongside CodeQL alerts.",
     "explanationIncorrect": "JUnit XML describes test results, not security findings, and code scanning does not consume it. A CodeQL database is an internal analysis artifact CodeQL builds from source; a third-party tool does not produce one, and it is not how external results are uploaded. Printing to the log leaves the findings unstructured and unlinked to the Security tab. The interchange format for code scanning is SARIF.",
-    "tags": ["code-scanning", "sarif", "third-party"]
+    "tags": [
+      "code-scanning",
+      "sarif",
+      "third-party"
+    ]
   },
   {
     "id": "ghas-017",
@@ -283,15 +535,31 @@
     "difficulty": "medium",
     "stem": "You want code scanning to include additional code-quality queries alongside the security queries. Which CodeQL query suite do you select?",
     "options": [
-      { "id": "o1", "text": "The security-and-quality suite" },
-      { "id": "o2", "text": "The security-extended suite" },
-      { "id": "o3", "text": "The default suite" },
-      { "id": "o4", "text": "There is no suite that includes quality queries" }
+      {
+        "id": "o1",
+        "text": "The security-and-quality suite"
+      },
+      {
+        "id": "o2",
+        "text": "The security-extended suite"
+      },
+      {
+        "id": "o3",
+        "text": "The default suite"
+      },
+      {
+        "id": "o4",
+        "text": "There is no suite that includes quality queries"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The security-and-quality suite runs the security queries plus additional maintainability and quality queries, which is what you choose when you want both categories.",
     "explanationIncorrect": "security-extended broadens the security coverage with more security queries but does not add code-quality queries. The default suite is the smaller, high-precision security set and includes the fewest queries. Quality queries do exist as a suite, so the claim that none includes them is wrong. The suite that adds quality queries is security-and-quality.",
-    "tags": ["code-scanning", "codeql", "query-suites"]
+    "tags": [
+      "code-scanning",
+      "codeql",
+      "query-suites"
+    ]
   },
   {
     "id": "ghas-018",
@@ -300,15 +568,31 @@
     "difficulty": "medium",
     "stem": "Scanning a Java project with CodeQL requires the code to be built so CodeQL can observe compilation. How does CodeQL handle the build?",
     "options": [
-      { "id": "o1", "text": "It runs an autobuild step that attempts the build automatically, and you can supply manual build commands if autobuild fails" },
-      { "id": "o2", "text": "CodeQL never needs to build code for any language" },
-      { "id": "o3", "text": "Dependabot compiles the project for CodeQL" },
-      { "id": "o4", "text": "The runner refuses to analyze compiled languages" }
+      {
+        "id": "o1",
+        "text": "It runs an autobuild step that attempts the build automatically, and you can supply manual build commands if autobuild fails"
+      },
+      {
+        "id": "o2",
+        "text": "CodeQL never needs to build code for any language"
+      },
+      {
+        "id": "o3",
+        "text": "Dependabot compiles the project for CodeQL"
+      },
+      {
+        "id": "o4",
+        "text": "The runner refuses to analyze compiled languages"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "For compiled languages CodeQL uses autobuild to try to build the project automatically, and when autobuild cannot figure out the build you replace it with explicit build commands so CodeQL can trace the compilation.",
     "explanationIncorrect": "Interpreted languages need no build, but compiled languages like Java do, so the claim that CodeQL never builds is false. Dependabot manages dependencies and does not build code for CodeQL. Compiled languages are fully supported, so the runner does not refuse them. The mechanism is autobuild, with manual build steps as a fallback.",
-    "tags": ["code-scanning", "codeql", "autobuild"]
+    "tags": [
+      "code-scanning",
+      "codeql",
+      "autobuild"
+    ]
   },
   {
     "id": "ghas-019",
@@ -317,15 +601,31 @@
     "difficulty": "easy",
     "stem": "Which statement about CodeQL language support is accurate?",
     "options": [
-      { "id": "o1", "text": "CodeQL supports a defined set of compiled and interpreted languages, and code in unsupported languages is simply not analyzed" },
-      { "id": "o2", "text": "CodeQL analyzes every programming language that exists" },
-      { "id": "o3", "text": "CodeQL supports only JavaScript" },
-      { "id": "o4", "text": "CodeQL supports only compiled languages" }
+      {
+        "id": "o1",
+        "text": "CodeQL supports a defined set of compiled and interpreted languages, and code in unsupported languages is simply not analyzed"
+      },
+      {
+        "id": "o2",
+        "text": "CodeQL analyzes every programming language that exists"
+      },
+      {
+        "id": "o3",
+        "text": "CodeQL supports only JavaScript"
+      },
+      {
+        "id": "o4",
+        "text": "CodeQL supports only compiled languages"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "CodeQL covers a specific list of supported languages spanning both compiled and interpreted ones (such as Java, C/C++, C#, Go, JavaScript/TypeScript, Python, Ruby, and Swift); anything outside that list is not analyzed rather than analyzed poorly.",
     "explanationIncorrect": "No analyzer supports every language in existence, so that claim is false. CodeQL supports far more than JavaScript alone. It supports interpreted languages as well as compiled ones, so restricting it to compiled languages is wrong. The accurate description is a defined set of supported languages, with unsupported code left unanalyzed.",
-    "tags": ["code-scanning", "codeql", "languages"]
+    "tags": [
+      "code-scanning",
+      "codeql",
+      "languages"
+    ]
   },
   {
     "id": "ghas-020",
@@ -334,15 +634,31 @@
     "difficulty": "medium",
     "stem": "A code scanning alert is a confirmed false positive. How should you handle it so it stops recurring while keeping an audit trail?",
     "options": [
-      { "id": "o1", "text": "Dismiss the alert with a reason such as false positive, which records who dismissed it and why" },
-      { "id": "o2", "text": "Delete the source file that triggered it" },
-      { "id": "o3", "text": "Disable code scanning for the whole repository" },
-      { "id": "o4", "text": "Do nothing, since alerts expire automatically" }
+      {
+        "id": "o1",
+        "text": "Dismiss the alert with a reason such as false positive, which records who dismissed it and why"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the source file that triggered it"
+      },
+      {
+        "id": "o3",
+        "text": "Disable code scanning for the whole repository"
+      },
+      {
+        "id": "o4",
+        "text": "Do nothing, since alerts expire automatically"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Dismissing an alert with a documented reason (false positive, used in tests, or won't fix) clears it from the active list, keeps it from recurring for the same finding, and records the actor and rationale for audit.",
     "explanationIncorrect": "Deleting the source file to silence an alert is destructive and usually wrong; the code may be needed. Disabling code scanning entirely removes coverage for every real issue, not just the false positive. Alerts do not silently expire; leaving it open keeps noise and hides real signal. The correct action is a documented dismissal.",
-    "tags": ["code-scanning", "alert-triage", "dismissal"]
+    "tags": [
+      "code-scanning",
+      "alert-triage",
+      "dismissal"
+    ]
   },
   {
     "id": "ghas-021",
@@ -351,15 +667,31 @@
     "difficulty": "easy",
     "stem": "Code scanning runs on a pull request and finds a new problem introduced by that pull request. Where does the developer see it?",
     "options": [
-      { "id": "o1", "text": "As a check on the pull request with inline annotations, and in the repository's Security tab under code scanning alerts" },
-      { "id": "o2", "text": "Only in a nightly summary email" },
-      { "id": "o3", "text": "Only buried in the Actions run logs" },
-      { "id": "o4", "text": "In the repository Wiki" }
+      {
+        "id": "o1",
+        "text": "As a check on the pull request with inline annotations, and in the repository's Security tab under code scanning alerts"
+      },
+      {
+        "id": "o2",
+        "text": "Only in a nightly summary email"
+      },
+      {
+        "id": "o3",
+        "text": "Only buried in the Actions run logs"
+      },
+      {
+        "id": "o4",
+        "text": "In the repository Wiki"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Code scanning surfaces pull request findings as a check with inline annotations on the changed lines, and all alerts are also collected in the Security tab, so developers see issues right where they are working.",
     "explanationIncorrect": "Findings are shown in real time on the pull request, not only in a nightly email. They are more than log lines; they are structured alerts with locations, so the Actions log is not where you triage them. The Wiki is unrelated documentation space. Results appear on the pull request check and in the Security tab.",
-    "tags": ["code-scanning", "pull-request", "alerts"]
+    "tags": [
+      "code-scanning",
+      "pull-request",
+      "alerts"
+    ]
   },
   {
     "id": "ghas-022",
@@ -368,15 +700,31 @@
     "difficulty": "hard",
     "stem": "Your security team wrote custom CodeQL queries to catch a framework-specific bug pattern. How do you run them in code scanning?",
     "options": [
-      { "id": "o1", "text": "Package them as a CodeQL query pack (or reference the .ql files) and point the code scanning workflow's queries input at them" },
-      { "id": "o2", "text": "Paste them into the secret scanning custom patterns UI" },
-      { "id": "o3", "text": "Add them to dependabot.yml as an updates entry" },
-      { "id": "o4", "text": "Custom CodeQL queries cannot be run in code scanning" }
+      {
+        "id": "o1",
+        "text": "Package them as a CodeQL query pack (or reference the .ql files) and point the code scanning workflow's queries input at them"
+      },
+      {
+        "id": "o2",
+        "text": "Paste them into the secret scanning custom patterns UI"
+      },
+      {
+        "id": "o3",
+        "text": "Add them to dependabot.yml as an updates entry"
+      },
+      {
+        "id": "o4",
+        "text": "Custom CodeQL queries cannot be run in code scanning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Custom queries are distributed as CodeQL query packs (or referenced directly), and the code scanning workflow's queries input tells CodeQL to run them in addition to or instead of the standard suites.",
     "explanationIncorrect": "Secret scanning custom patterns are regexes for credentials, not CodeQL queries. dependabot.yml configures dependency updates and cannot run analysis queries. Custom queries are explicitly supported, so claiming they cannot run is wrong. You run them by packaging a query pack and referencing it from the queries input.",
-    "tags": ["code-scanning", "codeql", "custom-queries"]
+    "tags": [
+      "code-scanning",
+      "codeql",
+      "custom-queries"
+    ]
   },
   {
     "id": "ghas-023",
@@ -385,15 +733,30 @@
     "difficulty": "medium",
     "stem": "Your company issues an internal API token with a distinctive format that GitHub does not detect out of the box. How do you get secret scanning to catch it?",
     "options": [
-      { "id": "o1", "text": "Define a custom secret scanning pattern with a regular expression at the repository, organization, or enterprise level" },
-      { "id": "o2", "text": "Add the token format to your CodeQL query suite" },
-      { "id": "o3", "text": "List the token format in dependabot.yml" },
-      { "id": "o4", "text": "Nothing can be done; only GitHub partner patterns are detectable" }
+      {
+        "id": "o1",
+        "text": "Define a custom secret scanning pattern with a regular expression at the repository, organization, or enterprise level"
+      },
+      {
+        "id": "o2",
+        "text": "Add the token format to your CodeQL query suite"
+      },
+      {
+        "id": "o3",
+        "text": "List the token format in dependabot.yml"
+      },
+      {
+        "id": "o4",
+        "text": "Nothing can be done; only GitHub partner patterns are detectable"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Custom patterns let you describe an organization-specific secret with a regular expression so secret scanning detects it just like a built-in pattern, at whichever scope you define it.",
     "explanationIncorrect": "CodeQL analyzes code logic and data flow, not credential string shapes, so a token format does not belong in a query suite. dependabot.yml configures dependency updates and cannot define secret patterns. Secret scanning is not limited to partner patterns; custom patterns are exactly the extension point for internal formats. The answer is a custom secret scanning pattern.",
-    "tags": ["secret-scanning", "custom-patterns"]
+    "tags": [
+      "secret-scanning",
+      "custom-patterns"
+    ]
   },
   {
     "id": "ghas-024",
@@ -402,15 +765,31 @@
     "difficulty": "medium",
     "stem": "Secret scanning detects a real cloud-provider key that leaked in a public repository. Through GitHub's partner program, what can happen automatically?",
     "options": [
-      { "id": "o1", "text": "GitHub notifies the provider, who may automatically revoke or rotate the exposed credential" },
-      { "id": "o2", "text": "GitHub emails all of your customers about the leak" },
-      { "id": "o3", "text": "The repository is automatically deleted" },
-      { "id": "o4", "text": "Nothing happens unless you open a support ticket" }
+      {
+        "id": "o1",
+        "text": "GitHub notifies the provider, who may automatically revoke or rotate the exposed credential"
+      },
+      {
+        "id": "o2",
+        "text": "GitHub emails all of your customers about the leak"
+      },
+      {
+        "id": "o3",
+        "text": "The repository is automatically deleted"
+      },
+      {
+        "id": "o4",
+        "text": "Nothing happens unless you open a support ticket"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "For public repositories, GitHub participates in a partner program: when a supported provider's secret is detected, GitHub notifies that provider, who can revoke or rotate the credential to limit the damage.",
     "explanationIncorrect": "GitHub does not email your customers; the notification goes to the credential's provider. It does not delete your repository. And the partner notification is automatic for supported secrets, so it does not wait on a support ticket. The automatic action is provider notification and possible revocation.",
-    "tags": ["secret-scanning", "partner-program", "revocation"]
+    "tags": [
+      "secret-scanning",
+      "partner-program",
+      "revocation"
+    ]
   },
   {
     "id": "ghas-025",
@@ -419,15 +798,31 @@
     "difficulty": "medium",
     "stem": "Push protection blocks a commit, but the developer determines the flagged string is a harmless test placeholder. What is the intended way forward?",
     "options": [
-      { "id": "o1", "text": "Allow the push by supplying a bypass reason such as false positive or used in tests, which is recorded for auditing" },
-      { "id": "o2", "text": "Force-push to a brand new branch to slip past the check" },
-      { "id": "o3", "text": "Delete and recreate the repository" },
-      { "id": "o4", "text": "Permanently disable secret scanning for everyone" }
+      {
+        "id": "o1",
+        "text": "Allow the push by supplying a bypass reason such as false positive or used in tests, which is recorded for auditing"
+      },
+      {
+        "id": "o2",
+        "text": "Force-push to a brand new branch to slip past the check"
+      },
+      {
+        "id": "o3",
+        "text": "Delete and recreate the repository"
+      },
+      {
+        "id": "o4",
+        "text": "Permanently disable secret scanning for everyone"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Push protection lets an author bypass the block by selecting a reason, and that bypass is logged, so a genuine false positive can proceed while security teams retain an audit trail of who allowed it and why.",
     "explanationIncorrect": "Trying to force-push around the control is an evasion, not the intended workflow, and push protection still applies. Recreating the repository is drastic and pointless. Disabling secret scanning removes protection for everyone to resolve one placeholder. The intended path is a documented push-protection bypass.",
-    "tags": ["secret-scanning", "push-protection", "bypass"]
+    "tags": [
+      "secret-scanning",
+      "push-protection",
+      "bypass"
+    ]
   },
   {
     "id": "ghas-026",
@@ -436,15 +831,30 @@
     "difficulty": "medium",
     "stem": "You just enabled secret scanning on an existing repository with years of commit history. Does it look only at new commits going forward?",
     "options": [
-      { "id": "o1", "text": "No; secret scanning also scans the repository's full existing git history for known secret patterns" },
-      { "id": "o2", "text": "Yes; only commits made after enablement are ever scanned" },
-      { "id": "o3", "text": "It scans only the latest commit on the default branch" },
-      { "id": "o4", "text": "It scans only currently open pull requests" }
+      {
+        "id": "o1",
+        "text": "No; secret scanning also scans the repository's full existing git history for known secret patterns"
+      },
+      {
+        "id": "o2",
+        "text": "Yes; only commits made after enablement are ever scanned"
+      },
+      {
+        "id": "o3",
+        "text": "It scans only the latest commit on the default branch"
+      },
+      {
+        "id": "o4",
+        "text": "It scans only currently open pull requests"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "When enabled, secret scanning scans the entire repository history, not just future commits, so a secret committed long ago is still surfaced as an alert.",
     "explanationIncorrect": "Limiting to post-enablement commits would miss the many secrets already sitting in history, which is not how it works. Scanning only the latest commit or only open pull requests would likewise miss historical leaks. Secret scanning covers the full git history.",
-    "tags": ["secret-scanning", "history"]
+    "tags": [
+      "secret-scanning",
+      "history"
+    ]
   },
   {
     "id": "ghas-027",
@@ -453,15 +863,31 @@
     "difficulty": "medium",
     "stem": "A directory of test fixtures contains deliberately fake tokens that keep raising secret scanning alerts. How do you stop alerts for that path without weakening scanning elsewhere?",
     "options": [
-      { "id": "o1", "text": "Configure paths to exclude for secret scanning (a secret_scanning.yml paths-ignore entry)" },
-      { "id": "o2", "text": "Add the directory to .gitignore" },
-      { "id": "o3", "text": "Delete the fixtures directory" },
-      { "id": "o4", "text": "Turn secret scanning off for the whole repository" }
+      {
+        "id": "o1",
+        "text": "Configure paths to exclude for secret scanning (a secret_scanning.yml paths-ignore entry)"
+      },
+      {
+        "id": "o2",
+        "text": "Add the directory to .gitignore"
+      },
+      {
+        "id": "o3",
+        "text": "Delete the fixtures directory"
+      },
+      {
+        "id": "o4",
+        "text": "Turn secret scanning off for the whole repository"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Secret scanning supports excluding specific paths through its configuration (paths-ignore), so you can silence alerts on a known-fake fixtures directory while keeping full scanning on the rest of the repository.",
     "explanationIncorrect": ".gitignore only prevents files from being tracked; files already committed are still scanned, and you likely need the fixtures committed. Deleting the fixtures removes test data you rely on. Disabling scanning repository-wide removes protection everywhere to fix one directory. The precise control is a paths exclusion.",
-    "tags": ["secret-scanning", "paths-ignore", "config"]
+    "tags": [
+      "secret-scanning",
+      "paths-ignore",
+      "config"
+    ]
   },
   {
     "id": "ghas-028",
@@ -470,15 +896,30 @@
     "difficulty": "medium",
     "stem": "For supported providers, secret scanning can tell you whether a detected token is still usable right now. What is this capability called?",
     "options": [
-      { "id": "o1", "text": "Validity checks (secret validation), which query the provider to report the secret as active or inactive" },
-      { "id": "o2", "text": "CodeQL data-flow analysis of the token" },
-      { "id": "o3", "text": "Dependency review of the token" },
-      { "id": "o4", "text": "Push protection" }
+      {
+        "id": "o1",
+        "text": "Validity checks (secret validation), which query the provider to report the secret as active or inactive"
+      },
+      {
+        "id": "o2",
+        "text": "CodeQL data-flow analysis of the token"
+      },
+      {
+        "id": "o3",
+        "text": "Dependency review of the token"
+      },
+      {
+        "id": "o4",
+        "text": "Push protection"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Validity checks ask the provider whether a detected secret is still active, so responders can prioritize a live, exploitable credential over one that has already been revoked.",
     "explanationIncorrect": "CodeQL data-flow analysis reasons about code, not whether a credential is currently valid at its provider. Dependency review evaluates dependency changes in pull requests. Push protection blocks new secrets at push time; it does not report the live status of an already-detected one. The status feature is validity checks.",
-    "tags": ["secret-scanning", "validity-checks"]
+    "tags": [
+      "secret-scanning",
+      "validity-checks"
+    ]
   },
   {
     "id": "ghas-029",
@@ -487,15 +928,31 @@
     "difficulty": "medium",
     "stem": "For public repositories on GitHub.com, which of these security capabilities are available at no cost?",
     "options": [
-      { "id": "o1", "text": "Code scanning, secret scanning, and dependency review are available free on public repositories" },
-      { "id": "o2", "text": "None of them; every feature needs a paid license even on public repos" },
-      { "id": "o3", "text": "Only Dependabot alerts, and nothing else" },
-      { "id": "o4", "text": "They are free only for repositories owned by enterprise accounts" }
+      {
+        "id": "o1",
+        "text": "Code scanning, secret scanning, and dependency review are available free on public repositories"
+      },
+      {
+        "id": "o2",
+        "text": "None of them; every feature needs a paid license even on public repos"
+      },
+      {
+        "id": "o3",
+        "text": "Only Dependabot alerts, and nothing else"
+      },
+      {
+        "id": "o4",
+        "text": "They are free only for repositories owned by enterprise accounts"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "GitHub makes the core security features, including code scanning, secret scanning, and dependency review, available free for public repositories, which is why open-source projects can adopt them without a license.",
     "explanationIncorrect": "It is not the case that everything requires payment on public repos; the point of free public-repo access is broad open-source security. Access is not limited to Dependabot alerts alone. And it is not restricted to enterprise-owned repositories. On public repositories these features are free.",
-    "tags": ["ghas", "licensing", "public-repos"]
+    "tags": [
+      "ghas",
+      "licensing",
+      "public-repos"
+    ]
   },
   {
     "id": "ghas-030",
@@ -504,15 +961,31 @@
     "difficulty": "medium",
     "stem": "You want code scanning and secret scanning enabled on your organization's private repositories. What is required?",
     "options": [
-      { "id": "o1", "text": "A GitHub Advanced Security license (or the corresponding Code Security and Secret Protection products) for those private repositories" },
-      { "id": "o2", "text": "Nothing; the features are free on private repositories too" },
-      { "id": "o3", "text": "Only the free GitHub plan" },
-      { "id": "o4", "text": "A separate license for each self-hosted runner" }
+      {
+        "id": "o1",
+        "text": "A GitHub Advanced Security license (or the corresponding Code Security and Secret Protection products) for those private repositories"
+      },
+      {
+        "id": "o2",
+        "text": "Nothing; the features are free on private repositories too"
+      },
+      {
+        "id": "o3",
+        "text": "Only the free GitHub plan"
+      },
+      {
+        "id": "o4",
+        "text": "A separate license for each self-hosted runner"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "On private repositories the advanced security features are paid: they require GitHub Advanced Security licensing (now also offered as the Code Security and Secret Protection products), unlike on public repositories where they are free.",
     "explanationIncorrect": "The features are not free on private repositories, which is the distinction from public ones. The free plan alone does not unlock them for private code. Runner licensing is unrelated to enabling these security features. Private repositories need GHAS (or Code Security / Secret Protection) licensing.",
-    "tags": ["ghas", "licensing", "private-repos"]
+    "tags": [
+      "ghas",
+      "licensing",
+      "private-repos"
+    ]
   },
   {
     "id": "ghas-031",
@@ -521,15 +994,31 @@
     "difficulty": "medium",
     "stem": "GHAS can propose a concrete code fix directly on a code scanning alert to speed up remediation. What is this capability?",
     "options": [
-      { "id": "o1", "text": "Copilot Autofix for code scanning, which suggests a fix for many CodeQL alerts" },
-      { "id": "o2", "text": "Dependabot security updates" },
-      { "id": "o3", "text": "Secret scanning push protection" },
-      { "id": "o4", "text": "A required status check" }
+      {
+        "id": "o1",
+        "text": "Copilot Autofix for code scanning, which suggests a fix for many CodeQL alerts"
+      },
+      {
+        "id": "o2",
+        "text": "Dependabot security updates"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning push protection"
+      },
+      {
+        "id": "o4",
+        "text": "A required status check"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Copilot Autofix generates a suggested code change for many code scanning (CodeQL) alerts, so a developer can review and apply a fix inline instead of researching the remediation from scratch.",
     "explanationIncorrect": "Dependabot security updates fix vulnerable dependencies, not code-level alerts in your own source. Secret scanning push protection blocks committed secrets and does not propose code fixes. A required status check is a merge gate, not a fix suggestion. The suggested-fix feature for code scanning is Copilot Autofix.",
-    "tags": ["ghas", "copilot-autofix", "remediation"]
+    "tags": [
+      "ghas",
+      "copilot-autofix",
+      "remediation"
+    ]
   },
   {
     "id": "ghas-032",
@@ -538,15 +1027,30 @@
     "difficulty": "easy",
     "stem": "In a single repository, where do the code scanning, secret scanning, and Dependabot alerts all appear together?",
     "options": [
-      { "id": "o1", "text": "The repository's Security tab" },
-      { "id": "o2", "text": "The Settings > Actions page" },
-      { "id": "o3", "text": "The repository Pulse view" },
-      { "id": "o4", "text": "A Projects board" }
+      {
+        "id": "o1",
+        "text": "The repository's Security tab"
+      },
+      {
+        "id": "o2",
+        "text": "The Settings > Actions page"
+      },
+      {
+        "id": "o3",
+        "text": "The repository Pulse view"
+      },
+      {
+        "id": "o4",
+        "text": "A Projects board"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The Security tab is the per-repository hub that collects code scanning, secret scanning, and Dependabot alerts, so responders have one place to review a repository's security posture.",
     "explanationIncorrect": "Settings > Actions configures workflow permissions and runners, not security alerts. Pulse summarizes recent repository activity like merged pull requests, not security findings. A Projects board tracks planned work items. The consolidated per-repo location is the Security tab.",
-    "tags": ["ghas", "security-tab"]
+    "tags": [
+      "ghas",
+      "security-tab"
+    ]
   },
   {
     "id": "ghas-033",
@@ -555,15 +1059,31 @@
     "difficulty": "medium",
     "stem": "Which practice best embodies GHAS's prevention-first approach to secrets?",
     "options": [
-      { "id": "o1", "text": "Enable push protection so secrets are blocked before they ever enter history, rather than only alerting after the fact" },
-      { "id": "o2", "text": "Rotate every secret once a year regardless of whether anything leaked" },
-      { "id": "o3", "text": "Wait for the partner program to revoke any leaked secrets for you" },
-      { "id": "o4", "text": "Rely solely on periodic manual code review to spot secrets" }
+      {
+        "id": "o1",
+        "text": "Enable push protection so secrets are blocked before they ever enter history, rather than only alerting after the fact"
+      },
+      {
+        "id": "o2",
+        "text": "Rotate every secret once a year regardless of whether anything leaked"
+      },
+      {
+        "id": "o3",
+        "text": "Wait for the partner program to revoke any leaked secrets for you"
+      },
+      {
+        "id": "o4",
+        "text": "Rely solely on periodic manual code review to spot secrets"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Prevention-first means stopping the problem at the source: push protection blocks a secret at push time so it never reaches the remote, which is far stronger than detecting and cleaning it up afterward.",
     "explanationIncorrect": "Scheduled rotation is good hygiene but is reactive and does nothing to stop a secret from being committed in the first place. Waiting on partner revocation is an after-the-fact safety net, not prevention, and only covers supported public-repo cases. Manual review is inconsistent and misses things at scale. The prevention-first control is push protection.",
-    "tags": ["best-practices", "prevention", "push-protection"]
+    "tags": [
+      "best-practices",
+      "prevention",
+      "push-protection"
+    ]
   },
   {
     "id": "ghas-034",
@@ -572,15 +1092,31 @@
     "difficulty": "hard",
     "stem": "You inherit hundreds of open security alerts and limited time. What is the most defensible way to prioritize remediation?",
     "options": [
-      { "id": "o1", "text": "Prioritize by severity and exploitability or reachability, fixing high-severity, exploitable issues first" },
-      { "id": "o2", "text": "Fix alerts alphabetically by file name" },
-      { "id": "o3", "text": "Fix the oldest alerts first regardless of their severity" },
-      { "id": "o4", "text": "Dismiss all alerts to clear the backlog quickly" }
+      {
+        "id": "o1",
+        "text": "Prioritize by severity and exploitability or reachability, fixing high-severity, exploitable issues first"
+      },
+      {
+        "id": "o2",
+        "text": "Fix alerts alphabetically by file name"
+      },
+      {
+        "id": "o3",
+        "text": "Fix the oldest alerts first regardless of their severity"
+      },
+      {
+        "id": "o4",
+        "text": "Dismiss all alerts to clear the backlog quickly"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Risk-based prioritization focuses scarce effort where it matters: high-severity issues that are actually exploitable or reachable are fixed before low-impact ones, which reduces real risk fastest.",
     "explanationIncorrect": "Alphabetical order by file name has no relationship to risk. Oldest-first ignores that a newer critical vulnerability may be far more dangerous than an old low-severity one. Dismissing everything hides real risk and defeats the point of scanning. The defensible approach is to prioritize by severity and exploitability.",
-    "tags": ["best-practices", "prioritization", "remediation"]
+    "tags": [
+      "best-practices",
+      "prioritization",
+      "remediation"
+    ]
   },
   {
     "id": "ghas-035",
@@ -589,15 +1125,31 @@
     "difficulty": "medium",
     "stem": "To make security scanning consistently enforced rather than optional across many repositories, what is the recommended approach?",
     "options": [
-      { "id": "o1", "text": "Enable the features at the organization level and require the relevant scans as status checks through branch protection or rulesets" },
-      { "id": "o2", "text": "Ask each developer to remember to run the scans locally" },
-      { "id": "o3", "text": "Enable scanning on a single flagship repository only" },
-      { "id": "o4", "text": "Review the Security tab manually once a quarter" }
+      {
+        "id": "o1",
+        "text": "Enable the features at the organization level and require the relevant scans as status checks through branch protection or rulesets"
+      },
+      {
+        "id": "o2",
+        "text": "Ask each developer to remember to run the scans locally"
+      },
+      {
+        "id": "o3",
+        "text": "Enable scanning on a single flagship repository only"
+      },
+      {
+        "id": "o4",
+        "text": "Review the Security tab manually once a quarter"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Consistent enforcement comes from org-level enablement plus making the scans required checks via branch protection or rulesets, so pull requests cannot merge without passing and coverage does not depend on individual memory.",
     "explanationIncorrect": "Relying on developers to run scans locally is inconsistent and unauditable. Enabling scanning on one repository leaves the rest unprotected. A quarterly manual review is too infrequent to catch issues at merge time. Enforcement is achieved through org-wide enablement and required status checks.",
-    "tags": ["best-practices", "enforcement", "rulesets"]
+    "tags": [
+      "best-practices",
+      "enforcement",
+      "rulesets"
+    ]
   },
   {
     "id": "ghas-036",
@@ -606,15 +1158,31 @@
     "difficulty": "hard",
     "stem": "You want the code scanning pull request check to fail only when a newly introduced alert is high or critical security severity, not on lower-severity findings. How is this controlled?",
     "options": [
-      { "id": "o1", "text": "Configure the code scanning check failure threshold by security severity in the repository's code scanning settings" },
-      { "id": "o2", "text": "Delete all lower-severity queries from CodeQL" },
-      { "id": "o3", "text": "Set fail-fast: true in the analysis workflow" },
-      { "id": "o4", "text": "Lower the job's timeout-minutes" }
+      {
+        "id": "o1",
+        "text": "Configure the code scanning check failure threshold by security severity in the repository's code scanning settings"
+      },
+      {
+        "id": "o2",
+        "text": "Delete all lower-severity queries from CodeQL"
+      },
+      {
+        "id": "o3",
+        "text": "Set fail-fast: true in the analysis workflow"
+      },
+      {
+        "id": "o4",
+        "text": "Lower the job's timeout-minutes"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Code scanning lets you set the severity threshold at which the pull request check fails, so you can require only high and critical security-severity alerts to block while lower ones are still reported.",
     "explanationIncorrect": "Deleting lower-severity queries throws away useful findings entirely rather than just not blocking on them. fail-fast controls matrix cancellation, not alert severity gating. timeout-minutes bounds run duration. The threshold is configured in code scanning settings.",
-    "tags": ["code-scanning", "severity-threshold", "pull-request"]
+    "tags": [
+      "code-scanning",
+      "severity-threshold",
+      "pull-request"
+    ]
   },
   {
     "id": "ghas-037",
@@ -623,15 +1191,31 @@
     "difficulty": "medium",
     "stem": "Your repository contains both Go and JavaScript. In an advanced-setup CodeQL workflow, how are multiple languages typically analyzed?",
     "options": [
-      { "id": "o1", "text": "A matrix over the languages, running a separate CodeQL initialize-and-analyze for each language" },
-      { "id": "o2", "text": "A single analysis that silently merges all languages into one database with no configuration" },
-      { "id": "o3", "text": "Secret scanning analyzes the second language" },
-      { "id": "o4", "text": "Dependabot performs the analysis for the extra language" }
+      {
+        "id": "o1",
+        "text": "A matrix over the languages, running a separate CodeQL initialize-and-analyze for each language"
+      },
+      {
+        "id": "o2",
+        "text": "A single analysis that silently merges all languages into one database with no configuration"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning analyzes the second language"
+      },
+      {
+        "id": "o4",
+        "text": "Dependabot performs the analysis for the extra language"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The generated CodeQL workflow uses a language matrix so each language is initialized and analyzed in its own job, because CodeQL builds a separate database per language.",
     "explanationIncorrect": "CodeQL does not merge unrelated languages into one database automatically; each language is analyzed on its own. Secret scanning finds credentials, not code-level flaws in another language. Dependabot handles dependencies, not source analysis. Multiple languages are analyzed via a matrix.",
-    "tags": ["code-scanning", "codeql", "languages-matrix"]
+    "tags": [
+      "code-scanning",
+      "codeql",
+      "languages-matrix"
+    ]
   },
   {
     "id": "ghas-038",
@@ -640,15 +1224,31 @@
     "difficulty": "hard",
     "stem": "You want to run CodeQL analysis inside a third-party CI system that is not GitHub Actions, and still have the results appear in code scanning. What enables this?",
     "options": [
-      { "id": "o1", "text": "The CodeQL CLI, which builds a database and produces SARIF that you upload to code scanning" },
-      { "id": "o2", "text": "It is impossible to run CodeQL outside GitHub Actions" },
-      { "id": "o3", "text": "A Dependabot command-line tool" },
-      { "id": "o4", "text": "The gh secret command" }
+      {
+        "id": "o1",
+        "text": "The CodeQL CLI, which builds a database and produces SARIF that you upload to code scanning"
+      },
+      {
+        "id": "o2",
+        "text": "It is impossible to run CodeQL outside GitHub Actions"
+      },
+      {
+        "id": "o3",
+        "text": "A Dependabot command-line tool"
+      },
+      {
+        "id": "o4",
+        "text": "The gh secret command"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The CodeQL CLI runs the analysis anywhere, creating a database and emitting SARIF that you upload to code scanning, so non-Actions CI systems can still feed the same alerts UI.",
     "explanationIncorrect": "CodeQL is not limited to Actions; the CLI exists precisely for other environments. There is no Dependabot CLI that performs CodeQL analysis. gh secret manages Actions secrets and is unrelated. Running CodeQL elsewhere uses the CodeQL CLI.",
-    "tags": ["code-scanning", "codeql-cli", "third-party-ci"]
+    "tags": [
+      "code-scanning",
+      "codeql-cli",
+      "third-party-ci"
+    ]
   },
   {
     "id": "ghas-039",
@@ -657,15 +1257,31 @@
     "difficulty": "medium",
     "stem": "Beyond scanning on pull requests, why is it recommended to also run code scanning on a schedule against the default branch?",
     "options": [
-      { "id": "o1", "text": "New CodeQL queries and updated patterns can surface issues in existing, unchanged code that a pull-request-only scan would never re-examine" },
-      { "id": "o2", "text": "To automatically reformat the repository each week" },
-      { "id": "o3", "text": "To rotate the repository's secrets on a schedule" },
-      { "id": "o4", "text": "Because pull request scans do not actually work" }
+      {
+        "id": "o1",
+        "text": "New CodeQL queries and updated patterns can surface issues in existing, unchanged code that a pull-request-only scan would never re-examine"
+      },
+      {
+        "id": "o2",
+        "text": "To automatically reformat the repository each week"
+      },
+      {
+        "id": "o3",
+        "text": "To rotate the repository's secrets on a schedule"
+      },
+      {
+        "id": "o4",
+        "text": "Because pull request scans do not actually work"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A scheduled scan re-examines the whole default branch with the latest queries, catching newly discovered vulnerability patterns in code that has not changed and would otherwise never be re-scanned by PR-only runs.",
     "explanationIncorrect": "Code scanning does not reformat code. It does not rotate secrets; that is unrelated to CodeQL. Pull request scans do work; the schedule complements them rather than replacing broken behavior. The reason is catching new findings in existing code as queries improve.",
-    "tags": ["code-scanning", "scheduled-scan", "coverage"]
+    "tags": [
+      "code-scanning",
+      "scheduled-scan",
+      "coverage"
+    ]
   },
   {
     "id": "ghas-040",
@@ -674,15 +1290,31 @@
     "difficulty": "hard",
     "stem": "You upload SARIF from two different analysis tools for the same commit and want code scanning to keep their results separate rather than have one overwrite the other. Which SARIF upload field distinguishes them?",
     "options": [
-      { "id": "o1", "text": "The category, uploaded distinctly for each analysis" },
-      { "id": "o2", "text": "The commit SHA" },
-      { "id": "o3", "text": "The branch name alone" },
-      { "id": "o4", "text": "The artifact retention-days value" }
+      {
+        "id": "o1",
+        "text": "The category, uploaded distinctly for each analysis"
+      },
+      {
+        "id": "o2",
+        "text": "The commit SHA"
+      },
+      {
+        "id": "o3",
+        "text": "The branch name alone"
+      },
+      {
+        "id": "o4",
+        "text": "The artifact retention-days value"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Code scanning uses the SARIF category to tell analyses apart, so uploading each tool under its own category keeps their alerts separate instead of one replacing the other for the same commit and ref.",
     "explanationIncorrect": "The commit SHA and branch are the same for both uploads here, so they cannot separate the analyses. Retention-days governs artifact lifetime, not analysis identity. The distinguishing field is the category.",
-    "tags": ["code-scanning", "sarif", "category"]
+    "tags": [
+      "code-scanning",
+      "sarif",
+      "category"
+    ]
   },
   {
     "id": "ghas-041",
@@ -691,15 +1323,31 @@
     "difficulty": "hard",
     "stem": "You want push protection bypasses to require review by a designated security team rather than letting any developer self-approve them. Which capability supports this?",
     "options": [
-      { "id": "o1", "text": "Delegated bypass for push protection, which routes bypass requests to a designated reviewer group" },
-      { "id": "o2", "text": "Branch protection required reviews" },
-      { "id": "o3", "text": "A CODEOWNERS entry for the whole repository" },
-      { "id": "o4", "text": "Disabling push protection so nothing is blocked" }
+      {
+        "id": "o1",
+        "text": "Delegated bypass for push protection, which routes bypass requests to a designated reviewer group"
+      },
+      {
+        "id": "o2",
+        "text": "Branch protection required reviews"
+      },
+      {
+        "id": "o3",
+        "text": "A CODEOWNERS entry for the whole repository"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling push protection so nothing is blocked"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Delegated bypass makes a push-protection bypass a request that a designated reviewer must approve, so developers cannot silently self-approve pushing a flagged secret.",
     "explanationIncorrect": "Branch protection reviews gate merging a pull request, not the push-protection bypass decision. CODEOWNERS assigns file review ownership, not secret bypass approval. Disabling push protection removes the control entirely, the opposite of adding oversight. The feature is delegated bypass.",
-    "tags": ["secret-scanning", "delegated-bypass", "push-protection"]
+    "tags": [
+      "secret-scanning",
+      "delegated-bypass",
+      "push-protection"
+    ]
   },
   {
     "id": "ghas-042",
@@ -708,15 +1356,31 @@
     "difficulty": "medium",
     "stem": "Before enabling a new custom secret scanning pattern across the organization, you want to preview what it would match without creating real alerts. What do you use?",
     "options": [
-      { "id": "o1", "text": "A dry run of the custom pattern, which previews matches before you publish it" },
-      { "id": "o2", "text": "Publish it immediately and delete any false alerts afterward" },
-      { "id": "o3", "text": "A CodeQL query to test the regular expression" },
-      { "id": "o4", "text": "A Dependabot preview run" }
+      {
+        "id": "o1",
+        "text": "A dry run of the custom pattern, which previews matches before you publish it"
+      },
+      {
+        "id": "o2",
+        "text": "Publish it immediately and delete any false alerts afterward"
+      },
+      {
+        "id": "o3",
+        "text": "A CodeQL query to test the regular expression"
+      },
+      {
+        "id": "o4",
+        "text": "A Dependabot preview run"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A custom-pattern dry run scans and shows what the pattern would match without generating alerts, so you can refine a noisy regex before publishing it broadly.",
     "explanationIncorrect": "Publishing first and cleaning up later floods people with false positives, which the dry run exists to avoid. CodeQL analyzes code logic, not secret pattern matching. Dependabot handles dependencies, not secret patterns. The preview is a custom-pattern dry run.",
-    "tags": ["secret-scanning", "custom-patterns", "dry-run"]
+    "tags": [
+      "secret-scanning",
+      "custom-patterns",
+      "dry-run"
+    ]
   },
   {
     "id": "ghas-043",
@@ -725,15 +1389,31 @@
     "difficulty": "medium",
     "stem": "Your codebase leaks unstructured secrets, such as generic passwords, that do not match any known provider token format. Which capability helps detect these?",
     "options": [
-      { "id": "o1", "text": "Generic secret detection (Copilot secret scanning) that uses AI to find unstructured secrets" },
-      { "id": "o2", "text": "Only partner provider patterns, which cover every case" },
-      { "id": "o3", "text": "Dependency review of the passwords" },
-      { "id": "o4", "text": "Nothing; only structured provider tokens can ever be detected" }
+      {
+        "id": "o1",
+        "text": "Generic secret detection (Copilot secret scanning) that uses AI to find unstructured secrets"
+      },
+      {
+        "id": "o2",
+        "text": "Only partner provider patterns, which cover every case"
+      },
+      {
+        "id": "o3",
+        "text": "Dependency review of the passwords"
+      },
+      {
+        "id": "o4",
+        "text": "Nothing; only structured provider tokens can ever be detected"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AI-powered generic secret detection (Copilot secret scanning) finds unstructured secrets like passwords that lack a fixed token format, extending coverage beyond regex provider patterns.",
     "explanationIncorrect": "Partner provider patterns match specific known token shapes and miss free-form secrets. Dependency review evaluates dependency changes, not credentials in code. Unstructured secrets can be detected, so claiming only structured tokens are findable is wrong. The capability is AI-based generic secret detection.",
-    "tags": ["secret-scanning", "generic-secrets", "ai"]
+    "tags": [
+      "secret-scanning",
+      "generic-secrets",
+      "ai"
+    ]
   },
   {
     "id": "ghas-044",
@@ -742,15 +1422,30 @@
     "difficulty": "easy",
     "stem": "When resolving a secret scanning alert, which is a valid resolution reason?",
     "options": [
-      { "id": "o1", "text": "Revoked, false positive, used in tests, or won't fix" },
-      { "id": "o2", "text": "Merged, rebased, or squashed" },
-      { "id": "o3", "text": "Approved, denied, or pending" },
-      { "id": "o4", "text": "Cached, purged, or archived" }
+      {
+        "id": "o1",
+        "text": "Revoked, false positive, used in tests, or won't fix"
+      },
+      {
+        "id": "o2",
+        "text": "Merged, rebased, or squashed"
+      },
+      {
+        "id": "o3",
+        "text": "Approved, denied, or pending"
+      },
+      {
+        "id": "o4",
+        "text": "Cached, purged, or archived"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Secret scanning alerts are closed with a resolution such as revoked, false positive, used in tests, or won't fix, which records why the alert was dismissed for audit.",
     "explanationIncorrect": "Merged, rebased, and squashed are Git operations, not alert resolutions. Approved, denied, and pending describe review or request states, not secret alert closures. Cached, purged, and archived are storage terms. The valid reasons are revoked, false positive, used in tests, or won't fix.",
-    "tags": ["secret-scanning", "alert-resolution"]
+    "tags": [
+      "secret-scanning",
+      "alert-resolution"
+    ]
   },
   {
     "id": "ghas-045",
@@ -759,15 +1454,31 @@
     "difficulty": "medium",
     "stem": "Where does secret scanning look for secrets in a repository?",
     "options": [
-      { "id": "o1", "text": "Across the full git history, and depending on configuration additional locations such as issue and pull request bodies, not just the latest commit" },
-      { "id": "o2", "text": "Only in the README file" },
-      { "id": "o3", "text": "Only in files larger than 1 MB" },
-      { "id": "o4", "text": "Only inside the .github directory" }
+      {
+        "id": "o1",
+        "text": "Across the full git history, and depending on configuration additional locations such as issue and pull request bodies, not just the latest commit"
+      },
+      {
+        "id": "o2",
+        "text": "Only in the README file"
+      },
+      {
+        "id": "o3",
+        "text": "Only in files larger than 1 MB"
+      },
+      {
+        "id": "o4",
+        "text": "Only inside the .github directory"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Secret scanning examines the entire commit history and can also cover other text such as issues and pull request descriptions, giving broad coverage rather than only the current tip.",
     "explanationIncorrect": "It is not limited to the README, to large files, or to the .github directory; those arbitrary limits would miss most secrets. Coverage spans the full history and, per configuration, additional content areas.",
-    "tags": ["secret-scanning", "coverage", "history"]
+    "tags": [
+      "secret-scanning",
+      "coverage",
+      "history"
+    ]
   },
   {
     "id": "ghas-046",
@@ -776,15 +1487,31 @@
     "difficulty": "medium",
     "stem": "In dependabot.yml, which key controls how often version-update checks run for an ecosystem?",
     "options": [
-      { "id": "o1", "text": "schedule.interval, set to values like daily, weekly, or monthly" },
-      { "id": "o2", "text": "cron.frequency" },
-      { "id": "o3", "text": "update.rate" },
-      { "id": "o4", "text": "on.schedule" }
+      {
+        "id": "o1",
+        "text": "schedule.interval, set to values like daily, weekly, or monthly"
+      },
+      {
+        "id": "o2",
+        "text": "cron.frequency"
+      },
+      {
+        "id": "o3",
+        "text": "update.rate"
+      },
+      {
+        "id": "o4",
+        "text": "on.schedule"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Each updates entry sets schedule.interval (daily, weekly, or monthly) to control how frequently Dependabot checks that ecosystem for version updates.",
     "explanationIncorrect": "cron.frequency, update.rate, and on.schedule are not valid dependabot.yml keys; on.schedule is workflow trigger syntax, not Dependabot configuration. The cadence key is schedule.interval.",
-    "tags": ["dependabot", "schedule", "config"]
+    "tags": [
+      "dependabot",
+      "schedule",
+      "config"
+    ]
   },
   {
     "id": "ghas-047",
@@ -793,15 +1520,30 @@
     "difficulty": "medium",
     "stem": "You want Dependabot version-update pull requests opened against a develop branch instead of the repository's default branch. Which configuration achieves this?",
     "options": [
-      { "id": "o1", "text": "Set target-branch in the ecosystem's updates entry in dependabot.yml" },
-      { "id": "o2", "text": "Set base-ref in the workflow" },
-      { "id": "o3", "text": "Edit .git/config to change the default branch" },
-      { "id": "o4", "text": "It always targets the default branch and cannot be changed" }
+      {
+        "id": "o1",
+        "text": "Set target-branch in the ecosystem's updates entry in dependabot.yml"
+      },
+      {
+        "id": "o2",
+        "text": "Set base-ref in the workflow"
+      },
+      {
+        "id": "o3",
+        "text": "Edit .git/config to change the default branch"
+      },
+      {
+        "id": "o4",
+        "text": "It always targets the default branch and cannot be changed"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The target-branch option in an updates entry tells Dependabot which branch to open pull requests against, so you can direct them to develop.",
     "explanationIncorrect": "There is no base-ref workflow setting for Dependabot's target. Editing .git/config does not change where Dependabot opens PRs. Dependabot's target is configurable, so the claim it cannot change is wrong. The key is target-branch.",
-    "tags": ["dependabot", "target-branch"]
+    "tags": [
+      "dependabot",
+      "target-branch"
+    ]
   },
   {
     "id": "ghas-048",
@@ -810,15 +1552,30 @@
     "difficulty": "hard",
     "stem": "You want low-risk Dependabot patch updates to merge automatically once required checks pass. What is a supported approach?",
     "options": [
-      { "id": "o1", "text": "Enable auto-merge on the pull request (for example a workflow that approves and enables auto-merge for patch updates), gated on required status checks" },
-      { "id": "o2", "text": "Grant Dependabot admin rights to force-push directly to main" },
-      { "id": "o3", "text": "Disable CI so pull requests merge instantly" },
-      { "id": "o4", "text": "There is no way to auto-merge Dependabot pull requests" }
+      {
+        "id": "o1",
+        "text": "Enable auto-merge on the pull request (for example a workflow that approves and enables auto-merge for patch updates), gated on required status checks"
+      },
+      {
+        "id": "o2",
+        "text": "Grant Dependabot admin rights to force-push directly to main"
+      },
+      {
+        "id": "o3",
+        "text": "Disable CI so pull requests merge instantly"
+      },
+      {
+        "id": "o4",
+        "text": "There is no way to auto-merge Dependabot pull requests"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Auto-merge lets a Dependabot pull request merge itself once its required checks pass; a common pattern is a workflow that, for patch updates, approves and enables auto-merge, keeping the merge gated on CI.",
     "explanationIncorrect": "Force-pushing to main bypasses review and CI, which is unsafe. Disabling CI removes the very safety gate you want before an automatic merge. Auto-merge for Dependabot is supported, so claiming it is impossible is wrong. The approach is gated auto-merge.",
-    "tags": ["dependabot", "auto-merge"]
+    "tags": [
+      "dependabot",
+      "auto-merge"
+    ]
   },
   {
     "id": "ghas-049",
@@ -827,15 +1584,30 @@
     "difficulty": "hard",
     "stem": "Your build uses a package manager the dependency graph does not parse natively. How can you still get an accurate dependency graph, and therefore Dependabot alerts, for it?",
     "options": [
-      { "id": "o1", "text": "Submit the resolved dependencies through the Dependency submission API, for example from a build-time action" },
-      { "id": "o2", "text": "Rename your lockfile to package-lock.json so it looks like npm" },
-      { "id": "o3", "text": "Nothing can be done for unsupported ecosystems" },
-      { "id": "o4", "text": "Use secret scanning to infer the dependencies" }
+      {
+        "id": "o1",
+        "text": "Submit the resolved dependencies through the Dependency submission API, for example from a build-time action"
+      },
+      {
+        "id": "o2",
+        "text": "Rename your lockfile to package-lock.json so it looks like npm"
+      },
+      {
+        "id": "o3",
+        "text": "Nothing can be done for unsupported ecosystems"
+      },
+      {
+        "id": "o4",
+        "text": "Use secret scanning to infer the dependencies"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The Dependency submission API lets a build-time job report the exact dependencies it resolved, so the dependency graph is accurate even for ecosystems GitHub does not parse from manifests, which in turn enables alerts.",
     "explanationIncorrect": "Renaming a lockfile to look like npm would misrepresent the dependencies and break parsing. It is not true that nothing can be done; the submission API exists for this. Secret scanning finds credentials, not dependencies. The mechanism is the Dependency submission API.",
-    "tags": ["dependabot", "dependency-submission-api"]
+    "tags": [
+      "dependabot",
+      "dependency-submission-api"
+    ]
   },
   {
     "id": "ghas-050",
@@ -844,15 +1616,31 @@
     "difficulty": "medium",
     "stem": "You want every Dependabot pull request to automatically receive a specific label and reviewer. Where do you configure that?",
     "options": [
-      { "id": "o1", "text": "In the ecosystem's updates entry in dependabot.yml, using the labels and reviewers keys" },
-      { "id": "o2", "text": "Only in a CODEOWNERS file" },
-      { "id": "o3", "text": "In a branch protection rule" },
-      { "id": "o4", "text": "It cannot be automated for Dependabot" }
+      {
+        "id": "o1",
+        "text": "In the ecosystem's updates entry in dependabot.yml, using the labels and reviewers keys"
+      },
+      {
+        "id": "o2",
+        "text": "Only in a CODEOWNERS file"
+      },
+      {
+        "id": "o3",
+        "text": "In a branch protection rule"
+      },
+      {
+        "id": "o4",
+        "text": "It cannot be automated for Dependabot"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "dependabot.yml supports labels and reviewers (and assignees) on an updates entry, so Dependabot applies them automatically to the pull requests it opens.",
     "explanationIncorrect": "CODEOWNERS can request review based on changed paths but does not set Dependabot-specific labels and is not where you configure Dependabot's own reviewers. Branch protection governs merging, not PR metadata. This is automatable, so claiming otherwise is wrong. It is set in dependabot.yml.",
-    "tags": ["dependabot", "labels", "reviewers"]
+    "tags": [
+      "dependabot",
+      "labels",
+      "reviewers"
+    ]
   },
   {
     "id": "ghas-051",
@@ -861,15 +1649,32 @@
     "difficulty": "medium",
     "stem": "GitHub now offers its Advanced Security capabilities as two separately purchasable products. What are they?",
     "options": [
-      { "id": "o1", "text": "GitHub Code Security and GitHub Secret Protection" },
-      { "id": "o2", "text": "GitHub Pages and GitHub Discussions" },
-      { "id": "o3", "text": "GitHub Actions and GitHub Packages" },
-      { "id": "o4", "text": "GitHub Copilot and GitHub Codespaces" }
+      {
+        "id": "o1",
+        "text": "GitHub Code Security and GitHub Secret Protection"
+      },
+      {
+        "id": "o2",
+        "text": "GitHub Pages and GitHub Discussions"
+      },
+      {
+        "id": "o3",
+        "text": "GitHub Actions and GitHub Packages"
+      },
+      {
+        "id": "o4",
+        "text": "GitHub Copilot and GitHub Codespaces"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The Advanced Security features are now sold as GitHub Code Security (code scanning, Dependabot, and related) and GitHub Secret Protection (secret scanning and push protection), so organizations can buy the coverage they need.",
     "explanationIncorrect": "Pages and Discussions are collaboration features, not security products. Actions and Packages are CI/CD and artifact features. Copilot and Codespaces are AI and cloud-dev-environment products. The two security products are Code Security and Secret Protection.",
-    "tags": ["ghas", "products", "code-security", "secret-protection"]
+    "tags": [
+      "ghas",
+      "products",
+      "code-security",
+      "secret-protection"
+    ]
   },
   {
     "id": "ghas-052",
@@ -878,15 +1683,31 @@
     "difficulty": "medium",
     "stem": "You want a team to view security alerts across all organization repositories and manage security settings, without granting them full organization admin. Which role fits?",
     "options": [
-      { "id": "o1", "text": "The security manager role" },
-      { "id": "o2", "text": "Repository maintainer" },
-      { "id": "o3", "text": "Billing manager" },
-      { "id": "o4", "text": "Outside collaborator" }
+      {
+        "id": "o1",
+        "text": "The security manager role"
+      },
+      {
+        "id": "o2",
+        "text": "Repository maintainer"
+      },
+      {
+        "id": "o3",
+        "text": "Billing manager"
+      },
+      {
+        "id": "o4",
+        "text": "Outside collaborator"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The security manager role grants read access to all repositories plus the ability to manage security alerts and settings org-wide, without the broad power of full admin.",
     "explanationIncorrect": "Repository maintainer is scoped to individual repositories, not org-wide security. Billing manager handles payment, not security alerts. Outside collaborator is a limited external role. The least-privilege security role is security manager.",
-    "tags": ["ghas", "security-manager", "roles"]
+    "tags": [
+      "ghas",
+      "security-manager",
+      "roles"
+    ]
   },
   {
     "id": "ghas-053",
@@ -895,15 +1716,31 @@
     "difficulty": "medium",
     "stem": "You want to define a reusable set of security feature settings and apply it consistently to many repositories at once, optionally as the default for new repositories. Which capability does this?",
     "options": [
-      { "id": "o1", "text": "Security configurations, applied across repositories and settable as the default for new ones" },
-      { "id": "o2", "text": "Editing each repository's Settings page individually" },
-      { "id": "o3", "text": "A branch protection rule" },
-      { "id": "o4", "text": "A pull request template" }
+      {
+        "id": "o1",
+        "text": "Security configurations, applied across repositories and settable as the default for new ones"
+      },
+      {
+        "id": "o2",
+        "text": "Editing each repository's Settings page individually"
+      },
+      {
+        "id": "o3",
+        "text": "A branch protection rule"
+      },
+      {
+        "id": "o4",
+        "text": "A pull request template"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Security configurations bundle which security features are enabled and let you apply that bundle across many repositories at once, including as the default for newly created repositories, giving consistent enablement.",
     "explanationIncorrect": "Editing each repository by hand is the manual approach configurations replace. A branch protection rule governs merging, not feature enablement across repos. A pull request template pre-fills PR descriptions. Consistent bulk enablement is done with security configurations.",
-    "tags": ["ghas", "security-configurations", "enablement"]
+    "tags": [
+      "ghas",
+      "security-configurations",
+      "enablement"
+    ]
   },
   {
     "id": "ghas-054",
@@ -912,15 +1749,30 @@
     "difficulty": "medium",
     "stem": "Before purchasing, an organization wants a point-in-time report of how exposed it is to leaked secrets across its repositories. Which tool provides this?",
     "options": [
-      { "id": "o1", "text": "Secret risk assessment" },
-      { "id": "o2", "text": "A paid CodeQL license" },
-      { "id": "o3", "text": "Dependency review" },
-      { "id": "o4", "text": "Amazon Macie" }
+      {
+        "id": "o1",
+        "text": "Secret risk assessment"
+      },
+      {
+        "id": "o2",
+        "text": "A paid CodeQL license"
+      },
+      {
+        "id": "o3",
+        "text": "Dependency review"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Macie"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A secret risk assessment produces a point-in-time report of an organization's exposure to leaked secrets, helping teams understand the problem before adopting Secret Protection.",
     "explanationIncorrect": "CodeQL analyzes source code for vulnerabilities, not a secrets-exposure snapshot. Dependency review evaluates dependency changes in pull requests. Amazon Macie is an AWS data-classification service, unrelated to GitHub. The report is a secret risk assessment.",
-    "tags": ["ghas", "secret-risk-assessment"]
+    "tags": [
+      "ghas",
+      "secret-risk-assessment"
+    ]
   },
   {
     "id": "ghas-055",
@@ -929,15 +1781,31 @@
     "difficulty": "medium",
     "stem": "Which statement about GitHub Advanced Security availability is accurate?",
     "options": [
-      { "id": "o1", "text": "The features are available on GitHub.com (free for public repos, licensed for private) and on GitHub Enterprise Server with appropriate licensing" },
-      { "id": "o2", "text": "They exist only on GitHub.com and never on GitHub Enterprise Server" },
-      { "id": "o3", "text": "They are free for all private repositories everywhere" },
-      { "id": "o4", "text": "They require a self-hosted runner to function at all" }
+      {
+        "id": "o1",
+        "text": "The features are available on GitHub.com (free for public repos, licensed for private) and on GitHub Enterprise Server with appropriate licensing"
+      },
+      {
+        "id": "o2",
+        "text": "They exist only on GitHub.com and never on GitHub Enterprise Server"
+      },
+      {
+        "id": "o3",
+        "text": "They are free for all private repositories everywhere"
+      },
+      {
+        "id": "o4",
+        "text": "They require a self-hosted runner to function at all"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Advanced Security is available both on GitHub.com (free for public repositories and licensed for private ones) and on GitHub Enterprise Server with the appropriate licensing, so both hosting models are covered.",
     "explanationIncorrect": "It is available on Enterprise Server, not only on GitHub.com. It is not free for all private repositories; private use is licensed. It does not require a self-hosted runner to work. The accurate statement covers both GitHub.com and Enterprise Server with licensing.",
-    "tags": ["ghas", "availability", "enterprise-server"]
+    "tags": [
+      "ghas",
+      "availability",
+      "enterprise-server"
+    ]
   },
   {
     "id": "ghas-056",
@@ -946,15 +1814,30 @@
     "difficulty": "medium",
     "stem": "Which approach best reflects a layered, defense-in-depth GHAS strategy?",
     "options": [
-      { "id": "o1", "text": "Use code scanning, secret scanning with push protection, and Dependabot together so code flaws, leaked secrets, and vulnerable dependencies are all covered" },
-      { "id": "o2", "text": "Rely on code scanning alone to catch everything" },
-      { "id": "o3", "text": "Rely on secret scanning alone" },
-      { "id": "o4", "text": "Turn all the features off and review everything by hand" }
+      {
+        "id": "o1",
+        "text": "Use code scanning, secret scanning with push protection, and Dependabot together so code flaws, leaked secrets, and vulnerable dependencies are all covered"
+      },
+      {
+        "id": "o2",
+        "text": "Rely on code scanning alone to catch everything"
+      },
+      {
+        "id": "o3",
+        "text": "Rely on secret scanning alone"
+      },
+      {
+        "id": "o4",
+        "text": "Turn all the features off and review everything by hand"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Defense in depth combines the tools so each covers a different risk: code scanning for code-level flaws, secret scanning and push protection for leaked credentials, and Dependabot for vulnerable dependencies.",
     "explanationIncorrect": "Code scanning alone misses leaked secrets and vulnerable dependencies. Secret scanning alone misses code flaws and dependency risks. Turning everything off and reviewing manually does not scale and misses issues. The layered strategy uses all three together.",
-    "tags": ["best-practices", "defense-in-depth"]
+    "tags": [
+      "best-practices",
+      "defense-in-depth"
+    ]
   },
   {
     "id": "ghas-057",
@@ -963,15 +1846,31 @@
     "difficulty": "medium",
     "stem": "To stop new high-severity code scanning alerts from being merged into the protected main branch, what should you configure?",
     "options": [
-      { "id": "o1", "text": "Make the code scanning check a required status check in the branch protection rule or ruleset for main" },
-      { "id": "o2", "text": "Email developers a report after the merge completes" },
-      { "id": "o3", "text": "Run the scan only nightly with no merge gate" },
-      { "id": "o4", "text": "Automatically dismiss the alerts so the merge is clean" }
+      {
+        "id": "o1",
+        "text": "Make the code scanning check a required status check in the branch protection rule or ruleset for main"
+      },
+      {
+        "id": "o2",
+        "text": "Email developers a report after the merge completes"
+      },
+      {
+        "id": "o3",
+        "text": "Run the scan only nightly with no merge gate"
+      },
+      {
+        "id": "o4",
+        "text": "Automatically dismiss the alerts so the merge is clean"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Making the code scanning result a required status check blocks merging a pull request into main until the check passes, preventing new high-severity alerts from landing on the protected branch.",
     "explanationIncorrect": "Emailing after the merge is too late; the issue is already on main. A nightly scan with no gate does not block the merge. Auto-dismissing alerts hides real problems instead of preventing them. The gate is a required status check on the protected branch.",
-    "tags": ["best-practices", "required-checks", "prevention"]
+    "tags": [
+      "best-practices",
+      "required-checks",
+      "prevention"
+    ]
   },
   {
     "id": "ghas-058",
@@ -980,15 +1879,31 @@
     "difficulty": "hard",
     "stem": "A security team wants to organize and track remediation of a specific class of existing alerts across many repositories, engaging developers with owners and timelines. Which GHAS capability helps?",
     "options": [
-      { "id": "o1", "text": "Security campaigns, which group alerts and drive developers to fix them on a timeline" },
-      { "id": "o2", "text": "Pull request templates" },
-      { "id": "o3", "text": "A single spreadsheet emailed around the company" },
-      { "id": "o4", "text": "Disabling the alerts to clear the list" }
+      {
+        "id": "o1",
+        "text": "Security campaigns, which group alerts and drive developers to fix them on a timeline"
+      },
+      {
+        "id": "o2",
+        "text": "Pull request templates"
+      },
+      {
+        "id": "o3",
+        "text": "A single spreadsheet emailed around the company"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling the alerts to clear the list"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Security campaigns let security teams group a set of alerts, assign them to developers, and track remediation toward a deadline, turning a backlog into an organized, measurable effort.",
     "explanationIncorrect": "Pull request templates standardize PR descriptions, not alert remediation tracking. An emailed spreadsheet is manual and disconnected from the alerts themselves. Disabling alerts hides risk rather than fixing it. The organized-remediation feature is security campaigns.",
-    "tags": ["best-practices", "security-campaigns", "remediation"]
+    "tags": [
+      "best-practices",
+      "security-campaigns",
+      "remediation"
+    ]
   },
   {
     "id": "ghas-059",
@@ -997,15 +1912,31 @@
     "difficulty": "medium",
     "stem": "How can an organization track whether its security remediation is improving over time, such as alert trends and time to remediate, across many repositories?",
     "options": [
-      { "id": "o1", "text": "Use the security overview dashboards and trends across repositories" },
-      { "id": "o2", "text": "Count the number of commits in the git log" },
-      { "id": "o3", "text": "Read each repository's README file" },
-      { "id": "o4", "text": "There is no way to measure remediation progress" }
+      {
+        "id": "o1",
+        "text": "Use the security overview dashboards and trends across repositories"
+      },
+      {
+        "id": "o2",
+        "text": "Count the number of commits in the git log"
+      },
+      {
+        "id": "o3",
+        "text": "Read each repository's README file"
+      },
+      {
+        "id": "o4",
+        "text": "There is no way to measure remediation progress"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The security overview provides organization-wide dashboards and trends, so teams can see how alert volumes and remediation are changing over time and where to focus.",
     "explanationIncorrect": "Commit counts measure activity, not security posture or remediation. READMEs are documentation, not metrics. Progress is measurable, so claiming otherwise is wrong. The place to track trends is the security overview.",
-    "tags": ["best-practices", "security-overview", "metrics"]
+    "tags": [
+      "best-practices",
+      "security-overview",
+      "metrics"
+    ]
   },
   {
     "id": "ghas-060",
@@ -1014,14 +1945,370 @@
     "difficulty": "medium",
     "stem": "Which practice best embodies shifting security left in the developer workflow?",
     "options": [
-      { "id": "o1", "text": "Surface alerts and fixes where developers already work, such as code scanning results and push protection on pull requests, so issues are caught before merge" },
-      { "id": "o2", "text": "Run a single security audit once a year after the product ships" },
-      { "id": "o3", "text": "Keep all security findings hidden from developers" },
-      { "id": "o4", "text": "Fix every issue manually in production" }
+      {
+        "id": "o1",
+        "text": "Surface alerts and fixes where developers already work, such as code scanning results and push protection on pull requests, so issues are caught before merge"
+      },
+      {
+        "id": "o2",
+        "text": "Run a single security audit once a year after the product ships"
+      },
+      {
+        "id": "o3",
+        "text": "Keep all security findings hidden from developers"
+      },
+      {
+        "id": "o4",
+        "text": "Fix every issue manually in production"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Shifting left means catching problems early in the developer flow, so putting code scanning results and push protection right on pull requests lets developers fix issues before they merge.",
     "explanationIncorrect": "An annual post-release audit is the opposite of early feedback. Hiding findings from developers prevents them from fixing anything. Fixing in production is the latest, riskiest point. Shifting left surfaces issues in the pull request workflow.",
-    "tags": ["best-practices", "shift-left", "developer-workflow"]
+    "tags": [
+      "best-practices",
+      "shift-left",
+      "developer-workflow"
+    ]
+  },
+  {
+    "id": "ghas-061",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "CodeQL analyzes code by first building what, then running queries against it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A relational database representing the codebase"
+      },
+      {
+        "id": "o2",
+        "text": "A container image of the repository"
+      },
+      {
+        "id": "o3",
+        "text": "A flat text index of every line"
+      },
+      {
+        "id": "o4",
+        "text": "A dependency graph of third-party packages"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CodeQL extracts the code into a relational database that models its structure and data flow, and queries run against that database to find vulnerable patterns.",
+    "explanationIncorrect": "A container image packages a runtime, not the queryable semantic model CodeQL needs. A flat text index supports keyword search but cannot express the data-flow and control-flow analysis CodeQL performs. A dependency graph describes external packages for supply-chain features like Dependabot, not the source-level analysis CodeQL runs against its database.",
+    "tags": [
+      "codeql",
+      "database",
+      "analysis"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-062",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "For a compiled language such as Java or C++, what does CodeQL generally need in order to build its database?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To observe the project's build so it can extract the compiled code"
+      },
+      {
+        "id": "o2",
+        "text": "Only the source files, with no build at all"
+      },
+      {
+        "id": "o3",
+        "text": "A running production instance to trace"
+      },
+      {
+        "id": "o4",
+        "text": "A signed release artifact"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "For compiled languages CodeQL typically instruments or observes the build to see how source is compiled, letting it extract an accurate database; autobuild attempts this automatically.",
+    "explanationIncorrect": "Compiled languages usually cannot be analyzed from source alone the way interpreted languages can, which is why CodeQL watches the build. It does not trace a running production instance; analysis is static, not runtime. A signed release artifact is a distribution concern and does not provide the compilation information CodeQL extraction needs.",
+    "tags": [
+      "codeql",
+      "compiled-languages",
+      "autobuild"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-063",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "You want code scanning results to appear on pull requests and block merges when a new high-severity alert is introduced. Which combination achieves this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run the CodeQL workflow on pull_request and require the code scanning check in branch protection"
+      },
+      {
+        "id": "o2",
+        "text": "Run CodeQL only on schedule and read alerts later"
+      },
+      {
+        "id": "o3",
+        "text": "Enable secret scanning push protection"
+      },
+      {
+        "id": "o4",
+        "text": "Add a CODEOWNERS entry for the security team"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Triggering the analysis on pull_request surfaces new alerts inline on the PR, and requiring the code scanning results check in branch protection prevents merging when it fails.",
+    "explanationIncorrect": "A schedule-only run cannot annotate pull requests with new findings at the moment of review, so it will not block a merge. Secret scanning push protection blocks committed secrets, a different feature that does not evaluate code scanning alerts. A CODEOWNERS entry routes reviews but does not enforce a passing code scanning check.",
+    "tags": [
+      "codeql",
+      "pull-request",
+      "branch-protection"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-064",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Code scanning can ingest results from third-party analysis tools in which standard format?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "SARIF"
+      },
+      {
+        "id": "o2",
+        "text": "JUnit XML"
+      },
+      {
+        "id": "o3",
+        "text": "CSV"
+      },
+      {
+        "id": "o4",
+        "text": "HAR"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning accepts SARIF (Static Analysis Results Interchange Format) files, so any tool that emits SARIF can upload findings that appear alongside CodeQL alerts.",
+    "explanationIncorrect": "JUnit XML reports test outcomes, not static analysis findings, and code scanning does not ingest it as alerts. CSV is a generic tabular format with no defined schema for security results, so code scanning cannot map it to alerts. HAR captures HTTP traffic for network debugging and is unrelated to static analysis result exchange.",
+    "tags": [
+      "codeql",
+      "sarif",
+      "third-party"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-065",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "A repository has both application code and generated code you do not want analyzed. How do you exclude the generated paths from CodeQL analysis?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use a paths-ignore entry in the CodeQL configuration"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the generated files before every scan"
+      },
+      {
+        "id": "o3",
+        "text": "Mark them with a .gitignore entry"
+      },
+      {
+        "id": "o4",
+        "text": "Add // nolint comments to each file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The CodeQL config file supports paths and paths-ignore to scope analysis; listing the generated directory under paths-ignore keeps those files out of the results.",
+    "explanationIncorrect": "Deleting generated files before each scan is fragile and would break builds that depend on them. .gitignore only affects which files Git tracks, not which files CodeQL analyzes once they exist in the checkout. // nolint style comments belong to some linters and are not how CodeQL scopes analysis; that is controlled by the config file's path filters.",
+    "tags": [
+      "codeql",
+      "paths-ignore",
+      "configuration"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-066",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "What is a CodeQL query pack primarily used for?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Distributing and versioning a set of queries and their dependencies for reuse"
+      },
+      {
+        "id": "o2",
+        "text": "Bundling the compiled application for release"
+      },
+      {
+        "id": "o3",
+        "text": "Storing scan results for auditors"
+      },
+      {
+        "id": "o4",
+        "text": "Encrypting secrets used during analysis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A CodeQL pack packages queries, their metadata, and dependencies so they can be published, versioned, and reused across repositories and analyses.",
+    "explanationIncorrect": "Packs do not bundle the compiled application; that is the job of the build, not CodeQL. Scan results are stored as alerts and SARIF, not inside a query pack. Packs do not encrypt secrets; secret handling is unrelated to how queries are distributed.",
+    "tags": [
+      "codeql",
+      "query-packs",
+      "reuse"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-067",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "When you dismiss a code scanning alert, which reasons are offered to record why?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "False positive, Used in tests, or Won't fix"
+      },
+      {
+        "id": "o2",
+        "text": "Only Won't fix"
+      },
+      {
+        "id": "o3",
+        "text": "Approved by manager or Rejected"
+      },
+      {
+        "id": "o4",
+        "text": "Merged or Reverted"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning lets you dismiss an alert as a false positive, as code that is only used in tests, or as something you will not fix, recording the rationale for auditing.",
+    "explanationIncorrect": "Won't fix is only one of the available reasons, so restricting to it alone is incomplete. Approved by manager and Rejected are not the dismissal categories code scanning provides. Merged and Reverted describe pull-request or commit states, not the reasons offered when dismissing a code scanning alert.",
+    "tags": [
+      "codeql",
+      "alerts",
+      "dismissal"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-068",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Which CodeQL feature helps you understand how tainted input reaches a dangerous sink in an alert?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The data-flow path shown with the alert"
+      },
+      {
+        "id": "o2",
+        "text": "The commit blame view"
+      },
+      {
+        "id": "o3",
+        "text": "The dependency graph"
+      },
+      {
+        "id": "o4",
+        "text": "The runner's debug logs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Many CodeQL alerts include a data-flow path that traces the untrusted source through intermediate steps to the sink, making the vulnerability easier to understand and fix.",
+    "explanationIncorrect": "Blame shows who last changed a line, which does not explain how tainted data flows through the program. The dependency graph lists external packages and does not trace intra-application data flow. Runner debug logs help diagnose workflow execution, not the semantic path an alert represents.",
+    "tags": [
+      "codeql",
+      "data-flow",
+      "alerts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-069",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "A monorepo contains several languages. How does the default CodeQL setup or workflow handle analyzing more than one language?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It runs a separate analysis per language, often as a matrix over the languages"
+      },
+      {
+        "id": "o2",
+        "text": "It analyzes only the primary language and ignores the rest"
+      },
+      {
+        "id": "o3",
+        "text": "It merges all languages into one database automatically"
+      },
+      {
+        "id": "o4",
+        "text": "It requires a separate repository per language"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CodeQL builds one database per language, so multi-language repositories are analyzed with a separate run for each language, commonly expressed as a matrix in the workflow.",
+    "explanationIncorrect": "It does not silently ignore other languages; you can enable each supported language. It does not merge languages into a single database; each language gets its own. It does not require splitting the code into separate repositories; a single repo can be scanned for multiple languages through per-language analyses.",
+    "tags": [
+      "codeql",
+      "languages",
+      "matrix"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-070",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "What is the main advantage of default setup for code scanning compared with the advanced workflow file?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It enables CodeQL with automatic language detection and no workflow file to maintain"
+      },
+      {
+        "id": "o2",
+        "text": "It allows arbitrary custom build steps that advanced setup cannot"
+      },
+      {
+        "id": "o3",
+        "text": "It is the only option that supports SARIF upload"
+      },
+      {
+        "id": "o4",
+        "text": "It runs entirely on self-hosted runners by default"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Default setup turns on CodeQL with sensible defaults and automatic language detection, sparing you from writing and maintaining a workflow file for common cases.",
+    "explanationIncorrect": "Custom build steps are exactly what the advanced workflow supports and default setup does not, so that advantage is reversed. SARIF upload is available through the advanced path and APIs, not something only default setup enables. Default setup uses GitHub-hosted runners by default, so the self-hosted claim is incorrect.",
+    "tags": [
+      "codeql",
+      "default-setup",
+      "configuration"
+    ],
+    "isSeed": true
   }
 ]
