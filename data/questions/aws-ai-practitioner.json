@@ -2643,5 +2643,345 @@
       "genai"
     ],
     "isSeed": true
+  },
+  {
+    "id": "aip-081",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "A chatbot must answer from a company's private knowledge base that the model was never trained on, and avoid making things up. Which approach fits best?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Retrieval Augmented Generation (RAG), retrieving relevant documents and passing them to the model as context"
+      },
+      {
+        "id": "o2",
+        "text": "Increasing the temperature so the model is more creative"
+      },
+      {
+        "id": "o3",
+        "text": "Training a brand-new model from scratch on the internet"
+      },
+      {
+        "id": "o4",
+        "text": "Reducing the context window"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RAG retrieves relevant passages from your knowledge base at query time and supplies them to the model as grounding context, letting it answer from private data and reducing hallucination.",
+    "explanationIncorrect": "Raising temperature increases randomness and would make fabrication more likely, not less. Training a new model from scratch is enormously expensive and still would not include your private data unless you added it, so it is impractical here. Reducing the context window gives the model less room for retrieved context, which hurts rather than helps grounding.",
+    "tags": [
+      "rag",
+      "grounding",
+      "applications"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-082",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which storage capability is central to implementing RAG for semantic retrieval?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A vector database or vector index that stores embeddings for similarity search"
+      },
+      {
+        "id": "o2",
+        "text": "A relational table with only exact-match keys"
+      },
+      {
+        "id": "o3",
+        "text": "A message queue"
+      },
+      {
+        "id": "o4",
+        "text": "A DNS resolver"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RAG relies on a vector store that indexes document embeddings so a query embedding can retrieve the most semantically similar passages via nearest-neighbor search.",
+    "explanationIncorrect": "A relational table limited to exact-match keys cannot perform semantic similarity search over embeddings. A message queue moves messages between components and does not index embeddings for retrieval. A DNS resolver maps names to IP addresses and has nothing to do with semantic search.",
+    "tags": [
+      "rag",
+      "vector-database",
+      "embeddings"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-083",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "When is fine-tuning a foundation model more appropriate than prompt engineering or RAG?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "When you need the model to consistently adopt a specialized style or task behavior that prompting alone cannot reliably achieve"
+      },
+      {
+        "id": "o2",
+        "text": "Whenever you want to add a single new fact"
+      },
+      {
+        "id": "o3",
+        "text": "Only when you have no data at all"
+      },
+      {
+        "id": "o4",
+        "text": "When you want to avoid any training cost"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Fine-tuning adjusts the model's weights on curated examples, which is worthwhile when you need durable, consistent task or style behavior that prompt instructions cannot reliably produce.",
+    "explanationIncorrect": "Adding a single new fact is better handled by RAG or the prompt, since fine-tuning for one fact is costly and can be brittle. Fine-tuning requires representative training data, so having no data at all makes it impossible, not ideal. Fine-tuning incurs training cost, so choosing it to avoid cost is contradictory.",
+    "tags": [
+      "fine-tuning",
+      "customization",
+      "applications"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-084",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "What does an agent add on top of a foundation model in frameworks like Amazon Bedrock Agents?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The ability to plan steps and call tools or APIs to complete multi-step tasks"
+      },
+      {
+        "id": "o2",
+        "text": "A larger training dataset"
+      },
+      {
+        "id": "o3",
+        "text": "A faster GPU"
+      },
+      {
+        "id": "o4",
+        "text": "Automatic reduction of the model's parameters"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Agents let a model break a goal into steps and invoke external tools, functions, or APIs, orchestrating actions to accomplish tasks beyond a single text response.",
+    "explanationIncorrect": "An agent does not enlarge the training dataset; it uses the existing model. It does not provide a faster GPU; that is infrastructure, not an agent capability. It does not shrink the model's parameters; parameter reduction is a separate optimization unrelated to agentic orchestration.",
+    "tags": [
+      "agents",
+      "tools",
+      "applications"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-085",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Providing a few worked examples inside the prompt to guide the model's response is called?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Few-shot prompting"
+      },
+      {
+        "id": "o2",
+        "text": "Zero-shot training"
+      },
+      {
+        "id": "o3",
+        "text": "Gradient descent"
+      },
+      {
+        "id": "o4",
+        "text": "Backpropagation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Few-shot prompting includes a handful of example input-output pairs in the prompt so the model infers the desired pattern without any weight updates.",
+    "explanationIncorrect": "Zero-shot means giving no examples, which is the opposite of few-shot, and it is not a form of training. Gradient descent is an optimization algorithm used during training, not an in-context prompting technique. Backpropagation is the mechanism for computing gradients during training, again unrelated to supplying examples in a prompt.",
+    "tags": [
+      "few-shot",
+      "prompting",
+      "applications"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-086",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "A team wants to summarize long support transcripts. Which foundation model capability directly addresses this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Text summarization"
+      },
+      {
+        "id": "o2",
+        "text": "Image classification"
+      },
+      {
+        "id": "o3",
+        "text": "Anomaly detection on metrics"
+      },
+      {
+        "id": "o4",
+        "text": "Route optimization"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Summarization condenses long text into a shorter version that preserves key points, exactly what is needed to distill lengthy support transcripts.",
+    "explanationIncorrect": "Image classification labels pictures and does nothing for text transcripts. Anomaly detection on metrics finds outliers in numeric time series, not a summary of conversations. Route optimization solves logistics pathing problems and is unrelated to condensing text.",
+    "tags": [
+      "summarization",
+      "nlp",
+      "applications"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-087",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "Why can Retrieval Augmented Generation reduce the need for frequent fine-tuning as knowledge changes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Updating the retrieval source refreshes the knowledge the model draws on without retraining the model"
+      },
+      {
+        "id": "o2",
+        "text": "RAG permanently bakes facts into the model weights"
+      },
+      {
+        "id": "o3",
+        "text": "RAG eliminates the need for a foundation model"
+      },
+      {
+        "id": "o4",
+        "text": "RAG increases hallucination so accuracy no longer matters"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because RAG pulls current information from an external store at query time, you keep knowledge fresh by updating documents rather than repeatedly fine-tuning the model.",
+    "explanationIncorrect": "RAG does not bake facts into the weights; that is what fine-tuning does, and it is exactly what RAG avoids. RAG still needs a foundation model to read the retrieved context and generate answers. RAG is used to reduce hallucination by grounding responses, so saying it increases hallucination is backwards.",
+    "tags": [
+      "rag",
+      "fine-tuning",
+      "applications"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-088",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which practice helps control the format of an LLM's output, for example returning valid JSON?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Giving explicit output-format instructions and examples in the prompt"
+      },
+      {
+        "id": "o2",
+        "text": "Increasing temperature to maximum"
+      },
+      {
+        "id": "o3",
+        "text": "Removing all instructions from the prompt"
+      },
+      {
+        "id": "o4",
+        "text": "Shrinking the model"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Clearly instructing the model on the required format and showing an example strongly biases it toward producing structured output such as valid JSON.",
+    "explanationIncorrect": "Maximizing temperature increases randomness and makes malformed output more likely. Removing all instructions leaves the model no guidance about the desired format. Shrinking the model does not improve formatting adherence and may reduce capability, so it does not address output structure.",
+    "tags": [
+      "output-format",
+      "prompting",
+      "applications"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-089",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "A retailer wants product recommendations generated in natural language plus a similarity search over catalog items. Which two capabilities are combined?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Embeddings for similarity search and a generative model for the natural-language response"
+      },
+      {
+        "id": "o2",
+        "text": "Only optical character recognition"
+      },
+      {
+        "id": "o3",
+        "text": "Only speech synthesis"
+      },
+      {
+        "id": "o4",
+        "text": "Only a relational join"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Embeddings enable semantic similarity search to find relevant catalog items, and a generative model turns those results into a fluent recommendation, combining retrieval with generation.",
+    "explanationIncorrect": "Optical character recognition only reads text from images and does neither the similarity search nor the language generation described. Speech synthesis produces audio and does not perform catalog similarity search. A relational join matches exact keys and cannot do semantic similarity or generate natural-language recommendations.",
+    "tags": [
+      "embeddings",
+      "recommendation",
+      "applications"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-090",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "What is a practical reason to choose a smaller foundation model over the largest available one for a given task?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Lower latency and cost when the smaller model meets the quality bar for the task"
+      },
+      {
+        "id": "o2",
+        "text": "Smaller models are always more accurate"
+      },
+      {
+        "id": "o3",
+        "text": "Smaller models never need prompts"
+      },
+      {
+        "id": "o4",
+        "text": "Larger models cannot be deployed on AWS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "If a smaller model is accurate enough for the task, it typically responds faster and costs less per request, which matters at scale, so right-sizing the model is a sound engineering choice.",
+    "explanationIncorrect": "Smaller models are not always more accurate; larger models often perform better on complex tasks, so the tradeoff is quality versus cost. Smaller models still require prompts like any model. Larger models can absolutely be deployed on AWS, so that claim is false.",
+    "tags": [
+      "model-selection",
+      "cost",
+      "latency"
+    ],
+    "isSeed": true
   }
 ]
