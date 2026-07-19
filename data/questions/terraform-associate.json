@@ -2522,5 +2522,241 @@
       "refactoring"
     ],
     "isSeed": true
+  },
+  {
+    "id": "tf-086",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "What is the role of a Terraform provider?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A plugin that lets Terraform manage a specific platform's resources through its API"
+      },
+      {
+        "id": "o2",
+        "text": "A file that stores state remotely"
+      },
+      {
+        "id": "o3",
+        "text": "A command that formats configuration"
+      },
+      {
+        "id": "o4",
+        "text": "A variable type"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Providers are plugins that implement resource and data source types for a platform such as AWS or Azure, translating Terraform operations into that platform's API calls.",
+    "explanationIncorrect": "Storing state remotely is the job of a backend, not a provider. Formatting configuration is done by terraform fmt. A provider is not a variable type; it is the integration layer to an external platform.",
+    "tags": [
+      "providers",
+      "basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-087",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "How do you reference an attribute of a resource elsewhere in the configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "resource_type.name.attribute, for example aws_instance.web.id"
+      },
+      {
+        "id": "o2",
+        "text": "get(resource_type, name, attribute)"
+      },
+      {
+        "id": "o3",
+        "text": "$resource_type/name/attribute"
+      },
+      {
+        "id": "o4",
+        "text": "attribute@resource_type.name"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Resource attributes are referenced by the address type.name.attribute, and such references also create the implicit dependencies Terraform uses to order operations.",
+    "explanationIncorrect": "There is no get() function for resource references in that form. The slash-and-dollar syntax is not valid HCL reference syntax. The attribute@type.name form is not how HCL addresses attributes; the dotted address is the correct notation.",
+    "tags": [
+      "references",
+      "attributes",
+      "basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-088",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "easy",
+    "stem": "What does a data source allow you to do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Read information about existing resources or external data for use in configuration"
+      },
+      {
+        "id": "o2",
+        "text": "Create and manage a new resource"
+      },
+      {
+        "id": "o3",
+        "text": "Store Terraform state"
+      },
+      {
+        "id": "o4",
+        "text": "Format the code"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A data source fetches read-only information, such as an existing AMI or VPC, so your configuration can reference values it does not manage.",
+    "explanationIncorrect": "Creating and managing a new object is done by a resource block, not a data source. Storing state is a backend concern. Formatting code is terraform fmt; a data source is strictly for reading external information.",
+    "tags": [
+      "data-sources",
+      "basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-089",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "Which block sets provider version constraints and required providers for a configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The terraform block with a required_providers argument"
+      },
+      {
+        "id": "o2",
+        "text": "The provider block only"
+      },
+      {
+        "id": "o3",
+        "text": "The variable block"
+      },
+      {
+        "id": "o4",
+        "text": "The output block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The terraform block's required_providers declares which providers a module needs and their version constraints and source addresses, ensuring reproducible provider selection.",
+    "explanationIncorrect": "The provider block configures a provider's settings like region but is not where source and version constraints are declared. The variable block defines input variables. The output block exposes values; neither declares required providers.",
+    "tags": [
+      "required_providers",
+      "versions",
+      "basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-090",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "What is the effect of marking a variable with sensitive = true?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Terraform redacts its value from plan and apply output"
+      },
+      {
+        "id": "o2",
+        "text": "Terraform encrypts the value in state"
+      },
+      {
+        "id": "o3",
+        "text": "Terraform refuses to use the value"
+      },
+      {
+        "id": "o4",
+        "text": "Terraform requires the value to be a password"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "sensitive = true tells Terraform to hide the value in CLI output for plan and apply, reducing accidental exposure in logs and terminals.",
+    "explanationIncorrect": "It does not encrypt the value in state; the value can still appear in state in plaintext, so state must be protected separately. It does not refuse to use the value; the value is still used normally. It does not require the value to be a password; sensitivity is about display, not content.",
+    "tags": [
+      "sensitive",
+      "variables",
+      "basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-091",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "hard",
+    "stem": "What does Terraform build to determine the correct order to create resources?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A dependency graph based on references between resources"
+      },
+      {
+        "id": "o2",
+        "text": "An alphabetical list of resource names"
+      },
+      {
+        "id": "o3",
+        "text": "The order resources appear in the file"
+      },
+      {
+        "id": "o4",
+        "text": "A random ordering each run"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform constructs a dependency graph from implicit and explicit references and uses it to create, update, or destroy resources in the correct order, parallelizing where safe.",
+    "explanationIncorrect": "It does not order by alphabetical name. It does not simply follow file order, since dependencies may require a different sequence. It does not use random ordering; correctness depends on honoring dependencies.",
+    "tags": [
+      "dependency-graph",
+      "ordering",
+      "basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-092",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "How do you create an explicit dependency between two resources that do not reference each other's attributes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use the depends_on meta-argument"
+      },
+      {
+        "id": "o2",
+        "text": "Use the count meta-argument"
+      },
+      {
+        "id": "o3",
+        "text": "Use a provider alias"
+      },
+      {
+        "id": "o4",
+        "text": "Use terraform fmt"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "depends_on declares an explicit ordering when there is no attribute reference to create an implicit dependency, ensuring one resource is created after another.",
+    "explanationIncorrect": "count controls how many instances of a resource are created, not ordering. A provider alias selects among multiple provider configurations, unrelated to dependencies. terraform fmt only formats code and has nothing to do with dependencies.",
+    "tags": [
+      "depends_on",
+      "dependencies",
+      "basics"
+    ],
+    "isSeed": true
   }
 ]
