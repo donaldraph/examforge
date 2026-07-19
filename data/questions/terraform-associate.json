@@ -464,6 +464,91 @@
     "tags": ["workflow", "apply", "approval"]
   },
   {
+    "id": "tf-046",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "easy",
+    "stem": "After an apply, you want to print the values of your configuration's declared output values on the command line. Which command does this?",
+    "options": [
+      { "id": "o1", "text": "terraform output" },
+      { "id": "o2", "text": "terraform show state" },
+      { "id": "o3", "text": "terraform plan -out" },
+      { "id": "o4", "text": "terraform get" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform output reads the current state and prints the root module's output values, optionally a single named output or in JSON.",
+    "explanationIncorrect": "terraform show state is not the output command; terraform show displays state or a plan in full. terraform plan -out writes a plan to a file. terraform get downloads modules. Printing outputs is terraform output.",
+    "tags": ["workflow", "output"]
+  },
+  {
+    "id": "tf-047",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "You added a new provider and a new module to your configuration. What must you run before plan or apply will work?",
+    "options": [
+      { "id": "o1", "text": "terraform init again, to install the new provider and module" },
+      { "id": "o2", "text": "terraform fmt" },
+      { "id": "o3", "text": "terraform output" },
+      { "id": "o4", "text": "terraform destroy" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Adding a provider or module means new plugins or module sources must be installed, so you re-run terraform init to fetch them before planning or applying.",
+    "explanationIncorrect": "terraform fmt only reformats files and installs nothing. terraform output prints outputs. terraform destroy tears down infrastructure. Installing newly added providers and modules requires re-running terraform init.",
+    "tags": ["workflow", "init", "re-init"]
+  },
+  {
+    "id": "tf-048",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "In a CI pipeline you want apply to proceed without the interactive approval prompt, accepting that risk. Which flag do you pass?",
+    "options": [
+      { "id": "o1", "text": "terraform apply -auto-approve" },
+      { "id": "o2", "text": "terraform apply --force-yes" },
+      { "id": "o3", "text": "terraform apply -y" },
+      { "id": "o4", "text": "terraform apply --no-prompt" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "-auto-approve skips the interactive confirmation so apply runs unattended, which is how automated pipelines apply changes (ideally against a reviewed saved plan).",
+    "explanationIncorrect": "--force-yes is not a Terraform flag; that syntax belongs to other tools. -y is not accepted by terraform apply. --no-prompt is likewise not a real Terraform flag. The only flag that skips the interactive confirmation prompt on apply is -auto-approve.",
+    "tags": ["workflow", "auto-approve", "automation"]
+  },
+  {
+    "id": "tf-049",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "hard",
+    "stem": "You need to apply a change to a single resource only, as a temporary workaround. Which flag limits the operation to that resource?",
+    "options": [
+      { "id": "o1", "text": "terraform apply -target=<resource address>, used sparingly" },
+      { "id": "o2", "text": "terraform apply -only=<resource>" },
+      { "id": "o3", "text": "terraform apply -single=<resource>" },
+      { "id": "o4", "text": "There is no way to scope an apply to one resource" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The -target flag scopes plan and apply to a specific resource address (and its dependencies); it is meant for exceptional situations, not routine use, because it can create partial state.",
+    "explanationIncorrect": "-only and -single are not real Terraform flags and would be rejected. Scoping an apply to a subset of resources is possible, so claiming there is no way is wrong. The flag that limits plan and apply to a specific resource address and its dependencies is -target, and it should be used sparingly because it can leave state partially applied.",
+    "tags": ["workflow", "target", "surgical-apply"]
+  },
+  {
+    "id": "tf-050",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "You want Terraform to update its state to match the real infrastructure without changing any resources. Which is appropriate?",
+    "options": [
+      { "id": "o1", "text": "terraform apply -refresh-only (or terraform plan -refresh-only to preview)" },
+      { "id": "o2", "text": "terraform destroy" },
+      { "id": "o3", "text": "terraform fmt" },
+      { "id": "o4", "text": "terraform import every resource again" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The -refresh-only mode reconciles state with real infrastructure and shows any drift without proposing changes to resources, which is exactly a state-only update.",
+    "explanationIncorrect": "terraform destroy deletes resources. terraform fmt only reformats configuration. Re-importing everything is unnecessary and disruptive for a simple refresh. Updating state without changing resources is -refresh-only.",
+    "tags": ["workflow", "refresh-only", "state"]
+  },
+  {
     "id": "tf-018",
     "exam": "terraform-associate",
     "domain": "State management",
