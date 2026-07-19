@@ -683,6 +683,91 @@
     "tags": ["services", "cloudwatch", "monitoring"]
   },
   {
+    "id": "clf-046",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service provides managed relational databases such as MySQL and PostgreSQL, handling patching, backups, and failover for you?",
+    "options": [
+      { "id": "o1", "text": "Amazon RDS" },
+      { "id": "o2", "text": "Amazon DynamoDB" },
+      { "id": "o3", "text": "Amazon S3" },
+      { "id": "o4", "text": "Amazon SNS" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon RDS is the managed relational database service, running engines like MySQL and PostgreSQL while automating patching, backups, and failover.",
+    "explanationIncorrect": "Amazon DynamoDB is a NoSQL key-value database, not relational. Amazon S3 is object storage. Amazon SNS is pub/sub messaging. Managed relational databases are Amazon RDS.",
+    "tags": ["services", "rds", "databases"]
+  },
+  {
+    "id": "clf-047",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "You want to run containers without managing the underlying EC2 servers. Which AWS option provides serverless container compute?",
+    "options": [
+      { "id": "o1", "text": "AWS Fargate (used with ECS or EKS)" },
+      { "id": "o2", "text": "Amazon S3" },
+      { "id": "o3", "text": "Amazon Route 53" },
+      { "id": "o4", "text": "AWS Artifact" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Fargate runs containers without you provisioning or managing servers, working with ECS or EKS as a serverless compute engine for containers.",
+    "explanationIncorrect": "Amazon S3 is object storage for files and cannot run containers. Amazon Route 53 is a DNS service for routing and domains. AWS Artifact is a portal for compliance reports. None of them run container workloads. Serverless container compute, with no servers to manage, is AWS Fargate.",
+    "tags": ["services", "fargate", "containers"]
+  },
+  {
+    "id": "clf-048",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is a managed publish/subscribe messaging service used to fan out notifications to many subscribers such as email, SMS, queues, and functions?",
+    "options": [
+      { "id": "o1", "text": "Amazon SNS" },
+      { "id": "o2", "text": "Amazon Redshift" },
+      { "id": "o3", "text": "Amazon EBS" },
+      { "id": "o4", "text": "Amazon Cognito" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SNS is a managed publish/subscribe service that delivers messages from a topic to many subscribers, including email, SMS, SQS queues, and Lambda functions.",
+    "explanationIncorrect": "Amazon Redshift is an analytical data warehouse, not a messaging service. Amazon EBS is block storage attached to EC2 instances. Amazon Cognito manages user sign-up and sign-in. None of them fan out messages to many subscribers. The managed publish/subscribe messaging service is Amazon SNS.",
+    "tags": ["services", "sns", "pub-sub"]
+  },
+  {
+    "id": "clf-049",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "easy",
+    "stem": "Which service is AWS's scalable Domain Name System (DNS) web service for routing users to applications and registering domains?",
+    "options": [
+      { "id": "o1", "text": "Amazon Route 53" },
+      { "id": "o2", "text": "Amazon CloudFront" },
+      { "id": "o3", "text": "Amazon VPC" },
+      { "id": "o4", "text": "AWS Lambda" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Route 53 is AWS's managed DNS service, resolving domain names to resources, performing health checks, and registering domains.",
+    "explanationIncorrect": "Amazon CloudFront is a content delivery network. Amazon VPC is a virtual private network. AWS Lambda runs code. The DNS service is Amazon Route 53.",
+    "tags": ["services", "route53", "dns"]
+  },
+  {
+    "id": "clf-050",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "You want to deploy a web application by uploading your code and letting AWS handle provisioning capacity, load balancing, and scaling. Which service does this?",
+    "options": [
+      { "id": "o1", "text": "AWS Elastic Beanstalk" },
+      { "id": "o2", "text": "Amazon S3 static website hosting only" },
+      { "id": "o3", "text": "AWS Snowball" },
+      { "id": "o4", "text": "Amazon Athena" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Elastic Beanstalk is a platform service: you upload your application code and it provisions the capacity, load balancing, scaling, and monitoring for you while you keep control of the underlying resources.",
+    "explanationIncorrect": "S3 static hosting serves static files only, not full application deployment with capacity and scaling. AWS Snowball moves large data physically. Amazon Athena queries data with SQL. Upload-and-run app deployment is AWS Elastic Beanstalk.",
+    "tags": ["services", "elastic-beanstalk", "paas"]
+  },
+  {
     "id": "clf-004",
     "exam": "aws-cloud-practitioner",
     "domain": "Billing, Pricing, and Support",
@@ -750,6 +835,91 @@
     "explanationCorrect": "AWS Organizations offers consolidated billing, which combines multiple accounts into one bill and can aggregate usage so the group qualifies for volume pricing tiers.",
     "explanationIncorrect": "Separate cards with no linkage give you many bills and no pooled discounts, the opposite of what is asked. Amazon CloudFront is a content delivery network. AWS WAF filters web traffic. Single-bill, pooled-discount management is consolidated billing through AWS Organizations.",
     "tags": ["billing", "organizations", "consolidated-billing"]
+  },
+  {
+    "id": "clf-051",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "easy",
+    "stem": "You want to try several AWS services at no cost within certain limits while learning. Which offering provides this?",
+    "options": [
+      { "id": "o1", "text": "The AWS Free Tier" },
+      { "id": "o2", "text": "A Reserved Instance" },
+      { "id": "o3", "text": "A Compute Savings Plan" },
+      { "id": "o4", "text": "Dedicated Hosts" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The AWS Free Tier lets you use certain services free within monthly limits (some always-free, some for 12 months, some as trials), which is ideal for learning and experimentation.",
+    "explanationIncorrect": "A Reserved Instance and a Savings Plan are commitment-based discount models, not free usage. Dedicated Hosts are a more expensive isolation option. Free usage within limits is the AWS Free Tier.",
+    "tags": ["billing", "free-tier"]
+  },
+  {
+    "id": "clf-052",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which tool lets you visualize, understand, and analyze your AWS costs and usage over time with graphs and filters?",
+    "options": [
+      { "id": "o1", "text": "AWS Cost Explorer" },
+      { "id": "o2", "text": "AWS CloudFormation" },
+      { "id": "o3", "text": "Amazon Inspector" },
+      { "id": "o4", "text": "AWS Artifact" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Cost Explorer provides graphs and filters to explore historical cost and usage and spot trends, which is the tool for analyzing spend.",
+    "explanationIncorrect": "AWS CloudFormation provisions infrastructure. Amazon Inspector scans for vulnerabilities. AWS Artifact provides compliance reports. Cost visualization and analysis is AWS Cost Explorer.",
+    "tags": ["billing", "cost-explorer"]
+  },
+  {
+    "id": "clf-053",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Before deploying, you want to estimate the monthly cost of a proposed AWS architecture. Which tool do you use?",
+    "options": [
+      { "id": "o1", "text": "The AWS Pricing Calculator" },
+      { "id": "o2", "text": "AWS Budgets" },
+      { "id": "o3", "text": "Amazon CloudWatch" },
+      { "id": "o4", "text": "AWS Config" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The AWS Pricing Calculator produces up-front cost estimates for a planned architecture before you build it, which is exactly a pre-deployment estimate.",
+    "explanationIncorrect": "AWS Budgets tracks and alerts on actual or forecasted spend once you are running, not a pre-build estimate. Amazon CloudWatch monitors resources. AWS Config tracks configuration compliance. Pre-deployment estimates come from the AWS Pricing Calculator.",
+    "tags": ["billing", "pricing-calculator"]
+  },
+  {
+    "id": "clf-054",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which service inspects your account and gives recommendations across cost optimization, performance, security, fault tolerance, and service limits?",
+    "options": [
+      { "id": "o1", "text": "AWS Trusted Advisor" },
+      { "id": "o2", "text": "Amazon Macie" },
+      { "id": "o3", "text": "AWS Snowball" },
+      { "id": "o4", "text": "Amazon Kinesis" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Trusted Advisor analyzes your account against best practices and recommends improvements across cost optimization, performance, security, fault tolerance, and service limits.",
+    "explanationIncorrect": "Amazon Macie discovers and classifies sensitive data such as PII in S3. AWS Snowball moves large volumes of data physically into and out of AWS. Amazon Kinesis ingests and processes streaming data. None of them provide account-wide best-practice recommendations. The service that inspects your account across those five categories is AWS Trusted Advisor.",
+    "tags": ["billing", "trusted-advisor"]
+  },
+  {
+    "id": "clf-055",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "You want to break down your AWS bill by project or team for reporting. Which mechanism enables this?",
+    "options": [
+      { "id": "o1", "text": "Cost allocation tags applied to resources" },
+      { "id": "o2", "text": "Security groups" },
+      { "id": "o3", "text": "IAM roles" },
+      { "id": "o4", "text": "Route tables" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Cost allocation tags let you label resources (for example by project or team) so the billing tools can group and report costs along those tags.",
+    "explanationIncorrect": "Security groups are network firewalls. IAM roles grant permissions. Route tables direct network traffic. Breaking down the bill by dimension uses cost allocation tags.",
+    "tags": ["billing", "cost-allocation-tags"]
   },
   {
     "id": "clf-005",
