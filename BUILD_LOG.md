@@ -3,7 +3,46 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Timed exam mode
+
+### 2026-07-19 — a real-exam clock that auto-submits
+
+- Added a Practice/Timed toggle. Practice is the existing behaviour: each answer
+  reveals correctness and its explanation as you go. Timed runs a single
+  countdown for the whole session, sized to the exam's per-question pace times
+  the number of questions, and it does not reveal answers until you submit, so
+  you can change or skip answers like the real exam. At zero it auto-submits.
+
+- The pace comes from a new `secondsPerQuestion` per exam in the registry, set
+  to each certification's real allowance (GitHub Actions 100s, GHAS 92s, AI
+  Practitioner and Cloud Practitioner 83s, Solutions Architect 120s, Terraform
+  63s), so a timed session is at least as tight as the real thing. The field is
+  data, so tightening the clock later is a registry edit, not a code change.
+
+- The countdown runs off a wall-clock deadline, so moving between questions never
+  adds or loses time, and it turns red and pulses under a minute. The timer math
+  (`lib/timer.ts`) is pure and unit tested.
+
+- Proof: 6 new unit tests for the session-duration and clock formatting (18
+  frontend tests total), a clean build, and a headless-Chrome drive of the real
+  built site: practice shows no timer; switching to Timed shows a countdown sized
+  to the bank; answering in timed mode does not reveal correctness; the clock
+  counts down and, at zero, auto-submits to the results screen; restart returns
+  to a fresh question one. 12 browser checks pass.
+
 ## Content — question banks
+
+### 2026-07-19 — every exam to 55-70 (five more per domain)
+
+- Grew every exam by five more questions per domain on top of the first 35,
+  again researching each blueprint first and keeping every question distinct from
+  the existing set. New per-exam totals: GitHub Actions 55, GitHub Advanced
+  Security 60, AWS AI Practitioner 60, AWS Cloud Practitioner 55, AWS Solutions
+  Architect Associate 55, Terraform Associate 70. 355 questions in all.
+
+- Same shape and the same committed validator gate as before, run after every
+  domain batch, so all 355 pass the schema, id, domain-coverage, and
+  longer-wrong-answer checks. Committed in domain-grouped batches.
 
 ### 2026-07-19 — every exam to 35 web-grounded questions
 
