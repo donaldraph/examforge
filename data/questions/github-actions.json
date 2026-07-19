@@ -3058,5 +3058,446 @@
       "governance"
     ],
     "isSeed": true
+  },
+  {
+    "id": "gha-093",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "How does one workflow call a reusable workflow defined in another file?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "With a job that sets uses: owner/repo/.github/workflows/file.yml@ref"
+      },
+      {
+        "id": "o2",
+        "text": "With a step that sets uses: for the workflow file"
+      },
+      {
+        "id": "o3",
+        "text": "By copying the reusable workflow's jobs into the caller"
+      },
+      {
+        "id": "o4",
+        "text": "With needs: pointing at the other workflow"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A reusable workflow is invoked at the job level with uses: pointing to the workflow file and a ref, for example owner/repo/.github/workflows/build.yml@v1.",
+    "explanationIncorrect": "Steps cannot call a whole workflow with uses:; that job-versus-step distinction matters because reusable workflows are referenced by a job, not a step. Copying jobs into the caller defeats reuse and is not how the feature works. needs only orders jobs within a single workflow and cannot invoke a separate reusable workflow.",
+    "tags": [
+      "reusable-workflows",
+      "uses",
+      "jobs"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-094",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "What must a reusable workflow declare so that callers can invoke it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on: workflow_call"
+      },
+      {
+        "id": "o2",
+        "text": "on: workflow_dispatch"
+      },
+      {
+        "id": "o3",
+        "text": "reusable: true at the workflow root"
+      },
+      {
+        "id": "o4",
+        "text": "A callable: block under jobs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A workflow becomes reusable by triggering on workflow_call, which also lets it declare inputs, secrets, and outputs for its callers.",
+    "explanationIncorrect": "workflow_dispatch enables a manual Run button, not invocation by another workflow. There is no reusable: true root key; reusability is expressed through the workflow_call trigger. There is no callable: block under jobs; the contract for callers is defined by the workflow_call event, not by a job-level key.",
+    "tags": [
+      "reusable-workflows",
+      "workflow_call"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-095",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "A caller needs to pass a secret to a reusable workflow. Which caller syntax forwards all of the caller's secrets?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "secrets: inherit"
+      },
+      {
+        "id": "o2",
+        "text": "secrets: all"
+      },
+      {
+        "id": "o3",
+        "text": "with: secrets: '*'"
+      },
+      {
+        "id": "o4",
+        "text": "env: SECRETS: inherit"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "secrets: inherit on the calling job passes all of the caller's secrets to the reusable workflow without naming each one individually.",
+    "explanationIncorrect": "secrets: all is not valid syntax; the keyword is inherit. Secrets are not passed through with:, which is for inputs, and there is no '*' wildcard there. env: with a SECRETS key does not forward secrets to a reusable workflow; secret forwarding is handled by the dedicated secrets key on the calling job.",
+    "tags": [
+      "reusable-workflows",
+      "secrets",
+      "inherit"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-096",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "How does a caller read an output produced by a reusable workflow?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Via needs.<job>.outputs.<name> after listing the reusable job in needs"
+      },
+      {
+        "id": "o2",
+        "text": "Via steps.<job>.outputs.<name>"
+      },
+      {
+        "id": "o3",
+        "text": "The caller cannot access reusable workflow outputs"
+      },
+      {
+        "id": "o4",
+        "text": "Via env.<name> automatically"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A reusable workflow declares outputs under workflow_call, and the caller reads them through needs.<jobId>.outputs.<name>, which requires depending on that job.",
+    "explanationIncorrect": "steps.<job> is wrong because a reusable workflow is invoked as a job, not a step, so its results live in the job outputs, not the steps context. Callers absolutely can read reusable workflow outputs when they are declared, so claiming otherwise is false. Outputs are not injected into env automatically; you must reference them through the needs context.",
+    "tags": [
+      "reusable-workflows",
+      "outputs",
+      "needs"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-097",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "What is the difference between using a marketplace action and calling a reusable workflow?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An action is a single unit invoked by a step; a reusable workflow packages one or more entire jobs invoked at the job level"
+      },
+      {
+        "id": "o2",
+        "text": "They are the same feature with different names"
+      },
+      {
+        "id": "o3",
+        "text": "A reusable workflow can only run on self-hosted runners"
+      },
+      {
+        "id": "o4",
+        "text": "An action cannot take inputs but a reusable workflow can"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Actions are the smallest reusable unit, run as a step inside a job, while reusable workflows bundle complete jobs and are called at the job level, so they operate at different granularities.",
+    "explanationIncorrect": "They are not the same feature; the step-versus-job distinction is exactly what separates them. Reusable workflows run on whatever runners their jobs specify, not only self-hosted ones. Actions certainly can take inputs through with:, so the claim that they cannot is false.",
+    "tags": [
+      "reusable-workflows",
+      "actions",
+      "concepts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-098",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "For supply-chain security, what is the strongest way to pin a third-party action you consume?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reference it by full commit SHA rather than a tag or branch"
+      },
+      {
+        "id": "o2",
+        "text": "Reference it by the moving major tag such as @v3"
+      },
+      {
+        "id": "o3",
+        "text": "Reference it by @main"
+      },
+      {
+        "id": "o4",
+        "text": "Reference it without any ref so it always updates"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A full commit SHA is immutable, so pinning to it guarantees you run exactly the reviewed code even if a tag is later moved to point at malicious commits.",
+    "explanationIncorrect": "A major tag like @v3 is convenient but can be re-pointed by the author, so it is weaker than a SHA. @main tracks the tip of the default branch and can change at any time, offering the least stability. Omitting a ref is not even valid for most actions and certainly would not provide a pinned, reviewed version, so it is the least secure.",
+    "tags": [
+      "supply-chain",
+      "pinning",
+      "security"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-099",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You call a reusable workflow and want to pass a build target as an input. Which caller key carries inputs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "with:"
+      },
+      {
+        "id": "o2",
+        "text": "inputs:"
+      },
+      {
+        "id": "o3",
+        "text": "env:"
+      },
+      {
+        "id": "o4",
+        "text": "params:"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The calling job passes declared inputs to a reusable workflow through the with: map, matching the input names the workflow_call trigger defines.",
+    "explanationIncorrect": "The reusable workflow declares its parameters under inputs:, but the caller supplies values with with:, so using inputs: on the caller is wrong. env: sets environment variables and does not map to a reusable workflow's declared inputs. There is no params: key for passing inputs; the caller-side key is with:.",
+    "tags": [
+      "reusable-workflows",
+      "with",
+      "inputs"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-100",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A workflow uses actions/checkout before running an action that operates on the repository. Why is the checkout step usually required first?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The runner starts with an empty workspace, so the repository must be checked out before the code is available"
+      },
+      {
+        "id": "o2",
+        "text": "Checkout is only needed for private repositories"
+      },
+      {
+        "id": "o3",
+        "text": "Checkout installs the action's dependencies"
+      },
+      {
+        "id": "o4",
+        "text": "Checkout authenticates the GITHUB_TOKEN"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A fresh runner has no repository content in its workspace; actions/checkout clones the repository so subsequent steps and local actions can read the source.",
+    "explanationIncorrect": "Checkout is needed for public repositories too whenever a step must read the code, so it is not private-only. It does not install an action's dependencies; JavaScript actions ship their own bundled dependencies. It does not authenticate GITHUB_TOKEN; the token is provided to the job independently and checkout merely uses it to fetch the code.",
+    "tags": [
+      "checkout",
+      "workspace",
+      "consuming"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-101",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "There is a limit to how deeply reusable workflows can be nested when calling one another. What is that maximum nesting depth of reusable workflow calls?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Up to four levels of nested reusable workflow calls"
+      },
+      {
+        "id": "o2",
+        "text": "Unlimited nesting is allowed"
+      },
+      {
+        "id": "o3",
+        "text": "Only one level; a reusable workflow cannot call another"
+      },
+      {
+        "id": "o4",
+        "text": "Up to ten levels"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub allows a chain of nested reusable workflow calls up to four levels deep, so a caller can reach reusable workflows that themselves call others within that limit.",
+    "explanationIncorrect": "Nesting is not unlimited; there is a documented cap, so relying on infinite depth would eventually fail. It is more than one level, so the claim that a reusable workflow cannot call another is incorrect. Ten is simply the wrong number; the supported depth is four.",
+    "tags": [
+      "reusable-workflows",
+      "nesting",
+      "limits"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-102",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "How can you consume a specific released version of a reusable workflow so it does not change unexpectedly?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reference the workflow file with a version tag or SHA after the @, such as @v2 or a commit SHA"
+      },
+      {
+        "id": "o2",
+        "text": "Reference it without a ref and rely on the latest"
+      },
+      {
+        "id": "o3",
+        "text": "Copy the workflow into your repo each release"
+      },
+      {
+        "id": "o4",
+        "text": "Use needs: to lock the version"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The @ref part of the reusable workflow reference selects the version; a tag like @v2 or a commit SHA pins it so upstream changes on other refs do not affect you.",
+    "explanationIncorrect": "A reference without a ref is not valid for reusable workflows; you must specify a branch, tag, or SHA. Copying the workflow each release abandons reuse and reintroduces maintenance you were trying to avoid. needs only orders jobs and has nothing to do with selecting a version of a reusable workflow.",
+    "tags": [
+      "reusable-workflows",
+      "versioning",
+      "refs"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-103",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A team wants to share a cache of build dependencies between separate workflow runs. Which action is designed for that?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "actions/cache, keyed on a hash of the lockfile"
+      },
+      {
+        "id": "o2",
+        "text": "actions/upload-artifact, which persists across runs indefinitely"
+      },
+      {
+        "id": "o3",
+        "text": "actions/checkout with a cache flag"
+      },
+      {
+        "id": "o4",
+        "text": "A self-hosted runner is the only way to cache"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "actions/cache stores and restores directories keyed by a value such as a lockfile hash, so dependencies fetched in one run can be reused by later runs.",
+    "explanationIncorrect": "upload-artifact is for passing files between jobs of the same run or for download after a run; artifacts have retention limits and are not a dependency cache. actions/checkout has no caching flag that shares dependency directories across runs. Self-hosted runners might retain state, but caching is available on hosted runners too through actions/cache, so it is not the only way.",
+    "tags": [
+      "caching",
+      "actions-cache",
+      "dependencies"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-104",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "Where do you find, evaluate, and copy usage snippets for community actions?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The GitHub Marketplace"
+      },
+      {
+        "id": "o2",
+        "text": "The repository Wiki tab"
+      },
+      {
+        "id": "o3",
+        "text": "The Projects board"
+      },
+      {
+        "id": "o4",
+        "text": "The Discussions tab"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The GitHub Marketplace lists published actions with descriptions, versions, and ready-to-copy usage snippets, and it is where you discover and vet community actions.",
+    "explanationIncorrect": "The Wiki holds free-form documentation for a single repository and is not a catalogue of actions. Projects boards track work items and issues, not action discovery. Discussions is a forum for questions and conversation, not the curated listing with usage snippets that Marketplace provides.",
+    "tags": [
+      "marketplace",
+      "discovery",
+      "actions"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-105",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "A reusable workflow declares a required secret named DEPLOY_KEY under workflow_call. What happens if the caller does not provide it and does not use inherit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The run fails because a required secret was not supplied"
+      },
+      {
+        "id": "o2",
+        "text": "The secret defaults to an empty string silently"
+      },
+      {
+        "id": "o3",
+        "text": "GitHub prompts the user interactively for the value"
+      },
+      {
+        "id": "o4",
+        "text": "The caller's repository secrets are used automatically"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When a reusable workflow marks a secret as required under workflow_call, the caller must pass it explicitly or via inherit; omitting it causes the run to fail validation.",
+    "explanationIncorrect": "A required secret does not silently default to empty; that is the point of marking it required. Actions runs are non-interactive, so GitHub never prompts a user for a value during a run. Caller secrets are not passed automatically unless you use secrets: inherit or name them explicitly, so they would not be supplied on their own.",
+    "tags": [
+      "reusable-workflows",
+      "secrets",
+      "required"
+    ],
+    "isSeed": true
   }
 ]
