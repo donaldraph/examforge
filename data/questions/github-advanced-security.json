@@ -2988,5 +2988,345 @@
       "lockfile"
     ],
     "isSeed": true
+  },
+  {
+    "id": "ghas-091",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which three capabilities are the core pillars of GitHub Advanced Security?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Code scanning, secret scanning, and dependency review/Dependabot"
+      },
+      {
+        "id": "o2",
+        "text": "Pages, Projects, and Discussions"
+      },
+      {
+        "id": "o3",
+        "text": "Actions, Packages, and Codespaces"
+      },
+      {
+        "id": "o4",
+        "text": "Wiki, Insights, and Releases"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS centers on code scanning for vulnerable code, secret scanning for leaked credentials, and supply-chain security via the dependency graph, Dependabot, and dependency review.",
+    "explanationIncorrect": "Pages, Projects, and Discussions are collaboration and publishing features, not security scanning. Actions, Packages, and Codespaces are automation, artifact hosting, and development environments, not the GHAS security pillars. Wiki, Insights, and Releases are documentation, analytics, and distribution features unrelated to the security capabilities GHAS provides.",
+    "tags": [
+      "ghas",
+      "overview",
+      "pillars"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-092",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "For public repositories on GitHub.com, which statement about GHAS features is accurate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Code scanning, secret scanning, and dependency features are available at no cost"
+      },
+      {
+        "id": "o2",
+        "text": "GHAS features are never available on public repositories"
+      },
+      {
+        "id": "o3",
+        "text": "Only paid organizations can use them on public repos"
+      },
+      {
+        "id": "o4",
+        "text": "They require a self-hosted server"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "On public repositories these security features are offered free of charge, which is why open-source projects can use code scanning, secret scanning, and dependency review without a GHAS license.",
+    "explanationIncorrect": "They are available on public repositories, so the claim that they never are is wrong. They do not require a paid organization for public repos; the free availability is exactly the point. They do not require a self-hosted server; these run on GitHub.com for public repositories.",
+    "tags": [
+      "ghas",
+      "public-repos",
+      "licensing"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-093",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "In an enterprise, how is a GHAS license typically consumed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Per active committer to repositories where GHAS features are enabled"
+      },
+      {
+        "id": "o2",
+        "text": "Per repository regardless of contributors"
+      },
+      {
+        "id": "o3",
+        "text": "Per workflow run"
+      },
+      {
+        "id": "o4",
+        "text": "Per gigabyte of code scanned"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS is licensed by unique active committers on repositories with the features enabled, so the same person committing to several enabled repositories still consumes one seat.",
+    "explanationIncorrect": "It is not billed simply per repository; the seat model counts committers, so one repo with many committers or many repos with one committer bill differently. It is not billed per workflow run; that is closer to Actions minute billing, a separate meter. It is not billed per gigabyte of scanned code; volume of code is not the licensing unit.",
+    "tags": [
+      "ghas",
+      "licensing",
+      "committers"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-094",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Where can an organization see an aggregated view of code scanning, secret scanning, and Dependabot alerts across repositories?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The Security overview"
+      },
+      {
+        "id": "o2",
+        "text": "The Insights tab"
+      },
+      {
+        "id": "o3",
+        "text": "The Actions tab"
+      },
+      {
+        "id": "o4",
+        "text": "The Packages page"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Security overview aggregates alerts from code scanning, secret scanning, and Dependabot across an organization's repositories, giving security teams a single place to assess posture.",
+    "explanationIncorrect": "The Insights tab shows traffic and contribution analytics, not aggregated security alerts. The Actions tab lists workflow runs, not security findings. The Packages page manages published artifacts and has no security alert aggregation.",
+    "tags": [
+      "ghas",
+      "security-overview",
+      "reporting"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-095",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which feature lets maintainers privately collaborate on and disclose a vulnerability in their own project?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Repository security advisories with a temporary private fork"
+      },
+      {
+        "id": "o2",
+        "text": "A public issue labeled security"
+      },
+      {
+        "id": "o3",
+        "text": "A pinned Discussion"
+      },
+      {
+        "id": "o4",
+        "text": "A protected branch"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Repository security advisories provide a private space, including a temporary private fork, where maintainers can discuss, fix, and coordinate disclosure of a vulnerability before publishing.",
+    "explanationIncorrect": "A public issue labeled security is visible to everyone, defeating the confidentiality needed before disclosure. A pinned Discussion is also public and not designed for coordinated vulnerability handling. A protected branch controls merges but offers no private collaboration or disclosure workflow.",
+    "tags": [
+      "ghas",
+      "security-advisories",
+      "disclosure"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-096",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "What is the purpose of a CodeQL analysis running on a schedule in addition to on pull requests?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To catch newly disclosed query improvements and drift on the default branch even without new PRs"
+      },
+      {
+        "id": "o2",
+        "text": "To replace pull request analysis entirely"
+      },
+      {
+        "id": "o3",
+        "text": "To reduce Actions minutes"
+      },
+      {
+        "id": "o4",
+        "text": "To rotate secrets nightly"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A scheduled scan re-analyzes the default branch periodically so that improved queries and issues not tied to a recent pull request are still surfaced, keeping the baseline current.",
+    "explanationIncorrect": "It complements rather than replaces pull request analysis, which is needed to catch issues before merge. It does not reduce Actions minutes; running additional scheduled scans consumes more, not fewer. It has nothing to do with rotating secrets, which is a secret scanning concern, not a CodeQL schedule.",
+    "tags": [
+      "ghas",
+      "codeql",
+      "schedule"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-097",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which feature allows security findings from external SAST tools to be centralized in the GitHub security tab?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Uploading SARIF results to code scanning"
+      },
+      {
+        "id": "o2",
+        "text": "Attaching a PDF report to a release"
+      },
+      {
+        "id": "o3",
+        "text": "Posting findings in Discussions"
+      },
+      {
+        "id": "o4",
+        "text": "Committing a results.txt file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning accepts SARIF uploads, so results from third-party static analysis tools appear as alerts in the security tab alongside CodeQL findings.",
+    "explanationIncorrect": "A PDF attached to a release is not parsed into code scanning alerts and cannot be triaged like them. Posting findings in Discussions leaves them as free-form text, not structured alerts. Committing a results.txt file does not register the findings with code scanning; the supported mechanism is SARIF upload.",
+    "tags": [
+      "ghas",
+      "sarif",
+      "integration"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-098",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "What does enabling GHAS on a private repository unlock that is not available without it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Code scanning and secret scanning for that private repository"
+      },
+      {
+        "id": "o2",
+        "text": "Free unlimited Actions minutes"
+      },
+      {
+        "id": "o3",
+        "text": "Automatic code formatting"
+      },
+      {
+        "id": "o4",
+        "text": "Unlimited storage for packages"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "For private repositories, code scanning and secret scanning are GHAS features, so enabling GHAS is what makes those security capabilities available there.",
+    "explanationIncorrect": "GHAS does not grant free unlimited Actions minutes; compute billing is separate. It does not perform automatic code formatting, which is not a security feature. It does not provide unlimited package storage; packages are governed by their own storage and billing rules.",
+    "tags": [
+      "ghas",
+      "private-repos",
+      "licensing"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-099",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "Security overview offers enablement trends and alert metrics. How does this help a security program?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It shows which repositories have features enabled and how alerts are trending, guiding coverage and prioritization"
+      },
+      {
+        "id": "o2",
+        "text": "It automatically fixes all open alerts"
+      },
+      {
+        "id": "o3",
+        "text": "It replaces the need for branch protection"
+      },
+      {
+        "id": "o4",
+        "text": "It compiles the application for release"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "By revealing enablement gaps and alert trends across repositories, Security overview helps teams decide where to turn on features and which risks to tackle first, driving measurable improvement.",
+    "explanationIncorrect": "It does not automatically fix alerts; remediation still requires code or configuration changes. It does not replace branch protection, which enforces merge gates that a reporting view cannot. It does not compile the application; building for release is unrelated to a security reporting dashboard.",
+    "tags": [
+      "ghas",
+      "security-overview",
+      "metrics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-100",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which statement about secret scanning coverage under GHAS is correct for private repositories?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Secret scanning for private repositories requires GHAS to be enabled"
+      },
+      {
+        "id": "o2",
+        "text": "Secret scanning never works on private repositories"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning on private repositories is free without GHAS"
+      },
+      {
+        "id": "o4",
+        "text": "Secret scanning requires disabling the dependency graph"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "On private repositories, secret scanning is part of GHAS, so it must be enabled through a GHAS license to protect those repositories.",
+    "explanationIncorrect": "It does work on private repositories when GHAS is enabled, so the claim that it never works is false. It is not free without GHAS on private repositories; that free tier applies to public repositories. It has no dependence on disabling the dependency graph; the two features operate independently.",
+    "tags": [
+      "ghas",
+      "secret-scanning",
+      "private-repos"
+    ],
+    "isSeed": true
   }
 ]
