@@ -311,6 +311,91 @@
     "tags": ["basics", "provider-alias", "multi-region"]
   },
   {
+    "id": "tf-041",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "easy",
+    "stem": "A resource declared as resource \"aws_instance\" \"web\" { } is referenced elsewhere in the configuration by which address?",
+    "options": [
+      { "id": "o1", "text": "aws_instance.web" },
+      { "id": "o2", "text": "web.aws_instance" },
+      { "id": "o3", "text": "resource.web" },
+      { "id": "o4", "text": "aws_instance[web]" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A managed resource's address is its type followed by its local name, so this resource is referenced as aws_instance.web (and its attributes as aws_instance.web.<attr>).",
+    "explanationIncorrect": "The order is type then name, not name then type, so web.aws_instance is wrong. resource.web drops the type. aws_instance[web] is not valid address syntax. The address is aws_instance.web.",
+    "tags": ["basics", "resource-address"]
+  },
+  {
+    "id": "tf-042",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "Two resources have no attribute reference between them, but one must be created before the other because of a side effect. How do you enforce that ordering?",
+    "options": [
+      { "id": "o1", "text": "Add an explicit depends_on listing the prerequisite resource" },
+      { "id": "o2", "text": "Reorder the resource blocks in the file" },
+      { "id": "o3", "text": "Run terraform apply twice" },
+      { "id": "o4", "text": "Introduce an unused variable" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When there is no natural attribute reference to create an implicit dependency, depends_on declares the ordering explicitly so Terraform creates the prerequisite first.",
+    "explanationIncorrect": "File order does not affect creation order in Terraform. Running apply twice is a manual hack that does not encode the dependency. An unused variable creates no ordering relationship. The explicit-ordering tool is depends_on.",
+    "tags": ["basics", "depends-on", "explicit-dependency"]
+  },
+  {
+    "id": "tf-043",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "You want to require that only Terraform v1.5 or newer is used with your configuration. Where do you declare this?",
+    "options": [
+      { "id": "o1", "text": "required_version in the terraform block" },
+      { "id": "o2", "text": "In a variable's default value" },
+      { "id": "o3", "text": "In terraform.tfstate" },
+      { "id": "o4", "text": "In the provider block" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The terraform block's required_version sets a version constraint on the Terraform CLI itself, so an incompatible version refuses to run the configuration.",
+    "explanationIncorrect": "A variable default supplies input values, not a CLI version constraint. terraform.tfstate records resource state. The provider block configures a provider, not the Terraform core version. The core version constraint is required_version.",
+    "tags": ["basics", "required-version"]
+  },
+  {
+    "id": "tf-044",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "easy",
+    "stem": "How do you tell the AWS provider which region to operate in?",
+    "options": [
+      { "id": "o1", "text": "Set the region argument in the provider \"aws\" block (or supply it via environment variables)" },
+      { "id": "o2", "text": "Put the region in each resource's tags" },
+      { "id": "o3", "text": "Store the region in terraform.tfstate" },
+      { "id": "o4", "text": "Add the region to .terraform.lock.hcl" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Provider settings like region are configured in the provider block (or through environment variables such as AWS_REGION), which tells the provider where to create resources.",
+    "explanationIncorrect": "Resource tags are metadata on resources, not provider configuration. The state file records managed resources, not provider settings you author. The lock file pins provider versions. Region is set in the provider configuration.",
+    "tags": ["basics", "provider-configuration", "region"]
+  },
+  {
+    "id": "tf-045",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "hard",
+    "stem": "Which statement about Terraform provisioners (such as remote-exec) is accurate?",
+    "options": [
+      { "id": "o1", "text": "They are a last resort for actions Terraform cannot model as resources, and are discouraged when a native resource or provider exists" },
+      { "id": "o2", "text": "They are the recommended primary way to configure everything" },
+      { "id": "o3", "text": "They cannot run any commands on a resource" },
+      { "id": "o4", "text": "They remove the need to configure providers" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HashiCorp advises using provisioners only as a last resort for behavior that cannot be expressed through resources or providers, because they are imperative, harder to reason about, and less reliable than declarative resources.",
+    "explanationIncorrect": "They are explicitly not the recommended primary configuration mechanism. They can run commands (that is their purpose), so saying they cannot is wrong. They do not replace providers, which implement resource types. Provisioners are a discouraged last resort.",
+    "tags": ["basics", "provisioners"]
+  },
+  {
     "id": "tf-014",
     "exam": "terraform-associate",
     "domain": "Core workflow",
