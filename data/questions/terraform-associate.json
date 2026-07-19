@@ -175,6 +175,91 @@
     "tags": ["iac", "hcl", "providers"]
   },
   {
+    "id": "tf-036",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "You run terraform apply twice with no configuration changes in between. What happens on the second apply?",
+    "options": [
+      { "id": "o1", "text": "No changes are made, because the actual state already matches the desired configuration" },
+      { "id": "o2", "text": "The resources are duplicated" },
+      { "id": "o3", "text": "Everything is destroyed and recreated" },
+      { "id": "o4", "text": "An error is always thrown on a repeat apply" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform is declarative and idempotent: it compares desired configuration with current state, and when they already match there is nothing to change, so a repeat apply is a no-op.",
+    "explanationIncorrect": "Terraform does not duplicate resources it already manages; it tracks them in state. It does not destroy and recreate everything on every apply. And a repeat apply with no changes does not error. Because it reconciles to desired state, the second apply makes no changes.",
+    "tags": ["iac", "idempotency"]
+  },
+  {
+    "id": "tf-037",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "How does Terraform's primary role differ from a configuration management tool such as Ansible?",
+    "options": [
+      { "id": "o1", "text": "Terraform primarily provisions and manages infrastructure resources, while configuration management tools primarily install and configure software on existing servers" },
+      { "id": "o2", "text": "They are identical in purpose and interchangeable" },
+      { "id": "o3", "text": "Terraform only installs software packages on servers" },
+      { "id": "o4", "text": "Terraform cannot create cloud resources at all" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform's focus is provisioning infrastructure (servers, networks, managed services), whereas configuration management tools focus on installing and configuring software on machines that already exist; the two are often used together.",
+    "explanationIncorrect": "They are not identical; their primary jobs differ. Terraform is not limited to installing packages; that is closer to configuration management's role. Terraform certainly creates cloud resources. The distinction is provisioning versus in-place software configuration.",
+    "tags": ["iac", "provisioning", "config-management"]
+  },
+  {
+    "id": "tf-038",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "How does Terraform determine the correct order in which to create interdependent resources?",
+    "options": [
+      { "id": "o1", "text": "It builds a dependency graph from resource references and creates resources in dependency order, parallelizing independent ones" },
+      { "id": "o2", "text": "Strictly top to bottom by their position in the file" },
+      { "id": "o3", "text": "In a random order each run" },
+      { "id": "o4", "text": "Alphabetically by resource name" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform constructs a dependency graph from the references between resources and uses it to order operations, creating dependencies first and running independent resources in parallel for speed.",
+    "explanationIncorrect": "File position does not determine creation order; the references between resources do. The order is deterministic and derived from the graph rather than random from run to run. It is not alphabetical by name either. Terraform decides ordering by building and walking the dependency graph.",
+    "tags": ["iac", "dependency-graph", "ordering"]
+  },
+  {
+    "id": "tf-039",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Someone manually changes a resource that Terraform manages. What does the next terraform plan show?",
+    "options": [
+      { "id": "o1", "text": "Drift: the difference between the actual state and the desired configuration, with a plan to reconcile it" },
+      { "id": "o2", "text": "Nothing, because Terraform ignores out-of-band changes forever" },
+      { "id": "o3", "text": "It deletes the entire state file" },
+      { "id": "o4", "text": "It always errors and cannot continue" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform refreshes actual state and compares it to the desired configuration, so a manual change surfaces as drift and plan proposes changes to bring reality back in line with the configuration.",
+    "explanationIncorrect": "Terraform does not permanently ignore out-of-band changes; it detects them. It does not delete the state file in response to drift. It does not simply error out. Manual changes appear as drift in the plan.",
+    "tags": ["iac", "drift", "reconciliation"]
+  },
+  {
+    "id": "tf-040",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "easy",
+    "stem": "Where does Terraform download provider plugins from by default during terraform init?",
+    "options": [
+      { "id": "o1", "text": "The Terraform Registry (registry.terraform.io)" },
+      { "id": "o2", "text": "Docker Hub" },
+      { "id": "o3", "text": "The npm registry" },
+      { "id": "o4", "text": "The state file" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "By default terraform init fetches providers from the public Terraform Registry, which hosts official and community provider plugins.",
+    "explanationIncorrect": "Docker Hub hosts container images, not Terraform providers. The npm registry hosts JavaScript packages. The state file records managed resources and is not a plugin source. Providers come from the Terraform Registry.",
+    "tags": ["iac", "registry", "providers"]
+  },
+  {
     "id": "tf-011",
     "exam": "terraform-associate",
     "domain": "Terraform basics",
