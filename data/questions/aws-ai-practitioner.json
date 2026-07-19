@@ -6,15 +6,30 @@
     "difficulty": "easy",
     "stem": "You have a dataset of emails each already labeled spam or not spam, and you want to train a model to predict that label for new emails. Which type of machine learning is this?",
     "options": [
-      { "id": "o1", "text": "Supervised learning" },
-      { "id": "o2", "text": "Unsupervised learning" },
-      { "id": "o3", "text": "Reinforcement learning" },
-      { "id": "o4", "text": "Clustering" }
+      {
+        "id": "o1",
+        "text": "Supervised learning"
+      },
+      {
+        "id": "o2",
+        "text": "Unsupervised learning"
+      },
+      {
+        "id": "o3",
+        "text": "Reinforcement learning"
+      },
+      {
+        "id": "o4",
+        "text": "Clustering"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The training data carries known labels (spam or not spam) and the goal is to predict that label on new inputs, which is the defining setup of supervised learning.",
     "explanationIncorrect": "Unsupervised learning works on data without labels and tries to find structure on its own, such as grouping similar items, so it does not fit a problem where every example already has the answer. Reinforcement learning trains an agent by rewarding or penalizing actions it takes in an environment over time; there is no environment or reward signal here, just labeled examples. Clustering is a specific unsupervised technique for grouping unlabeled data, so it is the wrong paradigm for label prediction. Learning a mapping from labeled examples to a target label is supervised learning.",
-    "tags": ["machine-learning", "supervised-learning"],
+    "tags": [
+      "machine-learning",
+      "supervised-learning"
+    ],
     "isSeed": true
   },
   {
@@ -24,15 +39,30 @@
     "difficulty": "easy",
     "stem": "Which statement best describes the relationship between artificial intelligence, machine learning, deep learning, and generative AI?",
     "options": [
-      { "id": "o1", "text": "They are nested: AI is the broadest field, machine learning is a subset of AI, deep learning is a subset of machine learning, and generative AI is built on deep learning" },
-      { "id": "o2", "text": "They are four unrelated fields with no overlap" },
-      { "id": "o3", "text": "Generative AI is the broadest field and contains artificial intelligence" },
-      { "id": "o4", "text": "Machine learning and artificial intelligence are two names for exactly the same thing" }
+      {
+        "id": "o1",
+        "text": "They are nested: AI is the broadest field, machine learning is a subset of AI, deep learning is a subset of machine learning, and generative AI is built on deep learning"
+      },
+      {
+        "id": "o2",
+        "text": "They are four unrelated fields with no overlap"
+      },
+      {
+        "id": "o3",
+        "text": "Generative AI is the broadest field and contains artificial intelligence"
+      },
+      {
+        "id": "o4",
+        "text": "Machine learning and artificial intelligence are two names for exactly the same thing"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The terms nest from broad to narrow: AI is the umbrella, machine learning is one way to achieve AI, deep learning is a subset of ML using neural networks, and generative AI is a deep-learning application that creates new content.",
     "explanationIncorrect": "They are clearly related, not unrelated fields. Generative AI is a narrow, recent branch, not the broadest category that contains AI. Machine learning is one approach within AI, not a synonym for all of AI, since AI also includes techniques that are not learned from data. The correct picture is the nested hierarchy from AI down to generative AI.",
-    "tags": ["ai-ml", "concepts"]
+    "tags": [
+      "ai-ml",
+      "concepts"
+    ]
   },
   {
     "id": "aip-007",
@@ -41,15 +71,31 @@
     "difficulty": "easy",
     "stem": "You want to predict a house's sale price, a continuous numeric value, from its features. Which kind of supervised learning task is this?",
     "options": [
-      { "id": "o1", "text": "Regression" },
-      { "id": "o2", "text": "Classification" },
-      { "id": "o3", "text": "Clustering" },
-      { "id": "o4", "text": "Reinforcement learning" }
+      {
+        "id": "o1",
+        "text": "Regression"
+      },
+      {
+        "id": "o2",
+        "text": "Classification"
+      },
+      {
+        "id": "o3",
+        "text": "Clustering"
+      },
+      {
+        "id": "o4",
+        "text": "Reinforcement learning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Predicting a continuous number such as a price is a regression task, where the model outputs a value along a range rather than a discrete label.",
     "explanationIncorrect": "Classification predicts a discrete category (such as spam or not spam), not a continuous number. Clustering is unsupervised and groups unlabeled data; it does not predict a target value. Reinforcement learning trains an agent through rewards in an environment and does not fit a labeled price-prediction problem. Predicting a continuous value is regression.",
-    "tags": ["ai-ml", "regression", "supervised-learning"]
+    "tags": [
+      "ai-ml",
+      "regression",
+      "supervised-learning"
+    ]
   },
   {
     "id": "aip-008",
@@ -58,15 +104,31 @@
     "difficulty": "easy",
     "stem": "You have unlabeled customer data and want to discover natural groupings of similar customers without predefined categories. Which approach fits?",
     "options": [
-      { "id": "o1", "text": "Unsupervised learning using clustering" },
-      { "id": "o2", "text": "Supervised classification" },
-      { "id": "o3", "text": "Supervised regression" },
-      { "id": "o4", "text": "Reinforcement learning" }
+      {
+        "id": "o1",
+        "text": "Unsupervised learning using clustering"
+      },
+      {
+        "id": "o2",
+        "text": "Supervised classification"
+      },
+      {
+        "id": "o3",
+        "text": "Supervised regression"
+      },
+      {
+        "id": "o4",
+        "text": "Reinforcement learning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "With no labels and the goal of finding structure, clustering (an unsupervised technique) groups similar records together so natural segments emerge from the data itself.",
     "explanationIncorrect": "Supervised classification and regression both require labeled examples to learn a target, which you do not have here. Reinforcement learning optimizes an agent's actions against a reward signal, not grouping of static unlabeled records. Discovering groups in unlabeled data is unsupervised clustering.",
-    "tags": ["ai-ml", "clustering", "unsupervised-learning"]
+    "tags": [
+      "ai-ml",
+      "clustering",
+      "unsupervised-learning"
+    ]
   },
   {
     "id": "aip-009",
@@ -75,15 +137,31 @@
     "difficulty": "easy",
     "stem": "A model has already been trained and is now returning predictions for new incoming data in production. What is this phase called?",
     "options": [
-      { "id": "o1", "text": "Inference" },
-      { "id": "o2", "text": "Training" },
-      { "id": "o3", "text": "Feature engineering" },
-      { "id": "o4", "text": "Data labeling" }
+      {
+        "id": "o1",
+        "text": "Inference"
+      },
+      {
+        "id": "o2",
+        "text": "Training"
+      },
+      {
+        "id": "o3",
+        "text": "Feature engineering"
+      },
+      {
+        "id": "o4",
+        "text": "Data labeling"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Using a trained model to produce predictions on new data is inference; it is the serving phase that follows training.",
     "explanationIncorrect": "Training is the earlier phase where the model learns its parameters from data, which has already happened here. Feature engineering is the preparation of input variables before training. Data labeling is annotating examples with target values for supervised training. Producing predictions from a finished model is inference.",
-    "tags": ["ai-ml", "inference", "training"]
+    "tags": [
+      "ai-ml",
+      "inference",
+      "training"
+    ]
   },
   {
     "id": "aip-010",
@@ -92,15 +170,31 @@
     "difficulty": "medium",
     "stem": "A model scores very high on its training data but performs poorly on new, unseen data. What does this most likely indicate?",
     "options": [
-      { "id": "o1", "text": "Overfitting" },
-      { "id": "o2", "text": "Underfitting" },
-      { "id": "o3", "text": "Insufficient inference hardware" },
-      { "id": "o4", "text": "Too small a model output" }
+      {
+        "id": "o1",
+        "text": "Overfitting"
+      },
+      {
+        "id": "o2",
+        "text": "Underfitting"
+      },
+      {
+        "id": "o3",
+        "text": "Insufficient inference hardware"
+      },
+      {
+        "id": "o4",
+        "text": "Too small a model output"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Overfitting is exactly this pattern: the model has memorized the training data, including its noise, so it generalizes poorly to data it has not seen.",
     "explanationIncorrect": "Underfitting is the opposite, where the model is too simple and does poorly even on the training data. Inference hardware affects speed and cost, not the gap between training and test accuracy. Output size is unrelated to generalization. Strong training performance with weak generalization is overfitting.",
-    "tags": ["ai-ml", "overfitting", "generalization"]
+    "tags": [
+      "ai-ml",
+      "overfitting",
+      "generalization"
+    ]
   },
   {
     "id": "aip-011",
@@ -109,15 +203,31 @@
     "difficulty": "medium",
     "stem": "Which AWS service is the managed platform for building, training, and deploying your own custom machine learning models at scale?",
     "options": [
-      { "id": "o1", "text": "Amazon SageMaker" },
-      { "id": "o2", "text": "Amazon Bedrock" },
-      { "id": "o3", "text": "Amazon Polly" },
-      { "id": "o4", "text": "Amazon Textract" }
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Textract"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon SageMaker is the end-to-end managed ML platform for building, training, tuning, and deploying custom models, covering the full model lifecycle.",
     "explanationIncorrect": "Amazon Bedrock provides access to pre-built foundation models for generative AI; it is not where you build and train your own custom models from data. Amazon Polly is a text-to-speech service. Amazon Textract extracts text and data from documents. The custom-model build-and-train platform is Amazon SageMaker.",
-    "tags": ["ai-ml", "sagemaker", "services"]
+    "tags": [
+      "ai-ml",
+      "sagemaker",
+      "services"
+    ]
   },
   {
     "id": "aip-036",
@@ -126,15 +236,30 @@
     "difficulty": "easy",
     "stem": "An agent learns to play a game by receiving rewards for good moves and penalties for bad ones, improving through trial and error. Which type of machine learning is this?",
     "options": [
-      { "id": "o1", "text": "Reinforcement learning" },
-      { "id": "o2", "text": "Supervised learning" },
-      { "id": "o3", "text": "Unsupervised learning" },
-      { "id": "o4", "text": "Transfer learning" }
+      {
+        "id": "o1",
+        "text": "Reinforcement learning"
+      },
+      {
+        "id": "o2",
+        "text": "Supervised learning"
+      },
+      {
+        "id": "o3",
+        "text": "Unsupervised learning"
+      },
+      {
+        "id": "o4",
+        "text": "Transfer learning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Reinforcement learning trains an agent through rewards and penalties as it takes actions in an environment, learning a policy by trial and error, which is exactly the game-playing setup described.",
     "explanationIncorrect": "Supervised learning maps labeled inputs to outputs and has no reward signal. Unsupervised learning finds structure in unlabeled data, again with no rewards. Transfer learning reuses a pre-trained model on a new task; it is not a reward-driven trial-and-error paradigm. Reward-and-penalty learning is reinforcement learning.",
-    "tags": ["ai-ml", "reinforcement-learning"]
+    "tags": [
+      "ai-ml",
+      "reinforcement-learning"
+    ]
   },
   {
     "id": "aip-037",
@@ -143,15 +268,31 @@
     "difficulty": "medium",
     "stem": "You need to create a large, high-quality labeled dataset for supervised training using human labelers. Which AWS service manages data-labeling workflows?",
     "options": [
-      { "id": "o1", "text": "Amazon SageMaker Ground Truth" },
-      { "id": "o2", "text": "Amazon SageMaker Clarify" },
-      { "id": "o3", "text": "Amazon Bedrock" },
-      { "id": "o4", "text": "Amazon Polly" }
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker Ground Truth"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon SageMaker Clarify"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Polly"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "SageMaker Ground Truth orchestrates data-labeling jobs, including human labeling workforces and automated assistance, to build high-quality training datasets.",
     "explanationIncorrect": "SageMaker Clarify measures bias and explainability, not labeling. Amazon Bedrock provides foundation models for generative AI. Amazon Polly is text-to-speech. Managed labeling is SageMaker Ground Truth.",
-    "tags": ["ai-ml", "ground-truth", "labeling"]
+    "tags": [
+      "ai-ml",
+      "ground-truth",
+      "labeling"
+    ]
   },
   {
     "id": "aip-038",
@@ -160,15 +301,31 @@
     "difficulty": "hard",
     "stem": "For a fraud detector, failing to catch an actual fraud is very costly, so you want to maximize the share of real frauds the model detects. Which metric captures this goal?",
     "options": [
-      { "id": "o1", "text": "Recall, the fraction of actual positives the model correctly identifies" },
-      { "id": "o2", "text": "Precision, the fraction of positive predictions that are correct" },
-      { "id": "o3", "text": "Latency of each prediction" },
-      { "id": "o4", "text": "Throughput of the inference endpoint" }
+      {
+        "id": "o1",
+        "text": "Recall, the fraction of actual positives the model correctly identifies"
+      },
+      {
+        "id": "o2",
+        "text": "Precision, the fraction of positive predictions that are correct"
+      },
+      {
+        "id": "o3",
+        "text": "Latency of each prediction"
+      },
+      {
+        "id": "o4",
+        "text": "Throughput of the inference endpoint"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Recall measures how many of the true frauds were caught, so maximizing recall minimizes missed frauds, which is the priority when a false negative is the costly outcome.",
     "explanationIncorrect": "Precision measures how many flagged items were truly fraud; optimizing it reduces false alarms but does not directly minimize missed frauds. Latency and throughput are performance metrics of the serving system, not detection quality. Catching more of the real frauds is recall.",
-    "tags": ["ai-ml", "metrics", "recall-precision"]
+    "tags": [
+      "ai-ml",
+      "metrics",
+      "recall-precision"
+    ]
   },
   {
     "id": "aip-039",
@@ -177,15 +334,30 @@
     "difficulty": "easy",
     "stem": "Free-form text, images, and audio are examples of which kind of data, which foundation models are especially good at handling?",
     "options": [
-      { "id": "o1", "text": "Unstructured data" },
-      { "id": "o2", "text": "Structured tabular data" },
-      { "id": "o3", "text": "Relational schema data" },
-      { "id": "o4", "text": "Normalized database rows" }
+      {
+        "id": "o1",
+        "text": "Unstructured data"
+      },
+      {
+        "id": "o2",
+        "text": "Structured tabular data"
+      },
+      {
+        "id": "o3",
+        "text": "Relational schema data"
+      },
+      {
+        "id": "o4",
+        "text": "Normalized database rows"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Text, images, and audio lack a fixed tabular schema, so they are unstructured data, the kind foundation models are particularly effective at processing and generating.",
     "explanationIncorrect": "Structured tabular data, relational schema data, and normalized database rows all describe organized rows and columns with a defined schema, which is not what free-form text, images, and audio are. That content is unstructured data.",
-    "tags": ["ai-ml", "unstructured-data"]
+    "tags": [
+      "ai-ml",
+      "unstructured-data"
+    ]
   },
   {
     "id": "aip-040",
@@ -194,15 +366,30 @@
     "difficulty": "easy",
     "stem": "In supervised learning, the input variables the model learns from are called features. What is the known target value it learns to predict called?",
     "options": [
-      { "id": "o1", "text": "The label" },
-      { "id": "o2", "text": "The hyperparameter" },
-      { "id": "o3", "text": "The gradient" },
-      { "id": "o4", "text": "The epoch" }
+      {
+        "id": "o1",
+        "text": "The label"
+      },
+      {
+        "id": "o2",
+        "text": "The hyperparameter"
+      },
+      {
+        "id": "o3",
+        "text": "The gradient"
+      },
+      {
+        "id": "o4",
+        "text": "The epoch"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "In supervised learning the target the model is trained to predict is the label, paired with the input features in each training example.",
     "explanationIncorrect": "A hyperparameter is a training configuration value like learning rate, not the prediction target. A gradient is used to update weights during training. An epoch is one pass over the training data. The predicted target is the label.",
-    "tags": ["ai-ml", "features-labels"]
+    "tags": [
+      "ai-ml",
+      "features-labels"
+    ]
   },
   {
     "id": "aip-002",
@@ -211,15 +398,31 @@
     "difficulty": "easy",
     "stem": "Which AWS service gives you access to foundation models from providers such as Anthropic, Meta, and Amazon through a single API, without provisioning or managing any model infrastructure?",
     "options": [
-      { "id": "o1", "text": "Amazon Bedrock" },
-      { "id": "o2", "text": "Amazon Rekognition" },
-      { "id": "o3", "text": "Amazon Comprehend" },
-      { "id": "o4", "text": "AWS Glue" }
+      {
+        "id": "o1",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Glue"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Bedrock is the fully managed service that exposes foundation models from multiple providers behind one API, so you can call them for text or image generation without standing up any infrastructure.",
     "explanationIncorrect": "Amazon Rekognition is a purpose-built computer vision service for detecting objects, faces, and text in images and video; it is not a gateway to general foundation models. Amazon Comprehend is a managed natural language service for tasks like sentiment analysis and entity extraction, not a catalog of generative foundation models. AWS Glue is a serverless data integration and ETL service and has nothing to do with model inference. The single-API, multi-provider foundation model service is Amazon Bedrock.",
-    "tags": ["generative-ai", "amazon-bedrock", "foundation-models"],
+    "tags": [
+      "generative-ai",
+      "amazon-bedrock",
+      "foundation-models"
+    ],
     "isSeed": true
   },
   {
@@ -229,15 +432,31 @@
     "difficulty": "medium",
     "stem": "You want a generative AI assistant to answer questions using your company's internal documents, keeping answers grounded in that private data, without retraining or fine-tuning the underlying model. Which approach fits best?",
     "options": [
-      { "id": "o1", "text": "Retrieval Augmented Generation (RAG), retrieving relevant documents and supplying them as context to the model" },
-      { "id": "o2", "text": "Continuously pre-training the model on the public internet" },
-      { "id": "o3", "text": "Raising the model's temperature so it invents more answers" },
-      { "id": "o4", "text": "Reducing the model's context window" }
+      {
+        "id": "o1",
+        "text": "Retrieval Augmented Generation (RAG), retrieving relevant documents and supplying them as context to the model"
+      },
+      {
+        "id": "o2",
+        "text": "Continuously pre-training the model on the public internet"
+      },
+      {
+        "id": "o3",
+        "text": "Raising the model's temperature so it invents more answers"
+      },
+      {
+        "id": "o4",
+        "text": "Reducing the model's context window"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "RAG retrieves the most relevant passages from your document store at query time and passes them to the model as context, so answers are grounded in your private data with no model retraining.",
     "explanationIncorrect": "Pre-training the model further on the public internet neither incorporates your private documents nor is something a practitioner does casually; it is expensive and does not target your data. Raising the temperature makes outputs more random and actually increases the chance of ungrounded, made-up answers, which is the opposite of what you want. Reducing the context window gives the model less room to read supplied material, hurting grounded answering. The technique that grounds a model in private data without retraining is Retrieval Augmented Generation.",
-    "tags": ["rag", "grounding", "context"],
+    "tags": [
+      "rag",
+      "grounding",
+      "context"
+    ],
     "isSeed": true
   },
   {
@@ -247,15 +466,31 @@
     "difficulty": "medium",
     "stem": "You are deploying a generative AI chat feature and must block certain harmful topics and filter unsafe content in both prompts and responses. Which Amazon Bedrock capability is purpose-built for this?",
     "options": [
-      { "id": "o1", "text": "Guardrails for Amazon Bedrock" },
-      { "id": "o2", "text": "Provisioned Throughput" },
-      { "id": "o3", "text": "Amazon Bedrock Agents" },
-      { "id": "o4", "text": "Model customization (fine-tuning)" }
+      {
+        "id": "o1",
+        "text": "Guardrails for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Provisioned Throughput"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Bedrock Agents"
+      },
+      {
+        "id": "o4",
+        "text": "Model customization (fine-tuning)"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Guardrails for Amazon Bedrock let you define denied topics and content filters that are applied to both user prompts and model responses, which is exactly the responsible-use control described.",
     "explanationIncorrect": "Provisioned Throughput reserves model capacity for predictable, high-volume inference; it is a performance and cost feature, not a safety filter. Bedrock Agents orchestrate multi-step tasks by calling tools and APIs on the model's behalf; they coordinate actions rather than screen content for harm. Fine-tuning adapts a model to your data and style, but it is not a reliable topic or safety filter and does not give you configurable denied topics. The capability for content filtering and blocked topics is Guardrails for Amazon Bedrock.",
-    "tags": ["responsible-ai", "guardrails", "safety"],
+    "tags": [
+      "responsible-ai",
+      "guardrails",
+      "safety"
+    ],
     "isSeed": true
   },
   {
@@ -265,15 +500,31 @@
     "difficulty": "medium",
     "stem": "Your security team asks whether prompts and completions sent to a foundation model in Amazon Bedrock are used to train the base models or exposed outside your account. Which statement is correct?",
     "options": [
-      { "id": "o1", "text": "Bedrock does not use your prompts or completions to train the base foundation models, and your data is encrypted in transit and at rest within your account boundary" },
-      { "id": "o2", "text": "Bedrock adds all prompts to a shared public dataset that anyone can query" },
-      { "id": "o3", "text": "Bedrock requires you to email prompts to each model provider for processing" },
-      { "id": "o4", "text": "Bedrock stores your prompts unencrypted by default and shares them with other customers" }
+      {
+        "id": "o1",
+        "text": "Bedrock does not use your prompts or completions to train the base foundation models, and your data is encrypted in transit and at rest within your account boundary"
+      },
+      {
+        "id": "o2",
+        "text": "Bedrock adds all prompts to a shared public dataset that anyone can query"
+      },
+      {
+        "id": "o3",
+        "text": "Bedrock requires you to email prompts to each model provider for processing"
+      },
+      {
+        "id": "o4",
+        "text": "Bedrock stores your prompts unencrypted by default and shares them with other customers"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Bedrock does not use your inputs or outputs to train its base foundation models, and it encrypts your data in transit and at rest, keeping it within your account, which is what a security review needs to confirm.",
     "explanationIncorrect": "Bedrock does not publish your prompts to any shared or public dataset; that would directly contradict its data-isolation model. It also does not require emailing data to providers; inference happens through the managed service API within AWS. And it does not store your data unencrypted or share it with other customers; encryption at rest and in transit is applied and data stays isolated to your account. The accurate statement is that Bedrock keeps your data private, encrypted, and out of base-model training.",
-    "tags": ["governance", "data-privacy", "security"],
+    "tags": [
+      "governance",
+      "data-privacy",
+      "security"
+    ],
     "isSeed": true
   },
   {
@@ -283,15 +534,30 @@
     "difficulty": "easy",
     "stem": "What is a foundation model?",
     "options": [
-      { "id": "o1", "text": "A large model pre-trained on broad, unlabeled data that can be adapted to many downstream tasks" },
-      { "id": "o2", "text": "A small model trained to perform exactly one narrow task" },
-      { "id": "o3", "text": "A rules engine built entirely from hand-written if-then logic" },
-      { "id": "o4", "text": "A database that stores cached answers to look up" }
+      {
+        "id": "o1",
+        "text": "A large model pre-trained on broad, unlabeled data that can be adapted to many downstream tasks"
+      },
+      {
+        "id": "o2",
+        "text": "A small model trained to perform exactly one narrow task"
+      },
+      {
+        "id": "o3",
+        "text": "A rules engine built entirely from hand-written if-then logic"
+      },
+      {
+        "id": "o4",
+        "text": "A database that stores cached answers to look up"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A foundation model is trained once on a broad corpus and can then be applied or adapted to many tasks (summarization, Q&A, generation), which is what makes it foundational.",
     "explanationIncorrect": "A model built for a single narrow task is a traditional task-specific model, the opposite of a broadly applicable foundation model. A hand-coded rules engine is not a learned model at all. A cache of answers is a lookup table, not a model that generalizes. A foundation model is the broadly pre-trained, widely adaptable model.",
-    "tags": ["generative-ai", "foundation-models"]
+    "tags": [
+      "generative-ai",
+      "foundation-models"
+    ]
   },
   {
     "id": "aip-013",
@@ -300,15 +566,30 @@
     "difficulty": "easy",
     "stem": "Large language models process text as sequences of which unit, which also drives context limits and per-request pricing?",
     "options": [
-      { "id": "o1", "text": "Tokens, which are pieces of words" },
-      { "id": "o2", "text": "Pixels" },
-      { "id": "o3", "text": "Whole paragraphs, indivisibly" },
-      { "id": "o4", "text": "Gigabytes of memory" }
+      {
+        "id": "o1",
+        "text": "Tokens, which are pieces of words"
+      },
+      {
+        "id": "o2",
+        "text": "Pixels"
+      },
+      {
+        "id": "o3",
+        "text": "Whole paragraphs, indivisibly"
+      },
+      {
+        "id": "o4",
+        "text": "Gigabytes of memory"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "LLMs break text into tokens (subword pieces), and the number of tokens determines how much fits in the context window and how much a request costs.",
     "explanationIncorrect": "Pixels are the unit of images, not text for a language model. Models do not treat paragraphs as indivisible units; they subdivide text into tokens. Gigabytes measure memory, not the linguistic unit a model consumes. The unit is the token.",
-    "tags": ["generative-ai", "tokens"]
+    "tags": [
+      "generative-ai",
+      "tokens"
+    ]
   },
   {
     "id": "aip-014",
@@ -317,15 +598,31 @@
     "difficulty": "medium",
     "stem": "You want a model's responses to be more deterministic and focused rather than creative and varied. Which inference parameter do you lower?",
     "options": [
-      { "id": "o1", "text": "Temperature" },
-      { "id": "o2", "text": "The number of tokens in your prompt" },
-      { "id": "o3", "text": "The model's total parameter count" },
-      { "id": "o4", "text": "The AWS Region" }
+      {
+        "id": "o1",
+        "text": "Temperature"
+      },
+      {
+        "id": "o2",
+        "text": "The number of tokens in your prompt"
+      },
+      {
+        "id": "o3",
+        "text": "The model's total parameter count"
+      },
+      {
+        "id": "o4",
+        "text": "The AWS Region"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Temperature controls randomness in generation: lowering it makes the model favor the most probable next tokens, producing more focused and repeatable output.",
     "explanationIncorrect": "Prompt length changes how much context the model has, not how random its sampling is. The parameter count is a fixed property of the model you cannot tune per request. The Region affects where inference runs, not output randomness. The randomness control is temperature.",
-    "tags": ["generative-ai", "inference-parameters", "temperature"]
+    "tags": [
+      "generative-ai",
+      "inference-parameters",
+      "temperature"
+    ]
   },
   {
     "id": "aip-015",
@@ -334,15 +631,31 @@
     "difficulty": "medium",
     "stem": "To find documents semantically similar to a query, you convert text into numeric vectors that place similar meanings close together in vector space. What are these vectors called?",
     "options": [
-      { "id": "o1", "text": "Embeddings" },
-      { "id": "o2", "text": "Tokens" },
-      { "id": "o3", "text": "Hyperparameters" },
-      { "id": "o4", "text": "Gradients" }
+      {
+        "id": "o1",
+        "text": "Embeddings"
+      },
+      {
+        "id": "o2",
+        "text": "Tokens"
+      },
+      {
+        "id": "o3",
+        "text": "Hyperparameters"
+      },
+      {
+        "id": "o4",
+        "text": "Gradients"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Embeddings are dense numeric vectors that capture meaning, so semantically similar text ends up near each other, which is what powers semantic search and retrieval.",
     "explanationIncorrect": "Tokens are the subword units of input text, not the meaning vectors used for similarity. Hyperparameters are training configuration values like learning rate. Gradients are values used to update weights during training. The similarity vectors are embeddings.",
-    "tags": ["generative-ai", "embeddings", "vectors"]
+    "tags": [
+      "generative-ai",
+      "embeddings",
+      "vectors"
+    ]
   },
   {
     "id": "aip-016",
@@ -351,15 +664,30 @@
     "difficulty": "medium",
     "stem": "A model can only consider a limited amount of input text at once when generating a response. What is this limit called?",
     "options": [
-      { "id": "o1", "text": "The context window" },
-      { "id": "o2", "text": "The learning rate" },
-      { "id": "o3", "text": "The batch size" },
-      { "id": "o4", "text": "The epoch count" }
+      {
+        "id": "o1",
+        "text": "The context window"
+      },
+      {
+        "id": "o2",
+        "text": "The learning rate"
+      },
+      {
+        "id": "o3",
+        "text": "The batch size"
+      },
+      {
+        "id": "o4",
+        "text": "The epoch count"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The context window is the maximum amount of text (measured in tokens) a model can take into account at once, bounding how much prompt and history it can use.",
     "explanationIncorrect": "The learning rate is a training hyperparameter that controls step size, unrelated to input length at inference. Batch size is how many examples are processed together during training. Epoch count is how many passes over the training data occur. The input-length limit is the context window.",
-    "tags": ["generative-ai", "context-window"]
+    "tags": [
+      "generative-ai",
+      "context-window"
+    ]
   },
   {
     "id": "aip-017",
@@ -368,15 +696,31 @@
     "difficulty": "medium",
     "stem": "Which AWS service is a generative-AI-powered assistant for business and, in its developer form, for coding and answering AWS questions?",
     "options": [
-      { "id": "o1", "text": "Amazon Q" },
-      { "id": "o2", "text": "Amazon Athena" },
-      { "id": "o3", "text": "Amazon Kinesis" },
-      { "id": "o4", "text": "Amazon Neptune" }
+      {
+        "id": "o1",
+        "text": "Amazon Q"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Kinesis"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Neptune"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Q is AWS's generative-AI assistant, offered for business use and in a developer variant that helps with coding and AWS-specific questions.",
     "explanationIncorrect": "Amazon Athena is a serverless SQL query service over data in S3. Amazon Kinesis handles real-time streaming data. Amazon Neptune is a graph database. The generative-AI assistant is Amazon Q.",
-    "tags": ["generative-ai", "amazon-q", "services"]
+    "tags": [
+      "generative-ai",
+      "amazon-q",
+      "services"
+    ]
   },
   {
     "id": "aip-018",
@@ -385,15 +729,30 @@
     "difficulty": "medium",
     "stem": "You take an existing foundation model and train it further on your own labeled domain data to specialize its behavior. What is this called?",
     "options": [
-      { "id": "o1", "text": "Fine-tuning" },
-      { "id": "o2", "text": "Pre-training a new model from scratch" },
-      { "id": "o3", "text": "Inference" },
-      { "id": "o4", "text": "Tokenization" }
+      {
+        "id": "o1",
+        "text": "Fine-tuning"
+      },
+      {
+        "id": "o2",
+        "text": "Pre-training a new model from scratch"
+      },
+      {
+        "id": "o3",
+        "text": "Inference"
+      },
+      {
+        "id": "o4",
+        "text": "Tokenization"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Fine-tuning continues training a pre-trained model on your own data so it adapts to a specific domain or task without the cost of training from scratch.",
     "explanationIncorrect": "Pre-training from scratch builds a model from the ground up on massive data, which is far more expensive and not what adapting an existing model means. Inference is using a finished model to make predictions, not training it. Tokenization is splitting text into tokens. Specializing an existing model on your data is fine-tuning.",
-    "tags": ["generative-ai", "fine-tuning"]
+    "tags": [
+      "generative-ai",
+      "fine-tuning"
+    ]
   },
   {
     "id": "aip-041",
@@ -402,15 +761,31 @@
     "difficulty": "hard",
     "stem": "Besides temperature, which inference parameter limits sampling to the smallest set of most-likely tokens whose cumulative probability exceeds a threshold?",
     "options": [
-      { "id": "o1", "text": "Top-p (nucleus sampling)" },
-      { "id": "o2", "text": "Maximum tokens" },
-      { "id": "o3", "text": "Number of epochs" },
-      { "id": "o4", "text": "Learning rate" }
+      {
+        "id": "o1",
+        "text": "Top-p (nucleus sampling)"
+      },
+      {
+        "id": "o2",
+        "text": "Maximum tokens"
+      },
+      {
+        "id": "o3",
+        "text": "Number of epochs"
+      },
+      {
+        "id": "o4",
+        "text": "Learning rate"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Top-p, or nucleus sampling, restricts the model to the smallest group of top tokens whose probabilities add up to the threshold, controlling diversity by probability mass.",
     "explanationIncorrect": "Maximum tokens caps output length, not which tokens are eligible. Epochs and learning rate are training-time settings, not inference sampling controls. The cumulative-probability sampling control is top-p.",
-    "tags": ["generative-ai", "top-p", "inference-parameters"]
+    "tags": [
+      "generative-ai",
+      "top-p",
+      "inference-parameters"
+    ]
   },
   {
     "id": "aip-042",
@@ -419,15 +794,31 @@
     "difficulty": "medium",
     "stem": "Which model type generates images from text prompts, as in Amazon Titan Image Generator or Stable Diffusion?",
     "options": [
-      { "id": "o1", "text": "A diffusion-based text-to-image model" },
-      { "id": "o2", "text": "A text-to-speech model" },
-      { "id": "o3", "text": "A tabular regression model" },
-      { "id": "o4", "text": "A speech-to-text model" }
+      {
+        "id": "o1",
+        "text": "A diffusion-based text-to-image model"
+      },
+      {
+        "id": "o2",
+        "text": "A text-to-speech model"
+      },
+      {
+        "id": "o3",
+        "text": "A tabular regression model"
+      },
+      {
+        "id": "o4",
+        "text": "A speech-to-text model"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Text-to-image generation is done by diffusion-based models, which iteratively turn noise into an image conditioned on the text prompt.",
     "explanationIncorrect": "A text-to-speech model produces audio, not images. A tabular regression model predicts numbers from structured data. A speech-to-text model transcribes audio. Image generation from text uses a diffusion-based text-to-image model.",
-    "tags": ["generative-ai", "diffusion", "text-to-image"]
+    "tags": [
+      "generative-ai",
+      "diffusion",
+      "text-to-image"
+    ]
   },
   {
     "id": "aip-043",
@@ -436,15 +827,31 @@
     "difficulty": "medium",
     "stem": "You want to give a chat model persistent instructions about its role and tone that apply across the whole conversation. Which prompt element is designed for this?",
     "options": [
-      { "id": "o1", "text": "The system prompt" },
-      { "id": "o2", "text": "The temperature setting" },
-      { "id": "o3", "text": "The embedding vector" },
-      { "id": "o4", "text": "The stop sequence" }
+      {
+        "id": "o1",
+        "text": "The system prompt"
+      },
+      {
+        "id": "o2",
+        "text": "The temperature setting"
+      },
+      {
+        "id": "o3",
+        "text": "The embedding vector"
+      },
+      {
+        "id": "o4",
+        "text": "The stop sequence"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The system prompt sets high-level, persistent instructions (role, tone, constraints) that frame the whole conversation, separate from individual user messages.",
     "explanationIncorrect": "Temperature controls randomness, not instructions. An embedding is a numeric vector representation of text, not a directive. A stop sequence tells the model where to stop generating. Persistent role and tone guidance is the system prompt.",
-    "tags": ["generative-ai", "system-prompt", "prompt-engineering"]
+    "tags": [
+      "generative-ai",
+      "system-prompt",
+      "prompt-engineering"
+    ]
   },
   {
     "id": "aip-044",
@@ -453,15 +860,31 @@
     "difficulty": "medium",
     "stem": "Which AWS offering lets you quickly prototype generative AI apps in a low-code, playground-style environment built on Amazon Bedrock?",
     "options": [
-      { "id": "o1", "text": "PartyRock, an Amazon Bedrock playground" },
-      { "id": "o2", "text": "Amazon Redshift" },
-      { "id": "o3", "text": "AWS Snowball" },
-      { "id": "o4", "text": "Amazon Neptune" }
+      {
+        "id": "o1",
+        "text": "PartyRock, an Amazon Bedrock playground"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Neptune"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "PartyRock is a hands-on, low-code playground built on Amazon Bedrock for quickly building and experimenting with generative AI apps without deep setup.",
     "explanationIncorrect": "Amazon Redshift is a data warehouse. AWS Snowball moves large data physically. Amazon Neptune is a graph database. The generative AI prototyping playground is PartyRock.",
-    "tags": ["generative-ai", "partyrock", "prototyping"]
+    "tags": [
+      "generative-ai",
+      "partyrock",
+      "prototyping"
+    ]
   },
   {
     "id": "aip-045",
@@ -470,15 +893,31 @@
     "difficulty": "easy",
     "stem": "Which are examples of Amazon's own family of foundation models available through Amazon Bedrock?",
     "options": [
-      { "id": "o1", "text": "Amazon Titan and Amazon Nova models" },
-      { "id": "o2", "text": "Amazon Aurora and Amazon Redshift" },
-      { "id": "o3", "text": "Amazon EC2 and Amazon EBS" },
-      { "id": "o4", "text": "Amazon SQS and Amazon SNS" }
+      {
+        "id": "o1",
+        "text": "Amazon Titan and Amazon Nova models"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Aurora and Amazon Redshift"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EC2 and Amazon EBS"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS and Amazon SNS"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Titan and Amazon Nova are Amazon's own foundation model families offered in Amazon Bedrock alongside third-party models.",
     "explanationIncorrect": "Aurora and Redshift are databases. EC2 and EBS are compute and block storage. SQS and SNS are messaging services. Amazon's own foundation models are Titan and Nova.",
-    "tags": ["generative-ai", "titan", "nova"]
+    "tags": [
+      "generative-ai",
+      "titan",
+      "nova"
+    ]
   },
   {
     "id": "aip-019",
@@ -487,15 +926,31 @@
     "difficulty": "medium",
     "stem": "You include several examples of the desired input-and-output pattern directly in the prompt so the model follows that pattern. What is this technique called?",
     "options": [
-      { "id": "o1", "text": "Few-shot prompting" },
-      { "id": "o2", "text": "Fine-tuning" },
-      { "id": "o3", "text": "Pre-training" },
-      { "id": "o4", "text": "Reinforcement learning from human feedback" }
+      {
+        "id": "o1",
+        "text": "Few-shot prompting"
+      },
+      {
+        "id": "o2",
+        "text": "Fine-tuning"
+      },
+      {
+        "id": "o3",
+        "text": "Pre-training"
+      },
+      {
+        "id": "o4",
+        "text": "Reinforcement learning from human feedback"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Providing a handful of worked examples in the prompt is few-shot prompting; the model infers the pattern from those examples at inference time without any weight changes.",
     "explanationIncorrect": "Fine-tuning changes the model's weights by training on data; few-shot happens purely in the prompt with no training. Pre-training builds the base model on massive data up front. RLHF is a training-time alignment method using human preference data. Putting examples in the prompt is few-shot prompting.",
-    "tags": ["applications", "prompt-engineering", "few-shot"]
+    "tags": [
+      "applications",
+      "prompt-engineering",
+      "few-shot"
+    ]
   },
   {
     "id": "aip-020",
@@ -504,15 +959,31 @@
     "difficulty": "easy",
     "stem": "You ask a model to perform a task using only an instruction, with no examples provided. What is this called?",
     "options": [
-      { "id": "o1", "text": "Zero-shot prompting" },
-      { "id": "o2", "text": "Few-shot prompting" },
-      { "id": "o3", "text": "Fine-tuning" },
-      { "id": "o4", "text": "Data augmentation" }
+      {
+        "id": "o1",
+        "text": "Zero-shot prompting"
+      },
+      {
+        "id": "o2",
+        "text": "Few-shot prompting"
+      },
+      {
+        "id": "o3",
+        "text": "Fine-tuning"
+      },
+      {
+        "id": "o4",
+        "text": "Data augmentation"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Giving only an instruction and no examples is zero-shot prompting; the model relies entirely on what it learned during pre-training to perform the task.",
     "explanationIncorrect": "Few-shot prompting includes example pairs, which this does not. Fine-tuning is additional training on data, not a prompting style. Data augmentation expands a training dataset with transformed samples and is unrelated to how you phrase a single prompt. An instruction with no examples is zero-shot.",
-    "tags": ["applications", "prompt-engineering", "zero-shot"]
+    "tags": [
+      "applications",
+      "prompt-engineering",
+      "zero-shot"
+    ]
   },
   {
     "id": "aip-021",
@@ -521,15 +992,31 @@
     "difficulty": "medium",
     "stem": "You want a managed way to implement RAG on Bedrock: ingest your documents, chunk and embed them, store the vectors, and retrieve relevant context at query time. Which Bedrock feature provides this end to end?",
     "options": [
-      { "id": "o1", "text": "Knowledge Bases for Amazon Bedrock" },
-      { "id": "o2", "text": "Provisioned Throughput" },
-      { "id": "o3", "text": "Amazon Polly" },
-      { "id": "o4", "text": "AWS Batch" }
+      {
+        "id": "o1",
+        "text": "Knowledge Bases for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Provisioned Throughput"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Batch"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Knowledge Bases for Amazon Bedrock is the managed RAG capability: it handles ingestion, chunking, embedding, vector storage, and retrieval, so you get grounded answers without building the pipeline yourself.",
     "explanationIncorrect": "Provisioned Throughput reserves dedicated model capacity; it does not build a retrieval pipeline. Amazon Polly is text-to-speech. AWS Batch runs batch compute jobs and is unrelated to retrieval-augmented generation. The managed RAG feature is Knowledge Bases for Amazon Bedrock.",
-    "tags": ["applications", "rag", "knowledge-bases"]
+    "tags": [
+      "applications",
+      "rag",
+      "knowledge-bases"
+    ]
   },
   {
     "id": "aip-022",
@@ -538,15 +1025,31 @@
     "difficulty": "medium",
     "stem": "You need a generative AI application to break a request into steps and call external APIs or functions to complete a task, such as looking up an order and then issuing a refund. Which Bedrock capability orchestrates this?",
     "options": [
-      { "id": "o1", "text": "Agents for Amazon Bedrock" },
-      { "id": "o2", "text": "Embeddings" },
-      { "id": "o3", "text": "Temperature tuning" },
-      { "id": "o4", "text": "Model evaluation" }
+      {
+        "id": "o1",
+        "text": "Agents for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Embeddings"
+      },
+      {
+        "id": "o3",
+        "text": "Temperature tuning"
+      },
+      {
+        "id": "o4",
+        "text": "Model evaluation"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Agents for Amazon Bedrock plan a task into steps and invoke the APIs or functions you provide, letting the model take actions rather than only generate text.",
     "explanationIncorrect": "Embeddings turn text into vectors for similarity; they do not orchestrate multi-step actions. Temperature tuning adjusts output randomness. Model evaluation compares model quality. The capability that plans steps and calls tools is Agents for Amazon Bedrock.",
-    "tags": ["applications", "agents", "tool-use"]
+    "tags": [
+      "applications",
+      "agents",
+      "tool-use"
+    ]
   },
   {
     "id": "aip-023",
@@ -555,15 +1058,31 @@
     "difficulty": "hard",
     "stem": "Your knowledge base changes daily and answers must always reflect the latest documents. Between RAG and fine-tuning, which is generally the better fit, and why?",
     "options": [
-      { "id": "o1", "text": "RAG, because it retrieves the current documents at query time without retraining the model" },
-      { "id": "o2", "text": "Fine-tuning, because you should retrain the model every day on the new documents" },
-      { "id": "o3", "text": "Neither; only adjusting temperature keeps answers current" },
-      { "id": "o4", "text": "Fine-tuning, because documents baked into the weights stay fresh automatically" }
+      {
+        "id": "o1",
+        "text": "RAG, because it retrieves the current documents at query time without retraining the model"
+      },
+      {
+        "id": "o2",
+        "text": "Fine-tuning, because you should retrain the model every day on the new documents"
+      },
+      {
+        "id": "o3",
+        "text": "Neither; only adjusting temperature keeps answers current"
+      },
+      {
+        "id": "o4",
+        "text": "Fine-tuning, because documents baked into the weights stay fresh automatically"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "RAG pulls the latest documents at query time, so new content is reflected immediately with no retraining, which suits a knowledge base that changes daily.",
     "explanationIncorrect": "Retraining or fine-tuning every day is slow, costly, and impractical for daily churn. Temperature only affects randomness, not what facts the model can access. Facts baked into weights are frozen at training time and do not update themselves, so fine-tuning is the opposite of fresh. For frequently changing data, RAG is the fit.",
-    "tags": ["applications", "rag", "fine-tuning"]
+    "tags": [
+      "applications",
+      "rag",
+      "fine-tuning"
+    ]
   },
   {
     "id": "aip-024",
@@ -572,15 +1091,31 @@
     "difficulty": "medium",
     "stem": "You want to compare two foundation models on your task before choosing one, using both automatic metrics and human review. Which Amazon Bedrock capability supports this?",
     "options": [
-      { "id": "o1", "text": "Model evaluation in Amazon Bedrock" },
-      { "id": "o2", "text": "Provisioned Throughput" },
-      { "id": "o3", "text": "Guardrails" },
-      { "id": "o4", "text": "Knowledge Bases" }
+      {
+        "id": "o1",
+        "text": "Model evaluation in Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Provisioned Throughput"
+      },
+      {
+        "id": "o3",
+        "text": "Guardrails"
+      },
+      {
+        "id": "o4",
+        "text": "Knowledge Bases"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Bedrock model evaluation lets you compare models on your data using automatic metrics and human-based evaluation, which is how you choose the right model for a task.",
     "explanationIncorrect": "Provisioned Throughput reserves capacity; it does not measure quality. Guardrails filter unsafe content rather than benchmark models. Knowledge Bases implement retrieval, not evaluation. The comparison feature is model evaluation.",
-    "tags": ["applications", "model-evaluation", "selection"]
+    "tags": [
+      "applications",
+      "model-evaluation",
+      "selection"
+    ]
   },
   {
     "id": "aip-025",
@@ -589,15 +1124,31 @@
     "difficulty": "medium",
     "stem": "Model responses are being cut off too short. Which inference parameter most directly controls the maximum length of the generated output?",
     "options": [
-      { "id": "o1", "text": "The maximum output tokens setting" },
-      { "id": "o2", "text": "Temperature" },
-      { "id": "o3", "text": "Top-p" },
-      { "id": "o4", "text": "The embedding dimension" }
+      {
+        "id": "o1",
+        "text": "The maximum output tokens setting"
+      },
+      {
+        "id": "o2",
+        "text": "Temperature"
+      },
+      {
+        "id": "o3",
+        "text": "Top-p"
+      },
+      {
+        "id": "o4",
+        "text": "The embedding dimension"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The maximum output tokens parameter caps how many tokens the model may generate, so raising it lets responses run longer before being truncated.",
     "explanationIncorrect": "Temperature changes randomness, not length. Top-p changes which tokens are sampled by cumulative probability, again affecting variety rather than the length cap. Embedding dimension is a property of vector representations, unrelated to generation length. The length cap is the maximum output tokens setting.",
-    "tags": ["applications", "inference-parameters", "max-tokens"]
+    "tags": [
+      "applications",
+      "inference-parameters",
+      "max-tokens"
+    ]
   },
   {
     "id": "aip-026",
@@ -606,15 +1157,31 @@
     "difficulty": "medium",
     "stem": "For a high-volume, latency-sensitive, and relatively simple classification prompt, which model choice is usually most appropriate?",
     "options": [
-      { "id": "o1", "text": "A smaller, faster, cheaper model that is sufficient for the task" },
-      { "id": "o2", "text": "Always the largest, most expensive model regardless of the task" },
-      { "id": "o3", "text": "A text-to-image model repurposed for text classification" },
-      { "id": "o4", "text": "No model at all; classify by hand in a spreadsheet" }
+      {
+        "id": "o1",
+        "text": "A smaller, faster, cheaper model that is sufficient for the task"
+      },
+      {
+        "id": "o2",
+        "text": "Always the largest, most expensive model regardless of the task"
+      },
+      {
+        "id": "o3",
+        "text": "A text-to-image model repurposed for text classification"
+      },
+      {
+        "id": "o4",
+        "text": "No model at all; classify by hand in a spreadsheet"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Model selection balances cost, latency, and accuracy: for a simple, high-volume task a smaller and faster model that meets the accuracy bar is the economical, responsive choice.",
     "explanationIncorrect": "Defaulting to the largest model wastes money and adds latency when a simpler task does not need it. A text-to-image model is the wrong modality for classifying text. Manual classification does not scale to high volume. The appropriate choice is the smallest capable model.",
-    "tags": ["applications", "model-selection", "cost-latency"]
+    "tags": [
+      "applications",
+      "model-selection",
+      "cost-latency"
+    ]
   },
   {
     "id": "aip-027",
@@ -623,15 +1190,30 @@
     "difficulty": "medium",
     "stem": "You want an application that accepts an image and answers questions about its contents in text. What kind of foundation model do you need?",
     "options": [
-      { "id": "o1", "text": "A multimodal model that accepts image input and produces text output" },
-      { "id": "o2", "text": "A text-only large language model" },
-      { "id": "o3", "text": "A text-to-speech model" },
-      { "id": "o4", "text": "An embeddings-only model" }
+      {
+        "id": "o1",
+        "text": "A multimodal model that accepts image input and produces text output"
+      },
+      {
+        "id": "o2",
+        "text": "A text-only large language model"
+      },
+      {
+        "id": "o3",
+        "text": "A text-to-speech model"
+      },
+      {
+        "id": "o4",
+        "text": "An embeddings-only model"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Answering questions about an image requires a multimodal model that can take images as input and generate text, combining vision understanding with language output.",
     "explanationIncorrect": "A text-only LLM cannot see an image. A text-to-speech model converts text to audio and does not analyze images. An embeddings-only model produces vectors, not conversational text answers. The task needs a multimodal (image-to-text) model.",
-    "tags": ["applications", "multimodal"]
+    "tags": [
+      "applications",
+      "multimodal"
+    ]
   },
   {
     "id": "aip-028",
@@ -640,15 +1222,30 @@
     "difficulty": "easy",
     "stem": "A generative model confidently produces a fluent answer that is factually wrong and not grounded in any real source. What is this behavior called?",
     "options": [
-      { "id": "o1", "text": "Hallucination" },
-      { "id": "o2", "text": "Overfitting" },
-      { "id": "o3", "text": "Latency" },
-      { "id": "o4", "text": "Quantization" }
+      {
+        "id": "o1",
+        "text": "Hallucination"
+      },
+      {
+        "id": "o2",
+        "text": "Overfitting"
+      },
+      {
+        "id": "o3",
+        "text": "Latency"
+      },
+      {
+        "id": "o4",
+        "text": "Quantization"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A hallucination is a confident but ungrounded, factually incorrect output; recognizing and mitigating it (for example with RAG and human review) is a core responsible-AI concern.",
     "explanationIncorrect": "Overfitting describes a model that memorizes training data and generalizes poorly; it is a training issue, not a fabricated answer. Latency is response time. Quantization is a technique to shrink a model's numeric precision for efficiency. A confident wrong answer is a hallucination.",
-    "tags": ["responsible-ai", "hallucination"]
+    "tags": [
+      "responsible-ai",
+      "hallucination"
+    ]
   },
   {
     "id": "aip-029",
@@ -657,15 +1254,31 @@
     "difficulty": "medium",
     "stem": "A hiring model recommends mostly one demographic because its historical training data reflected past biased decisions. Which responsible-AI concern does this illustrate?",
     "options": [
-      { "id": "o1", "text": "Bias and fairness, arising from biased training data" },
-      { "id": "o2", "text": "Model latency" },
-      { "id": "o3", "text": "Token limits" },
-      { "id": "o4", "text": "Cold-start time" }
+      {
+        "id": "o1",
+        "text": "Bias and fairness, arising from biased training data"
+      },
+      {
+        "id": "o2",
+        "text": "Model latency"
+      },
+      {
+        "id": "o3",
+        "text": "Token limits"
+      },
+      {
+        "id": "o4",
+        "text": "Cold-start time"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "When a model learns from biased historical data it can reproduce and amplify that bias, which is a fairness problem that responsible-AI practices aim to detect and mitigate.",
     "explanationIncorrect": "Latency is response speed and unrelated to skewed outcomes. Token limits bound input and output length, not fairness. Cold-start time is an operational delay when a resource initializes. Discriminatory outcomes learned from data are a bias and fairness concern.",
-    "tags": ["responsible-ai", "bias", "fairness"]
+    "tags": [
+      "responsible-ai",
+      "bias",
+      "fairness"
+    ]
   },
   {
     "id": "aip-030",
@@ -674,15 +1287,31 @@
     "difficulty": "medium",
     "stem": "AWS publishes documents describing an AI service's intended use cases, limitations, and responsible-AI considerations to improve transparency. What are these called?",
     "options": [
-      { "id": "o1", "text": "AWS AI Service Cards" },
-      { "id": "o2", "text": "IAM policies" },
-      { "id": "o3", "text": "CloudFormation templates" },
-      { "id": "o4", "text": "Trusted Advisor checks" }
+      {
+        "id": "o1",
+        "text": "AWS AI Service Cards"
+      },
+      {
+        "id": "o2",
+        "text": "IAM policies"
+      },
+      {
+        "id": "o3",
+        "text": "CloudFormation templates"
+      },
+      {
+        "id": "o4",
+        "text": "Trusted Advisor checks"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS AI Service Cards are transparency documents that describe an AI service's intended uses, limitations, and responsible-AI design choices, helping customers use the service appropriately.",
     "explanationIncorrect": "IAM policies grant permissions; they are not transparency documentation. CloudFormation templates define infrastructure as code. Trusted Advisor checks give cost and best-practice recommendations. The responsible-AI transparency documents are AI Service Cards.",
-    "tags": ["responsible-ai", "transparency", "ai-service-cards"]
+    "tags": [
+      "responsible-ai",
+      "transparency",
+      "ai-service-cards"
+    ]
   },
   {
     "id": "aip-031",
@@ -691,15 +1320,31 @@
     "difficulty": "medium",
     "stem": "For a high-stakes use case such as a medical or loan decision, which practice best reduces the risk of harmful automated errors?",
     "options": [
-      { "id": "o1", "text": "Keep a human in the loop to review and approve model outputs before they take effect" },
-      { "id": "o2", "text": "Remove all human oversight to make decisions faster" },
-      { "id": "o3", "text": "Set temperature to the maximum for more creative decisions" },
-      { "id": "o4", "text": "Disable all logging to protect privacy" }
+      {
+        "id": "o1",
+        "text": "Keep a human in the loop to review and approve model outputs before they take effect"
+      },
+      {
+        "id": "o2",
+        "text": "Remove all human oversight to make decisions faster"
+      },
+      {
+        "id": "o3",
+        "text": "Set temperature to the maximum for more creative decisions"
+      },
+      {
+        "id": "o4",
+        "text": "Disable all logging to protect privacy"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A human-in-the-loop review for high-stakes decisions catches errors and inappropriate outputs before they cause harm, which is a central responsible-AI safeguard.",
     "explanationIncorrect": "Removing oversight increases the risk of unchecked harmful decisions in exactly the situations that most need review. Maximizing temperature makes outputs more random, which is dangerous for consequential decisions. Disabling logging removes the audit trail you need for accountability. The safeguard is keeping a human in the loop.",
-    "tags": ["responsible-ai", "human-in-the-loop", "oversight"]
+    "tags": [
+      "responsible-ai",
+      "human-in-the-loop",
+      "oversight"
+    ]
   },
   {
     "id": "aip-032",
@@ -708,15 +1353,31 @@
     "difficulty": "medium",
     "stem": "You must ensure that only specific applications and roles can invoke a given Amazon Bedrock model. Which AWS mechanism enforces that?",
     "options": [
-      { "id": "o1", "text": "IAM policies granting least-privilege permissions on the Bedrock invoke actions" },
-      { "id": "o2", "text": "Security groups attached to the model" },
-      { "id": "o3", "text": "A CAPTCHA challenge on every request" },
-      { "id": "o4", "text": "Making the model publicly accessible to everyone" }
+      {
+        "id": "o1",
+        "text": "IAM policies granting least-privilege permissions on the Bedrock invoke actions"
+      },
+      {
+        "id": "o2",
+        "text": "Security groups attached to the model"
+      },
+      {
+        "id": "o3",
+        "text": "A CAPTCHA challenge on every request"
+      },
+      {
+        "id": "o4",
+        "text": "Making the model publicly accessible to everyone"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Access to Bedrock actions is controlled by IAM: least-privilege policies scoped to the invoke actions (and specific models) determine which principals may call the model.",
     "explanationIncorrect": "Security groups are network firewalls for resources like EC2 instances; they do not gate who may call a managed model API. A CAPTCHA is a human-verification widget, not an AWS authorization mechanism. Making the model public is the opposite of restricting access. Authorization is enforced with IAM policies.",
-    "tags": ["governance", "iam", "access-control"]
+    "tags": [
+      "governance",
+      "iam",
+      "access-control"
+    ]
   },
   {
     "id": "aip-033",
@@ -725,15 +1386,31 @@
     "difficulty": "medium",
     "stem": "For governance you need an audit trail of who made Amazon Bedrock API calls and when. Which service records these management events?",
     "options": [
-      { "id": "o1", "text": "AWS CloudTrail" },
-      { "id": "o2", "text": "Amazon Polly" },
-      { "id": "o3", "text": "AWS Lambda" },
-      { "id": "o4", "text": "Amazon Lex" }
+      {
+        "id": "o1",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Lex"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS CloudTrail records API activity across AWS services, including Bedrock, giving you the who-did-what-and-when audit trail that governance requires.",
     "explanationIncorrect": "Amazon Polly is text-to-speech and records no cross-service audit trail. AWS Lambda runs code; it is not an auditing service. Amazon Lex builds conversational bots. The API audit-logging service is AWS CloudTrail.",
-    "tags": ["governance", "cloudtrail", "auditing"]
+    "tags": [
+      "governance",
+      "cloudtrail",
+      "auditing"
+    ]
   },
   {
     "id": "aip-034",
@@ -742,15 +1419,31 @@
     "difficulty": "hard",
     "stem": "Your compliance policy requires that traffic to Amazon Bedrock not traverse the public internet. Which feature keeps that traffic on the AWS network?",
     "options": [
-      { "id": "o1", "text": "An interface VPC endpoint (AWS PrivateLink) for Bedrock" },
-      { "id": "o2", "text": "A public NAT gateway" },
-      { "id": "o3", "text": "An internet gateway" },
-      { "id": "o4", "text": "A public S3 bucket" }
+      {
+        "id": "o1",
+        "text": "An interface VPC endpoint (AWS PrivateLink) for Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "A public NAT gateway"
+      },
+      {
+        "id": "o3",
+        "text": "An internet gateway"
+      },
+      {
+        "id": "o4",
+        "text": "A public S3 bucket"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "An interface VPC endpoint powered by AWS PrivateLink lets resources in your VPC reach Bedrock privately over the AWS network, so the traffic never crosses the public internet.",
     "explanationIncorrect": "A NAT gateway and an internet gateway both exist precisely to route traffic to the public internet, which is what you are trying to avoid. A public S3 bucket is a storage exposure and unrelated to private connectivity. Private access to Bedrock is achieved with an interface VPC endpoint (PrivateLink).",
-    "tags": ["governance", "privatelink", "vpc-endpoint"]
+    "tags": [
+      "governance",
+      "privatelink",
+      "vpc-endpoint"
+    ]
   },
   {
     "id": "aip-035",
@@ -759,15 +1452,31 @@
     "difficulty": "medium",
     "stem": "You want to detect statistical bias in a machine learning model's training data and predictions and to generate explainability reports. Which SageMaker capability provides this?",
     "options": [
-      { "id": "o1", "text": "Amazon SageMaker Clarify" },
-      { "id": "o2", "text": "Amazon SageMaker Ground Truth" },
-      { "id": "o3", "text": "Amazon Bedrock Provisioned Throughput" },
-      { "id": "o4", "text": "Amazon Macie" }
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker Clarify"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon SageMaker Ground Truth"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Bedrock Provisioned Throughput"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Macie"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "SageMaker Clarify measures bias in data and model predictions and produces feature-importance explainability reports, supporting fairness and transparency governance.",
     "explanationIncorrect": "SageMaker Ground Truth is for labeling training data, not detecting bias. Bedrock Provisioned Throughput reserves inference capacity. Amazon Macie discovers and classifies sensitive data such as PII in S3; it is a data-security service, not a model-bias tool. Bias detection and explainability come from SageMaker Clarify.",
-    "tags": ["governance", "sagemaker-clarify", "bias-detection"]
+    "tags": [
+      "governance",
+      "sagemaker-clarify",
+      "bias-detection"
+    ]
   },
   {
     "id": "aip-046",
@@ -776,15 +1485,31 @@
     "difficulty": "medium",
     "stem": "You ask the model to think step by step and show its reasoning before giving a final answer, which improves accuracy on multi-step problems. Which prompting technique is this?",
     "options": [
-      { "id": "o1", "text": "Chain-of-thought prompting" },
-      { "id": "o2", "text": "Zero-shot prompting with no guidance" },
-      { "id": "o3", "text": "Fine-tuning the model" },
-      { "id": "o4", "text": "Quantization" }
+      {
+        "id": "o1",
+        "text": "Chain-of-thought prompting"
+      },
+      {
+        "id": "o2",
+        "text": "Zero-shot prompting with no guidance"
+      },
+      {
+        "id": "o3",
+        "text": "Fine-tuning the model"
+      },
+      {
+        "id": "o4",
+        "text": "Quantization"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Chain-of-thought prompting asks the model to work through intermediate reasoning steps before the final answer, which tends to improve performance on complex, multi-step tasks.",
     "explanationIncorrect": "Zero-shot with no guidance gives only an instruction and does not elicit step-by-step reasoning. Fine-tuning changes model weights through training, not a prompting style. Quantization compresses a model's numeric precision for efficiency. Eliciting explicit reasoning steps is chain-of-thought prompting.",
-    "tags": ["applications", "chain-of-thought", "prompt-engineering"]
+    "tags": [
+      "applications",
+      "chain-of-thought",
+      "prompt-engineering"
+    ]
   },
   {
     "id": "aip-047",
@@ -793,15 +1518,31 @@
     "difficulty": "medium",
     "stem": "A RAG pipeline needs to store embeddings and search them by similarity efficiently. Which kind of data store is used for this?",
     "options": [
-      { "id": "o1", "text": "A vector database or vector store, such as Amazon OpenSearch Serverless or Aurora with pgvector" },
-      { "id": "o2", "text": "A message queue" },
-      { "id": "o3", "text": "A block storage volume" },
-      { "id": "o4", "text": "A DNS service" }
+      {
+        "id": "o1",
+        "text": "A vector database or vector store, such as Amazon OpenSearch Serverless or Aurora with pgvector"
+      },
+      {
+        "id": "o2",
+        "text": "A message queue"
+      },
+      {
+        "id": "o3",
+        "text": "A block storage volume"
+      },
+      {
+        "id": "o4",
+        "text": "A DNS service"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "RAG stores document embeddings in a vector store that supports similarity search (for example OpenSearch Serverless or Aurora with pgvector), so the most relevant chunks can be retrieved for a query.",
     "explanationIncorrect": "A message queue moves messages between components, not similarity search over vectors. A block storage volume is raw disk for an instance. A DNS service resolves names. Embedding similarity search uses a vector database.",
-    "tags": ["applications", "vector-database", "rag"]
+    "tags": [
+      "applications",
+      "vector-database",
+      "rag"
+    ]
   },
   {
     "id": "aip-048",
@@ -810,15 +1551,30 @@
     "difficulty": "easy",
     "stem": "You use a foundation model to condense long support tickets into short summaries. This is an example of which common application?",
     "options": [
-      { "id": "o1", "text": "Text summarization" },
-      { "id": "o2", "text": "Image classification" },
-      { "id": "o3", "text": "Speech synthesis" },
-      { "id": "o4", "text": "Anomaly detection on tabular data" }
+      {
+        "id": "o1",
+        "text": "Text summarization"
+      },
+      {
+        "id": "o2",
+        "text": "Image classification"
+      },
+      {
+        "id": "o3",
+        "text": "Speech synthesis"
+      },
+      {
+        "id": "o4",
+        "text": "Anomaly detection on tabular data"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Condensing long text into a shorter version that preserves the key points is text summarization, a core generative-AI language task.",
     "explanationIncorrect": "Image classification labels images. Speech synthesis turns text into audio. Anomaly detection finds outliers in structured data. Condensing text is summarization.",
-    "tags": ["applications", "summarization"]
+    "tags": [
+      "applications",
+      "summarization"
+    ]
   },
   {
     "id": "aip-049",
@@ -827,15 +1583,30 @@
     "difficulty": "medium",
     "stem": "Your company wants an internal assistant that answers employee questions using connected enterprise data sources such as wikis and documents, while respecting each user's access permissions. Which offering fits?",
     "options": [
-      { "id": "o1", "text": "Amazon Q Business" },
-      { "id": "o2", "text": "Amazon Polly" },
-      { "id": "o3", "text": "Amazon Kinesis" },
-      { "id": "o4", "text": "AWS Batch" }
+      {
+        "id": "o1",
+        "text": "Amazon Q Business"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Kinesis"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Batch"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Q Business is a generative-AI assistant that connects to enterprise data sources and answers questions while honoring the user's access permissions, which suits an internal knowledge assistant.",
     "explanationIncorrect": "Amazon Polly is a text-to-speech service that produces audio and does not answer questions over enterprise data. Amazon Kinesis ingests and processes real-time streaming data, not knowledge retrieval. AWS Batch runs batch compute jobs and has no assistant or permission-aware search capability. The permission-aware enterprise knowledge assistant is Amazon Q Business.",
-    "tags": ["applications", "amazon-q-business"]
+    "tags": [
+      "applications",
+      "amazon-q-business"
+    ]
   },
   {
     "id": "aip-050",
@@ -844,15 +1615,31 @@
     "difficulty": "hard",
     "stem": "You must generate summaries for millions of documents where immediate responses are not needed and cost matters more than latency. Which Amazon Bedrock inference option fits best?",
     "options": [
-      { "id": "o1", "text": "Batch inference" },
-      { "id": "o2", "text": "Synchronous on-demand inference, one call per document" },
-      { "id": "o3", "text": "Provisioned Throughput sized for a live chatbot" },
-      { "id": "o4", "text": "Fine-tuning a new model for each document" }
+      {
+        "id": "o1",
+        "text": "Batch inference"
+      },
+      {
+        "id": "o2",
+        "text": "Synchronous on-demand inference, one call per document"
+      },
+      {
+        "id": "o3",
+        "text": "Provisioned Throughput sized for a live chatbot"
+      },
+      {
+        "id": "o4",
+        "text": "Fine-tuning a new model for each document"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Batch inference processes large volumes of prompts asynchronously at lower cost, which fits a bulk, latency-tolerant workload like summarizing millions of documents.",
     "explanationIncorrect": "Synchronous on-demand calls per document are optimized for interactivity, not cost at massive scale. Provisioned Throughput reserves capacity for steady low-latency traffic like a chatbot, not one-off bulk jobs. Fine-tuning per document is nonsensical and costly. The cost-efficient bulk option is batch inference.",
-    "tags": ["applications", "batch-inference", "cost"]
+    "tags": [
+      "applications",
+      "batch-inference",
+      "cost"
+    ]
   },
   {
     "id": "aip-051",
@@ -861,15 +1648,30 @@
     "difficulty": "medium",
     "stem": "Stakeholders need to understand why a model produced a particular decision. Which responsible-AI property does this concern?",
     "options": [
-      { "id": "o1", "text": "Explainability (interpretability)" },
-      { "id": "o2", "text": "Latency" },
-      { "id": "o3", "text": "Throughput" },
-      { "id": "o4", "text": "Tokenization" }
+      {
+        "id": "o1",
+        "text": "Explainability (interpretability)"
+      },
+      {
+        "id": "o2",
+        "text": "Latency"
+      },
+      {
+        "id": "o3",
+        "text": "Throughput"
+      },
+      {
+        "id": "o4",
+        "text": "Tokenization"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Explainability is the responsible-AI property of being able to understand and communicate why a model produced a given output, which supports trust, debugging, and compliance.",
     "explanationIncorrect": "Latency and throughput are performance characteristics, not about understanding decisions. Tokenization is how text is split into tokens. Understanding why a decision was made is explainability.",
-    "tags": ["responsible-ai", "explainability"]
+    "tags": [
+      "responsible-ai",
+      "explainability"
+    ]
   },
   {
     "id": "aip-052",
@@ -878,15 +1680,31 @@
     "difficulty": "medium",
     "stem": "A public-facing chatbot must avoid producing hateful or harmful content. Which responsible-AI concern and mitigation applies?",
     "options": [
-      { "id": "o1", "text": "Toxicity and safety, mitigated with content filters or guardrails" },
-      { "id": "o2", "text": "Overfitting, mitigated with more training epochs" },
-      { "id": "o3", "text": "Latency, mitigated with caching" },
-      { "id": "o4", "text": "Tokenization, mitigated with embeddings" }
+      {
+        "id": "o1",
+        "text": "Toxicity and safety, mitigated with content filters or guardrails"
+      },
+      {
+        "id": "o2",
+        "text": "Overfitting, mitigated with more training epochs"
+      },
+      {
+        "id": "o3",
+        "text": "Latency, mitigated with caching"
+      },
+      {
+        "id": "o4",
+        "text": "Tokenization, mitigated with embeddings"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Preventing harmful or hateful output is a toxicity and safety concern, addressed by content filters or guardrails that screen prompts and responses.",
     "explanationIncorrect": "Overfitting is a generalization problem unrelated to harmful content. Latency and caching concern speed. Tokenization and embeddings are representation mechanics. Blocking harmful content is a toxicity and safety matter handled by guardrails.",
-    "tags": ["responsible-ai", "toxicity", "guardrails"]
+    "tags": [
+      "responsible-ai",
+      "toxicity",
+      "guardrails"
+    ]
   },
   {
     "id": "aip-053",
@@ -895,15 +1713,31 @@
     "difficulty": "hard",
     "stem": "A known risk of generative AI is that users accept its outputs uncritically even when they are wrong. What is this called, and what mitigates it?",
     "options": [
-      { "id": "o1", "text": "Overreliance (automation bias), mitigated by human review and showing sources and uncertainty" },
-      { "id": "o2", "text": "Underfitting, mitigated by using a larger model" },
-      { "id": "o3", "text": "Cold start, mitigated by provisioned throughput" },
-      { "id": "o4", "text": "Data drift, mitigated by sharding the database" }
+      {
+        "id": "o1",
+        "text": "Overreliance (automation bias), mitigated by human review and showing sources and uncertainty"
+      },
+      {
+        "id": "o2",
+        "text": "Underfitting, mitigated by using a larger model"
+      },
+      {
+        "id": "o3",
+        "text": "Cold start, mitigated by provisioned throughput"
+      },
+      {
+        "id": "o4",
+        "text": "Data drift, mitigated by sharding the database"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Overreliance, or automation bias, is the tendency to trust AI output without scrutiny; it is mitigated by keeping humans in the loop and by surfacing sources and uncertainty so users can judge the output.",
     "explanationIncorrect": "Underfitting is a model-capacity problem, not a user-trust behavior. Cold start is an operational latency issue. Data drift is a change in data distribution over time. Uncritical trust in AI output is overreliance.",
-    "tags": ["responsible-ai", "overreliance", "automation-bias"]
+    "tags": [
+      "responsible-ai",
+      "overreliance",
+      "automation-bias"
+    ]
   },
   {
     "id": "aip-054",
@@ -912,15 +1746,31 @@
     "difficulty": "medium",
     "stem": "To reduce biased outcomes from a model, which practice about training data helps most?",
     "options": [
-      { "id": "o1", "text": "Use diverse, representative training data and check it for bias" },
-      { "id": "o2", "text": "Use the smallest dataset possible" },
-      { "id": "o3", "text": "Train only on data from one group for consistency" },
-      { "id": "o4", "text": "Remove all human oversight from the process" }
+      {
+        "id": "o1",
+        "text": "Use diverse, representative training data and check it for bias"
+      },
+      {
+        "id": "o2",
+        "text": "Use the smallest dataset possible"
+      },
+      {
+        "id": "o3",
+        "text": "Train only on data from one group for consistency"
+      },
+      {
+        "id": "o4",
+        "text": "Remove all human oversight from the process"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Bias often originates in the data, so using diverse, representative data and actively checking it for bias is the most effective way to reduce biased outcomes.",
     "explanationIncorrect": "The smallest possible dataset tends to be less representative and can worsen bias. Training on one group's data bakes in a skewed view. Removing oversight makes bias harder to catch. Representative, bias-checked data is the right practice.",
-    "tags": ["responsible-ai", "bias", "data-quality"]
+    "tags": [
+      "responsible-ai",
+      "bias",
+      "data-quality"
+    ]
   },
   {
     "id": "aip-055",
@@ -929,15 +1779,31 @@
     "difficulty": "medium",
     "stem": "A user embeds hidden instructions in input text to make the model ignore its guidelines and behave in unintended ways. What is this attack called?",
     "options": [
-      { "id": "o1", "text": "Prompt injection" },
-      { "id": "o2", "text": "Overfitting" },
-      { "id": "o3", "text": "Data labeling" },
-      { "id": "o4", "text": "Quantization" }
+      {
+        "id": "o1",
+        "text": "Prompt injection"
+      },
+      {
+        "id": "o2",
+        "text": "Overfitting"
+      },
+      {
+        "id": "o3",
+        "text": "Data labeling"
+      },
+      {
+        "id": "o4",
+        "text": "Quantization"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Prompt injection is an attack where crafted input manipulates the model into ignoring its instructions or safeguards, and it is a key safety concern for generative-AI applications.",
     "explanationIncorrect": "Overfitting is a training generalization problem. Data labeling is annotating training data. Quantization compresses a model. Manipulating a model through crafted input is prompt injection.",
-    "tags": ["responsible-ai", "prompt-injection", "safety"]
+    "tags": [
+      "responsible-ai",
+      "prompt-injection",
+      "safety"
+    ]
   },
   {
     "id": "aip-056",
@@ -946,15 +1812,31 @@
     "difficulty": "hard",
     "stem": "For auditing and troubleshooting, you want to capture the actual prompts and completions sent through Amazon Bedrock. Which capability records that content?",
     "options": [
-      { "id": "o1", "text": "Bedrock model invocation logging to CloudWatch Logs and/or Amazon S3" },
-      { "id": "o2", "text": "AWS CloudTrail, which records the full prompt and completion text of every call" },
-      { "id": "o3", "text": "Secret scanning" },
-      { "id": "o4", "text": "Dependency review" }
+      {
+        "id": "o1",
+        "text": "Bedrock model invocation logging to CloudWatch Logs and/or Amazon S3"
+      },
+      {
+        "id": "o2",
+        "text": "AWS CloudTrail, which records the full prompt and completion text of every call"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning"
+      },
+      {
+        "id": "o4",
+        "text": "Dependency review"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Bedrock model invocation logging captures request and response content (prompts and completions) to CloudWatch Logs or S3, which is what you enable to audit and troubleshoot model usage.",
     "explanationIncorrect": "CloudTrail records that an API call happened and its metadata, but it is not designed to store the full prompt and completion content, so it does not meet this need on its own. Secret scanning finds leaked credentials. Dependency review evaluates dependency changes. Capturing prompt and completion content is model invocation logging.",
-    "tags": ["governance", "invocation-logging", "auditing"]
+    "tags": [
+      "governance",
+      "invocation-logging",
+      "auditing"
+    ]
   },
   {
     "id": "aip-057",
@@ -963,15 +1845,31 @@
     "difficulty": "medium",
     "stem": "You want customer-managed keys to encrypt your fine-tuned model artifacts and data at rest in Amazon Bedrock. Which service provides those keys?",
     "options": [
-      { "id": "o1", "text": "AWS KMS with customer managed keys" },
-      { "id": "o2", "text": "AWS WAF" },
-      { "id": "o3", "text": "Amazon Route 53" },
-      { "id": "o4", "text": "AWS Shield" }
+      {
+        "id": "o1",
+        "text": "AWS KMS with customer managed keys"
+      },
+      {
+        "id": "o2",
+        "text": "AWS WAF"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Shield"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS KMS provides customer managed keys that Bedrock can use to encrypt data and custom model artifacts at rest, giving you control and an audit trail over the keys.",
     "explanationIncorrect": "AWS WAF filters malicious web requests and manages no encryption keys. Amazon Route 53 is a DNS and health-checking service. AWS Shield provides DDoS protection. None of them create or manage cryptographic keys. Customer-managed encryption keys for data and model artifacts come from AWS KMS.",
-    "tags": ["governance", "kms", "encryption"]
+    "tags": [
+      "governance",
+      "kms",
+      "encryption"
+    ]
   },
   {
     "id": "aip-058",
@@ -980,15 +1878,31 @@
     "difficulty": "medium",
     "stem": "You must prevent a model from returning personally identifiable information (PII) in its responses. Which Amazon Bedrock feature can detect and redact PII?",
     "options": [
-      { "id": "o1", "text": "Guardrails for Amazon Bedrock, using its sensitive information filters" },
-      { "id": "o2", "text": "Provisioned Throughput" },
-      { "id": "o3", "text": "Model evaluation" },
-      { "id": "o4", "text": "Knowledge Bases" }
+      {
+        "id": "o1",
+        "text": "Guardrails for Amazon Bedrock, using its sensitive information filters"
+      },
+      {
+        "id": "o2",
+        "text": "Provisioned Throughput"
+      },
+      {
+        "id": "o3",
+        "text": "Model evaluation"
+      },
+      {
+        "id": "o4",
+        "text": "Knowledge Bases"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Bedrock Guardrails include sensitive information filters that can detect and redact or block PII in prompts and responses, which is exactly the control needed here.",
     "explanationIncorrect": "Provisioned Throughput reserves capacity. Model evaluation compares model quality. Knowledge Bases implement retrieval. PII detection and redaction is a Guardrails capability.",
-    "tags": ["governance", "guardrails", "pii"]
+    "tags": [
+      "governance",
+      "guardrails",
+      "pii"
+    ]
   },
   {
     "id": "aip-059",
@@ -997,15 +1911,31 @@
     "difficulty": "easy",
     "stem": "An auditor asks for AWS's compliance certifications (such as SOC and ISO) relevant to your AI workload. Where do you obtain these reports?",
     "options": [
-      { "id": "o1", "text": "AWS Artifact" },
-      { "id": "o2", "text": "The Amazon Bedrock console's model prompts" },
-      { "id": "o3", "text": "The Amazon Q chat window" },
-      { "id": "o4", "text": "The billing dashboard" }
+      {
+        "id": "o1",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o2",
+        "text": "The Amazon Bedrock console's model prompts"
+      },
+      {
+        "id": "o3",
+        "text": "The Amazon Q chat window"
+      },
+      {
+        "id": "o4",
+        "text": "The billing dashboard"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Artifact is the portal for AWS compliance reports and certifications like SOC and ISO, which auditors need regardless of the workload type.",
     "explanationIncorrect": "The Bedrock console runs and configures models; it does not host compliance certifications. Amazon Q is an assistant, not a compliance document store. The billing dashboard shows costs. Compliance reports come from AWS Artifact.",
-    "tags": ["governance", "compliance", "aws-artifact"]
+    "tags": [
+      "governance",
+      "compliance",
+      "aws-artifact"
+    ]
   },
   {
     "id": "aip-060",
@@ -1014,14 +1944,367 @@
     "difficulty": "medium",
     "stem": "Under the shared responsibility model for a managed AI service like Amazon Bedrock, what is the customer typically responsible for?",
     "options": [
-      { "id": "o1", "text": "How they use the service: their data, access controls (IAM), and handling of prompts and outputs" },
-      { "id": "o2", "text": "Patching the model-hosting infrastructure" },
-      { "id": "o3", "text": "Physically securing AWS data centers" },
-      { "id": "o4", "text": "Maintaining the underlying GPUs and servers" }
+      {
+        "id": "o1",
+        "text": "How they use the service: their data, access controls (IAM), and handling of prompts and outputs"
+      },
+      {
+        "id": "o2",
+        "text": "Patching the model-hosting infrastructure"
+      },
+      {
+        "id": "o3",
+        "text": "Physically securing AWS data centers"
+      },
+      {
+        "id": "o4",
+        "text": "Maintaining the underlying GPUs and servers"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "With a managed service, AWS secures the underlying infrastructure while the customer is responsible for their data, who can access the service, and how they use it, including how prompts and outputs are handled.",
     "explanationIncorrect": "Patching the hosting infrastructure, securing data centers, and maintaining the physical hardware are all AWS's responsibilities under the model. The customer owns their data, access control, and usage of the service.",
-    "tags": ["governance", "shared-responsibility", "ai"]
+    "tags": [
+      "governance",
+      "shared-responsibility",
+      "ai"
+    ]
+  },
+  {
+    "id": "aip-061",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "Which learning paradigm trains a model on labeled examples to predict an output for new inputs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Supervised learning"
+      },
+      {
+        "id": "o2",
+        "text": "Unsupervised learning"
+      },
+      {
+        "id": "o3",
+        "text": "Reinforcement learning"
+      },
+      {
+        "id": "o4",
+        "text": "Federated learning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Supervised learning uses input-output pairs with known labels so the model learns a mapping it can apply to unseen inputs, as in classification and regression.",
+    "explanationIncorrect": "Unsupervised learning works on unlabeled data to find structure such as clusters, so it has no target labels to predict. Reinforcement learning learns from rewards received by taking actions in an environment, not from labeled examples. Federated learning is a training approach that keeps data distributed across devices; it describes where training happens, not the labeled-example paradigm.",
+    "tags": [
+      "ml-basics",
+      "supervised-learning"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-062",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "A model performs very well on training data but poorly on new data. What is this called?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Overfitting"
+      },
+      {
+        "id": "o2",
+        "text": "Underfitting"
+      },
+      {
+        "id": "o3",
+        "text": "Regularization"
+      },
+      {
+        "id": "o4",
+        "text": "Normalization"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Overfitting occurs when a model memorizes training data, including its noise, and fails to generalize, showing a large gap between training and validation performance.",
+    "explanationIncorrect": "Underfitting is the opposite: the model is too simple and does poorly even on training data. Regularization is a technique to reduce overfitting, not the problem itself. Normalization rescales feature values to a common range and is a preprocessing step, not the phenomenon of failing to generalize.",
+    "tags": [
+      "ml-basics",
+      "overfitting",
+      "generalization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-063",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "You want to group customers into segments without predefined labels. Which type of ML task is this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Clustering"
+      },
+      {
+        "id": "o2",
+        "text": "Classification"
+      },
+      {
+        "id": "o3",
+        "text": "Regression"
+      },
+      {
+        "id": "o4",
+        "text": "Forecasting"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Clustering is an unsupervised task that groups similar data points together without any predefined labels, which fits segmenting customers by behavior.",
+    "explanationIncorrect": "Classification assigns items to known, predefined categories, which requires labels you do not have here. Regression predicts a continuous numeric value, not a grouping. Forecasting predicts future values of a time series, which is a different objective from discovering customer segments.",
+    "tags": [
+      "ml-tasks",
+      "clustering",
+      "unsupervised"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-064",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "In a classification problem with rare positive cases, why can accuracy be a misleading metric?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A model predicting the majority class every time can score high accuracy while missing the rare cases"
+      },
+      {
+        "id": "o2",
+        "text": "Accuracy cannot be computed for classification"
+      },
+      {
+        "id": "o3",
+        "text": "Accuracy always equals precision"
+      },
+      {
+        "id": "o4",
+        "text": "Accuracy only applies to regression"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "With heavy class imbalance, always predicting the common class yields high accuracy yet detects none of the rare positives, so metrics like precision, recall, or F1 are more informative.",
+    "explanationIncorrect": "Accuracy can absolutely be computed for classification, so that claim is false. Accuracy and precision measure different things and are not always equal. Accuracy is a classification metric, not a regression one, so saying it only applies to regression is incorrect.",
+    "tags": [
+      "metrics",
+      "class-imbalance",
+      "accuracy"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-065",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "What is the purpose of splitting data into training, validation, and test sets?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To tune on validation data and get an unbiased estimate of performance on the held-out test set"
+      },
+      {
+        "id": "o2",
+        "text": "To make training run faster only"
+      },
+      {
+        "id": "o3",
+        "text": "To avoid needing labels"
+      },
+      {
+        "id": "o4",
+        "text": "To increase the total amount of data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The validation set guides model selection and hyperparameter tuning, while the untouched test set gives an unbiased estimate of how the model generalizes to unseen data.",
+    "explanationIncorrect": "Splitting data is about honest evaluation, not primarily about speed. It does not remove the need for labels; supervised sets still require them. It does not increase the total amount of data; it partitions the data you already have into distinct roles.",
+    "tags": [
+      "ml-basics",
+      "train-test-split",
+      "evaluation"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-066",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which AWS service provides a fully managed environment to build, train, and deploy custom ML models?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Comprehend"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SageMaker is the managed platform for the full ML lifecycle, from data preparation and training to tuning and deployment of custom models.",
+    "explanationIncorrect": "Rekognition is a pre-trained image and video analysis service, not a platform for building your own models. Polly is a text-to-speech service, a specific pre-built capability. Comprehend is a pre-trained natural language processing service; like the others it solves a specific task rather than providing a general model-building environment.",
+    "tags": [
+      "sagemaker",
+      "aws-services",
+      "ml-platform"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-067",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "What is a feature in the context of machine learning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An individual measurable input variable the model uses to make predictions"
+      },
+      {
+        "id": "o2",
+        "text": "The final prediction the model outputs"
+      },
+      {
+        "id": "o3",
+        "text": "A bug fixed in the training code"
+      },
+      {
+        "id": "o4",
+        "text": "The hardware accelerator used for training"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A feature is an input variable, such as age or price, that the model consumes; the quality and choice of features strongly influence model performance.",
+    "explanationIncorrect": "The model's output is the prediction or label, not a feature, which is an input. A software bug fix is unrelated to the ML meaning of feature. The hardware accelerator such as a GPU is compute infrastructure, not an input variable, so it is not a feature.",
+    "tags": [
+      "ml-basics",
+      "features"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-068",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which statement best describes deep learning relative to traditional machine learning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It uses multi-layer neural networks that can learn features automatically from raw data"
+      },
+      {
+        "id": "o2",
+        "text": "It never requires large amounts of data"
+      },
+      {
+        "id": "o3",
+        "text": "It cannot run on GPUs"
+      },
+      {
+        "id": "o4",
+        "text": "It only works for tabular data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Deep learning relies on neural networks with many layers that learn hierarchical feature representations directly from raw inputs like images, audio, and text, reducing manual feature engineering.",
+    "explanationIncorrect": "Deep learning typically benefits from large datasets, so saying it never needs much data is wrong. GPUs are in fact the workhorse of deep learning, so claiming it cannot run on them is false. It excels well beyond tabular data, including images and language, so restricting it to tabular data is incorrect.",
+    "tags": [
+      "deep-learning",
+      "neural-networks"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-069",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "What does inference mean in a deployed ML system?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Using a trained model to generate predictions on new input data"
+      },
+      {
+        "id": "o2",
+        "text": "The process of collecting and labeling training data"
+      },
+      {
+        "id": "o3",
+        "text": "Adjusting model weights during training"
+      },
+      {
+        "id": "o4",
+        "text": "Splitting data into folds for cross-validation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Inference is the operational phase where a trained model takes new inputs and produces predictions, distinct from the training phase where the model learns.",
+    "explanationIncorrect": "Collecting and labeling data is a data preparation step that precedes training, not inference. Adjusting weights happens during training, not when serving predictions. Cross-validation folding is an evaluation technique used while developing the model, not the act of predicting on new data.",
+    "tags": [
+      "inference",
+      "deployment",
+      "ml-basics"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-070",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "A team notices their model's performance degrades over months in production as real-world data changes. What is this phenomenon called?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Data drift (model drift)"
+      },
+      {
+        "id": "o2",
+        "text": "Overfitting"
+      },
+      {
+        "id": "o3",
+        "text": "Vanishing gradients"
+      },
+      {
+        "id": "o4",
+        "text": "Feature scaling"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Data or model drift occurs when the statistical properties of incoming data shift away from what the model was trained on, degrading performance and prompting monitoring and retraining.",
+    "explanationIncorrect": "Overfitting is a training-time failure to generalize, observed before deployment, not a gradual production shift caused by changing data. Vanishing gradients is a training difficulty in deep networks, unrelated to production data changing over time. Feature scaling is a preprocessing step, not a cause of degrading production performance.",
+    "tags": [
+      "data-drift",
+      "monitoring",
+      "production"
+    ],
+    "isSeed": true
   }
 ]
