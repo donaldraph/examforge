@@ -154,6 +154,91 @@
     "tags": ["resilience", "stateless", "session-state"]
   },
   {
+    "id": "saa-041",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "You need centralized, policy-based backups across EBS, RDS, DynamoDB, and EFS with consistent retention rules. Which service provides this?",
+    "options": [
+      { "id": "o1", "text": "AWS Backup" },
+      { "id": "o2", "text": "Manually taking snapshots in each service separately" },
+      { "id": "o3", "text": "S3 Versioning" },
+      { "id": "o4", "text": "CloudWatch alarms" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Backup centrally manages and automates backups across many services with backup plans and retention policies, so you do not script per-service snapshots.",
+    "explanationIncorrect": "Manual per-service snapshots are exactly the fragmented approach AWS Backup consolidates. S3 Versioning protects object overwrites in one bucket, not multi-service backups. CloudWatch alarms trigger on metrics; they do not take backups. Centralized policy-based backup is AWS Backup.",
+    "tags": ["resilience", "aws-backup"]
+  },
+  {
+    "id": "saa-042",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "You want a highly available MySQL-compatible database that fails over in seconds and whose read replicas can also serve as failover targets. Which service fits?",
+    "options": [
+      { "id": "o1", "text": "Amazon Aurora" },
+      { "id": "o2", "text": "A single MySQL instance you run on one EC2 instance" },
+      { "id": "o3", "text": "Amazon DynamoDB" },
+      { "id": "o4", "text": "Amazon Redshift" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Aurora is a MySQL- and PostgreSQL-compatible managed database with fast automatic failover and replicas that can be promoted, giving strong availability with minimal disruption.",
+    "explanationIncorrect": "A single self-managed MySQL instance on one EC2 is a single point of failure with no automatic failover. DynamoDB is NoSQL, not MySQL-compatible. Redshift is an analytics warehouse, not an OLTP database with second-level failover. The fit is Amazon Aurora.",
+    "tags": ["resilience", "aurora", "failover"]
+  },
+  {
+    "id": "saa-043",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "An EC2 instance behind an Application Load Balancer in an Auto Scaling group becomes unhealthy, and the group uses ELB health checks. What happens?",
+    "options": [
+      { "id": "o1", "text": "The Auto Scaling group terminates the unhealthy instance and launches a replacement automatically" },
+      { "id": "o2", "text": "The whole application goes down until an administrator intervenes" },
+      { "id": "o3", "text": "Traffic keeps being sent to the unhealthy instance indefinitely" },
+      { "id": "o4", "text": "The Auto Scaling group deletes itself" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "With ELB health checks, the Auto Scaling group treats a failing instance as unhealthy, terminates it, and launches a replacement to maintain the desired capacity, so the tier self-heals.",
+    "explanationIncorrect": "The application does not go down because healthy instances keep serving and a replacement is launched. The load balancer stops routing to an unhealthy target rather than sending traffic to it indefinitely. The Auto Scaling group does not delete itself. It replaces the unhealthy instance automatically.",
+    "tags": ["resilience", "auto-scaling", "self-healing"]
+  },
+  {
+    "id": "saa-044",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "For the highest resilience and lowest latency, you run full application stacks in two Regions serving live traffic simultaneously. Which disaster-recovery strategy is this?",
+    "options": [
+      { "id": "o1", "text": "Multi-site active-active" },
+      { "id": "o2", "text": "Backup and restore" },
+      { "id": "o3", "text": "Pilot light" },
+      { "id": "o4", "text": "A single-AZ deployment" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Multi-site active-active runs full stacks in multiple Regions handling live traffic at once, giving the lowest recovery time and the ability to absorb a Region loss, at the highest cost and complexity.",
+    "explanationIncorrect": "Backup and restore has the longest recovery time, rebuilding from backups after a disaster. Pilot light keeps only core components running and scales up on failover, so it is not serving full live traffic in both Regions. A single-AZ deployment offers no cross-Region resilience. Live traffic in multiple Regions is active-active.",
+    "tags": ["resilience", "active-active", "multi-region"]
+  },
+  {
+    "id": "saa-045",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Why does placing an Amazon SQS queue between a producer and a consumer improve resilience?",
+    "options": [
+      { "id": "o1", "text": "Messages persist in the queue while the consumer is unavailable and are processed once it recovers, so work is not lost" },
+      { "id": "o2", "text": "It automatically encrypts the database for you" },
+      { "id": "o3", "text": "It provides DNS-based failover between Regions" },
+      { "id": "o4", "text": "It reduces the number of Availability Zones you need to one" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The queue durably holds messages independently of the consumer, so a temporary consumer outage does not drop work; the backlog is processed when the consumer comes back, decoupling the two tiers.",
+    "explanationIncorrect": "SQS does not encrypt databases; that is unrelated. It does not perform DNS failover; that is Route 53. It does not reduce your Availability Zone needs; SQS is itself regionally redundant but that is not the reason it helps here. The resilience benefit is durable buffering of messages.",
+    "tags": ["resilience", "sqs", "decoupling"]
+  },
+  {
     "id": "saa-002",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design High-Performing Architectures",
