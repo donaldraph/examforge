@@ -376,6 +376,91 @@
     "tags": ["performance", "efs", "shared-storage"]
   },
   {
+    "id": "saa-046",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Users far from your S3 bucket's Region upload large files slowly. Which S3 feature speeds up long-distance uploads by routing through edge locations?",
+    "options": [
+      { "id": "o1", "text": "S3 Transfer Acceleration" },
+      { "id": "o2", "text": "S3 Cross-Region Replication" },
+      { "id": "o3", "text": "S3 Glacier" },
+      { "id": "o4", "text": "S3 Versioning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Transfer Acceleration routes uploads through the nearest CloudFront edge and over the AWS backbone to the bucket, which speeds up transfers from distant clients.",
+    "explanationIncorrect": "Cross-Region Replication copies objects to another Region for durability, not faster uploads from users. Glacier is cold archival storage. Versioning tracks object history. Faster long-distance uploads use S3 Transfer Acceleration.",
+    "tags": ["performance", "s3-transfer-acceleration"]
+  },
+  {
+    "id": "saa-047",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "A workload holds a very large dataset in memory and is memory-bound. Which EC2 instance selection is most appropriate for performance efficiency?",
+    "options": [
+      { "id": "o1", "text": "A memory-optimized instance family" },
+      { "id": "o2", "text": "A compute-optimized instance family" },
+      { "id": "o3", "text": "The smallest general-purpose instance available" },
+      { "id": "o4", "text": "A storage-optimized instance regardless of memory needs" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Memory-optimized instances provide a high ratio of RAM to vCPU, which is the right match for a memory-bound, large in-memory dataset workload.",
+    "explanationIncorrect": "Compute-optimized instances favor CPU over memory, wrong for a memory-bound job. The smallest general-purpose instance would lack the memory needed. Storage-optimized instances target high disk throughput, not large RAM. Memory-bound workloads use memory-optimized instances.",
+    "tags": ["performance", "instance-selection", "memory-optimized"]
+  },
+  {
+    "id": "saa-048",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "You want your Auto Scaling group to automatically keep average CPU utilization near 50 percent as load changes. Which scaling policy type does this most simply?",
+    "options": [
+      { "id": "o1", "text": "A target tracking scaling policy" },
+      { "id": "o2", "text": "A one-time manual scaling adjustment" },
+      { "id": "o3", "text": "Only a scheduled action at fixed times" },
+      { "id": "o4", "text": "Terminating and launching instances by hand" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A target tracking policy adjusts capacity automatically to keep a chosen metric, like average CPU, at a target value, which is the simplest way to hold utilization near 50 percent.",
+    "explanationIncorrect": "A one-time manual adjustment does not respond to changing load. A scheduled action changes capacity at fixed times regardless of actual utilization. Manual instance management does not scale automatically. Holding a metric at a target is target tracking.",
+    "tags": ["performance", "auto-scaling", "target-tracking"]
+  },
+  {
+    "id": "saa-049",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "A REST API on Amazon API Gateway returns identical responses for many repeated requests, and you want to reduce backend load and latency. Which feature helps?",
+    "options": [
+      { "id": "o1", "text": "Enable API Gateway caching for the stage" },
+      { "id": "o2", "text": "Increase the backend Lambda's memory only" },
+      { "id": "o3", "text": "Add a NAT gateway in front of the API" },
+      { "id": "o4", "text": "Enable S3 Versioning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "API Gateway stage caching stores responses for a configurable TTL, so repeated identical requests are served from the cache, cutting backend calls and latency.",
+    "explanationIncorrect": "More Lambda memory speeds each invocation but does not avoid repeated identical calls. A NAT gateway provides outbound internet access for private subnets and is irrelevant here. S3 Versioning tracks object history. Response caching is an API Gateway caching feature.",
+    "tags": ["performance", "api-gateway", "caching"]
+  },
+  {
+    "id": "saa-050",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "Your Amazon Aurora cluster's read traffic varies widely during the day. How do you scale read capacity automatically?",
+    "options": [
+      { "id": "o1", "text": "Use Aurora Replicas with Aurora Auto Scaling to add and remove read replicas based on load" },
+      { "id": "o2", "text": "Vertically resize the writer instance by hand every hour" },
+      { "id": "o3", "text": "Switch the workload to DynamoDB to avoid scaling" },
+      { "id": "o4", "text": "Attach more EBS volumes to the writer" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Aurora Auto Scaling adds and removes Aurora Replicas in response to a target metric, so read capacity follows demand automatically without manual intervention.",
+    "explanationIncorrect": "Manually resizing the writer every hour is toil and does not target read scaling elastically. Switching to DynamoDB is a major redesign, not a way to scale Aurora reads. Adding EBS volumes changes storage, not read throughput across replicas. Automatic read scaling is Aurora Replicas with Aurora Auto Scaling.",
+    "tags": ["performance", "aurora", "read-auto-scaling"]
+  },
+  {
     "id": "saa-003",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design Secure Architectures",
