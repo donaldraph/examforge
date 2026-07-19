@@ -2983,5 +2983,345 @@
       "latency"
     ],
     "isSeed": true
+  },
+  {
+    "id": "aip-091",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "A hiring model systematically scores one demographic lower due to skewed training data. Which responsible-AI concern is this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Bias and fairness"
+      },
+      {
+        "id": "o2",
+        "text": "Latency"
+      },
+      {
+        "id": "o3",
+        "text": "Throughput"
+      },
+      {
+        "id": "o4",
+        "text": "Compression ratio"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Systematic disadvantage to a group traceable to skewed data is a fairness and bias problem, addressed by examining data, measuring disparate outcomes, and mitigating them.",
+    "explanationIncorrect": "Latency is how quickly the model responds, a performance metric unrelated to unfair outcomes. Throughput measures request volume handled, again a performance concern, not fairness. Compression ratio describes how much a model or file is shrunk and has nothing to do with demographic bias.",
+    "tags": [
+      "responsible-ai",
+      "bias",
+      "fairness"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-092",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "What is the purpose of an Amazon Bedrock guardrail?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To filter or block harmful content and restrict topics in model inputs and outputs"
+      },
+      {
+        "id": "o2",
+        "text": "To speed up token generation"
+      },
+      {
+        "id": "o3",
+        "text": "To store embeddings for retrieval"
+      },
+      {
+        "id": "o4",
+        "text": "To provision GPU capacity"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Guardrails apply configurable policies that filter harmful content, block denied topics, and can redact sensitive information, helping enforce responsible use of foundation models.",
+    "explanationIncorrect": "Guardrails do not accelerate token generation; that is a performance concern, not a safety policy. They do not store embeddings; a vector store handles retrieval. They do not provision GPU capacity, which is an infrastructure task unrelated to content safety.",
+    "tags": [
+      "responsible-ai",
+      "guardrails",
+      "bedrock"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-093",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "Why is explainability an important dimension of responsible AI in high-stakes decisions like lending?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Stakeholders need to understand and justify why a decision was made, and regulations may require it"
+      },
+      {
+        "id": "o2",
+        "text": "It makes the model train faster"
+      },
+      {
+        "id": "o3",
+        "text": "It guarantees the model is always correct"
+      },
+      {
+        "id": "o4",
+        "text": "It eliminates the need for data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Explainability lets affected people and auditors understand the reasons behind a decision, supporting trust, contestability, and compliance in regulated, high-stakes domains.",
+    "explanationIncorrect": "Explainability does not affect training speed; it concerns interpretability of outputs. It does not guarantee correctness; an explainable model can still be wrong. It does not remove the need for data; models still require data regardless of how interpretable they are.",
+    "tags": [
+      "responsible-ai",
+      "explainability",
+      "transparency"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-094",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which practice helps ensure a generative AI system does not leak personally identifiable information in its responses?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Applying PII detection and redaction on inputs and outputs"
+      },
+      {
+        "id": "o2",
+        "text": "Increasing the model temperature"
+      },
+      {
+        "id": "o3",
+        "text": "Removing all guardrails"
+      },
+      {
+        "id": "o4",
+        "text": "Logging full prompts publicly"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Detecting and redacting PII before it enters the model and before responses are returned reduces the risk of exposing sensitive personal data, a core privacy safeguard.",
+    "explanationIncorrect": "Raising temperature changes randomness and does nothing to protect PII. Removing guardrails weakens protections, increasing the chance of leaking sensitive data. Logging full prompts publicly would expose PII rather than protect it, the opposite of a safeguard.",
+    "tags": [
+      "responsible-ai",
+      "pii",
+      "privacy"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-095",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Keeping a person involved to review and approve AI outputs before consequential action is known as?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Human-in-the-loop"
+      },
+      {
+        "id": "o2",
+        "text": "End-to-end automation"
+      },
+      {
+        "id": "o3",
+        "text": "Zero-shot inference"
+      },
+      {
+        "id": "o4",
+        "text": "Batch processing"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Human-in-the-loop inserts human review or approval into the workflow so that consequential AI outputs are checked before acting, improving safety and accountability.",
+    "explanationIncorrect": "End-to-end automation removes the human, the opposite of this control. Zero-shot inference describes prompting without examples and says nothing about human oversight. Batch processing refers to how work is grouped for execution, not to human review of outputs.",
+    "tags": [
+      "responsible-ai",
+      "human-in-the-loop",
+      "oversight"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-096",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "A model was trained on data that no longer reflects current populations, risking unfair outcomes. Which mitigation is most directly relevant?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Curate representative, up-to-date training data and evaluate for disparate impact"
+      },
+      {
+        "id": "o2",
+        "text": "Increase the number of output tokens"
+      },
+      {
+        "id": "o3",
+        "text": "Switch to a faster GPU"
+      },
+      {
+        "id": "o4",
+        "text": "Reduce the prompt length"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because the root cause is unrepresentative data, curating balanced, current data and testing for disparate impact across groups directly addresses the fairness risk.",
+    "explanationIncorrect": "Increasing output tokens changes response length, not the fairness of the underlying data. A faster GPU affects speed, not bias. Reducing prompt length is unrelated to whether the training data represents current populations, so it does not mitigate the fairness issue.",
+    "tags": [
+      "responsible-ai",
+      "bias",
+      "data-quality"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-097",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "What is the value of documenting a model's intended use, limitations, and performance (for example in a model card)?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It promotes transparency so users apply the model appropriately and understand its risks"
+      },
+      {
+        "id": "o2",
+        "text": "It automatically fixes model bias"
+      },
+      {
+        "id": "o3",
+        "text": "It increases inference speed"
+      },
+      {
+        "id": "o4",
+        "text": "It encrypts the training data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Documentation such as a model card communicates intended use, known limitations, and evaluation results, helping users deploy the model responsibly and avoid misuse.",
+    "explanationIncorrect": "Documentation records information; it does not automatically fix bias, which requires data and modeling changes. It has no effect on inference speed. It does not encrypt training data; documentation and encryption are entirely different controls.",
+    "tags": [
+      "responsible-ai",
+      "transparency",
+      "model-cards"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-098",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which AWS capability helps detect bias in datasets and models and explain predictions during ML development?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker Clarify"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Route 53"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SageMaker Clarify measures potential bias in data and models and provides feature-attribution explanations, supporting fairness and transparency goals.",
+    "explanationIncorrect": "CloudFront is a content delivery network for distributing content, unrelated to bias detection. Lambda runs serverless functions and offers no bias or explainability tooling. Route 53 is a DNS service and has nothing to do with model fairness or explanations.",
+    "tags": [
+      "responsible-ai",
+      "sagemaker-clarify",
+      "bias-detection"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-099",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "A generative feature could be misused to produce disallowed content. Which layered approach best manages this responsibly?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Combine input and output content filtering, usage policies, and monitoring with human review of flagged cases"
+      },
+      {
+        "id": "o2",
+        "text": "Rely solely on the model to police itself"
+      },
+      {
+        "id": "o3",
+        "text": "Disable all logging to avoid storing bad content"
+      },
+      {
+        "id": "o4",
+        "text": "Maximize temperature for variety"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Defense in depth, filtering inputs and outputs, enforcing acceptable-use policies, and monitoring with human review of flagged interactions, manages misuse better than any single control.",
+    "explanationIncorrect": "Relying only on the model to police itself is fragile since models can be prompted around their safeguards. Disabling logging removes the visibility needed to detect and investigate misuse. Maximizing temperature increases unpredictability and does nothing to prevent disallowed content.",
+    "tags": [
+      "responsible-ai",
+      "safety",
+      "defense-in-depth"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-100",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Why is ongoing monitoring important even after a responsible-AI review at launch?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Model behavior and data can change over time, so continuous monitoring catches emerging bias, drift, or misuse"
+      },
+      {
+        "id": "o2",
+        "text": "Monitoring makes the model larger"
+      },
+      {
+        "id": "o3",
+        "text": "A launch review guarantees permanent safety"
+      },
+      {
+        "id": "o4",
+        "text": "Monitoring replaces the need for guardrails"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Responsible AI is continuous because inputs, usage, and the world shift after launch; ongoing monitoring surfaces new bias, drift, or abuse so teams can respond.",
+    "explanationIncorrect": "Monitoring observes behavior and does not change the model's size. A single launch review cannot guarantee permanent safety precisely because conditions change. Monitoring complements guardrails rather than replacing them; both are part of a responsible-AI program.",
+    "tags": [
+      "responsible-ai",
+      "monitoring",
+      "lifecycle"
+    ],
+    "isSeed": true
   }
 ]
