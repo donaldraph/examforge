@@ -768,5 +768,90 @@
     "explanationCorrect": "SageMaker Clarify measures bias in data and model predictions and produces feature-importance explainability reports, supporting fairness and transparency governance.",
     "explanationIncorrect": "SageMaker Ground Truth is for labeling training data, not detecting bias. Bedrock Provisioned Throughput reserves inference capacity. Amazon Macie discovers and classifies sensitive data such as PII in S3; it is a data-security service, not a model-bias tool. Bias detection and explainability come from SageMaker Clarify.",
     "tags": ["governance", "sagemaker-clarify", "bias-detection"]
+  },
+  {
+    "id": "aip-046",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "You ask the model to think step by step and show its reasoning before giving a final answer, which improves accuracy on multi-step problems. Which prompting technique is this?",
+    "options": [
+      { "id": "o1", "text": "Chain-of-thought prompting" },
+      { "id": "o2", "text": "Zero-shot prompting with no guidance" },
+      { "id": "o3", "text": "Fine-tuning the model" },
+      { "id": "o4", "text": "Quantization" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Chain-of-thought prompting asks the model to work through intermediate reasoning steps before the final answer, which tends to improve performance on complex, multi-step tasks.",
+    "explanationIncorrect": "Zero-shot with no guidance gives only an instruction and does not elicit step-by-step reasoning. Fine-tuning changes model weights through training, not a prompting style. Quantization compresses a model's numeric precision for efficiency. Eliciting explicit reasoning steps is chain-of-thought prompting.",
+    "tags": ["applications", "chain-of-thought", "prompt-engineering"]
+  },
+  {
+    "id": "aip-047",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "A RAG pipeline needs to store embeddings and search them by similarity efficiently. Which kind of data store is used for this?",
+    "options": [
+      { "id": "o1", "text": "A vector database or vector store, such as Amazon OpenSearch Serverless or Aurora with pgvector" },
+      { "id": "o2", "text": "A message queue" },
+      { "id": "o3", "text": "A block storage volume" },
+      { "id": "o4", "text": "A DNS service" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RAG stores document embeddings in a vector store that supports similarity search (for example OpenSearch Serverless or Aurora with pgvector), so the most relevant chunks can be retrieved for a query.",
+    "explanationIncorrect": "A message queue moves messages between components, not similarity search over vectors. A block storage volume is raw disk for an instance. A DNS service resolves names. Embedding similarity search uses a vector database.",
+    "tags": ["applications", "vector-database", "rag"]
+  },
+  {
+    "id": "aip-048",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "easy",
+    "stem": "You use a foundation model to condense long support tickets into short summaries. This is an example of which common application?",
+    "options": [
+      { "id": "o1", "text": "Text summarization" },
+      { "id": "o2", "text": "Image classification" },
+      { "id": "o3", "text": "Speech synthesis" },
+      { "id": "o4", "text": "Anomaly detection on tabular data" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Condensing long text into a shorter version that preserves the key points is text summarization, a core generative-AI language task.",
+    "explanationIncorrect": "Image classification labels images. Speech synthesis turns text into audio. Anomaly detection finds outliers in structured data. Condensing text is summarization.",
+    "tags": ["applications", "summarization"]
+  },
+  {
+    "id": "aip-049",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Your company wants an internal assistant that answers employee questions using connected enterprise data sources such as wikis and documents, while respecting each user's access permissions. Which offering fits?",
+    "options": [
+      { "id": "o1", "text": "Amazon Q Business" },
+      { "id": "o2", "text": "Amazon Polly" },
+      { "id": "o3", "text": "Amazon Kinesis" },
+      { "id": "o4", "text": "AWS Batch" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Q Business is a generative-AI assistant that connects to enterprise data sources and answers questions while honoring the user's access permissions, which suits an internal knowledge assistant.",
+    "explanationIncorrect": "Amazon Polly is a text-to-speech service that produces audio and does not answer questions over enterprise data. Amazon Kinesis ingests and processes real-time streaming data, not knowledge retrieval. AWS Batch runs batch compute jobs and has no assistant or permission-aware search capability. The permission-aware enterprise knowledge assistant is Amazon Q Business.",
+    "tags": ["applications", "amazon-q-business"]
+  },
+  {
+    "id": "aip-050",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "You must generate summaries for millions of documents where immediate responses are not needed and cost matters more than latency. Which Amazon Bedrock inference option fits best?",
+    "options": [
+      { "id": "o1", "text": "Batch inference" },
+      { "id": "o2", "text": "Synchronous on-demand inference, one call per document" },
+      { "id": "o3", "text": "Provisioned Throughput sized for a live chatbot" },
+      { "id": "o4", "text": "Fine-tuning a new model for each document" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Batch inference processes large volumes of prompts asynchronously at lower cost, which fits a bulk, latency-tolerant workload like summarizing millions of documents.",
+    "explanationIncorrect": "Synchronous on-demand calls per document are optimized for interactivity, not cost at massive scale. Provisioned Throughput reserves capacity for steady low-latency traffic like a chatbot, not one-off bulk jobs. Fine-tuning per document is nonsensical and costly. The cost-efficient bulk option is batch inference.",
+    "tags": ["applications", "batch-inference", "cost"]
   }
 ]
