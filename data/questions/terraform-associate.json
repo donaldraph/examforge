@@ -3739,5 +3739,243 @@
       "concepts"
     ],
     "isSeed": true
+  },
+  {
+    "id": "tf-114",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which function joins a list of strings into a single string with a separator?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "join(separator, list)"
+      },
+      {
+        "id": "o2",
+        "text": "concat(list, separator)"
+      },
+      {
+        "id": "o3",
+        "text": "merge(list)"
+      },
+      {
+        "id": "o4",
+        "text": "split(list)"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "join takes a separator and a list and returns the elements concatenated into one string separated by that value, for example join(\",\", [\"a\",\"b\"]) yields a,b.",
+    "explanationIncorrect": "concat combines multiple lists into one list; it does not produce a delimited string. merge combines maps, not list elements into a string. split does the reverse, turning a string into a list, so join is the correct function.",
+    "tags": [
+      "functions",
+      "strings",
+      "join"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-115",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "What does the lookup function do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Returns the value for a given key in a map, with an optional default"
+      },
+      {
+        "id": "o2",
+        "text": "Sorts a list"
+      },
+      {
+        "id": "o3",
+        "text": "Reads a file from disk"
+      },
+      {
+        "id": "o4",
+        "text": "Creates a new resource"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "lookup(map, key, default) returns the value stored under key in the map, or the default if the key is absent, which is handy for optional configuration.",
+    "explanationIncorrect": "Sorting a list is done by the sort function, not lookup. Reading a file uses the file function. Creating a resource is done with a resource block, not a function, so lookup is specifically for map access.",
+    "tags": [
+      "functions",
+      "maps",
+      "lookup"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-116",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "Which construct produces a new list by transforming each element of an input collection?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A for expression, e.g. [for s in var.list : upper(s)]"
+      },
+      {
+        "id": "o2",
+        "text": "The count meta-argument"
+      },
+      {
+        "id": "o3",
+        "text": "The depends_on argument"
+      },
+      {
+        "id": "o4",
+        "text": "The provider block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A for expression iterates over a collection and builds a new list or map by evaluating an expression for each element, such as uppercasing every string.",
+    "explanationIncorrect": "count controls how many instances of a resource are created, not element transformation into a new collection. depends_on declares ordering. The provider block configures a provider; none of these transform a collection the way a for expression does.",
+    "tags": [
+      "for-expression",
+      "functions",
+      "collections"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-117",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "What does the try function help with?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It returns the first argument that evaluates without error, providing a fallback"
+      },
+      {
+        "id": "o2",
+        "text": "It retries a failed apply"
+      },
+      {
+        "id": "o3",
+        "text": "It catches provider API errors at runtime"
+      },
+      {
+        "id": "o4",
+        "text": "It formats configuration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "try evaluates its arguments in order and returns the first one that succeeds, which is useful for gracefully handling values that may not exist in complex structures.",
+    "explanationIncorrect": "It does not retry a failed apply; it is an expression-level fallback, not an execution retry. It does not catch provider API errors during apply; it handles evaluation errors in expressions. It does not format configuration; that is terraform fmt.",
+    "tags": [
+      "functions",
+      "try",
+      "error-handling"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-118",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "How do you write a conditional expression that chooses between two values?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "condition ? true_value : false_value"
+      },
+      {
+        "id": "o2",
+        "text": "if condition then a else b"
+      },
+      {
+        "id": "o3",
+        "text": "switch(condition, a, b)"
+      },
+      {
+        "id": "o4",
+        "text": "when condition: a"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCL uses the ternary form condition ? true_value : false_value to select one of two values based on a boolean condition.",
+    "explanationIncorrect": "HCL does not use an if/then/else statement form in expressions. There is no switch function for this selection. There is no when expression; the ternary operator is the conditional expression in HCL.",
+    "tags": [
+      "conditional",
+      "expressions",
+      "functions"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-119",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "Which function reads the contents of a file into a string at plan time?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "file(path)"
+      },
+      {
+        "id": "o2",
+        "text": "read(path)"
+      },
+      {
+        "id": "o3",
+        "text": "open(path)"
+      },
+      {
+        "id": "o4",
+        "text": "load(path)"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "file(path) returns the contents of the file at the given path as a string, commonly used to load templates or scripts into configuration.",
+    "explanationIncorrect": "There is no read function for this purpose in Terraform. There is no open function. load is not a Terraform function; file is the built-in that reads file contents.",
+    "tags": [
+      "functions",
+      "file",
+      "strings"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-120",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "What does the length function return?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The number of elements in a list or map, or characters in a string"
+      },
+      {
+        "id": "o2",
+        "text": "The largest number in a list"
+      },
+      {
+        "id": "o3",
+        "text": "The data type of a value"
+      },
+      {
+        "id": "o4",
+        "text": "A sorted copy of a list"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "length returns the size of its argument: the element count for a list or map, or the character count for a string.",
+    "explanationIncorrect": "Returning the largest number in a list is what max does. Reporting a value's data type is done by type-related functions, not length. Producing a sorted copy of a list is the sort function's job, so length is strictly about size.",
+    "tags": [
+      "functions",
+      "length",
+      "collections"
+    ],
+    "isSeed": true
   }
 ]
