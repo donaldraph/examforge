@@ -3268,5 +3268,242 @@
       "workflow"
     ],
     "isSeed": true
+  },
+  {
+    "id": "tf-100",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "What is a workspace in HCP Terraform?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A managed environment that holds a state, variables, and run history for a configuration"
+      },
+      {
+        "id": "o2",
+        "text": "A provider plugin"
+      },
+      {
+        "id": "o3",
+        "text": "A single .tf file"
+      },
+      {
+        "id": "o4",
+        "text": "A CLI subcommand only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An HCP Terraform workspace manages a distinct state, its input variables, and the history of runs, providing a collaborative environment for a configuration.",
+    "explanationIncorrect": "A provider plugin integrates with a platform and is unrelated to a workspace. A workspace is not a single .tf file; it is a managed environment around a whole configuration. While the CLI has a workspace command for local workspaces, an HCP Terraform workspace is a full managed environment, not merely a subcommand.",
+    "tags": [
+      "hcp-terraform",
+      "workspaces"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-101",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "Which HCP Terraform feature lets you enforce policies, such as prohibiting certain resource types, before an apply?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Policy as code with Sentinel or OPA"
+      },
+      {
+        "id": "o2",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o3",
+        "text": "A provider alias"
+      },
+      {
+        "id": "o4",
+        "text": "The count meta-argument"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform supports policy as code using Sentinel or Open Policy Agent to evaluate runs against governance rules and block non-compliant applies.",
+    "explanationIncorrect": "terraform fmt only formats code and enforces no policy. A provider alias selects among provider configurations and cannot gate applies. The count meta-argument controls resource instance counts, not governance policy.",
+    "tags": [
+      "hcp-terraform",
+      "sentinel",
+      "policy-as-code"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-102",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "What is one benefit of remote runs in HCP Terraform compared with running Terraform locally?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Runs execute in a consistent managed environment with shared variables and logs"
+      },
+      {
+        "id": "o2",
+        "text": "It removes the need to write any configuration"
+      },
+      {
+        "id": "o3",
+        "text": "It disables state entirely"
+      },
+      {
+        "id": "o4",
+        "text": "It makes providers optional"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Remote runs run plans and applies in a consistent, centrally managed environment, so the team shares variables, run logs, and approvals rather than depending on individual laptops.",
+    "explanationIncorrect": "Remote runs do not eliminate writing configuration. They do not disable state; state is still central to how Terraform works. They do not make providers optional; providers are still needed to manage resources.",
+    "tags": [
+      "hcp-terraform",
+      "remote-runs",
+      "collaboration"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-103",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "How can HCP Terraform trigger a run automatically when configuration changes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "By connecting a workspace to a VCS repository so commits start runs"
+      },
+      {
+        "id": "o2",
+        "text": "By polling the state file for edits"
+      },
+      {
+        "id": "o3",
+        "text": "By watching the provider registry"
+      },
+      {
+        "id": "o4",
+        "text": "By scanning local disk on the server"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A VCS-connected workspace watches a repository and can automatically queue a plan when new commits arrive, integrating Terraform into a git-driven workflow.",
+    "explanationIncorrect": "It does not trigger runs by polling the state file, which changes as a result of runs, not as their cause. Watching the provider registry would react to provider releases, not your configuration changes. It does not scan a server's local disk for your code; VCS integration is the mechanism.",
+    "tags": [
+      "hcp-terraform",
+      "vcs",
+      "automation"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-104",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "Which feature lets one workspace consume outputs from another workspace's state in HCP Terraform?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The terraform_remote_state data source or workspace state sharing"
+      },
+      {
+        "id": "o2",
+        "text": "terraform taint"
+      },
+      {
+        "id": "o3",
+        "text": "A provider alias"
+      },
+      {
+        "id": "o4",
+        "text": "The count meta-argument"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The terraform_remote_state data source, together with workspace state sharing settings, lets one configuration read another workspace's outputs to compose infrastructure across teams.",
+    "explanationIncorrect": "terraform taint forces recreation of a resource and shares nothing between workspaces. A provider alias selects provider configurations. The count meta-argument controls instance counts; none of these read another workspace's outputs.",
+    "tags": [
+      "hcp-terraform",
+      "remote-state",
+      "outputs"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-105",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "Where are sensitive credentials best stored for HCP Terraform runs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "As sensitive workspace variables or environment variables managed in HCP Terraform"
+      },
+      {
+        "id": "o2",
+        "text": "Committed to the VCS repository"
+      },
+      {
+        "id": "o3",
+        "text": "Printed in the run log"
+      },
+      {
+        "id": "o4",
+        "text": "Hard-coded in the .tf files"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform lets you store credentials as sensitive workspace or environment variables so they are injected securely into runs and hidden from output.",
+    "explanationIncorrect": "Committing credentials to VCS exposes them in history. Printing them in the run log leaks them to anyone with access. Hard-coding them in .tf files stores secrets in source, so managed sensitive variables are the correct approach.",
+    "tags": [
+      "hcp-terraform",
+      "variables",
+      "secrets"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-106",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "What does a run in HCP Terraform typically consist of?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A plan phase followed, after approval where required, by an apply phase"
+      },
+      {
+        "id": "o2",
+        "text": "Only a format check"
+      },
+      {
+        "id": "o3",
+        "text": "Only downloading providers"
+      },
+      {
+        "id": "o4",
+        "text": "A state deletion"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A run consists of a plan that shows proposed changes and, once approved if approval is required, an apply that enacts them, all tracked centrally.",
+    "explanationIncorrect": "A run is more than a format check. It is not merely downloading providers, which is an init-time activity. It is not a state deletion; a run manages changes rather than removing state.",
+    "tags": [
+      "hcp-terraform",
+      "runs",
+      "workflow"
+    ],
+    "isSeed": true
   }
 ]
