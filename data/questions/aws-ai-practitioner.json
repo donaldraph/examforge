@@ -396,6 +396,91 @@
     "tags": ["generative-ai", "fine-tuning"]
   },
   {
+    "id": "aip-041",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "Besides temperature, which inference parameter limits sampling to the smallest set of most-likely tokens whose cumulative probability exceeds a threshold?",
+    "options": [
+      { "id": "o1", "text": "Top-p (nucleus sampling)" },
+      { "id": "o2", "text": "Maximum tokens" },
+      { "id": "o3", "text": "Number of epochs" },
+      { "id": "o4", "text": "Learning rate" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Top-p, or nucleus sampling, restricts the model to the smallest group of top tokens whose probabilities add up to the threshold, controlling diversity by probability mass.",
+    "explanationIncorrect": "Maximum tokens caps output length, not which tokens are eligible. Epochs and learning rate are training-time settings, not inference sampling controls. The cumulative-probability sampling control is top-p.",
+    "tags": ["generative-ai", "top-p", "inference-parameters"]
+  },
+  {
+    "id": "aip-042",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which model type generates images from text prompts, as in Amazon Titan Image Generator or Stable Diffusion?",
+    "options": [
+      { "id": "o1", "text": "A diffusion-based text-to-image model" },
+      { "id": "o2", "text": "A text-to-speech model" },
+      { "id": "o3", "text": "A tabular regression model" },
+      { "id": "o4", "text": "A speech-to-text model" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Text-to-image generation is done by diffusion-based models, which iteratively turn noise into an image conditioned on the text prompt.",
+    "explanationIncorrect": "A text-to-speech model produces audio, not images. A tabular regression model predicts numbers from structured data. A speech-to-text model transcribes audio. Image generation from text uses a diffusion-based text-to-image model.",
+    "tags": ["generative-ai", "diffusion", "text-to-image"]
+  },
+  {
+    "id": "aip-043",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "You want to give a chat model persistent instructions about its role and tone that apply across the whole conversation. Which prompt element is designed for this?",
+    "options": [
+      { "id": "o1", "text": "The system prompt" },
+      { "id": "o2", "text": "The temperature setting" },
+      { "id": "o3", "text": "The embedding vector" },
+      { "id": "o4", "text": "The stop sequence" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The system prompt sets high-level, persistent instructions (role, tone, constraints) that frame the whole conversation, separate from individual user messages.",
+    "explanationIncorrect": "Temperature controls randomness, not instructions. An embedding is a numeric vector representation of text, not a directive. A stop sequence tells the model where to stop generating. Persistent role and tone guidance is the system prompt.",
+    "tags": ["generative-ai", "system-prompt", "prompt-engineering"]
+  },
+  {
+    "id": "aip-044",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which AWS offering lets you quickly prototype generative AI apps in a low-code, playground-style environment built on Amazon Bedrock?",
+    "options": [
+      { "id": "o1", "text": "PartyRock, an Amazon Bedrock playground" },
+      { "id": "o2", "text": "Amazon Redshift" },
+      { "id": "o3", "text": "AWS Snowball" },
+      { "id": "o4", "text": "Amazon Neptune" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "PartyRock is a hands-on, low-code playground built on Amazon Bedrock for quickly building and experimenting with generative AI apps without deep setup.",
+    "explanationIncorrect": "Amazon Redshift is a data warehouse. AWS Snowball moves large data physically. Amazon Neptune is a graph database. The generative AI prototyping playground is PartyRock.",
+    "tags": ["generative-ai", "partyrock", "prototyping"]
+  },
+  {
+    "id": "aip-045",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "easy",
+    "stem": "Which are examples of Amazon's own family of foundation models available through Amazon Bedrock?",
+    "options": [
+      { "id": "o1", "text": "Amazon Titan and Amazon Nova models" },
+      { "id": "o2", "text": "Amazon Aurora and Amazon Redshift" },
+      { "id": "o3", "text": "Amazon EC2 and Amazon EBS" },
+      { "id": "o4", "text": "Amazon SQS and Amazon SNS" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Titan and Amazon Nova are Amazon's own foundation model families offered in Amazon Bedrock alongside third-party models.",
+    "explanationIncorrect": "Aurora and Redshift are databases. EC2 and EBS are compute and block storage. SQS and SNS are messaging services. Amazon's own foundation models are Titan and Nova.",
+    "tags": ["generative-ai", "titan", "nova"]
+  },
+  {
     "id": "aip-019",
     "exam": "aws-ai-practitioner",
     "domain": "Applications of Foundation Models",
