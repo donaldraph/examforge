@@ -6,15 +6,30 @@
     "difficulty": "easy",
     "stem": "Which Terraform command initializes a working directory, downloading the provider plugins and configuring the backend, and must be run before plan or apply?",
     "options": [
-      { "id": "o1", "text": "terraform init" },
-      { "id": "o2", "text": "terraform plan" },
-      { "id": "o3", "text": "terraform validate" },
-      { "id": "o4", "text": "terraform fmt" }
+      {
+        "id": "o1",
+        "text": "terraform init"
+      },
+      {
+        "id": "o2",
+        "text": "terraform plan"
+      },
+      {
+        "id": "o3",
+        "text": "terraform validate"
+      },
+      {
+        "id": "o4",
+        "text": "terraform fmt"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform init prepares the working directory: it downloads the required provider plugins, installs modules, and configures the backend, which is why it is the first command in the core workflow.",
     "explanationIncorrect": "terraform plan computes and shows the changes needed to reach the desired state, but it depends on an already-initialized directory with providers installed, so it cannot be the first step. terraform validate checks that the configuration is syntactically valid and internally consistent; it does not download providers or set up the backend. terraform fmt only rewrites configuration files into canonical formatting. The command that initializes providers, modules, and the backend is terraform init.",
-    "tags": ["workflow", "init"],
+    "tags": [
+      "workflow",
+      "init"
+    ],
     "isSeed": true
   },
   {
@@ -24,15 +39,31 @@
     "difficulty": "medium",
     "stem": "Several engineers run Terraform against the same infrastructure. You want to prevent two apply operations from writing to state at the same time and corrupting it. Which approach addresses this?",
     "options": [
-      { "id": "o1", "text": "Use a remote backend that supports state locking, such as S3 with DynamoDB or HCP Terraform" },
-      { "id": "o2", "text": "Commit terraform.tfstate to the Git repository so everyone shares it" },
-      { "id": "o3", "text": "Always run terraform apply with -parallelism=1" },
-      { "id": "o4", "text": "Delete the state file before each apply so there is nothing to conflict" }
+      {
+        "id": "o1",
+        "text": "Use a remote backend that supports state locking, such as S3 with DynamoDB or HCP Terraform"
+      },
+      {
+        "id": "o2",
+        "text": "Commit terraform.tfstate to the Git repository so everyone shares it"
+      },
+      {
+        "id": "o3",
+        "text": "Always run terraform apply with -parallelism=1"
+      },
+      {
+        "id": "o4",
+        "text": "Delete the state file before each apply so there is nothing to conflict"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A remote backend with state locking takes a lock for the duration of an operation, so a second apply is blocked until the first releases, which prevents concurrent writes from corrupting the shared state.",
     "explanationIncorrect": "Committing terraform.tfstate to Git shares the file but provides no locking; two people can still apply simultaneously and then clash on push, and state often contains sensitive values you should not store in version control. -parallelism=1 only limits how many resource operations run at once within a single apply; it does nothing to coordinate between two separate people running apply. Deleting the state file makes Terraform lose track of existing resources and try to recreate them, which is destructive, not protective. The correct mechanism is a remote backend with state locking.",
-    "tags": ["state", "locking", "remote-backend"],
+    "tags": [
+      "state",
+      "locking",
+      "remote-backend"
+    ],
     "isSeed": true
   },
   {
@@ -42,15 +73,31 @@
     "difficulty": "medium",
     "stem": "One resource needs an attribute of another resource (for example a VPC id) so Terraform creates them in the correct order. What is the idiomatic way to express this dependency?",
     "options": [
-      { "id": "o1", "text": "Reference the other resource's attribute directly, e.g. aws_vpc.main.id, which creates an implicit dependency" },
-      { "id": "o2", "text": "Run terraform apply twice and rely on ordering by hand" },
-      { "id": "o3", "text": "Add a provisioner that sleeps until the first resource exists" },
-      { "id": "o4", "text": "Hardcode the id string after the first apply completes" }
+      {
+        "id": "o1",
+        "text": "Reference the other resource's attribute directly, e.g. aws_vpc.main.id, which creates an implicit dependency"
+      },
+      {
+        "id": "o2",
+        "text": "Run terraform apply twice and rely on ordering by hand"
+      },
+      {
+        "id": "o3",
+        "text": "Add a provisioner that sleeps until the first resource exists"
+      },
+      {
+        "id": "o4",
+        "text": "Hardcode the id string after the first apply completes"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Referencing another resource's attribute makes Terraform build a dependency edge in its graph automatically, so it creates the referenced resource first without you declaring the order explicitly.",
     "explanationIncorrect": "Running apply twice by hand defeats the purpose of a declarative tool and does not encode the dependency in configuration, so it breaks the moment someone else runs it. A sleeping provisioner is a fragile hack that guesses at timing and still does not tell Terraform about the real ordering relationship. Hardcoding the id couples your config to one apply's output, breaks when the resource is recreated, and loses the dependency entirely. The idiomatic approach is to reference the attribute and let the implicit dependency form (use depends_on only when there is no such reference).",
-    "tags": ["basics", "dependencies", "resources"],
+    "tags": [
+      "basics",
+      "dependencies",
+      "resources"
+    ],
     "isSeed": true
   },
   {
@@ -60,15 +107,31 @@
     "difficulty": "medium",
     "stem": "You want to package a set of resources so it can be reused across projects, accept values like instance size from the caller, and hand the created resource's id back to the caller. Which Terraform constructs do you use?",
     "options": [
-      { "id": "o1", "text": "Input variables to receive values and output values to expose results, consumed through a module block" },
-      { "id": "o2", "text": "Provider aliases to pass values in and out" },
-      { "id": "o3", "text": "Workspaces to parameterize the reusable code" },
-      { "id": "o4", "text": "The terraform import command to wire modules together" }
+      {
+        "id": "o1",
+        "text": "Input variables to receive values and output values to expose results, consumed through a module block"
+      },
+      {
+        "id": "o2",
+        "text": "Provider aliases to pass values in and out"
+      },
+      {
+        "id": "o3",
+        "text": "Workspaces to parameterize the reusable code"
+      },
+      {
+        "id": "o4",
+        "text": "The terraform import command to wire modules together"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A reusable module declares input variables for what callers pass in and output values for what it returns; the caller instantiates it with a module block, setting inputs and reading its outputs.",
     "explanationIncorrect": "Provider aliases let you configure multiple instances of a provider (for example two regions); they are not the mechanism for passing arbitrary values into and out of a module. Workspaces give you multiple named state instances of the same configuration; they isolate state, they do not define a module's interface. terraform import brings existing infrastructure under Terraform management and has nothing to do with a module's inputs and outputs. The reusable-module interface is input variables plus output values, used via a module block.",
-    "tags": ["modules", "variables", "outputs"],
+    "tags": [
+      "modules",
+      "variables",
+      "outputs"
+    ],
     "isSeed": true
   },
   {
@@ -78,15 +141,31 @@
     "difficulty": "easy",
     "stem": "Where can you publish and discover reusable, versioned modules and providers for Terraform, with both a public option and a private option for your organization?",
     "options": [
-      { "id": "o1", "text": "The Terraform Registry (public registry, plus a private registry in HCP Terraform / Terraform Cloud)" },
-      { "id": "o2", "text": "The terraform.tfstate file" },
-      { "id": "o3", "text": "The .terraform.lock.hcl dependency lock file" },
-      { "id": "o4", "text": "The local .terraform directory" }
+      {
+        "id": "o1",
+        "text": "The Terraform Registry (public registry, plus a private registry in HCP Terraform / Terraform Cloud)"
+      },
+      {
+        "id": "o2",
+        "text": "The terraform.tfstate file"
+      },
+      {
+        "id": "o3",
+        "text": "The .terraform.lock.hcl dependency lock file"
+      },
+      {
+        "id": "o4",
+        "text": "The local .terraform directory"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The Terraform Registry hosts versioned, shareable modules and providers; the public registry is open to everyone, and HCP Terraform / Terraform Cloud adds a private registry for an organization's own modules.",
     "explanationIncorrect": "terraform.tfstate records the current state of managed infrastructure; it is not a catalog of shareable modules. The .terraform.lock.hcl file pins the exact provider versions selected for a configuration so runs are reproducible; it does not host or distribute modules. The local .terraform directory is a working cache of installed providers and modules for one directory, not a place others discover and pull from. The place to publish and find versioned modules and providers is the Terraform Registry.",
-    "tags": ["registry", "modules", "terraform-cloud"],
+    "tags": [
+      "registry",
+      "modules",
+      "terraform-cloud"
+    ],
     "isSeed": true
   },
   {
@@ -96,15 +175,31 @@
     "difficulty": "easy",
     "stem": "Which is a primary benefit of managing infrastructure as code with Terraform?",
     "options": [
-      { "id": "o1", "text": "Infrastructure is defined in version-controlled files, making provisioning repeatable, reviewable, and automatable" },
-      { "id": "o2", "text": "It removes the need to define any infrastructure at all" },
-      { "id": "o3", "text": "It guarantees infrastructure can never be changed again" },
-      { "id": "o4", "text": "It only works by clicking through a web console" }
+      {
+        "id": "o1",
+        "text": "Infrastructure is defined in version-controlled files, making provisioning repeatable, reviewable, and automatable"
+      },
+      {
+        "id": "o2",
+        "text": "It removes the need to define any infrastructure at all"
+      },
+      {
+        "id": "o3",
+        "text": "It guarantees infrastructure can never be changed again"
+      },
+      {
+        "id": "o4",
+        "text": "It only works by clicking through a web console"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Infrastructure as code puts your infrastructure definitions in files you can version, review, and reuse, so environments are provisioned consistently and changes go through the same process as application code.",
     "explanationIncorrect": "IaC does not remove the need to define infrastructure; it is how you define it. It does not freeze infrastructure; you change it by updating the code and applying. And its whole point is codified, automatable provisioning rather than manual console clicking. The benefit is version-controlled, repeatable infrastructure.",
-    "tags": ["iac", "concepts", "benefits"]
+    "tags": [
+      "iac",
+      "concepts",
+      "benefits"
+    ]
   },
   {
     "id": "tf-007",
@@ -113,15 +208,30 @@
     "difficulty": "medium",
     "stem": "Terraform configurations describe the desired end state of infrastructure rather than the step-by-step commands to reach it. What is this style called?",
     "options": [
-      { "id": "o1", "text": "Declarative" },
-      { "id": "o2", "text": "Imperative" },
-      { "id": "o3", "text": "Procedural" },
-      { "id": "o4", "text": "Object-oriented" }
+      {
+        "id": "o1",
+        "text": "Declarative"
+      },
+      {
+        "id": "o2",
+        "text": "Imperative"
+      },
+      {
+        "id": "o3",
+        "text": "Procedural"
+      },
+      {
+        "id": "o4",
+        "text": "Object-oriented"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform is declarative: you specify what the end state should be, and Terraform figures out the operations needed to reach it, comparing desired state against current state.",
     "explanationIncorrect": "Imperative and procedural styles require you to spell out each step and their order, which is what declarative configuration avoids. Object-oriented describes a programming paradigm around objects and classes, not how infrastructure intent is expressed. Describing desired end state is declarative.",
-    "tags": ["iac", "declarative"]
+    "tags": [
+      "iac",
+      "declarative"
+    ]
   },
   {
     "id": "tf-008",
@@ -130,15 +240,31 @@
     "difficulty": "medium",
     "stem": "Compared with a tool like AWS CloudFormation, what distinguishes Terraform's purpose?",
     "options": [
-      { "id": "o1", "text": "It is provider-agnostic, managing many providers (AWS, Azure, Google Cloud, and more) through one workflow and language" },
-      { "id": "o2", "text": "It can only manage AWS resources" },
-      { "id": "o3", "text": "It cannot manage any cloud resources" },
-      { "id": "o4", "text": "It requires a completely different configuration language for each provider" }
+      {
+        "id": "o1",
+        "text": "It is provider-agnostic, managing many providers (AWS, Azure, Google Cloud, and more) through one workflow and language"
+      },
+      {
+        "id": "o2",
+        "text": "It can only manage AWS resources"
+      },
+      {
+        "id": "o3",
+        "text": "It cannot manage any cloud resources"
+      },
+      {
+        "id": "o4",
+        "text": "It requires a completely different configuration language for each provider"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform works across many providers through a single workflow and HCL configuration, so you are not tied to one vendor's tooling the way a cloud-specific tool is.",
     "explanationIncorrect": "Terraform is not limited to AWS; that describes a single-cloud tool. It clearly does manage cloud resources across providers. And it uses the same configuration language regardless of provider, with providers supplying the resource types, not a new language each. The distinguishing trait is being provider-agnostic.",
-    "tags": ["iac", "multi-cloud", "providers"]
+    "tags": [
+      "iac",
+      "multi-cloud",
+      "providers"
+    ]
   },
   {
     "id": "tf-009",
@@ -147,15 +273,31 @@
     "difficulty": "easy",
     "stem": "Which Terraform capability lets you preview the exact additions, changes, and deletions before any infrastructure is modified?",
     "options": [
-      { "id": "o1", "text": "terraform plan, which produces an execution plan without making changes" },
-      { "id": "o2", "text": "terraform apply, because it is the only way to see what will change" },
-      { "id": "o3", "text": "terraform destroy, which safely previews changes" },
-      { "id": "o4", "text": "There is no way to preview changes before applying" }
+      {
+        "id": "o1",
+        "text": "terraform plan, which produces an execution plan without making changes"
+      },
+      {
+        "id": "o2",
+        "text": "terraform apply, because it is the only way to see what will change"
+      },
+      {
+        "id": "o3",
+        "text": "terraform destroy, which safely previews changes"
+      },
+      {
+        "id": "o4",
+        "text": "There is no way to preview changes before applying"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform plan compares desired configuration with current state and prints exactly what will be created, changed, or destroyed, all without touching real infrastructure, so you can review before applying.",
     "explanationIncorrect": "terraform apply actually makes the changes (though it shows a plan first, it is not a preview-only command). terraform destroy tears down managed infrastructure; it is not a general preview. And Terraform certainly can preview changes, so claiming otherwise is wrong. The preview command is terraform plan.",
-    "tags": ["iac", "plan", "workflow"]
+    "tags": [
+      "iac",
+      "plan",
+      "workflow"
+    ]
   },
   {
     "id": "tf-010",
@@ -164,15 +306,31 @@
     "difficulty": "medium",
     "stem": "Terraform configurations are written primarily in which language, and providers serve what role?",
     "options": [
-      { "id": "o1", "text": "HashiCorp Configuration Language (HCL); providers are plugins that let Terraform manage a specific platform's APIs" },
-      { "id": "o2", "text": "YAML; providers are cloud billing accounts" },
-      { "id": "o3", "text": "Python; providers are the state files" },
-      { "id": "o4", "text": "JSON only; providers are workspaces" }
+      {
+        "id": "o1",
+        "text": "HashiCorp Configuration Language (HCL); providers are plugins that let Terraform manage a specific platform's APIs"
+      },
+      {
+        "id": "o2",
+        "text": "YAML; providers are cloud billing accounts"
+      },
+      {
+        "id": "o3",
+        "text": "Python; providers are the state files"
+      },
+      {
+        "id": "o4",
+        "text": "JSON only; providers are workspaces"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform configuration is written in HCL (with an optional JSON syntax), and providers are plugins that implement the resource types and API calls for a given platform such as AWS or Azure.",
     "explanationIncorrect": "Terraform does not use YAML, and providers are not billing accounts. It is not written in Python, and providers are not state files. It is not JSON-only, and providers are not workspaces. The language is HCL and providers are the platform plugins.",
-    "tags": ["iac", "hcl", "providers"]
+    "tags": [
+      "iac",
+      "hcl",
+      "providers"
+    ]
   },
   {
     "id": "tf-036",
@@ -181,15 +339,30 @@
     "difficulty": "medium",
     "stem": "You run terraform apply twice with no configuration changes in between. What happens on the second apply?",
     "options": [
-      { "id": "o1", "text": "No changes are made, because the actual state already matches the desired configuration" },
-      { "id": "o2", "text": "The resources are duplicated" },
-      { "id": "o3", "text": "Everything is destroyed and recreated" },
-      { "id": "o4", "text": "An error is always thrown on a repeat apply" }
+      {
+        "id": "o1",
+        "text": "No changes are made, because the actual state already matches the desired configuration"
+      },
+      {
+        "id": "o2",
+        "text": "The resources are duplicated"
+      },
+      {
+        "id": "o3",
+        "text": "Everything is destroyed and recreated"
+      },
+      {
+        "id": "o4",
+        "text": "An error is always thrown on a repeat apply"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform is declarative and idempotent: it compares desired configuration with current state, and when they already match there is nothing to change, so a repeat apply is a no-op.",
     "explanationIncorrect": "Terraform does not duplicate resources it already manages; it tracks them in state. It does not destroy and recreate everything on every apply. And a repeat apply with no changes does not error. Because it reconciles to desired state, the second apply makes no changes.",
-    "tags": ["iac", "idempotency"]
+    "tags": [
+      "iac",
+      "idempotency"
+    ]
   },
   {
     "id": "tf-037",
@@ -198,15 +371,31 @@
     "difficulty": "medium",
     "stem": "How does Terraform's primary role differ from a configuration management tool such as Ansible?",
     "options": [
-      { "id": "o1", "text": "Terraform primarily provisions and manages infrastructure resources, while configuration management tools primarily install and configure software on existing servers" },
-      { "id": "o2", "text": "They are identical in purpose and interchangeable" },
-      { "id": "o3", "text": "Terraform only installs software packages on servers" },
-      { "id": "o4", "text": "Terraform cannot create cloud resources at all" }
+      {
+        "id": "o1",
+        "text": "Terraform primarily provisions and manages infrastructure resources, while configuration management tools primarily install and configure software on existing servers"
+      },
+      {
+        "id": "o2",
+        "text": "They are identical in purpose and interchangeable"
+      },
+      {
+        "id": "o3",
+        "text": "Terraform only installs software packages on servers"
+      },
+      {
+        "id": "o4",
+        "text": "Terraform cannot create cloud resources at all"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform's focus is provisioning infrastructure (servers, networks, managed services), whereas configuration management tools focus on installing and configuring software on machines that already exist; the two are often used together.",
     "explanationIncorrect": "They are not identical; their primary jobs differ. Terraform is not limited to installing packages; that is closer to configuration management's role. Terraform certainly creates cloud resources. The distinction is provisioning versus in-place software configuration.",
-    "tags": ["iac", "provisioning", "config-management"]
+    "tags": [
+      "iac",
+      "provisioning",
+      "config-management"
+    ]
   },
   {
     "id": "tf-038",
@@ -215,15 +404,31 @@
     "difficulty": "medium",
     "stem": "How does Terraform determine the correct order in which to create interdependent resources?",
     "options": [
-      { "id": "o1", "text": "It builds a dependency graph from resource references and creates resources in dependency order, parallelizing independent ones" },
-      { "id": "o2", "text": "Strictly top to bottom by their position in the file" },
-      { "id": "o3", "text": "In a random order each run" },
-      { "id": "o4", "text": "Alphabetically by resource name" }
+      {
+        "id": "o1",
+        "text": "It builds a dependency graph from resource references and creates resources in dependency order, parallelizing independent ones"
+      },
+      {
+        "id": "o2",
+        "text": "Strictly top to bottom by their position in the file"
+      },
+      {
+        "id": "o3",
+        "text": "In a random order each run"
+      },
+      {
+        "id": "o4",
+        "text": "Alphabetically by resource name"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform constructs a dependency graph from the references between resources and uses it to order operations, creating dependencies first and running independent resources in parallel for speed.",
     "explanationIncorrect": "File position does not determine creation order; the references between resources do. The order is deterministic and derived from the graph rather than random from run to run. It is not alphabetical by name either. Terraform decides ordering by building and walking the dependency graph.",
-    "tags": ["iac", "dependency-graph", "ordering"]
+    "tags": [
+      "iac",
+      "dependency-graph",
+      "ordering"
+    ]
   },
   {
     "id": "tf-039",
@@ -232,15 +437,31 @@
     "difficulty": "medium",
     "stem": "Someone manually changes a resource that Terraform manages. What does the next terraform plan show?",
     "options": [
-      { "id": "o1", "text": "Drift: the difference between the actual state and the desired configuration, with a plan to reconcile it" },
-      { "id": "o2", "text": "Nothing, because Terraform ignores out-of-band changes forever" },
-      { "id": "o3", "text": "It deletes the entire state file" },
-      { "id": "o4", "text": "It always errors and cannot continue" }
+      {
+        "id": "o1",
+        "text": "Drift: the difference between the actual state and the desired configuration, with a plan to reconcile it"
+      },
+      {
+        "id": "o2",
+        "text": "Nothing, because Terraform ignores out-of-band changes forever"
+      },
+      {
+        "id": "o3",
+        "text": "It deletes the entire state file"
+      },
+      {
+        "id": "o4",
+        "text": "It always errors and cannot continue"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform refreshes actual state and compares it to the desired configuration, so a manual change surfaces as drift and plan proposes changes to bring reality back in line with the configuration.",
     "explanationIncorrect": "Terraform does not permanently ignore out-of-band changes; it detects them. It does not delete the state file in response to drift. It does not simply error out. Manual changes appear as drift in the plan.",
-    "tags": ["iac", "drift", "reconciliation"]
+    "tags": [
+      "iac",
+      "drift",
+      "reconciliation"
+    ]
   },
   {
     "id": "tf-040",
@@ -249,15 +470,31 @@
     "difficulty": "easy",
     "stem": "Where does Terraform download provider plugins from by default during terraform init?",
     "options": [
-      { "id": "o1", "text": "The Terraform Registry (registry.terraform.io)" },
-      { "id": "o2", "text": "Docker Hub" },
-      { "id": "o3", "text": "The npm registry" },
-      { "id": "o4", "text": "The state file" }
+      {
+        "id": "o1",
+        "text": "The Terraform Registry (registry.terraform.io)"
+      },
+      {
+        "id": "o2",
+        "text": "Docker Hub"
+      },
+      {
+        "id": "o3",
+        "text": "The npm registry"
+      },
+      {
+        "id": "o4",
+        "text": "The state file"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "By default terraform init fetches providers from the public Terraform Registry, which hosts official and community provider plugins.",
     "explanationIncorrect": "Docker Hub hosts container images, not Terraform providers. The npm registry hosts JavaScript packages. The state file records managed resources and is not a plugin source. Providers come from the Terraform Registry.",
-    "tags": ["iac", "registry", "providers"]
+    "tags": [
+      "iac",
+      "registry",
+      "providers"
+    ]
   },
   {
     "id": "tf-011",
@@ -266,15 +503,30 @@
     "difficulty": "medium",
     "stem": "You need to look up an existing AMI id that you did not create with Terraform, to reference in a resource. Which construct fetches that read-only information?",
     "options": [
-      { "id": "o1", "text": "A data source (a data block)" },
-      { "id": "o2", "text": "A resource block" },
-      { "id": "o3", "text": "An output value" },
-      { "id": "o4", "text": "An input variable" }
+      {
+        "id": "o1",
+        "text": "A data source (a data block)"
+      },
+      {
+        "id": "o2",
+        "text": "A resource block"
+      },
+      {
+        "id": "o3",
+        "text": "An output value"
+      },
+      {
+        "id": "o4",
+        "text": "An input variable"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A data source reads existing, externally managed information (like an AMI id) so your configuration can reference it without Terraform managing that object's lifecycle.",
     "explanationIncorrect": "A resource block creates and manages an object's lifecycle, which is not what you want for something you only need to read. An output value exposes information to callers, not fetch external data. An input variable receives values from the user; it does not query provider APIs. Reading existing data is a data source.",
-    "tags": ["basics", "data-source"]
+    "tags": [
+      "basics",
+      "data-source"
+    ]
   },
   {
     "id": "tf-012",
@@ -283,15 +535,31 @@
     "difficulty": "medium",
     "stem": "Where do you declare which providers a configuration requires and pin their acceptable versions?",
     "options": [
-      { "id": "o1", "text": "In the terraform block's required_providers, with version constraints" },
-      { "id": "o2", "text": "In terraform.tfstate" },
-      { "id": "o3", "text": "In an input variable named provider" },
-      { "id": "o4", "text": "By hand-editing .terraform.lock.hcl only" }
+      {
+        "id": "o1",
+        "text": "In the terraform block's required_providers, with version constraints"
+      },
+      {
+        "id": "o2",
+        "text": "In terraform.tfstate"
+      },
+      {
+        "id": "o3",
+        "text": "In an input variable named provider"
+      },
+      {
+        "id": "o4",
+        "text": "By hand-editing .terraform.lock.hcl only"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The terraform block's required_providers declares each provider's source and version constraints, so Terraform installs compatible versions during init.",
     "explanationIncorrect": "terraform.tfstate records resource state, not provider requirements. A variable named provider does not declare provider requirements. The .terraform.lock.hcl records the exact versions selected and is generated by Terraform, not the place you author constraints by hand. Provider requirements live in required_providers.",
-    "tags": ["basics", "required-providers", "versions"]
+    "tags": [
+      "basics",
+      "required-providers",
+      "versions"
+    ]
   },
   {
     "id": "tf-013",
@@ -300,15 +568,31 @@
     "difficulty": "hard",
     "stem": "You must create resources in two AWS regions within one configuration. How do you configure two instances of the AWS provider?",
     "options": [
-      { "id": "o1", "text": "Define the provider twice using the alias argument, then set provider = aws.<alias> on the relevant resources" },
-      { "id": "o2", "text": "Use two separate workspaces" },
-      { "id": "o3", "text": "Maintain two state files and switch between them manually" },
-      { "id": "o4", "text": "It is impossible to use two regions in a single configuration" }
+      {
+        "id": "o1",
+        "text": "Define the provider twice using the alias argument, then set provider = aws.<alias> on the relevant resources"
+      },
+      {
+        "id": "o2",
+        "text": "Use two separate workspaces"
+      },
+      {
+        "id": "o3",
+        "text": "Maintain two state files and switch between them manually"
+      },
+      {
+        "id": "o4",
+        "text": "It is impossible to use two regions in a single configuration"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Provider aliases let you declare multiple configurations of the same provider (for example one per region), and resources select which one to use with the provider argument referencing the alias.",
     "explanationIncorrect": "Workspaces give you multiple state instances of the same configuration; they do not configure two regions at once. Juggling two state files by hand is error-prone and unnecessary. Multi-region in one configuration is fully supported, so claiming it is impossible is wrong. The mechanism is provider aliases.",
-    "tags": ["basics", "provider-alias", "multi-region"]
+    "tags": [
+      "basics",
+      "provider-alias",
+      "multi-region"
+    ]
   },
   {
     "id": "tf-041",
@@ -317,15 +601,30 @@
     "difficulty": "easy",
     "stem": "A resource declared as resource \"aws_instance\" \"web\" { } is referenced elsewhere in the configuration by which address?",
     "options": [
-      { "id": "o1", "text": "aws_instance.web" },
-      { "id": "o2", "text": "web.aws_instance" },
-      { "id": "o3", "text": "resource.web" },
-      { "id": "o4", "text": "aws_instance[web]" }
+      {
+        "id": "o1",
+        "text": "aws_instance.web"
+      },
+      {
+        "id": "o2",
+        "text": "web.aws_instance"
+      },
+      {
+        "id": "o3",
+        "text": "resource.web"
+      },
+      {
+        "id": "o4",
+        "text": "aws_instance[web]"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A managed resource's address is its type followed by its local name, so this resource is referenced as aws_instance.web (and its attributes as aws_instance.web.<attr>).",
     "explanationIncorrect": "The order is type then name, not name then type, so web.aws_instance is wrong. resource.web drops the type. aws_instance[web] is not valid address syntax. The address is aws_instance.web.",
-    "tags": ["basics", "resource-address"]
+    "tags": [
+      "basics",
+      "resource-address"
+    ]
   },
   {
     "id": "tf-042",
@@ -334,15 +633,31 @@
     "difficulty": "medium",
     "stem": "Two resources have no attribute reference between them, but one must be created before the other because of a side effect. How do you enforce that ordering?",
     "options": [
-      { "id": "o1", "text": "Add an explicit depends_on listing the prerequisite resource" },
-      { "id": "o2", "text": "Reorder the resource blocks in the file" },
-      { "id": "o3", "text": "Run terraform apply twice" },
-      { "id": "o4", "text": "Introduce an unused variable" }
+      {
+        "id": "o1",
+        "text": "Add an explicit depends_on listing the prerequisite resource"
+      },
+      {
+        "id": "o2",
+        "text": "Reorder the resource blocks in the file"
+      },
+      {
+        "id": "o3",
+        "text": "Run terraform apply twice"
+      },
+      {
+        "id": "o4",
+        "text": "Introduce an unused variable"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "When there is no natural attribute reference to create an implicit dependency, depends_on declares the ordering explicitly so Terraform creates the prerequisite first.",
     "explanationIncorrect": "File order does not affect creation order in Terraform. Running apply twice is a manual hack that does not encode the dependency. An unused variable creates no ordering relationship. The explicit-ordering tool is depends_on.",
-    "tags": ["basics", "depends-on", "explicit-dependency"]
+    "tags": [
+      "basics",
+      "depends-on",
+      "explicit-dependency"
+    ]
   },
   {
     "id": "tf-043",
@@ -351,15 +666,30 @@
     "difficulty": "medium",
     "stem": "You want to require that only Terraform v1.5 or newer is used with your configuration. Where do you declare this?",
     "options": [
-      { "id": "o1", "text": "required_version in the terraform block" },
-      { "id": "o2", "text": "In a variable's default value" },
-      { "id": "o3", "text": "In terraform.tfstate" },
-      { "id": "o4", "text": "In the provider block" }
+      {
+        "id": "o1",
+        "text": "required_version in the terraform block"
+      },
+      {
+        "id": "o2",
+        "text": "In a variable's default value"
+      },
+      {
+        "id": "o3",
+        "text": "In terraform.tfstate"
+      },
+      {
+        "id": "o4",
+        "text": "In the provider block"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The terraform block's required_version sets a version constraint on the Terraform CLI itself, so an incompatible version refuses to run the configuration.",
     "explanationIncorrect": "A variable default supplies input values, not a CLI version constraint. terraform.tfstate records resource state. The provider block configures a provider, not the Terraform core version. The core version constraint is required_version.",
-    "tags": ["basics", "required-version"]
+    "tags": [
+      "basics",
+      "required-version"
+    ]
   },
   {
     "id": "tf-044",
@@ -368,15 +698,31 @@
     "difficulty": "easy",
     "stem": "How do you tell the AWS provider which region to operate in?",
     "options": [
-      { "id": "o1", "text": "Set the region argument in the provider \"aws\" block (or supply it via environment variables)" },
-      { "id": "o2", "text": "Put the region in each resource's tags" },
-      { "id": "o3", "text": "Store the region in terraform.tfstate" },
-      { "id": "o4", "text": "Add the region to .terraform.lock.hcl" }
+      {
+        "id": "o1",
+        "text": "Set the region argument in the provider \"aws\" block (or supply it via environment variables)"
+      },
+      {
+        "id": "o2",
+        "text": "Put the region in each resource's tags"
+      },
+      {
+        "id": "o3",
+        "text": "Store the region in terraform.tfstate"
+      },
+      {
+        "id": "o4",
+        "text": "Add the region to .terraform.lock.hcl"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Provider settings like region are configured in the provider block (or through environment variables such as AWS_REGION), which tells the provider where to create resources.",
     "explanationIncorrect": "Resource tags are metadata on resources, not provider configuration. The state file records managed resources, not provider settings you author. The lock file pins provider versions. Region is set in the provider configuration.",
-    "tags": ["basics", "provider-configuration", "region"]
+    "tags": [
+      "basics",
+      "provider-configuration",
+      "region"
+    ]
   },
   {
     "id": "tf-045",
@@ -385,15 +731,30 @@
     "difficulty": "hard",
     "stem": "Which statement about Terraform provisioners (such as remote-exec) is accurate?",
     "options": [
-      { "id": "o1", "text": "They are a last resort for actions Terraform cannot model as resources, and are discouraged when a native resource or provider exists" },
-      { "id": "o2", "text": "They are the recommended primary way to configure everything" },
-      { "id": "o3", "text": "They cannot run any commands on a resource" },
-      { "id": "o4", "text": "They remove the need to configure providers" }
+      {
+        "id": "o1",
+        "text": "They are a last resort for actions Terraform cannot model as resources, and are discouraged when a native resource or provider exists"
+      },
+      {
+        "id": "o2",
+        "text": "They are the recommended primary way to configure everything"
+      },
+      {
+        "id": "o3",
+        "text": "They cannot run any commands on a resource"
+      },
+      {
+        "id": "o4",
+        "text": "They remove the need to configure providers"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "HashiCorp advises using provisioners only as a last resort for behavior that cannot be expressed through resources or providers, because they are imperative, harder to reason about, and less reliable than declarative resources.",
     "explanationIncorrect": "They are explicitly not the recommended primary configuration mechanism. They can run commands (that is their purpose), so saying they cannot is wrong. They do not replace providers, which implement resource types. Provisioners are a discouraged last resort.",
-    "tags": ["basics", "provisioners"]
+    "tags": [
+      "basics",
+      "provisioners"
+    ]
   },
   {
     "id": "tf-014",
@@ -402,15 +763,30 @@
     "difficulty": "easy",
     "stem": "Which command removes all the infrastructure that Terraform manages for the current configuration and state?",
     "options": [
-      { "id": "o1", "text": "terraform destroy" },
-      { "id": "o2", "text": "terraform delete" },
-      { "id": "o3", "text": "terraform remove" },
-      { "id": "o4", "text": "Deleting the terraform.tfstate file" }
+      {
+        "id": "o1",
+        "text": "terraform destroy"
+      },
+      {
+        "id": "o2",
+        "text": "terraform delete"
+      },
+      {
+        "id": "o3",
+        "text": "terraform remove"
+      },
+      {
+        "id": "o4",
+        "text": "Deleting the terraform.tfstate file"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform destroy tears down the resources tracked in state for the configuration, calling the provider APIs to delete them in dependency order.",
     "explanationIncorrect": "terraform delete and terraform remove are not real commands. Deleting the state file only makes Terraform forget about the resources; the real infrastructure keeps running and becomes orphaned, which is the opposite of destroying it. The command to tear down managed infrastructure is terraform destroy.",
-    "tags": ["workflow", "destroy"]
+    "tags": [
+      "workflow",
+      "destroy"
+    ]
   },
   {
     "id": "tf-015",
@@ -419,15 +795,31 @@
     "difficulty": "medium",
     "stem": "Which command rewrites configuration files into canonical formatting, and which checks a configuration for internal validity?",
     "options": [
-      { "id": "o1", "text": "terraform fmt formats the files; terraform validate checks validity" },
-      { "id": "o2", "text": "terraform validate formats the files; terraform fmt checks validity" },
-      { "id": "o3", "text": "Both commands do exactly the same thing" },
-      { "id": "o4", "text": "terraform plan performs both formatting and validation" }
+      {
+        "id": "o1",
+        "text": "terraform fmt formats the files; terraform validate checks validity"
+      },
+      {
+        "id": "o2",
+        "text": "terraform validate formats the files; terraform fmt checks validity"
+      },
+      {
+        "id": "o3",
+        "text": "Both commands do exactly the same thing"
+      },
+      {
+        "id": "o4",
+        "text": "terraform plan performs both formatting and validation"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform fmt normalizes style and layout of configuration files, while terraform validate checks that the configuration is syntactically valid and internally consistent without contacting any provider.",
     "explanationIncorrect": "The roles are not swapped: fmt is formatting and validate is checking, not the reverse. They are distinct commands, not identical. terraform plan computes an execution plan and does not reformat files, so it is not a substitute for either. fmt formats and validate validates.",
-    "tags": ["workflow", "fmt", "validate"]
+    "tags": [
+      "workflow",
+      "fmt",
+      "validate"
+    ]
   },
   {
     "id": "tf-016",
@@ -436,15 +828,31 @@
     "difficulty": "medium",
     "stem": "To guarantee that exactly the reviewed set of changes is applied, how do you run apply against a specific plan?",
     "options": [
-      { "id": "o1", "text": "Save the plan with terraform plan -out=planfile, then run terraform apply planfile" },
-      { "id": "o2", "text": "Run terraform apply -auto-approve without producing a plan first" },
-      { "id": "o3", "text": "Copy the plan output text and paste it into the terminal" },
-      { "id": "o4", "text": "Re-run plan at apply time and assume it matches" }
+      {
+        "id": "o1",
+        "text": "Save the plan with terraform plan -out=planfile, then run terraform apply planfile"
+      },
+      {
+        "id": "o2",
+        "text": "Run terraform apply -auto-approve without producing a plan first"
+      },
+      {
+        "id": "o3",
+        "text": "Copy the plan output text and paste it into the terminal"
+      },
+      {
+        "id": "o4",
+        "text": "Re-run plan at apply time and assume it matches"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Saving a plan to a file and then applying that exact file guarantees Terraform makes precisely the changes that were reviewed, with no re-computation that could differ.",
     "explanationIncorrect": "apply -auto-approve with no saved plan recomputes changes and skips review, so it does not guarantee the reviewed set. Pasting plan text does nothing executable. Re-running plan at apply time can produce a different result if state or inputs changed, defeating the guarantee. Applying a saved plan file is the reliable method.",
-    "tags": ["workflow", "saved-plan", "apply"]
+    "tags": [
+      "workflow",
+      "saved-plan",
+      "apply"
+    ]
   },
   {
     "id": "tf-017",
@@ -453,15 +861,31 @@
     "difficulty": "easy",
     "stem": "By default, what does terraform apply do before making any changes?",
     "options": [
-      { "id": "o1", "text": "It shows the execution plan and prompts for interactive approval before proceeding" },
-      { "id": "o2", "text": "It applies all changes immediately with no confirmation" },
-      { "id": "o3", "text": "It only reformats the configuration files" },
-      { "id": "o4", "text": "It destroys all existing resources first" }
+      {
+        "id": "o1",
+        "text": "It shows the execution plan and prompts for interactive approval before proceeding"
+      },
+      {
+        "id": "o2",
+        "text": "It applies all changes immediately with no confirmation"
+      },
+      {
+        "id": "o3",
+        "text": "It only reformats the configuration files"
+      },
+      {
+        "id": "o4",
+        "text": "It destroys all existing resources first"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Run interactively, terraform apply generates and displays the plan, then waits for you to type yes to approve before it changes any infrastructure.",
     "explanationIncorrect": "It does not apply silently unless you pass -auto-approve or a saved plan. It does not merely reformat files; that is terraform fmt. It does not destroy everything first; it makes only the changes needed to reach desired state. By default, apply shows a plan and asks for approval.",
-    "tags": ["workflow", "apply", "approval"]
+    "tags": [
+      "workflow",
+      "apply",
+      "approval"
+    ]
   },
   {
     "id": "tf-046",
@@ -470,15 +894,30 @@
     "difficulty": "easy",
     "stem": "After an apply, you want to print the values of your configuration's declared output values on the command line. Which command does this?",
     "options": [
-      { "id": "o1", "text": "terraform output" },
-      { "id": "o2", "text": "terraform show state" },
-      { "id": "o3", "text": "terraform plan -out" },
-      { "id": "o4", "text": "terraform get" }
+      {
+        "id": "o1",
+        "text": "terraform output"
+      },
+      {
+        "id": "o2",
+        "text": "terraform show state"
+      },
+      {
+        "id": "o3",
+        "text": "terraform plan -out"
+      },
+      {
+        "id": "o4",
+        "text": "terraform get"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform output reads the current state and prints the root module's output values, optionally a single named output or in JSON.",
     "explanationIncorrect": "terraform show state is not the output command; terraform show displays state or a plan in full. terraform plan -out writes a plan to a file. terraform get downloads modules. Printing outputs is terraform output.",
-    "tags": ["workflow", "output"]
+    "tags": [
+      "workflow",
+      "output"
+    ]
   },
   {
     "id": "tf-047",
@@ -487,15 +926,31 @@
     "difficulty": "medium",
     "stem": "You added a new provider and a new module to your configuration. What must you run before plan or apply will work?",
     "options": [
-      { "id": "o1", "text": "terraform init again, to install the new provider and module" },
-      { "id": "o2", "text": "terraform fmt" },
-      { "id": "o3", "text": "terraform output" },
-      { "id": "o4", "text": "terraform destroy" }
+      {
+        "id": "o1",
+        "text": "terraform init again, to install the new provider and module"
+      },
+      {
+        "id": "o2",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o3",
+        "text": "terraform output"
+      },
+      {
+        "id": "o4",
+        "text": "terraform destroy"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Adding a provider or module means new plugins or module sources must be installed, so you re-run terraform init to fetch them before planning or applying.",
     "explanationIncorrect": "terraform fmt only reformats files and installs nothing. terraform output prints outputs. terraform destroy tears down infrastructure. Installing newly added providers and modules requires re-running terraform init.",
-    "tags": ["workflow", "init", "re-init"]
+    "tags": [
+      "workflow",
+      "init",
+      "re-init"
+    ]
   },
   {
     "id": "tf-048",
@@ -504,15 +959,31 @@
     "difficulty": "medium",
     "stem": "In a CI pipeline you want apply to proceed without the interactive approval prompt, accepting that risk. Which flag do you pass?",
     "options": [
-      { "id": "o1", "text": "terraform apply -auto-approve" },
-      { "id": "o2", "text": "terraform apply --force-yes" },
-      { "id": "o3", "text": "terraform apply -y" },
-      { "id": "o4", "text": "terraform apply --no-prompt" }
+      {
+        "id": "o1",
+        "text": "terraform apply -auto-approve"
+      },
+      {
+        "id": "o2",
+        "text": "terraform apply --force-yes"
+      },
+      {
+        "id": "o3",
+        "text": "terraform apply -y"
+      },
+      {
+        "id": "o4",
+        "text": "terraform apply --no-prompt"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "-auto-approve skips the interactive confirmation so apply runs unattended, which is how automated pipelines apply changes (ideally against a reviewed saved plan).",
     "explanationIncorrect": "--force-yes is not a Terraform flag; that syntax belongs to other tools. -y is not accepted by terraform apply. --no-prompt is likewise not a real Terraform flag. The only flag that skips the interactive confirmation prompt on apply is -auto-approve.",
-    "tags": ["workflow", "auto-approve", "automation"]
+    "tags": [
+      "workflow",
+      "auto-approve",
+      "automation"
+    ]
   },
   {
     "id": "tf-049",
@@ -521,15 +992,31 @@
     "difficulty": "hard",
     "stem": "You need to apply a change to a single resource only, as a temporary workaround. Which flag limits the operation to that resource?",
     "options": [
-      { "id": "o1", "text": "terraform apply -target=<resource address>, used sparingly" },
-      { "id": "o2", "text": "terraform apply -only=<resource>" },
-      { "id": "o3", "text": "terraform apply -single=<resource>" },
-      { "id": "o4", "text": "There is no way to scope an apply to one resource" }
+      {
+        "id": "o1",
+        "text": "terraform apply -target=<resource address>, used sparingly"
+      },
+      {
+        "id": "o2",
+        "text": "terraform apply -only=<resource>"
+      },
+      {
+        "id": "o3",
+        "text": "terraform apply -single=<resource>"
+      },
+      {
+        "id": "o4",
+        "text": "There is no way to scope an apply to one resource"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The -target flag scopes plan and apply to a specific resource address (and its dependencies); it is meant for exceptional situations, not routine use, because it can create partial state.",
     "explanationIncorrect": "-only and -single are not real Terraform flags and would be rejected. Scoping an apply to a subset of resources is possible, so claiming there is no way is wrong. The flag that limits plan and apply to a specific resource address and its dependencies is -target, and it should be used sparingly because it can leave state partially applied.",
-    "tags": ["workflow", "target", "surgical-apply"]
+    "tags": [
+      "workflow",
+      "target",
+      "surgical-apply"
+    ]
   },
   {
     "id": "tf-050",
@@ -538,15 +1025,31 @@
     "difficulty": "medium",
     "stem": "You want Terraform to update its state to match the real infrastructure without changing any resources. Which is appropriate?",
     "options": [
-      { "id": "o1", "text": "terraform apply -refresh-only (or terraform plan -refresh-only to preview)" },
-      { "id": "o2", "text": "terraform destroy" },
-      { "id": "o3", "text": "terraform fmt" },
-      { "id": "o4", "text": "terraform import every resource again" }
+      {
+        "id": "o1",
+        "text": "terraform apply -refresh-only (or terraform plan -refresh-only to preview)"
+      },
+      {
+        "id": "o2",
+        "text": "terraform destroy"
+      },
+      {
+        "id": "o3",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o4",
+        "text": "terraform import every resource again"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The -refresh-only mode reconciles state with real infrastructure and shows any drift without proposing changes to resources, which is exactly a state-only update.",
     "explanationIncorrect": "terraform destroy deletes resources. terraform fmt only reformats configuration. Re-importing everything is unnecessary and disruptive for a simple refresh. Updating state without changing resources is -refresh-only.",
-    "tags": ["workflow", "refresh-only", "state"]
+    "tags": [
+      "workflow",
+      "refresh-only",
+      "state"
+    ]
   },
   {
     "id": "tf-018",
@@ -555,15 +1058,30 @@
     "difficulty": "medium",
     "stem": "What is the primary purpose of the Terraform state file?",
     "options": [
-      { "id": "o1", "text": "It maps the resources in your configuration to real-world infrastructure objects and stores metadata Terraform needs to plan changes" },
-      { "id": "o2", "text": "It stores your cloud provider credentials" },
-      { "id": "o3", "text": "It is a human-authored file you edit directly to change infrastructure" },
-      { "id": "o4", "text": "It holds your application's source code" }
+      {
+        "id": "o1",
+        "text": "It maps the resources in your configuration to real-world infrastructure objects and stores metadata Terraform needs to plan changes"
+      },
+      {
+        "id": "o2",
+        "text": "It stores your cloud provider credentials"
+      },
+      {
+        "id": "o3",
+        "text": "It is a human-authored file you edit directly to change infrastructure"
+      },
+      {
+        "id": "o4",
+        "text": "It holds your application's source code"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "State is Terraform's record of which real resources correspond to your configuration, plus metadata; it is what lets Terraform diff desired against actual and compute an accurate plan.",
     "explanationIncorrect": "State is not a credential store; credentials are supplied to providers separately. You generally do not hand-edit state to change infrastructure; you change configuration and apply. It does not contain application code. State's purpose is mapping configuration to real infrastructure.",
-    "tags": ["state", "purpose"]
+    "tags": [
+      "state",
+      "purpose"
+    ]
   },
   {
     "id": "tf-019",
@@ -572,15 +1090,30 @@
     "difficulty": "hard",
     "stem": "A resource already exists in the cloud but was created manually. How do you bring it under Terraform management without destroying and recreating it?",
     "options": [
-      { "id": "o1", "text": "Write a matching resource block, then use terraform import (or an import block) to associate the existing object with it" },
-      { "id": "o2", "text": "Delete the resource and let Terraform recreate it from scratch" },
-      { "id": "o3", "text": "Hand-edit terraform.tfstate to add the id, with no configuration for it" },
-      { "id": "o4", "text": "Run terraform apply, which imports unmanaged resources automatically" }
+      {
+        "id": "o1",
+        "text": "Write a matching resource block, then use terraform import (or an import block) to associate the existing object with it"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the resource and let Terraform recreate it from scratch"
+      },
+      {
+        "id": "o3",
+        "text": "Hand-edit terraform.tfstate to add the id, with no configuration for it"
+      },
+      {
+        "id": "o4",
+        "text": "Run terraform apply, which imports unmanaged resources automatically"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Import brings an existing object into state under a resource address you have defined in configuration, so Terraform manages it going forward without recreating it.",
     "explanationIncorrect": "Deleting and recreating causes downtime and is exactly what you are trying to avoid. Adding an id to state with no matching configuration leaves Terraform without a definition to manage the resource and causes drift or errors. apply does not automatically adopt resources it did not create. The correct path is a resource block plus terraform import.",
-    "tags": ["state", "import"]
+    "tags": [
+      "state",
+      "import"
+    ]
   },
   {
     "id": "tf-020",
@@ -589,15 +1122,31 @@
     "difficulty": "medium",
     "stem": "You renamed a resource in your configuration and want Terraform to treat it as the same object rather than destroy and recreate it. Which approach does this?",
     "options": [
-      { "id": "o1", "text": "terraform state mv (or a moved block) to update the resource's address in state" },
-      { "id": "o2", "text": "terraform destroy followed by terraform apply" },
-      { "id": "o3", "text": "terraform fmt to fix the naming" },
-      { "id": "o4", "text": "Deleting the state file and starting over" }
+      {
+        "id": "o1",
+        "text": "terraform state mv (or a moved block) to update the resource's address in state"
+      },
+      {
+        "id": "o2",
+        "text": "terraform destroy followed by terraform apply"
+      },
+      {
+        "id": "o3",
+        "text": "terraform fmt to fix the naming"
+      },
+      {
+        "id": "o4",
+        "text": "Deleting the state file and starting over"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform state mv (or a moved block in configuration) updates the address Terraform uses for an existing object, so a rename is treated as a move rather than a destroy-and-create.",
     "explanationIncorrect": "destroy then apply literally destroys and recreates the resource, causing downtime. terraform fmt only reformats files and does not change state addresses. Deleting the state file loses track of all resources. The rename-safe operation is terraform state mv or a moved block.",
-    "tags": ["state", "state-mv", "refactor"]
+    "tags": [
+      "state",
+      "state-mv",
+      "refactor"
+    ]
   },
   {
     "id": "tf-021",
@@ -606,15 +1155,31 @@
     "difficulty": "medium",
     "stem": "Which statement about Terraform state and sensitive data is accurate?",
     "options": [
-      { "id": "o1", "text": "State can contain sensitive values in plaintext, so it should live in a secured, encrypted backend with restricted access" },
-      { "id": "o2", "text": "State never contains any sensitive values" },
-      { "id": "o3", "text": "State is always encrypted no matter where it is stored" },
-      { "id": "o4", "text": "Sensitive values in state are safe to commit to a public repository" }
+      {
+        "id": "o1",
+        "text": "State can contain sensitive values in plaintext, so it should live in a secured, encrypted backend with restricted access"
+      },
+      {
+        "id": "o2",
+        "text": "State never contains any sensitive values"
+      },
+      {
+        "id": "o3",
+        "text": "State is always encrypted no matter where it is stored"
+      },
+      {
+        "id": "o4",
+        "text": "Sensitive values in state are safe to commit to a public repository"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "State can capture sensitive attributes (like passwords) in plaintext, which is why it should be kept in a secured remote backend that encrypts it and limits who can read it.",
     "explanationIncorrect": "State can and often does include sensitive values, so claiming it never does is false. It is not inherently encrypted everywhere; local state on disk is plaintext, and encryption depends on the backend. And precisely because it can hold secrets, committing it to a public repository would leak them. The accurate view is that state may hold secrets and must be protected.",
-    "tags": ["state", "sensitive-data", "security"]
+    "tags": [
+      "state",
+      "sensitive-data",
+      "security"
+    ]
   },
   {
     "id": "tf-022",
@@ -623,15 +1188,31 @@
     "difficulty": "easy",
     "stem": "Which command lists the resources currently tracked in Terraform state?",
     "options": [
-      { "id": "o1", "text": "terraform state list" },
-      { "id": "o2", "text": "terraform show config" },
-      { "id": "o3", "text": "terraform plan -state" },
-      { "id": "o4", "text": "terraform fmt -list" }
+      {
+        "id": "o1",
+        "text": "terraform state list"
+      },
+      {
+        "id": "o2",
+        "text": "terraform show config"
+      },
+      {
+        "id": "o3",
+        "text": "terraform plan -state"
+      },
+      {
+        "id": "o4",
+        "text": "terraform fmt -list"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform state list prints the addresses of all resources recorded in the current state, which is the standard way to inspect what Terraform is managing.",
     "explanationIncorrect": "terraform show config is not a valid command for listing state resources. terraform plan -state is not how you enumerate managed resources. terraform fmt -list reports which files formatting would change, unrelated to state. The state inventory command is terraform state list.",
-    "tags": ["state", "state-list", "inspection"]
+    "tags": [
+      "state",
+      "state-list",
+      "inspection"
+    ]
   },
   {
     "id": "tf-051",
@@ -640,15 +1221,31 @@
     "difficulty": "medium",
     "stem": "Where do you configure a remote backend (such as S3) for storing Terraform state?",
     "options": [
-      { "id": "o1", "text": "In a backend block inside the terraform block" },
-      { "id": "o2", "text": "In the provider block" },
-      { "id": "o3", "text": "In terraform.tfvars" },
-      { "id": "o4", "text": "In an input variable" }
+      {
+        "id": "o1",
+        "text": "In a backend block inside the terraform block"
+      },
+      {
+        "id": "o2",
+        "text": "In the provider block"
+      },
+      {
+        "id": "o3",
+        "text": "In terraform.tfvars"
+      },
+      {
+        "id": "o4",
+        "text": "In an input variable"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The backend is declared in a backend block nested in the terraform block, which tells Terraform where to store and lock state.",
     "explanationIncorrect": "The provider block configures a provider, not state storage. terraform.tfvars supplies variable values. A variable declares an input. Backend configuration lives in the terraform block's backend block.",
-    "tags": ["state", "backend", "remote-state"]
+    "tags": [
+      "state",
+      "backend",
+      "remote-state"
+    ]
   },
   {
     "id": "tf-052",
@@ -657,15 +1254,30 @@
     "difficulty": "hard",
     "stem": "You want Terraform to stop managing a resource but leave the real infrastructure untouched. Which command removes it from state only?",
     "options": [
-      { "id": "o1", "text": "terraform state rm <address>" },
-      { "id": "o2", "text": "terraform destroy <address>" },
-      { "id": "o3", "text": "terraform apply -destroy" },
-      { "id": "o4", "text": "Delete the resource block and run apply" }
+      {
+        "id": "o1",
+        "text": "terraform state rm <address>"
+      },
+      {
+        "id": "o2",
+        "text": "terraform destroy <address>"
+      },
+      {
+        "id": "o3",
+        "text": "terraform apply -destroy"
+      },
+      {
+        "id": "o4",
+        "text": "Delete the resource block and run apply"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform state rm removes a resource from state so Terraform forgets it, while the real infrastructure keeps running untouched, which is exactly what stop-managing-but-keep requires.",
     "explanationIncorrect": "terraform destroy with an address destroys the real resource. apply -destroy also tears down infrastructure. Deleting the block and applying would plan to destroy the now-unmanaged resource. Removing only from state is terraform state rm.",
-    "tags": ["state", "state-rm"]
+    "tags": [
+      "state",
+      "state-rm"
+    ]
   },
   {
     "id": "tf-053",
@@ -674,15 +1286,31 @@
     "difficulty": "medium",
     "stem": "You change your configuration from a local backend to an S3 remote backend. What does terraform init offer to do?",
     "options": [
-      { "id": "o1", "text": "Migrate the existing state to the new backend" },
-      { "id": "o2", "text": "Delete all managed resources" },
-      { "id": "o3", "text": "Rewrite all of your .tf configuration files" },
-      { "id": "o4", "text": "Nothing; the existing state is simply lost" }
+      {
+        "id": "o1",
+        "text": "Migrate the existing state to the new backend"
+      },
+      {
+        "id": "o2",
+        "text": "Delete all managed resources"
+      },
+      {
+        "id": "o3",
+        "text": "Rewrite all of your .tf configuration files"
+      },
+      {
+        "id": "o4",
+        "text": "Nothing; the existing state is simply lost"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "When the backend changes, terraform init detects it and prompts to migrate the existing state into the new backend so you keep tracking your resources.",
     "explanationIncorrect": "Changing the backend does not delete resources. It does not rewrite your configuration files. And state is not silently lost; init offers migration. The prompt is to migrate state to the new backend.",
-    "tags": ["state", "backend-migration", "init"]
+    "tags": [
+      "state",
+      "backend-migration",
+      "init"
+    ]
   },
   {
     "id": "tf-054",
@@ -691,15 +1319,31 @@
     "difficulty": "medium",
     "stem": "You use Terraform workspaces (for example dev and prod) with the same configuration. What is isolated between the workspaces?",
     "options": [
-      { "id": "o1", "text": "The state; each workspace has its own separate state instance" },
-      { "id": "o2", "text": "The provider plugins" },
-      { "id": "o3", "text": "The HCL source files" },
-      { "id": "o4", "text": "The Terraform CLI binary" }
+      {
+        "id": "o1",
+        "text": "The state; each workspace has its own separate state instance"
+      },
+      {
+        "id": "o2",
+        "text": "The provider plugins"
+      },
+      {
+        "id": "o3",
+        "text": "The HCL source files"
+      },
+      {
+        "id": "o4",
+        "text": "The Terraform CLI binary"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Workspaces give the same configuration multiple independent state instances, so dev and prod track their own resources separately while sharing the code.",
     "explanationIncorrect": "Provider plugins are shared and installed per working directory, not per workspace. The HCL files are the same across workspaces; that is the point. The CLI binary is the same tool. What differs per workspace is the state.",
-    "tags": ["state", "workspaces", "isolation"]
+    "tags": [
+      "state",
+      "workspaces",
+      "isolation"
+    ]
   },
   {
     "id": "tf-055",
@@ -708,15 +1352,30 @@
     "difficulty": "easy",
     "stem": "You want to inspect the attributes Terraform has recorded for a single managed resource. Which command shows them?",
     "options": [
-      { "id": "o1", "text": "terraform state show <address>" },
-      { "id": "o2", "text": "terraform output" },
-      { "id": "o3", "text": "terraform fmt" },
-      { "id": "o4", "text": "terraform validate" }
+      {
+        "id": "o1",
+        "text": "terraform state show <address>"
+      },
+      {
+        "id": "o2",
+        "text": "terraform output"
+      },
+      {
+        "id": "o3",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o4",
+        "text": "terraform validate"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "terraform state show prints the recorded attributes of a single resource from state, which is how you inspect what Terraform knows about it.",
     "explanationIncorrect": "terraform output prints root module output values, not a resource's full attributes. terraform fmt reformats files. terraform validate checks configuration validity. Inspecting one resource's state is terraform state show.",
-    "tags": ["state", "state-show"]
+    "tags": [
+      "state",
+      "state-show"
+    ]
   },
   {
     "id": "tf-023",
@@ -725,15 +1384,31 @@
     "difficulty": "medium",
     "stem": "How do you use a module published in the public Terraform Registry in your configuration?",
     "options": [
-      { "id": "o1", "text": "Set the module block's source to the registry address (and optionally a version), then run terraform init" },
-      { "id": "o2", "text": "Copy the module's code into terraform.tfstate" },
-      { "id": "o3", "text": "Reference it through an input variable" },
-      { "id": "o4", "text": "Bring it in with terraform import" }
+      {
+        "id": "o1",
+        "text": "Set the module block's source to the registry address (and optionally a version), then run terraform init"
+      },
+      {
+        "id": "o2",
+        "text": "Copy the module's code into terraform.tfstate"
+      },
+      {
+        "id": "o3",
+        "text": "Reference it through an input variable"
+      },
+      {
+        "id": "o4",
+        "text": "Bring it in with terraform import"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "You call a module with a module block whose source points at the registry address (and usually a version), and terraform init downloads it so it can be used.",
     "explanationIncorrect": "State is Terraform's record of real resources, not a place to paste module code. A variable supplies values, not a module reference. terraform import adopts existing infrastructure into state; it does not fetch modules. You consume a registry module via a module block's source and init.",
-    "tags": ["modules", "source", "registry"]
+    "tags": [
+      "modules",
+      "source",
+      "registry"
+    ]
   },
   {
     "id": "tf-024",
@@ -742,15 +1417,31 @@
     "difficulty": "medium",
     "stem": "Why should you specify the version argument when calling a module from a registry?",
     "options": [
-      { "id": "o1", "text": "To pin a specific, tested module version so later releases do not change your infrastructure unexpectedly" },
-      { "id": "o2", "text": "Because modules cannot be used at all without a paid license key" },
-      { "id": "o3", "text": "Because version is required for local file-path modules" },
-      { "id": "o4", "text": "To store the module inside the state file" }
+      {
+        "id": "o1",
+        "text": "To pin a specific, tested module version so later releases do not change your infrastructure unexpectedly"
+      },
+      {
+        "id": "o2",
+        "text": "Because modules cannot be used at all without a paid license key"
+      },
+      {
+        "id": "o3",
+        "text": "Because version is required for local file-path modules"
+      },
+      {
+        "id": "o4",
+        "text": "To store the module inside the state file"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Pinning the version of a registry module makes your configuration reproducible: you get the exact tested version, and a new upstream release will not silently alter your infrastructure until you choose to update.",
     "explanationIncorrect": "Public registry modules do not require a paid license. The version argument applies to registry (and some remote) modules, not to local file-path modules, which are versioned with your own code. Versioning has nothing to do with storing modules in state. The reason is reproducibility through version pinning.",
-    "tags": ["modules", "versioning", "pinning"]
+    "tags": [
+      "modules",
+      "versioning",
+      "pinning"
+    ]
   },
   {
     "id": "tf-025",
@@ -759,15 +1450,30 @@
     "difficulty": "easy",
     "stem": "In Terraform, what is the root module?",
     "options": [
-      { "id": "o1", "text": "The top-level working directory where you run Terraform, which can call other (child) modules" },
-      { "id": "o2", "text": "Any module downloaded from the registry" },
-      { "id": "o3", "text": "The Terraform state file" },
-      { "id": "o4", "text": "A provider plugin" }
+      {
+        "id": "o1",
+        "text": "The top-level working directory where you run Terraform, which can call other (child) modules"
+      },
+      {
+        "id": "o2",
+        "text": "Any module downloaded from the registry"
+      },
+      {
+        "id": "o3",
+        "text": "The Terraform state file"
+      },
+      {
+        "id": "o4",
+        "text": "A provider plugin"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The root module is the configuration in your working directory where you run Terraform; it is the entry point and can call child modules to compose infrastructure.",
     "explanationIncorrect": "A registry module you call is a child module, not the root. State records resources; it is not a module. A provider plugin implements resource types and is not a module. The root module is the top-level configuration directory.",
-    "tags": ["modules", "root-module"]
+    "tags": [
+      "modules",
+      "root-module"
+    ]
   },
   {
     "id": "tf-026",
@@ -776,15 +1482,31 @@
     "difficulty": "medium",
     "stem": "A child module creates a security group, and the root module needs its id to attach to an instance. How does the id get from the child to the root?",
     "options": [
-      { "id": "o1", "text": "The child module declares an output, and the root reads it as module.<name>.<output>" },
-      { "id": "o2", "text": "The root reads the child module's input variables directly" },
-      { "id": "o3", "text": "Through the path of the child module's own state file" },
-      { "id": "o4", "text": "Values cannot be passed from a child module back to the root" }
+      {
+        "id": "o1",
+        "text": "The child module declares an output, and the root reads it as module.<name>.<output>"
+      },
+      {
+        "id": "o2",
+        "text": "The root reads the child module's input variables directly"
+      },
+      {
+        "id": "o3",
+        "text": "Through the path of the child module's own state file"
+      },
+      {
+        "id": "o4",
+        "text": "Values cannot be passed from a child module back to the root"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A child module exposes values through output blocks, and the calling module reads them with module.<name>.<output>, which is how the security group id flows back to the root.",
     "explanationIncorrect": "Input variables carry values into a module, not out of it, so the root cannot read the child's outputs through its variables. Modules in a single configuration share one state; there is no separate child state file to read. Values certainly can be returned from a child, so claiming otherwise is wrong. The mechanism is module outputs.",
-    "tags": ["modules", "outputs", "composition"]
+    "tags": [
+      "modules",
+      "outputs",
+      "composition"
+    ]
   },
   {
     "id": "tf-056",
@@ -793,15 +1515,30 @@
     "difficulty": "easy",
     "stem": "You want to reuse a module stored in a subdirectory of your own repository. What source value do you use in the module block?",
     "options": [
-      { "id": "o1", "text": "A relative local path, for example source = \"./modules/vpc\"" },
-      { "id": "o2", "text": "A public registry address only" },
-      { "id": "o3", "text": "An npm package name" },
-      { "id": "o4", "text": "The path to terraform.tfstate" }
+      {
+        "id": "o1",
+        "text": "A relative local path, for example source = \"./modules/vpc\""
+      },
+      {
+        "id": "o2",
+        "text": "A public registry address only"
+      },
+      {
+        "id": "o3",
+        "text": "An npm package name"
+      },
+      {
+        "id": "o4",
+        "text": "The path to terraform.tfstate"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A local module is referenced with a relative filesystem path in source, such as ./modules/vpc, so Terraform loads it from your own repository.",
     "explanationIncorrect": "A registry address is for published modules, not a local subdirectory. npm package names are for JavaScript, not Terraform modules. The state file is not a module source. A local module uses a relative path.",
-    "tags": ["modules", "local-source"]
+    "tags": [
+      "modules",
+      "local-source"
+    ]
   },
   {
     "id": "tf-057",
@@ -810,15 +1547,30 @@
     "difficulty": "medium",
     "stem": "How can you consume a Terraform module directly from a Git repository?",
     "options": [
-      { "id": "o1", "text": "Set source to a Git URL, for example git::https://... or github.com/org/repo//path" },
-      { "id": "o2", "text": "Copy the repository contents into terraform.tfstate" },
-      { "id": "o3", "text": "Use terraform import on the repository" },
-      { "id": "o4", "text": "It is only possible to consume modules from the registry" }
+      {
+        "id": "o1",
+        "text": "Set source to a Git URL, for example git::https://... or github.com/org/repo//path"
+      },
+      {
+        "id": "o2",
+        "text": "Copy the repository contents into terraform.tfstate"
+      },
+      {
+        "id": "o3",
+        "text": "Use terraform import on the repository"
+      },
+      {
+        "id": "o4",
+        "text": "It is only possible to consume modules from the registry"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform can fetch modules from Git by setting source to a Git URL (with an optional ref for a branch or tag), so you are not limited to the registry.",
     "explanationIncorrect": "State is not where module code goes. terraform import brings existing infrastructure into state, unrelated to fetching modules. Modules are not limited to the registry; Git and local sources are supported. Git modules use a Git URL source.",
-    "tags": ["modules", "git-source"]
+    "tags": [
+      "modules",
+      "git-source"
+    ]
   },
   {
     "id": "tf-058",
@@ -827,15 +1579,30 @@
     "difficulty": "medium",
     "stem": "You want to instantiate the same module once per environment defined in a map. Which meta-argument can you use on the module block?",
     "options": [
-      { "id": "o1", "text": "for_each on the module block" },
-      { "id": "o2", "text": "A provisioner inside the module" },
-      { "id": "o3", "text": "depends_on only" },
-      { "id": "o4", "text": "Modules cannot be instantiated more than once" }
+      {
+        "id": "o1",
+        "text": "for_each on the module block"
+      },
+      {
+        "id": "o2",
+        "text": "A provisioner inside the module"
+      },
+      {
+        "id": "o3",
+        "text": "depends_on only"
+      },
+      {
+        "id": "o4",
+        "text": "Modules cannot be instantiated more than once"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Module blocks support count and for_each, so for_each over a map creates one module instance per key, each configured from that map entry.",
     "explanationIncorrect": "A provisioner runs commands and does not multiply module instances. depends_on only sets ordering, not repetition. Modules can be instantiated multiple times with count or for_each, so claiming otherwise is wrong. The tool here is for_each on the module.",
-    "tags": ["modules", "for-each"]
+    "tags": [
+      "modules",
+      "for-each"
+    ]
   },
   {
     "id": "tf-059",
@@ -844,15 +1611,30 @@
     "difficulty": "hard",
     "stem": "A child module needs to use a specifically-aliased provider configuration defined in the root. How do you pass it in?",
     "options": [
-      { "id": "o1", "text": "The providers argument in the module block, mapping the module's provider to the aliased configuration" },
-      { "id": "o2", "text": "An input variable named provider" },
-      { "id": "o3", "text": "A module output" },
-      { "id": "o4", "text": "It is automatic and cannot be configured" }
+      {
+        "id": "o1",
+        "text": "The providers argument in the module block, mapping the module's provider to the aliased configuration"
+      },
+      {
+        "id": "o2",
+        "text": "An input variable named provider"
+      },
+      {
+        "id": "o3",
+        "text": "A module output"
+      },
+      {
+        "id": "o4",
+        "text": "It is automatic and cannot be configured"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The providers argument on a module block explicitly maps a provider (including an aliased one) from the caller into the child module, which is how you hand a specific provider configuration to a module.",
     "explanationIncorrect": "A variable passes ordinary values, not provider configurations. An output exposes values from a module, not into it. Provider passing is explicit via the providers argument, not fully automatic when aliases are involved. The mechanism is the providers argument.",
-    "tags": ["modules", "providers-argument"]
+    "tags": [
+      "modules",
+      "providers-argument"
+    ]
   },
   {
     "id": "tf-060",
@@ -861,15 +1643,31 @@
     "difficulty": "hard",
     "stem": "In a module block, which version constraint allows patch and minor updates but not the next major version?",
     "options": [
-      { "id": "o1", "text": "version = \"~> 2.0\" (the pessimistic constraint operator)" },
-      { "id": "o2", "text": "version = \"= 2.0.0\"" },
-      { "id": "o3", "text": "version = \">= 0.0.0\"" },
-      { "id": "o4", "text": "version = \"latest\"" }
+      {
+        "id": "o1",
+        "text": "version = \"~> 2.0\" (the pessimistic constraint operator)"
+      },
+      {
+        "id": "o2",
+        "text": "version = \"= 2.0.0\""
+      },
+      {
+        "id": "o3",
+        "text": "version = \">= 0.0.0\""
+      },
+      {
+        "id": "o4",
+        "text": "version = \"latest\""
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The pessimistic operator ~> 2.0 allows 2.x versions (2.0 and up, minor and patch) but stops before 3.0, so you get compatible updates without an unexpected major bump.",
     "explanationIncorrect": "= 2.0.0 pins exactly one version and allows no updates. >= 0.0.0 allows any version, including breaking majors. latest is not a valid Terraform version constraint. Minor and patch but not major is expressed with ~>.",
-    "tags": ["modules", "version-constraint", "pessimistic"]
+    "tags": [
+      "modules",
+      "version-constraint",
+      "pessimistic"
+    ]
   },
   {
     "id": "tf-027",
@@ -878,15 +1676,31 @@
     "difficulty": "hard",
     "stem": "You need to create several similar resources, each keyed by a stable identifier so that removing one in the middle does not force the others to be recreated. Which meta-argument fits best?",
     "options": [
-      { "id": "o1", "text": "for_each over a map or set, which keys each instance by its identifier" },
-      { "id": "o2", "text": "count with a numeric index, which keys each instance by position" },
-      { "id": "o3", "text": "A separate hand-written resource block for each item" },
-      { "id": "o4", "text": "A provisioner that loops internally" }
+      {
+        "id": "o1",
+        "text": "for_each over a map or set, which keys each instance by its identifier"
+      },
+      {
+        "id": "o2",
+        "text": "count with a numeric index, which keys each instance by position"
+      },
+      {
+        "id": "o3",
+        "text": "A separate hand-written resource block for each item"
+      },
+      {
+        "id": "o4",
+        "text": "A provisioner that loops internally"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "for_each keys instances by a stable map key or set value, so removing one entry only destroys that instance and leaves the rest untouched, which is exactly the requirement.",
     "explanationIncorrect": "count keys instances by list position, so removing a middle element shifts every later index and can cause unwanted recreation. Writing separate blocks defeats the purpose of iteration and is unmaintainable. A provisioner loop does not create separate managed resources. Stable-keyed iteration is for_each.",
-    "tags": ["configuration", "for-each", "count"]
+    "tags": [
+      "configuration",
+      "for-each",
+      "count"
+    ]
   },
   {
     "id": "tf-028",
@@ -895,15 +1709,30 @@
     "difficulty": "easy",
     "stem": "How do you define a configurable input that has a type and a default value?",
     "options": [
-      { "id": "o1", "text": "A variable block specifying type and default" },
-      { "id": "o2", "text": "An output block" },
-      { "id": "o3", "text": "A locals block only" },
-      { "id": "o4", "text": "A data source" }
+      {
+        "id": "o1",
+        "text": "A variable block specifying type and default"
+      },
+      {
+        "id": "o2",
+        "text": "An output block"
+      },
+      {
+        "id": "o3",
+        "text": "A locals block only"
+      },
+      {
+        "id": "o4",
+        "text": "A data source"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Input variables are declared with variable blocks, where you can set a type constraint and a default so callers may override it or accept the default.",
     "explanationIncorrect": "An output block exposes values to callers, not receives them. A locals block defines computed internal values, not user-supplied inputs with defaults. A data source reads external information. Configurable inputs are variable blocks.",
-    "tags": ["configuration", "variables"]
+    "tags": [
+      "configuration",
+      "variables"
+    ]
   },
   {
     "id": "tf-029",
@@ -912,15 +1741,30 @@
     "difficulty": "medium",
     "stem": "You compute a naming prefix once and reuse it in many places within a configuration to avoid repetition. Which construct holds that computed value?",
     "options": [
-      { "id": "o1", "text": "A local value in a locals block, referenced as local.<name>" },
-      { "id": "o2", "text": "An input variable the user must set on every run" },
-      { "id": "o3", "text": "An output value" },
-      { "id": "o4", "text": "A provider alias" }
+      {
+        "id": "o1",
+        "text": "A local value in a locals block, referenced as local.<name>"
+      },
+      {
+        "id": "o2",
+        "text": "An input variable the user must set on every run"
+      },
+      {
+        "id": "o3",
+        "text": "An output value"
+      },
+      {
+        "id": "o4",
+        "text": "A provider alias"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A local value assigns a computed expression to a name you reference as local.<name>, which is ideal for a derived value like a naming prefix used throughout the configuration.",
     "explanationIncorrect": "An input variable requires the value to be supplied rather than computed internally, which is not what a derived prefix should be. An output exposes values to callers, not for internal reuse. A provider alias configures additional provider instances. The internal computed value is a local.",
-    "tags": ["configuration", "locals"]
+    "tags": [
+      "configuration",
+      "locals"
+    ]
   },
   {
     "id": "tf-030",
@@ -929,15 +1773,31 @@
     "difficulty": "medium",
     "stem": "Which expression sets count to 1 when var.enabled is true and 0 otherwise?",
     "options": [
-      { "id": "o1", "text": "count = var.enabled ? 1 : 0" },
-      { "id": "o2", "text": "count = if var.enabled then 1 else 0" },
-      { "id": "o3", "text": "count = var.enabled == 1" },
-      { "id": "o4", "text": "count = bool(var.enabled)" }
+      {
+        "id": "o1",
+        "text": "count = var.enabled ? 1 : 0"
+      },
+      {
+        "id": "o2",
+        "text": "count = if var.enabled then 1 else 0"
+      },
+      {
+        "id": "o3",
+        "text": "count = var.enabled == 1"
+      },
+      {
+        "id": "o4",
+        "text": "count = bool(var.enabled)"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "HCL uses the ternary conditional expression condition ? true_value : false_value, so var.enabled ? 1 : 0 yields 1 when enabled and 0 otherwise, a common toggle for count.",
     "explanationIncorrect": "HCL has no if/then/else statement expression, so that syntax is invalid. var.enabled == 1 compares a boolean to a number and does not produce the intended 1 or 0 for count. bool(var.enabled) is not how you convert to a count and returns a boolean, not the integer count needs. The correct form is the ternary conditional.",
-    "tags": ["configuration", "conditional", "expressions"]
+    "tags": [
+      "configuration",
+      "conditional",
+      "expressions"
+    ]
   },
   {
     "id": "tf-031",
@@ -946,15 +1806,31 @@
     "difficulty": "easy",
     "stem": "You want the number of elements in a list variable in order to size something. Which built-in function returns that count?",
     "options": [
-      { "id": "o1", "text": "length(var.mylist)" },
-      { "id": "o2", "text": "count(var.mylist)" },
-      { "id": "o3", "text": "size(var.mylist)" },
-      { "id": "o4", "text": "len(var.mylist)" }
+      {
+        "id": "o1",
+        "text": "length(var.mylist)"
+      },
+      {
+        "id": "o2",
+        "text": "count(var.mylist)"
+      },
+      {
+        "id": "o3",
+        "text": "size(var.mylist)"
+      },
+      {
+        "id": "o4",
+        "text": "len(var.mylist)"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Terraform's built-in length function returns the number of elements in a list, map, or string, so length(var.mylist) gives the element count.",
     "explanationIncorrect": "count is a resource meta-argument, not a function that measures a collection. size and len are not Terraform built-in functions. The correct function name is length.",
-    "tags": ["configuration", "functions", "length"]
+    "tags": [
+      "configuration",
+      "functions",
+      "length"
+    ]
   },
   {
     "id": "tf-061",
@@ -963,15 +1839,30 @@
     "difficulty": "hard",
     "stem": "You want to reject an invalid input value, for example an instance size not in an allowed list, at plan time with a helpful message. Which construct does this?",
     "options": [
-      { "id": "o1", "text": "A validation block inside the variable" },
-      { "id": "o2", "text": "A provisioner that checks the value" },
-      { "id": "o3", "text": "An output value" },
-      { "id": "o4", "text": "A depends_on entry" }
+      {
+        "id": "o1",
+        "text": "A validation block inside the variable"
+      },
+      {
+        "id": "o2",
+        "text": "A provisioner that checks the value"
+      },
+      {
+        "id": "o3",
+        "text": "An output value"
+      },
+      {
+        "id": "o4",
+        "text": "A depends_on entry"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A variable's validation block defines a condition and an error message, so Terraform rejects a non-conforming input early with your custom message.",
     "explanationIncorrect": "A provisioner runs during apply on a resource, far too late and in the wrong place for input validation. An output exposes values, not input rules. depends_on only orders resources. Input validation is a variable validation block.",
-    "tags": ["configuration", "variable-validation"]
+    "tags": [
+      "configuration",
+      "variable-validation"
+    ]
   },
   {
     "id": "tf-062",
@@ -980,15 +1871,30 @@
     "difficulty": "hard",
     "stem": "You need to transform a list of names into a map keyed by each name. Which language feature builds this?",
     "options": [
-      { "id": "o1", "text": "A for expression, for example { for n in var.names : n => upper(n) }" },
-      { "id": "o2", "text": "A provisioner loop" },
-      { "id": "o3", "text": "The count meta-argument" },
-      { "id": "o4", "text": "A data source" }
+      {
+        "id": "o1",
+        "text": "A for expression, for example { for n in var.names : n => upper(n) }"
+      },
+      {
+        "id": "o2",
+        "text": "A provisioner loop"
+      },
+      {
+        "id": "o3",
+        "text": "The count meta-argument"
+      },
+      {
+        "id": "o4",
+        "text": "A data source"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A for expression iterates a collection and constructs a new list or map, so { for n in var.names : n => ... } produces a map keyed by name.",
     "explanationIncorrect": "A provisioner runs commands, not value transformations. count repeats a resource by index; it does not build a map value. A data source reads external information. Collection transformation uses a for expression.",
-    "tags": ["configuration", "for-expression"]
+    "tags": [
+      "configuration",
+      "for-expression"
+    ]
   },
   {
     "id": "tf-063",
@@ -997,15 +1903,30 @@
     "difficulty": "hard",
     "stem": "A resource needs a variable number of repeatable nested blocks (like ingress rules) generated from a list. Which construct produces them?",
     "options": [
-      { "id": "o1", "text": "A dynamic block" },
-      { "id": "o2", "text": "One separate resource per rule and nothing else" },
-      { "id": "o3", "text": "A provisioner" },
-      { "id": "o4", "text": "An output block" }
+      {
+        "id": "o1",
+        "text": "A dynamic block"
+      },
+      {
+        "id": "o2",
+        "text": "One separate resource per rule and nothing else"
+      },
+      {
+        "id": "o3",
+        "text": "A provisioner"
+      },
+      {
+        "id": "o4",
+        "text": "An output block"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A dynamic block generates repeated nested blocks from a collection, which is how you produce a variable number of nested configuration blocks such as ingress rules.",
     "explanationIncorrect": "Splitting into separate resources changes the design and is not how you generate repeated nested blocks within one resource. A provisioner runs commands. An output exposes values. Repeated nested blocks come from a dynamic block.",
-    "tags": ["configuration", "dynamic-block"]
+    "tags": [
+      "configuration",
+      "dynamic-block"
+    ]
   },
   {
     "id": "tf-064",
@@ -1014,15 +1935,30 @@
     "difficulty": "medium",
     "stem": "You want a variable's value hidden from CLI output and plan display. What do you set?",
     "options": [
-      { "id": "o1", "text": "sensitive = true on the variable (and on any output that exposes it)" },
-      { "id": "o2", "text": "secret = true" },
-      { "id": "o3", "text": "hidden = true" },
-      { "id": "o4", "text": "private = true" }
+      {
+        "id": "o1",
+        "text": "sensitive = true on the variable (and on any output that exposes it)"
+      },
+      {
+        "id": "o2",
+        "text": "secret = true"
+      },
+      {
+        "id": "o3",
+        "text": "hidden = true"
+      },
+      {
+        "id": "o4",
+        "text": "private = true"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Marking a variable or output sensitive = true tells Terraform to redact its value in plan and CLI output so it is not shown in cleartext.",
     "explanationIncorrect": "secret, hidden, and private are not the Terraform arguments for this. The redaction flag is sensitive. Note it hides values from display but does not encrypt them in state.",
-    "tags": ["configuration", "sensitive"]
+    "tags": [
+      "configuration",
+      "sensitive"
+    ]
   },
   {
     "id": "tf-065",
@@ -1031,15 +1967,31 @@
     "difficulty": "medium",
     "stem": "You want to render a configuration file from a template, substituting values, at plan and apply time. Which built-in function does this?",
     "options": [
-      { "id": "o1", "text": "templatefile(path, vars)" },
-      { "id": "o2", "text": "render(path)" },
-      { "id": "o3", "text": "format() by itself" },
-      { "id": "o4", "text": "file() with no variable substitution" }
+      {
+        "id": "o1",
+        "text": "templatefile(path, vars)"
+      },
+      {
+        "id": "o2",
+        "text": "render(path)"
+      },
+      {
+        "id": "o3",
+        "text": "format() by itself"
+      },
+      {
+        "id": "o4",
+        "text": "file() with no variable substitution"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "templatefile reads a template file and renders it with the provided variables, producing the substituted content for use in your configuration.",
     "explanationIncorrect": "render is not a Terraform function. format builds a string from a format spec but does not read and render a template file. file reads a file's raw contents with no substitution. Templated rendering is templatefile.",
-    "tags": ["configuration", "functions", "templatefile"]
+    "tags": [
+      "configuration",
+      "functions",
+      "templatefile"
+    ]
   },
   {
     "id": "tf-032",
@@ -1048,15 +2000,31 @@
     "difficulty": "medium",
     "stem": "What does HCP Terraform (Terraform Cloud) provide over running Terraform purely locally?",
     "options": [
-      { "id": "o1", "text": "Managed remote state storage and remote execution of plans and applies with a shared, audited team workflow" },
-      { "id": "o2", "text": "A completely different configuration language from open-source Terraform" },
-      { "id": "o3", "text": "The ability to skip writing any configuration" },
-      { "id": "o4", "text": "Local-only execution with no collaboration features" }
+      {
+        "id": "o1",
+        "text": "Managed remote state storage and remote execution of plans and applies with a shared, audited team workflow"
+      },
+      {
+        "id": "o2",
+        "text": "A completely different configuration language from open-source Terraform"
+      },
+      {
+        "id": "o3",
+        "text": "The ability to skip writing any configuration"
+      },
+      {
+        "id": "o4",
+        "text": "Local-only execution with no collaboration features"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "HCP Terraform stores state remotely and runs plans and applies on managed infrastructure with a consistent, auditable workflow, which supports team collaboration beyond what local runs offer.",
     "explanationIncorrect": "It uses the same HCL configuration as open-source Terraform, not a different language. It does not remove the need to write configuration. And its whole value is collaboration and remote execution, the opposite of local-only. HCP Terraform adds managed remote state and remote runs.",
-    "tags": ["hcp-terraform", "remote-state", "remote-runs"]
+    "tags": [
+      "hcp-terraform",
+      "remote-state",
+      "remote-runs"
+    ]
   },
   {
     "id": "tf-033",
@@ -1065,15 +2033,31 @@
     "difficulty": "hard",
     "stem": "Your organization wants to enforce guardrails, such as forbidding any resource that lacks required tags, on every run before apply. Which HCP Terraform capability does this?",
     "options": [
-      { "id": "o1", "text": "Policy as code with Sentinel (or OPA) policy sets, evaluated between plan and apply" },
-      { "id": "o2", "text": "terraform fmt run on every commit" },
-      { "id": "o3", "text": "The .terraform.lock.hcl dependency lock file" },
-      { "id": "o4", "text": "A local pre-commit hook on each developer's machine only" }
+      {
+        "id": "o1",
+        "text": "Policy as code with Sentinel (or OPA) policy sets, evaluated between plan and apply"
+      },
+      {
+        "id": "o2",
+        "text": "terraform fmt run on every commit"
+      },
+      {
+        "id": "o3",
+        "text": "The .terraform.lock.hcl dependency lock file"
+      },
+      {
+        "id": "o4",
+        "text": "A local pre-commit hook on each developer's machine only"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "HCP Terraform evaluates policy-as-code (Sentinel or OPA) between plan and apply, so a run that violates a guardrail like missing required tags can be blocked automatically and centrally.",
     "explanationIncorrect": "terraform fmt only formats configuration and enforces no policy. The lock file pins provider versions; it does not evaluate resource policy. A local pre-commit hook is per-developer and easily bypassed, not a central enforced control. Centralized guardrails are policy as code with Sentinel or OPA.",
-    "tags": ["hcp-terraform", "policy-as-code", "sentinel"]
+    "tags": [
+      "hcp-terraform",
+      "policy-as-code",
+      "sentinel"
+    ]
   },
   {
     "id": "tf-034",
@@ -1082,15 +2066,31 @@
     "difficulty": "medium",
     "stem": "In HCP Terraform, how can runs be triggered automatically when changes are pushed to a connected repository?",
     "options": [
-      { "id": "o1", "text": "Connect a VCS provider so commits to the repository queue plan and apply runs for the workspace" },
-      { "id": "o2", "text": "Email the state file to HashiCorp after each push" },
-      { "id": "o3", "text": "Run terraform destroy automatically on every push" },
-      { "id": "o4", "text": "HCP Terraform cannot integrate with version control" }
+      {
+        "id": "o1",
+        "text": "Connect a VCS provider so commits to the repository queue plan and apply runs for the workspace"
+      },
+      {
+        "id": "o2",
+        "text": "Email the state file to HashiCorp after each push"
+      },
+      {
+        "id": "o3",
+        "text": "Run terraform destroy automatically on every push"
+      },
+      {
+        "id": "o4",
+        "text": "HCP Terraform cannot integrate with version control"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A VCS-connected workspace watches the repository and automatically queues runs when commits land, giving a pull-request and merge driven infrastructure workflow.",
     "explanationIncorrect": "Emailing state files is not a real integration and would be insecure. Destroying infrastructure on every push would be catastrophic and is not how VCS integration behaves. HCP Terraform integrates well with version control, so claiming it cannot is wrong. Automatic runs come from a connected VCS provider.",
-    "tags": ["hcp-terraform", "vcs", "automation"]
+    "tags": [
+      "hcp-terraform",
+      "vcs",
+      "automation"
+    ]
   },
   {
     "id": "tf-035",
@@ -1099,15 +2099,30 @@
     "difficulty": "medium",
     "stem": "In HCP Terraform, what does a workspace represent?",
     "options": [
-      { "id": "o1", "text": "A managed collection of a configuration, its state, variables, and run history for a distinct environment" },
-      { "id": "o2", "text": "Only a code-formatting preference" },
-      { "id": "o3", "text": "A provider plugin" },
-      { "id": "o4", "text": "A single infrastructure resource" }
+      {
+        "id": "o1",
+        "text": "A managed collection of a configuration, its state, variables, and run history for a distinct environment"
+      },
+      {
+        "id": "o2",
+        "text": "Only a code-formatting preference"
+      },
+      {
+        "id": "o3",
+        "text": "A provider plugin"
+      },
+      {
+        "id": "o4",
+        "text": "A single infrastructure resource"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "An HCP Terraform workspace groups a configuration together with its own state, variables, and run history, typically representing one environment such as staging or production.",
     "explanationIncorrect": "A workspace is far more than a formatting preference. It is not a provider plugin, which implements resource types. It is not a single resource; it manages a whole configuration's state and runs. An HCP Terraform workspace is a managed environment with its own state, variables, and history.",
-    "tags": ["hcp-terraform", "workspaces"]
+    "tags": [
+      "hcp-terraform",
+      "workspaces"
+    ]
   },
   {
     "id": "tf-066",
@@ -1116,15 +2131,30 @@
     "difficulty": "medium",
     "stem": "You want to define a set of variables once and apply them to many workspaces in HCP Terraform. Which feature provides this?",
     "options": [
-      { "id": "o1", "text": "Variable sets" },
-      { "id": "o2", "text": "A single .tfvars file copied into every workspace" },
-      { "id": "o3", "text": "Provider aliases" },
-      { "id": "o4", "text": "CLI workspaces" }
+      {
+        "id": "o1",
+        "text": "Variable sets"
+      },
+      {
+        "id": "o2",
+        "text": "A single .tfvars file copied into every workspace"
+      },
+      {
+        "id": "o3",
+        "text": "Provider aliases"
+      },
+      {
+        "id": "o4",
+        "text": "CLI workspaces"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Variable sets let you define variables once in HCP Terraform and apply them to multiple workspaces (or all of them), avoiding duplication.",
     "explanationIncorrect": "Copying a .tfvars file into each workspace is exactly the duplication variable sets remove. Provider aliases configure multiple provider instances. Workspaces isolate state; they do not share variable definitions. Reusable shared variables are variable sets.",
-    "tags": ["hcp-terraform", "variable-sets"]
+    "tags": [
+      "hcp-terraform",
+      "variable-sets"
+    ]
   },
   {
     "id": "tf-067",
@@ -1133,15 +2163,31 @@
     "difficulty": "hard",
     "stem": "One configuration needs an output value from another configuration's state. Which is a supported way to read it?",
     "options": [
-      { "id": "o1", "text": "The terraform_remote_state data source, reading the other workspace's outputs" },
-      { "id": "o2", "text": "Copying and pasting the value by hand each time it changes" },
-      { "id": "o3", "text": "terraform import of the other configuration" },
-      { "id": "o4", "text": "A provisioner that scrapes the value" }
+      {
+        "id": "o1",
+        "text": "The terraform_remote_state data source, reading the other workspace's outputs"
+      },
+      {
+        "id": "o2",
+        "text": "Copying and pasting the value by hand each time it changes"
+      },
+      {
+        "id": "o3",
+        "text": "terraform import of the other configuration"
+      },
+      {
+        "id": "o4",
+        "text": "A provisioner that scrapes the value"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The terraform_remote_state data source reads another configuration's root outputs from its state (for example a workspace in HCP Terraform), so one configuration can consume another's published outputs.",
     "explanationIncorrect": "Manual copy-paste is error-prone and does not stay in sync. terraform import brings existing infrastructure into state; it does not read another config's outputs. A provisioner runs commands, not a supported cross-state read. The supported mechanism is the terraform_remote_state data source.",
-    "tags": ["hcp-terraform", "remote-state", "outputs"]
+    "tags": [
+      "hcp-terraform",
+      "remote-state",
+      "outputs"
+    ]
   },
   {
     "id": "tf-068",
@@ -1150,15 +2196,30 @@
     "difficulty": "medium",
     "stem": "Your organization wants to share internal, versioned modules privately across teams in HCP Terraform. Which capability provides this?",
     "options": [
-      { "id": "o1", "text": "The private module registry" },
-      { "id": "o2", "text": "Only the public Terraform Registry" },
-      { "id": "o3", "text": "The terraform.tfstate file" },
-      { "id": "o4", "text": "A shared Slack channel of code snippets" }
+      {
+        "id": "o1",
+        "text": "The private module registry"
+      },
+      {
+        "id": "o2",
+        "text": "Only the public Terraform Registry"
+      },
+      {
+        "id": "o3",
+        "text": "The terraform.tfstate file"
+      },
+      {
+        "id": "o4",
+        "text": "A shared Slack channel of code snippets"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "HCP Terraform includes a private module registry where an organization publishes versioned internal modules for its teams to discover and consume, kept private to the org.",
     "explanationIncorrect": "The public registry shares modules with everyone, not privately within your org. The state file records resources, not shareable modules. A Slack channel is not a versioned registry. Private internal sharing uses the private module registry.",
-    "tags": ["hcp-terraform", "private-registry"]
+    "tags": [
+      "hcp-terraform",
+      "private-registry"
+    ]
   },
   {
     "id": "tf-069",
@@ -1167,15 +2228,30 @@
     "difficulty": "medium",
     "stem": "Before applying, HCP Terraform can show the estimated monthly cost impact of the planned changes. What is this feature called?",
     "options": [
-      { "id": "o1", "text": "Cost estimation" },
-      { "id": "o2", "text": "Sentinel" },
-      { "id": "o3", "text": "The dependency lock file" },
-      { "id": "o4", "text": "terraform fmt" }
+      {
+        "id": "o1",
+        "text": "Cost estimation"
+      },
+      {
+        "id": "o2",
+        "text": "Sentinel"
+      },
+      {
+        "id": "o3",
+        "text": "The dependency lock file"
+      },
+      {
+        "id": "o4",
+        "text": "terraform fmt"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Cost estimation shows the projected monthly cost and the delta for the resources a run would change, helping teams review financial impact before applying.",
     "explanationIncorrect": "Sentinel is policy-as-code enforcement, not cost projection. The lock file pins provider versions. terraform fmt reformats files. The pre-apply cost projection is cost estimation.",
-    "tags": ["hcp-terraform", "cost-estimation"]
+    "tags": [
+      "hcp-terraform",
+      "cost-estimation"
+    ]
   },
   {
     "id": "tf-070",
@@ -1184,14 +2260,267 @@
     "difficulty": "hard",
     "stem": "HCP Terraform must apply changes to infrastructure inside a private network that the hosted service cannot reach directly. Which feature enables this?",
     "options": [
-      { "id": "o1", "text": "HCP Terraform agents (self-hosted agents) that run inside your network and poll for work" },
-      { "id": "o2", "text": "Making the private network publicly reachable" },
-      { "id": "o3", "text": "A NAT gateway on the SaaS provider's side" },
-      { "id": "o4", "text": "It is impossible to manage private infrastructure with HCP Terraform" }
+      {
+        "id": "o1",
+        "text": "HCP Terraform agents (self-hosted agents) that run inside your network and poll for work"
+      },
+      {
+        "id": "o2",
+        "text": "Making the private network publicly reachable"
+      },
+      {
+        "id": "o3",
+        "text": "A NAT gateway on the SaaS provider's side"
+      },
+      {
+        "id": "o4",
+        "text": "It is impossible to manage private infrastructure with HCP Terraform"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Self-hosted HCP Terraform agents run inside your network and pull runs from HCP Terraform, so it can execute plans and applies against private infrastructure without inbound access to that network.",
     "explanationIncorrect": "Exposing the private network publicly defeats its purpose and is unsafe. You cannot add a NAT gateway on the SaaS provider's side to reach into your network. Managing private infrastructure is possible via agents, so claiming it is impossible is wrong. The feature is HCP Terraform agents.",
-    "tags": ["hcp-terraform", "agents", "private-infrastructure"]
+    "tags": [
+      "hcp-terraform",
+      "agents",
+      "private-infrastructure"
+    ]
+  },
+  {
+    "id": "tf-079",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Why does Terraform maintain a state file?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To map configuration resources to real-world infrastructure and track metadata"
+      },
+      {
+        "id": "o2",
+        "text": "To store your cloud provider password"
+      },
+      {
+        "id": "o3",
+        "text": "To cache provider plugin binaries"
+      },
+      {
+        "id": "o4",
+        "text": "To hold the formatted version of your code"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "State records the mapping between resources in your configuration and the actual objects created, along with metadata and dependencies, so Terraform can plan accurate changes.",
+    "explanationIncorrect": "State is not a place to store provider passwords; credentials come from provider configuration and environment. Provider binaries are cached under the working directory by init, not in state. Formatted code lives in your .tf files, not in the state file.",
+    "tags": [
+      "state",
+      "purpose"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-080",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "Why is state locking important when using a remote backend with a team?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It prevents concurrent operations from corrupting the state by allowing only one write at a time"
+      },
+      {
+        "id": "o2",
+        "text": "It encrypts the state at rest"
+      },
+      {
+        "id": "o3",
+        "text": "It compresses the state file"
+      },
+      {
+        "id": "o4",
+        "text": "It formats the configuration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "State locking ensures that only one apply can modify state at a time, preventing two people from writing simultaneously and corrupting the state.",
+    "explanationIncorrect": "Locking is about concurrency control, not encryption, though some backends also encrypt separately. It does not compress the state file. It has nothing to do with formatting configuration; that is terraform fmt.",
+    "tags": [
+      "state-locking",
+      "remote-backend",
+      "concurrency"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-081",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Which command lists the resources currently tracked in the state?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform state list"
+      },
+      {
+        "id": "o2",
+        "text": "terraform show list"
+      },
+      {
+        "id": "o3",
+        "text": "terraform list state"
+      },
+      {
+        "id": "o4",
+        "text": "terraform resources"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform state list prints the resource addresses currently managed in the state, useful for inspecting or targeting specific resources.",
+    "explanationIncorrect": "terraform show list is not valid; show displays state or a plan but does not take a list subcommand. terraform list state is not a real command ordering. terraform resources does not exist as a subcommand.",
+    "tags": [
+      "state",
+      "cli",
+      "inspection"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-082",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "A resource already exists in the cloud and you want Terraform to manage it without recreating it. Which command brings it under management?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform import"
+      },
+      {
+        "id": "o2",
+        "text": "terraform state rm"
+      },
+      {
+        "id": "o3",
+        "text": "terraform refresh"
+      },
+      {
+        "id": "o4",
+        "text": "terraform taint"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform import associates an existing real resource with a resource address in your configuration and state, so Terraform manages it going forward without recreating it.",
+    "explanationIncorrect": "terraform state rm removes a resource from state, the opposite of adopting one. terraform refresh updates state to match real infrastructure for already-managed resources, not new ones. terraform taint marks a resource for recreation, which is the opposite of importing an existing one intact.",
+    "tags": [
+      "import",
+      "state",
+      "existing-resources"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-083",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "What is a recommended reason to use a remote backend such as HCP Terraform or S3 instead of local state?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It enables team collaboration with shared, locked, and durable state"
+      },
+      {
+        "id": "o2",
+        "text": "It removes the need to write configuration"
+      },
+      {
+        "id": "o3",
+        "text": "It makes providers unnecessary"
+      },
+      {
+        "id": "o4",
+        "text": "It disables the plan step"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A remote backend stores state centrally with locking and durability, so teams can collaborate safely without passing a local state file around.",
+    "explanationIncorrect": "A remote backend does not remove the need to write configuration; you still define resources. It does not make providers unnecessary; providers are still required to manage resources. It does not disable planning; plan runs regardless of where state lives.",
+    "tags": [
+      "remote-backend",
+      "collaboration",
+      "state"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-084",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Why should the state file be treated as sensitive?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It can contain sensitive values such as secrets and connection details in plaintext"
+      },
+      {
+        "id": "o2",
+        "text": "It contains the Terraform binary"
+      },
+      {
+        "id": "o3",
+        "text": "It stores your Git history"
+      },
+      {
+        "id": "o4",
+        "text": "It holds provider documentation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "State can capture attribute values including secrets like passwords in plaintext, so it must be protected with access controls and encryption.",
+    "explanationIncorrect": "State does not contain the Terraform binary. It does not store Git history, which lives in the .git directory. It does not hold provider documentation; it holds resource attributes and metadata, which is exactly why it is sensitive.",
+    "tags": [
+      "state",
+      "security",
+      "secrets"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-085",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "You renamed a resource in configuration and want Terraform to treat it as the same object rather than destroy and recreate it. Which approach avoids recreation?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use a moved block or terraform state mv to update the address"
+      },
+      {
+        "id": "o2",
+        "text": "Run terraform destroy then apply"
+      },
+      {
+        "id": "o3",
+        "text": "Delete the state file and re-import nothing"
+      },
+      {
+        "id": "o4",
+        "text": "Use terraform taint on the resource"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A moved block in configuration, or terraform state mv, updates the resource's address in state so Terraform recognizes the renamed resource as the existing object and does not recreate it.",
+    "explanationIncorrect": "Destroying and applying would delete and recreate the resource, causing downtime and data loss. Deleting the state file loses tracking of all resources. terraform taint deliberately forces recreation, which is the opposite of what you want.",
+    "tags": [
+      "moved-block",
+      "state-mv",
+      "refactoring"
+    ],
+    "isSeed": true
   }
 ]
