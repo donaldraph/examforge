@@ -2664,5 +2664,447 @@
       "performance"
     ],
     "isSeed": true
+  },
+  {
+    "id": "saa-081",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "An EC2 application must access an S3 bucket. What is the most secure way to grant that access?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Attach an IAM role to the instance with a least-privilege policy"
+      },
+      {
+        "id": "o2",
+        "text": "Embed long-lived access keys in the AMI"
+      },
+      {
+        "id": "o3",
+        "text": "Make the bucket public"
+      },
+      {
+        "id": "o4",
+        "text": "Store credentials in a plaintext file on the instance"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An IAM role supplies temporary, automatically rotated credentials scoped to only the needed S3 actions, avoiding any long-lived secrets on the instance.",
+    "explanationIncorrect": "Embedding long-lived keys in an AMI risks leaking durable credentials that are hard to rotate. Making the bucket public exposes data to everyone, a severe risk. Storing credentials in a plaintext file leaves them exposed to anyone who can read the instance, so the role-based approach is best.",
+    "tags": [
+      "iam-roles",
+      "least-privilege",
+      "s3"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-082",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "You must ensure database instances are never directly reachable from the internet. Which network design achieves this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Place databases in private subnets with no route to an internet gateway"
+      },
+      {
+        "id": "o2",
+        "text": "Place databases in public subnets with a public IP"
+      },
+      {
+        "id": "o3",
+        "text": "Attach an internet gateway route to the database subnet"
+      },
+      {
+        "id": "o4",
+        "text": "Assign each database an Elastic IP"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Putting databases in private subnets without a route to an internet gateway means they have no inbound path from the internet, and access comes only from within the VPC.",
+    "explanationIncorrect": "Public subnets with public IPs expose the databases to the internet, the opposite of the requirement. Adding an internet gateway route to the subnet would give it internet reachability. Assigning Elastic IPs makes the databases publicly addressable, which is exactly what must be avoided.",
+    "tags": [
+      "vpc",
+      "private-subnets",
+      "network-security"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-083",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which construct acts as a stateful virtual firewall controlling inbound and outbound traffic at the instance level?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Security group"
+      },
+      {
+        "id": "o2",
+        "text": "Network ACL"
+      },
+      {
+        "id": "o3",
+        "text": "Route table"
+      },
+      {
+        "id": "o4",
+        "text": "Internet gateway"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A security group is a stateful firewall attached to an instance's network interface; return traffic for allowed connections is automatically permitted.",
+    "explanationIncorrect": "A network ACL operates at the subnet level and is stateless, so it is not instance-level and requires explicit rules for return traffic. A route table directs traffic between destinations rather than filtering it. An internet gateway provides internet connectivity, not traffic filtering.",
+    "tags": [
+      "security-groups",
+      "firewall",
+      "vpc"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-084",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which service securely stores and automatically rotates database credentials for applications to retrieve at runtime?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Secrets Manager"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3 with public access"
+      },
+      {
+        "id": "o3",
+        "text": "A hard-coded config file"
+      },
+      {
+        "id": "o4",
+        "text": "An environment variable in the AMI"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Secrets Manager stores secrets encrypted, controls access with IAM, and can automatically rotate credentials such as database passwords, which applications fetch at runtime.",
+    "explanationIncorrect": "A public S3 bucket would expose secrets to the world. A hard-coded config file leaves credentials in source and cannot rotate them. Baking an environment variable into an AMI stores a static secret that is difficult to rotate and easy to leak, so Secrets Manager is the secure choice.",
+    "tags": [
+      "secrets-manager",
+      "rotation",
+      "security"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-085",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "To let a mobile app obtain temporary AWS credentials scoped to a user's own resources, which service should you use?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Cognito with IAM roles for federated identities"
+      },
+      {
+        "id": "o2",
+        "text": "Shared IAM user credentials shipped in the app"
+      },
+      {
+        "id": "o3",
+        "text": "The account root credentials"
+      },
+      {
+        "id": "o4",
+        "text": "A public access key in the app store listing"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Cognito authenticates users and vends temporary, scoped credentials via IAM roles, so each user gets least-privilege access without embedding long-lived keys in the app.",
+    "explanationIncorrect": "Shipping shared IAM user credentials in the app exposes them to extraction and misuse. Using root credentials is never appropriate and grants unlimited power. Publishing an access key anywhere public is a severe credential leak; Cognito exists precisely to avoid these.",
+    "tags": [
+      "cognito",
+      "federation",
+      "temporary-credentials"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-086",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach encrypts data at rest in an S3 bucket with keys you manage centrally and audit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Server-side encryption with AWS KMS keys (SSE-KMS)"
+      },
+      {
+        "id": "o2",
+        "text": "No encryption but a private bucket"
+      },
+      {
+        "id": "o3",
+        "text": "Client-side base64 encoding"
+      },
+      {
+        "id": "o4",
+        "text": "Renaming files with a secret suffix"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SSE-KMS encrypts objects at rest using KMS keys, giving you centralized key policies, rotation, and CloudTrail auditing of key usage.",
+    "explanationIncorrect": "A private bucket without encryption leaves data unencrypted at rest. Base64 encoding is not encryption; it is trivially reversible. Renaming files provides no cryptographic protection at all, so KMS-based encryption is the correct control.",
+    "tags": [
+      "s3",
+      "sse-kms",
+      "encryption"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-087",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice helps enforce consistent security guardrails across many accounts in an organization?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Service control policies (SCPs) in AWS Organizations"
+      },
+      {
+        "id": "o2",
+        "text": "Manually editing IAM in each account with no baseline"
+      },
+      {
+        "id": "o3",
+        "text": "Sharing one IAM user across accounts"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling CloudTrail to reduce noise"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SCPs set permission boundaries at the organization or organizational-unit level, so no account can exceed the allowed actions, enforcing consistent guardrails centrally.",
+    "explanationIncorrect": "Editing IAM per account with no baseline invites drift and inconsistency. Sharing one IAM user across accounts destroys accountability and isolation. Disabling CloudTrail removes the audit trail you need for security, which is the opposite of a guardrail.",
+    "tags": [
+      "scp",
+      "organizations",
+      "governance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-088",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "An application in a private subnet must reach S3 without traversing the public internet. Which feature enables this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A gateway VPC endpoint for S3"
+      },
+      {
+        "id": "o2",
+        "text": "A public IP on each instance"
+      },
+      {
+        "id": "o3",
+        "text": "An internet gateway route for the subnet"
+      },
+      {
+        "id": "o4",
+        "text": "A NAT gateway is the only option and traffic still goes over the internet"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A gateway VPC endpoint for S3 lets private-subnet resources access S3 over the AWS private network, keeping traffic off the public internet.",
+    "explanationIncorrect": "Assigning public IPs would route through the internet, contrary to the goal. Adding an internet gateway route also sends traffic over the internet. A NAT gateway would route S3 traffic out to the internet endpoint; the private, direct path is the gateway VPC endpoint.",
+    "tags": [
+      "vpc-endpoint",
+      "s3",
+      "private-access"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-089",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which service discovers and classifies sensitive data such as PII stored in Amazon S3?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EFS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Macie uses machine learning to discover, classify, and protect sensitive data like personally identifiable information in S3 and alerts on risky exposure.",
+    "explanationIncorrect": "Athena queries data but does not classify sensitivity. Batch runs compute jobs and has no data-classification function. EFS is a file system, not a data-discovery service; Macie is purpose-built for this.",
+    "tags": [
+      "macie",
+      "data-classification",
+      "pii"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-090",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which is the recommended way to allow cross-account access to a role without sharing long-term credentials?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Configure an IAM role with a trust policy and use AssumeRole from the other account"
+      },
+      {
+        "id": "o2",
+        "text": "Share IAM user access keys between accounts"
+      },
+      {
+        "id": "o3",
+        "text": "Email the secret access key to the other team"
+      },
+      {
+        "id": "o4",
+        "text": "Use the root user of both accounts"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A role with a trust policy naming the other account lets principals there call AssumeRole to obtain temporary credentials, enabling secure cross-account access without shared long-term secrets.",
+    "explanationIncorrect": "Sharing access keys between accounts spreads long-lived secrets and undermines auditing. Emailing a secret key is an insecure disclosure. Using root users grants excessive privilege and is strongly discouraged, so role assumption is the correct pattern.",
+    "tags": [
+      "cross-account",
+      "assume-role",
+      "iam"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-091",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "A compliance rule requires that objects written to a bucket cannot be deleted or overwritten for a retention period. Which feature enforces this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Object Lock in compliance mode"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Transfer Acceleration"
+      },
+      {
+        "id": "o3",
+        "text": "A bucket policy allowing deletes"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Lifecycle expiration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Object Lock in compliance mode enforces write-once-read-many retention so objects cannot be deleted or overwritten, even by privileged users, until the retention period ends.",
+    "explanationIncorrect": "Transfer Acceleration speeds uploads and has nothing to do with immutability. A bucket policy allowing deletes would permit exactly what must be prevented. Lifecycle expiration is designed to delete objects on a schedule, the opposite of enforcing retention.",
+    "tags": [
+      "s3",
+      "object-lock",
+      "compliance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-092",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice reduces the risk of leaked credentials for automated CI/CD deploying to AWS?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use OIDC federation so the pipeline assumes a role for short-lived credentials"
+      },
+      {
+        "id": "o2",
+        "text": "Store a permanent access key in the pipeline config"
+      },
+      {
+        "id": "o3",
+        "text": "Use the root access key for deployments"
+      },
+      {
+        "id": "o4",
+        "text": "Print credentials in build logs for debugging"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "OIDC federation lets the CI/CD system exchange a signed token for a temporary role session, eliminating stored long-lived AWS keys and reducing leak risk.",
+    "explanationIncorrect": "A permanent access key in pipeline config is a durable secret that can be leaked. The root access key is the most dangerous credential to expose. Printing credentials in logs actively leaks them, so short-lived federated credentials are the secure approach.",
+    "tags": [
+      "oidc",
+      "cicd",
+      "temporary-credentials"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-093",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which service records all API calls in an account to provide an audit trail for security investigations?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudTrail logs API activity across services, giving you a durable audit trail of who did what and when for security analysis and compliance.",
+    "explanationIncorrect": "CloudFront is a content delivery network, not an audit log. Comprehend performs natural language processing. Lambda runs code; none of these provide the account-wide API audit trail that CloudTrail does.",
+    "tags": [
+      "cloudtrail",
+      "auditing",
+      "security"
+    ],
+    "isSeed": true
   }
 ]
