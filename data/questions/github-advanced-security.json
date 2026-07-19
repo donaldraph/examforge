@@ -853,5 +853,175 @@
     "explanationCorrect": "dependabot.yml supports labels and reviewers (and assignees) on an updates entry, so Dependabot applies them automatically to the pull requests it opens.",
     "explanationIncorrect": "CODEOWNERS can request review based on changed paths but does not set Dependabot-specific labels and is not where you configure Dependabot's own reviewers. Branch protection governs merging, not PR metadata. This is automatable, so claiming otherwise is wrong. It is set in dependabot.yml.",
     "tags": ["dependabot", "labels", "reviewers"]
+  },
+  {
+    "id": "ghas-051",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "GitHub now offers its Advanced Security capabilities as two separately purchasable products. What are they?",
+    "options": [
+      { "id": "o1", "text": "GitHub Code Security and GitHub Secret Protection" },
+      { "id": "o2", "text": "GitHub Pages and GitHub Discussions" },
+      { "id": "o3", "text": "GitHub Actions and GitHub Packages" },
+      { "id": "o4", "text": "GitHub Copilot and GitHub Codespaces" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Advanced Security features are now sold as GitHub Code Security (code scanning, Dependabot, and related) and GitHub Secret Protection (secret scanning and push protection), so organizations can buy the coverage they need.",
+    "explanationIncorrect": "Pages and Discussions are collaboration features, not security products. Actions and Packages are CI/CD and artifact features. Copilot and Codespaces are AI and cloud-dev-environment products. The two security products are Code Security and Secret Protection.",
+    "tags": ["ghas", "products", "code-security", "secret-protection"]
+  },
+  {
+    "id": "ghas-052",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "You want a team to view security alerts across all organization repositories and manage security settings, without granting them full organization admin. Which role fits?",
+    "options": [
+      { "id": "o1", "text": "The security manager role" },
+      { "id": "o2", "text": "Repository maintainer" },
+      { "id": "o3", "text": "Billing manager" },
+      { "id": "o4", "text": "Outside collaborator" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The security manager role grants read access to all repositories plus the ability to manage security alerts and settings org-wide, without the broad power of full admin.",
+    "explanationIncorrect": "Repository maintainer is scoped to individual repositories, not org-wide security. Billing manager handles payment, not security alerts. Outside collaborator is a limited external role. The least-privilege security role is security manager.",
+    "tags": ["ghas", "security-manager", "roles"]
+  },
+  {
+    "id": "ghas-053",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "You want to define a reusable set of security feature settings and apply it consistently to many repositories at once, optionally as the default for new repositories. Which capability does this?",
+    "options": [
+      { "id": "o1", "text": "Security configurations, applied across repositories and settable as the default for new ones" },
+      { "id": "o2", "text": "Editing each repository's Settings page individually" },
+      { "id": "o3", "text": "A branch protection rule" },
+      { "id": "o4", "text": "A pull request template" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Security configurations bundle which security features are enabled and let you apply that bundle across many repositories at once, including as the default for newly created repositories, giving consistent enablement.",
+    "explanationIncorrect": "Editing each repository by hand is the manual approach configurations replace. A branch protection rule governs merging, not feature enablement across repos. A pull request template pre-fills PR descriptions. Consistent bulk enablement is done with security configurations.",
+    "tags": ["ghas", "security-configurations", "enablement"]
+  },
+  {
+    "id": "ghas-054",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Before purchasing, an organization wants a point-in-time report of how exposed it is to leaked secrets across its repositories. Which tool provides this?",
+    "options": [
+      { "id": "o1", "text": "Secret risk assessment" },
+      { "id": "o2", "text": "A paid CodeQL license" },
+      { "id": "o3", "text": "Dependency review" },
+      { "id": "o4", "text": "Amazon Macie" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A secret risk assessment produces a point-in-time report of an organization's exposure to leaked secrets, helping teams understand the problem before adopting Secret Protection.",
+    "explanationIncorrect": "CodeQL analyzes source code for vulnerabilities, not a secrets-exposure snapshot. Dependency review evaluates dependency changes in pull requests. Amazon Macie is an AWS data-classification service, unrelated to GitHub. The report is a secret risk assessment.",
+    "tags": ["ghas", "secret-risk-assessment"]
+  },
+  {
+    "id": "ghas-055",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which statement about GitHub Advanced Security availability is accurate?",
+    "options": [
+      { "id": "o1", "text": "The features are available on GitHub.com (free for public repos, licensed for private) and on GitHub Enterprise Server with appropriate licensing" },
+      { "id": "o2", "text": "They exist only on GitHub.com and never on GitHub Enterprise Server" },
+      { "id": "o3", "text": "They are free for all private repositories everywhere" },
+      { "id": "o4", "text": "They require a self-hosted runner to function at all" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Advanced Security is available both on GitHub.com (free for public repositories and licensed for private ones) and on GitHub Enterprise Server with the appropriate licensing, so both hosting models are covered.",
+    "explanationIncorrect": "It is available on Enterprise Server, not only on GitHub.com. It is not free for all private repositories; private use is licensed. It does not require a self-hosted runner to work. The accurate statement covers both GitHub.com and Enterprise Server with licensing.",
+    "tags": ["ghas", "availability", "enterprise-server"]
+  },
+  {
+    "id": "ghas-056",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which approach best reflects a layered, defense-in-depth GHAS strategy?",
+    "options": [
+      { "id": "o1", "text": "Use code scanning, secret scanning with push protection, and Dependabot together so code flaws, leaked secrets, and vulnerable dependencies are all covered" },
+      { "id": "o2", "text": "Rely on code scanning alone to catch everything" },
+      { "id": "o3", "text": "Rely on secret scanning alone" },
+      { "id": "o4", "text": "Turn all the features off and review everything by hand" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Defense in depth combines the tools so each covers a different risk: code scanning for code-level flaws, secret scanning and push protection for leaked credentials, and Dependabot for vulnerable dependencies.",
+    "explanationIncorrect": "Code scanning alone misses leaked secrets and vulnerable dependencies. Secret scanning alone misses code flaws and dependency risks. Turning everything off and reviewing manually does not scale and misses issues. The layered strategy uses all three together.",
+    "tags": ["best-practices", "defense-in-depth"]
+  },
+  {
+    "id": "ghas-057",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "To stop new high-severity code scanning alerts from being merged into the protected main branch, what should you configure?",
+    "options": [
+      { "id": "o1", "text": "Make the code scanning check a required status check in the branch protection rule or ruleset for main" },
+      { "id": "o2", "text": "Email developers a report after the merge completes" },
+      { "id": "o3", "text": "Run the scan only nightly with no merge gate" },
+      { "id": "o4", "text": "Automatically dismiss the alerts so the merge is clean" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Making the code scanning result a required status check blocks merging a pull request into main until the check passes, preventing new high-severity alerts from landing on the protected branch.",
+    "explanationIncorrect": "Emailing after the merge is too late; the issue is already on main. A nightly scan with no gate does not block the merge. Auto-dismissing alerts hides real problems instead of preventing them. The gate is a required status check on the protected branch.",
+    "tags": ["best-practices", "required-checks", "prevention"]
+  },
+  {
+    "id": "ghas-058",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "A security team wants to organize and track remediation of a specific class of existing alerts across many repositories, engaging developers with owners and timelines. Which GHAS capability helps?",
+    "options": [
+      { "id": "o1", "text": "Security campaigns, which group alerts and drive developers to fix them on a timeline" },
+      { "id": "o2", "text": "Pull request templates" },
+      { "id": "o3", "text": "A single spreadsheet emailed around the company" },
+      { "id": "o4", "text": "Disabling the alerts to clear the list" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Security campaigns let security teams group a set of alerts, assign them to developers, and track remediation toward a deadline, turning a backlog into an organized, measurable effort.",
+    "explanationIncorrect": "Pull request templates standardize PR descriptions, not alert remediation tracking. An emailed spreadsheet is manual and disconnected from the alerts themselves. Disabling alerts hides risk rather than fixing it. The organized-remediation feature is security campaigns.",
+    "tags": ["best-practices", "security-campaigns", "remediation"]
+  },
+  {
+    "id": "ghas-059",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "How can an organization track whether its security remediation is improving over time, such as alert trends and time to remediate, across many repositories?",
+    "options": [
+      { "id": "o1", "text": "Use the security overview dashboards and trends across repositories" },
+      { "id": "o2", "text": "Count the number of commits in the git log" },
+      { "id": "o3", "text": "Read each repository's README file" },
+      { "id": "o4", "text": "There is no way to measure remediation progress" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The security overview provides organization-wide dashboards and trends, so teams can see how alert volumes and remediation are changing over time and where to focus.",
+    "explanationIncorrect": "Commit counts measure activity, not security posture or remediation. READMEs are documentation, not metrics. Progress is measurable, so claiming otherwise is wrong. The place to track trends is the security overview.",
+    "tags": ["best-practices", "security-overview", "metrics"]
+  },
+  {
+    "id": "ghas-060",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which practice best embodies shifting security left in the developer workflow?",
+    "options": [
+      { "id": "o1", "text": "Surface alerts and fixes where developers already work, such as code scanning results and push protection on pull requests, so issues are caught before merge" },
+      { "id": "o2", "text": "Run a single security audit once a year after the product ships" },
+      { "id": "o3", "text": "Keep all security findings hidden from developers" },
+      { "id": "o4", "text": "Fix every issue manually in production" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Shifting left means catching problems early in the developer flow, so putting code scanning results and push protection right on pull requests lets developers fix issues before they merge.",
+    "explanationIncorrect": "An annual post-release audit is the opposite of early feedback. Hiding findings from developers prevents them from fixing anything. Fixing in production is the latest, riskiest point. Shifting left surfaces issues in the pull request workflow.",
+    "tags": ["best-practices", "shift-left", "developer-workflow"]
   }
 ]
