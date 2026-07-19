@@ -2758,5 +2758,246 @@
       "basics"
     ],
     "isSeed": true
+  },
+  {
+    "id": "tf-093",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "What is a Terraform module?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A container for multiple resources that are used together, reusable via a source"
+      },
+      {
+        "id": "o2",
+        "text": "A single provider plugin"
+      },
+      {
+        "id": "o3",
+        "text": "A remote state backend"
+      },
+      {
+        "id": "o4",
+        "text": "A command-line flag"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A module groups related resources into a reusable unit that can be called with a source and inputs, promoting reuse and consistency across configurations.",
+    "explanationIncorrect": "A provider plugin integrates with a platform's API and is not a grouping of resources. A remote backend stores state, which is a different concept. A module is a configuration construct, not a command-line flag.",
+    "tags": [
+      "modules",
+      "reuse"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-094",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "How does a child module expose values back to the calling module?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Through output blocks in the child module"
+      },
+      {
+        "id": "o2",
+        "text": "Through variable blocks in the child module"
+      },
+      {
+        "id": "o3",
+        "text": "By writing to the state file directly"
+      },
+      {
+        "id": "o4",
+        "text": "By printing to the console"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A child module declares output blocks, and the caller reads them as module.<name>.<output>, which is how values flow out of a module.",
+    "explanationIncorrect": "variable blocks define inputs into the module, the opposite direction. Modules do not manually write to state to pass values. Printing to the console does not return usable values to the caller; outputs are the mechanism.",
+    "tags": [
+      "modules",
+      "outputs",
+      "interface"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-095",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "How do you pass values into a module when calling it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "As arguments in the module block matching the module's input variables"
+      },
+      {
+        "id": "o2",
+        "text": "As output blocks in the root module"
+      },
+      {
+        "id": "o3",
+        "text": "By editing the child module's source each time"
+      },
+      {
+        "id": "o4",
+        "text": "Through the backend configuration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In the module block you set arguments that correspond to the module's declared input variables, supplying the values the module needs.",
+    "explanationIncorrect": "Output blocks expose values out of a module, not into it. Editing the child module's source for each call defeats reuse and is not how inputs are passed. The backend configures state storage, not module inputs.",
+    "tags": [
+      "modules",
+      "inputs",
+      "variables"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-096",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "Which source address references a module from the public Terraform Registry?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "namespace/name/provider, for example terraform-aws-modules/vpc/aws"
+      },
+      {
+        "id": "o2",
+        "text": "https://registry only with no path"
+      },
+      {
+        "id": "o3",
+        "text": "A local file path is required for registry modules"
+      },
+      {
+        "id": "o4",
+        "text": "registry://module"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Public registry modules use the namespace/name/provider shorthand, such as terraform-aws-modules/vpc/aws, optionally with a version constraint.",
+    "explanationIncorrect": "A bare registry URL with no path does not identify a specific module. A local file path references a local module, not a registry one. There is no registry:// scheme; the shorthand triple is how registry modules are addressed.",
+    "tags": [
+      "modules",
+      "registry",
+      "source"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-097",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "Why is it recommended to pin a module version with a version constraint?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To ensure reproducible builds and avoid unexpected changes from newer module releases"
+      },
+      {
+        "id": "o2",
+        "text": "To make terraform init unnecessary"
+      },
+      {
+        "id": "o3",
+        "text": "To encrypt the module"
+      },
+      {
+        "id": "o4",
+        "text": "To skip the plan step"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Pinning a version keeps your configuration reproducible, so a new module release does not silently change behavior on the next init.",
+    "explanationIncorrect": "Pinning a version does not remove the need for init, which still installs modules and providers. It does not encrypt the module. It does not skip the plan step; planning still runs to show changes.",
+    "tags": [
+      "modules",
+      "versioning",
+      "reproducibility"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-098",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "What is the root module in a Terraform configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The main working directory where Terraform is run, which may call child modules"
+      },
+      {
+        "id": "o2",
+        "text": "A special module downloaded from the registry"
+      },
+      {
+        "id": "o3",
+        "text": "The provider plugin directory"
+      },
+      {
+        "id": "o4",
+        "text": "The remote state bucket"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The root module is the set of .tf files in the directory where you run Terraform; it can call other child modules to compose the configuration.",
+    "explanationIncorrect": "It is not a registry download; it is your own working directory. It is not the provider plugin directory, which init populates. It is not the remote state bucket, which is where state is stored, not the configuration entry point.",
+    "tags": [
+      "modules",
+      "root-module",
+      "structure"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-099",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "You want to create several similar instances of a module with different inputs from a map. Which meta-argument on the module block helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "for_each over the map"
+      },
+      {
+        "id": "o2",
+        "text": "depends_on"
+      },
+      {
+        "id": "o3",
+        "text": "provider"
+      },
+      {
+        "id": "o4",
+        "text": "sensitive"
+      },
+      {
+        "id": "o5",
+        "text": "backend"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "for_each on a module block instantiates the module once per element of the map or set, letting each instance receive its own inputs keyed by the map.",
+    "explanationIncorrect": "depends_on only orders execution and does not create multiple instances. provider selects which provider configuration to use, not repetition. sensitive controls value display, and there is no backend meta-argument on a module block, so for_each is the tool for iteration.",
+    "tags": [
+      "modules",
+      "for_each",
+      "iteration"
+    ],
+    "isSeed": true
   }
 ]
