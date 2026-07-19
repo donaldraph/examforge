@@ -479,6 +479,91 @@
     "tags": ["security", "permissions-boundary", "delegation"]
   },
   {
+    "id": "saa-036",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "You want administrators to reach private EC2 instances for troubleshooting without opening inbound SSH ports or running a bastion host. Which approach fits?",
+    "options": [
+      { "id": "o1", "text": "AWS Systems Manager Session Manager" },
+      { "id": "o2", "text": "Open port 22 to 0.0.0.0/0 on the security group" },
+      { "id": "o3", "text": "Assign public IP addresses to all private instances" },
+      { "id": "o4", "text": "A NAT gateway in front of the instances" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Session Manager provides shell access to instances through the SSM agent and IAM, with no inbound ports, no bastion, and full auditing, which is the secure way to reach private instances.",
+    "explanationIncorrect": "Opening port 22 to the world is a major exposure and the opposite of the requirement. Public IPs on private instances defeat their isolation. A NAT gateway enables outbound internet access; it does not provide inbound administrative access. The no-inbound, no-bastion option is Session Manager.",
+    "tags": ["security", "session-manager", "bastionless"]
+  },
+  {
+    "id": "saa-037",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "To protect a public web application behind an Application Load Balancer from common web exploits like SQL injection and cross-site scripting, plus rate-based abuse, which service do you attach?",
+    "options": [
+      { "id": "o1", "text": "AWS WAF" },
+      { "id": "o2", "text": "Amazon EBS" },
+      { "id": "o3", "text": "AWS Config" },
+      { "id": "o4", "text": "Amazon Athena" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS WAF attaches to an Application Load Balancer (or CloudFront/API Gateway) and filters HTTP requests with managed and custom rules for exploits like SQL injection and cross-site scripting, plus rate-based rules.",
+    "explanationIncorrect": "Amazon EBS is block storage for EC2 volumes and inspects no traffic. AWS Config records resource configuration and compliance, not individual web requests. Amazon Athena queries data in S3 with SQL. None of them filter malicious HTTP requests. Web-layer protection for exploits and abuse is AWS WAF.",
+    "tags": ["security", "waf", "web-exploits"]
+  },
+  {
+    "id": "saa-038",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "You want continuous, managed threat detection that analyzes CloudTrail, VPC flow logs, and DNS logs as part of a secure architecture. Which service provides this?",
+    "options": [
+      { "id": "o1", "text": "Amazon GuardDuty" },
+      { "id": "o2", "text": "Amazon CloudFront" },
+      { "id": "o3", "text": "AWS Batch" },
+      { "id": "o4", "text": "Amazon SQS" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon GuardDuty continuously analyzes CloudTrail, VPC flow logs, and DNS logs using threat intelligence and machine learning to flag suspicious activity, with no infrastructure to manage.",
+    "explanationIncorrect": "Amazon CloudFront is a content delivery network that caches content at the edge. AWS Batch runs batch computing jobs. Amazon SQS is a managed message queue for decoupling components. None of them analyze account and network logs for threats. Managed threat detection over CloudTrail, VPC flow, and DNS logs is Amazon GuardDuty.",
+    "tags": ["security", "guardduty", "threat-detection"]
+  },
+  {
+    "id": "saa-039",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "You want workforce users to sign in once and receive federated, role-based access across multiple AWS accounts. Which service is designed for this?",
+    "options": [
+      { "id": "o1", "text": "AWS IAM Identity Center (successor to AWS SSO)" },
+      { "id": "o2", "text": "A separate IAM user for each person in each account" },
+      { "id": "o3", "text": "The account root user shared across accounts" },
+      { "id": "o4", "text": "Access keys emailed to each user" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "IAM Identity Center provides single sign-on with federated, permission-set-based access across accounts in an organization, so users authenticate once and assume the right roles.",
+    "explanationIncorrect": "Creating an IAM user per person per account multiplies credentials and is hard to manage. Sharing the root user is dangerous and removes accountability. Emailing access keys distributes long-lived credentials. Centralized workforce SSO across accounts is IAM Identity Center.",
+    "tags": ["security", "iam-identity-center", "sso"]
+  },
+  {
+    "id": "saa-040",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "You want your KMS customer managed keys rotated automatically on a yearly basis to reduce risk. What do you enable?",
+    "options": [
+      { "id": "o1", "text": "Automatic key rotation on the KMS key" },
+      { "id": "o2", "text": "A new S3 bucket policy" },
+      { "id": "o3", "text": "An additional security group rule" },
+      { "id": "o4", "text": "A Route 53 health check" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "KMS supports automatic annual rotation of customer managed key material, so the key is rotated on a schedule without re-encrypting data or changing key references.",
+    "explanationIncorrect": "A bucket policy controls S3 access, not key rotation. A security group rule filters network traffic. A Route 53 health check monitors endpoints. Scheduled key rotation is enabled on the KMS key itself.",
+    "tags": ["security", "kms", "key-rotation"]
+  },
+  {
     "id": "saa-004",
     "exam": "aws-solutions-architect-associate",
     "domain": "Design Cost-Optimized Architectures",
