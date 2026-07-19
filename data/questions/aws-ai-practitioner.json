@@ -853,5 +853,175 @@
     "explanationCorrect": "Batch inference processes large volumes of prompts asynchronously at lower cost, which fits a bulk, latency-tolerant workload like summarizing millions of documents.",
     "explanationIncorrect": "Synchronous on-demand calls per document are optimized for interactivity, not cost at massive scale. Provisioned Throughput reserves capacity for steady low-latency traffic like a chatbot, not one-off bulk jobs. Fine-tuning per document is nonsensical and costly. The cost-efficient bulk option is batch inference.",
     "tags": ["applications", "batch-inference", "cost"]
+  },
+  {
+    "id": "aip-051",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Stakeholders need to understand why a model produced a particular decision. Which responsible-AI property does this concern?",
+    "options": [
+      { "id": "o1", "text": "Explainability (interpretability)" },
+      { "id": "o2", "text": "Latency" },
+      { "id": "o3", "text": "Throughput" },
+      { "id": "o4", "text": "Tokenization" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Explainability is the responsible-AI property of being able to understand and communicate why a model produced a given output, which supports trust, debugging, and compliance.",
+    "explanationIncorrect": "Latency and throughput are performance characteristics, not about understanding decisions. Tokenization is how text is split into tokens. Understanding why a decision was made is explainability.",
+    "tags": ["responsible-ai", "explainability"]
+  },
+  {
+    "id": "aip-052",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "A public-facing chatbot must avoid producing hateful or harmful content. Which responsible-AI concern and mitigation applies?",
+    "options": [
+      { "id": "o1", "text": "Toxicity and safety, mitigated with content filters or guardrails" },
+      { "id": "o2", "text": "Overfitting, mitigated with more training epochs" },
+      { "id": "o3", "text": "Latency, mitigated with caching" },
+      { "id": "o4", "text": "Tokenization, mitigated with embeddings" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Preventing harmful or hateful output is a toxicity and safety concern, addressed by content filters or guardrails that screen prompts and responses.",
+    "explanationIncorrect": "Overfitting is a generalization problem unrelated to harmful content. Latency and caching concern speed. Tokenization and embeddings are representation mechanics. Blocking harmful content is a toxicity and safety matter handled by guardrails.",
+    "tags": ["responsible-ai", "toxicity", "guardrails"]
+  },
+  {
+    "id": "aip-053",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "A known risk of generative AI is that users accept its outputs uncritically even when they are wrong. What is this called, and what mitigates it?",
+    "options": [
+      { "id": "o1", "text": "Overreliance (automation bias), mitigated by human review and showing sources and uncertainty" },
+      { "id": "o2", "text": "Underfitting, mitigated by using a larger model" },
+      { "id": "o3", "text": "Cold start, mitigated by provisioned throughput" },
+      { "id": "o4", "text": "Data drift, mitigated by sharding the database" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Overreliance, or automation bias, is the tendency to trust AI output without scrutiny; it is mitigated by keeping humans in the loop and by surfacing sources and uncertainty so users can judge the output.",
+    "explanationIncorrect": "Underfitting is a model-capacity problem, not a user-trust behavior. Cold start is an operational latency issue. Data drift is a change in data distribution over time. Uncritical trust in AI output is overreliance.",
+    "tags": ["responsible-ai", "overreliance", "automation-bias"]
+  },
+  {
+    "id": "aip-054",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "To reduce biased outcomes from a model, which practice about training data helps most?",
+    "options": [
+      { "id": "o1", "text": "Use diverse, representative training data and check it for bias" },
+      { "id": "o2", "text": "Use the smallest dataset possible" },
+      { "id": "o3", "text": "Train only on data from one group for consistency" },
+      { "id": "o4", "text": "Remove all human oversight from the process" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Bias often originates in the data, so using diverse, representative data and actively checking it for bias is the most effective way to reduce biased outcomes.",
+    "explanationIncorrect": "The smallest possible dataset tends to be less representative and can worsen bias. Training on one group's data bakes in a skewed view. Removing oversight makes bias harder to catch. Representative, bias-checked data is the right practice.",
+    "tags": ["responsible-ai", "bias", "data-quality"]
+  },
+  {
+    "id": "aip-055",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "A user embeds hidden instructions in input text to make the model ignore its guidelines and behave in unintended ways. What is this attack called?",
+    "options": [
+      { "id": "o1", "text": "Prompt injection" },
+      { "id": "o2", "text": "Overfitting" },
+      { "id": "o3", "text": "Data labeling" },
+      { "id": "o4", "text": "Quantization" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Prompt injection is an attack where crafted input manipulates the model into ignoring its instructions or safeguards, and it is a key safety concern for generative-AI applications.",
+    "explanationIncorrect": "Overfitting is a training generalization problem. Data labeling is annotating training data. Quantization compresses a model. Manipulating a model through crafted input is prompt injection.",
+    "tags": ["responsible-ai", "prompt-injection", "safety"]
+  },
+  {
+    "id": "aip-056",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "For auditing and troubleshooting, you want to capture the actual prompts and completions sent through Amazon Bedrock. Which capability records that content?",
+    "options": [
+      { "id": "o1", "text": "Bedrock model invocation logging to CloudWatch Logs and/or Amazon S3" },
+      { "id": "o2", "text": "AWS CloudTrail, which records the full prompt and completion text of every call" },
+      { "id": "o3", "text": "Secret scanning" },
+      { "id": "o4", "text": "Dependency review" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Bedrock model invocation logging captures request and response content (prompts and completions) to CloudWatch Logs or S3, which is what you enable to audit and troubleshoot model usage.",
+    "explanationIncorrect": "CloudTrail records that an API call happened and its metadata, but it is not designed to store the full prompt and completion content, so it does not meet this need on its own. Secret scanning finds leaked credentials. Dependency review evaluates dependency changes. Capturing prompt and completion content is model invocation logging.",
+    "tags": ["governance", "invocation-logging", "auditing"]
+  },
+  {
+    "id": "aip-057",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "You want customer-managed keys to encrypt your fine-tuned model artifacts and data at rest in Amazon Bedrock. Which service provides those keys?",
+    "options": [
+      { "id": "o1", "text": "AWS KMS with customer managed keys" },
+      { "id": "o2", "text": "AWS WAF" },
+      { "id": "o3", "text": "Amazon Route 53" },
+      { "id": "o4", "text": "AWS Shield" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS KMS provides customer managed keys that Bedrock can use to encrypt data and custom model artifacts at rest, giving you control and an audit trail over the keys.",
+    "explanationIncorrect": "AWS WAF filters malicious web requests and manages no encryption keys. Amazon Route 53 is a DNS and health-checking service. AWS Shield provides DDoS protection. None of them create or manage cryptographic keys. Customer-managed encryption keys for data and model artifacts come from AWS KMS.",
+    "tags": ["governance", "kms", "encryption"]
+  },
+  {
+    "id": "aip-058",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "You must prevent a model from returning personally identifiable information (PII) in its responses. Which Amazon Bedrock feature can detect and redact PII?",
+    "options": [
+      { "id": "o1", "text": "Guardrails for Amazon Bedrock, using its sensitive information filters" },
+      { "id": "o2", "text": "Provisioned Throughput" },
+      { "id": "o3", "text": "Model evaluation" },
+      { "id": "o4", "text": "Knowledge Bases" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Bedrock Guardrails include sensitive information filters that can detect and redact or block PII in prompts and responses, which is exactly the control needed here.",
+    "explanationIncorrect": "Provisioned Throughput reserves capacity. Model evaluation compares model quality. Knowledge Bases implement retrieval. PII detection and redaction is a Guardrails capability.",
+    "tags": ["governance", "guardrails", "pii"]
+  },
+  {
+    "id": "aip-059",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "easy",
+    "stem": "An auditor asks for AWS's compliance certifications (such as SOC and ISO) relevant to your AI workload. Where do you obtain these reports?",
+    "options": [
+      { "id": "o1", "text": "AWS Artifact" },
+      { "id": "o2", "text": "The Amazon Bedrock console's model prompts" },
+      { "id": "o3", "text": "The Amazon Q chat window" },
+      { "id": "o4", "text": "The billing dashboard" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Artifact is the portal for AWS compliance reports and certifications like SOC and ISO, which auditors need regardless of the workload type.",
+    "explanationIncorrect": "The Bedrock console runs and configures models; it does not host compliance certifications. Amazon Q is an assistant, not a compliance document store. The billing dashboard shows costs. Compliance reports come from AWS Artifact.",
+    "tags": ["governance", "compliance", "aws-artifact"]
+  },
+  {
+    "id": "aip-060",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Under the shared responsibility model for a managed AI service like Amazon Bedrock, what is the customer typically responsible for?",
+    "options": [
+      { "id": "o1", "text": "How they use the service: their data, access controls (IAM), and handling of prompts and outputs" },
+      { "id": "o2", "text": "Patching the model-hosting infrastructure" },
+      { "id": "o3", "text": "Physically securing AWS data centers" },
+      { "id": "o4", "text": "Maintaining the underlying GPUs and servers" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "With a managed service, AWS secures the underlying infrastructure while the customer is responsible for their data, who can access the service, and how they use it, including how prompts and outputs are handled.",
+    "explanationIncorrect": "Patching the hosting infrastructure, securing data centers, and maintaining the physical hardware are all AWS's responsibilities under the model. The customer owns their data, access control, and usage of the service.",
+    "tags": ["governance", "shared-responsibility", "ai"]
   }
 ]
