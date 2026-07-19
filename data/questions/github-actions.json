@@ -6,15 +6,31 @@
     "difficulty": "medium",
     "stem": "You want a job to run only when a pull request is actually merged, not when it is closed without merging. Which trigger and condition combination achieves this?",
     "options": [
-      { "id": "o1", "text": "Trigger on pull_request with types: [closed] and guard the job with if: github.event.pull_request.merged == true" },
-      { "id": "o2", "text": "Trigger on pull_request with types: [merged]" },
-      { "id": "o3", "text": "Trigger on push to the base branch and guard with if: github.event.merged" },
-      { "id": "o4", "text": "Trigger on pull_request_target with types: [closed] and no condition" }
+      {
+        "id": "o1",
+        "text": "Trigger on pull_request with types: [closed] and guard the job with if: github.event.pull_request.merged == true"
+      },
+      {
+        "id": "o2",
+        "text": "Trigger on pull_request with types: [merged]"
+      },
+      {
+        "id": "o3",
+        "text": "Trigger on push to the base branch and guard with if: github.event.merged"
+      },
+      {
+        "id": "o4",
+        "text": "Trigger on pull_request_target with types: [closed] and no condition"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "There is no merged activity type. You listen for the closed activity and then check the boolean github.event.pull_request.merged to tell a real merge from an abandoned close.",
     "explanationIncorrect": "The pull_request event has no merged activity type, so types: [merged] never fires. The closed activity fires for both merged and abandoned pull requests, which is exactly why you check github.event.pull_request.merged to distinguish them. A push to the base branch fires on every push, not only on merges, and carries no pull_request context, so github.event.merged is undefined there. pull_request_target runs in the base repository context for fork safety, but it still only offers the closed activity, so without the merged check it would also run on abandoned closes.",
-    "tags": ["events", "pull_request", "conditionals"],
+    "tags": [
+      "events",
+      "pull_request",
+      "conditionals"
+    ],
     "isSeed": true
   },
   {
@@ -24,15 +40,30 @@
     "difficulty": "medium",
     "stem": "You want a new push to a pull request branch to cancel that branch's still-running workflow, but you never want runs on main to be cancelled. Which configuration is correct?",
     "options": [
-      { "id": "o1", "text": "A concurrency group of ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}" },
-      { "id": "o2", "text": "concurrency with cancel-in-progress: true at the workflow root and nothing else" },
-      { "id": "o3", "text": "Set max-parallel: 1 in the job's strategy" },
-      { "id": "o4", "text": "Set timeout-minutes: 0 on the job" }
+      {
+        "id": "o1",
+        "text": "A concurrency group of ${{ github.workflow }}-${{ github.ref }} with cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}"
+      },
+      {
+        "id": "o2",
+        "text": "concurrency with cancel-in-progress: true at the workflow root and nothing else"
+      },
+      {
+        "id": "o3",
+        "text": "Set max-parallel: 1 in the job's strategy"
+      },
+      {
+        "id": "o4",
+        "text": "Set timeout-minutes: 0 on the job"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A concurrency group that includes github.ref serializes runs per branch, and expressing cancel-in-progress as an expression lets main opt out while feature branches cancel their own older runs.",
     "explanationIncorrect": "cancel-in-progress: true with no expression cancels in-progress runs for every group, including main, so it does not meet the requirement. max-parallel only limits how many legs of a matrix run at once within a single workflow run; it does nothing to cancel a previous run. timeout-minutes bounds how long a job may run before it is killed for taking too long; it is unrelated to concurrency. The correct tool is a per-ref concurrency group with cancel-in-progress evaluated as an expression so the main ref is excluded.",
-    "tags": ["concurrency", "expressions"],
+    "tags": [
+      "concurrency",
+      "expressions"
+    ],
     "isSeed": true
   },
   {
@@ -42,15 +73,30 @@
     "difficulty": "medium",
     "stem": "In a composite action, you compute a value in one step and need to read it in a later step of the same action. Which mechanism is correct?",
     "options": [
-      { "id": "o1", "text": "In the first step, write name=value to the file at $GITHUB_OUTPUT and give the step an id, then reference ${{ steps.<id>.outputs.<name> }} in the later step" },
-      { "id": "o2", "text": "Assign a plain shell variable RESULT=value in the first step and read $RESULT in the later step" },
-      { "id": "o3", "text": "Reference ${{ steps.<id>.result }} in the later step without declaring any output" },
-      { "id": "o4", "text": "Use the save-state command in the first step to expose the value to later steps" }
+      {
+        "id": "o1",
+        "text": "In the first step, write name=value to the file at $GITHUB_OUTPUT and give the step an id, then reference ${{ steps.<id>.outputs.<name> }} in the later step"
+      },
+      {
+        "id": "o2",
+        "text": "Assign a plain shell variable RESULT=value in the first step and read $RESULT in the later step"
+      },
+      {
+        "id": "o3",
+        "text": "Reference ${{ steps.<id>.result }} in the later step without declaring any output"
+      },
+      {
+        "id": "o4",
+        "text": "Use the save-state command in the first step to expose the value to later steps"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Appending name=value to $GITHUB_OUTPUT publishes a named step output, and a later step reads it as steps.<id>.outputs.<name> because the first step carries an id.",
     "explanationIncorrect": "Each step runs in its own shell process, so a plain shell variable set in one step does not survive into the next; you must publish the value through the runner. There is no generic steps.<id>.result field for arbitrary values; result exists for a job's outcome, not for step data you produced. save-state is for passing state from a JavaScript action's main phase to its own post phase within the same step, not for step-to-step sharing. The correct approach is writing to $GITHUB_OUTPUT with a step id and reading steps.<id>.outputs.<name>.",
-    "tags": ["composite-actions", "outputs"],
+    "tags": [
+      "composite-actions",
+      "outputs"
+    ],
     "isSeed": true
   },
   {
@@ -60,15 +106,31 @@
     "difficulty": "hard",
     "stem": "You need a workflow to authenticate to AWS to deploy, without storing long-lived AWS access keys as secrets. Which approach should you use?",
     "options": [
-      { "id": "o1", "text": "Configure an OIDC identity provider in AWS that trusts GitHub's token, grant the job permissions: id-token: write, and use aws-actions/configure-aws-credentials to assume an IAM role" },
-      { "id": "o2", "text": "Store AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as repository secrets and read them in the job" },
-      { "id": "o3", "text": "Commit the credentials in a .env file that is listed in .gitignore" },
-      { "id": "o4", "text": "Pass ${{ secrets.GITHUB_TOKEN }} directly to the AWS SDK as the credential" }
+      {
+        "id": "o1",
+        "text": "Configure an OIDC identity provider in AWS that trusts GitHub's token, grant the job permissions: id-token: write, and use aws-actions/configure-aws-credentials to assume an IAM role"
+      },
+      {
+        "id": "o2",
+        "text": "Store AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as repository secrets and read them in the job"
+      },
+      {
+        "id": "o3",
+        "text": "Commit the credentials in a .env file that is listed in .gitignore"
+      },
+      {
+        "id": "o4",
+        "text": "Pass ${{ secrets.GITHUB_TOKEN }} directly to the AWS SDK as the credential"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "GitHub's OIDC lets the workflow present a short-lived token that AWS trusts, so the job assumes an IAM role and receives temporary credentials with no long-lived keys stored anywhere.",
     "explanationIncorrect": "Storing AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY as secrets is exactly the long-lived-key pattern OIDC removes; those keys do not rotate on their own and are a standing exposure. A gitignored .env still means the credentials have to reach the runner somehow, so it neither avoids long-lived keys nor makes them safer, and it invites accidental leakage. The GITHUB_TOKEN only authenticates to GitHub's own APIs for the current repository; AWS has no reason to trust it as a credential. The correct answer is OIDC: request id-token: write, then assume an IAM role that trusts GitHub's provider to get temporary credentials.",
-    "tags": ["security", "oidc", "secrets"],
+    "tags": [
+      "security",
+      "oidc",
+      "secrets"
+    ],
     "isSeed": true
   },
   {
@@ -78,15 +140,30 @@
     "difficulty": "medium",
     "stem": "You want to call a reusable workflow that lives in another repository and pass a secret to it. Which is correct?",
     "options": [
-      { "id": "o1", "text": "Reference it at the job level with jobs.<id>.uses: owner/repo/.github/workflows/file.yml@ref and pass secrets under a secrets: block (or secrets: inherit)" },
-      { "id": "o2", "text": "Add - uses: owner/repo/.github/workflows/file.yml@ref as a step inside a job" },
-      { "id": "o3", "text": "Call it with run: gh workflow run file.yml and set the secret with an env variable" },
-      { "id": "o4", "text": "Nest it under steps: and pass the secret through a with: block" }
+      {
+        "id": "o1",
+        "text": "Reference it at the job level with jobs.<id>.uses: owner/repo/.github/workflows/file.yml@ref and pass secrets under a secrets: block (or secrets: inherit)"
+      },
+      {
+        "id": "o2",
+        "text": "Add - uses: owner/repo/.github/workflows/file.yml@ref as a step inside a job"
+      },
+      {
+        "id": "o3",
+        "text": "Call it with run: gh workflow run file.yml and set the secret with an env variable"
+      },
+      {
+        "id": "o4",
+        "text": "Nest it under steps: and pass the secret through a with: block"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A reusable workflow is invoked at the job level with uses, and secrets are handed to it through the secrets keyword, or secrets: inherit to forward the caller's secrets.",
     "explanationIncorrect": "Reusable workflows are referenced at the job level with jobs.<id>.uses, not as a step, so any option that puts uses under steps: is wrong. gh workflow run triggers a separate workflow_dispatch run rather than composing the called workflow into this run, and it does not compose outputs back. Secrets are passed to a reusable workflow through the secrets keyword (or secrets: inherit), not through with:, which is for non-sensitive inputs. The correct form is jobs.<id>.uses pointing at the workflow file at a ref, with a secrets: block.",
-    "tags": ["reusable-workflows", "secrets"],
+    "tags": [
+      "reusable-workflows",
+      "secrets"
+    ],
     "isSeed": true
   },
   {
@@ -96,15 +173,30 @@
     "difficulty": "medium",
     "stem": "You need a job to run the test suite against Node 18, 20, and 22 on both ubuntu-latest and windows-latest, covering every combination. Which workflow feature expresses this most concisely?",
     "options": [
-      { "id": "o1", "text": "A build matrix under strategy.matrix with a node-version list and an os list, referencing them in runs-on and the setup step" },
-      { "id": "o2", "text": "Six separate jobs copied by hand, one per combination" },
-      { "id": "o3", "text": "A single job with a shell for loop over the versions inside one run step" },
-      { "id": "o4", "text": "The fromJSON function applied directly to runs-on with no strategy block" }
+      {
+        "id": "o1",
+        "text": "A build matrix under strategy.matrix with a node-version list and an os list, referencing them in runs-on and the setup step"
+      },
+      {
+        "id": "o2",
+        "text": "Six separate jobs copied by hand, one per combination"
+      },
+      {
+        "id": "o3",
+        "text": "A single job with a shell for loop over the versions inside one run step"
+      },
+      {
+        "id": "o4",
+        "text": "The fromJSON function applied directly to runs-on with no strategy block"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A matrix defines the axes (node-version and os) and GitHub expands them into one job per combination automatically, so three versions across two operating systems produce all six runs from a single job definition.",
     "explanationIncorrect": "Copying six jobs by hand works but is exactly the repetition the matrix exists to remove, and it becomes unmaintainable as axes grow. A shell for loop runs everything inside one job on one runner, so it neither tests on both operating systems nor parallelizes the combinations. fromJSON can build a matrix value from a computed JSON string, but on its own applied to runs-on it does not expand combinations; you still need strategy.matrix. The concise, idiomatic mechanism is a build matrix under strategy.matrix.",
-    "tags": ["matrix", "strategy"]
+    "tags": [
+      "matrix",
+      "strategy"
+    ]
   },
   {
     "id": "gha-007",
@@ -113,15 +205,31 @@
     "difficulty": "medium",
     "stem": "Job B must run only after job A finishes successfully and must consume a value that job A computed. Which combination makes this work?",
     "options": [
-      { "id": "o1", "text": "Give B needs: A, have A expose the value under jobs.A.outputs, and read it in B as needs.A.outputs.<name>" },
-      { "id": "o2", "text": "Set depends-on: A on B and read A's plain shell variables directly" },
-      { "id": "o3", "text": "Add continue-on-error: true to B so it waits for A" },
-      { "id": "o4", "text": "Rely on job order in the file, since jobs run top to bottom by default" }
+      {
+        "id": "o1",
+        "text": "Give B needs: A, have A expose the value under jobs.A.outputs, and read it in B as needs.A.outputs.<name>"
+      },
+      {
+        "id": "o2",
+        "text": "Set depends-on: A on B and read A's plain shell variables directly"
+      },
+      {
+        "id": "o3",
+        "text": "Add continue-on-error: true to B so it waits for A"
+      },
+      {
+        "id": "o4",
+        "text": "Rely on job order in the file, since jobs run top to bottom by default"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "needs: A both orders B after A and gates it on A's success, and a job output declared under jobs.A.outputs is the supported way to pass a value that B reads as needs.A.outputs.<name>.",
     "explanationIncorrect": "There is no depends-on key for jobs (it is needs), and a job's shell variables live on its own runner and are gone once it finishes, so they cannot be read from another job. continue-on-error lets a step or job fail without failing the run; it does not create an ordering or data dependency. Jobs actually run in parallel by default, not top to bottom, so file order guarantees nothing. The correct approach is needs plus declared job outputs read through the needs context.",
-    "tags": ["jobs", "needs", "outputs"]
+    "tags": [
+      "jobs",
+      "needs",
+      "outputs"
+    ]
   },
   {
     "id": "gha-008",
@@ -130,15 +238,31 @@
     "difficulty": "medium",
     "stem": "Your workflow only needs to read repository contents, and you want the automatic GITHUB_TOKEN scoped to least privilege. How do you restrict it?",
     "options": [
-      { "id": "o1", "text": "Set permissions: contents: read at the workflow or job level" },
-      { "id": "o2", "text": "Delete the GITHUB_TOKEN secret from the repository" },
-      { "id": "o3", "text": "Replace it with a personal access token that has no scopes" },
-      { "id": "o4", "text": "Add permissions: write-all to be safe" }
+      {
+        "id": "o1",
+        "text": "Set permissions: contents: read at the workflow or job level"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the GITHUB_TOKEN secret from the repository"
+      },
+      {
+        "id": "o3",
+        "text": "Replace it with a personal access token that has no scopes"
+      },
+      {
+        "id": "o4",
+        "text": "Add permissions: write-all to be safe"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A permissions block sets the GITHUB_TOKEN scopes for the run, and declaring only contents: read grants read access to the repository and nothing else, which is least privilege.",
     "explanationIncorrect": "GITHUB_TOKEN is generated per run and is not a stored secret you can delete; there is nothing to remove. A personal access token with no scopes would fail to do even the read the workflow needs, and it also reintroduces a long-lived credential you did not want. write-all is the opposite of least privilege: it grants broad write access across scopes. The correct control is an explicit permissions block narrowing the token to contents: read.",
-    "tags": ["security", "github-token", "permissions"]
+    "tags": [
+      "security",
+      "github-token",
+      "permissions"
+    ]
   },
   {
     "id": "gha-009",
@@ -147,15 +271,31 @@
     "difficulty": "medium",
     "stem": "You want a workflow to run automatically every day at 07:30 UTC. Which trigger is correct?",
     "options": [
-      { "id": "o1", "text": "on: schedule with - cron: '30 7 * * *'" },
-      { "id": "o2", "text": "on: schedule with - cron: '7 30 * * *'" },
-      { "id": "o3", "text": "on: timer set to daily at 07:30" },
-      { "id": "o4", "text": "on: push configured with a 24-hour delay" }
+      {
+        "id": "o1",
+        "text": "on: schedule with - cron: '30 7 * * *'"
+      },
+      {
+        "id": "o2",
+        "text": "on: schedule with - cron: '7 30 * * *'"
+      },
+      {
+        "id": "o3",
+        "text": "on: timer set to daily at 07:30"
+      },
+      {
+        "id": "o4",
+        "text": "on: push configured with a 24-hour delay"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "POSIX cron fields are minute, hour, day-of-month, month, day-of-week, so '30 7 * * *' means minute 30 of hour 7 every day, which is 07:30 UTC.",
     "explanationIncorrect": "'7 30 * * *' puts 7 in the minute field and 30 in the hour field; 30 is not a valid hour, so this is wrong and would not mean 07:30. There is no timer trigger in GitHub Actions; scheduled runs use the schedule event with cron. push fires on commits and has no delay mechanism, so it cannot produce a fixed daily time. Scheduled workflows always run in UTC, and the correct expression for 07:30 is '30 7 * * *'.",
-    "tags": ["events", "schedule", "cron"]
+    "tags": [
+      "events",
+      "schedule",
+      "cron"
+    ]
   },
   {
     "id": "gha-010",
@@ -164,15 +304,31 @@
     "difficulty": "medium",
     "stem": "A deployment step should run only on pushes to the main branch. Which step- or job-level condition is correct?",
     "options": [
-      { "id": "o1", "text": "if: github.event_name == 'push' && github.ref == 'refs/heads/main'" },
-      { "id": "o2", "text": "if: branch == 'main'" },
-      { "id": "o3", "text": "only-on: main" },
-      { "id": "o4", "text": "if: github.head_ref == 'main'" }
+      {
+        "id": "o1",
+        "text": "if: github.event_name == 'push' && github.ref == 'refs/heads/main'"
+      },
+      {
+        "id": "o2",
+        "text": "if: branch == 'main'"
+      },
+      {
+        "id": "o3",
+        "text": "only-on: main"
+      },
+      {
+        "id": "o4",
+        "text": "if: github.head_ref == 'main'"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "github.ref carries the full ref (refs/heads/main) and github.event_name identifies the trigger, so combining them gates the step to pushes that land on main.",
     "explanationIncorrect": "There is no bare branch context in expressions, so if: branch == 'main' does not evaluate as intended. only-on is not a real key. github.head_ref is only populated for pull_request events and holds the source branch of the PR, so it is empty on a push and would never match here. The correct guard checks github.event_name and the full github.ref value refs/heads/main.",
-    "tags": ["expressions", "conditionals", "contexts"]
+    "tags": [
+      "expressions",
+      "conditionals",
+      "contexts"
+    ]
   },
   {
     "id": "gha-011",
@@ -181,15 +337,30 @@
     "difficulty": "medium",
     "stem": "In one step you compute a value and you want it exposed as an environment variable to all later steps in the same job. What do you do?",
     "options": [
-      { "id": "o1", "text": "Append name=value to the file referenced by $GITHUB_ENV" },
-      { "id": "o2", "text": "Run export NAME=value in the step's run block" },
-      { "id": "o3", "text": "Add it to the workflow-level env: after the step runs" },
-      { "id": "o4", "text": "Write it to $GITHUB_OUTPUT, which later steps read as an env var automatically" }
+      {
+        "id": "o1",
+        "text": "Append name=value to the file referenced by $GITHUB_ENV"
+      },
+      {
+        "id": "o2",
+        "text": "Run export NAME=value in the step's run block"
+      },
+      {
+        "id": "o3",
+        "text": "Add it to the workflow-level env: after the step runs"
+      },
+      {
+        "id": "o4",
+        "text": "Write it to $GITHUB_OUTPUT, which later steps read as an env var automatically"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Writing name=value to the $GITHUB_ENV file publishes an environment variable that the runner injects into every subsequent step in the same job.",
     "explanationIncorrect": "export sets the variable only inside that one step's shell process, so it is gone by the next step. The workflow-level env: block is static configuration evaluated up front; you cannot retroactively add a value to it mid-run. $GITHUB_OUTPUT publishes a named step output read as steps.<id>.outputs.<name>, not an automatically injected environment variable. To share an environment variable across later steps you append to $GITHUB_ENV.",
-    "tags": ["environment-variables", "github-env"]
+    "tags": [
+      "environment-variables",
+      "github-env"
+    ]
   },
   {
     "id": "gha-012",
@@ -198,15 +369,31 @@
     "difficulty": "hard",
     "stem": "For supply-chain safety when consuming a third-party action, how should you reference it so that a compromised or moved tag cannot silently change the code that runs?",
     "options": [
-      { "id": "o1", "text": "Pin uses to a full-length commit SHA of the action" },
-      { "id": "o2", "text": "Pin uses to the action's @main branch" },
-      { "id": "o3", "text": "Pin uses to a floating major tag such as @v4" },
-      { "id": "o4", "text": "Reference the action with @latest" }
+      {
+        "id": "o1",
+        "text": "Pin uses to a full-length commit SHA of the action"
+      },
+      {
+        "id": "o2",
+        "text": "Pin uses to the action's @main branch"
+      },
+      {
+        "id": "o3",
+        "text": "Pin uses to a floating major tag such as @v4"
+      },
+      {
+        "id": "o4",
+        "text": "Reference the action with @latest"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A full commit SHA is immutable: it names one exact tree, so even if the maintainer's tag is moved or their account is compromised, your workflow keeps running the code you pinned until you deliberately update the SHA.",
     "explanationIncorrect": "Pinning to @main runs whatever is on the default branch at the moment, which changes constantly and is the least controlled option. A floating major tag like @v4 is convenient and gets patches, but tags are mutable and can be repointed, so a compromised maintainer could change what @v4 resolves to. @latest has the same mutability problem and is even less specific. Only a full-length commit SHA is immutable, which is why it is the recommended pin for untrusted third-party actions.",
-    "tags": ["security", "actions", "pinning"]
+    "tags": [
+      "security",
+      "actions",
+      "pinning"
+    ]
   },
   {
     "id": "gha-013",
@@ -215,15 +402,30 @@
     "difficulty": "medium",
     "stem": "Job build produces a compiled binary that job deploy needs, and the two jobs run on different runners. How do you pass the file between them?",
     "options": [
-      { "id": "o1", "text": "Upload it with actions/upload-artifact in build and retrieve it with actions/download-artifact in deploy" },
-      { "id": "o2", "text": "Write the binary into $GITHUB_ENV so deploy inherits it" },
-      { "id": "o3", "text": "Commit the binary back to the repository between the two jobs" },
-      { "id": "o4", "text": "Return the binary as a job output that deploy reads via needs" }
+      {
+        "id": "o1",
+        "text": "Upload it with actions/upload-artifact in build and retrieve it with actions/download-artifact in deploy"
+      },
+      {
+        "id": "o2",
+        "text": "Write the binary into $GITHUB_ENV so deploy inherits it"
+      },
+      {
+        "id": "o3",
+        "text": "Commit the binary back to the repository between the two jobs"
+      },
+      {
+        "id": "o4",
+        "text": "Return the binary as a job output that deploy reads via needs"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Artifacts are the mechanism for moving files between jobs: build uploads the binary as an artifact and deploy downloads it, which works even though each job runs on a fresh, separate runner.",
     "explanationIncorrect": "$GITHUB_ENV carries small string environment variables within a single job, not binary files across jobs. Committing build output back to the repository pollutes history, is slow, and is considered an anti-pattern. Job outputs are strings passed through the needs context and are size-limited and text-only, so they cannot carry a compiled binary. The correct tool for passing files between jobs is upload-artifact and download-artifact.",
-    "tags": ["artifacts", "jobs"]
+    "tags": [
+      "artifacts",
+      "jobs"
+    ]
   },
   {
     "id": "gha-014",
@@ -232,15 +434,30 @@
     "difficulty": "medium",
     "stem": "You want to speed up builds by reusing downloaded npm dependencies across separate workflow runs, invalidating the reuse only when the lockfile changes. Which approach fits?",
     "options": [
-      { "id": "o1", "text": "Use actions/cache with a key built from a hash of package-lock.json" },
-      { "id": "o2", "text": "Use actions/upload-artifact on node_modules at the end of every run" },
-      { "id": "o3", "text": "Commit node_modules into the repository" },
-      { "id": "o4", "text": "Rely on the runner keeping files between runs automatically" }
+      {
+        "id": "o1",
+        "text": "Use actions/cache with a key built from a hash of package-lock.json"
+      },
+      {
+        "id": "o2",
+        "text": "Use actions/upload-artifact on node_modules at the end of every run"
+      },
+      {
+        "id": "o3",
+        "text": "Commit node_modules into the repository"
+      },
+      {
+        "id": "o4",
+        "text": "Rely on the runner keeping files between runs automatically"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "actions/cache saves and restores a path across runs keyed on a value you choose; hashing package-lock.json means the cache is reused while the lockfile is unchanged and refreshed the moment dependencies change.",
     "explanationIncorrect": "upload-artifact persists a run's output for later download but is not a content-keyed cache designed to be restored at the start of future runs, and re-uploading node_modules every run is wasteful. Committing node_modules bloats the repository and creates churn on every dependency change. GitHub-hosted runners are ephemeral and start clean each time, so nothing is kept automatically. The right tool for cross-run dependency reuse keyed on the lockfile is actions/cache.",
-    "tags": ["cache", "performance"]
+    "tags": [
+      "cache",
+      "performance"
+    ]
   },
   {
     "id": "gha-015",
@@ -249,15 +466,31 @@
     "difficulty": "medium",
     "stem": "A matrix workflow had one leg fail due to a flaky network call while every other leg passed. You want to retry only the failed leg without rerunning the whole matrix. What do you do?",
     "options": [
-      { "id": "o1", "text": "Use Re-run failed jobs on the workflow run, which reruns only the jobs that failed" },
-      { "id": "o2", "text": "Re-run all jobs, because GitHub cannot rerun a subset" },
-      { "id": "o3", "text": "Delete the workflow file and recreate it to reset the run" },
-      { "id": "o4", "text": "Push an empty commit to trigger a completely fresh run" }
+      {
+        "id": "o1",
+        "text": "Use Re-run failed jobs on the workflow run, which reruns only the jobs that failed"
+      },
+      {
+        "id": "o2",
+        "text": "Re-run all jobs, because GitHub cannot rerun a subset"
+      },
+      {
+        "id": "o3",
+        "text": "Delete the workflow file and recreate it to reset the run"
+      },
+      {
+        "id": "o4",
+        "text": "Push an empty commit to trigger a completely fresh run"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The run page (and the API) offer Re-run failed jobs, which re-executes only the failed jobs while reusing the successful ones, which is exactly what a single flaky matrix leg calls for.",
     "explanationIncorrect": "Re-running all jobs is possible but wasteful here and is not the only option, so the claim that a subset cannot be rerun is false. Deleting and recreating the workflow does not rerun the existing run and loses its history. Pushing an empty commit starts an entirely new run from scratch rather than retrying the failed leg. The targeted action is Re-run failed jobs.",
-    "tags": ["troubleshooting", "re-run", "matrix"]
+    "tags": [
+      "troubleshooting",
+      "re-run",
+      "matrix"
+    ]
   },
   {
     "id": "gha-016",
@@ -266,15 +499,30 @@
     "difficulty": "medium",
     "stem": "You need more detailed runner and step diagnostics to investigate a failing workflow. What is the supported way to enable step debug logging?",
     "options": [
-      { "id": "o1", "text": "Set the secret or variable ACTIONS_STEP_DEBUG to true and re-run the workflow" },
-      { "id": "o2", "text": "Add set -x to every run step and leave it there permanently" },
-      { "id": "o3", "text": "Echo all repository secrets to the log so you can inspect them" },
-      { "id": "o4", "text": "Lower the job's timeout-minutes to force more logging" }
+      {
+        "id": "o1",
+        "text": "Set the secret or variable ACTIONS_STEP_DEBUG to true and re-run the workflow"
+      },
+      {
+        "id": "o2",
+        "text": "Add set -x to every run step and leave it there permanently"
+      },
+      {
+        "id": "o3",
+        "text": "Echo all repository secrets to the log so you can inspect them"
+      },
+      {
+        "id": "o4",
+        "text": "Lower the job's timeout-minutes to force more logging"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Setting ACTIONS_STEP_DEBUG to true (as a secret or variable) turns on GitHub's built-in step debug logging for subsequent runs, giving the extra detail without changing your workflow steps.",
     "explanationIncorrect": "Adding set -x only affects shell tracing inside your own scripts and does nothing for the runner-level diagnostics, and leaving it on permanently is noisy. Echoing secrets is dangerous and pointless: Actions masks known secret values in logs, and deliberately printing them is a security incident, not a debugging technique. Lowering the timeout just makes jobs fail sooner and produces no additional logging. The supported switch for verbose diagnostics is the ACTIONS_STEP_DEBUG setting.",
-    "tags": ["troubleshooting", "debug-logging"]
+    "tags": [
+      "troubleshooting",
+      "debug-logging"
+    ]
   },
   {
     "id": "gha-017",
@@ -283,15 +531,31 @@
     "difficulty": "medium",
     "stem": "You want maintainers to trigger a workflow manually from the Actions tab and choose an environment name to pass in. Which trigger and feature provide this?",
     "options": [
-      { "id": "o1", "text": "on: workflow_dispatch with an inputs block, reading the value from the inputs context" },
-      { "id": "o2", "text": "on: push with a special manual flag" },
-      { "id": "o3", "text": "on: repository_dispatch, which adds a manual button with inputs to the Actions tab" },
-      { "id": "o4", "text": "on: schedule, which prompts for input each run" }
+      {
+        "id": "o1",
+        "text": "on: workflow_dispatch with an inputs block, reading the value from the inputs context"
+      },
+      {
+        "id": "o2",
+        "text": "on: push with a special manual flag"
+      },
+      {
+        "id": "o3",
+        "text": "on: repository_dispatch, which adds a manual button with inputs to the Actions tab"
+      },
+      {
+        "id": "o4",
+        "text": "on: schedule, which prompts for input each run"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "workflow_dispatch adds a Run workflow button in the UI and its inputs block defines the fields a user fills in, which the workflow reads from the inputs context (or github.event.inputs).",
     "explanationIncorrect": "push fires on commits and has no manual button or input prompt. repository_dispatch triggers a workflow through an API call carrying a custom payload, typically from an external system, not through a UI button on the Actions tab. schedule runs on a cron timer and never prompts for input. The manual, UI-driven trigger with user inputs is workflow_dispatch.",
-    "tags": ["events", "workflow-dispatch", "inputs"]
+    "tags": [
+      "events",
+      "workflow-dispatch",
+      "inputs"
+    ]
   },
   {
     "id": "gha-018",
@@ -300,15 +564,30 @@
     "difficulty": "easy",
     "stem": "Which are the three supported types of custom GitHub Actions?",
     "options": [
-      { "id": "o1", "text": "Docker container actions, JavaScript actions, and composite actions" },
-      { "id": "o2", "text": "Bash actions, Python actions, and PowerShell actions" },
-      { "id": "o3", "text": "YAML actions, JSON actions, and TOML actions" },
-      { "id": "o4", "text": "Public actions, private actions, and internal actions" }
+      {
+        "id": "o1",
+        "text": "Docker container actions, JavaScript actions, and composite actions"
+      },
+      {
+        "id": "o2",
+        "text": "Bash actions, Python actions, and PowerShell actions"
+      },
+      {
+        "id": "o3",
+        "text": "YAML actions, JSON actions, and TOML actions"
+      },
+      {
+        "id": "o4",
+        "text": "Public actions, private actions, and internal actions"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "GitHub supports exactly three action types: Docker container actions, JavaScript actions, and composite actions, each declared through the runs section of the action's metadata.",
     "explanationIncorrect": "Bash, Python, and PowerShell are languages you might use inside an action's steps, but they are not action types. YAML, JSON, and TOML are file formats, not action types. Public, private, and internal describe an action's visibility or where it can be used, not how it is implemented. The three implementation types are Docker container, JavaScript, and composite.",
-    "tags": ["actions", "action-types"]
+    "tags": [
+      "actions",
+      "action-types"
+    ]
   },
   {
     "id": "gha-019",
@@ -317,15 +596,31 @@
     "difficulty": "medium",
     "stem": "Every custom action needs a metadata file at its root. What is that file, and what must it declare at minimum?",
     "options": [
-      { "id": "o1", "text": "action.yml (or action.yaml), declaring at least name, description, and a runs section" },
-      { "id": "o2", "text": "workflow.yml, declaring jobs and steps" },
-      { "id": "o3", "text": "package.json, declaring only the action's dependencies" },
-      { "id": "o4", "text": "A Dockerfile alone, with no metadata file required" }
+      {
+        "id": "o1",
+        "text": "action.yml (or action.yaml), declaring at least name, description, and a runs section"
+      },
+      {
+        "id": "o2",
+        "text": "workflow.yml, declaring jobs and steps"
+      },
+      {
+        "id": "o3",
+        "text": "package.json, declaring only the action's dependencies"
+      },
+      {
+        "id": "o4",
+        "text": "A Dockerfile alone, with no metadata file required"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The metadata file action.yml (or action.yaml) defines the action's interface and must include name, description, and runs, which tells GitHub how the action executes.",
     "explanationIncorrect": "workflow.yml with jobs and steps describes a workflow, not an action; actions are the reusable units workflows call. package.json only lists Node dependencies and cannot tell GitHub how to run the action. A Dockerfile can be part of a Docker container action, but it does not replace the required action.yml metadata that declares name, description, and runs. Every action needs action.yml.",
-    "tags": ["actions", "metadata", "action-yml"]
+    "tags": [
+      "actions",
+      "metadata",
+      "action-yml"
+    ]
   },
   {
     "id": "gha-020",
@@ -334,15 +629,31 @@
     "difficulty": "medium",
     "stem": "You are authoring a JavaScript action. Which runs configuration names a current, supported runtime and an entry point?",
     "options": [
-      { "id": "o1", "text": "runs: using: 'node20' with main: 'dist/index.js'" },
-      { "id": "o2", "text": "runs: using: 'node12' with main: 'index.js'" },
-      { "id": "o3", "text": "runs: using: 'python3' with main: 'main.py'" },
-      { "id": "o4", "text": "runs: using: 'bash' with main: 'run.sh'" }
+      {
+        "id": "o1",
+        "text": "runs: using: 'node20' with main: 'dist/index.js'"
+      },
+      {
+        "id": "o2",
+        "text": "runs: using: 'node12' with main: 'index.js'"
+      },
+      {
+        "id": "o3",
+        "text": "runs: using: 'python3' with main: 'main.py'"
+      },
+      {
+        "id": "o4",
+        "text": "runs: using: 'bash' with main: 'run.sh'"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A JavaScript action declares using: 'node20' (the current supported Node runtime) and points main at the built entry file, so the runner executes it directly with Node.",
     "explanationIncorrect": "node12 is a deprecated, end-of-life runtime that GitHub warns against and is being removed, so it is not a good answer. python3 and bash are not valid using values for a JavaScript action; running Python or shell code that way would instead be a composite or container action. The correct declaration for a modern JavaScript action is using: 'node20' with a main entry point.",
-    "tags": ["actions", "javascript-action", "node20"]
+    "tags": [
+      "actions",
+      "javascript-action",
+      "node20"
+    ]
   },
   {
     "id": "gha-021",
@@ -351,15 +662,31 @@
     "difficulty": "medium",
     "stem": "Inside a composite action, how do you reference an input named version that the caller passed in?",
     "options": [
-      { "id": "o1", "text": "${{ inputs.version }}" },
-      { "id": "o2", "text": "${{ env.version }}" },
-      { "id": "o3", "text": "${{ github.inputs.version }}" },
-      { "id": "o4", "text": "The first positional shell argument, $1" }
+      {
+        "id": "o1",
+        "text": "${{ inputs.version }}"
+      },
+      {
+        "id": "o2",
+        "text": "${{ env.version }}"
+      },
+      {
+        "id": "o3",
+        "text": "${{ github.inputs.version }}"
+      },
+      {
+        "id": "o4",
+        "text": "The first positional shell argument, $1"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Within an action, declared inputs are available through the inputs context, so an input named version is read as ${{ inputs.version }}.",
     "explanationIncorrect": "The env context holds environment variables, which an input is not unless you explicitly map it there. There is no github.inputs context; github holds event and repository data, not the action's declared inputs. A positional shell argument is not how composite action inputs are delivered; they come through the inputs context. The correct reference is ${{ inputs.version }}.",
-    "tags": ["actions", "composite-actions", "inputs"]
+    "tags": [
+      "actions",
+      "composite-actions",
+      "inputs"
+    ]
   },
   {
     "id": "gha-022",
@@ -368,15 +695,31 @@
     "difficulty": "medium",
     "stem": "In action.yml, how do you declare an input that is optional and defaults to the string true?",
     "options": [
-      { "id": "o1", "text": "Under inputs, define the input with required: false and default: 'true'" },
-      { "id": "o2", "text": "Under env, set a variable with the input's name" },
-      { "id": "o3", "text": "Under jobs, add a with block for the input" },
-      { "id": "o4", "text": "There is no way to give an action input a default value" }
+      {
+        "id": "o1",
+        "text": "Under inputs, define the input with required: false and default: 'true'"
+      },
+      {
+        "id": "o2",
+        "text": "Under env, set a variable with the input's name"
+      },
+      {
+        "id": "o3",
+        "text": "Under jobs, add a with block for the input"
+      },
+      {
+        "id": "o4",
+        "text": "There is no way to give an action input a default value"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "An action's inputs are declared under inputs in action.yml, and each can set required: false and a default, so callers who omit it get the default value.",
     "explanationIncorrect": "env declares environment variables, not the action's input contract, so a default there would not populate the input. Actions have no jobs section; jobs live in workflows, and with is how a caller passes inputs, not how an action declares them. Action inputs certainly support defaults, so claiming otherwise is wrong. The correct place is the inputs block with required and default.",
-    "tags": ["actions", "inputs", "defaults"]
+    "tags": [
+      "actions",
+      "inputs",
+      "defaults"
+    ]
   },
   {
     "id": "gha-023",
@@ -385,15 +728,31 @@
     "difficulty": "hard",
     "stem": "A composite action needs to expose an output named result so callers can read it as steps.<id>.outputs.result. How is that wired?",
     "options": [
-      { "id": "o1", "text": "Write result to $GITHUB_OUTPUT in a step, then map it under the action's outputs with value: ${{ steps.<step-id>.outputs.result }}" },
-      { "id": "o2", "text": "Print result to stdout and let GitHub capture it as an output" },
-      { "id": "o3", "text": "Set an environment variable RESULT and expect callers to read it" },
-      { "id": "o4", "text": "Return result from a Dockerfile ENTRYPOINT" }
+      {
+        "id": "o1",
+        "text": "Write result to $GITHUB_OUTPUT in a step, then map it under the action's outputs with value: ${{ steps.<step-id>.outputs.result }}"
+      },
+      {
+        "id": "o2",
+        "text": "Print result to stdout and let GitHub capture it as an output"
+      },
+      {
+        "id": "o3",
+        "text": "Set an environment variable RESULT and expect callers to read it"
+      },
+      {
+        "id": "o4",
+        "text": "Return result from a Dockerfile ENTRYPOINT"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A composite action produces a step output by writing to $GITHUB_OUTPUT, then declares its own action-level output whose value maps to that step output, which is what lets a caller read steps.<id>.outputs.result.",
     "explanationIncorrect": "Printing to stdout does nothing special; GitHub does not scrape arbitrary output into named outputs. An environment variable is not an action output and would not appear under the caller's steps.<id>.outputs. A Dockerfile ENTRYPOINT is irrelevant to a composite action and does not define outputs. You must both write to $GITHUB_OUTPUT in the step and map it in the action's outputs block.",
-    "tags": ["actions", "composite-actions", "outputs"]
+    "tags": [
+      "actions",
+      "composite-actions",
+      "outputs"
+    ]
   },
   {
     "id": "gha-024",
@@ -402,15 +761,30 @@
     "difficulty": "medium",
     "stem": "You want an action that runs inside a container with system tools baked in and shipped with the action. Which action type and metadata express this?",
     "options": [
-      { "id": "o1", "text": "A Docker container action with runs: using: 'docker' and image pointing at a Dockerfile or a published image" },
-      { "id": "o2", "text": "A composite action that lists a Dockerfile under steps" },
-      { "id": "o3", "text": "A JavaScript action that references a Dockerfile from main" },
-      { "id": "o4", "text": "A workflow-level container: block used instead of writing an action" }
+      {
+        "id": "o1",
+        "text": "A Docker container action with runs: using: 'docker' and image pointing at a Dockerfile or a published image"
+      },
+      {
+        "id": "o2",
+        "text": "A composite action that lists a Dockerfile under steps"
+      },
+      {
+        "id": "o3",
+        "text": "A JavaScript action that references a Dockerfile from main"
+      },
+      {
+        "id": "o4",
+        "text": "A workflow-level container: block used instead of writing an action"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A Docker container action declares using: 'docker' and an image (a Dockerfile in the action or a prebuilt image), so it runs in that container with whatever tools the image provides.",
     "explanationIncorrect": "A composite action runs a sequence of steps on the runner and does not itself boot a container image; it cannot list a Dockerfile as a step. A JavaScript action runs with Node and does not execute a Dockerfile from main. A workflow-level container: runs a job inside a container but is not how you author a reusable action. The container-based action type is a Docker container action with using: 'docker'.",
-    "tags": ["actions", "docker-action"]
+    "tags": [
+      "actions",
+      "docker-action"
+    ]
   },
   {
     "id": "gha-025",
@@ -419,15 +793,31 @@
     "difficulty": "medium",
     "stem": "You maintain a public action and want consumers to pin to a stable major version while you keep shipping patches under it. What release convention supports this?",
     "options": [
-      { "id": "o1", "text": "Publish specific semver tags like v1.2.3 and also move a major-version tag like v1 to point at the latest compatible release" },
-      { "id": "o2", "text": "Only ever publish an @latest tag" },
-      { "id": "o3", "text": "Require every consumer to pin to a long-lived branch" },
-      { "id": "o4", "text": "Never tag releases and tell consumers to track the default branch" }
+      {
+        "id": "o1",
+        "text": "Publish specific semver tags like v1.2.3 and also move a major-version tag like v1 to point at the latest compatible release"
+      },
+      {
+        "id": "o2",
+        "text": "Only ever publish an @latest tag"
+      },
+      {
+        "id": "o3",
+        "text": "Require every consumer to pin to a long-lived branch"
+      },
+      {
+        "id": "o4",
+        "text": "Never tag releases and tell consumers to track the default branch"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The common convention is immutable semver tags for exact releases plus a moving major tag (v1) that you advance to the newest backward-compatible version, so consumers pinning to v1 get patches without breaking changes.",
     "explanationIncorrect": "An @latest tag hides which version runs and offers no compatibility promise. Pinning consumers to a branch gives them a moving target with no versioning discipline. Not tagging at all and tracking the default branch is the least stable option and gives consumers no way to pin. The recommended pattern is semver tags with a maintained major-version tag.",
-    "tags": ["actions", "versioning", "releases"]
+    "tags": [
+      "actions",
+      "versioning",
+      "releases"
+    ]
   },
   {
     "id": "gha-026",
@@ -436,15 +826,30 @@
     "difficulty": "medium",
     "stem": "Your CI must reach a database and services inside a private corporate network that GitHub-hosted runners cannot access. What is the appropriate runner choice?",
     "options": [
-      { "id": "o1", "text": "Self-hosted runners deployed inside your own network" },
-      { "id": "o2", "text": "GitHub-hosted runners on a larger machine size" },
-      { "id": "o3", "text": "GitHub-hosted runners pinned to a particular region" },
-      { "id": "o4", "text": "Disable runners and run the CI steps manually on a laptop" }
+      {
+        "id": "o1",
+        "text": "Self-hosted runners deployed inside your own network"
+      },
+      {
+        "id": "o2",
+        "text": "GitHub-hosted runners on a larger machine size"
+      },
+      {
+        "id": "o3",
+        "text": "GitHub-hosted runners pinned to a particular region"
+      },
+      {
+        "id": "o4",
+        "text": "Disable runners and run the CI steps manually on a laptop"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Self-hosted runners live in your environment, so they can reach private network resources and use your own hardware and tools, which is exactly what accessing internal services requires.",
     "explanationIncorrect": "A larger GitHub-hosted machine has more CPU and memory but still runs in GitHub's cloud with no route to your private network. Choosing a region for a GitHub-hosted runner does not place it inside your corporate network either. Running steps by hand on a laptop abandons automation entirely and is not a runner option. When jobs must reach private resources, the answer is self-hosted runners inside your network.",
-    "tags": ["enterprise", "self-hosted-runners"]
+    "tags": [
+      "enterprise",
+      "self-hosted-runners"
+    ]
   },
   {
     "id": "gha-027",
@@ -453,15 +858,31 @@
     "difficulty": "hard",
     "stem": "You operate self-hosted runners that can reach production, and you want only a specific set of repositories to be allowed to use them. Which feature enforces that access boundary?",
     "options": [
-      { "id": "o1", "text": "Runner groups, which control which organizations and repositories may use a set of runners" },
-      { "id": "o2", "text": "Runner labels applied to the runners" },
-      { "id": "o3", "text": "Branch protection rules on the repositories" },
-      { "id": "o4", "text": "A concurrency group on the sensitive workflow" }
+      {
+        "id": "o1",
+        "text": "Runner groups, which control which organizations and repositories may use a set of runners"
+      },
+      {
+        "id": "o2",
+        "text": "Runner labels applied to the runners"
+      },
+      {
+        "id": "o3",
+        "text": "Branch protection rules on the repositories"
+      },
+      {
+        "id": "o4",
+        "text": "A concurrency group on the sensitive workflow"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Runner groups are the access-control boundary for self-hosted runners: you place the sensitive runners in a group and grant only chosen repositories or organizations permission to use that group.",
     "explanationIncorrect": "Labels only route a job to a runner that advertises the label; any repository can target a label, so labels do not restrict who may use the runners. Branch protection governs merging into branches, not which runners a workflow may schedule on. A concurrency group serializes runs; it has nothing to do with runner access. The enforcement mechanism is runner groups.",
-    "tags": ["enterprise", "runner-groups", "access-control"]
+    "tags": [
+      "enterprise",
+      "runner-groups",
+      "access-control"
+    ]
   },
   {
     "id": "gha-028",
@@ -470,15 +891,31 @@
     "difficulty": "medium",
     "stem": "An organization owner wants to allow only actions authored by GitHub plus an explicit allow list of specific third-party actions, and block everything else. Where is this configured?",
     "options": [
-      { "id": "o1", "text": "The organization's Actions permissions policy, set to allow select actions with an explicit allow list" },
-      { "id": "o2", "text": "A CODEOWNERS file in each repository" },
-      { "id": "o3", "text": "The permissions block inside each individual workflow" },
-      { "id": "o4", "text": "A .gitignore entry listing disallowed actions" }
+      {
+        "id": "o1",
+        "text": "The organization's Actions permissions policy, set to allow select actions with an explicit allow list"
+      },
+      {
+        "id": "o2",
+        "text": "A CODEOWNERS file in each repository"
+      },
+      {
+        "id": "o3",
+        "text": "The permissions block inside each individual workflow"
+      },
+      {
+        "id": "o4",
+        "text": "A .gitignore entry listing disallowed actions"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The organization (or enterprise) Actions policy lets an owner restrict which actions may run, including an option to allow only GitHub-created actions plus a curated allow list, which applies across all repositories.",
     "explanationIncorrect": "CODEOWNERS assigns review ownership of files; it cannot restrict which actions workflows may use. A workflow's permissions block scopes the GITHUB_TOKEN, not which external actions are permitted, and it is per-workflow rather than an org-wide control. .gitignore only excludes files from version control. The org-wide allow list lives in the Actions permissions policy.",
-    "tags": ["enterprise", "policy", "allowed-actions"]
+    "tags": [
+      "enterprise",
+      "policy",
+      "allowed-actions"
+    ]
   },
   {
     "id": "gha-029",
@@ -487,15 +924,31 @@
     "difficulty": "medium",
     "stem": "Deployments to production should pause for manual approval by a designated team before the deploy job runs. Which feature provides this gate?",
     "options": [
-      { "id": "o1", "text": "An environment with a required reviewers protection rule that the deploy job targets" },
-      { "id": "o2", "text": "A branch protection required status check" },
-      { "id": "o3", "text": "concurrency with cancel-in-progress on the deploy job" },
-      { "id": "o4", "text": "A matrix strategy with max-parallel set to 1" }
+      {
+        "id": "o1",
+        "text": "An environment with a required reviewers protection rule that the deploy job targets"
+      },
+      {
+        "id": "o2",
+        "text": "A branch protection required status check"
+      },
+      {
+        "id": "o3",
+        "text": "concurrency with cancel-in-progress on the deploy job"
+      },
+      {
+        "id": "o4",
+        "text": "A matrix strategy with max-parallel set to 1"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "GitHub environments support protection rules, and required reviewers pauses any job that targets the environment until a named person or team approves, which is the manual deployment gate described.",
     "explanationIncorrect": "A branch protection status check gates merging a pull request, not the execution of a deploy job at runtime. concurrency and cancel-in-progress control how overlapping runs are serialized or cancelled, not approvals. max-parallel limits matrix parallelism and has nothing to do with human sign-off. The approval gate is an environment with required reviewers.",
-    "tags": ["enterprise", "environments", "required-reviewers"]
+    "tags": [
+      "enterprise",
+      "environments",
+      "required-reviewers"
+    ]
   },
   {
     "id": "gha-030",
@@ -504,15 +957,31 @@
     "difficulty": "hard",
     "stem": "A secret named API_KEY is defined at the organization, repository, and environment levels. A job that targets that environment reads API_KEY. Which value applies?",
     "options": [
-      { "id": "o1", "text": "The environment-level secret, which takes precedence over repository, which takes precedence over organization" },
-      { "id": "o2", "text": "The organization-level secret, which always overrides the others" },
-      { "id": "o3", "text": "All three values concatenated together" },
-      { "id": "o4", "text": "None; the run fails because of the naming conflict" }
+      {
+        "id": "o1",
+        "text": "The environment-level secret, which takes precedence over repository, which takes precedence over organization"
+      },
+      {
+        "id": "o2",
+        "text": "The organization-level secret, which always overrides the others"
+      },
+      {
+        "id": "o3",
+        "text": "All three values concatenated together"
+      },
+      {
+        "id": "o4",
+        "text": "None; the run fails because of the naming conflict"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "When the same secret name exists at multiple levels, the most specific wins: an environment secret overrides a repository secret, which overrides an organization secret, so the environment value applies for a job targeting that environment.",
     "explanationIncorrect": "The organization level is the least specific, so it does not override the more specific repository and environment secrets. Secrets are not concatenated; a single value is resolved by precedence. A name existing at several levels is expected and does not fail the run; precedence resolves it. The order is environment, then repository, then organization.",
-    "tags": ["enterprise", "secrets", "precedence"]
+    "tags": [
+      "enterprise",
+      "secrets",
+      "precedence"
+    ]
   },
   {
     "id": "gha-031",
@@ -521,15 +990,31 @@
     "difficulty": "medium",
     "stem": "You want teams across the organization to reuse one standard CI workflow stored in a single internal repository. What makes other repositories able to call it?",
     "options": [
-      { "id": "o1", "text": "Set the source repository's Actions access to allow the organization, and have callers reference it with uses at the job level" },
-      { "id": "o2", "text": "Copy the workflow file into every repository by hand" },
-      { "id": "o3", "text": "Publish the workflow to the public GitHub Marketplace" },
-      { "id": "o4", "text": "Have each team fork the source repository" }
+      {
+        "id": "o1",
+        "text": "Set the source repository's Actions access to allow the organization, and have callers reference it with uses at the job level"
+      },
+      {
+        "id": "o2",
+        "text": "Copy the workflow file into every repository by hand"
+      },
+      {
+        "id": "o3",
+        "text": "Publish the workflow to the public GitHub Marketplace"
+      },
+      {
+        "id": "o4",
+        "text": "Have each team fork the source repository"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A reusable workflow in one repository can be called by others when that repository's Actions access setting permits it (for example, allowing access from the whole organization) and callers reference it with jobs.<id>.uses.",
     "explanationIncorrect": "Copying the file everywhere defeats reuse and means every change must be propagated by hand. The Marketplace is for actions, not for sharing internal reusable workflows, and publishing an internal CI process publicly is undesirable. Forking creates independent copies that drift, which is again not reuse. The correct approach is to grant Actions access and call the workflow with uses.",
-    "tags": ["enterprise", "reusable-workflows", "sharing"]
+    "tags": [
+      "enterprise",
+      "reusable-workflows",
+      "sharing"
+    ]
   },
   {
     "id": "gha-032",
@@ -538,15 +1023,30 @@
     "difficulty": "medium",
     "stem": "Your integration tests need a PostgreSQL database reachable during the job. Which workflow feature runs the database alongside the job's steps?",
     "options": [
-      { "id": "o1", "text": "A service container defined under jobs.<id>.services" },
-      { "id": "o2", "text": "A matrix entry named postgres under strategy" },
-      { "id": "o3", "text": "An artifact that contains a database file" },
-      { "id": "o4", "text": "A composite action referenced from steps" }
+      {
+        "id": "o1",
+        "text": "A service container defined under jobs.<id>.services"
+      },
+      {
+        "id": "o2",
+        "text": "A matrix entry named postgres under strategy"
+      },
+      {
+        "id": "o3",
+        "text": "An artifact that contains a database file"
+      },
+      {
+        "id": "o4",
+        "text": "A composite action referenced from steps"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Service containers, declared under a job's services key, start alongside the job and are reachable over the network (by service label), which is exactly how you provide a database like Postgres to integration tests.",
     "explanationIncorrect": "A matrix expands job combinations across input values; naming one postgres does not start a database. An artifact is a stored file from a run, not a running service you can connect to. A composite action bundles steps but does not by itself run a persistent networked service for the job. The feature that runs a database next to the job is a service container under services.",
-    "tags": ["workflows", "service-containers"]
+    "tags": [
+      "workflows",
+      "service-containers"
+    ]
   },
   {
     "id": "gha-033",
@@ -555,15 +1055,31 @@
     "difficulty": "hard",
     "stem": "You want a cleanup step to run whether earlier steps succeeded or failed, but you do not want it to run if the workflow was cancelled. Which condition is correct?",
     "options": [
-      { "id": "o1", "text": "if: ${{ !cancelled() }}" },
-      { "id": "o2", "text": "if: always()" },
-      { "id": "o3", "text": "if: success()" },
-      { "id": "o4", "text": "No condition, relying on the default behavior" }
+      {
+        "id": "o1",
+        "text": "if: ${{ !cancelled() }}"
+      },
+      {
+        "id": "o2",
+        "text": "if: always()"
+      },
+      {
+        "id": "o3",
+        "text": "if: success()"
+      },
+      {
+        "id": "o4",
+        "text": "No condition, relying on the default behavior"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "By default a step is skipped once a previous step failed, so you need a status expression. !cancelled() evaluates true on both success and failure but false when the run is cancelled, which matches the requirement exactly.",
     "explanationIncorrect": "always() runs the step even when the workflow was cancelled, so it does too much. success() runs only when everything so far succeeded, so it would skip on failure, which is the opposite of what a cleanup step needs. Omitting the condition relies on the default, which skips the step after any earlier failure. The precise guard is !cancelled().",
-    "tags": ["expressions", "status-functions", "conditionals"]
+    "tags": [
+      "expressions",
+      "status-functions",
+      "conditionals"
+    ]
   },
   {
     "id": "gha-034",
@@ -572,15 +1088,31 @@
     "difficulty": "easy",
     "stem": "You want every run step in a job to use bash explicitly, without repeating shell: bash on each step. What do you set?",
     "options": [
-      { "id": "o1", "text": "defaults.run.shell: bash at the job or workflow level" },
-      { "id": "o2", "text": "runs-on: bash" },
-      { "id": "o3", "text": "shell: bash on only the first step, which applies to the rest" },
-      { "id": "o4", "text": "shell: bash under the strategy block" }
+      {
+        "id": "o1",
+        "text": "defaults.run.shell: bash at the job or workflow level"
+      },
+      {
+        "id": "o2",
+        "text": "runs-on: bash"
+      },
+      {
+        "id": "o3",
+        "text": "shell: bash on only the first step, which applies to the rest"
+      },
+      {
+        "id": "o4",
+        "text": "shell: bash under the strategy block"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "defaults.run.shell sets the default shell for all run steps in its scope, so declaring it once at the job or workflow level applies bash to every run step without repetition.",
     "explanationIncorrect": "runs-on selects the runner operating system, not the shell, so bash is not a valid runner label there. Setting shell: bash on the first step affects only that step; it does not cascade to later steps. There is no shell setting under strategy, which controls matrix behavior. The single-place default is defaults.run.shell.",
-    "tags": ["workflows", "defaults", "shell"]
+    "tags": [
+      "workflows",
+      "defaults",
+      "shell"
+    ]
   },
   {
     "id": "gha-035",
@@ -589,15 +1121,31 @@
     "difficulty": "hard",
     "stem": "You are authoring a reusable workflow that must accept an environment input from its caller and return a url output back. Which trigger and structure declare this?",
     "options": [
-      { "id": "o1", "text": "on: workflow_call with inputs and outputs blocks, wiring the output from a job's outputs up to the workflow-level outputs" },
-      { "id": "o2", "text": "on: workflow_dispatch with an inputs block only" },
-      { "id": "o3", "text": "on: push, reading the caller's inputs from environment variables" },
-      { "id": "o4", "text": "on: workflow_run with a with block for inputs and outputs" }
+      {
+        "id": "o1",
+        "text": "on: workflow_call with inputs and outputs blocks, wiring the output from a job's outputs up to the workflow-level outputs"
+      },
+      {
+        "id": "o2",
+        "text": "on: workflow_dispatch with an inputs block only"
+      },
+      {
+        "id": "o3",
+        "text": "on: push, reading the caller's inputs from environment variables"
+      },
+      {
+        "id": "o4",
+        "text": "on: workflow_run with a with block for inputs and outputs"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A reusable workflow is defined with on: workflow_call, which declares its inputs and outputs; the workflow-level outputs map to values produced by its jobs, so the caller can pass an input and read the returned url.",
     "explanationIncorrect": "workflow_dispatch defines a manual UI trigger with inputs but has no outputs contract for a caller and is not how one workflow calls another. push fires on commits and cannot receive caller inputs. workflow_run triggers a workflow after another completes but does not define a called-workflow input and output interface. The reusable-workflow contract is on: workflow_call with inputs and outputs.",
-    "tags": ["reusable-workflows", "workflow-call", "outputs"]
+    "tags": [
+      "reusable-workflows",
+      "workflow-call",
+      "outputs"
+    ]
   },
   {
     "id": "gha-036",
@@ -606,15 +1154,31 @@
     "difficulty": "medium",
     "stem": "You want a workflow to run only when files under the docs/ directory change on a push. Which trigger filter achieves this?",
     "options": [
-      { "id": "o1", "text": "on: push with a paths filter of ['docs/**']" },
-      { "id": "o2", "text": "on: push with a branches filter of ['docs']" },
-      { "id": "o3", "text": "A step-level if: changed('docs')" },
-      { "id": "o4", "text": "on: pull_request with types: [docs]" }
+      {
+        "id": "o1",
+        "text": "on: push with a paths filter of ['docs/**']"
+      },
+      {
+        "id": "o2",
+        "text": "on: push with a branches filter of ['docs']"
+      },
+      {
+        "id": "o3",
+        "text": "A step-level if: changed('docs')"
+      },
+      {
+        "id": "o4",
+        "text": "on: pull_request with types: [docs]"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The paths filter scopes a push (or pull_request) trigger to runs where the changed files match the given globs, so 'docs/**' fires the workflow only when documentation files change.",
     "explanationIncorrect": "A branches filter limits which branches trigger the workflow, not which files changed, so it would not target the docs directory. There is no changed() function usable as shown; path scoping is done in the trigger, not a step condition. pull_request types are activity types like opened or synchronize, not directory names. The correct scoping is a paths filter.",
-    "tags": ["workflows", "paths-filter", "triggers"]
+    "tags": [
+      "workflows",
+      "paths-filter",
+      "triggers"
+    ]
   },
   {
     "id": "gha-037",
@@ -623,15 +1187,31 @@
     "difficulty": "hard",
     "stem": "Your matrix builds every operating-system and version combination, but one specific pair (windows-latest with Node 18) is unsupported and must be skipped while all other combinations still run. How do you do this?",
     "options": [
-      { "id": "o1", "text": "Add an exclude entry to strategy.matrix naming that os and version pair" },
-      { "id": "o2", "text": "Delete the entire matrix and hardcode the combinations" },
-      { "id": "o3", "text": "Add a job-level if: that skips the whole job" },
-      { "id": "o4", "text": "Set max-parallel to 0" }
+      {
+        "id": "o1",
+        "text": "Add an exclude entry to strategy.matrix naming that os and version pair"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the entire matrix and hardcode the combinations"
+      },
+      {
+        "id": "o3",
+        "text": "Add a job-level if: that skips the whole job"
+      },
+      {
+        "id": "o4",
+        "text": "Set max-parallel to 0"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The matrix exclude list removes specific combinations from the generated set, so you can drop just the windows/Node 18 pair while every other combination is still built.",
     "explanationIncorrect": "Deleting the matrix throws away the whole benefit of combinatorial builds. A job-level if that skips the whole job would skip all combinations, not just one. max-parallel controls concurrency and setting it to 0 does not remove a combination. The targeted removal is a matrix exclude entry.",
-    "tags": ["workflows", "matrix", "exclude"]
+    "tags": [
+      "workflows",
+      "matrix",
+      "exclude"
+    ]
   },
   {
     "id": "gha-038",
@@ -640,15 +1220,31 @@
     "difficulty": "medium",
     "stem": "By default, when one matrix leg fails the others are cancelled. You want every matrix leg to run to completion regardless of failures. What do you set?",
     "options": [
-      { "id": "o1", "text": "strategy.fail-fast: false" },
-      { "id": "o2", "text": "continue-on-error: true at the workflow root" },
-      { "id": "o3", "text": "concurrency with cancel-in-progress: false" },
-      { "id": "o4", "text": "max-parallel: 1" }
+      {
+        "id": "o1",
+        "text": "strategy.fail-fast: false"
+      },
+      {
+        "id": "o2",
+        "text": "continue-on-error: true at the workflow root"
+      },
+      {
+        "id": "o3",
+        "text": "concurrency with cancel-in-progress: false"
+      },
+      {
+        "id": "o4",
+        "text": "max-parallel: 1"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "fail-fast defaults to true, cancelling remaining matrix jobs on the first failure; setting strategy.fail-fast to false lets every leg finish so you see all results.",
     "explanationIncorrect": "continue-on-error changes whether a failing step or job fails the run, not whether sibling matrix legs are cancelled. concurrency cancel-in-progress relates to overlapping runs of the same group, not matrix siblings. max-parallel limits how many legs run at once but does not stop the cancel-on-failure behavior. The control is strategy.fail-fast: false.",
-    "tags": ["workflows", "matrix", "fail-fast"]
+    "tags": [
+      "workflows",
+      "matrix",
+      "fail-fast"
+    ]
   },
   {
     "id": "gha-039",
@@ -657,15 +1253,30 @@
     "difficulty": "easy",
     "stem": "You want a job to be forcibly stopped if it runs longer than 30 minutes, so a hung run does not keep consuming minutes. Which setting expresses this?",
     "options": [
-      { "id": "o1", "text": "timeout-minutes: 30 on the job" },
-      { "id": "o2", "text": "concurrency: 30" },
-      { "id": "o3", "text": "retries: 30" },
-      { "id": "o4", "text": "schedule: 30" }
+      {
+        "id": "o1",
+        "text": "timeout-minutes: 30 on the job"
+      },
+      {
+        "id": "o2",
+        "text": "concurrency: 30"
+      },
+      {
+        "id": "o3",
+        "text": "retries: 30"
+      },
+      {
+        "id": "o4",
+        "text": "schedule: 30"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "timeout-minutes sets the maximum number of minutes a job (or step) may run before the runner cancels it, which bounds hung runs.",
     "explanationIncorrect": "concurrency groups and serializes runs; it is not a time limit. There is no retries key on a job for this purpose. schedule is a trigger using cron, not a duration cap. The job time limit is timeout-minutes.",
-    "tags": ["workflows", "timeout-minutes"]
+    "tags": [
+      "workflows",
+      "timeout-minutes"
+    ]
   },
   {
     "id": "gha-040",
@@ -674,15 +1285,31 @@
     "difficulty": "hard",
     "stem": "You want a step to run only when the pushed commit message contains the text [deploy]. Which expression is correct?",
     "options": [
-      { "id": "o1", "text": "if: contains(github.event.head_commit.message, '[deploy]')" },
-      { "id": "o2", "text": "if: github.event.head_commit.message == '[deploy]'" },
-      { "id": "o3", "text": "if: includes(github.event.head_commit.message, '[deploy]')" },
-      { "id": "o4", "text": "if: github.event.head_commit.message.has('[deploy]')" }
+      {
+        "id": "o1",
+        "text": "if: contains(github.event.head_commit.message, '[deploy]')"
+      },
+      {
+        "id": "o2",
+        "text": "if: github.event.head_commit.message == '[deploy]'"
+      },
+      {
+        "id": "o3",
+        "text": "if: includes(github.event.head_commit.message, '[deploy]')"
+      },
+      {
+        "id": "o4",
+        "text": "if: github.event.head_commit.message.has('[deploy]')"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "contains(haystack, needle) is a built-in expression function that returns true when the substring is present, so it correctly matches a commit message that includes [deploy].",
     "explanationIncorrect": "The == comparison requires the message to equal [deploy] exactly, which fails when it is part of a longer message. includes is not a GitHub Actions expression function. There is no .has() method syntax in expressions. The substring test is contains().",
-    "tags": ["workflows", "expressions", "contains"]
+    "tags": [
+      "workflows",
+      "expressions",
+      "contains"
+    ]
   },
   {
     "id": "gha-041",
@@ -691,15 +1318,31 @@
     "difficulty": "hard",
     "stem": "Your exact cache key misses on the first build after a lockfile change, but you want to fall back to the most recent older cache to avoid downloading every dependency again. Which cache feature provides this fallback?",
     "options": [
-      { "id": "o1", "text": "restore-keys, a prioritized list of prefix keys tried when the primary key misses" },
-      { "id": "o2", "text": "A second actions/upload-artifact step for the cache" },
-      { "id": "o3", "text": "Setting the cache key to the literal '*'" },
-      { "id": "o4", "text": "A cache: always option on the job" }
+      {
+        "id": "o1",
+        "text": "restore-keys, a prioritized list of prefix keys tried when the primary key misses"
+      },
+      {
+        "id": "o2",
+        "text": "A second actions/upload-artifact step for the cache"
+      },
+      {
+        "id": "o3",
+        "text": "Setting the cache key to the literal '*'"
+      },
+      {
+        "id": "o4",
+        "text": "A cache: always option on the job"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "restore-keys lists prefix keys that actions/cache tries in order when the exact key is not found, so a changed lockfile can still restore a recent partial cache and rebuild only what changed.",
     "explanationIncorrect": "upload-artifact stores per-run outputs and is not a fallback cache-restore mechanism. A key of '*' is not how cache matching works and would not define an ordered fallback. There is no cache: always job option that provides prefix fallback. The fallback feature is restore-keys.",
-    "tags": ["cache", "restore-keys", "performance"]
+    "tags": [
+      "cache",
+      "restore-keys",
+      "performance"
+    ]
   },
   {
     "id": "gha-042",
@@ -708,15 +1351,31 @@
     "difficulty": "medium",
     "stem": "You want a run to publish a formatted Markdown summary, such as a table of test results, visible directly on the workflow run's page. How do you do this?",
     "options": [
-      { "id": "o1", "text": "Append Markdown to the file referenced by $GITHUB_STEP_SUMMARY" },
-      { "id": "o2", "text": "echo the Markdown to stdout, which becomes the summary automatically" },
-      { "id": "o3", "text": "Upload a summary.md artifact, which the run page renders" },
-      { "id": "o4", "text": "Set summary: true on the job" }
+      {
+        "id": "o1",
+        "text": "Append Markdown to the file referenced by $GITHUB_STEP_SUMMARY"
+      },
+      {
+        "id": "o2",
+        "text": "echo the Markdown to stdout, which becomes the summary automatically"
+      },
+      {
+        "id": "o3",
+        "text": "Upload a summary.md artifact, which the run page renders"
+      },
+      {
+        "id": "o4",
+        "text": "Set summary: true on the job"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Writing Markdown to the $GITHUB_STEP_SUMMARY file renders it in the job summary on the run page, which is the supported way to publish a formatted result summary.",
     "explanationIncorrect": "Plain stdout goes to the logs, not the rendered summary. An uploaded artifact is a downloadable file, not auto-rendered Markdown on the run page. There is no summary: true job option. Job summaries come from $GITHUB_STEP_SUMMARY.",
-    "tags": ["consume", "job-summary", "step-summary"]
+    "tags": [
+      "consume",
+      "job-summary",
+      "step-summary"
+    ]
   },
   {
     "id": "gha-043",
@@ -725,15 +1384,31 @@
     "difficulty": "medium",
     "stem": "An action you call sets an output named tag. How do you use that value in a later step of the same job?",
     "options": [
-      { "id": "o1", "text": "Give the action step an id, then reference steps.<id>.outputs.tag" },
-      { "id": "o2", "text": "Reference env.tag, which the action populates automatically" },
-      { "id": "o3", "text": "Reference needs.tag" },
-      { "id": "o4", "text": "Reference github.outputs.tag" }
+      {
+        "id": "o1",
+        "text": "Give the action step an id, then reference steps.<id>.outputs.tag"
+      },
+      {
+        "id": "o2",
+        "text": "Reference env.tag, which the action populates automatically"
+      },
+      {
+        "id": "o3",
+        "text": "Reference needs.tag"
+      },
+      {
+        "id": "o4",
+        "text": "Reference github.outputs.tag"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Step outputs are read through the steps context by the producing step's id, so tagging the action step with an id lets a later step read steps.<id>.outputs.tag.",
     "explanationIncorrect": "Action outputs are not automatically exposed as environment variables, so env.tag is not populated. needs is for reading outputs of other jobs, not steps within the same job. There is no github.outputs context. Within a job, step outputs are read via steps.<id>.outputs.",
-    "tags": ["consume", "step-outputs", "actions"]
+    "tags": [
+      "consume",
+      "step-outputs",
+      "actions"
+    ]
   },
   {
     "id": "gha-044",
@@ -742,15 +1417,31 @@
     "difficulty": "medium",
     "stem": "A downstream job shows as skipped rather than failed. What most likely happened?",
     "options": [
-      { "id": "o1", "text": "Its if condition evaluated to false, or a job it needs did not succeed, so it was never run" },
-      { "id": "o2", "text": "The job ran and its tests failed" },
-      { "id": "o3", "text": "The runner crashed in the middle of the job" },
-      { "id": "o4", "text": "The workflow file contains a YAML syntax error" }
+      {
+        "id": "o1",
+        "text": "Its if condition evaluated to false, or a job it needs did not succeed, so it was never run"
+      },
+      {
+        "id": "o2",
+        "text": "The job ran and its tests failed"
+      },
+      {
+        "id": "o3",
+        "text": "The runner crashed in the middle of the job"
+      },
+      {
+        "id": "o4",
+        "text": "The workflow file contains a YAML syntax error"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Skipped means the job did not execute, typically because its if condition was false or a needed upstream job did not succeed, so its gating condition was not met.",
     "explanationIncorrect": "A failed test would mark the job failed, not skipped. A runner crash mid-job would surface as a failure or cancellation, not a clean skip. A YAML syntax error prevents the run from starting or the workflow from being valid, rather than skipping one job. Skipped indicates an unmet condition or dependency.",
-    "tags": ["consume", "job-status", "troubleshooting"]
+    "tags": [
+      "consume",
+      "job-status",
+      "troubleshooting"
+    ]
   },
   {
     "id": "gha-045",
@@ -759,15 +1450,31 @@
     "difficulty": "medium",
     "stem": "Uploaded artifacts are consuming storage. How do you control how long an artifact is kept before it is automatically deleted?",
     "options": [
-      { "id": "o1", "text": "Set retention-days on the upload-artifact step, within the repository or organization maximum" },
-      { "id": "o2", "text": "Manually delete each workflow run after it completes" },
-      { "id": "o3", "text": "Nothing; artifacts are kept forever and cannot be limited" },
-      { "id": "o4", "text": "Lower the job's timeout-minutes" }
+      {
+        "id": "o1",
+        "text": "Set retention-days on the upload-artifact step, within the repository or organization maximum"
+      },
+      {
+        "id": "o2",
+        "text": "Manually delete each workflow run after it completes"
+      },
+      {
+        "id": "o3",
+        "text": "Nothing; artifacts are kept forever and cannot be limited"
+      },
+      {
+        "id": "o4",
+        "text": "Lower the job's timeout-minutes"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The upload-artifact action accepts retention-days to set how long that artifact is retained, capped by the repository or organization's configured maximum, after which it is deleted automatically.",
     "explanationIncorrect": "Manually deleting runs is tedious and not the intended control. Artifacts do have a retention period and are not kept forever, so that claim is false. timeout-minutes bounds job duration, not artifact lifetime. Artifact lifetime is set with retention-days.",
-    "tags": ["consume", "artifacts", "retention"]
+    "tags": [
+      "consume",
+      "artifacts",
+      "retention"
+    ]
   },
   {
     "id": "gha-046",
@@ -776,15 +1483,31 @@
     "difficulty": "easy",
     "stem": "When a workflow uses your action, how does it supply values for the action's declared inputs?",
     "options": [
-      { "id": "o1", "text": "Through a with: block on the step that uses the action" },
-      { "id": "o2", "text": "Through an env: block, which is the only way to pass inputs" },
-      { "id": "o3", "text": "Through the needs: keyword" },
-      { "id": "o4", "text": "Through a strategy matrix" }
+      {
+        "id": "o1",
+        "text": "Through a with: block on the step that uses the action"
+      },
+      {
+        "id": "o2",
+        "text": "Through an env: block, which is the only way to pass inputs"
+      },
+      {
+        "id": "o3",
+        "text": "Through the needs: keyword"
+      },
+      {
+        "id": "o4",
+        "text": "Through a strategy matrix"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A caller passes input values with a with: block on the uses step, and those keys map to the inputs the action declares in its action.yml.",
     "explanationIncorrect": "env sets environment variables, which is not how action inputs are supplied. needs declares job dependencies, not inputs. A matrix expands job combinations and does not pass an action's inputs. Inputs are provided through with:.",
-    "tags": ["actions", "inputs", "with"]
+    "tags": [
+      "actions",
+      "inputs",
+      "with"
+    ]
   },
   {
     "id": "gha-047",
@@ -793,15 +1516,31 @@
     "difficulty": "hard",
     "stem": "In a composite action, each run step must specify one thing that is optional in an ordinary workflow step. What is it?",
     "options": [
-      { "id": "o1", "text": "The shell for each run step (shell is required in composite actions)" },
-      { "id": "o2", "text": "A unique matrix per step" },
-      { "id": "o3", "text": "A container image per step" },
-      { "id": "o4", "text": "A concurrency group per step" }
+      {
+        "id": "o1",
+        "text": "The shell for each run step (shell is required in composite actions)"
+      },
+      {
+        "id": "o2",
+        "text": "A unique matrix per step"
+      },
+      {
+        "id": "o3",
+        "text": "A container image per step"
+      },
+      {
+        "id": "o4",
+        "text": "A concurrency group per step"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Composite action run steps require an explicit shell value, whereas in a normal workflow the shell can be inferred, so authoring a composite means setting shell on each run step.",
     "explanationIncorrect": "A matrix is a workflow job feature, not a per-step requirement in a composite action. A container image is not required per step in a composite action. Concurrency groups apply to workflow runs, not individual composite steps. The required field is shell.",
-    "tags": ["actions", "composite-actions", "shell"]
+    "tags": [
+      "actions",
+      "composite-actions",
+      "shell"
+    ]
   },
   {
     "id": "gha-048",
@@ -810,15 +1549,31 @@
     "difficulty": "medium",
     "stem": "In a JavaScript action, which library provides helpers such as getInput and setOutput to interact with the runner?",
     "options": [
-      { "id": "o1", "text": "The @actions/core package from the GitHub Actions toolkit" },
-      { "id": "o2", "text": "axios" },
-      { "id": "o3", "text": "express" },
-      { "id": "o4", "text": "lodash" }
+      {
+        "id": "o1",
+        "text": "The @actions/core package from the GitHub Actions toolkit"
+      },
+      {
+        "id": "o2",
+        "text": "axios"
+      },
+      {
+        "id": "o3",
+        "text": "express"
+      },
+      {
+        "id": "o4",
+        "text": "lodash"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The @actions/core toolkit package exposes helpers like core.getInput, core.setOutput, and core.setFailed that a JavaScript action uses to read inputs and communicate with the runner.",
     "explanationIncorrect": "axios is an HTTP client, express is a web server framework, and lodash is a utility library; none of them provide the Actions runner integration helpers. The toolkit package for that is @actions/core.",
-    "tags": ["actions", "javascript-action", "toolkit"]
+    "tags": [
+      "actions",
+      "javascript-action",
+      "toolkit"
+    ]
   },
   {
     "id": "gha-049",
@@ -827,15 +1582,31 @@
     "difficulty": "medium",
     "stem": "You keep a custom action inside the same repository as the workflow that uses it. How does the workflow reference it?",
     "options": [
-      { "id": "o1", "text": "uses: ./path/to/action, a relative path to the directory containing action.yml" },
-      { "id": "o2", "text": "uses: owner/repo@main, since local actions still need the full path" },
-      { "id": "o3", "text": "run: ./action.yml" },
-      { "id": "o4", "text": "It must be published to the Marketplace before it can be used" }
+      {
+        "id": "o1",
+        "text": "uses: ./path/to/action, a relative path to the directory containing action.yml"
+      },
+      {
+        "id": "o2",
+        "text": "uses: owner/repo@main, since local actions still need the full path"
+      },
+      {
+        "id": "o3",
+        "text": "run: ./action.yml"
+      },
+      {
+        "id": "o4",
+        "text": "It must be published to the Marketplace before it can be used"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A local action in the same repository is referenced by a relative path in uses, pointing at the directory that holds its action.yml, after the repository is checked out.",
     "explanationIncorrect": "The owner/repo@ref form is for actions in other repositories; a local action uses a relative path. run executes shell commands and cannot invoke an action metadata file. Local actions do not need Marketplace publishing to be used. The reference is uses: ./path.",
-    "tags": ["actions", "local-action", "uses"]
+    "tags": [
+      "actions",
+      "local-action",
+      "uses"
+    ]
   },
   {
     "id": "gha-050",
@@ -844,15 +1615,31 @@
     "difficulty": "hard",
     "stem": "Your JavaScript action must run cleanup logic after the job's other steps complete, even if the main step failed. Which action.yml field enables this post step?",
     "options": [
-      { "id": "o1", "text": "runs.post pointing at a script, optionally guarded by post-if" },
-      { "id": "o2", "text": "A second jobs block inside the action" },
-      { "id": "o3", "text": "continue-on-error on the action" },
-      { "id": "o4", "text": "A schedule trigger in the action" }
+      {
+        "id": "o1",
+        "text": "runs.post pointing at a script, optionally guarded by post-if"
+      },
+      {
+        "id": "o2",
+        "text": "A second jobs block inside the action"
+      },
+      {
+        "id": "o3",
+        "text": "continue-on-error on the action"
+      },
+      {
+        "id": "o4",
+        "text": "A schedule trigger in the action"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A JavaScript action declares a post entry point with runs.post that the runner executes after the job's steps as cleanup, and post-if controls the condition under which it runs.",
     "explanationIncorrect": "Actions do not contain jobs; jobs live in workflows. continue-on-error affects failure handling, not scheduling a post-completion cleanup step. A schedule trigger is a workflow event, not an action cleanup mechanism. The post-completion hook is runs.post.",
-    "tags": ["actions", "post-step", "cleanup"]
+    "tags": [
+      "actions",
+      "post-step",
+      "cleanup"
+    ]
   },
   {
     "id": "gha-051",
@@ -861,15 +1648,31 @@
     "difficulty": "hard",
     "stem": "As an organization owner you want every repository's automatic GITHUB_TOKEN to default to read-only permissions unless a workflow explicitly requests more. Where do you set this?",
     "options": [
-      { "id": "o1", "text": "In the organization (or repository) Actions settings, set the default GITHUB_TOKEN permissions to read-only" },
-      { "id": "o2", "text": "Only inside each individual workflow file, one at a time" },
-      { "id": "o3", "text": "In dependabot.yml" },
-      { "id": "o4", "text": "In a CODEOWNERS file" }
+      {
+        "id": "o1",
+        "text": "In the organization (or repository) Actions settings, set the default GITHUB_TOKEN permissions to read-only"
+      },
+      {
+        "id": "o2",
+        "text": "Only inside each individual workflow file, one at a time"
+      },
+      {
+        "id": "o3",
+        "text": "In dependabot.yml"
+      },
+      {
+        "id": "o4",
+        "text": "In a CODEOWNERS file"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The Actions settings at the organization or repository level let you set the default workflow permissions for GITHUB_TOKEN to read-only, so workflows must explicitly request any write scope, enforcing least privilege by default across repos.",
     "explanationIncorrect": "Setting it per workflow does not establish an org-wide default and relies on every author remembering. dependabot.yml configures dependency updates, not token defaults. CODEOWNERS assigns review ownership. The org-wide default is set in the Actions settings.",
-    "tags": ["enterprise", "github-token", "default-permissions"]
+    "tags": [
+      "enterprise",
+      "github-token",
+      "default-permissions"
+    ]
   },
   {
     "id": "gha-052",
@@ -878,15 +1681,31 @@
     "difficulty": "medium",
     "stem": "Workflows should not run automatically on pull requests from outside or first-time contributors until a maintainer approves. Which setting enforces this?",
     "options": [
-      { "id": "o1", "text": "The fork pull request workflow approval policy (require approval for outside or first-time contributors)" },
-      { "id": "o2", "text": "A branch protection required-reviews rule" },
-      { "id": "o3", "text": "A concurrency group on the workflow" },
-      { "id": "o4", "text": "Enabling secret scanning" }
+      {
+        "id": "o1",
+        "text": "The fork pull request workflow approval policy (require approval for outside or first-time contributors)"
+      },
+      {
+        "id": "o2",
+        "text": "A branch protection required-reviews rule"
+      },
+      {
+        "id": "o3",
+        "text": "A concurrency group on the workflow"
+      },
+      {
+        "id": "o4",
+        "text": "Enabling secret scanning"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The Actions fork-pull-request approval policy holds workflow runs from outside or first-time contributors until a maintainer approves, which prevents untrusted contributors from triggering runs (and using resources) automatically.",
     "explanationIncorrect": "Required reviews gate merging a pull request, not whether its workflow runs. A concurrency group serializes runs; it does not gate them on approval. Secret scanning detects committed credentials and is unrelated to running workflows. The control is the fork pull request approval policy.",
-    "tags": ["enterprise", "fork-approval", "security"]
+    "tags": [
+      "enterprise",
+      "fork-approval",
+      "security"
+    ]
   },
   {
     "id": "gha-053",
@@ -895,15 +1714,31 @@
     "difficulty": "hard",
     "stem": "You want self-hosted runners that start fresh for each job and scale with demand on Kubernetes, avoiding any leftover state between jobs. Which approach fits?",
     "options": [
-      { "id": "o1", "text": "Ephemeral runners managed by Actions Runner Controller (runner scale sets) on Kubernetes" },
-      { "id": "o2", "text": "A single long-lived runner reused for every job" },
-      { "id": "o3", "text": "GitHub-hosted runners only, with no self-hosted option" },
-      { "id": "o4", "text": "Disabling runners entirely" }
+      {
+        "id": "o1",
+        "text": "Ephemeral runners managed by Actions Runner Controller (runner scale sets) on Kubernetes"
+      },
+      {
+        "id": "o2",
+        "text": "A single long-lived runner reused for every job"
+      },
+      {
+        "id": "o3",
+        "text": "GitHub-hosted runners only, with no self-hosted option"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling runners entirely"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Actions Runner Controller provisions ephemeral runners as scale sets on Kubernetes: each runner handles one job then is torn down, giving clean state per job and autoscaling with demand.",
     "explanationIncorrect": "A single long-lived runner carries state between jobs and does not scale. GitHub-hosted runners are managed but are not the self-hosted Kubernetes autoscaling described. Disabling runners removes the ability to run jobs at all. The fit is ephemeral runners via Actions Runner Controller.",
-    "tags": ["enterprise", "ephemeral-runners", "autoscaling"]
+    "tags": [
+      "enterprise",
+      "ephemeral-runners",
+      "autoscaling"
+    ]
   },
   {
     "id": "gha-054",
@@ -912,15 +1747,31 @@
     "difficulty": "hard",
     "stem": "You must guarantee that a security-scan workflow runs on pull requests across all targeted repositories in the organization, without each repository opting in by copying it. Which capability provides this?",
     "options": [
-      { "id": "o1", "text": "Organization-required workflows, enforced through repository rulesets on targeted repositories" },
-      { "id": "o2", "text": "Copying the workflow file into each repository by hand" },
-      { "id": "o3", "text": "A branch protection rule configured separately in every repository" },
-      { "id": "o4", "text": "A pinned issue reminding maintainers to run scans" }
+      {
+        "id": "o1",
+        "text": "Organization-required workflows, enforced through repository rulesets on targeted repositories"
+      },
+      {
+        "id": "o2",
+        "text": "Copying the workflow file into each repository by hand"
+      },
+      {
+        "id": "o3",
+        "text": "A branch protection rule configured separately in every repository"
+      },
+      {
+        "id": "o4",
+        "text": "A pinned issue reminding maintainers to run scans"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Required workflows (via organization rulesets) let an org enforce that specific workflows run on the targeted repositories automatically, so coverage does not depend on each team adding the workflow themselves.",
     "explanationIncorrect": "Copying the file everywhere is exactly the manual, drift-prone approach required workflows remove. Per-repository branch protection does not centrally push a workflow to run. A pinned issue is a reminder, not enforcement. Central enforcement is organization-required workflows via rulesets.",
-    "tags": ["enterprise", "required-workflows", "rulesets"]
+    "tags": [
+      "enterprise",
+      "required-workflows",
+      "rulesets"
+    ]
   },
   {
     "id": "gha-055",
@@ -929,14 +1780,469 @@
     "difficulty": "medium",
     "stem": "Your builds need more CPU and memory than the standard GitHub-hosted runner offers, but you do not want to operate self-hosted infrastructure. What is the option?",
     "options": [
-      { "id": "o1", "text": "GitHub-hosted larger runners with more resources, made available through a runner group" },
-      { "id": "o2", "text": "Only self-hosted runners can ever have more resources" },
-      { "id": "o3", "text": "Increase timeout-minutes to grant the job more CPU" },
-      { "id": "o4", "text": "Use a larger concurrency group to add capacity" }
+      {
+        "id": "o1",
+        "text": "GitHub-hosted larger runners with more resources, made available through a runner group"
+      },
+      {
+        "id": "o2",
+        "text": "Only self-hosted runners can ever have more resources"
+      },
+      {
+        "id": "o3",
+        "text": "Increase timeout-minutes to grant the job more CPU"
+      },
+      {
+        "id": "o4",
+        "text": "Use a larger concurrency group to add capacity"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "GitHub offers larger hosted runners with more CPU, memory, and disk that you enable through a runner group, giving more power while GitHub still manages the infrastructure.",
     "explanationIncorrect": "It is not true that only self-hosted runners can be larger; hosted larger runners exist. timeout-minutes bounds job duration and grants no additional CPU. A concurrency group controls serialization of runs, not machine size. The managed option is GitHub-hosted larger runners.",
-    "tags": ["enterprise", "larger-runners", "github-hosted"]
+    "tags": [
+      "enterprise",
+      "larger-runners",
+      "github-hosted"
+    ]
+  },
+  {
+    "id": "gha-056",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A workflow needs an environment variable available to every step in every job of the file. Where do you define it with the least repetition?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A top-level env: map at the workflow root"
+      },
+      {
+        "id": "o2",
+        "text": "An env: map inside each job's steps"
+      },
+      {
+        "id": "o3",
+        "text": "A repository secret referenced in each step"
+      },
+      {
+        "id": "o4",
+        "text": "A matrix entry so it fans out to every job"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "env: can be set at the workflow, job, or step level. Setting it once at the workflow root makes it visible to all jobs and steps unless a lower level overrides it.",
+    "explanationIncorrect": "Putting env: inside every step or every job is exactly the repetition the workflow-level map avoids, and it invites drift when one copy is updated but another is not. A repository secret is for sensitive values, is masked in logs, and still has to be surfaced into env in each place you want it, so it does not reduce repetition. A matrix generates parallel job copies to run across combinations of values; it is a fan-out mechanism, not a way to share a single constant, and it would change how many jobs run.",
+    "tags": [
+      "env",
+      "variables",
+      "scope"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-057",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a workflow to run at most once per branch, cancelling any older in-progress run of the same branch when a new commit arrives. Which configuration does this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "concurrency with a group keyed on the ref and cancel-in-progress: true"
+      },
+      {
+        "id": "o2",
+        "text": "A matrix with max-parallel: 1"
+      },
+      {
+        "id": "o3",
+        "text": "timeout-minutes on the job"
+      },
+      {
+        "id": "o4",
+        "text": "if: github.run_number == 1 on the job"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A concurrency group scoped to the branch ref serialises runs, and cancel-in-progress: true tells GitHub to cancel an older still-running member of the group when a newer one queues.",
+    "explanationIncorrect": "matrix max-parallel limits how many matrix legs of one run execute at the same time; it does nothing across separate runs triggered by successive commits. timeout-minutes only bounds how long a job may run before it is killed, not whether an earlier run is superseded. github.run_number just increments per workflow run, so gating on it equal to 1 would only ever let the very first run execute and would block everything after it, which is not the goal.",
+    "tags": [
+      "concurrency",
+      "cancel-in-progress"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-058",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "A step produces a value later steps need. What is the supported way to pass it to a subsequent step in the same job?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Write name=value to the file referenced by $GITHUB_OUTPUT, then read steps.<id>.outputs.name"
+      },
+      {
+        "id": "o2",
+        "text": "Use the deprecated ::set-output:: workflow command, which is the only option"
+      },
+      {
+        "id": "o3",
+        "text": "Export a shell variable, which persists across steps automatically"
+      },
+      {
+        "id": "o4",
+        "text": "Write to $GITHUB_ENV, which is the only mechanism for step-to-step values"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Appending name=value to the $GITHUB_OUTPUT file sets a step output, which downstream steps read with steps.<step_id>.outputs.<name> once the producing step has an id.",
+    "explanationIncorrect": "The ::set-output:: command still works in some runners but is deprecated in favour of the $GITHUB_OUTPUT file, so calling it the only option is wrong. A plain shell export lives only in that step's shell process and is gone when the next step starts its own shell, so it does not persist. Writing to $GITHUB_ENV does carry a value forward, but as an environment variable read via env.<name>, not as a step output, and it is not the only mechanism, so describing it that way is incorrect.",
+    "tags": [
+      "outputs",
+      "GITHUB_OUTPUT",
+      "steps"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-059",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "Which expression correctly runs a step only when the workflow was triggered on the default branch after a push?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "if: github.ref == format('refs/heads/{0}', github.event.repository.default_branch)"
+      },
+      {
+        "id": "o2",
+        "text": "if: github.branch == 'main'"
+      },
+      {
+        "id": "o3",
+        "text": "if: ${{ branch == default }}"
+      },
+      {
+        "id": "o4",
+        "text": "if: github.ref_name == 'refs/heads/main'"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "github.ref holds the full ref like refs/heads/main, and formatting the repository's default_branch into refs/heads/{0} compares it correctly without hard-coding the branch name.",
+    "explanationIncorrect": "There is no github.branch context property, so that expression never matches. The bare identifiers branch and default are not defined in the expression syntax and would not evaluate to anything meaningful. github.ref_name holds only the short name such as main, not the full refs/heads/main path, so comparing ref_name against the fully qualified string can never be true.",
+    "tags": [
+      "expressions",
+      "github.ref",
+      "conditionals"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-060",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "easy",
+    "stem": "You want a workflow to run on a schedule every day at 07:30 UTC. Which trigger is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on: schedule: - cron: '30 7 * * *'"
+      },
+      {
+        "id": "o2",
+        "text": "on: schedule: - cron: '7 30 * * *'"
+      },
+      {
+        "id": "o3",
+        "text": "on: timer: every: '24h'"
+      },
+      {
+        "id": "o4",
+        "text": "on: cron: '30 7'"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "POSIX cron fields are minute hour day-of-month month day-of-week, so 30 7 * * * means minute 30 of hour 7, i.e. 07:30 UTC every day.",
+    "explanationIncorrect": "Writing 7 30 swaps the fields, asking for minute 7 of hour 30, and hour 30 is invalid so it would never run. There is no timer trigger with an every key in Actions; scheduling is done only through schedule with cron. on: cron as a top-level key is not valid syntax either, and the value is missing the remaining three cron fields, so it would fail to parse.",
+    "tags": [
+      "schedule",
+      "cron",
+      "triggers"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-061",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A job should still run its cleanup step even when an earlier step in the job failed. Which step-level condition guarantees that?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "if: always()"
+      },
+      {
+        "id": "o2",
+        "text": "if: success()"
+      },
+      {
+        "id": "o3",
+        "text": "continue-on-error: true on the cleanup step"
+      },
+      {
+        "id": "o4",
+        "text": "if: cancelled()"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "always() evaluates to true regardless of whether previous steps succeeded, failed, or the run was cancelled, so the cleanup step always executes.",
+    "explanationIncorrect": "success() is the implicit default and is true only when all prior steps passed, so it would skip cleanup after a failure. continue-on-error: true changes how a failing step is reported for that step; it does not force a later step to run after an earlier failure. cancelled() is true only when the workflow was cancelled, so it would not run the cleanup for an ordinary step failure.",
+    "tags": [
+      "conditionals",
+      "always",
+      "status-functions"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-062",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want to trigger a workflow only when files under the docs/ directory change on a push. Which configuration is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on: push: paths: - 'docs/**'"
+      },
+      {
+        "id": "o2",
+        "text": "on: push: files: - 'docs/*'"
+      },
+      {
+        "id": "o3",
+        "text": "on: push: only: 'docs/'"
+      },
+      {
+        "id": "o4",
+        "text": "Add if: contains(github.event.head_commit, 'docs') to the job"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The push event accepts a paths filter, and the glob docs/** matches any file at any depth under docs/, so the workflow only runs when those files change.",
+    "explanationIncorrect": "There is no files key on the push trigger; the filter is called paths, and docs/* would also only match the immediate directory level rather than nested files. There is no only key for path filtering. The if approach is fragile because head_commit does not expose a simple searchable list of changed paths that way, and job-level conditions still consume a run rather than preventing the trigger, so the declarative paths filter is the right tool.",
+    "tags": [
+      "paths",
+      "filters",
+      "push"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-063",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "A matrix build has one experimental combination that is allowed to fail without failing the whole matrix. How do you express that cleanly?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use matrix.include to add the entry with a flag, and set continue-on-error to that flag via an expression"
+      },
+      {
+        "id": "o2",
+        "text": "Set fail-fast: true on the matrix"
+      },
+      {
+        "id": "o3",
+        "text": "Wrap the experimental combination in its own workflow file"
+      },
+      {
+        "id": "o4",
+        "text": "Add if: always() to the job"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "You can add the experimental combination through include with a boolean like experimental: true, then set continue-on-error: ${{ matrix.experimental }} so only that leg is tolerant of failure.",
+    "explanationIncorrect": "fail-fast: true is the opposite of what you want; it cancels the remaining matrix legs as soon as one fails. Splitting the experimental case into its own file duplicates the build definition and loses the single-matrix reporting you are trying to keep. if: always() controls whether a step runs, not whether a failing leg is allowed to not fail the overall matrix, so it does not achieve the tolerance you need.",
+    "tags": [
+      "matrix",
+      "continue-on-error",
+      "fail-fast"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-064",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "Which context and property give you the SHA of the commit that triggered the workflow run?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "github.sha"
+      },
+      {
+        "id": "o2",
+        "text": "env.COMMIT_SHA"
+      },
+      {
+        "id": "o3",
+        "text": "runner.sha"
+      },
+      {
+        "id": "o4",
+        "text": "job.commit"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The github context exposes github.sha, the commit SHA that triggered the run, available in expressions and as GITHUB_SHA in the environment.",
+    "explanationIncorrect": "env.COMMIT_SHA is not a value GitHub sets automatically; env only contains variables you define or that the platform documents, and this is not one of them. The runner context describes the machine, such as runner.os and runner.temp, and has no sha property. The job context carries status and container/service details, not a commit identifier, so job.commit does not exist.",
+    "tags": [
+      "contexts",
+      "github.sha"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-065",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You need a workflow that can be started manually and accepts a typed input for the deploy target. Which trigger supports that?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "workflow_dispatch with an inputs map defining the target"
+      },
+      {
+        "id": "o2",
+        "text": "repository_dispatch, which is the only manual trigger"
+      },
+      {
+        "id": "o3",
+        "text": "on: manual with a params list"
+      },
+      {
+        "id": "o4",
+        "text": "workflow_call, invoked from the Actions tab"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "workflow_dispatch adds a Run workflow button in the UI and lets you declare inputs (string, choice, boolean, environment) that become github.event.inputs values.",
+    "explanationIncorrect": "repository_dispatch is triggered by an API call carrying a custom event type, not by a UI button, and it is not the only manual path. There is no on: manual trigger in the schema. workflow_call marks a workflow as reusable so another workflow can call it; it does not add a manual Run button in the Actions tab, so it cannot be started that way by a person.",
+    "tags": [
+      "workflow_dispatch",
+      "inputs",
+      "triggers"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-066",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "A job defines outputs so a later job can consume them. What must both jobs declare for that to work?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The producing job sets jobs.<id>.outputs mapped from a step output, and the consuming job lists the producer in needs"
+      },
+      {
+        "id": "o2",
+        "text": "Nothing special; job outputs are global by default"
+      },
+      {
+        "id": "o3",
+        "text": "Both jobs must share the same runner via runs-on"
+      },
+      {
+        "id": "o4",
+        "text": "The value must be written to $GITHUB_ENV in the first job"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A job exposes values through its outputs map, usually referencing a step output, and a downstream job reaches them with needs.<job_id>.outputs.<name>, which requires listing the producer in needs.",
+    "explanationIncorrect": "Job outputs are not global; without a needs edge the consumer cannot see them and the jobs may even run in parallel. Jobs run on independent runners by design, and sharing runs-on does not share state because each job gets a fresh environment. Writing to $GITHUB_ENV only affects steps within the same job; environment variables do not cross the job boundary, so a later job cannot read them that way.",
+    "tags": [
+      "job-outputs",
+      "needs",
+      "dependencies"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-067",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want to prevent a workflow from running on pushes that only change the README while still running on all other pushes. Which filter fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on: push: paths-ignore: - 'README.md'"
+      },
+      {
+        "id": "o2",
+        "text": "on: push: paths: - '!README.md'"
+      },
+      {
+        "id": "o3",
+        "text": "on: push: exclude: - 'README.md'"
+      },
+      {
+        "id": "o4",
+        "text": "if: github.event.head_commit.message != 'README'"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "paths-ignore skips the run when every changed file matches the listed patterns, so a push that touches only README.md is ignored while any other change still triggers.",
+    "explanationIncorrect": "Negation with ! inside paths is not how exclusion is expressed for the whole trigger; paths lists files to include, and paths-ignore is the dedicated exclude list. There is no exclude key on the push trigger. Filtering on the commit message is unreliable because it checks text a human typed, not which files actually changed, so it would not correctly detect a README-only change.",
+    "tags": [
+      "paths-ignore",
+      "filters",
+      "push"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-068",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "easy",
+    "stem": "Where should a workflow file live so GitHub Actions discovers and runs it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In .github/workflows/ with a .yml or .yaml extension"
+      },
+      {
+        "id": "o2",
+        "text": "In the repository root as actions.yml"
+      },
+      {
+        "id": "o3",
+        "text": "In .github/ directly, any filename"
+      },
+      {
+        "id": "o4",
+        "text": "In workflows/ at the repository root"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Actions only scans the .github/workflows/ directory, and each workflow must be a YAML file with a .yml or .yaml extension to be picked up.",
+    "explanationIncorrect": "A single actions.yml in the repository root is not scanned; that location and name are not where the platform looks. Files placed directly in .github/ rather than the workflows/ subdirectory are ignored by the workflow scanner. A top-level workflows/ directory without the leading .github/ path is also not recognised, so none of those locations would run.",
+    "tags": [
+      "structure",
+      "workflows-directory"
+    ],
+    "isSeed": true
   }
 ]
