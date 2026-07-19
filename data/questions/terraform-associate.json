@@ -787,6 +787,91 @@
     "tags": ["modules", "outputs", "composition"]
   },
   {
+    "id": "tf-056",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "easy",
+    "stem": "You want to reuse a module stored in a subdirectory of your own repository. What source value do you use in the module block?",
+    "options": [
+      { "id": "o1", "text": "A relative local path, for example source = \"./modules/vpc\"" },
+      { "id": "o2", "text": "A public registry address only" },
+      { "id": "o3", "text": "An npm package name" },
+      { "id": "o4", "text": "The path to terraform.tfstate" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A local module is referenced with a relative filesystem path in source, such as ./modules/vpc, so Terraform loads it from your own repository.",
+    "explanationIncorrect": "A registry address is for published modules, not a local subdirectory. npm package names are for JavaScript, not Terraform modules. The state file is not a module source. A local module uses a relative path.",
+    "tags": ["modules", "local-source"]
+  },
+  {
+    "id": "tf-057",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "How can you consume a Terraform module directly from a Git repository?",
+    "options": [
+      { "id": "o1", "text": "Set source to a Git URL, for example git::https://... or github.com/org/repo//path" },
+      { "id": "o2", "text": "Copy the repository contents into terraform.tfstate" },
+      { "id": "o3", "text": "Use terraform import on the repository" },
+      { "id": "o4", "text": "It is only possible to consume modules from the registry" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform can fetch modules from Git by setting source to a Git URL (with an optional ref for a branch or tag), so you are not limited to the registry.",
+    "explanationIncorrect": "State is not where module code goes. terraform import brings existing infrastructure into state, unrelated to fetching modules. Modules are not limited to the registry; Git and local sources are supported. Git modules use a Git URL source.",
+    "tags": ["modules", "git-source"]
+  },
+  {
+    "id": "tf-058",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "You want to instantiate the same module once per environment defined in a map. Which meta-argument can you use on the module block?",
+    "options": [
+      { "id": "o1", "text": "for_each on the module block" },
+      { "id": "o2", "text": "A provisioner inside the module" },
+      { "id": "o3", "text": "depends_on only" },
+      { "id": "o4", "text": "Modules cannot be instantiated more than once" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Module blocks support count and for_each, so for_each over a map creates one module instance per key, each configured from that map entry.",
+    "explanationIncorrect": "A provisioner runs commands and does not multiply module instances. depends_on only sets ordering, not repetition. Modules can be instantiated multiple times with count or for_each, so claiming otherwise is wrong. The tool here is for_each on the module.",
+    "tags": ["modules", "for-each"]
+  },
+  {
+    "id": "tf-059",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "A child module needs to use a specifically-aliased provider configuration defined in the root. How do you pass it in?",
+    "options": [
+      { "id": "o1", "text": "The providers argument in the module block, mapping the module's provider to the aliased configuration" },
+      { "id": "o2", "text": "An input variable named provider" },
+      { "id": "o3", "text": "A module output" },
+      { "id": "o4", "text": "It is automatic and cannot be configured" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The providers argument on a module block explicitly maps a provider (including an aliased one) from the caller into the child module, which is how you hand a specific provider configuration to a module.",
+    "explanationIncorrect": "A variable passes ordinary values, not provider configurations. An output exposes values from a module, not into it. Provider passing is explicit via the providers argument, not fully automatic when aliases are involved. The mechanism is the providers argument.",
+    "tags": ["modules", "providers-argument"]
+  },
+  {
+    "id": "tf-060",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "In a module block, which version constraint allows patch and minor updates but not the next major version?",
+    "options": [
+      { "id": "o1", "text": "version = \"~> 2.0\" (the pessimistic constraint operator)" },
+      { "id": "o2", "text": "version = \"= 2.0.0\"" },
+      { "id": "o3", "text": "version = \">= 0.0.0\"" },
+      { "id": "o4", "text": "version = \"latest\"" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The pessimistic operator ~> 2.0 allows 2.x versions (2.0 and up, minor and patch) but stops before 3.0, so you get compatible updates without an unexpected major bump.",
+    "explanationIncorrect": "= 2.0.0 pins exactly one version and allows no updates. >= 0.0.0 allows any version, including breaking majors. latest is not a valid Terraform version constraint. Minor and patch but not major is expressed with ~>.",
+    "tags": ["modules", "version-constraint", "pessimistic"]
+  },
+  {
     "id": "tf-027",
     "exam": "terraform-associate",
     "domain": "Configuration and functions",
