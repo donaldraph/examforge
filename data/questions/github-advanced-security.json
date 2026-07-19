@@ -2648,5 +2648,345 @@
       "workflow"
     ],
     "isSeed": true
+  },
+  {
+    "id": "ghas-081",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "What distinguishes a Dependabot security update from a Dependabot version update?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Security updates are raised in response to a known vulnerability; version updates keep dependencies current on a schedule"
+      },
+      {
+        "id": "o2",
+        "text": "Security updates only apply to major versions"
+      },
+      {
+        "id": "o3",
+        "text": "Version updates require a paid plan while security updates are free"
+      },
+      {
+        "id": "o4",
+        "text": "They are the same feature under two names"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Security updates open pull requests specifically to remediate advisories affecting your dependencies, whereas version updates are scheduled bumps configured in dependabot.yml to keep dependencies fresh.",
+    "explanationIncorrect": "Security updates are not limited to major versions; they target whatever fixed version resolves the advisory, often a patch. The distinction is not about paid versus free plans; both are configuration-driven features. They are not the same feature; one is vulnerability-driven and the other is schedule-driven, which is exactly the difference.",
+    "tags": [
+      "dependabot",
+      "security-updates",
+      "version-updates"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-082",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Which file configures Dependabot version updates, and where does it live?",
+    "options": [
+      {
+        "id": "o1",
+        "text": ".github/dependabot.yml"
+      },
+      {
+        "id": "o2",
+        "text": ".github/workflows/dependabot.yml"
+      },
+      {
+        "id": "o3",
+        "text": "dependabot.json at the repo root"
+      },
+      {
+        "id": "o4",
+        "text": ".dependabot/config.toml"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot version updates are configured in .github/dependabot.yml, where you declare package ecosystems, directories, and update schedules.",
+    "explanationIncorrect": "It does not live under .github/workflows/; that directory is for Actions workflows, not Dependabot configuration. The file is YAML named dependabot.yml, not a JSON file at the repo root. A .dependabot/config.toml path and TOML format are not what Dependabot reads; the supported location and format is .github/dependabot.yml.",
+    "tags": [
+      "dependabot",
+      "configuration",
+      "dependabot.yml"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-083",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "What does the dependency review feature show reviewers on a pull request?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The security and license impact of dependency changes introduced by the PR"
+      },
+      {
+        "id": "o2",
+        "text": "Only the number of lines changed"
+      },
+      {
+        "id": "o3",
+        "text": "The runtime performance of the new dependencies"
+      },
+      {
+        "id": "o4",
+        "text": "A list of contributors to each dependency"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependency review surfaces which dependencies a pull request adds, removes, or updates and flags known vulnerabilities and license changes, so reviewers can catch risky changes before merge.",
+    "explanationIncorrect": "It reports far more than line counts; the point is the security and license implications of dependency deltas. It does not measure runtime performance of dependencies; that is not a static review concern. It does not enumerate each dependency's contributors, which is unrelated to assessing the risk a change introduces.",
+    "tags": [
+      "dependency-review",
+      "pull-request",
+      "licenses"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-084",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "The dependency graph is a prerequisite for which features?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Dependabot alerts and dependency review"
+      },
+      {
+        "id": "o2",
+        "text": "Secret scanning push protection"
+      },
+      {
+        "id": "o3",
+        "text": "CodeQL query packs"
+      },
+      {
+        "id": "o4",
+        "text": "Branch protection rules"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency graph identifies what a project depends on, and both Dependabot alerts and dependency review build on that graph to reason about vulnerable and changed dependencies.",
+    "explanationIncorrect": "Secret scanning push protection inspects content for secrets and does not rely on the dependency graph. CodeQL query packs concern static code analysis, which is independent of the dependency graph. Branch protection rules govern merges and do not depend on the dependency graph to function.",
+    "tags": [
+      "dependency-graph",
+      "dependabot",
+      "prerequisite"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-085",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "A Dependabot alert exists but you have determined the vulnerable code path is not reachable in your usage. What is the appropriate action?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Dismiss the alert with a reason such as vulnerable code is not actually used"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the dependency graph"
+      },
+      {
+        "id": "o3",
+        "text": "Turn off Dependabot for the whole organization"
+      },
+      {
+        "id": "o4",
+        "text": "Force-close the advisory upstream"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot alerts can be dismissed with a documented reason, including that the vulnerable code is not used, which records your risk decision while keeping the audit trail.",
+    "explanationIncorrect": "Deleting the dependency graph would disable the very feature that surfaces alerts and is not a targeted response. Turning off Dependabot org-wide removes protection everywhere for one judgement call. You cannot force-close an upstream advisory, and doing so would not be the correct way to record that a single alert does not apply to you.",
+    "tags": [
+      "dependabot",
+      "alerts",
+      "dismissal"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-086",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "How can you enforce that pull requests introducing dependencies with high-severity vulnerabilities are blocked?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use the dependency review action with a fail threshold and require it in branch protection"
+      },
+      {
+        "id": "o2",
+        "text": "Enable secret scanning"
+      },
+      {
+        "id": "o3",
+        "text": "Add the dependency to .gitignore"
+      },
+      {
+        "id": "o4",
+        "text": "Schedule a nightly Dependabot version update"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency-review-action can fail a pull request when a change introduces a vulnerability at or above a configured severity, and requiring that check in branch protection blocks the merge.",
+    "explanationIncorrect": "Secret scanning finds credentials, not vulnerable dependencies, so it cannot block on dependency severity. Adding a dependency to .gitignore does not remove it from the project or evaluate its risk. A nightly version update keeps dependencies current but does not gate a specific pull request that introduces a high-severity vulnerability.",
+    "tags": [
+      "dependency-review",
+      "action",
+      "branch-protection"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-087",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "What is the GitHub Advisory Database used for?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A curated list of known vulnerabilities that Dependabot matches against your dependencies"
+      },
+      {
+        "id": "o2",
+        "text": "A registry of container images"
+      },
+      {
+        "id": "o3",
+        "text": "A store of your repository secrets"
+      },
+      {
+        "id": "o4",
+        "text": "A cache of build artifacts"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The GitHub Advisory Database catalogs security advisories for open-source packages, and Dependabot compares your dependency graph against it to raise alerts.",
+    "explanationIncorrect": "It is not a container image registry; that is a different service such as a package or container registry. It does not store repository secrets; secret material is never kept in an advisory database. It is not a build-artifact cache; caching is handled by other features entirely.",
+    "tags": [
+      "advisory-database",
+      "dependabot",
+      "vulnerabilities"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-088",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "You want Dependabot to group related minor and patch updates into a single pull request to reduce noise. Which configuration supports this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A groups setting in dependabot.yml"
+      },
+      {
+        "id": "o2",
+        "text": "Setting open-pull-requests-limit to zero"
+      },
+      {
+        "id": "o3",
+        "text": "Enabling push protection"
+      },
+      {
+        "id": "o4",
+        "text": "Adding a CODEOWNERS entry"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot supports a groups key in the configuration so that multiple related updates are combined into one pull request instead of many separate ones.",
+    "explanationIncorrect": "Setting open-pull-requests-limit to zero would stop Dependabot from opening update pull requests at all, not group them. Push protection is a secret scanning feature unrelated to how update pull requests are batched. A CODEOWNERS entry routes reviews and does not change how Dependabot groups updates.",
+    "tags": [
+      "dependabot",
+      "grouping",
+      "configuration"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-089",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "Dependabot alerts distinguish direct from transitive dependencies. Why does that distinction matter for remediation?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A transitive vulnerability may require updating the direct dependency that pulls it in, not the transitive package directly"
+      },
+      {
+        "id": "o2",
+        "text": "Transitive dependencies cannot be vulnerable"
+      },
+      {
+        "id": "o3",
+        "text": "Direct dependencies are never scanned"
+      },
+      {
+        "id": "o4",
+        "text": "Transitive dependencies must be vendored to be fixed"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because a transitive dependency is pulled in by another package, fixing it often means bumping the direct dependency to a version that resolves a patched transitive one, so knowing which is which guides the fix.",
+    "explanationIncorrect": "Transitive dependencies certainly can be vulnerable; that is precisely why they are tracked. Direct dependencies are scanned as well, so claiming they are never scanned is false. Vendoring is not a requirement to fix a transitive dependency; updating the chain that brings it in is the usual path.",
+    "tags": [
+      "dependabot",
+      "transitive",
+      "remediation"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-090",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Which of these does Dependabot need to determine your dependencies for an ecosystem like npm?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The manifest and lockfile such as package.json and package-lock.json"
+      },
+      {
+        "id": "o2",
+        "text": "A running instance of the application"
+      },
+      {
+        "id": "o3",
+        "text": "A CODEOWNERS file"
+      },
+      {
+        "id": "o4",
+        "text": "The compiled production bundle only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot reads the ecosystem's manifest and lockfile, for example package.json and package-lock.json, to know which packages and versions your project depends on.",
+    "explanationIncorrect": "It performs static analysis of dependency files and does not need a running instance of the application. A CODEOWNERS file is about review routing and tells Dependabot nothing about dependencies. The compiled production bundle alone typically obscures the declared dependency versions Dependabot relies on, so the manifest and lockfile are what it uses.",
+    "tags": [
+      "dependabot",
+      "manifest",
+      "lockfile"
+    ],
+    "isSeed": true
   }
 ]
