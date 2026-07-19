@@ -2244,5 +2244,411 @@
       "workflows-directory"
     ],
     "isSeed": true
+  },
+  {
+    "id": "gha-069",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You are writing a composite action. How do you reference one of its own inputs from inside a run step?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "${{ inputs.<name> }}"
+      },
+      {
+        "id": "o2",
+        "text": "${{ github.inputs.<name> }}"
+      },
+      {
+        "id": "o3",
+        "text": "${{ env.INPUT_<name> }} only"
+      },
+      {
+        "id": "o4",
+        "text": "${{ steps.inputs.<name> }}"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Inside a composite action, declared inputs are read through the inputs context, for example ${{ inputs.token }}, just as within the action's own scope.",
+    "explanationIncorrect": "There is no github.inputs context; workflow_dispatch inputs live at github.event.inputs, but that is not how a composite action reads its own declared inputs. The INPUT_ environment variable convention applies to JavaScript and Docker actions where the runner injects them, and is not the documented way to read inputs in a composite action's expressions. steps.inputs is meaningless because the steps context holds outputs of prior steps keyed by step id, not inputs.",
+    "tags": [
+      "composite-actions",
+      "inputs",
+      "contexts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-070",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "Which file, and at what path, defines the metadata for a custom action so it can be used with uses:?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "action.yml (or action.yaml) at the root of the action's directory"
+      },
+      {
+        "id": "o2",
+        "text": "metadata.yml in .github/actions/"
+      },
+      {
+        "id": "o3",
+        "text": "workflow.yml at the action root"
+      },
+      {
+        "id": "o4",
+        "text": "package.json with an action field"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Every action is defined by an action.yml or action.yaml metadata file at the root of its directory, declaring name, inputs, outputs, and the runs configuration.",
+    "explanationIncorrect": "metadata.yml is not a recognised name; the required filename is action.yml/action.yaml. workflow.yml describes a workflow, which is a different concept from an action, and it is not read as action metadata. A package.json can accompany a JavaScript action for dependencies, but an action field there does not define the action; the runner still requires the action.yml metadata file to know how to run it.",
+    "tags": [
+      "action-metadata",
+      "action.yml"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-071",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "A JavaScript action needs to set an output named result. Using the actions toolkit, which call does that?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "core.setOutput('result', value)"
+      },
+      {
+        "id": "o2",
+        "text": "core.exportVariable('result', value)"
+      },
+      {
+        "id": "o3",
+        "text": "console.log('::result::' + value)"
+      },
+      {
+        "id": "o4",
+        "text": "core.setSecret('result', value)"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "core.setOutput('result', value) from @actions/core writes the value to the action's outputs, which a workflow reads via steps.<id>.outputs.result.",
+    "explanationIncorrect": "core.exportVariable sets an environment variable for later steps, not a step output, so downstream steps could not read it as an output. The made-up ::result:: workflow command is not a real one and would just be printed. core.setSecret registers a value to be masked in logs; it hides text rather than producing an output, so it does not expose result to consumers.",
+    "tags": [
+      "javascript-actions",
+      "toolkit",
+      "outputs"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-072",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "In a Docker container action, how do declared inputs reach the container's entrypoint by default?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "As environment variables named INPUT_<NAME> in uppercase with spaces replaced by underscores"
+      },
+      {
+        "id": "o2",
+        "text": "As positional command-line arguments only"
+      },
+      {
+        "id": "o3",
+        "text": "As a JSON file mounted at /inputs.json"
+      },
+      {
+        "id": "o4",
+        "text": "They are not available; Docker actions cannot take inputs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The runner passes each declared input into a Docker action as an environment variable INPUT_<NAME>, uppercased with spaces converted to underscores, which the entrypoint reads.",
+    "explanationIncorrect": "You can additionally forward inputs as args, but that is an explicit choice in the metadata, not the default mechanism, and it is not the only way. There is no automatically mounted /inputs.json file. Docker actions absolutely can take inputs; claiming they cannot is simply false, which is why the INPUT_ environment convention exists.",
+    "tags": [
+      "docker-actions",
+      "inputs",
+      "environment"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-073",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want to publish a stable major-version reference like v2 so consumers automatically pick up patch releases. What is the common practice?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Maintain a moving v2 tag that you re-point to each 2.x release"
+      },
+      {
+        "id": "o2",
+        "text": "Tell consumers to pin to the main branch"
+      },
+      {
+        "id": "o3",
+        "text": "Publish a new action repository per patch"
+      },
+      {
+        "id": "o4",
+        "text": "Only ever reference actions by full commit SHA and never tag"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Action authors conventionally keep a floating major tag such as v2 that is moved to point at the latest 2.x release, so uses: owner/action@v2 receives compatible updates.",
+    "explanationIncorrect": "Pinning consumers to main exposes them to unreleased and possibly breaking changes at any moment, which is why released major tags exist. Publishing a separate repository per patch would fragment the action and break every consumer's uses: path on each release. Referencing only by SHA is the most pinned and secure option, but it defeats the goal of automatically picking up patch releases, so it is the opposite of what a moving major tag provides.",
+    "tags": [
+      "versioning",
+      "tags",
+      "releases"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-074",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "A composite action must run a cleanup step even if a consuming job's earlier steps failed. What is the correct approach inside the action?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Add the cleanup as a composite step with if: always()"
+      },
+      {
+        "id": "o2",
+        "text": "Add a post: entry in the composite action's runs block"
+      },
+      {
+        "id": "o3",
+        "text": "Composite actions cannot express conditional steps"
+      },
+      {
+        "id": "o4",
+        "text": "Set continue-on-error on the whole action"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Composite action steps support the if condition, so marking the cleanup step with if: always() ensures it runs regardless of earlier failures within the action's execution.",
+    "explanationIncorrect": "A post: entry with a post-run script is a feature of JavaScript and Docker actions defined in metadata, not a key available to composite actions in that form. Composite actions clearly can express conditions; each step accepts if, so the claim that they cannot is false. continue-on-error changes failure reporting rather than forcing a later step to run after a failure, so it does not guarantee the cleanup executes.",
+    "tags": [
+      "composite-actions",
+      "conditionals",
+      "cleanup"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-075",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "Which runs configuration in action.yml identifies a JavaScript action and its entry file?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "runs: using: 'node20' main: 'dist/index.js'"
+      },
+      {
+        "id": "o2",
+        "text": "runs: using: 'javascript' script: 'index.js'"
+      },
+      {
+        "id": "o3",
+        "text": "runs: using: 'docker' main: 'index.js'"
+      },
+      {
+        "id": "o4",
+        "text": "runs: language: 'node' entry: 'index.js'"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A JavaScript action declares using: with a Node runtime such as node20 and points main: at the compiled entry file that the runner executes.",
+    "explanationIncorrect": "using: 'javascript' is not a valid runtime value; the runtime is named after the Node version like node20, and the entry key is main, not script. using: 'docker' selects a container action and expects an image, not a JS entry file. There are no language or entry keys in the runs schema; the correct keys are using and main.",
+    "tags": [
+      "javascript-actions",
+      "runs",
+      "action.yml"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-076",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "Why do many JavaScript action authors commit a bundled dist/ folder to the repository?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Because the runner does not install node_modules for the action, so all dependencies must be bundled and committed"
+      },
+      {
+        "id": "o2",
+        "text": "To satisfy a GitHub requirement that all actions be minified"
+      },
+      {
+        "id": "o3",
+        "text": "Because tags cannot reference source files"
+      },
+      {
+        "id": "o4",
+        "text": "To let the action run without an action.yml file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When a workflow uses a JavaScript action, the runner checks out the action and runs the entry file directly without running npm install, so authors bundle dependencies (often with ncc) into a committed dist/ file.",
+    "explanationIncorrect": "There is no rule that actions be minified; bundling is about self-contained dependencies, not minification for its own sake. Tags reference whatever is committed, including source, so the claim they cannot reference source files is wrong. An action always needs its action.yml metadata regardless of bundling, so bundling does not remove that requirement.",
+    "tags": [
+      "javascript-actions",
+      "dependencies",
+      "dist"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-077",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "easy",
+    "stem": "How do you declare that an action produces an output named url in its metadata?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Under outputs:, add url: with a description (and for composite actions a value)"
+      },
+      {
+        "id": "o2",
+        "text": "Under inputs:, add url: required: false"
+      },
+      {
+        "id": "o3",
+        "text": "Add env: url: to the runs block"
+      },
+      {
+        "id": "o4",
+        "text": "Outputs are inferred automatically and need no declaration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Action outputs are declared under the outputs: key with a description; a composite action also sets value: to map the output from a step, so consumers can read steps.<id>.outputs.url.",
+    "explanationIncorrect": "Declaring url under inputs makes it a parameter the caller supplies, not something the action produces. Adding env in the runs block sets environment variables, which is unrelated to declaring an output contract. Outputs are not inferred automatically; they must be declared in metadata (and mapped for composite actions), otherwise consumers have nothing documented to read.",
+    "tags": [
+      "action-metadata",
+      "outputs"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-078",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "A JavaScript action should run cleanup logic after the job finishes, such as removing a temporary resource. Which metadata key enables that?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "runs: post: 'dist/cleanup.js' with an optional post-if condition"
+      },
+      {
+        "id": "o2",
+        "text": "runs: after: 'cleanup.js'"
+      },
+      {
+        "id": "o3",
+        "text": "A separate teardown action referenced in needs"
+      },
+      {
+        "id": "o4",
+        "text": "jobs.<id>.post at the workflow level"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "JavaScript actions can declare a post: script in runs that the runner executes at the end of the job, with post-if controlling when it runs, ideal for teardown of resources the action created.",
+    "explanationIncorrect": "There is no after: key in the runs schema; the post-execution hook is called post. needs expresses dependencies between jobs and cannot attach cleanup to an action's own lifecycle. There is no jobs.<id>.post workflow key; post-run behaviour is a property of the action metadata, not of the job definition.",
+    "tags": [
+      "javascript-actions",
+      "post",
+      "cleanup"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-079",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "What is the effect of setting default: on an input in an action's metadata?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The value is used when the caller does not supply that input"
+      },
+      {
+        "id": "o2",
+        "text": "It forces the caller to always provide the input"
+      },
+      {
+        "id": "o3",
+        "text": "It marks the input as a secret"
+      },
+      {
+        "id": "o4",
+        "text": "It renames the input for backward compatibility"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An input's default supplies the value the action uses whenever the caller omits that input, giving sensible behaviour without requiring every consumer to set it.",
+    "explanationIncorrect": "Forcing the caller to provide a value is what required: true does, which is the opposite of having a default. There is no secret marking on inputs; masking is a runtime concern handled with core.setSecret, not metadata defaults. Defaults do not rename inputs; the input key is its name, and there is no aliasing behaviour attached to default.",
+    "tags": [
+      "action-metadata",
+      "inputs",
+      "defaults"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "gha-080",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want to test a local action that lives in the same repository as the workflow. How do you reference it in uses:?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "uses: ./path/to/action relative to the repository root, after checking out the repo"
+      },
+      {
+        "id": "o2",
+        "text": "uses: local:path/to/action"
+      },
+      {
+        "id": "o3",
+        "text": "uses: self/path/to/action@main"
+      },
+      {
+        "id": "o4",
+        "text": "You must publish it before it can be used at all"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A local action is referenced by a filesystem path beginning with ./ relative to the repository root, which requires the repository to be checked out first with actions/checkout.",
+    "explanationIncorrect": "There is no local: scheme in the uses syntax; local references are plain relative paths. self/... is not a valid owner reference and would be treated as a remote repository named self. Publishing is not required to use an action within its own repository; that is exactly what the ./ relative reference supports for in-repo testing.",
+    "tags": [
+      "local-actions",
+      "uses",
+      "checkout"
+    ],
+    "isSeed": true
   }
 ]
