@@ -2310,5 +2310,343 @@
       "configuration"
     ],
     "isSeed": true
+  },
+  {
+    "id": "ghas-071",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "What does secret scanning push protection do that plain secret scanning does not?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It blocks a push that contains a detected secret before it reaches the repository"
+      },
+      {
+        "id": "o2",
+        "text": "It rotates the leaked credential automatically"
+      },
+      {
+        "id": "o3",
+        "text": "It scans only the default branch after merge"
+      },
+      {
+        "id": "o4",
+        "text": "It encrypts the secret in place"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection checks incoming pushes and rejects them when a supported secret pattern is detected, preventing the secret from ever landing in history, whereas basic scanning alerts only after the fact.",
+    "explanationIncorrect": "It does not rotate credentials; revocation is something you or the provider must do after detection. Scanning after merge on the default branch describes ordinary detection, which is the behaviour push protection improves upon by acting earlier. It does not encrypt the secret in place; it blocks the push entirely rather than storing an encrypted copy.",
+    "tags": [
+      "secret-scanning",
+      "push-protection"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-072",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "How do secret scanning partners help when a valid credential is found in a public repository?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "GitHub notifies the partner, who can automatically revoke or alert on the exposed credential"
+      },
+      {
+        "id": "o2",
+        "text": "The partner deletes the repository"
+      },
+      {
+        "id": "o3",
+        "text": "GitHub emails the credential to the partner in plaintext for storage"
+      },
+      {
+        "id": "o4",
+        "text": "The partner rewrites the git history to remove it"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Through the secret scanning partner program, GitHub forwards a match to the credential's issuer, who can validate and revoke the token or notify the owner, limiting the damage of exposure.",
+    "explanationIncorrect": "Partners do not delete your repository; that would be destructive and outside their role. GitHub does not email credentials in plaintext for storage; it sends a secure notification so the issuer can act. Partners do not rewrite your git history; removing a secret from history is the repository owner's task, and rotation is the priority regardless.",
+    "tags": [
+      "secret-scanning",
+      "partners",
+      "revocation"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-073",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "A team keeps triggering false positives on an internal token format. How can they teach secret scanning about it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Define a custom pattern with a regular expression for the token"
+      },
+      {
+        "id": "o2",
+        "text": "Disable secret scanning entirely"
+      },
+      {
+        "id": "o3",
+        "text": "Add the token to .gitignore"
+      },
+      {
+        "id": "o4",
+        "text": "Rename the token in every file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning supports custom patterns defined with regular expressions, so an organization can detect its own proprietary token formats that are not covered by the built-in partner patterns.",
+    "explanationIncorrect": "Disabling secret scanning removes all protection rather than improving detection of the internal format. Adding a token to .gitignore only affects which files Git tracks and does nothing to configure detection. Renaming tokens does not change how scanning identifies secret material and is not how you extend coverage; custom patterns are.",
+    "tags": [
+      "secret-scanning",
+      "custom-patterns",
+      "regex"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-074",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "A developer must legitimately commit a value that push protection flags as a secret. What is the safest supported response?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Confirm it is safe through the push protection bypass with a recorded reason, which is audited"
+      },
+      {
+        "id": "o2",
+        "text": "Force-push over the block to ignore it silently"
+      },
+      {
+        "id": "o3",
+        "text": "Turn off secret scanning for the org"
+      },
+      {
+        "id": "o4",
+        "text": "Base64-encode the value so it is not detected"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection lets a developer bypass the block by selecting a reason such as a false positive or test value, and that choice is recorded so security teams can review bypasses.",
+    "explanationIncorrect": "There is no silent force-push around the block; bypassing is a deliberate, logged action, not something to hide. Turning off secret scanning for the whole org to unblock one push removes protection for everyone. Base64-encoding to evade detection is precisely the behaviour that leads to leaked secrets and is never the safe response.",
+    "tags": [
+      "secret-scanning",
+      "push-protection",
+      "bypass"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-075",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "After a real secret is confirmed leaked in git history, what is the essential first remediation step?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Revoke and rotate the credential so the exposed value no longer works"
+      },
+      {
+        "id": "o2",
+        "text": "Only delete the file in a new commit"
+      },
+      {
+        "id": "o3",
+        "text": "Mark the alert as a false positive"
+      },
+      {
+        "id": "o4",
+        "text": "Make the repository private"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because the secret may already have been copied, the priority is to revoke and rotate it so the leaked value is useless, regardless of any later history cleanup.",
+    "explanationIncorrect": "Deleting the file in a new commit leaves the secret in prior history where it remains readable, so it does not neutralise the exposure. Marking a genuine leak as a false positive hides the problem without fixing it. Making the repository private does not undo any exposure that already occurred and still leaves a live credential in place, so rotation is what matters.",
+    "tags": [
+      "secret-scanning",
+      "remediation",
+      "rotation"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-076",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "On which parts of a repository does secret scanning look for secrets?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Across the git history of branches, not only the latest commit"
+      },
+      {
+        "id": "o2",
+        "text": "Only the current tip of the default branch"
+      },
+      {
+        "id": "o3",
+        "text": "Only files larger than one megabyte"
+      },
+      {
+        "id": "o4",
+        "text": "Only files with a .env extension"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning examines the contents of the repository including historical commits, so a secret introduced and later removed can still be detected in history.",
+    "explanationIncorrect": "Scanning is not limited to the current tip of the default branch; historical commits are covered, which is why old leaks surface. There is no rule that only files over a megabyte are scanned; size is not the selector. Secrets can appear in any file, not just .env files, so restricting to that extension would miss most leaks.",
+    "tags": [
+      "secret-scanning",
+      "history",
+      "coverage"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-077",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "What information does a secret scanning alert typically include to help you respond?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The secret type, its location in the repository, and commit context"
+      },
+      {
+        "id": "o2",
+        "text": "The plaintext password of the committer"
+      },
+      {
+        "id": "o3",
+        "text": "A guaranteed automatic fix commit"
+      },
+      {
+        "id": "o4",
+        "text": "The IP address of every cloner"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An alert identifies the kind of secret detected, where it appears in the code, and the commit context, giving you what you need to locate and rotate it.",
+    "explanationIncorrect": "It does not reveal a committer's password; that is not part of the detection data. It does not create a guaranteed automatic fix commit; remediation such as rotation is your responsibility. It does not list the IP addresses of everyone who cloned the repository; that traffic data is unrelated to a secret scanning alert.",
+    "tags": [
+      "secret-scanning",
+      "alerts"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-078",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "An organization wants push protection enforced for all new repositories automatically. Where is that best configured?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In the organization security settings, enabling it as a default for new repositories"
+      },
+      {
+        "id": "o2",
+        "text": "In each repository's README"
+      },
+      {
+        "id": "o3",
+        "text": "In a branch protection rule per repo"
+      },
+      {
+        "id": "o4",
+        "text": "In a CODEOWNERS file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization-level security settings let admins enable secret scanning and push protection by default for newly created repositories, so coverage is automatic without per-repo work.",
+    "explanationIncorrect": "A README is documentation and cannot enable a security control. Branch protection governs merges into branches and does not turn on push protection, which is a separate secret scanning feature. CODEOWNERS routes reviews and has no bearing on enabling push protection across the organization.",
+    "tags": [
+      "secret-scanning",
+      "organization",
+      "push-protection"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-079",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Why does secret scanning validate certain detected credentials against the provider when validity checks are enabled?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To show whether the leaked credential is currently active, helping prioritize response"
+      },
+      {
+        "id": "o2",
+        "text": "To change the credential's password"
+      },
+      {
+        "id": "o3",
+        "text": "To store the credential in a vault"
+      },
+      {
+        "id": "o4",
+        "text": "To grant the security team access to the account"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Validity checks test whether a detected token still works, so teams can prioritize active, exploitable secrets over ones that have already been revoked or expired.",
+    "explanationIncorrect": "Validation does not change the credential's password; it only reports status. It does not store the credential in a vault; GitHub is not acting as a secret manager here. It does not grant the security team access to the underlying account; it merely indicates whether the exposed token is live.",
+    "tags": [
+      "secret-scanning",
+      "validity-checks",
+      "prioritization"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "ghas-080",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "A commit is blocked by push protection for containing an API key. The developer removes the key and re-commits. What happens on the next push?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The push succeeds because the detected secret is no longer present"
+      },
+      {
+        "id": "o2",
+        "text": "It stays blocked forever once triggered"
+      },
+      {
+        "id": "o3",
+        "text": "It requires an admin to unlock the repository"
+      },
+      {
+        "id": "o4",
+        "text": "The whole branch must be recreated"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection evaluates the content being pushed; once the offending secret is removed from the commits, the push no longer matches a pattern and is allowed through.",
+    "explanationIncorrect": "The block is not permanent; it is tied to the presence of the secret, so cleaning it up clears the block. No admin unlock is required simply because a push was blocked. The branch does not need to be recreated; amending or adding a commit that removes the secret is sufficient for the push to proceed.",
+    "tags": [
+      "secret-scanning",
+      "push-protection",
+      "workflow"
+    ],
+    "isSeed": true
   }
 ]
