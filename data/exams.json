@@ -9,7 +9,8 @@
         "Consume workflows",
         "Author and maintain actions",
         "Manage GitHub Actions in the enterprise"
-      ]
+      ],
+      "secondsPerQuestion": 100
     },
     {
       "id": "github-advanced-security",
@@ -21,7 +22,8 @@
         "Dependabot and dependency review",
         "Code scanning with CodeQL",
         "Best practices and remediation"
-      ]
+      ],
+      "secondsPerQuestion": 92
     },
     {
       "id": "aws-ai-practitioner",
@@ -33,7 +35,8 @@
         "Applications of Foundation Models",
         "Guidelines for Responsible AI",
         "Security, Compliance, and Governance for AI Solutions"
-      ]
+      ],
+      "secondsPerQuestion": 83
     },
     {
       "id": "aws-cloud-practitioner",
@@ -44,7 +47,8 @@
         "Security and Compliance",
         "Cloud Technology and Services",
         "Billing, Pricing, and Support"
-      ]
+      ],
+      "secondsPerQuestion": 83
     },
     {
       "id": "aws-solutions-architect-associate",
@@ -55,7 +59,8 @@
         "Design Resilient Architectures",
         "Design High-Performing Architectures",
         "Design Cost-Optimized Architectures"
-      ]
+      ],
+      "secondsPerQuestion": 120
     },
     {
       "id": "terraform-associate",
@@ -69,7 +74,8 @@
         "Modules",
         "Configuration and functions",
         "HCP Terraform"
-      ]
+      ],
+      "secondsPerQuestion": 63
     }
   ]
 }
