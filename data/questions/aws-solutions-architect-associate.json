@@ -2256,5 +2256,413 @@
       "resilience"
     ],
     "isSeed": true
+  },
+  {
+    "id": "saa-069",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "A read-heavy application repeatedly queries the same data. Which service reduces database load and latency by caching results in memory?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon ElastiCache"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon ElastiCache provides in-memory caching with Redis or Memcached, serving frequent reads quickly and reducing load on the backing database.",
+    "explanationIncorrect": "Glacier is archival storage with retrieval latency measured in minutes to hours, the opposite of a low-latency cache. Snowball is for physical bulk data transfer. SQS is a message queue, not an in-memory cache for query results.",
+    "tags": [
+      "elasticache",
+      "caching",
+      "performance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-070",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "Which EBS volume type is best suited for a workload requiring very high, consistent IOPS such as a large transactional database?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Provisioned IOPS SSD (io1/io2)"
+      },
+      {
+        "id": "o2",
+        "text": "Cold HDD (sc1)"
+      },
+      {
+        "id": "o3",
+        "text": "Throughput Optimized HDD (st1)"
+      },
+      {
+        "id": "o4",
+        "text": "Magnetic (standard)"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Provisioned IOPS SSD volumes let you specify a high, consistent IOPS level, making them ideal for latency-sensitive, I/O-intensive transactional databases.",
+    "explanationIncorrect": "Cold HDD is optimized for infrequently accessed, throughput-oriented data at low cost, not high IOPS. Throughput Optimized HDD favors large sequential throughput, not high random IOPS. Magnetic standard volumes are a legacy low-performance type unsuitable for demanding transactional IOPS.",
+    "tags": [
+      "ebs",
+      "iops",
+      "performance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-071",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To serve static assets to a global audience with low latency, which service should you use?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon CloudFront in front of the origin"
+      },
+      {
+        "id": "o2",
+        "text": "A single EC2 instance in one Region"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda in one Region only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CloudFront caches content at edge locations worldwide, so users are served from a nearby edge, reducing latency and offloading the origin.",
+    "explanationIncorrect": "A single EC2 instance in one Region forces distant users to traverse long network paths, increasing latency. RDS is a database, not a content delivery mechanism. A single-Region Lambda does not distribute cached static content globally the way a CDN does.",
+    "tags": [
+      "cloudfront",
+      "cdn",
+      "latency"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-072",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach scales compute horizontally rather than vertically?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Adding more instances behind a load balancer"
+      },
+      {
+        "id": "o2",
+        "text": "Replacing an instance with a larger instance type"
+      },
+      {
+        "id": "o3",
+        "text": "Increasing the RAM of a single server"
+      },
+      {
+        "id": "o4",
+        "text": "Upgrading to a faster CPU on one machine"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Horizontal scaling adds more instances to share the load, which improves both capacity and resilience and pairs naturally with load balancing and Auto Scaling.",
+    "explanationIncorrect": "Replacing an instance with a larger type is vertical scaling, adding power to one machine. Increasing RAM on a single server is also vertical scaling. Upgrading the CPU of one machine is likewise vertical, so none of these describe horizontal scaling.",
+    "tags": [
+      "scaling",
+      "horizontal",
+      "performance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-073",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A globally distributed application needs low-latency reads and writes with a NoSQL database replicated across Regions. Which feature fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "DynamoDB global tables"
+      },
+      {
+        "id": "o2",
+        "text": "A single-Region DynamoDB table"
+      },
+      {
+        "id": "o3",
+        "text": "RDS Single-AZ"
+      },
+      {
+        "id": "o4",
+        "text": "An S3 bucket with versioning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "DynamoDB global tables replicate data across multiple Regions with multi-active writes, giving users in each Region low-latency local access.",
+    "explanationIncorrect": "A single-Region table forces distant users to cross Regions, raising latency. RDS Single-AZ is a relational database in one zone, not a globally replicated NoSQL store. An S3 bucket with versioning is object storage, not a low-latency multi-Region database.",
+    "tags": [
+      "dynamodb",
+      "global-tables",
+      "multi-region"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-074",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which service improves performance for users by routing traffic over the AWS global network to the nearest application endpoint using anycast IPs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Global Accelerator"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon SES"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Macie"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Global Accelerator uses static anycast IP addresses and the AWS backbone to direct users to the optimal healthy endpoint, improving performance and availability.",
+    "explanationIncorrect": "SES is an email-sending service, unrelated to traffic acceleration. AWS Config tracks resource configuration compliance. Macie protects sensitive data in S3; none of these accelerate global application traffic.",
+    "tags": [
+      "global-accelerator",
+      "performance",
+      "networking"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-075",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "For unpredictable, spiky traffic to an API, which compute choice scales automatically to zero when idle and up under load?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Lambda behind API Gateway"
+      },
+      {
+        "id": "o2",
+        "text": "A fixed fleet of always-on EC2 instances"
+      },
+      {
+        "id": "o3",
+        "text": "A single on-premises server"
+      },
+      {
+        "id": "o4",
+        "text": "A manually scaled instance group"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Lambda scales automatically with request volume and incurs no compute charge when idle, making it well suited to spiky, unpredictable API traffic.",
+    "explanationIncorrect": "A fixed always-on fleet pays for idle capacity and may not scale fast enough for spikes. A single on-premises server cannot scale elastically. A manually scaled group requires human intervention and reacts slowly compared with automatic serverless scaling.",
+    "tags": [
+      "lambda",
+      "serverless",
+      "scaling"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-076",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A data analytics team runs complex queries over petabytes in S3 without managing servers. Which service is designed for this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EC2 with a spreadsheet"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Athena runs standard SQL queries directly against data in S3 with no infrastructure to manage, charging per data scanned, which suits large ad hoc analytics.",
+    "explanationIncorrect": "RDS is an operational relational database, not a serverless query engine over S3 at petabyte scale. EC2 with a spreadsheet cannot handle petabyte analytics. SQS is a message queue and cannot query data at all.",
+    "tags": [
+      "athena",
+      "analytics",
+      "serverless"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-077",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which caching pattern stores database query results in front of RDS to speed up repeated reads, updating the cache on a miss?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Lazy loading (cache-aside)"
+      },
+      {
+        "id": "o2",
+        "text": "Writing only to instance store"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling all caching"
+      },
+      {
+        "id": "o4",
+        "text": "Archiving reads to Glacier"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In lazy loading, the application checks the cache first and, on a miss, reads from the database and populates the cache, so subsequent identical reads are fast.",
+    "explanationIncorrect": "Instance store is ephemeral local disk, not a caching pattern for shared reads. Disabling caching would not speed up repeated reads at all. Archiving reads to Glacier adds latency and is meant for cold storage, not accelerating reads.",
+    "tags": [
+      "caching",
+      "lazy-loading",
+      "performance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-078",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which service ingests and processes high-volume streaming data in real time for analytics?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Kinesis Data Streams"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Route 53"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Kinesis Data Streams captures and processes large streams of records in real time, enabling low-latency analytics and downstream processing.",
+    "explanationIncorrect": "Glacier is cold archival storage, not a real-time stream processor. Snowball is for offline bulk transfer. Route 53 is a DNS service; none of these handle real-time streaming ingestion.",
+    "tags": [
+      "kinesis",
+      "streaming",
+      "performance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-079",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A compute-bound batch job can tolerate interruptions and needs the lowest cost per vCPU. Which purchasing option maximizes performance-per-dollar?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spot Instances"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o3",
+        "text": "Dedicated Hosts"
+      },
+      {
+        "id": "o4",
+        "text": "A three-year all-upfront Reserved Instance for a short job"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spot Instances offer the steepest discount on spare capacity, and because the batch job tolerates interruptions, they deliver the best performance per dollar.",
+    "explanationIncorrect": "On-Demand carries no discount and costs more than Spot for interruptible work. Dedicated Hosts are for licensing and isolation needs at premium cost. A three-year Reserved Instance commitment makes no sense for a short, one-off job.",
+    "tags": [
+      "spot",
+      "cost-performance",
+      "batch"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "saa-080",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To speed up uploads of large objects to S3 from users far from the bucket's Region, which feature helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Transfer Acceleration"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Versioning"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Object Lock"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Lifecycle policies"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Transfer Acceleration routes uploads through nearby CloudFront edge locations onto the AWS backbone, speeding transfers for distant users.",
+    "explanationIncorrect": "Versioning keeps multiple object versions and does not speed transfers. Object Lock enforces write-once retention for compliance, unrelated to speed. Lifecycle policies transition or expire objects over time and do not accelerate uploads.",
+    "tags": [
+      "s3",
+      "transfer-acceleration",
+      "performance"
+    ],
+    "isSeed": true
   }
 ]
