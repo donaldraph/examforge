@@ -6,15 +6,30 @@
     "difficulty": "easy",
     "stem": "Your application's traffic spikes during the day and drops at night. You want to add capacity when demand rises and remove it when demand falls, paying only for what you use. Which cloud benefit best describes this?",
     "options": [
-      { "id": "o1", "text": "Elasticity" },
-      { "id": "o2", "text": "A large upfront capital investment in fixed hardware" },
-      { "id": "o3", "text": "Vendor lock-in" },
-      { "id": "o4", "text": "Fixed on-premises capacity sized for peak" }
+      {
+        "id": "o1",
+        "text": "Elasticity"
+      },
+      {
+        "id": "o2",
+        "text": "A large upfront capital investment in fixed hardware"
+      },
+      {
+        "id": "o3",
+        "text": "Vendor lock-in"
+      },
+      {
+        "id": "o4",
+        "text": "Fixed on-premises capacity sized for peak"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Elasticity is the ability to acquire resources as demand rises and release them as it falls, so you match capacity to load and pay only for what you use.",
     "explanationIncorrect": "A large upfront capital investment in fixed hardware is the traditional on-premises model the cloud moves away from; it is capital expenditure that does not shrink when demand drops. Vendor lock-in is a risk to weigh, not a benefit, and it is unrelated to scaling with demand. Provisioning fixed on-premises capacity sized for peak means you pay for the peak all the time and still cannot easily scale beyond it. The property of growing and shrinking with demand and paying for use is elasticity.",
-    "tags": ["cloud-concepts", "elasticity"],
+    "tags": [
+      "cloud-concepts",
+      "elasticity"
+    ],
     "isSeed": true
   },
   {
@@ -24,15 +39,30 @@
     "difficulty": "easy",
     "stem": "Moving from buying and owning servers up front to paying only for the compute you actually consume represents which cloud value proposition?",
     "options": [
-      { "id": "o1", "text": "Trading capital expense (CapEx) for variable operating expense (OpEx)" },
-      { "id": "o2", "text": "Increasing CapEx while removing all OpEx" },
-      { "id": "o3", "text": "Eliminating all costs entirely" },
-      { "id": "o4", "text": "Signing fixed multi-year hardware leases" }
+      {
+        "id": "o1",
+        "text": "Trading capital expense (CapEx) for variable operating expense (OpEx)"
+      },
+      {
+        "id": "o2",
+        "text": "Increasing CapEx while removing all OpEx"
+      },
+      {
+        "id": "o3",
+        "text": "Eliminating all costs entirely"
+      },
+      {
+        "id": "o4",
+        "text": "Signing fixed multi-year hardware leases"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The cloud lets you replace large up-front hardware purchases (CapEx) with pay-as-you-go spending (OpEx), so you pay for consumption instead of owning depreciating assets.",
     "explanationIncorrect": "The model reduces CapEx, it does not increase it. It does not eliminate costs; you still pay for what you use. Fixed multi-year hardware leases are the opposite of variable, consumption-based spending. The value proposition is trading CapEx for OpEx.",
-    "tags": ["cloud-concepts", "capex-opex"]
+    "tags": [
+      "cloud-concepts",
+      "capex-opex"
+    ]
   },
   {
     "id": "clf-007",
@@ -41,15 +71,31 @@
     "difficulty": "easy",
     "stem": "What is the relationship between an AWS Region and an Availability Zone?",
     "options": [
-      { "id": "o1", "text": "A Region is a geographic area that contains multiple, physically separate Availability Zones" },
-      { "id": "o2", "text": "An Availability Zone contains many Regions" },
-      { "id": "o3", "text": "A Region and an Availability Zone are the same thing" },
-      { "id": "o4", "text": "A Region is a single building and an Availability Zone is a single server" }
+      {
+        "id": "o1",
+        "text": "A Region is a geographic area that contains multiple, physically separate Availability Zones"
+      },
+      {
+        "id": "o2",
+        "text": "An Availability Zone contains many Regions"
+      },
+      {
+        "id": "o3",
+        "text": "A Region and an Availability Zone are the same thing"
+      },
+      {
+        "id": "o4",
+        "text": "A Region is a single building and an Availability Zone is a single server"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "A Region is a geographic area, and within it are multiple Availability Zones, each one or more physically separate data centers, which is what enables highly available designs.",
     "explanationIncorrect": "The containment is the other way around: Regions contain Availability Zones, not the reverse. They are not the same thing; a Region groups several AZs. An AZ is more than a single server and a Region more than a single building; each AZ is one or more data centers. A Region contains multiple AZs.",
-    "tags": ["cloud-concepts", "global-infrastructure", "regions-azs"]
+    "tags": [
+      "cloud-concepts",
+      "global-infrastructure",
+      "regions-azs"
+    ]
   },
   {
     "id": "clf-008",
@@ -58,15 +104,31 @@
     "difficulty": "easy",
     "stem": "To keep an application available even if one data center fails, how should you deploy it across AWS?",
     "options": [
-      { "id": "o1", "text": "Across multiple Availability Zones within a Region" },
-      { "id": "o2", "text": "On a single large instance in one Availability Zone" },
-      { "id": "o3", "text": "In a single edge location" },
-      { "id": "o4", "text": "On one Availability Zone with a larger disk" }
+      {
+        "id": "o1",
+        "text": "Across multiple Availability Zones within a Region"
+      },
+      {
+        "id": "o2",
+        "text": "On a single large instance in one Availability Zone"
+      },
+      {
+        "id": "o3",
+        "text": "In a single edge location"
+      },
+      {
+        "id": "o4",
+        "text": "On one Availability Zone with a larger disk"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Spreading across multiple Availability Zones means a failure confined to one AZ does not take the whole application down, which is the standard high-availability pattern.",
     "explanationIncorrect": "A single instance in one AZ is a single point of failure; if that AZ fails, so does the app. An edge location caches content for delivery; it is not where you run a resilient application tier. A bigger disk in one AZ adds capacity but no fault isolation. High availability comes from multiple Availability Zones.",
-    "tags": ["cloud-concepts", "high-availability", "availability-zones"]
+    "tags": [
+      "cloud-concepts",
+      "high-availability",
+      "availability-zones"
+    ]
   },
   {
     "id": "clf-009",
@@ -75,15 +137,30 @@
     "difficulty": "medium",
     "stem": "Adding more instances to handle increased load, rather than making one instance bigger, is called what?",
     "options": [
-      { "id": "o1", "text": "Horizontal scaling (scaling out)" },
-      { "id": "o2", "text": "Vertical scaling (scaling up)" },
-      { "id": "o3", "text": "Diagonal scaling" },
-      { "id": "o4", "text": "Manual failover" }
+      {
+        "id": "o1",
+        "text": "Horizontal scaling (scaling out)"
+      },
+      {
+        "id": "o2",
+        "text": "Vertical scaling (scaling up)"
+      },
+      {
+        "id": "o3",
+        "text": "Diagonal scaling"
+      },
+      {
+        "id": "o4",
+        "text": "Manual failover"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Adding more instances to share the load is horizontal scaling, or scaling out, which improves both capacity and fault tolerance.",
     "explanationIncorrect": "Vertical scaling means resizing a single instance to a larger type, which is the opposite of adding more instances. Diagonal scaling is not a standard term. Manual failover is switching to a standby after a failure, not a scaling strategy. Adding instances is horizontal scaling.",
-    "tags": ["cloud-concepts", "scaling"]
+    "tags": [
+      "cloud-concepts",
+      "scaling"
+    ]
   },
   {
     "id": "clf-010",
@@ -92,15 +169,30 @@
     "difficulty": "medium",
     "stem": "Which of the following is one of the pillars of the AWS Well-Architected Framework?",
     "options": [
-      { "id": "o1", "text": "Operational Excellence" },
-      { "id": "o2", "text": "Maximum Vendor Lock-in" },
-      { "id": "o3", "text": "Manual Provisioning" },
-      { "id": "o4", "text": "Single Point of Failure" }
+      {
+        "id": "o1",
+        "text": "Operational Excellence"
+      },
+      {
+        "id": "o2",
+        "text": "Maximum Vendor Lock-in"
+      },
+      {
+        "id": "o3",
+        "text": "Manual Provisioning"
+      },
+      {
+        "id": "o4",
+        "text": "Single Point of Failure"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Operational Excellence is one of the Well-Architected pillars, alongside Security, Reliability, Performance Efficiency, Cost Optimization, and Sustainability.",
     "explanationIncorrect": "Maximum vendor lock-in, manual provisioning, and single point of failure are anti-patterns, not framework pillars; the framework exists to help you avoid exactly those. The genuine pillar listed is Operational Excellence.",
-    "tags": ["cloud-concepts", "well-architected"]
+    "tags": [
+      "cloud-concepts",
+      "well-architected"
+    ]
   },
   {
     "id": "clf-011",
@@ -109,15 +201,31 @@
     "difficulty": "medium",
     "stem": "An organization runs some workloads in its own on-premises data center and others in AWS, integrated together. Which deployment model is this?",
     "options": [
-      { "id": "o1", "text": "Hybrid cloud" },
-      { "id": "o2", "text": "Pure public cloud" },
-      { "id": "o3", "text": "Pure private cloud" },
-      { "id": "o4", "text": "Multi-tenant SaaS" }
+      {
+        "id": "o1",
+        "text": "Hybrid cloud"
+      },
+      {
+        "id": "o2",
+        "text": "Pure public cloud"
+      },
+      {
+        "id": "o3",
+        "text": "Pure private cloud"
+      },
+      {
+        "id": "o4",
+        "text": "Multi-tenant SaaS"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Combining on-premises infrastructure with cloud resources that work together is the hybrid cloud deployment model.",
     "explanationIncorrect": "Pure public cloud would run everything in AWS with no on-premises component. Pure private cloud would keep everything in the organization's own data center. Multi-tenant SaaS describes a software delivery model, not a mix of on-premises and cloud infrastructure. Mixing on-premises and cloud is hybrid.",
-    "tags": ["cloud-concepts", "deployment-models", "hybrid"]
+    "tags": [
+      "cloud-concepts",
+      "deployment-models",
+      "hybrid"
+    ]
   },
   {
     "id": "clf-012",
@@ -126,15 +234,31 @@
     "difficulty": "easy",
     "stem": "A startup wants to serve users in Europe and Asia quickly without building its own data centers on those continents. Which cloud benefit enables this?",
     "options": [
-      { "id": "o1", "text": "Going global in minutes by deploying into AWS Regions around the world" },
-      { "id": "o2", "text": "Buying land and constructing new data centers abroad" },
-      { "id": "o3", "text": "Shipping physical servers overseas by freight" },
-      { "id": "o4", "text": "Restricting the application to a single Region" }
+      {
+        "id": "o1",
+        "text": "Going global in minutes by deploying into AWS Regions around the world"
+      },
+      {
+        "id": "o2",
+        "text": "Buying land and constructing new data centers abroad"
+      },
+      {
+        "id": "o3",
+        "text": "Shipping physical servers overseas by freight"
+      },
+      {
+        "id": "o4",
+        "text": "Restricting the application to a single Region"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS's global footprint lets you deploy into Regions near your users in minutes, so you reach new geographies without owning infrastructure there.",
     "explanationIncorrect": "Constructing data centers and shipping servers are exactly the slow, capital-heavy steps the cloud removes. Restricting to one Region would increase latency for distant users, the opposite of the goal. The benefit is going global in minutes across AWS Regions.",
-    "tags": ["cloud-concepts", "global-reach", "agility"]
+    "tags": [
+      "cloud-concepts",
+      "global-reach",
+      "agility"
+    ]
   },
   {
     "id": "clf-036",
@@ -143,15 +267,30 @@
     "difficulty": "medium",
     "stem": "AWS can offer lower pay-as-you-go prices because aggregated usage from many customers drives down per-unit costs. Which cloud benefit is this?",
     "options": [
-      { "id": "o1", "text": "Economies of scale" },
-      { "id": "o2", "text": "Vendor lock-in" },
-      { "id": "o3", "text": "A fixed lifetime price guarantee" },
-      { "id": "o4", "text": "Capital expenditure" }
+      {
+        "id": "o1",
+        "text": "Economies of scale"
+      },
+      {
+        "id": "o2",
+        "text": "Vendor lock-in"
+      },
+      {
+        "id": "o3",
+        "text": "A fixed lifetime price guarantee"
+      },
+      {
+        "id": "o4",
+        "text": "Capital expenditure"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Economies of scale mean that huge aggregated demand lets AWS achieve lower costs and pass savings on as lower pay-as-you-go prices.",
     "explanationIncorrect": "Vendor lock-in is a risk, not a pricing benefit. AWS pricing changes over time, so a fixed lifetime guarantee is not what this describes. Capital expenditure is the upfront-purchase model the cloud moves away from. Lower prices from aggregated demand are economies of scale.",
-    "tags": ["cloud-concepts", "economies-of-scale"]
+    "tags": [
+      "cloud-concepts",
+      "economies-of-scale"
+    ]
   },
   {
     "id": "clf-037",
@@ -160,15 +299,31 @@
     "difficulty": "easy",
     "stem": "Instead of buying servers for a guessed peak that might be wrong, the cloud lets you scale capacity up or down as needed. Which cloud design principle is this?",
     "options": [
-      { "id": "o1", "text": "Stop guessing capacity" },
-      { "id": "o2", "text": "Maximize upfront investment" },
-      { "id": "o3", "text": "Build for a single fixed size forever" },
-      { "id": "o4", "text": "Avoid automation" }
+      {
+        "id": "o1",
+        "text": "Stop guessing capacity"
+      },
+      {
+        "id": "o2",
+        "text": "Maximize upfront investment"
+      },
+      {
+        "id": "o3",
+        "text": "Build for a single fixed size forever"
+      },
+      {
+        "id": "o4",
+        "text": "Avoid automation"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Stop guessing capacity is a core cloud principle: you scale to actual demand instead of over- or under-provisioning based on a forecast.",
     "explanationIncorrect": "Maximizing upfront investment and building for a single fixed size are the rigid on-premises habits the cloud removes. Avoiding automation works against elastic scaling. Scaling to real demand is the stop-guessing-capacity principle.",
-    "tags": ["cloud-concepts", "capacity", "design-principles"]
+    "tags": [
+      "cloud-concepts",
+      "capacity",
+      "design-principles"
+    ]
   },
   {
     "id": "clf-038",
@@ -177,15 +332,31 @@
     "difficulty": "easy",
     "stem": "What is the primary purpose of AWS edge locations?",
     "options": [
-      { "id": "o1", "text": "To cache and deliver content close to users (via CloudFront) for lower latency" },
-      { "id": "o2", "text": "To run your primary production databases" },
-      { "id": "o3", "text": "To store the only copy of your data" },
-      { "id": "o4", "text": "To replace Availability Zones for compute" }
+      {
+        "id": "o1",
+        "text": "To cache and deliver content close to users (via CloudFront) for lower latency"
+      },
+      {
+        "id": "o2",
+        "text": "To run your primary production databases"
+      },
+      {
+        "id": "o3",
+        "text": "To store the only copy of your data"
+      },
+      {
+        "id": "o4",
+        "text": "To replace Availability Zones for compute"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Edge locations are points of presence used by services like CloudFront to cache and serve content near end users, reducing latency.",
     "explanationIncorrect": "Edge locations are not where you run primary databases or compute workloads; that happens in Regions and Availability Zones. They are not the sole store of your data. And they complement, not replace, Availability Zones. Their purpose is low-latency content delivery.",
-    "tags": ["cloud-concepts", "edge-locations", "global-infrastructure"]
+    "tags": [
+      "cloud-concepts",
+      "edge-locations",
+      "global-infrastructure"
+    ]
   },
   {
     "id": "clf-039",
@@ -194,15 +365,31 @@
     "domain": "Cloud Concepts",
     "stem": "Designing a system with redundancy so that a component failure does not cause downtime describes which property?",
     "options": [
-      { "id": "o1", "text": "High availability" },
-      { "id": "o2", "text": "Vendor lock-in" },
-      { "id": "o3", "text": "A single point of failure" },
-      { "id": "o4", "text": "Manual recovery" }
+      {
+        "id": "o1",
+        "text": "High availability"
+      },
+      {
+        "id": "o2",
+        "text": "Vendor lock-in"
+      },
+      {
+        "id": "o3",
+        "text": "A single point of failure"
+      },
+      {
+        "id": "o4",
+        "text": "Manual recovery"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "High availability means the system stays operational despite component failures, achieved through redundancy so no single failure causes downtime.",
     "explanationIncorrect": "Vendor lock-in is a dependency risk, not a resilience property. A single point of failure is the weakness high availability eliminates. Manual recovery implies downtime while a human intervenes, the opposite of staying available. Redundant, failure-tolerant design is high availability.",
-    "tags": ["cloud-concepts", "high-availability", "redundancy"]
+    "tags": [
+      "cloud-concepts",
+      "high-availability",
+      "redundancy"
+    ]
   },
   {
     "id": "clf-040",
@@ -211,15 +398,31 @@
     "difficulty": "medium",
     "stem": "A key benefit of serverless services such as AWS Lambda is that you do not manage servers and pay only for what you use. Which cloud value does this reflect?",
     "options": [
-      { "id": "o1", "text": "No infrastructure management and pay-for-use, increasing agility" },
-      { "id": "o2", "text": "Larger upfront hardware purchases" },
-      { "id": "o3", "text": "Always-on fixed capacity you pay for continuously" },
-      { "id": "o4", "text": "Manual scaling only, done by an operator" }
+      {
+        "id": "o1",
+        "text": "No infrastructure management and pay-for-use, increasing agility"
+      },
+      {
+        "id": "o2",
+        "text": "Larger upfront hardware purchases"
+      },
+      {
+        "id": "o3",
+        "text": "Always-on fixed capacity you pay for continuously"
+      },
+      {
+        "id": "o4",
+        "text": "Manual scaling only, done by an operator"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Serverless removes server management and bills only for actual usage, which lets teams move faster and pay only for what they consume.",
     "explanationIncorrect": "Serverless avoids upfront hardware purchases rather than increasing them. It does not bill for always-on fixed capacity; you pay per execution. And it scales automatically rather than requiring manual operator scaling. The value is no server management plus pay-for-use.",
-    "tags": ["cloud-concepts", "serverless", "agility"]
+    "tags": [
+      "cloud-concepts",
+      "serverless",
+      "agility"
+    ]
   },
   {
     "id": "clf-002",
@@ -228,15 +431,30 @@
     "difficulty": "medium",
     "stem": "Under the AWS shared responsibility model, who is responsible for patching the guest operating system running on an Amazon EC2 instance?",
     "options": [
-      { "id": "o1", "text": "The customer" },
-      { "id": "o2", "text": "AWS" },
-      { "id": "o3", "text": "The AWS Marketplace listing vendor" },
-      { "id": "o4", "text": "No one, because EC2 guest operating systems never need patching" }
+      {
+        "id": "o1",
+        "text": "The customer"
+      },
+      {
+        "id": "o2",
+        "text": "AWS"
+      },
+      {
+        "id": "o3",
+        "text": "The AWS Marketplace listing vendor"
+      },
+      {
+        "id": "o4",
+        "text": "No one, because EC2 guest operating systems never need patching"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "In the shared responsibility model AWS secures the infrastructure (security of the cloud) while the customer is responsible for what they run on it (security in the cloud), which for EC2 includes patching the guest operating system.",
     "explanationIncorrect": "AWS is responsible for the physical facilities, hardware, and the virtualization layer, not the operating system you install and manage on an instance. A Marketplace vendor supplies an image but does not manage patching on your running instances over time. And guest operating systems certainly do require patching, so leaving it to no one is not an option. For EC2, patching the guest OS is squarely the customer's responsibility.",
-    "tags": ["security", "shared-responsibility-model"],
+    "tags": [
+      "security",
+      "shared-responsibility-model"
+    ],
     "isSeed": true
   },
   {
@@ -246,15 +464,31 @@
     "difficulty": "easy",
     "stem": "Which practice adds a second factor beyond a password to protect an AWS account sign-in?",
     "options": [
-      { "id": "o1", "text": "Enabling multi-factor authentication (MFA)" },
-      { "id": "o2", "text": "Choosing a slightly longer password" },
-      { "id": "o3", "text": "Sharing the root credentials with the whole team" },
-      { "id": "o4", "text": "Disabling IAM entirely" }
+      {
+        "id": "o1",
+        "text": "Enabling multi-factor authentication (MFA)"
+      },
+      {
+        "id": "o2",
+        "text": "Choosing a slightly longer password"
+      },
+      {
+        "id": "o3",
+        "text": "Sharing the root credentials with the whole team"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling IAM entirely"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "MFA requires a second factor (such as a device-generated code) in addition to the password, so a stolen password alone is not enough to sign in.",
     "explanationIncorrect": "A longer password is still a single factor and does not add a second one. Sharing root credentials is a serious security risk, not a protection. Disabling IAM removes access control entirely. The second-factor protection is MFA.",
-    "tags": ["security", "mfa", "iam"]
+    "tags": [
+      "security",
+      "mfa",
+      "iam"
+    ]
   },
   {
     "id": "clf-014",
@@ -263,15 +497,31 @@
     "difficulty": "medium",
     "stem": "What is an AWS best practice regarding the account root user?",
     "options": [
-      { "id": "o1", "text": "Avoid it for everyday tasks, enable MFA on it, and use least-privilege IAM identities instead" },
-      { "id": "o2", "text": "Use the root user for all daily administration" },
-      { "id": "o3", "text": "Share the root password across the whole team for convenience" },
-      { "id": "o4", "text": "Delete IAM and rely only on the root user" }
+      {
+        "id": "o1",
+        "text": "Avoid it for everyday tasks, enable MFA on it, and use least-privilege IAM identities instead"
+      },
+      {
+        "id": "o2",
+        "text": "Use the root user for all daily administration"
+      },
+      {
+        "id": "o3",
+        "text": "Share the root password across the whole team for convenience"
+      },
+      {
+        "id": "o4",
+        "text": "Delete IAM and rely only on the root user"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The root user has unrestricted access, so best practice is to secure it with MFA, avoid using it day to day, and create IAM users and roles with only the permissions they need.",
     "explanationIncorrect": "Using root for daily work exposes an all-powerful credential unnecessarily. Sharing the root password removes accountability and multiplies risk. Deleting IAM and relying on root abandons least privilege entirely. The best practice is to lock down root and use least-privilege IAM identities.",
-    "tags": ["security", "root-user", "least-privilege"]
+    "tags": [
+      "security",
+      "root-user",
+      "least-privilege"
+    ]
   },
   {
     "id": "clf-015",
@@ -280,15 +530,31 @@
     "difficulty": "medium",
     "stem": "You need to download AWS compliance reports such as SOC and PCI for an audit. Which service provides them?",
     "options": [
-      { "id": "o1", "text": "AWS Artifact" },
-      { "id": "o2", "text": "AWS Lambda" },
-      { "id": "o3", "text": "Amazon SNS" },
-      { "id": "o4", "text": "AWS Batch" }
+      {
+        "id": "o1",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SNS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Batch"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Artifact is the self-service portal for AWS compliance reports and agreements, including SOC and PCI documentation, which is exactly what an audit needs.",
     "explanationIncorrect": "AWS Lambda runs code. Amazon SNS sends notifications. AWS Batch runs batch compute jobs. None of them provide compliance documentation. The source of compliance reports is AWS Artifact.",
-    "tags": ["security", "compliance", "aws-artifact"]
+    "tags": [
+      "security",
+      "compliance",
+      "aws-artifact"
+    ]
   },
   {
     "id": "clf-016",
@@ -297,15 +563,31 @@
     "difficulty": "medium",
     "stem": "Which service continuously analyzes account activity and logs to detect threats such as unusual API calls or potentially compromised instances?",
     "options": [
-      { "id": "o1", "text": "Amazon GuardDuty" },
-      { "id": "o2", "text": "Amazon S3" },
-      { "id": "o3", "text": "AWS CloudFormation" },
-      { "id": "o4", "text": "Amazon Route 53" }
+      {
+        "id": "o1",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS CloudFormation"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Route 53"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon GuardDuty is a managed threat-detection service that analyzes logs like CloudTrail, VPC Flow Logs, and DNS logs to flag suspicious or malicious activity.",
     "explanationIncorrect": "Amazon S3 is object storage. AWS CloudFormation provisions infrastructure as code. Amazon Route 53 is DNS. None of these perform threat detection. The threat-detection service is Amazon GuardDuty.",
-    "tags": ["security", "guardduty", "threat-detection"]
+    "tags": [
+      "security",
+      "guardduty",
+      "threat-detection"
+    ]
   },
   {
     "id": "clf-017",
@@ -314,15 +596,31 @@
     "difficulty": "medium",
     "stem": "Which AWS service helps protect applications against distributed denial-of-service (DDoS) attacks?",
     "options": [
-      { "id": "o1", "text": "AWS Shield" },
-      { "id": "o2", "text": "Amazon Comprehend" },
-      { "id": "o3", "text": "AWS Glue" },
-      { "id": "o4", "text": "Amazon QuickSight" }
+      {
+        "id": "o1",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon QuickSight"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Shield is the managed DDoS protection service, with a Standard tier enabled for all customers and an Advanced tier for enhanced protection.",
     "explanationIncorrect": "Amazon Comprehend is a natural language processing service. AWS Glue is for data integration and ETL. Amazon QuickSight is business-intelligence dashboards. The DDoS protection service is AWS Shield.",
-    "tags": ["security", "shield", "ddos"]
+    "tags": [
+      "security",
+      "shield",
+      "ddos"
+    ]
   },
   {
     "id": "clf-018",
@@ -331,15 +629,31 @@
     "difficulty": "medium",
     "stem": "Which service lets you create and manage encryption keys used to encrypt data at rest across many AWS services?",
     "options": [
-      { "id": "o1", "text": "AWS Key Management Service (KMS)" },
-      { "id": "o2", "text": "Amazon Athena" },
-      { "id": "o3", "text": "AWS Step Functions" },
-      { "id": "o4", "text": "Amazon Kinesis" }
+      {
+        "id": "o1",
+        "text": "AWS Key Management Service (KMS)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Step Functions"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kinesis"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS KMS creates and manages cryptographic keys and integrates with services like S3, EBS, and RDS to encrypt data at rest under your control.",
     "explanationIncorrect": "Amazon Athena queries data in S3 with SQL. AWS Step Functions orchestrates workflows. Amazon Kinesis handles streaming data. None manage encryption keys. Key management is AWS KMS.",
-    "tags": ["security", "kms", "encryption"]
+    "tags": [
+      "security",
+      "kms",
+      "encryption"
+    ]
   },
   {
     "id": "clf-019",
@@ -348,15 +662,31 @@
     "difficulty": "medium",
     "stem": "You want to filter malicious web requests such as SQL injection and cross-site scripting before they reach your application. Which service does this?",
     "options": [
-      { "id": "o1", "text": "AWS WAF (Web Application Firewall)" },
-      { "id": "o2", "text": "Amazon EBS" },
-      { "id": "o3", "text": "AWS Config" },
-      { "id": "o4", "text": "Amazon EFS" }
+      {
+        "id": "o1",
+        "text": "AWS WAF (Web Application Firewall)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EFS"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS WAF inspects incoming HTTP/S requests and blocks common web exploits like SQL injection and cross-site scripting based on rules you configure.",
     "explanationIncorrect": "Amazon EBS provides block storage volumes for EC2. AWS Config records and evaluates resource configuration; it does not filter web traffic. Amazon EFS is a shared file system. The web request filter is AWS WAF.",
-    "tags": ["security", "waf", "web-exploits"]
+    "tags": [
+      "security",
+      "waf",
+      "web-exploits"
+    ]
   },
   {
     "id": "clf-020",
@@ -365,15 +695,30 @@
     "difficulty": "easy",
     "stem": "Granting a user only the permissions required to perform their job, and nothing more, is which security principle?",
     "options": [
-      { "id": "o1", "text": "Least privilege" },
-      { "id": "o2", "text": "Security through obscurity" },
-      { "id": "o3", "text": "Administrator access by default" },
-      { "id": "o4", "text": "Shared credentials" }
+      {
+        "id": "o1",
+        "text": "Least privilege"
+      },
+      {
+        "id": "o2",
+        "text": "Security through obscurity"
+      },
+      {
+        "id": "o3",
+        "text": "Administrator access by default"
+      },
+      {
+        "id": "o4",
+        "text": "Shared credentials"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Least privilege means giving each identity the minimum permissions needed, which limits the blast radius if a credential is misused or compromised.",
     "explanationIncorrect": "Security through obscurity relies on hiding details and is not a permissions model. Administrator access by default is the opposite of minimal permissions. Shared credentials remove accountability and increase risk. The principle described is least privilege.",
-    "tags": ["security", "least-privilege"]
+    "tags": [
+      "security",
+      "least-privilege"
+    ]
   },
   {
     "id": "clf-021",
@@ -382,15 +727,31 @@
     "difficulty": "medium",
     "stem": "Which service uses machine learning to discover and classify sensitive data such as personally identifiable information stored in Amazon S3?",
     "options": [
-      { "id": "o1", "text": "Amazon Macie" },
-      { "id": "o2", "text": "Amazon Rekognition" },
-      { "id": "o3", "text": "AWS Direct Connect" },
-      { "id": "o4", "text": "Amazon MQ" }
+      {
+        "id": "o1",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Direct Connect"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon MQ"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Macie uses machine learning to find and classify sensitive data like PII in S3 and reports on exposure, supporting data-protection compliance.",
     "explanationIncorrect": "Amazon Rekognition analyzes images and video. AWS Direct Connect provides a dedicated network link to AWS. Amazon MQ is a managed message broker. The sensitive-data discovery service is Amazon Macie.",
-    "tags": ["security", "macie", "data-classification"]
+    "tags": [
+      "security",
+      "macie",
+      "data-classification"
+    ]
   },
   {
     "id": "clf-041",
@@ -399,15 +760,31 @@
     "difficulty": "medium",
     "stem": "Which service records a history of API calls made in your account for auditing and governance, capturing who did what and when?",
     "options": [
-      { "id": "o1", "text": "AWS CloudTrail" },
-      { "id": "o2", "text": "Amazon CloudWatch" },
-      { "id": "o3", "text": "Amazon S3" },
-      { "id": "o4", "text": "AWS Lambda" }
+      {
+        "id": "o1",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS CloudTrail logs API activity across AWS services, giving you the audit trail of who made which call and when for governance and investigations.",
     "explanationIncorrect": "Amazon CloudWatch monitors metrics, logs, and alarms for performance, not an API audit trail of principal actions. Amazon S3 is object storage. AWS Lambda runs code. API auditing is AWS CloudTrail.",
-    "tags": ["security", "cloudtrail", "auditing"]
+    "tags": [
+      "security",
+      "cloudtrail",
+      "auditing"
+    ]
   },
   {
     "id": "clf-042",
@@ -416,15 +793,31 @@
     "difficulty": "medium",
     "stem": "Which service automatically scans EC2 instances and container images for software vulnerabilities and unintended network exposure?",
     "options": [
-      { "id": "o1", "text": "Amazon Inspector" },
-      { "id": "o2", "text": "Amazon Macie" },
-      { "id": "o3", "text": "Amazon Polly" },
-      { "id": "o4", "text": "Amazon Athena" }
+      {
+        "id": "o1",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Athena"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Inspector continuously scans workloads like EC2 instances and container images for known software vulnerabilities and unintended network reachability.",
     "explanationIncorrect": "Amazon Macie discovers and classifies sensitive data such as PII in S3, not software vulnerabilities. Amazon Polly is text-to-speech. Amazon Athena queries data with SQL. Vulnerability scanning of workloads is Amazon Inspector.",
-    "tags": ["security", "inspector", "vulnerabilities"]
+    "tags": [
+      "security",
+      "inspector",
+      "vulnerabilities"
+    ]
   },
   {
     "id": "clf-043",
@@ -433,15 +826,31 @@
     "difficulty": "hard",
     "stem": "In AWS Organizations, which feature sets permission guardrails that restrict what member accounts can do, even for their administrators?",
     "options": [
-      { "id": "o1", "text": "Service Control Policies (SCPs)" },
-      { "id": "o2", "text": "Security groups" },
-      { "id": "o3", "text": "IAM access keys" },
-      { "id": "o4", "text": "Route tables" }
+      {
+        "id": "o1",
+        "text": "Service Control Policies (SCPs)"
+      },
+      {
+        "id": "o2",
+        "text": "Security groups"
+      },
+      {
+        "id": "o3",
+        "text": "IAM access keys"
+      },
+      {
+        "id": "o4",
+        "text": "Route tables"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "SCPs define the maximum permissions available to accounts in an organization, so even an account admin cannot exceed the guardrail the SCP sets.",
     "explanationIncorrect": "Security groups are network firewalls for resources, not account-wide permission limits. IAM access keys are credentials, not organization guardrails. Route tables direct network traffic. Organization-wide permission ceilings are Service Control Policies.",
-    "tags": ["security", "organizations", "scp"]
+    "tags": [
+      "security",
+      "organizations",
+      "scp"
+    ]
   },
   {
     "id": "clf-044",
@@ -450,15 +859,31 @@
     "difficulty": "medium",
     "stem": "Which service continuously records your resource configurations and evaluates them against rules to check compliance, such as flagging public S3 buckets?",
     "options": [
-      { "id": "o1", "text": "AWS Config" },
-      { "id": "o2", "text": "AWS Shield" },
-      { "id": "o3", "text": "Amazon SQS" },
-      { "id": "o4", "text": "Amazon CloudFront" }
+      {
+        "id": "o1",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon CloudFront"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Config records configuration changes and evaluates resources against rules, so it can continuously flag non-compliant states like a bucket that became public.",
     "explanationIncorrect": "AWS Shield protects against DDoS attacks. Amazon SQS is a message queue. Amazon CloudFront is a content delivery network. Configuration recording and compliance evaluation is AWS Config.",
-    "tags": ["security", "config", "compliance"]
+    "tags": [
+      "security",
+      "config",
+      "compliance"
+    ]
   },
   {
     "id": "clf-045",
@@ -467,15 +892,31 @@
     "difficulty": "easy",
     "stem": "Protecting data as it travels over the network between a client and a service, commonly implemented with TLS, is called what?",
     "options": [
-      { "id": "o1", "text": "Encryption in transit" },
-      { "id": "o2", "text": "Encryption at rest" },
-      { "id": "o3", "text": "Tokenization of the database" },
-      { "id": "o4", "text": "Compression" }
+      {
+        "id": "o1",
+        "text": "Encryption in transit"
+      },
+      {
+        "id": "o2",
+        "text": "Encryption at rest"
+      },
+      {
+        "id": "o3",
+        "text": "Tokenization of the database"
+      },
+      {
+        "id": "o4",
+        "text": "Compression"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Encryption in transit protects data moving across the network, typically using TLS, so it cannot be read if intercepted between client and service.",
     "explanationIncorrect": "Encryption at rest protects stored data on disk, not data moving over the network. Tokenization replaces sensitive values with tokens and is a different technique. Compression reduces size and provides no confidentiality. Protecting data on the wire is encryption in transit.",
-    "tags": ["security", "encryption-in-transit", "tls"]
+    "tags": [
+      "security",
+      "encryption-in-transit",
+      "tls"
+    ]
   },
   {
     "id": "clf-003",
@@ -484,15 +925,31 @@
     "difficulty": "easy",
     "stem": "You need durable, virtually unlimited object storage for backups and static website assets, and you want to be billed for the amount of data you store. Which AWS service fits?",
     "options": [
-      { "id": "o1", "text": "Amazon S3" },
-      { "id": "o2", "text": "Amazon EC2" },
-      { "id": "o3", "text": "Amazon RDS" },
-      { "id": "o4", "text": "AWS IAM" }
+      {
+        "id": "o1",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS IAM"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon S3 is object storage designed for high durability and effectively unlimited capacity, billed largely on how much you store, which matches backups and static assets exactly.",
     "explanationIncorrect": "Amazon EC2 provides virtual compute instances; it runs your code but is not an object store, and you pay for compute rather than stored objects. Amazon RDS is a managed relational database service for structured, queryable data, not a bucket for files and backups. AWS IAM manages identities and permissions and stores no application data at all. The durable, virtually unlimited object storage service is Amazon S3.",
-    "tags": ["services", "storage", "s3"],
+    "tags": [
+      "services",
+      "storage",
+      "s3"
+    ],
     "isSeed": true
   },
   {
@@ -502,15 +959,31 @@
     "difficulty": "medium",
     "stem": "You want to run code in response to events without provisioning or managing any servers, paying only for the compute time your code uses. Which service fits?",
     "options": [
-      { "id": "o1", "text": "AWS Lambda" },
-      { "id": "o2", "text": "Amazon EC2" },
-      { "id": "o3", "text": "Amazon EBS" },
-      { "id": "o4", "text": "AWS Direct Connect" }
+      {
+        "id": "o1",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Direct Connect"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Lambda is serverless compute: you upload code that runs in response to events, and you pay only for execution time with no servers to manage.",
     "explanationIncorrect": "Amazon EC2 gives you virtual machines you must size and manage, which is the opposite of serverless. Amazon EBS is block storage for EC2, not compute. AWS Direct Connect is a network link to AWS. The serverless, event-driven compute service is AWS Lambda.",
-    "tags": ["services", "lambda", "serverless"]
+    "tags": [
+      "services",
+      "lambda",
+      "serverless"
+    ]
   },
   {
     "id": "clf-023",
@@ -519,15 +992,31 @@
     "difficulty": "medium",
     "stem": "You need a fully managed NoSQL key-value database that delivers single-digit millisecond performance at virtually any scale. Which service is it?",
     "options": [
-      { "id": "o1", "text": "Amazon DynamoDB" },
-      { "id": "o2", "text": "Amazon RDS" },
-      { "id": "o3", "text": "Amazon Redshift" },
-      { "id": "o4", "text": "Amazon Neptune" }
+      {
+        "id": "o1",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Neptune"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon DynamoDB is the managed NoSQL key-value and document database built for consistent single-digit millisecond latency at scale, with no servers to manage.",
     "explanationIncorrect": "Amazon RDS is managed relational database service (SQL), not NoSQL key-value. Amazon Redshift is an analytical data warehouse. Amazon Neptune is a graph database. The managed NoSQL key-value store is Amazon DynamoDB.",
-    "tags": ["services", "dynamodb", "nosql"]
+    "tags": [
+      "services",
+      "dynamodb",
+      "nosql"
+    ]
   },
   {
     "id": "clf-024",
@@ -536,15 +1025,31 @@
     "difficulty": "medium",
     "stem": "Which service is a managed data warehouse for running analytical queries over large volumes of structured data?",
     "options": [
-      { "id": "o1", "text": "Amazon Redshift" },
-      { "id": "o2", "text": "Amazon DynamoDB" },
-      { "id": "o3", "text": "Amazon SQS" },
-      { "id": "o4", "text": "Amazon Cognito" }
+      {
+        "id": "o1",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Cognito"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Redshift is the managed, petabyte-scale data warehouse optimized for complex analytical (OLAP) queries over structured data.",
     "explanationIncorrect": "Amazon DynamoDB is a NoSQL operational database, not an analytics warehouse. Amazon SQS is a message queue. Amazon Cognito handles user sign-up and authentication. The data warehouse is Amazon Redshift.",
-    "tags": ["services", "redshift", "data-warehouse"]
+    "tags": [
+      "services",
+      "redshift",
+      "data-warehouse"
+    ]
   },
   {
     "id": "clf-025",
@@ -553,15 +1058,31 @@
     "difficulty": "medium",
     "stem": "You want to automatically distribute incoming application traffic across multiple EC2 instances spread over several Availability Zones. Which service does this?",
     "options": [
-      { "id": "o1", "text": "Elastic Load Balancing (ELB)" },
-      { "id": "o2", "text": "Amazon S3" },
-      { "id": "o3", "text": "AWS Artifact" },
-      { "id": "o4", "text": "Amazon Comprehend" }
+      {
+        "id": "o1",
+        "text": "Elastic Load Balancing (ELB)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Comprehend"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Elastic Load Balancing spreads incoming traffic across healthy targets in multiple Availability Zones, improving both scalability and fault tolerance.",
     "explanationIncorrect": "Amazon S3 is object storage. AWS Artifact provides compliance documents. Amazon Comprehend is natural language processing. Traffic distribution across instances is Elastic Load Balancing.",
-    "tags": ["services", "elb", "load-balancing"]
+    "tags": [
+      "services",
+      "elb",
+      "load-balancing"
+    ]
   },
   {
     "id": "clf-026",
@@ -570,15 +1091,31 @@
     "difficulty": "medium",
     "stem": "Which service automatically adjusts the number of EC2 instances to match demand, adding capacity during spikes and removing it when idle?",
     "options": [
-      { "id": "o1", "text": "EC2 Auto Scaling" },
-      { "id": "o2", "text": "AWS Shield" },
-      { "id": "o3", "text": "Amazon Macie" },
-      { "id": "o4", "text": "AWS Config" }
+      {
+        "id": "o1",
+        "text": "EC2 Auto Scaling"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Config"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "EC2 Auto Scaling adds and removes instances automatically based on demand or schedules, which keeps capacity matched to load and cost efficient.",
     "explanationIncorrect": "AWS Shield is DDoS protection. Amazon Macie classifies sensitive data. AWS Config tracks resource configuration and compliance. Automatic capacity adjustment is EC2 Auto Scaling.",
-    "tags": ["services", "auto-scaling", "elasticity"]
+    "tags": [
+      "services",
+      "auto-scaling",
+      "elasticity"
+    ]
   },
   {
     "id": "clf-027",
@@ -587,15 +1124,31 @@
     "difficulty": "medium",
     "stem": "Which AWS service lets you define and provision your infrastructure using declarative templates, treating infrastructure as code?",
     "options": [
-      { "id": "o1", "text": "AWS CloudFormation" },
-      { "id": "o2", "text": "Amazon EC2" },
-      { "id": "o3", "text": "Amazon SNS" },
-      { "id": "o4", "text": "AWS Artifact" }
+      {
+        "id": "o1",
+        "text": "AWS CloudFormation"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SNS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Artifact"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS CloudFormation provisions and manages AWS resources from declarative templates, so your infrastructure is version-controlled, repeatable code.",
     "explanationIncorrect": "Amazon EC2 is a compute service you might provision with CloudFormation, not the IaC tool itself. Amazon SNS sends notifications. AWS Artifact provides compliance reports. The infrastructure-as-code service is AWS CloudFormation.",
-    "tags": ["services", "cloudformation", "iac"]
+    "tags": [
+      "services",
+      "cloudformation",
+      "iac"
+    ]
   },
   {
     "id": "clf-028",
@@ -604,15 +1157,31 @@
     "difficulty": "medium",
     "stem": "Which service lets you provision a logically isolated private network in AWS where you control IP address ranges, subnets, and routing?",
     "options": [
-      { "id": "o1", "text": "Amazon VPC" },
-      { "id": "o2", "text": "Amazon S3" },
-      { "id": "o3", "text": "AWS Lambda" },
-      { "id": "o4", "text": "Amazon SES" }
+      {
+        "id": "o1",
+        "text": "Amazon VPC"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SES"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon VPC gives you a logically isolated virtual network where you define IP ranges, subnets, route tables, and gateways for your resources.",
     "explanationIncorrect": "Amazon S3 is object storage for files and does not define a private network. AWS Lambda is serverless compute that runs your code, not a networking construct. Amazon SES is a service for sending and receiving email. None of them let you control IP ranges, subnets, and routing. The isolated virtual network where you own the addressing and routing is Amazon VPC.",
-    "tags": ["services", "vpc", "networking"]
+    "tags": [
+      "services",
+      "vpc",
+      "networking"
+    ]
   },
   {
     "id": "clf-029",
@@ -621,15 +1190,31 @@
     "difficulty": "medium",
     "stem": "Which service is a fully managed message queue used to decouple and buffer messages between application components?",
     "options": [
-      { "id": "o1", "text": "Amazon SQS" },
-      { "id": "o2", "text": "Amazon CloudFront" },
-      { "id": "o3", "text": "Amazon Redshift" },
-      { "id": "o4", "text": "AWS IAM" }
+      {
+        "id": "o1",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o4",
+        "text": "AWS IAM"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon SQS is a managed message queue that lets components communicate asynchronously, buffering messages so producers and consumers can work independently.",
     "explanationIncorrect": "Amazon CloudFront is a content delivery network. Amazon Redshift is a data warehouse. AWS IAM manages identities and permissions. The managed message queue is Amazon SQS.",
-    "tags": ["services", "sqs", "messaging"]
+    "tags": [
+      "services",
+      "sqs",
+      "messaging"
+    ]
   },
   {
     "id": "clf-030",
@@ -638,15 +1223,31 @@
     "difficulty": "medium",
     "stem": "You need very low-cost storage for data you rarely access and can wait minutes or hours to retrieve, such as long-term archives. Which option fits?",
     "options": [
-      { "id": "o1", "text": "Amazon S3 Glacier storage classes" },
-      { "id": "o2", "text": "Amazon S3 Standard" },
-      { "id": "o3", "text": "Amazon EBS Provisioned IOPS volumes" },
-      { "id": "o4", "text": "Amazon EC2 instance store" }
+      {
+        "id": "o1",
+        "text": "Amazon S3 Glacier storage classes"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3 Standard"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EBS Provisioned IOPS volumes"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EC2 instance store"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The S3 Glacier storage classes are designed for archival: they cost far less per gigabyte in exchange for longer retrieval times, which fits rarely accessed long-term data.",
     "explanationIncorrect": "S3 Standard is for frequently accessed data and costs more, so it is not the cheapest archival choice. EBS Provisioned IOPS is high-performance block storage for demanding workloads, the opposite of low-cost archive. EC2 instance store is ephemeral disk tied to an instance and is lost when it stops. Low-cost archival is S3 Glacier.",
-    "tags": ["services", "s3-glacier", "archival-storage"]
+    "tags": [
+      "services",
+      "s3-glacier",
+      "archival-storage"
+    ]
   },
   {
     "id": "clf-031",
@@ -655,15 +1256,31 @@
     "difficulty": "easy",
     "stem": "Which of the following are valid ways to interact with AWS services?",
     "options": [
-      { "id": "o1", "text": "The AWS Management Console, the AWS CLI, and the AWS SDKs" },
-      { "id": "o2", "text": "Only a badge reader at a physical data center" },
-      { "id": "o3", "text": "Only by mailing a paper request form to AWS" },
-      { "id": "o4", "text": "Only through one desktop app with no programmatic access" }
+      {
+        "id": "o1",
+        "text": "The AWS Management Console, the AWS CLI, and the AWS SDKs"
+      },
+      {
+        "id": "o2",
+        "text": "Only a badge reader at a physical data center"
+      },
+      {
+        "id": "o3",
+        "text": "Only by mailing a paper request form to AWS"
+      },
+      {
+        "id": "o4",
+        "text": "Only through one desktop app with no programmatic access"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "You can use AWS through the web-based Management Console, the command line with the AWS CLI, or programmatically through the AWS SDKs for various languages.",
     "explanationIncorrect": "A physical badge reader, mailing a paper form, and a single app with no API are all incorrect; AWS is designed for self-service through the console, CLI, and SDKs. The valid access methods are the Console, CLI, and SDKs.",
-    "tags": ["services", "console-cli-sdk", "access"]
+    "tags": [
+      "services",
+      "console-cli-sdk",
+      "access"
+    ]
   },
   {
     "id": "clf-032",
@@ -672,15 +1289,31 @@
     "difficulty": "medium",
     "stem": "Which service collects metrics, logs, and alarms so you can monitor the health and performance of your AWS resources?",
     "options": [
-      { "id": "o1", "text": "Amazon CloudWatch" },
-      { "id": "o2", "text": "AWS CloudTrail" },
-      { "id": "o3", "text": "Amazon Cognito" },
-      { "id": "o4", "text": "AWS Snowball" }
+      {
+        "id": "o1",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o2",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Cognito"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Snowball"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon CloudWatch is the monitoring and observability service, collecting metrics and logs and triggering alarms and actions based on them.",
     "explanationIncorrect": "AWS CloudTrail records API activity for auditing, which is about who did what, not performance metrics. Amazon Cognito manages user identities. AWS Snowball moves large data volumes physically. The monitoring service is Amazon CloudWatch.",
-    "tags": ["services", "cloudwatch", "monitoring"]
+    "tags": [
+      "services",
+      "cloudwatch",
+      "monitoring"
+    ]
   },
   {
     "id": "clf-046",
@@ -689,15 +1322,31 @@
     "difficulty": "medium",
     "stem": "Which service provides managed relational databases such as MySQL and PostgreSQL, handling patching, backups, and failover for you?",
     "options": [
-      { "id": "o1", "text": "Amazon RDS" },
-      { "id": "o2", "text": "Amazon DynamoDB" },
-      { "id": "o3", "text": "Amazon S3" },
-      { "id": "o4", "text": "Amazon SNS" }
+      {
+        "id": "o1",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon RDS is the managed relational database service, running engines like MySQL and PostgreSQL while automating patching, backups, and failover.",
     "explanationIncorrect": "Amazon DynamoDB is a NoSQL key-value database, not relational. Amazon S3 is object storage. Amazon SNS is pub/sub messaging. Managed relational databases are Amazon RDS.",
-    "tags": ["services", "rds", "databases"]
+    "tags": [
+      "services",
+      "rds",
+      "databases"
+    ]
   },
   {
     "id": "clf-047",
@@ -706,15 +1355,31 @@
     "difficulty": "medium",
     "stem": "You want to run containers without managing the underlying EC2 servers. Which AWS option provides serverless container compute?",
     "options": [
-      { "id": "o1", "text": "AWS Fargate (used with ECS or EKS)" },
-      { "id": "o2", "text": "Amazon S3" },
-      { "id": "o3", "text": "Amazon Route 53" },
-      { "id": "o4", "text": "AWS Artifact" }
+      {
+        "id": "o1",
+        "text": "AWS Fargate (used with ECS or EKS)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Artifact"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Fargate runs containers without you provisioning or managing servers, working with ECS or EKS as a serverless compute engine for containers.",
     "explanationIncorrect": "Amazon S3 is object storage for files and cannot run containers. Amazon Route 53 is a DNS service for routing and domains. AWS Artifact is a portal for compliance reports. None of them run container workloads. Serverless container compute, with no servers to manage, is AWS Fargate.",
-    "tags": ["services", "fargate", "containers"]
+    "tags": [
+      "services",
+      "fargate",
+      "containers"
+    ]
   },
   {
     "id": "clf-048",
@@ -723,15 +1388,31 @@
     "difficulty": "medium",
     "stem": "Which service is a managed publish/subscribe messaging service used to fan out notifications to many subscribers such as email, SMS, queues, and functions?",
     "options": [
-      { "id": "o1", "text": "Amazon SNS" },
-      { "id": "o2", "text": "Amazon Redshift" },
-      { "id": "o3", "text": "Amazon EBS" },
-      { "id": "o4", "text": "Amazon Cognito" }
+      {
+        "id": "o1",
+        "text": "Amazon SNS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Cognito"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon SNS is a managed publish/subscribe service that delivers messages from a topic to many subscribers, including email, SMS, SQS queues, and Lambda functions.",
     "explanationIncorrect": "Amazon Redshift is an analytical data warehouse, not a messaging service. Amazon EBS is block storage attached to EC2 instances. Amazon Cognito manages user sign-up and sign-in. None of them fan out messages to many subscribers. The managed publish/subscribe messaging service is Amazon SNS.",
-    "tags": ["services", "sns", "pub-sub"]
+    "tags": [
+      "services",
+      "sns",
+      "pub-sub"
+    ]
   },
   {
     "id": "clf-049",
@@ -740,15 +1421,31 @@
     "difficulty": "easy",
     "stem": "Which service is AWS's scalable Domain Name System (DNS) web service for routing users to applications and registering domains?",
     "options": [
-      { "id": "o1", "text": "Amazon Route 53" },
-      { "id": "o2", "text": "Amazon CloudFront" },
-      { "id": "o3", "text": "Amazon VPC" },
-      { "id": "o4", "text": "AWS Lambda" }
+      {
+        "id": "o1",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon VPC"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Route 53 is AWS's managed DNS service, resolving domain names to resources, performing health checks, and registering domains.",
     "explanationIncorrect": "Amazon CloudFront is a content delivery network. Amazon VPC is a virtual private network. AWS Lambda runs code. The DNS service is Amazon Route 53.",
-    "tags": ["services", "route53", "dns"]
+    "tags": [
+      "services",
+      "route53",
+      "dns"
+    ]
   },
   {
     "id": "clf-050",
@@ -757,15 +1454,31 @@
     "difficulty": "medium",
     "stem": "You want to deploy a web application by uploading your code and letting AWS handle provisioning capacity, load balancing, and scaling. Which service does this?",
     "options": [
-      { "id": "o1", "text": "AWS Elastic Beanstalk" },
-      { "id": "o2", "text": "Amazon S3 static website hosting only" },
-      { "id": "o3", "text": "AWS Snowball" },
-      { "id": "o4", "text": "Amazon Athena" }
+      {
+        "id": "o1",
+        "text": "AWS Elastic Beanstalk"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3 static website hosting only"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Athena"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Elastic Beanstalk is a platform service: you upload your application code and it provisions the capacity, load balancing, scaling, and monitoring for you while you keep control of the underlying resources.",
     "explanationIncorrect": "S3 static hosting serves static files only, not full application deployment with capacity and scaling. AWS Snowball moves large data physically. Amazon Athena queries data with SQL. Upload-and-run app deployment is AWS Elastic Beanstalk.",
-    "tags": ["services", "elastic-beanstalk", "paas"]
+    "tags": [
+      "services",
+      "elastic-beanstalk",
+      "paas"
+    ]
   },
   {
     "id": "clf-004",
@@ -774,15 +1487,31 @@
     "difficulty": "medium",
     "stem": "You have a steady, predictable EC2 workload that will run continuously for the next year and you want the lowest price in exchange for a commitment. Which purchasing option is most cost-effective?",
     "options": [
-      { "id": "o1", "text": "A one-year Reserved Instance or Compute Savings Plan commitment" },
-      { "id": "o2", "text": "On-Demand Instances" },
-      { "id": "o3", "text": "Spot Instances for the always-on production workload" },
-      { "id": "o4", "text": "Dedicated Hosts billed hourly with no commitment" }
+      {
+        "id": "o1",
+        "text": "A one-year Reserved Instance or Compute Savings Plan commitment"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o3",
+        "text": "Spot Instances for the always-on production workload"
+      },
+      {
+        "id": "o4",
+        "text": "Dedicated Hosts billed hourly with no commitment"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "For steady, predictable usage over a term, a Reserved Instance or Savings Plan gives a substantial discount over On-Demand in exchange for a one- or three-year commitment, which is the cheapest fit for a known long-running workload.",
     "explanationIncorrect": "On-Demand has no commitment and the highest per-hour rate, so it is the wrong choice when usage is predictable and you could commit for a discount. Spot Instances are cheapest per hour but can be reclaimed with little notice, which makes them unsuitable for an always-on production workload that must not be interrupted. Dedicated Hosts address licensing and isolation needs and cost more, not less, so they do not minimize price for a normal workload. The cost-effective choice for predictable long-running usage is a Reserved Instance or Savings Plan commitment.",
-    "tags": ["pricing", "reserved-instances", "savings-plans"],
+    "tags": [
+      "pricing",
+      "reserved-instances",
+      "savings-plans"
+    ],
     "isSeed": true
   },
   {
@@ -792,15 +1521,31 @@
     "difficulty": "medium",
     "stem": "You want to be alerted when your monthly AWS spending is forecast to exceed a threshold you set. Which service provides this?",
     "options": [
-      { "id": "o1", "text": "AWS Budgets" },
-      { "id": "o2", "text": "Amazon Inspector" },
-      { "id": "o3", "text": "AWS CloudFormation" },
-      { "id": "o4", "text": "Amazon Polly" }
+      {
+        "id": "o1",
+        "text": "AWS Budgets"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o3",
+        "text": "AWS CloudFormation"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Polly"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Budgets lets you set custom cost and usage budgets and sends alerts when actual or forecasted spend crosses your thresholds.",
     "explanationIncorrect": "Amazon Inspector scans workloads for software vulnerabilities. AWS CloudFormation provisions infrastructure. Amazon Polly converts text to speech. The budgeting and spend-alert service is AWS Budgets.",
-    "tags": ["billing", "aws-budgets", "cost-management"]
+    "tags": [
+      "billing",
+      "aws-budgets",
+      "cost-management"
+    ]
   },
   {
     "id": "clf-034",
@@ -809,15 +1554,31 @@
     "difficulty": "hard",
     "stem": "Your production workload needs 24/7 access to AWS support engineers by phone and chat with fast response on critical issues, but you do not need a dedicated technical account manager. Which is the minimum support plan that fits?",
     "options": [
-      { "id": "o1", "text": "Business Support" },
-      { "id": "o2", "text": "Basic Support" },
-      { "id": "o3", "text": "Developer Support" },
-      { "id": "o4", "text": "No support plan is required for production" }
+      {
+        "id": "o1",
+        "text": "Business Support"
+      },
+      {
+        "id": "o2",
+        "text": "Basic Support"
+      },
+      {
+        "id": "o3",
+        "text": "Developer Support"
+      },
+      {
+        "id": "o4",
+        "text": "No support plan is required for production"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Business Support provides 24/7 access to engineers via phone, chat, and email with fast response times for production issues, and it does not require the higher Enterprise tier, so it is the minimum fit here.",
     "explanationIncorrect": "Basic Support offers no technical case support from engineers, so it cannot meet a 24/7 production requirement. Developer Support gives business-hours email access to a support associate, not 24/7 engineer access. A dedicated technical account manager comes with Enterprise plans, which is more than required. The minimum plan that meets the need is Business Support.",
-    "tags": ["support", "support-plans", "business-support"]
+    "tags": [
+      "support",
+      "support-plans",
+      "business-support"
+    ]
   },
   {
     "id": "clf-035",
@@ -826,15 +1587,31 @@
     "difficulty": "medium",
     "stem": "A company has many AWS accounts and wants a single monthly bill plus volume pricing discounts pooled across all of them. Which feature provides this?",
     "options": [
-      { "id": "o1", "text": "Consolidated billing through AWS Organizations" },
-      { "id": "o2", "text": "A separate credit card per account with no linkage" },
-      { "id": "o3", "text": "Amazon CloudFront" },
-      { "id": "o4", "text": "AWS WAF" }
+      {
+        "id": "o1",
+        "text": "Consolidated billing through AWS Organizations"
+      },
+      {
+        "id": "o2",
+        "text": "A separate credit card per account with no linkage"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o4",
+        "text": "AWS WAF"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Organizations offers consolidated billing, which combines multiple accounts into one bill and can aggregate usage so the group qualifies for volume pricing tiers.",
     "explanationIncorrect": "Separate cards with no linkage give you many bills and no pooled discounts, the opposite of what is asked. Amazon CloudFront is a content delivery network. AWS WAF filters web traffic. Single-bill, pooled-discount management is consolidated billing through AWS Organizations.",
-    "tags": ["billing", "organizations", "consolidated-billing"]
+    "tags": [
+      "billing",
+      "organizations",
+      "consolidated-billing"
+    ]
   },
   {
     "id": "clf-051",
@@ -843,15 +1620,30 @@
     "difficulty": "easy",
     "stem": "You want to try several AWS services at no cost within certain limits while learning. Which offering provides this?",
     "options": [
-      { "id": "o1", "text": "The AWS Free Tier" },
-      { "id": "o2", "text": "A Reserved Instance" },
-      { "id": "o3", "text": "A Compute Savings Plan" },
-      { "id": "o4", "text": "Dedicated Hosts" }
+      {
+        "id": "o1",
+        "text": "The AWS Free Tier"
+      },
+      {
+        "id": "o2",
+        "text": "A Reserved Instance"
+      },
+      {
+        "id": "o3",
+        "text": "A Compute Savings Plan"
+      },
+      {
+        "id": "o4",
+        "text": "Dedicated Hosts"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The AWS Free Tier lets you use certain services free within monthly limits (some always-free, some for 12 months, some as trials), which is ideal for learning and experimentation.",
     "explanationIncorrect": "A Reserved Instance and a Savings Plan are commitment-based discount models, not free usage. Dedicated Hosts are a more expensive isolation option. Free usage within limits is the AWS Free Tier.",
-    "tags": ["billing", "free-tier"]
+    "tags": [
+      "billing",
+      "free-tier"
+    ]
   },
   {
     "id": "clf-052",
@@ -860,15 +1652,30 @@
     "difficulty": "medium",
     "stem": "Which tool lets you visualize, understand, and analyze your AWS costs and usage over time with graphs and filters?",
     "options": [
-      { "id": "o1", "text": "AWS Cost Explorer" },
-      { "id": "o2", "text": "AWS CloudFormation" },
-      { "id": "o3", "text": "Amazon Inspector" },
-      { "id": "o4", "text": "AWS Artifact" }
+      {
+        "id": "o1",
+        "text": "AWS Cost Explorer"
+      },
+      {
+        "id": "o2",
+        "text": "AWS CloudFormation"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Artifact"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Cost Explorer provides graphs and filters to explore historical cost and usage and spot trends, which is the tool for analyzing spend.",
     "explanationIncorrect": "AWS CloudFormation provisions infrastructure. Amazon Inspector scans for vulnerabilities. AWS Artifact provides compliance reports. Cost visualization and analysis is AWS Cost Explorer.",
-    "tags": ["billing", "cost-explorer"]
+    "tags": [
+      "billing",
+      "cost-explorer"
+    ]
   },
   {
     "id": "clf-053",
@@ -877,15 +1684,30 @@
     "difficulty": "medium",
     "stem": "Before deploying, you want to estimate the monthly cost of a proposed AWS architecture. Which tool do you use?",
     "options": [
-      { "id": "o1", "text": "The AWS Pricing Calculator" },
-      { "id": "o2", "text": "AWS Budgets" },
-      { "id": "o3", "text": "Amazon CloudWatch" },
-      { "id": "o4", "text": "AWS Config" }
+      {
+        "id": "o1",
+        "text": "The AWS Pricing Calculator"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Budgets"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Config"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "The AWS Pricing Calculator produces up-front cost estimates for a planned architecture before you build it, which is exactly a pre-deployment estimate.",
     "explanationIncorrect": "AWS Budgets tracks and alerts on actual or forecasted spend once you are running, not a pre-build estimate. Amazon CloudWatch monitors resources. AWS Config tracks configuration compliance. Pre-deployment estimates come from the AWS Pricing Calculator.",
-    "tags": ["billing", "pricing-calculator"]
+    "tags": [
+      "billing",
+      "pricing-calculator"
+    ]
   },
   {
     "id": "clf-054",
@@ -894,15 +1716,30 @@
     "difficulty": "medium",
     "stem": "Which service inspects your account and gives recommendations across cost optimization, performance, security, fault tolerance, and service limits?",
     "options": [
-      { "id": "o1", "text": "AWS Trusted Advisor" },
-      { "id": "o2", "text": "Amazon Macie" },
-      { "id": "o3", "text": "AWS Snowball" },
-      { "id": "o4", "text": "Amazon Kinesis" }
+      {
+        "id": "o1",
+        "text": "AWS Trusted Advisor"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kinesis"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Trusted Advisor analyzes your account against best practices and recommends improvements across cost optimization, performance, security, fault tolerance, and service limits.",
     "explanationIncorrect": "Amazon Macie discovers and classifies sensitive data such as PII in S3. AWS Snowball moves large volumes of data physically into and out of AWS. Amazon Kinesis ingests and processes streaming data. None of them provide account-wide best-practice recommendations. The service that inspects your account across those five categories is AWS Trusted Advisor.",
-    "tags": ["billing", "trusted-advisor"]
+    "tags": [
+      "billing",
+      "trusted-advisor"
+    ]
   },
   {
     "id": "clf-055",
@@ -911,15 +1748,30 @@
     "difficulty": "medium",
     "stem": "You want to break down your AWS bill by project or team for reporting. Which mechanism enables this?",
     "options": [
-      { "id": "o1", "text": "Cost allocation tags applied to resources" },
-      { "id": "o2", "text": "Security groups" },
-      { "id": "o3", "text": "IAM roles" },
-      { "id": "o4", "text": "Route tables" }
+      {
+        "id": "o1",
+        "text": "Cost allocation tags applied to resources"
+      },
+      {
+        "id": "o2",
+        "text": "Security groups"
+      },
+      {
+        "id": "o3",
+        "text": "IAM roles"
+      },
+      {
+        "id": "o4",
+        "text": "Route tables"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Cost allocation tags let you label resources (for example by project or team) so the billing tools can group and report costs along those tags.",
     "explanationIncorrect": "Security groups are network firewalls. IAM roles grant permissions. Route tables direct network traffic. Breaking down the bill by dimension uses cost allocation tags.",
-    "tags": ["billing", "cost-allocation-tags"]
+    "tags": [
+      "billing",
+      "cost-allocation-tags"
+    ]
   },
   {
     "id": "clf-005",
@@ -928,15 +1780,461 @@
     "difficulty": "easy",
     "stem": "You want to reduce latency for users around the world by serving your application's static content from locations physically close to them. Which AWS service provides this content delivery network?",
     "options": [
-      { "id": "o1", "text": "Amazon CloudFront" },
-      { "id": "o2", "text": "Amazon VPC" },
-      { "id": "o3", "text": "AWS CloudTrail" },
-      { "id": "o4", "text": "Amazon SQS" }
+      {
+        "id": "o1",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon VPC"
+      },
+      {
+        "id": "o3",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
     ],
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon CloudFront is AWS's content delivery network: it caches content at edge locations worldwide and serves each user from a nearby edge, cutting latency.",
     "explanationIncorrect": "Amazon VPC is a private virtual network for isolating and connecting your AWS resources; it does not distribute content to global edge locations. AWS CloudTrail records API activity for auditing and governance and has nothing to do with content delivery. Amazon SQS is a message queue for decoupling application components, not a CDN. The global content delivery network is Amazon CloudFront.",
-    "tags": ["services", "cloudfront", "cdn"],
+    "tags": [
+      "services",
+      "cloudfront",
+      "cdn"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-056",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "Which cloud benefit best describes paying only for the compute you use instead of buying servers up front?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Trading capital expense for variable expense"
+      },
+      {
+        "id": "o2",
+        "text": "Increasing time to market by buying hardware"
+      },
+      {
+        "id": "o3",
+        "text": "Guaranteeing zero cost"
+      },
+      {
+        "id": "o4",
+        "text": "Removing the need for any architecture"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A core cloud value is converting large up-front capital expenditure on hardware into variable operating expense that scales with actual usage.",
+    "explanationIncorrect": "Buying hardware slows time to market and is the on-premises model the cloud replaces. The cloud does not guarantee zero cost; you pay for what you use. It does not remove the need for architecture; well-architected design still matters for cost, performance, and reliability.",
+    "tags": [
+      "cloud-value",
+      "capex-opex"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-057",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "What does elasticity mean in cloud computing?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Automatically adding or removing resources to match changing demand"
+      },
+      {
+        "id": "o2",
+        "text": "Permanently over-provisioning to be safe"
+      },
+      {
+        "id": "o3",
+        "text": "Locking capacity for a year"
+      },
+      {
+        "id": "o4",
+        "text": "Manually ordering servers weeks in advance"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elasticity is the ability to scale resources up and down automatically as demand rises and falls, so you neither run short nor pay for idle capacity.",
+    "explanationIncorrect": "Permanently over-provisioning wastes money and is the opposite of elastic scaling. Locking capacity for a year describes a commitment model, not the dynamic adjustment elasticity provides. Manually ordering servers weeks ahead is the slow on-premises process the cloud's elasticity eliminates.",
+    "tags": [
+      "elasticity",
+      "scaling"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-058",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "In the AWS global infrastructure, what is an Availability Zone?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One or more discrete data centers with redundant power and networking within a Region"
+      },
+      {
+        "id": "o2",
+        "text": "A single physical server"
+      },
+      {
+        "id": "o3",
+        "text": "A billing account"
+      },
+      {
+        "id": "o4",
+        "text": "A content delivery edge location"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An Availability Zone is one or more physically separate data centers within a Region, each with independent power, cooling, and networking, so failures are isolated.",
+    "explanationIncorrect": "It is far more than a single server; an AZ contains one or more data centers. It is not a billing account, which is an organizational and cost construct. An edge location is part of the content delivery network for caching, which is distinct from an Availability Zone.",
+    "tags": [
+      "global-infrastructure",
+      "availability-zone"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-059",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Deploying an application across multiple Availability Zones primarily improves which quality?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "High availability and fault tolerance"
+      },
+      {
+        "id": "o2",
+        "text": "Lower per-hour instance price"
+      },
+      {
+        "id": "o3",
+        "text": "Smaller application code"
+      },
+      {
+        "id": "o4",
+        "text": "Faster local disk speed"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spreading across multiple AZs means an outage in one zone does not take down the whole application, improving availability and fault tolerance.",
+    "explanationIncorrect": "Multi-AZ deployment does not reduce the per-hour price of instances; it may increase total cost for redundancy. It does not change the size of your application code. It does not make local disks faster; disk performance depends on the storage type, not on how many zones you span.",
+    "tags": [
+      "high-availability",
+      "multi-az"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-060",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "easy",
+    "stem": "Which deployment model combines on-premises infrastructure with cloud resources working together?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Hybrid cloud"
+      },
+      {
+        "id": "o2",
+        "text": "Pure public cloud"
+      },
+      {
+        "id": "o3",
+        "text": "Fully on-premises"
+      },
+      {
+        "id": "o4",
+        "text": "Air-gapped only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A hybrid model integrates existing on-premises systems with cloud resources so workloads and data can span both environments.",
+    "explanationIncorrect": "A pure public cloud model runs entirely in the cloud with no on-premises component. Fully on-premises means no cloud at all, the opposite of hybrid. Air-gapped means isolated from external networks, which is a security posture, not a model that combines on-premises and cloud.",
+    "tags": [
+      "deployment-models",
+      "hybrid"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-061",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which pillar of the AWS Well-Architected Framework focuses on running and monitoring systems to deliver business value and continually improve processes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Operational Excellence"
+      },
+      {
+        "id": "o2",
+        "text": "Cost Optimization"
+      },
+      {
+        "id": "o3",
+        "text": "Performance Efficiency"
+      },
+      {
+        "id": "o4",
+        "text": "Security"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Operational Excellence pillar covers running, monitoring, and improving operational processes and procedures to deliver value over time.",
+    "explanationIncorrect": "Cost Optimization is about avoiding unnecessary spend, not operating and improving processes. Performance Efficiency concerns using resources efficiently as demand changes. Security focuses on protecting data and systems; while related, it is a distinct pillar from operating and improving processes.",
+    "tags": [
+      "well-architected",
+      "operational-excellence"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-062",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "What does the cloud benefit go global in minutes refer to?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Deploying an application to multiple AWS Regions worldwide quickly and easily"
+      },
+      {
+        "id": "o2",
+        "text": "Getting free international phone service"
+      },
+      {
+        "id": "o3",
+        "text": "Guaranteed identical latency everywhere"
+      },
+      {
+        "id": "o4",
+        "text": "Automatic translation of all applications"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because AWS has infrastructure around the world, you can deploy to additional Regions in minutes to serve users closer to them, without building your own data centers.",
+    "explanationIncorrect": "It has nothing to do with phone service. It does not guarantee identical latency everywhere; latency still depends on distance and network paths. It does not automatically translate applications; localization remains an application concern.",
+    "tags": [
+      "global-reach",
+      "regions"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-063",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "Which cloud characteristic lets a startup access enterprise-grade infrastructure without a large up-front investment?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Economies of scale that lower prices as AWS aggregates usage across many customers"
+      },
+      {
+        "id": "o2",
+        "text": "A requirement to sign a multi-year hardware lease"
+      },
+      {
+        "id": "o3",
+        "text": "Mandatory purchase of physical servers"
+      },
+      {
+        "id": "o4",
+        "text": "Fixed pricing unaffected by scale"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Aggregating demand from many customers gives AWS economies of scale that translate into lower pay-as-you-go prices, so even small companies can use advanced infrastructure affordably.",
+    "explanationIncorrect": "The cloud avoids multi-year hardware leases, which is a capital commitment it replaces. It does not require buying physical servers; that is the on-premises approach. Pricing is not fixed and unaffected by scale; the economies-of-scale benefit is precisely that scale drives prices down.",
+    "tags": [
+      "economies-of-scale",
+      "cloud-value"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-064",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which term describes the practice of designing systems to keep functioning even when individual components fail?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Fault tolerance"
+      },
+      {
+        "id": "o2",
+        "text": "Vertical scaling"
+      },
+      {
+        "id": "o3",
+        "text": "Data normalization"
+      },
+      {
+        "id": "o4",
+        "text": "Content caching"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Fault tolerance is the ability of a system to continue operating despite the failure of one or more components, typically through redundancy.",
+    "explanationIncorrect": "Vertical scaling means adding more power to a single machine, which does not by itself provide resilience to that machine failing. Data normalization is a database design technique unrelated to component failure. Content caching speeds up delivery of content but is not the general property of surviving component failures.",
+    "tags": [
+      "fault-tolerance",
+      "reliability"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-065",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which service model gives you the most control over the operating system while AWS manages the underlying hardware?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Infrastructure as a Service (IaaS), such as EC2"
+      },
+      {
+        "id": "o2",
+        "text": "Software as a Service (SaaS)"
+      },
+      {
+        "id": "o3",
+        "text": "Function as a Service with no server management"
+      },
+      {
+        "id": "o4",
+        "text": "A fully managed database only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "IaaS like EC2 lets you manage the operating system, patching, and installed software, while AWS handles the physical hardware and virtualization.",
+    "explanationIncorrect": "SaaS delivers a finished application and gives you the least control over the OS. Function as a Service abstracts the server entirely, so you do not manage the operating system. A fully managed database hides the OS from you, offering less control than IaaS over the operating system.",
+    "tags": [
+      "service-models",
+      "iaas"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-066",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "An architecture uses stateless application servers behind a load balancer. Why does statelessness aid scaling?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Any server can handle any request, so instances can be added or removed freely"
+      },
+      {
+        "id": "o2",
+        "text": "It removes the need for a database"
+      },
+      {
+        "id": "o3",
+        "text": "It guarantees lower storage cost"
+      },
+      {
+        "id": "o4",
+        "text": "It makes each request slower but safer"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When servers hold no session state locally, requests can go to any instance, so the load balancer can freely scale the fleet in and out without breaking user sessions.",
+    "explanationIncorrect": "Statelessness does not remove the need for a database; state is typically moved to a shared store, not eliminated. It does not guarantee lower storage cost; that depends on where state is kept. It does not inherently make requests slower; the benefit is flexible horizontal scaling, not a speed tradeoff.",
+    "tags": [
+      "stateless",
+      "scaling",
+      "architecture"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-067",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which best describes the agility benefit of cloud computing?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The ability to experiment and innovate quickly by provisioning resources on demand"
+      },
+      {
+        "id": "o2",
+        "text": "Slower release cycles due to procurement"
+      },
+      {
+        "id": "o3",
+        "text": "A guarantee that all projects succeed"
+      },
+      {
+        "id": "o4",
+        "text": "Elimination of all operational work"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Agility is the ability to spin up resources in minutes, letting teams experiment, fail fast, and innovate without long procurement delays.",
+    "explanationIncorrect": "Slower release cycles from procurement describe on-premises constraints, the opposite of cloud agility. The cloud does not guarantee that all projects succeed; it lowers the cost of trying. It does not eliminate all operational work; teams still operate and maintain their workloads.",
+    "tags": [
+      "agility",
+      "cloud-value"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-068",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "What is the primary reason to select an AWS Region close to your end users?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To reduce latency for those users"
+      },
+      {
+        "id": "o2",
+        "text": "To increase the number of Availability Zones automatically"
+      },
+      {
+        "id": "o3",
+        "text": "To make the code compile faster"
+      },
+      {
+        "id": "o4",
+        "text": "To avoid all data transfer charges"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Choosing a Region near your users shortens the network distance and lowers latency, improving responsiveness, though compliance and cost also influence Region choice.",
+    "explanationIncorrect": "Proximity does not change how many Availability Zones a Region has; that is fixed per Region. It has no effect on how fast your code compiles. It does not eliminate data transfer charges, which still apply depending on the traffic and services involved.",
+    "tags": [
+      "regions",
+      "latency"
+    ],
     "isSeed": true
   }
 ]
