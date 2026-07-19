@@ -2999,5 +2999,274 @@
       "iteration"
     ],
     "isSeed": true
+  },
+  {
+    "id": "tf-071",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "easy",
+    "stem": "Which command downloads provider plugins and prepares the working directory for other commands?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform init"
+      },
+      {
+        "id": "o2",
+        "text": "terraform plan"
+      },
+      {
+        "id": "o3",
+        "text": "terraform apply"
+      },
+      {
+        "id": "o4",
+        "text": "terraform validate"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform init initializes the working directory, downloading required providers and modules and configuring the backend before you can plan or apply.",
+    "explanationIncorrect": "terraform plan produces an execution plan but requires an already-initialized directory. terraform apply makes changes and also depends on init having run. terraform validate checks configuration syntax and consistency but does not download providers or set up the backend.",
+    "tags": [
+      "init",
+      "workflow",
+      "providers"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-072",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "What does terraform plan do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Shows the actions Terraform would take to reach the desired state without making changes"
+      },
+      {
+        "id": "o2",
+        "text": "Immediately applies changes to infrastructure"
+      },
+      {
+        "id": "o3",
+        "text": "Deletes all managed resources"
+      },
+      {
+        "id": "o4",
+        "text": "Uploads state to a remote backend only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform plan compares the configuration and current state against real infrastructure and reports the create, update, and destroy actions it would take, without changing anything.",
+    "explanationIncorrect": "It does not apply changes; that is terraform apply. It does not delete resources; destruction happens only on apply or destroy. It does not merely upload state; planning reads state to compute a diff rather than pushing it to a backend.",
+    "tags": [
+      "plan",
+      "workflow"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-073",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "You want to save a plan to a file and apply exactly that plan later. Which commands do this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform plan -out=tfplan then terraform apply tfplan"
+      },
+      {
+        "id": "o2",
+        "text": "terraform apply -save then terraform plan"
+      },
+      {
+        "id": "o3",
+        "text": "terraform plan -save=tfplan then terraform run tfplan"
+      },
+      {
+        "id": "o4",
+        "text": "terraform export then terraform import"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Running plan with -out writes the planned actions to a file, and passing that file to apply executes exactly those actions with no re-planning or extra prompt.",
+    "explanationIncorrect": "There is no apply -save flag that produces a plan for later. The plan flag to save is -out, not -save, and there is no terraform run subcommand for a saved plan. export and import relate to state, not to saving and applying a plan file.",
+    "tags": [
+      "plan",
+      "apply",
+      "saved-plan"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-074",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command formats configuration files to the canonical Terraform style?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o2",
+        "text": "terraform lint"
+      },
+      {
+        "id": "o3",
+        "text": "terraform style"
+      },
+      {
+        "id": "o4",
+        "text": "terraform tidy"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform fmt rewrites configuration files to the standard style and formatting conventions, keeping code consistent and diff-friendly.",
+    "explanationIncorrect": "There is no terraform lint subcommand built in. terraform style is not a valid command. terraform tidy does not exist; formatting is handled solely by fmt.",
+    "tags": [
+      "fmt",
+      "workflow",
+      "formatting"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-075",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "hard",
+    "stem": "During apply, one resource fails while others succeed. What does Terraform do with the state?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It records the resources that were successfully created or changed so the next run reconciles the rest"
+      },
+      {
+        "id": "o2",
+        "text": "It discards all changes made during the failed apply"
+      },
+      {
+        "id": "o3",
+        "text": "It rolls back every resource to the previous state automatically"
+      },
+      {
+        "id": "o4",
+        "text": "It deletes the state file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform updates state incrementally as resources complete, so a partial apply saves the successful changes and a subsequent plan shows only the remaining work.",
+    "explanationIncorrect": "It does not discard successful changes; those are already real and are recorded. Terraform has no automatic full rollback of applied resources. It does not delete the state file on failure; doing so would lose track of everything already created.",
+    "tags": [
+      "apply",
+      "state",
+      "partial-failure"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-076",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command destroys all resources managed by the current configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform destroy"
+      },
+      {
+        "id": "o2",
+        "text": "terraform delete"
+      },
+      {
+        "id": "o3",
+        "text": "terraform remove"
+      },
+      {
+        "id": "o4",
+        "text": "terraform apply --none"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform destroy plans and executes the removal of all resources tracked in state for the configuration, after a confirmation prompt.",
+    "explanationIncorrect": "There is no terraform delete command. terraform remove is not a valid command; state entries are removed with terraform state rm, which is different. terraform apply --none is not a real flag combination for destroying everything.",
+    "tags": [
+      "destroy",
+      "workflow"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-077",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "What is the purpose of terraform validate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To check that the configuration is syntactically valid and internally consistent"
+      },
+      {
+        "id": "o2",
+        "text": "To contact the cloud provider and verify live infrastructure"
+      },
+      {
+        "id": "o3",
+        "text": "To apply changes after a plan"
+      },
+      {
+        "id": "o4",
+        "text": "To download provider plugins"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform validate checks the configuration for syntax errors and internal consistency, such as valid references and argument types, without accessing remote state or providers' live APIs.",
+    "explanationIncorrect": "It does not contact the provider to verify live infrastructure; that requires plan or refresh. It does not apply changes. Downloading provider plugins is the job of terraform init, not validate.",
+    "tags": [
+      "validate",
+      "workflow"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "tf-078",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "hard",
+    "stem": "You changed a variable and want to see the effect on only one resource without applying everything. Which flag limits the plan?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform plan -target=resource_address"
+      },
+      {
+        "id": "o2",
+        "text": "terraform plan -only=resource_address"
+      },
+      {
+        "id": "o3",
+        "text": "terraform plan -single"
+      },
+      {
+        "id": "o4",
+        "text": "terraform plan -resource"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The -target flag restricts the plan to the specified resource address and its dependencies, which is useful for focused changes though it should be used sparingly.",
+    "explanationIncorrect": "There is no -only flag for scoping a plan to a particular resource address. -single is likewise not a valid flag and Terraform would reject it. -resource is not a recognized option either, so it does nothing. Scoping a plan or apply to a specific resource and its dependencies is done exclusively with the -target flag, which is why the other three are wrong.",
+    "tags": [
+      "plan",
+      "target",
+      "workflow"
+    ],
+    "isSeed": true
   }
 ]
