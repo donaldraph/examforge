@@ -2236,5 +2236,404 @@
       "latency"
     ],
     "isSeed": true
+  },
+  {
+    "id": "clf-069",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Under the AWS shared responsibility model, which is AWS responsible for?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Security of the cloud, such as the physical data centers and hardware"
+      },
+      {
+        "id": "o2",
+        "text": "Configuring your security groups"
+      },
+      {
+        "id": "o3",
+        "text": "Managing your IAM users and passwords"
+      },
+      {
+        "id": "o4",
+        "text": "Encrypting your application data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS is responsible for security of the cloud, including the physical facilities, hardware, and the global infrastructure that runs the services.",
+    "explanationIncorrect": "Configuring security groups is a customer responsibility for security in the cloud. Managing IAM users and passwords is likewise the customer's job. Encrypting application data is the customer's responsibility, though AWS provides the tools such as KMS to do it.",
+    "tags": [
+      "shared-responsibility",
+      "security"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-070",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which practice follows the principle of least privilege?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Granting users only the permissions they need to perform their tasks"
+      },
+      {
+        "id": "o2",
+        "text": "Giving every user administrator access for convenience"
+      },
+      {
+        "id": "o3",
+        "text": "Sharing the root account among the team"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling IAM entirely"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Least privilege means granting the minimum permissions required, limiting the potential damage if credentials are misused or compromised.",
+    "explanationIncorrect": "Giving everyone administrator access is the opposite of least privilege and greatly increases risk. Sharing the root account removes accountability and is strongly discouraged. Disabling IAM would remove access control altogether, which is not least privilege but no privilege enforcement at all.",
+    "tags": [
+      "least-privilege",
+      "iam"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-071",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "What does enabling multi-factor authentication (MFA) on an account provide?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An additional layer of sign-in security beyond the password"
+      },
+      {
+        "id": "o2",
+        "text": "Automatic encryption of all data"
+      },
+      {
+        "id": "o3",
+        "text": "A discount on the monthly bill"
+      },
+      {
+        "id": "o4",
+        "text": "Faster network performance"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "MFA requires a second factor such as a code from a device in addition to the password, so a stolen password alone cannot grant access.",
+    "explanationIncorrect": "MFA does not encrypt data; encryption is a separate control. It provides no billing discount. It has no effect on network performance; it is purely an authentication safeguard.",
+    "tags": [
+      "mfa",
+      "authentication"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-072",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "Which service continuously analyzes account activity and network traffic to detect threats using machine learning and threat intelligence?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Trusted Advisor"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o4",
+        "text": "AWS CloudFormation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon GuardDuty is a threat-detection service that analyzes logs and traffic with machine learning and threat intelligence to flag malicious or unauthorized behavior.",
+    "explanationIncorrect": "Trusted Advisor gives best-practice recommendations across cost, security, and performance but is not a continuous threat-detection engine. S3 is object storage, not a security monitoring service. CloudFormation provisions infrastructure as code and does not detect threats.",
+    "tags": [
+      "guardduty",
+      "threat-detection"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-073",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which AWS service lets you centrally manage encryption keys used to protect your data?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Key Management Service (KMS)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Cost Explorer"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS KMS creates and controls cryptographic keys and integrates with many services to encrypt data, with access governed by IAM and key policies.",
+    "explanationIncorrect": "Route 53 is a DNS service and does not manage encryption keys. Cost Explorer analyzes spending and has no key-management function. SQS is a message queue service, unrelated to managing cryptographic keys.",
+    "tags": [
+      "kms",
+      "encryption"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-074",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Where can you download AWS compliance reports such as SOC 2 and ISO certifications on demand?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Direct Connect"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Artifact is the portal for on-demand access to AWS security and compliance reports and agreements, such as SOC and ISO documents.",
+    "explanationIncorrect": "AWS Config records and evaluates resource configurations but does not host compliance reports. CloudWatch is a monitoring service, not a document portal. Direct Connect provides a dedicated network link to AWS and has no relation to compliance reports.",
+    "tags": [
+      "aws-artifact",
+      "compliance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-075",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "A web application needs protection from common exploits like SQL injection and cross-site scripting at the HTTP layer. Which service fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS WAF (Web Application Firewall)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Athena"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS WAF filters and monitors HTTP/HTTPS requests, letting you block common web exploits such as SQL injection and cross-site scripting with managed and custom rules.",
+    "explanationIncorrect": "EBS provides block storage volumes for EC2 and offers no web filtering. Glue is an ETL and data catalog service, unrelated to web-layer protection. Athena queries data in S3 with SQL and does not inspect or block web traffic.",
+    "tags": [
+      "waf",
+      "web-security"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-076",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "What is a recommended way to secure the AWS account root user?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Enable MFA on the root user and avoid using it for daily tasks"
+      },
+      {
+        "id": "o2",
+        "text": "Share the root credentials with all administrators"
+      },
+      {
+        "id": "o3",
+        "text": "Use the root user for every deployment"
+      },
+      {
+        "id": "o4",
+        "text": "Delete the root user"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Best practice is to protect the powerful root user with MFA and use it only for the few tasks that require it, performing everyday work with least-privilege IAM identities.",
+    "explanationIncorrect": "Sharing root credentials removes accountability and greatly increases risk. Using the root user for every deployment exposes the most privileged account to unnecessary risk. You cannot delete the root user; it is inherent to the account, so that is not an option.",
+    "tags": [
+      "root-user",
+      "iam",
+      "best-practices"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-077",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service helps you assess, audit, and evaluate the configurations of your AWS resources against desired settings?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Lightsail"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SNS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Snowball"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Config continuously records resource configurations and evaluates them against rules, helping with compliance auditing and change tracking.",
+    "explanationIncorrect": "Lightsail provides simplified virtual servers and does not audit configurations. SNS is a notification service, not a configuration assessment tool. Snowball is a physical device for large data transfer and has no configuration-evaluation role.",
+    "tags": [
+      "aws-config",
+      "compliance",
+      "auditing"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-078",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "Which service protects applications from distributed denial-of-service (DDoS) attacks, with a standard tier enabled automatically for all customers?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EFS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Shield provides managed DDoS protection; Shield Standard is automatically enabled for all customers, and Shield Advanced adds enhanced protections and support.",
+    "explanationIncorrect": "Amazon Inspector performs automated vulnerability assessments of workloads, not DDoS mitigation. Batch runs batch computing jobs and offers no DDoS protection. EFS is a managed file system and is unrelated to defending against DDoS attacks.",
+    "tags": [
+      "shield",
+      "ddos"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-079",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "What is the recommended way to grant an application running on EC2 access to an S3 bucket?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Attach an IAM role to the EC2 instance"
+      },
+      {
+        "id": "o2",
+        "text": "Hard-code access keys in the application code"
+      },
+      {
+        "id": "o3",
+        "text": "Email the credentials to the server"
+      },
+      {
+        "id": "o4",
+        "text": "Make the bucket public"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An IAM role attached to the instance provides temporary, automatically rotated credentials, so the application accesses S3 securely without embedding long-lived keys.",
+    "explanationIncorrect": "Hard-coding access keys risks leaking long-lived credentials in source control. Emailing credentials is insecure and unmanageable. Making the bucket public exposes data to everyone rather than granting scoped access to the application, so it is a serious security mistake.",
+    "tags": [
+      "iam-roles",
+      "ec2",
+      "s3"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "clf-080",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which describes encryption in transit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Protecting data as it moves over the network, for example with TLS"
+      },
+      {
+        "id": "o2",
+        "text": "Encrypting data stored on disk"
+      },
+      {
+        "id": "o3",
+        "text": "Compressing data before storage"
+      },
+      {
+        "id": "o4",
+        "text": "Deleting data after use"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Encryption in transit secures data while it travels between systems, typically using TLS, so it cannot be read if intercepted on the network.",
+    "explanationIncorrect": "Encrypting data on disk is encryption at rest, a different protection. Compressing data reduces its size but does not secure it. Deleting data after use is a retention practice, not a form of encryption.",
+    "tags": [
+      "encryption-in-transit",
+      "tls"
+    ],
+    "isSeed": true
   }
 ]
