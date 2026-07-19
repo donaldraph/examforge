@@ -598,5 +598,90 @@
     "explanationCorrect": "Consistent enforcement comes from org-level enablement plus making the scans required checks via branch protection or rulesets, so pull requests cannot merge without passing and coverage does not depend on individual memory.",
     "explanationIncorrect": "Relying on developers to run scans locally is inconsistent and unauditable. Enabling scanning on one repository leaves the rest unprotected. A quarterly manual review is too infrequent to catch issues at merge time. Enforcement is achieved through org-wide enablement and required status checks.",
     "tags": ["best-practices", "enforcement", "rulesets"]
+  },
+  {
+    "id": "ghas-036",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "You want the code scanning pull request check to fail only when a newly introduced alert is high or critical security severity, not on lower-severity findings. How is this controlled?",
+    "options": [
+      { "id": "o1", "text": "Configure the code scanning check failure threshold by security severity in the repository's code scanning settings" },
+      { "id": "o2", "text": "Delete all lower-severity queries from CodeQL" },
+      { "id": "o3", "text": "Set fail-fast: true in the analysis workflow" },
+      { "id": "o4", "text": "Lower the job's timeout-minutes" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning lets you set the severity threshold at which the pull request check fails, so you can require only high and critical security-severity alerts to block while lower ones are still reported.",
+    "explanationIncorrect": "Deleting lower-severity queries throws away useful findings entirely rather than just not blocking on them. fail-fast controls matrix cancellation, not alert severity gating. timeout-minutes bounds run duration. The threshold is configured in code scanning settings.",
+    "tags": ["code-scanning", "severity-threshold", "pull-request"]
+  },
+  {
+    "id": "ghas-037",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Your repository contains both Go and JavaScript. In an advanced-setup CodeQL workflow, how are multiple languages typically analyzed?",
+    "options": [
+      { "id": "o1", "text": "A matrix over the languages, running a separate CodeQL initialize-and-analyze for each language" },
+      { "id": "o2", "text": "A single analysis that silently merges all languages into one database with no configuration" },
+      { "id": "o3", "text": "Secret scanning analyzes the second language" },
+      { "id": "o4", "text": "Dependabot performs the analysis for the extra language" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The generated CodeQL workflow uses a language matrix so each language is initialized and analyzed in its own job, because CodeQL builds a separate database per language.",
+    "explanationIncorrect": "CodeQL does not merge unrelated languages into one database automatically; each language is analyzed on its own. Secret scanning finds credentials, not code-level flaws in another language. Dependabot handles dependencies, not source analysis. Multiple languages are analyzed via a matrix.",
+    "tags": ["code-scanning", "codeql", "languages-matrix"]
+  },
+  {
+    "id": "ghas-038",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "You want to run CodeQL analysis inside a third-party CI system that is not GitHub Actions, and still have the results appear in code scanning. What enables this?",
+    "options": [
+      { "id": "o1", "text": "The CodeQL CLI, which builds a database and produces SARIF that you upload to code scanning" },
+      { "id": "o2", "text": "It is impossible to run CodeQL outside GitHub Actions" },
+      { "id": "o3", "text": "A Dependabot command-line tool" },
+      { "id": "o4", "text": "The gh secret command" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The CodeQL CLI runs the analysis anywhere, creating a database and emitting SARIF that you upload to code scanning, so non-Actions CI systems can still feed the same alerts UI.",
+    "explanationIncorrect": "CodeQL is not limited to Actions; the CLI exists precisely for other environments. There is no Dependabot CLI that performs CodeQL analysis. gh secret manages Actions secrets and is unrelated. Running CodeQL elsewhere uses the CodeQL CLI.",
+    "tags": ["code-scanning", "codeql-cli", "third-party-ci"]
+  },
+  {
+    "id": "ghas-039",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Beyond scanning on pull requests, why is it recommended to also run code scanning on a schedule against the default branch?",
+    "options": [
+      { "id": "o1", "text": "New CodeQL queries and updated patterns can surface issues in existing, unchanged code that a pull-request-only scan would never re-examine" },
+      { "id": "o2", "text": "To automatically reformat the repository each week" },
+      { "id": "o3", "text": "To rotate the repository's secrets on a schedule" },
+      { "id": "o4", "text": "Because pull request scans do not actually work" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A scheduled scan re-examines the whole default branch with the latest queries, catching newly discovered vulnerability patterns in code that has not changed and would otherwise never be re-scanned by PR-only runs.",
+    "explanationIncorrect": "Code scanning does not reformat code. It does not rotate secrets; that is unrelated to CodeQL. Pull request scans do work; the schedule complements them rather than replacing broken behavior. The reason is catching new findings in existing code as queries improve.",
+    "tags": ["code-scanning", "scheduled-scan", "coverage"]
+  },
+  {
+    "id": "ghas-040",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "You upload SARIF from two different analysis tools for the same commit and want code scanning to keep their results separate rather than have one overwrite the other. Which SARIF upload field distinguishes them?",
+    "options": [
+      { "id": "o1", "text": "The category, uploaded distinctly for each analysis" },
+      { "id": "o2", "text": "The commit SHA" },
+      { "id": "o3", "text": "The branch name alone" },
+      { "id": "o4", "text": "The artifact retention-days value" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning uses the SARIF category to tell analyses apart, so uploading each tool under its own category keeps their alerts separate instead of one replacing the other for the same commit and ref.",
+    "explanationIncorrect": "The commit SHA and branch are the same for both uploads here, so they cannot separate the analyses. Retention-days governs artifact lifetime, not analysis identity. The distinguishing field is the category.",
+    "tags": ["code-scanning", "sarif", "category"]
   }
 ]
