@@ -3323,5 +3323,345 @@
       "lifecycle"
     ],
     "isSeed": true
+  },
+  {
+    "id": "aip-101",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which AWS service controls who can invoke a Bedrock model or access an ML resource?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Identity and Access Management (IAM)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SNS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Glue"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "IAM policies define which principals may call specific APIs, such as invoking a Bedrock model, enforcing least-privilege access to AI resources.",
+    "explanationIncorrect": "CloudWatch collects metrics and logs for monitoring but does not grant or deny access. SNS is a messaging and notification service, not an authorization system. Glue is a data integration and ETL service and does not control access to model invocation.",
+    "tags": [
+      "security",
+      "iam",
+      "access-control"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-102",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "To keep data used with a foundation model within your private network and off the public internet, which capability helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "VPC endpoints (AWS PrivateLink) to reach the service privately"
+      },
+      {
+        "id": "o2",
+        "text": "A public S3 bucket"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling IAM"
+      },
+      {
+        "id": "o4",
+        "text": "A larger context window"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "VPC endpoints powered by PrivateLink let your workloads reach AWS services over private connectivity, keeping traffic off the public internet for stronger data protection.",
+    "explanationIncorrect": "A public S3 bucket exposes data to the internet, the opposite of keeping it private. Disabling IAM removes access controls and weakens security rather than protecting network paths. A larger context window relates to how much text a model processes and has nothing to do with network privacy.",
+    "tags": [
+      "security",
+      "privatelink",
+      "networking"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-103",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "Which service records API calls, including model-invocation management events, to support auditing and governance?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Amplify"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon QuickSight"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CloudTrail logs API activity across AWS accounts, providing an auditable trail of who did what and when, which supports governance and compliance for AI workloads.",
+    "explanationIncorrect": "Polly is a text-to-speech service and does not record API audit logs. Amplify is a framework for building web and mobile app backends, not an audit service. QuickSight is a business intelligence and dashboarding tool, not a source of API activity logs.",
+    "tags": [
+      "governance",
+      "cloudtrail",
+      "auditing"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-104",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "How can you encrypt data at rest for training data stored in Amazon S3 used by an ML pipeline?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Enable server-side encryption, optionally with AWS KMS managed keys"
+      },
+      {
+        "id": "o2",
+        "text": "Rely on the model to encrypt it during training"
+      },
+      {
+        "id": "o3",
+        "text": "Store it in plaintext but in a private bucket"
+      },
+      {
+        "id": "o4",
+        "text": "Increase the number of epochs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 server-side encryption, which can use AWS KMS keys, protects data at rest and lets you manage key access and rotation for compliance.",
+    "explanationIncorrect": "A model does not encrypt stored data; encryption is a storage-layer control, not a training behavior. A private bucket restricts access but plaintext data is still unencrypted at rest, which encryption addresses. Increasing epochs affects training duration and has nothing to do with encryption.",
+    "tags": [
+      "security",
+      "encryption",
+      "kms"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-105",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Under the AWS shared responsibility model, who is responsible for configuring IAM permissions and data access for an AI application?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The customer"
+      },
+      {
+        "id": "o2",
+        "text": "AWS alone"
+      },
+      {
+        "id": "o3",
+        "text": "The foundation model provider"
+      },
+      {
+        "id": "o4",
+        "text": "No one; it is automatic"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Security in the cloud, including IAM configuration and data access, is the customer's responsibility, while AWS is responsible for security of the underlying cloud infrastructure.",
+    "explanationIncorrect": "AWS alone is responsible for the infrastructure, not the customer's access configuration, so this is incomplete. The foundation model provider supplies the model but does not configure your account's permissions. It is not automatic; misconfigured permissions are a common and real risk the customer must manage.",
+    "tags": [
+      "governance",
+      "shared-responsibility",
+      "iam"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-106",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "A prompt-injection attack tries to override an application's instructions through crafted user input. Which mitigation is appropriate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Separate trusted instructions from untrusted input, validate inputs, and apply guardrails on outputs"
+      },
+      {
+        "id": "o2",
+        "text": "Trust all user input equally with system instructions"
+      },
+      {
+        "id": "o3",
+        "text": "Publish the system prompt so users can edit it"
+      },
+      {
+        "id": "o4",
+        "text": "Raise the temperature to confuse attackers"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Defenses include clearly separating and prioritizing trusted system instructions over untrusted user content, validating and sanitizing inputs, and filtering outputs with guardrails to blunt injection attempts.",
+    "explanationIncorrect": "Treating user input as equally trusted with system instructions is exactly what enables prompt injection. Publishing and letting users edit the system prompt hands control to attackers. Raising temperature adds randomness but does nothing to prevent an injected instruction from being followed.",
+    "tags": [
+      "security",
+      "prompt-injection",
+      "genai-security"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-107",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Why do organizations track data lineage for datasets used to train models?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To know where data came from and how it was transformed, supporting compliance and reproducibility"
+      },
+      {
+        "id": "o2",
+        "text": "To make training run on more GPUs"
+      },
+      {
+        "id": "o3",
+        "text": "To shrink the model size"
+      },
+      {
+        "id": "o4",
+        "text": "To increase the context window"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Data lineage records the origin and transformations of training data, which is essential for auditing, meeting regulatory requirements, and reproducing or debugging model behavior.",
+    "explanationIncorrect": "Lineage tracking is metadata management and does not add GPUs to training. It does not shrink the model; model size depends on architecture and parameters. It does not change the context window, which is a property of the model rather than of data provenance records.",
+    "tags": [
+      "governance",
+      "data-lineage",
+      "compliance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-108",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which practice supports compliance when a regulation requires that customer data not be used to train third-party foundation models?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Choose services and settings that keep your prompts and data from being used to train the base models, and review the provider's data-use terms"
+      },
+      {
+        "id": "o2",
+        "text": "Assume all providers train on your data and do nothing"
+      },
+      {
+        "id": "o3",
+        "text": "Send the data to a public endpoint"
+      },
+      {
+        "id": "o4",
+        "text": "Disable encryption to simplify audits"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "You should select services and configurations that guarantee your inputs are not used to train the underlying models and confirm this in the provider's data-use documentation to meet the requirement.",
+    "explanationIncorrect": "Doing nothing on the assumption that all providers train on your data ignores available controls and terms that prevent it. Sending data to a public endpoint increases exposure rather than protecting it. Disabling encryption weakens security and would hinder, not help, a compliance audit.",
+    "tags": [
+      "compliance",
+      "data-use",
+      "governance"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-109",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "What is the governance benefit of maintaining a model registry with versioned, approved models?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It provides a controlled record of which model versions are approved for deployment, aiding traceability and rollback"
+      },
+      {
+        "id": "o2",
+        "text": "It automatically removes bias from every model"
+      },
+      {
+        "id": "o3",
+        "text": "It guarantees zero latency"
+      },
+      {
+        "id": "o4",
+        "text": "It eliminates the need for access controls"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A model registry tracks versions and approval status, so teams know exactly what is deployed, can reproduce results, and can roll back to a known-good version if needed.",
+    "explanationIncorrect": "A registry catalogs models; it does not automatically remove bias, which requires data and modeling work. It does not affect latency, which depends on the model and infrastructure. It does not eliminate the need for access controls; those remain essential and complement the registry.",
+    "tags": [
+      "governance",
+      "model-registry",
+      "traceability"
+    ],
+    "isSeed": true
+  },
+  {
+    "id": "aip-110",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which AWS resource helps you understand the compliance certifications (such as SOC and ISO) that AWS services meet?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Lex"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kinesis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Artifact provides on-demand access to AWS compliance reports and certifications, helping customers assess and document the compliance posture of the services they use.",
+    "explanationIncorrect": "Lex is a service for building conversational interfaces, not a source of compliance reports. Batch runs batch computing jobs and has no compliance-document function. Kinesis handles streaming data ingestion and analytics, unrelated to accessing certification reports.",
+    "tags": [
+      "compliance",
+      "aws-artifact",
+      "certifications"
+    ],
+    "isSeed": true
   }
 ]
