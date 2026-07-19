@@ -120,6 +120,91 @@
     "tags": ["ai-ml", "sagemaker", "services"]
   },
   {
+    "id": "aip-036",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "An agent learns to play a game by receiving rewards for good moves and penalties for bad ones, improving through trial and error. Which type of machine learning is this?",
+    "options": [
+      { "id": "o1", "text": "Reinforcement learning" },
+      { "id": "o2", "text": "Supervised learning" },
+      { "id": "o3", "text": "Unsupervised learning" },
+      { "id": "o4", "text": "Transfer learning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Reinforcement learning trains an agent through rewards and penalties as it takes actions in an environment, learning a policy by trial and error, which is exactly the game-playing setup described.",
+    "explanationIncorrect": "Supervised learning maps labeled inputs to outputs and has no reward signal. Unsupervised learning finds structure in unlabeled data, again with no rewards. Transfer learning reuses a pre-trained model on a new task; it is not a reward-driven trial-and-error paradigm. Reward-and-penalty learning is reinforcement learning.",
+    "tags": ["ai-ml", "reinforcement-learning"]
+  },
+  {
+    "id": "aip-037",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "You need to create a large, high-quality labeled dataset for supervised training using human labelers. Which AWS service manages data-labeling workflows?",
+    "options": [
+      { "id": "o1", "text": "Amazon SageMaker Ground Truth" },
+      { "id": "o2", "text": "Amazon SageMaker Clarify" },
+      { "id": "o3", "text": "Amazon Bedrock" },
+      { "id": "o4", "text": "Amazon Polly" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SageMaker Ground Truth orchestrates data-labeling jobs, including human labeling workforces and automated assistance, to build high-quality training datasets.",
+    "explanationIncorrect": "SageMaker Clarify measures bias and explainability, not labeling. Amazon Bedrock provides foundation models for generative AI. Amazon Polly is text-to-speech. Managed labeling is SageMaker Ground Truth.",
+    "tags": ["ai-ml", "ground-truth", "labeling"]
+  },
+  {
+    "id": "aip-038",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "For a fraud detector, failing to catch an actual fraud is very costly, so you want to maximize the share of real frauds the model detects. Which metric captures this goal?",
+    "options": [
+      { "id": "o1", "text": "Recall, the fraction of actual positives the model correctly identifies" },
+      { "id": "o2", "text": "Precision, the fraction of positive predictions that are correct" },
+      { "id": "o3", "text": "Latency of each prediction" },
+      { "id": "o4", "text": "Throughput of the inference endpoint" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Recall measures how many of the true frauds were caught, so maximizing recall minimizes missed frauds, which is the priority when a false negative is the costly outcome.",
+    "explanationIncorrect": "Precision measures how many flagged items were truly fraud; optimizing it reduces false alarms but does not directly minimize missed frauds. Latency and throughput are performance metrics of the serving system, not detection quality. Catching more of the real frauds is recall.",
+    "tags": ["ai-ml", "metrics", "recall-precision"]
+  },
+  {
+    "id": "aip-039",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "Free-form text, images, and audio are examples of which kind of data, which foundation models are especially good at handling?",
+    "options": [
+      { "id": "o1", "text": "Unstructured data" },
+      { "id": "o2", "text": "Structured tabular data" },
+      { "id": "o3", "text": "Relational schema data" },
+      { "id": "o4", "text": "Normalized database rows" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Text, images, and audio lack a fixed tabular schema, so they are unstructured data, the kind foundation models are particularly effective at processing and generating.",
+    "explanationIncorrect": "Structured tabular data, relational schema data, and normalized database rows all describe organized rows and columns with a defined schema, which is not what free-form text, images, and audio are. That content is unstructured data.",
+    "tags": ["ai-ml", "unstructured-data"]
+  },
+  {
+    "id": "aip-040",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "easy",
+    "stem": "In supervised learning, the input variables the model learns from are called features. What is the known target value it learns to predict called?",
+    "options": [
+      { "id": "o1", "text": "The label" },
+      { "id": "o2", "text": "The hyperparameter" },
+      { "id": "o3", "text": "The gradient" },
+      { "id": "o4", "text": "The epoch" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In supervised learning the target the model is trained to predict is the label, paired with the input features in each training example.",
+    "explanationIncorrect": "A hyperparameter is a training configuration value like learning rate, not the prediction target. A gradient is used to update weights during training. An epoch is one pass over the training data. The predicted target is the label.",
+    "tags": ["ai-ml", "features-labels"]
+  },
+  {
     "id": "aip-002",
     "exam": "aws-ai-practitioner",
     "domain": "Fundamentals of Generative AI",
