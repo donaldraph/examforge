@@ -853,5 +853,90 @@
     "explanationCorrect": "A JavaScript action declares a post entry point with runs.post that the runner executes after the job's steps as cleanup, and post-if controls the condition under which it runs.",
     "explanationIncorrect": "Actions do not contain jobs; jobs live in workflows. continue-on-error affects failure handling, not scheduling a post-completion cleanup step. A schedule trigger is a workflow event, not an action cleanup mechanism. The post-completion hook is runs.post.",
     "tags": ["actions", "post-step", "cleanup"]
+  },
+  {
+    "id": "gha-051",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "As an organization owner you want every repository's automatic GITHUB_TOKEN to default to read-only permissions unless a workflow explicitly requests more. Where do you set this?",
+    "options": [
+      { "id": "o1", "text": "In the organization (or repository) Actions settings, set the default GITHUB_TOKEN permissions to read-only" },
+      { "id": "o2", "text": "Only inside each individual workflow file, one at a time" },
+      { "id": "o3", "text": "In dependabot.yml" },
+      { "id": "o4", "text": "In a CODEOWNERS file" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Actions settings at the organization or repository level let you set the default workflow permissions for GITHUB_TOKEN to read-only, so workflows must explicitly request any write scope, enforcing least privilege by default across repos.",
+    "explanationIncorrect": "Setting it per workflow does not establish an org-wide default and relies on every author remembering. dependabot.yml configures dependency updates, not token defaults. CODEOWNERS assigns review ownership. The org-wide default is set in the Actions settings.",
+    "tags": ["enterprise", "github-token", "default-permissions"]
+  },
+  {
+    "id": "gha-052",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Workflows should not run automatically on pull requests from outside or first-time contributors until a maintainer approves. Which setting enforces this?",
+    "options": [
+      { "id": "o1", "text": "The fork pull request workflow approval policy (require approval for outside or first-time contributors)" },
+      { "id": "o2", "text": "A branch protection required-reviews rule" },
+      { "id": "o3", "text": "A concurrency group on the workflow" },
+      { "id": "o4", "text": "Enabling secret scanning" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Actions fork-pull-request approval policy holds workflow runs from outside or first-time contributors until a maintainer approves, which prevents untrusted contributors from triggering runs (and using resources) automatically.",
+    "explanationIncorrect": "Required reviews gate merging a pull request, not whether its workflow runs. A concurrency group serializes runs; it does not gate them on approval. Secret scanning detects committed credentials and is unrelated to running workflows. The control is the fork pull request approval policy.",
+    "tags": ["enterprise", "fork-approval", "security"]
+  },
+  {
+    "id": "gha-053",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You want self-hosted runners that start fresh for each job and scale with demand on Kubernetes, avoiding any leftover state between jobs. Which approach fits?",
+    "options": [
+      { "id": "o1", "text": "Ephemeral runners managed by Actions Runner Controller (runner scale sets) on Kubernetes" },
+      { "id": "o2", "text": "A single long-lived runner reused for every job" },
+      { "id": "o3", "text": "GitHub-hosted runners only, with no self-hosted option" },
+      { "id": "o4", "text": "Disabling runners entirely" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Actions Runner Controller provisions ephemeral runners as scale sets on Kubernetes: each runner handles one job then is torn down, giving clean state per job and autoscaling with demand.",
+    "explanationIncorrect": "A single long-lived runner carries state between jobs and does not scale. GitHub-hosted runners are managed but are not the self-hosted Kubernetes autoscaling described. Disabling runners removes the ability to run jobs at all. The fit is ephemeral runners via Actions Runner Controller.",
+    "tags": ["enterprise", "ephemeral-runners", "autoscaling"]
+  },
+  {
+    "id": "gha-054",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You must guarantee that a security-scan workflow runs on pull requests across all targeted repositories in the organization, without each repository opting in by copying it. Which capability provides this?",
+    "options": [
+      { "id": "o1", "text": "Organization-required workflows, enforced through repository rulesets on targeted repositories" },
+      { "id": "o2", "text": "Copying the workflow file into each repository by hand" },
+      { "id": "o3", "text": "A branch protection rule configured separately in every repository" },
+      { "id": "o4", "text": "A pinned issue reminding maintainers to run scans" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Required workflows (via organization rulesets) let an org enforce that specific workflows run on the targeted repositories automatically, so coverage does not depend on each team adding the workflow themselves.",
+    "explanationIncorrect": "Copying the file everywhere is exactly the manual, drift-prone approach required workflows remove. Per-repository branch protection does not centrally push a workflow to run. A pinned issue is a reminder, not enforcement. Central enforcement is organization-required workflows via rulesets.",
+    "tags": ["enterprise", "required-workflows", "rulesets"]
+  },
+  {
+    "id": "gha-055",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Your builds need more CPU and memory than the standard GitHub-hosted runner offers, but you do not want to operate self-hosted infrastructure. What is the option?",
+    "options": [
+      { "id": "o1", "text": "GitHub-hosted larger runners with more resources, made available through a runner group" },
+      { "id": "o2", "text": "Only self-hosted runners can ever have more resources" },
+      { "id": "o3", "text": "Increase timeout-minutes to grant the job more CPU" },
+      { "id": "o4", "text": "Use a larger concurrency group to add capacity" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub offers larger hosted runners with more CPU, memory, and disk that you enable through a runner group, giving more power while GitHub still manages the infrastructure.",
+    "explanationIncorrect": "It is not true that only self-hosted runners can be larger; hosted larger runners exist. timeout-minutes bounds job duration and grants no additional CPU. A concurrency group controls serialization of runs, not machine size. The managed option is GitHub-hosted larger runners.",
+    "tags": ["enterprise", "larger-runners", "github-hosted"]
   }
 ]
