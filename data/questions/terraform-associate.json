@@ -957,6 +957,91 @@
     "tags": ["configuration", "functions", "length"]
   },
   {
+    "id": "tf-061",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "You want to reject an invalid input value, for example an instance size not in an allowed list, at plan time with a helpful message. Which construct does this?",
+    "options": [
+      { "id": "o1", "text": "A validation block inside the variable" },
+      { "id": "o2", "text": "A provisioner that checks the value" },
+      { "id": "o3", "text": "An output value" },
+      { "id": "o4", "text": "A depends_on entry" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A variable's validation block defines a condition and an error message, so Terraform rejects a non-conforming input early with your custom message.",
+    "explanationIncorrect": "A provisioner runs during apply on a resource, far too late and in the wrong place for input validation. An output exposes values, not input rules. depends_on only orders resources. Input validation is a variable validation block.",
+    "tags": ["configuration", "variable-validation"]
+  },
+  {
+    "id": "tf-062",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "You need to transform a list of names into a map keyed by each name. Which language feature builds this?",
+    "options": [
+      { "id": "o1", "text": "A for expression, for example { for n in var.names : n => upper(n) }" },
+      { "id": "o2", "text": "A provisioner loop" },
+      { "id": "o3", "text": "The count meta-argument" },
+      { "id": "o4", "text": "A data source" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A for expression iterates a collection and constructs a new list or map, so { for n in var.names : n => ... } produces a map keyed by name.",
+    "explanationIncorrect": "A provisioner runs commands, not value transformations. count repeats a resource by index; it does not build a map value. A data source reads external information. Collection transformation uses a for expression.",
+    "tags": ["configuration", "for-expression"]
+  },
+  {
+    "id": "tf-063",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "A resource needs a variable number of repeatable nested blocks (like ingress rules) generated from a list. Which construct produces them?",
+    "options": [
+      { "id": "o1", "text": "A dynamic block" },
+      { "id": "o2", "text": "One separate resource per rule and nothing else" },
+      { "id": "o3", "text": "A provisioner" },
+      { "id": "o4", "text": "An output block" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A dynamic block generates repeated nested blocks from a collection, which is how you produce a variable number of nested configuration blocks such as ingress rules.",
+    "explanationIncorrect": "Splitting into separate resources changes the design and is not how you generate repeated nested blocks within one resource. A provisioner runs commands. An output exposes values. Repeated nested blocks come from a dynamic block.",
+    "tags": ["configuration", "dynamic-block"]
+  },
+  {
+    "id": "tf-064",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "You want a variable's value hidden from CLI output and plan display. What do you set?",
+    "options": [
+      { "id": "o1", "text": "sensitive = true on the variable (and on any output that exposes it)" },
+      { "id": "o2", "text": "secret = true" },
+      { "id": "o3", "text": "hidden = true" },
+      { "id": "o4", "text": "private = true" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Marking a variable or output sensitive = true tells Terraform to redact its value in plan and CLI output so it is not shown in cleartext.",
+    "explanationIncorrect": "secret, hidden, and private are not the Terraform arguments for this. The redaction flag is sensitive. Note it hides values from display but does not encrypt them in state.",
+    "tags": ["configuration", "sensitive"]
+  },
+  {
+    "id": "tf-065",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "You want to render a configuration file from a template, substituting values, at plan and apply time. Which built-in function does this?",
+    "options": [
+      { "id": "o1", "text": "templatefile(path, vars)" },
+      { "id": "o2", "text": "render(path)" },
+      { "id": "o3", "text": "format() by itself" },
+      { "id": "o4", "text": "file() with no variable substitution" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "templatefile reads a template file and renders it with the provided variables, producing the substituted content for use in your configuration.",
+    "explanationIncorrect": "render is not a Terraform function. format builds a string from a format spec but does not read and render a template file. file reads a file's raw contents with no substitution. Templated rendering is templatefile.",
+    "tags": ["configuration", "functions", "templatefile"]
+  },
+  {
     "id": "tf-032",
     "exam": "terraform-associate",
     "domain": "HCP Terraform",
@@ -1023,5 +1108,90 @@
     "explanationCorrect": "An HCP Terraform workspace groups a configuration together with its own state, variables, and run history, typically representing one environment such as staging or production.",
     "explanationIncorrect": "A workspace is far more than a formatting preference. It is not a provider plugin, which implements resource types. It is not a single resource; it manages a whole configuration's state and runs. An HCP Terraform workspace is a managed environment with its own state, variables, and history.",
     "tags": ["hcp-terraform", "workspaces"]
+  },
+  {
+    "id": "tf-066",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "You want to define a set of variables once and apply them to many workspaces in HCP Terraform. Which feature provides this?",
+    "options": [
+      { "id": "o1", "text": "Variable sets" },
+      { "id": "o2", "text": "A single .tfvars file copied into every workspace" },
+      { "id": "o3", "text": "Provider aliases" },
+      { "id": "o4", "text": "CLI workspaces" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Variable sets let you define variables once in HCP Terraform and apply them to multiple workspaces (or all of them), avoiding duplication.",
+    "explanationIncorrect": "Copying a .tfvars file into each workspace is exactly the duplication variable sets remove. Provider aliases configure multiple provider instances. Workspaces isolate state; they do not share variable definitions. Reusable shared variables are variable sets.",
+    "tags": ["hcp-terraform", "variable-sets"]
+  },
+  {
+    "id": "tf-067",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "One configuration needs an output value from another configuration's state. Which is a supported way to read it?",
+    "options": [
+      { "id": "o1", "text": "The terraform_remote_state data source, reading the other workspace's outputs" },
+      { "id": "o2", "text": "Copying and pasting the value by hand each time it changes" },
+      { "id": "o3", "text": "terraform import of the other configuration" },
+      { "id": "o4", "text": "A provisioner that scrapes the value" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The terraform_remote_state data source reads another configuration's root outputs from its state (for example a workspace in HCP Terraform), so one configuration can consume another's published outputs.",
+    "explanationIncorrect": "Manual copy-paste is error-prone and does not stay in sync. terraform import brings existing infrastructure into state; it does not read another config's outputs. A provisioner runs commands, not a supported cross-state read. The supported mechanism is the terraform_remote_state data source.",
+    "tags": ["hcp-terraform", "remote-state", "outputs"]
+  },
+  {
+    "id": "tf-068",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "Your organization wants to share internal, versioned modules privately across teams in HCP Terraform. Which capability provides this?",
+    "options": [
+      { "id": "o1", "text": "The private module registry" },
+      { "id": "o2", "text": "Only the public Terraform Registry" },
+      { "id": "o3", "text": "The terraform.tfstate file" },
+      { "id": "o4", "text": "A shared Slack channel of code snippets" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform includes a private module registry where an organization publishes versioned internal modules for its teams to discover and consume, kept private to the org.",
+    "explanationIncorrect": "The public registry shares modules with everyone, not privately within your org. The state file records resources, not shareable modules. A Slack channel is not a versioned registry. Private internal sharing uses the private module registry.",
+    "tags": ["hcp-terraform", "private-registry"]
+  },
+  {
+    "id": "tf-069",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "Before applying, HCP Terraform can show the estimated monthly cost impact of the planned changes. What is this feature called?",
+    "options": [
+      { "id": "o1", "text": "Cost estimation" },
+      { "id": "o2", "text": "Sentinel" },
+      { "id": "o3", "text": "The dependency lock file" },
+      { "id": "o4", "text": "terraform fmt" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Cost estimation shows the projected monthly cost and the delta for the resources a run would change, helping teams review financial impact before applying.",
+    "explanationIncorrect": "Sentinel is policy-as-code enforcement, not cost projection. The lock file pins provider versions. terraform fmt reformats files. The pre-apply cost projection is cost estimation.",
+    "tags": ["hcp-terraform", "cost-estimation"]
+  },
+  {
+    "id": "tf-070",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "HCP Terraform must apply changes to infrastructure inside a private network that the hosted service cannot reach directly. Which feature enables this?",
+    "options": [
+      { "id": "o1", "text": "HCP Terraform agents (self-hosted agents) that run inside your network and poll for work" },
+      { "id": "o2", "text": "Making the private network publicly reachable" },
+      { "id": "o3", "text": "A NAT gateway on the SaaS provider's side" },
+      { "id": "o4", "text": "It is impossible to manage private infrastructure with HCP Terraform" }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Self-hosted HCP Terraform agents run inside your network and pull runs from HCP Terraform, so it can execute plans and applies against private infrastructure without inbound access to that network.",
+    "explanationIncorrect": "Exposing the private network publicly defeats its purpose and is unsafe. You cannot add a NAT gateway on the SaaS provider's side to reach into your network. Managing private infrastructure is possible via agents, so claiming it is impossible is wrong. The feature is HCP Terraform agents.",
+    "tags": ["hcp-terraform", "agents", "private-infrastructure"]
   }
 ]
