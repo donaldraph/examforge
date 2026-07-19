@@ -164,6 +164,50 @@ body {
   font-weight: 700;
 }
 
+/* Mode toggle + timer */
+.mode-controls { display: flex; align-items: center; gap: 12px; }
+.mode-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 2px;
+  background: var(--surface);
+}
+.mode-toggle__btn {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--ink-soft);
+  background: none;
+  border: none;
+  border-radius: 999px;
+  padding: 5px 12px;
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.mode-toggle__btn:hover:not(:disabled):not(.mode-toggle__btn--on) { color: var(--ink); }
+.mode-toggle__btn--on { background: var(--accent); color: #fff; }
+.mode-toggle__btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.timer {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+  padding: 3px 10px;
+  border-radius: 8px;
+  background: var(--accent-wash);
+  border: 1px solid transparent;
+}
+.timer--low { color: var(--accent-deep); }
+.timer--critical {
+  color: var(--bad);
+  background: var(--bad-wash);
+  animation: timer-pulse 1s ease-in-out infinite;
+}
+@keyframes timer-pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.55; } }
+.option--chosen { border-color: var(--accent); background: var(--accent-wash); }
+
 /* Card */
 .card {
   background: var(--surface);

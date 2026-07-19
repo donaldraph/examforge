@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Exam, Question } from './types';
 import { loadQuestions, loadRegistry } from './lib/loadBank';
 import { scoreAttempt, WEAK_DOMAIN_THRESHOLD, type AttemptScore } from './lib/quiz';
@@ -8,8 +8,10 @@ import { QuestionCard } from './components/QuestionCard';
 import { Results } from './components/Results';
 import { ExamTabs } from './components/ExamTabs';
 import { ComingSoon } from './components/ComingSoon';
+import { formatClock, sessionSeconds } from './lib/timer';
 
 type Answers = Record<string, string | null>;
+type Mode = 'practice' | 'timed';
 
 export default function App() {
   const [exams, setExams] = useState<Exam[] | null>(null);
@@ -21,6 +23,8 @@ export default function App() {
   const [index, setIndex] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [attempt, setAttempt] = useState(0); // reshuffle nonce, bumped on restart
+  const [mode, setMode] = useState<Mode>('practice');
+  const [remaining, setRemaining] = useState<number | null>(null); // seconds left in a timed run
 
   const [finished, setFinished] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -120,6 +124,44 @@ export default function App() {
     }
   }
 
+  // Keep the interval's callback pointing at the latest finish() so auto-submit
+  // reads current answers, not a stale closure.
+  const finishRef = useRef(finish);
+  finishRef.current = finish;
+
+  // Timed mode: one continuous countdown for the whole session, sized to the
+  // exam's per-question pace times the number of questions. Runs off a wall-clock
+  // deadline so navigating between questions never adds or loses time. At zero it
+  // auto-submits exactly once. Practice mode has no clock.
+  useEffect(() => {
+    if (mode !== 'timed' || !questions || finished) {
+      setRemaining(null);
+      return;
+    }
+    const total = sessionSeconds(selectedExam?.secondsPerQuestion, questions.length);
+    const deadline = Date.now() + total * 1000;
+    setRemaining(total);
+    let done = false;
+    const tick = () => {
+      const secs = Math.max(0, Math.round((deadline - Date.now()) / 1000));
+      setRemaining(secs);
+      if (secs <= 0 && !done) {
+        done = true;
+        clearInterval(id);
+        finishRef.current();
+      }
+    };
+    const id = setInterval(tick, 250);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mode, attempt, selectedId, questions, finished]);
+
+  function switchMode(next: Mode) {
+    if (next === mode) return;
+    setMode(next);
+    resetQuiz(); // a mode change starts a fresh run so the clock is honest
+  }
+
   if (error) {
     return (
       <Shell exams={exams} selectedId={selectedId} onSelect={setSelectedId}>
@@ -156,19 +198,57 @@ export default function App() {
     const chosen = answers[current.id] ?? null;
     const answered = chosen !== null;
     const isLast = index === questions.length - 1;
+    // Practice makes you answer before moving on (so the explanation is earned);
+    // timed mode lets you skip and come back or submit early, like the real exam.
+    const canAdvance = mode === 'timed' || answered;
     body = (
       <>
         <div className="progress-row">
           <span className="progress-row__count">
             Question {index + 1} of {questions.length}
           </span>
-          <span className="progress-row__mode">Practice mode</span>
+          <div className="mode-controls">
+            {mode === 'timed' && remaining !== null && (
+              <span
+                className={
+                  'timer' +
+                  (remaining <= 60 ? ' timer--critical' : remaining <= 300 ? ' timer--low' : '')
+                }
+                role="timer"
+                aria-live="off"
+                title="Time remaining. At zero the exam submits automatically."
+              >
+                {formatClock(remaining)}
+              </span>
+            )}
+            <div className="mode-toggle" role="group" aria-label="Exam mode">
+              <button
+                type="button"
+                className={'mode-toggle__btn' + (mode === 'practice' ? ' mode-toggle__btn--on' : '')}
+                aria-pressed={mode === 'practice'}
+                disabled={submitting}
+                onClick={() => switchMode('practice')}
+              >
+                Practice
+              </button>
+              <button
+                type="button"
+                className={'mode-toggle__btn' + (mode === 'timed' ? ' mode-toggle__btn--on' : '')}
+                aria-pressed={mode === 'timed'}
+                disabled={submitting}
+                onClick={() => switchMode('timed')}
+              >
+                Timed
+              </button>
+            </div>
+          </div>
         </div>
 
         <QuestionCard
           question={current}
           shuffleNonce={attempt}
           chosenOptionId={chosen}
+          reveal={mode === 'practice'}
           onChoose={(optionId) => setAnswers((prev) => ({ ...prev, [current.id]: optionId }))}
         />
 
@@ -185,19 +265,19 @@ export default function App() {
             <button
               type="button"
               className="btn btn--primary"
-              disabled={!answered || submitting}
+              disabled={!canAdvance || submitting}
               onClick={finish}
             >
-              {submitting ? 'Saving…' : 'Finish'}
+              {submitting ? 'Saving…' : mode === 'timed' ? 'Submit exam' : 'Finish'}
             </button>
           ) : (
             <button
               type="button"
               className="btn btn--primary"
-              disabled={!answered || submitting}
+              disabled={!canAdvance || submitting}
               onClick={() => setIndex((i) => Math.min(questions.length - 1, i + 1))}
             >
-              Next
+              {mode === 'timed' && !answered ? 'Skip' : 'Next'}
             </button>
           )}
         </div>
@@ -236,7 +316,8 @@ function Shell({
       )}
       <main className="content">{children}</main>
       <footer className="footer">
-        Practice mode. Answers are shuffled every attempt. v1 has no AI, by design.
+        Practice reveals each answer as you go; Timed runs a real-exam clock and
+        submits at zero. Answers are shuffled every attempt. v1 has no AI, by design.
       </footer>
     </div>
   );

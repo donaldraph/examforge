@@ -29,6 +29,10 @@ export interface Exam {
   label: string;
   status: ExamStatus;
   domains: string[];
+  // Seconds allotted per question in timed mode, matching (or tighter than) the
+  // real certification's pace. A timed session's clock is this times the number
+  // of questions in the session. Falls back to a default if absent.
+  secondsPerQuestion?: number;
 }
 
 export interface ExamRegistry {
