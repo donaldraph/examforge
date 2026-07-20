@@ -4125,5 +4125,236 @@
       "foundation-models",
       "concepts"
     ]
+  },
+  {
+    "id": "aip-125",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "A company wants an FM to answer questions using their private, up-to-date document set without retraining the model. Which approach fits best?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Retrieval Augmented Generation (RAG), retrieving relevant documents and adding them to the prompt"
+      },
+      {
+        "id": "o2",
+        "text": "Pre-training a new foundation model from scratch"
+      },
+      {
+        "id": "o3",
+        "text": "Increasing the temperature parameter"
+      },
+      {
+        "id": "o4",
+        "text": "Reducing the max token limit"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RAG retrieves relevant passages from your data and includes them in the prompt so the model grounds its answer in current, private content without retraining.",
+    "explanationIncorrect": "Pre-training from scratch is enormously expensive and unnecessary for grounding on documents. Raising temperature only increases randomness, not factual grounding. Lowering the token limit restricts output length and does not add knowledge, so RAG is the appropriate approach.",
+    "tags": [
+      "foundation-models",
+      "rag",
+      "grounding"
+    ]
+  },
+  {
+    "id": "aip-126",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "When does fine-tuning a foundation model make more sense than prompt engineering or RAG?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "When you need the model to consistently adopt a specialized style, format, or task behavior that prompting alone cannot reliably achieve"
+      },
+      {
+        "id": "o2",
+        "text": "When you only need to inject a few facts that change daily"
+      },
+      {
+        "id": "o3",
+        "text": "Whenever you want the cheapest possible option with no data"
+      },
+      {
+        "id": "o4",
+        "text": "When you never have any labeled examples"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Fine-tuning adjusts model weights on curated examples, making it suitable when you need consistent specialized behavior, style, or formatting that prompting cannot reliably deliver.",
+    "explanationIncorrect": "For facts that change daily, RAG is better since retraining constantly is impractical. Fine-tuning is not the cheapest, no-data option; it requires curated examples and compute. Having no labeled examples at all makes fine-tuning infeasible, so consistent specialized behavior is when fine-tuning shines.",
+    "tags": [
+      "foundation-models",
+      "fine-tuning",
+      "customization"
+    ]
+  },
+  {
+    "id": "aip-127",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "What is prompt engineering?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Crafting and refining the input instructions to guide a model toward better outputs"
+      },
+      {
+        "id": "o2",
+        "text": "Retraining the model's weights on new data"
+      },
+      {
+        "id": "o3",
+        "text": "Provisioning GPU clusters for training"
+      },
+      {
+        "id": "o4",
+        "text": "Encrypting prompts before storage"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Prompt engineering is the practice of designing and iterating on the instructions and context given to a model to elicit more accurate or useful responses.",
+    "explanationIncorrect": "Retraining weights is fine-tuning, a different technique that changes the model rather than the prompt. Provisioning GPU clusters is infrastructure work, not prompt design. Encrypting prompts is a security measure, so shaping the input instructions is what prompt engineering means.",
+    "tags": [
+      "foundation-models",
+      "prompt-engineering",
+      "concepts"
+    ]
+  },
+  {
+    "id": "aip-128",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Providing a few input-output examples inside the prompt so the model learns the pattern for the task is known as what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Few-shot prompting"
+      },
+      {
+        "id": "o2",
+        "text": "Zero-shot pre-training"
+      },
+      {
+        "id": "o3",
+        "text": "Gradient descent"
+      },
+      {
+        "id": "o4",
+        "text": "Backpropagation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Few-shot prompting includes a handful of examples in the prompt so the model infers the desired pattern without any weight updates.",
+    "explanationIncorrect": "Zero-shot means giving no examples, and pre-training is a training phase, so that pairing is wrong. Gradient descent and backpropagation are training-time optimization mechanisms that update weights, not in-prompt example techniques, so few-shot prompting is correct.",
+    "tags": [
+      "foundation-models",
+      "few-shot",
+      "prompting"
+    ]
+  },
+  {
+    "id": "aip-129",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "A RAG system needs to store and quickly find document embeddings by similarity. Which type of store is designed for this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A vector database (or vector index)"
+      },
+      {
+        "id": "o2",
+        "text": "A relational transaction ledger"
+      },
+      {
+        "id": "o3",
+        "text": "A message queue"
+      },
+      {
+        "id": "o4",
+        "text": "A DNS zone file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A vector database or index stores embeddings and supports fast nearest-neighbor similarity search, which is what RAG retrieval requires.",
+    "explanationIncorrect": "A relational transaction ledger is optimized for structured rows and ACID transactions, not high-dimensional similarity search. A message queue moves messages between components. A DNS zone file maps names to addresses, so a vector database is the store built for embedding similarity.",
+    "tags": [
+      "foundation-models",
+      "vector-database",
+      "rag"
+    ]
+  },
+  {
+    "id": "aip-130",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which Amazon Bedrock capability lets you build managed retrieval-augmented applications over your own data sources?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Knowledge Bases for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Bedrock GPU reservations"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Bedrock billing alarms"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Bedrock VPC peering"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Knowledge Bases for Amazon Bedrock provides managed ingestion, embedding, and retrieval so you can build RAG applications grounded in your data.",
+    "explanationIncorrect": "There is no GPU reservation feature that provides RAG; Bedrock abstracts infrastructure. Billing alarms track spend, not retrieval. VPC peering is networking, not a retrieval capability, so Knowledge Bases is the managed RAG feature.",
+    "tags": [
+      "foundation-models",
+      "bedrock",
+      "knowledge-bases"
+    ]
+  },
+  {
+    "id": "aip-131",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "An agent built on a foundation model can call external tools and APIs to complete multi-step tasks. What does this capability add over a plain chat completion?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The ability to take actions and orchestrate steps, such as querying systems or invoking functions, based on model reasoning"
+      },
+      {
+        "id": "o2",
+        "text": "It removes the need for any foundation model"
+      },
+      {
+        "id": "o3",
+        "text": "It guarantees outputs are always correct"
+      },
+      {
+        "id": "o4",
+        "text": "It only shortens the model's responses"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An agent extends a model with the ability to invoke tools and APIs and orchestrate multiple steps, letting it act on the world rather than only generate text.",
+    "explanationIncorrect": "An agent still relies on a foundation model to reason, so it does not remove the model. Tool use does not guarantee correctness; the model can still err. It does not merely shorten responses, so orchestrating actions across steps is the added capability.",
+    "tags": [
+      "foundation-models",
+      "agents",
+      "tool-use"
+    ]
   }
 ]
