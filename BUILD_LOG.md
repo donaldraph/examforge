@@ -3,6 +3,20 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Question banks — expansion to 865
+
+### 2026-07-20 — another 35 questions per exam, domain-grouped
+
+- Added 35 more questions to every exam, again spread across its domains by
+  blueprint weight: GitHub Actions 140, GitHub Advanced Security 145, AWS AI
+  Practitioner 145, AWS Cloud Practitioner 140, AWS Solutions Architect
+  Associate 140, Terraform Associate 155. That is 210 new questions, 865 total.
+
+- Same discipline as before: each domain slice appended, run through the
+  committed validator, and committed on its own so every commit is one
+  exam-domain slice. No duplicate ids, all domains covered, wrong-answer
+  explanations strictly longer. All 865 pass, 18 unit tests green, clean build.
+
 ## Question banks — expansion to 655
 
 ### 2026-07-19 — another 50 questions per exam, domain-grouped
