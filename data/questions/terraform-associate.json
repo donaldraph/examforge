@@ -4802,5 +4802,170 @@
       "sensitive-variables",
       "security"
     ]
+  },
+  {
+    "id": "tf-146",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "What does it mean that Terraform uses a declarative approach to infrastructure as code?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "You describe the desired end state and Terraform determines the steps to reach it"
+      },
+      {
+        "id": "o2",
+        "text": "You write step-by-step imperative commands for every change"
+      },
+      {
+        "id": "o3",
+        "text": "You manually provision resources in a console"
+      },
+      {
+        "id": "o4",
+        "text": "You cannot preview changes before applying"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In a declarative model you specify the desired end state, and Terraform figures out the create, update, or destroy actions needed to reach it.",
+    "explanationIncorrect": "Writing explicit step-by-step commands describes an imperative approach, not Terraform's declarative one. Manual console provisioning is the opposite of infrastructure as code. Terraform can preview changes with plan, so describing desired end state is what declarative means.",
+    "tags": [
+      "iac",
+      "declarative",
+      "concepts"
+    ]
+  },
+  {
+    "id": "tf-147",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Which benefit does infrastructure as code provide over manually clicking through a cloud console?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Versioned, repeatable, and reviewable provisioning that can be automated"
+      },
+      {
+        "id": "o2",
+        "text": "It guarantees infrastructure never needs changes"
+      },
+      {
+        "id": "o3",
+        "text": "It removes the need to understand the platform"
+      },
+      {
+        "id": "o4",
+        "text": "It only works for a single cloud provider"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "IaC captures infrastructure in version-controlled code that is repeatable, reviewable, and automatable, unlike error-prone manual console work.",
+    "explanationIncorrect": "IaC does not guarantee infrastructure never changes; it manages change. It still requires understanding the platform you provision. Terraform in particular supports many providers, not a single one, so versioned repeatable provisioning is the key benefit.",
+    "tags": [
+      "iac",
+      "benefits",
+      "automation"
+    ]
+  },
+  {
+    "id": "tf-148",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "hard",
+    "stem": "Terraform is often described as cloud-agnostic or multi-cloud. What enables this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A provider plugin model where each provider implements resources for its platform behind a common workflow"
+      },
+      {
+        "id": "o2",
+        "text": "It only supports AWS resources internally"
+      },
+      {
+        "id": "o3",
+        "text": "It converts all clouds into one identical API"
+      },
+      {
+        "id": "o4",
+        "text": "It requires a separate binary per cloud"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform's provider plugin architecture lets many platforms be managed through the same configuration language and workflow, each provider implementing its own resources.",
+    "explanationIncorrect": "Terraform is not limited to AWS; many providers exist. It does not merge every cloud into one identical API; providers expose platform-specific resources. It uses one Terraform binary with plugins, not a separate binary per cloud, so the provider model is what enables multi-cloud use.",
+    "tags": [
+      "iac",
+      "multi-cloud",
+      "providers"
+    ]
+  },
+  {
+    "id": "tf-149",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Why does Terraform maintain state rather than querying the provider for everything on each run?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To map configuration to real resources, track metadata, and improve performance for large infrastructures"
+      },
+      {
+        "id": "o2",
+        "text": "Because providers have no APIs to query"
+      },
+      {
+        "id": "o3",
+        "text": "To store the source code"
+      },
+      {
+        "id": "o4",
+        "text": "To replace version control"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "State maps configuration to real resources, records metadata like dependencies, and lets Terraform avoid re-querying every resource, which matters for performance at scale.",
+    "explanationIncorrect": "Providers do have APIs; state complements them rather than compensating for their absence. State does not store your source code. It does not replace version control, so mapping and performance are why state exists.",
+    "tags": [
+      "iac",
+      "state",
+      "purpose"
+    ]
+  },
+  {
+    "id": "tf-150",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "What is meant by idempotency in the context of applying Terraform configurations?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Re-applying an unchanged configuration results in no further changes because the desired state already matches reality"
+      },
+      {
+        "id": "o2",
+        "text": "Every apply always recreates all resources"
+      },
+      {
+        "id": "o3",
+        "text": "Applying twice doubles the resources"
+      },
+      {
+        "id": "o4",
+        "text": "State is discarded after each apply"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Idempotency means applying the same configuration when nothing has changed produces no changes, since the actual state already equals the desired state.",
+    "explanationIncorrect": "Terraform does not recreate all resources on every apply; it only changes what differs. Applying twice does not duplicate resources because Terraform tracks them in state. State is preserved, not discarded, so no-op on unchanged config is what idempotency means.",
+    "tags": [
+      "iac",
+      "idempotency",
+      "concepts"
+    ]
   }
 ]
