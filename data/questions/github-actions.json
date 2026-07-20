@@ -3499,5 +3499,302 @@
       "required"
     ],
     "isSeed": true
+  },
+  {
+    "id": "gha-106",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want only one deployment workflow to run at a time for a given environment, cancelling any in-progress run when a newer one starts. Which configuration achieves this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A concurrency group with cancel-in-progress set to true"
+      },
+      {
+        "id": "o2",
+        "text": "A matrix strategy with max-parallel set to 1"
+      },
+      {
+        "id": "o3",
+        "text": "The timeout-minutes key on the deploy job"
+      },
+      {
+        "id": "o4",
+        "text": "A needs dependency on the previous run"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The concurrency key groups runs by a key you choose and, with cancel-in-progress: true, cancels any already-running run in that group when a new one is queued.",
+    "explanationIncorrect": "max-parallel only limits how many matrix jobs within a single run execute at once, not how many separate runs overlap. timeout-minutes caps how long a job may run before it is killed, unrelated to overlapping runs. needs establishes ordering between jobs in the same run and cannot reference a separate workflow run at all.",
+    "tags": [
+      "concurrency",
+      "deployment",
+      "cancel-in-progress"
+    ]
+  },
+  {
+    "id": "gha-107",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A step needs to expose a computed value so later steps in the same job can read it as a step output. Where should the step write it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Append name=value to the file referenced by $GITHUB_OUTPUT"
+      },
+      {
+        "id": "o2",
+        "text": "Use the deprecated ::set-output workflow command"
+      },
+      {
+        "id": "o3",
+        "text": "Export it with the shell export keyword"
+      },
+      {
+        "id": "o4",
+        "text": "Append it to the file referenced by $GITHUB_ENV"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Writing name=value to the file at $GITHUB_OUTPUT registers a step output that later steps read via steps.<id>.outputs.<name>.",
+    "explanationIncorrect": "The ::set-output command still nominally works but is deprecated and disabled on many runners, so it is not the current mechanism. A plain shell export only affects the current step's process and is gone in the next step. Writing to $GITHUB_ENV sets an environment variable for later steps, which is a different mechanism from a named step output and is read differently.",
+    "tags": [
+      "step-outputs",
+      "github-output",
+      "expressions"
+    ]
+  },
+  {
+    "id": "gha-108",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "A job has continue-on-error: true on a flaky step. A later step uses if: steps.flaky.outcome == 'failure'. What is the difference between the outcome and conclusion of that step?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "outcome is the raw result before continue-on-error is applied; conclusion is the result after it is applied"
+      },
+      {
+        "id": "o2",
+        "text": "outcome and conclusion are always identical for a step"
+      },
+      {
+        "id": "o3",
+        "text": "conclusion is the raw result; outcome is adjusted by continue-on-error"
+      },
+      {
+        "id": "o4",
+        "text": "outcome only exists for jobs, not steps"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A step's outcome is its result before continue-on-error is honored, while conclusion reflects the result after continue-on-error may have turned a failure into success.",
+    "explanationIncorrect": "The two differ precisely when continue-on-error is in play, so calling them always identical is wrong. The roles are reversed in the option that claims conclusion is the raw value. Both outcome and conclusion exist on steps as well as jobs, so restricting outcome to jobs is incorrect.",
+    "tags": [
+      "continue-on-error",
+      "outcome",
+      "conclusion"
+    ]
+  },
+  {
+    "id": "gha-109",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a workflow to run only when files under the docs/ directory change on pushes to main. Which trigger configuration is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on.push with branches: [main] and paths: ['docs/**']"
+      },
+      {
+        "id": "o2",
+        "text": "on.push with branches: [main] and paths-ignore: ['docs/**']"
+      },
+      {
+        "id": "o3",
+        "text": "on.pull_request with paths: ['docs/**']"
+      },
+      {
+        "id": "o4",
+        "text": "on.push with tags: ['docs/**']"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Combining branches: [main] with paths: ['docs/**'] makes the push trigger fire only when the push targets main and touches at least one file under docs/.",
+    "explanationIncorrect": "paths-ignore does the opposite, skipping the run when only docs/ files change. Using pull_request responds to PR events rather than pushes to main, which is a different trigger. The tags filter matches Git tag names, not file paths, so a glob like docs/** there would match tag references, not changed files.",
+    "tags": [
+      "triggers",
+      "path-filters",
+      "push"
+    ]
+  },
+  {
+    "id": "gha-110",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A cleanup step must run whether earlier steps succeeded or failed, but not if the job was cancelled. Which if expression fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "if: ${{ !cancelled() }}"
+      },
+      {
+        "id": "o2",
+        "text": "if: ${{ always() }}"
+      },
+      {
+        "id": "o3",
+        "text": "if: ${{ success() }}"
+      },
+      {
+        "id": "o4",
+        "text": "if: ${{ failure() }}"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "!cancelled() evaluates true on both success and failure but false when the run is cancelled, which is exactly the requested behavior.",
+    "explanationIncorrect": "always() runs the step even on cancellation, so it does not exclude the cancelled case. success() runs only when all prior steps passed, skipping the failure case. failure() runs only when a prior step failed, skipping the success case, so neither status function alone covers both success and failure while excluding cancellation.",
+    "tags": [
+      "status-functions",
+      "cancelled",
+      "if-conditions"
+    ]
+  },
+  {
+    "id": "gha-111",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "Your matrix build should keep running the other combinations even if one fails, and you also want to test three combinations at most simultaneously. Which two strategy keys do you set?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "fail-fast: false and max-parallel: 3"
+      },
+      {
+        "id": "o2",
+        "text": "fail-fast: true and max-parallel: 3"
+      },
+      {
+        "id": "o3",
+        "text": "continue-on-error: true and concurrency: 3"
+      },
+      {
+        "id": "o4",
+        "text": "fail-fast: false and matrix.parallel: 3"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "fail-fast: false stops one failing combination from cancelling the rest, and max-parallel: 3 caps how many matrix jobs run concurrently.",
+    "explanationIncorrect": "fail-fast: true is the default that cancels remaining jobs on the first failure, the opposite of what is wanted. continue-on-error changes how a job's failure is reported rather than the matrix cancellation behavior, and concurrency is not a numeric matrix throttle. matrix.parallel is not a real key; the correct throttle lives under strategy as max-parallel.",
+    "tags": [
+      "matrix",
+      "fail-fast",
+      "max-parallel"
+    ]
+  },
+  {
+    "id": "gha-112",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "Two jobs must share a compiled binary: job build produces it and job deploy consumes it. Jobs run on separate runners. What is the standard way to pass the file between them?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Upload it with actions/upload-artifact in build and retrieve it with actions/download-artifact in deploy"
+      },
+      {
+        "id": "o2",
+        "text": "Write it to $GITHUB_ENV in build so deploy reads it"
+      },
+      {
+        "id": "o3",
+        "text": "Store it in the actions/cache and rely on cache restore"
+      },
+      {
+        "id": "o4",
+        "text": "Reference the file directly since jobs share a filesystem"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Artifacts are the intended mechanism to move build outputs between jobs: upload in the producer job and download in the consumer job.",
+    "explanationIncorrect": "$GITHUB_ENV only passes environment variable strings within a single job, not files across jobs. actions/cache is meant for speeding up repeated dependency restores keyed by a hash, not for reliably handing a specific build output to a downstream job. Jobs run on isolated runners and do not share a filesystem, so referencing the path directly fails in deploy.",
+    "tags": [
+      "artifacts",
+      "jobs",
+      "data-passing"
+    ]
+  },
+  {
+    "id": "gha-113",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A workflow_dispatch trigger defines an input named environment of type choice with options staging and production. How does a step read the chosen value?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "${{ inputs.environment }} or ${{ github.event.inputs.environment }}"
+      },
+      {
+        "id": "o2",
+        "text": "${{ env.environment }} only"
+      },
+      {
+        "id": "o3",
+        "text": "${{ secrets.environment }}"
+      },
+      {
+        "id": "o4",
+        "text": "${{ vars.environment }}"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Manual dispatch inputs are available through the inputs context and, for backward compatibility, through github.event.inputs.",
+    "explanationIncorrect": "The env context holds environment variables you defined, not dispatch inputs. The secrets context exposes configured secrets, and vars exposes configuration variables; neither is where a workflow_dispatch input value lands, so reading the input through them returns nothing.",
+    "tags": [
+      "workflow-dispatch",
+      "inputs",
+      "contexts"
+    ]
+  },
+  {
+    "id": "gha-114",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "By default a workflow's GITHUB_TOKEN gets read/write permissions at the repository level. To follow least privilege you want a job that only reads code and writes check results. Which permissions block is appropriate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "permissions: { contents: read, checks: write }"
+      },
+      {
+        "id": "o2",
+        "text": "permissions: write-all"
+      },
+      {
+        "id": "o3",
+        "text": "permissions: {} with contents left implicit"
+      },
+      {
+        "id": "o4",
+        "text": "permissions: read-all"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Declaring only contents: read and checks: write grants exactly the scopes the job needs and drops all others to none, matching least privilege.",
+    "explanationIncorrect": "write-all restores broad write access, the opposite of narrowing scopes. An empty permissions map sets every scope to none, so the job could not write check results. read-all grants read on all scopes but no write, so the job could not create check results either.",
+    "tags": [
+      "permissions",
+      "github-token",
+      "least-privilege"
+    ]
   }
 ]
