@@ -4592,5 +4592,236 @@
       "secret-scanning",
       "code-scanning"
     ]
+  },
+  {
+    "id": "ghas-139",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "To reduce noise and drive fixes, what is a recommended practice for integrating code scanning into the development lifecycle?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run scans on pull requests and require the check so issues are caught before merge"
+      },
+      {
+        "id": "o2",
+        "text": "Only scan once per year during an audit"
+      },
+      {
+        "id": "o3",
+        "text": "Disable PR scanning to keep pipelines fast"
+      },
+      {
+        "id": "o4",
+        "text": "Review alerts only after release"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Scanning on pull requests and making the result a required check shifts detection left, so vulnerabilities are addressed before they merge into the default branch.",
+    "explanationIncorrect": "An annual scan lets issues accumulate and reach production undetected. Disabling PR scanning removes the earliest and cheapest chance to fix problems. Reviewing alerts only after release means shipping known issues first, so PR-time required checks are the recommended practice.",
+    "tags": [
+      "best-practices",
+      "shift-left",
+      "pull-requests"
+    ]
+  },
+  {
+    "id": "ghas-140",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "A large legacy codebase produces thousands of pre-existing code scanning alerts. What is a pragmatic way to prevent new issues while working down the backlog?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Focus the PR check on alerts introduced by the change while triaging the historical backlog separately"
+      },
+      {
+        "id": "o2",
+        "text": "Dismiss every existing alert as a false positive"
+      },
+      {
+        "id": "o3",
+        "text": "Turn off code scanning until the backlog is zero"
+      },
+      {
+        "id": "o4",
+        "text": "Delete the legacy code without review"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Gating pull requests on newly introduced alerts stops the backlog from growing while the historical alerts are triaged and remediated on their own track.",
+    "explanationIncorrect": "Blanket-dismissing all existing alerts as false positives hides real vulnerabilities. Turning off scanning removes visibility entirely and lets new issues slip in. Deleting legacy code without review risks breaking functionality and is not a remediation strategy, so gating on new alerts is the pragmatic approach.",
+    "tags": [
+      "best-practices",
+      "backlog",
+      "remediation"
+    ]
+  },
+  {
+    "id": "ghas-141",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "After secret scanning finds a valid credential in history, what remediation order is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Revoke or rotate the secret first, then remove it from code and history and prevent recurrence"
+      },
+      {
+        "id": "o2",
+        "text": "Remove it from history first and skip rotation"
+      },
+      {
+        "id": "o3",
+        "text": "Only close the alert without any other action"
+      },
+      {
+        "id": "o4",
+        "text": "Rotate it only if the repo is public"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Rotation comes first because the exposed value may already be compromised; then you scrub it from code and history and add push protection or patterns to prevent recurrence.",
+    "explanationIncorrect": "Scrubbing history first while skipping rotation leaves a live credential usable. Closing the alert alone fixes nothing. Limiting rotation to public repos ignores that private repos leak through forks, clones, and insiders, so rotate-then-remove-then-prevent is the correct order.",
+    "tags": [
+      "best-practices",
+      "secret-remediation",
+      "rotation"
+    ]
+  },
+  {
+    "id": "ghas-142",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which practice most reduces the risk of leaking secrets into a repository in the first place?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Enable push protection and store secrets in a secrets manager or Actions secrets, not in code"
+      },
+      {
+        "id": "o2",
+        "text": "Commit secrets but add them to .gitignore afterward"
+      },
+      {
+        "id": "o3",
+        "text": "Base64-encode secrets before committing"
+      },
+      {
+        "id": "o4",
+        "text": "Rely solely on private repository visibility"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Combining push protection with an external secrets manager or Actions secrets keeps credentials out of the codebase and blocks accidental commits at push time.",
+    "explanationIncorrect": "Committing a secret then adding a .gitignore rule does not remove it from history and still exposes it. Base64 is trivially reversible and does not protect anything. Private visibility alone does not stop leaks via forks or insiders, so push protection plus a secrets manager is the strongest prevention.",
+    "tags": [
+      "best-practices",
+      "prevention",
+      "secrets-management"
+    ]
+  },
+  {
+    "id": "ghas-143",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "To keep Dependabot pull requests from overwhelming maintainers while still remediating vulnerabilities promptly, which practice helps most?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Group related updates and prioritize security updates, with CI validating each PR automatically"
+      },
+      {
+        "id": "o2",
+        "text": "Disable Dependabot and update manually once a year"
+      },
+      {
+        "id": "o3",
+        "text": "Auto-merge every Dependabot PR without any checks"
+      },
+      {
+        "id": "o4",
+        "text": "Ignore all patch-level updates permanently"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Grouping updates and prioritizing security fixes, backed by CI that validates each PR, keeps the volume manageable while ensuring vulnerabilities are addressed quickly.",
+    "explanationIncorrect": "Disabling Dependabot for yearly manual updates leaves vulnerabilities open for long stretches. Auto-merging without checks risks shipping breaking or malicious updates. Permanently ignoring patch updates skips important security fixes, so grouping plus prioritized, CI-validated updates is the best practice.",
+    "tags": [
+      "best-practices",
+      "dependabot",
+      "grouping"
+    ]
+  },
+  {
+    "id": "ghas-144",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "A CodeQL alert reports SQL injection where user input is concatenated into a query. What is the recommended fix?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use parameterized queries or prepared statements so input is never concatenated into SQL"
+      },
+      {
+        "id": "o2",
+        "text": "Dismiss the alert as a false positive"
+      },
+      {
+        "id": "o3",
+        "text": "Escape the input by uppercasing it"
+      },
+      {
+        "id": "o4",
+        "text": "Move the query into a stored procedure that still concatenates input"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Parameterized queries or prepared statements separate code from data so untrusted input cannot alter the query structure, which is the correct remediation for SQL injection.",
+    "explanationIncorrect": "Dismissing a genuine injection finding leaves the vulnerability in place. Uppercasing input does nothing to neutralize SQL metacharacters. A stored procedure that still concatenates untrusted input remains injectable, so parameterization is the real fix.",
+    "tags": [
+      "best-practices",
+      "sql-injection",
+      "remediation"
+    ]
+  },
+  {
+    "id": "ghas-145",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "To ensure security alerts get owner attention and are not merged past, which repository control complements GHAS scanning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Required status checks and required reviews via branch protection or rulesets"
+      },
+      {
+        "id": "o2",
+        "text": "Disabling the Security tab"
+      },
+      {
+        "id": "o3",
+        "text": "Allowing force-pushes to the default branch"
+      },
+      {
+        "id": "o4",
+        "text": "Removing CODEOWNERS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Requiring the scanning status checks to pass and requiring reviews through branch protection or rulesets ensures alerts block merges and get owner attention.",
+    "explanationIncorrect": "Disabling the Security tab hides the very alerts you want to act on. Allowing force-pushes weakens branch integrity rather than enforcing review. Removing CODEOWNERS reduces required-reviewer coverage, so required checks and reviews are the controls that complement scanning.",
+    "tags": [
+      "best-practices",
+      "branch-protection",
+      "required-checks"
+    ]
   }
 ]
