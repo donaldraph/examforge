@@ -3759,5 +3759,302 @@
       "economies-of-scale",
       "economics"
     ]
+  },
+  {
+    "id": "clf-115",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Under the AWS shared responsibility model, which task is the customer's responsibility?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Configuring security groups and managing IAM user permissions"
+      },
+      {
+        "id": "o2",
+        "text": "Securing the physical data center facilities"
+      },
+      {
+        "id": "o3",
+        "text": "Maintaining the hypervisor that runs EC2"
+      },
+      {
+        "id": "o4",
+        "text": "Replacing failed disks in AWS hardware"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Customers are responsible for security in the cloud, including configuring security groups and managing IAM permissions for their resources.",
+    "explanationIncorrect": "Physical data center security is AWS's responsibility for the cloud itself. Maintaining the hypervisor is part of the infrastructure AWS manages. Replacing failed hardware is handled by AWS, so security group and IAM configuration is the customer's job.",
+    "tags": [
+      "security",
+      "shared-responsibility",
+      "iam"
+    ]
+  },
+  {
+    "id": "clf-116",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which practice follows the principle of least privilege in IAM?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Granting users only the permissions required for their tasks and nothing more"
+      },
+      {
+        "id": "o2",
+        "text": "Giving every user administrator access for convenience"
+      },
+      {
+        "id": "o3",
+        "text": "Sharing the root account credentials with the team"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling IAM entirely"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Least privilege means granting each identity only the permissions needed to perform its tasks, reducing the blast radius of mistakes or compromise.",
+    "explanationIncorrect": "Blanket administrator access violates least privilege by over-granting. Sharing root credentials is a serious anti-pattern that eliminates accountability. Disabling IAM removes access control entirely, so granting only necessary permissions is the least-privilege practice.",
+    "tags": [
+      "security",
+      "least-privilege",
+      "iam"
+    ]
+  },
+  {
+    "id": "clf-117",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "A security team wants a managed service that continuously monitors for malicious activity and unauthorized behavior using logs like VPC Flow Logs and DNS logs. Which service fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Trusted Advisor"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Cost Explorer"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon GuardDuty is a threat-detection service that continuously analyzes logs such as VPC Flow Logs, CloudTrail, and DNS logs for malicious or unauthorized activity.",
+    "explanationIncorrect": "Trusted Advisor gives best-practice recommendations but is not a continuous threat-detection engine. S3 is object storage. Cost Explorer analyzes spending, so GuardDuty is the intelligent threat-detection service described.",
+    "tags": [
+      "security",
+      "guardduty",
+      "threat-detection"
+    ]
+  },
+  {
+    "id": "clf-118",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "What does enabling multi-factor authentication (MFA) on the AWS root user protect against?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Unauthorized access even if the password is compromised, by requiring a second factor"
+      },
+      {
+        "id": "o2",
+        "text": "Data loss from a failed EBS volume"
+      },
+      {
+        "id": "o3",
+        "text": "DDoS attacks on your website"
+      },
+      {
+        "id": "o4",
+        "text": "Exceeding your monthly budget"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "MFA adds a second authentication factor, so a stolen password alone is not enough to sign in, protecting the powerful root user.",
+    "explanationIncorrect": "MFA does not address disk failures, which are handled by backups and replication. It does not mitigate DDoS attacks, which Shield addresses. It has no bearing on budget limits, so protecting against compromised credentials is what MFA does.",
+    "tags": [
+      "security",
+      "mfa",
+      "root-user"
+    ]
+  },
+  {
+    "id": "clf-119",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service helps protect web applications from common exploits like SQL injection and cross-site scripting by filtering HTTP requests?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS WAF (Web Application Firewall)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS WAF filters and monitors HTTP and HTTPS requests, letting you block common web exploits such as SQL injection and cross-site scripting.",
+    "explanationIncorrect": "Route 53 is DNS and does not inspect application-layer requests for exploits. AWS Config tracks resource configuration compliance. SNS is a messaging service, so AWS WAF is the web-application firewall for these exploits.",
+    "tags": [
+      "security",
+      "waf",
+      "web-protection"
+    ]
+  },
+  {
+    "id": "clf-120",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "An auditor needs proof of AWS compliance with standards like PCI DSS and SOC. Where can the customer self-serve these reports?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2 console"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon CloudWatch dashboards"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda console"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Artifact provides on-demand access to AWS compliance reports and certifications such as PCI DSS and SOC.",
+    "explanationIncorrect": "The EC2 console manages compute instances, not compliance documents. CloudWatch shows metrics and logs. The Lambda console manages functions, so AWS Artifact is the self-service portal for compliance reports.",
+    "tags": [
+      "compliance",
+      "aws-artifact",
+      "audit"
+    ]
+  },
+  {
+    "id": "clf-121",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service lets you centrally manage encryption keys and control their use across AWS services?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Key Management Service (KMS)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Step Functions"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Comprehend"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS KMS creates and manages cryptographic keys and controls their use across integrated AWS services with auditable policies.",
+    "explanationIncorrect": "Athena queries data in S3 with SQL and does not manage keys. Step Functions orchestrates workflows. Comprehend is an NLP service, so KMS is the key-management service.",
+    "tags": [
+      "security",
+      "kms",
+      "encryption"
+    ]
+  },
+  {
+    "id": "clf-122",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "What is a recommended practice for the AWS account root user?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Avoid using it for daily tasks, enable MFA, and create IAM identities for routine work"
+      },
+      {
+        "id": "o2",
+        "text": "Use it for all daily administration"
+      },
+      {
+        "id": "o3",
+        "text": "Share it across the whole team"
+      },
+      {
+        "id": "o4",
+        "text": "Create access keys for it and embed them in code"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Best practice is to lock down the root user with MFA, avoid daily use, and perform routine work through least-privilege IAM identities.",
+    "explanationIncorrect": "Using root for all daily administration exposes the most powerful credential unnecessarily. Sharing it destroys accountability. Creating root access keys and embedding them in code is a severe risk, so restricting root and using IAM identities is the recommended practice.",
+    "tags": [
+      "security",
+      "root-user",
+      "best-practices"
+    ]
+  },
+  {
+    "id": "clf-123",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "Which service continuously records configuration changes to your AWS resources and can evaluate them against compliance rules?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Global Accelerator"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Config records resource configuration history and can evaluate configurations against rules to flag non-compliant resources.",
+    "explanationIncorrect": "Polly converts text to speech and does not track configuration. SQS is a message queue. Global Accelerator improves network performance and availability, so AWS Config is the configuration-compliance service.",
+    "tags": [
+      "compliance",
+      "aws-config",
+      "configuration"
+    ]
   }
 ]
