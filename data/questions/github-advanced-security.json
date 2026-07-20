@@ -3668,5 +3668,236 @@
       "pull-request"
     ],
     "isSeed": true
+  },
+  {
+    "id": "ghas-111",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "CodeQL analyzes code by first building what intermediate representation that queries then run against?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A relational database of the code extracted during a build or scan"
+      },
+      {
+        "id": "o2",
+        "text": "A plain-text index of source lines"
+      },
+      {
+        "id": "o3",
+        "text": "A container image of the repository"
+      },
+      {
+        "id": "o4",
+        "text": "A dependency lockfile"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CodeQL extracts the code into a relational database that captures the program's structure and data flow, and queries are then evaluated against that database.",
+    "explanationIncorrect": "A plain-text line index cannot express the control- and data-flow relationships CodeQL queries rely on. A container image packages a runtime environment, not the queryable semantic model CodeQL needs. A lockfile lists dependency versions and is unrelated to the CodeQL database that powers analysis.",
+    "tags": [
+      "codeql",
+      "database",
+      "analysis"
+    ]
+  },
+  {
+    "id": "ghas-112",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "For a compiled language like Java or C++, CodeQL usually needs to observe the build to create its database. Which mode lets CodeQL build the database without you supplying explicit build commands?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Autobuild, which attempts to detect and run a standard build"
+      },
+      {
+        "id": "o2",
+        "text": "Manual build with no commands at all"
+      },
+      {
+        "id": "o3",
+        "text": "None mode, which skips building entirely for compiled languages"
+      },
+      {
+        "id": "o4",
+        "text": "Interpreted mode, forcing tracing without compilation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Autobuild inspects the repository and attempts to run a conventional build so CodeQL can trace compilation and populate the database for compiled languages.",
+    "explanationIncorrect": "A manual build with no commands would leave a compiled language unbuilt, so no database is created. There is no none mode that skips building yet still analyzes a compiled language correctly. Interpreted mode is not a CodeQL build option; the mechanism for automatic building is autobuild.",
+    "tags": [
+      "codeql",
+      "autobuild",
+      "compiled-languages"
+    ]
+  },
+  {
+    "id": "ghas-113",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Code scanning results from CodeQL and third-party tools are uploaded to GitHub in which standard format?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "SARIF (Static Analysis Results Interchange Format)"
+      },
+      {
+        "id": "o2",
+        "text": "JUnit XML"
+      },
+      {
+        "id": "o3",
+        "text": "SPDX"
+      },
+      {
+        "id": "o4",
+        "text": "CycloneDX"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub code scanning ingests results in SARIF, a standard JSON format for static analysis findings, which lets third-party tools integrate with the Security tab.",
+    "explanationIncorrect": "JUnit XML reports test results, not static analysis findings. SPDX and CycloneDX are software bill-of-materials formats describing components and licenses, not code scanning alerts, so SARIF is the correct interchange format for code scanning.",
+    "tags": [
+      "codeql",
+      "sarif",
+      "code-scanning"
+    ]
+  },
+  {
+    "id": "ghas-114",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "You want code scanning to run on every pull request and also on a weekly schedule as a safety net. Which triggers do you put in the CodeQL workflow?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "pull_request and schedule (cron)"
+      },
+      {
+        "id": "o2",
+        "text": "workflow_dispatch only"
+      },
+      {
+        "id": "o3",
+        "text": "release and deployment"
+      },
+      {
+        "id": "o4",
+        "text": "issues and issue_comment"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Triggering on pull_request scans incoming changes and a scheduled cron run provides periodic full scans as a backstop.",
+    "explanationIncorrect": "workflow_dispatch alone only runs on manual invocation, missing automatic PR coverage. release and deployment fire at ship time, not on every PR or weekly. issues and issue_comment respond to issue activity and never scan code, so pull_request plus schedule is the right pairing.",
+    "tags": [
+      "codeql",
+      "triggers",
+      "schedule"
+    ]
+  },
+  {
+    "id": "ghas-115",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "A CodeQL query pack you want emphasizes finding more issues at the cost of more false positives. Which query suite selects that broader set?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "security-extended (and security-and-quality) beyond the default suite"
+      },
+      {
+        "id": "o2",
+        "text": "The minimal suite, which is the broadest"
+      },
+      {
+        "id": "o3",
+        "text": "The default suite, which always returns the most alerts"
+      },
+      {
+        "id": "o4",
+        "text": "The style suite, which finds security issues"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The security-extended suite runs additional queries beyond the default, surfacing more potential issues with a higher chance of false positives, and security-and-quality adds maintainability queries too.",
+    "explanationIncorrect": "There is no minimal suite that is broader than extended; broader means more queries, not fewer. The default suite is tuned for precision and returns fewer alerts than extended. A style suite would target formatting or maintainability, not the broader security coverage the extended suite provides.",
+    "tags": [
+      "codeql",
+      "query-suites",
+      "security-extended"
+    ]
+  },
+  {
+    "id": "ghas-116",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "A developer marks a code scanning alert as a false positive so it stops appearing as open. Which resolution is appropriate and audited?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Dismiss the alert with a reason such as False positive or Won't fix"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the source file that triggered it"
+      },
+      {
+        "id": "o3",
+        "text": "Disable code scanning for the whole repository"
+      },
+      {
+        "id": "o4",
+        "text": "Rename the alert's rule id"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Alerts are dismissed with a documented reason like False positive or Won't fix, which records who dismissed it and why while keeping an audit trail.",
+    "explanationIncorrect": "Deleting the file removes real code to silence one alert and is not a resolution workflow. Disabling code scanning repository-wide hides all alerts, not just the false positive. Renaming a rule id is not something a user does to resolve an alert, so dismissing with a reason is the correct, audited action.",
+    "tags": [
+      "code-scanning",
+      "dismiss",
+      "false-positive"
+    ]
+  },
+  {
+    "id": "ghas-117",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "CodeQL taint tracking flags a vulnerability where user input reaches a dangerous sink. In taint analysis terms, what are the two ends of that flow called?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A source (untrusted input) and a sink (sensitive operation)"
+      },
+      {
+        "id": "o2",
+        "text": "A root and a leaf"
+      },
+      {
+        "id": "o3",
+        "text": "A producer and a consumer topic"
+      },
+      {
+        "id": "o4",
+        "text": "A head and a tail commit"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Taint tracking follows data from a source of untrusted input to a sink where using that data is dangerous, and a flagged path connects the two.",
+    "explanationIncorrect": "Root and leaf describe tree structures, not taint endpoints. Producer and consumer topic are messaging concepts, unrelated to data-flow analysis. Head and tail commit refer to Git history, not to the input-to-sink flow CodeQL models, so source and sink is the correct terminology.",
+    "tags": [
+      "codeql",
+      "taint-tracking",
+      "source-sink"
+    ]
   }
 ]
