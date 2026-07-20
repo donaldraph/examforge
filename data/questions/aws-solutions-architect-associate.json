@@ -3514,5 +3514,302 @@
       "cost-optimization"
     ],
     "isSeed": true
+  },
+  {
+    "id": "saa-106",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To make a web tier resilient to the failure of an entire Availability Zone, what should the architecture do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run instances across multiple Availability Zones behind a load balancer with an Auto Scaling group"
+      },
+      {
+        "id": "o2",
+        "text": "Run all instances in a single AZ with a larger instance type"
+      },
+      {
+        "id": "o3",
+        "text": "Use one instance with frequent snapshots"
+      },
+      {
+        "id": "o4",
+        "text": "Place all instances in one subnet in one AZ"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Distributing instances across multiple AZs behind a load balancer, managed by an Auto Scaling group, lets the application survive the loss of an entire AZ.",
+    "explanationIncorrect": "A single larger instance in one AZ still fails entirely if that AZ goes down. One instance with snapshots offers recovery but not continuous availability during a failure. Placing everything in one subnet in one AZ concentrates risk, so multi-AZ behind a load balancer is the resilient design.",
+    "tags": [
+      "resilient",
+      "multi-az",
+      "auto-scaling"
+    ]
+  },
+  {
+    "id": "saa-107",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "An application needs a relational database that automatically fails over to a standby with minimal downtime if the primary fails. Which RDS feature provides this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "RDS Multi-AZ deployment with a synchronous standby"
+      },
+      {
+        "id": "o2",
+        "text": "A single-AZ RDS instance with automated backups"
+      },
+      {
+        "id": "o3",
+        "text": "A read replica in the same AZ"
+      },
+      {
+        "id": "o4",
+        "text": "Storing the database on an instance store volume"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RDS Multi-AZ maintains a synchronous standby in another AZ and automatically fails over to it if the primary becomes unavailable, minimizing downtime.",
+    "explanationIncorrect": "A single-AZ instance with backups can be restored but does not fail over automatically. A read replica is for scaling reads and is asynchronous, not an automatic HA failover target by default. Instance store is ephemeral and unsuitable for a durable database, so Multi-AZ is the correct feature.",
+    "tags": [
+      "resilient",
+      "rds",
+      "multi-az"
+    ]
+  },
+  {
+    "id": "saa-108",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To decouple a producer service from a slower consumer so that traffic spikes do not overwhelm the consumer, which service should sit between them?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SQS queue"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Direct Connect"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Route 53"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An SQS queue buffers messages between producer and consumer, letting the consumer process at its own pace and absorbing spikes for a more resilient, decoupled design.",
+    "explanationIncorrect": "CloudFront caches content at the edge and does not buffer work between services. Direct Connect is a dedicated network link, not a decoupling buffer. Route 53 is DNS, so an SQS queue is the correct decoupling mechanism.",
+    "tags": [
+      "resilient",
+      "sqs",
+      "decoupling"
+    ]
+  },
+  {
+    "id": "saa-109",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which Route 53 routing policy improves resilience by directing traffic away from an endpoint that fails its health check?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Failover routing with health checks"
+      },
+      {
+        "id": "o2",
+        "text": "Simple routing with a single record"
+      },
+      {
+        "id": "o3",
+        "text": "Weighted routing with fixed weights and no health checks"
+      },
+      {
+        "id": "o4",
+        "text": "Geolocation routing based only on country"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Failover routing uses health checks to send traffic to a primary endpoint and automatically shift to a standby when the primary is unhealthy.",
+    "explanationIncorrect": "Simple routing returns one record with no health-based failover. Weighted routing without health checks keeps sending a share of traffic to an unhealthy endpoint. Geolocation routing selects by user location, not by endpoint health, so failover routing is the resilient choice.",
+    "tags": [
+      "resilient",
+      "route53",
+      "failover"
+    ]
+  },
+  {
+    "id": "saa-110",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "A stateful application stores session data on individual instances, causing user sessions to break when Auto Scaling replaces an instance. What is the best fix?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Externalize session state to a shared store such as Amazon ElastiCache or DynamoDB"
+      },
+      {
+        "id": "o2",
+        "text": "Disable Auto Scaling so instances never change"
+      },
+      {
+        "id": "o3",
+        "text": "Use larger instances so they fail less often"
+      },
+      {
+        "id": "o4",
+        "text": "Store sessions on instance store volumes"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Moving session state to a shared external store like ElastiCache or DynamoDB makes instances stateless, so replacing them does not break user sessions.",
+    "explanationIncorrect": "Disabling Auto Scaling sacrifices elasticity and resilience to work around the design flaw. Larger instances still fail eventually and lose local sessions. Instance store is ephemeral and lost on instance termination, so externalizing session state is the correct fix.",
+    "tags": [
+      "resilient",
+      "stateless",
+      "elasticache"
+    ]
+  },
+  {
+    "id": "saa-111",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which S3 capability protects against accidental deletion or overwrite by keeping multiple variants of an object?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Versioning"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Transfer Acceleration"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Requester Pays"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Static Website Hosting"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Versioning retains previous versions of an object, so an accidental delete or overwrite can be recovered by restoring an earlier version.",
+    "explanationIncorrect": "Transfer Acceleration speeds uploads over long distances and does not protect against deletion. Requester Pays shifts data transfer costs to the requester. Static website hosting serves content, so Versioning is the feature that guards against accidental changes.",
+    "tags": [
+      "resilient",
+      "s3",
+      "versioning"
+    ]
+  },
+  {
+    "id": "saa-112",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To recover a multi-tier application in another Region after a disaster while keeping ongoing costs low and accepting some recovery time, which DR strategy fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Pilot light, keeping core components minimally running and scaling up on failover"
+      },
+      {
+        "id": "o2",
+        "text": "Multi-site active-active at full capacity"
+      },
+      {
+        "id": "o3",
+        "text": "Backup and restore only, with no pre-provisioned core"
+      },
+      {
+        "id": "o4",
+        "text": "No DR plan, relying on a single Region"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Pilot light keeps critical core components running minimally in the recovery Region so you can scale them up quickly on failover, balancing cost against recovery time.",
+    "explanationIncorrect": "Active-active offers the fastest recovery but at the highest ongoing cost, more than the scenario wants. Backup and restore is cheapest but slower to recover than pilot light and pre-provisions no core. No DR plan leaves the application exposed, so pilot light matches the cost-versus-recovery balance.",
+    "tags": [
+      "resilient",
+      "disaster-recovery",
+      "pilot-light"
+    ]
+  },
+  {
+    "id": "saa-113",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "An Auto Scaling group should replace instances that are running but no longer serving traffic correctly. Which health check type detects this application-level failure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ELB health checks, so unhealthy targets per the load balancer are replaced"
+      },
+      {
+        "id": "o2",
+        "text": "EC2 status checks only"
+      },
+      {
+        "id": "o3",
+        "text": "Billing alarms"
+      },
+      {
+        "id": "o4",
+        "text": "S3 event notifications"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Configuring the Auto Scaling group to use ELB health checks lets it consider an instance unhealthy when the load balancer's application-level check fails, then replace it.",
+    "explanationIncorrect": "EC2 status checks only detect infrastructure or system issues, not an app that is up but returning errors. Billing alarms track spend, not instance health. S3 event notifications fire on object changes, so ELB health checks are needed to catch application-level failures.",
+    "tags": [
+      "resilient",
+      "auto-scaling",
+      "health-checks"
+    ]
+  },
+  {
+    "id": "saa-114",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which storage service provides a shared file system that can be mounted concurrently by many EC2 instances across multiple AZs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon EFS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "EC2 instance store"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon S3 Glacier"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon EFS is a managed elastic NFS file system that many instances across multiple AZs can mount concurrently, supporting shared, resilient access.",
+    "explanationIncorrect": "A standard EBS volume attaches to a single instance in one AZ. Instance store is ephemeral and local to one instance. Glacier is archival object storage, not a mountable file system, so EFS is the shared multi-AZ file system.",
+    "tags": [
+      "resilient",
+      "efs",
+      "shared-storage"
+    ]
   }
 ]
