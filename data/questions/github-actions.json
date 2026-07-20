@@ -4093,5 +4093,302 @@
       "access",
       "organization"
     ]
+  },
+  {
+    "id": "gha-124",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You are writing a JavaScript action. Which file must exist at the action's root and declare runs.using along with the entry point?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "action.yml (or action.yaml)"
+      },
+      {
+        "id": "o2",
+        "text": "workflow.yml"
+      },
+      {
+        "id": "o3",
+        "text": "package.json"
+      },
+      {
+        "id": "o4",
+        "text": "Dockerfile"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Every action is defined by an action.yml (or action.yaml) metadata file that declares inputs, outputs, and the runs configuration including using and main.",
+    "explanationIncorrect": "workflow.yml is not an action metadata filename; workflows live under .github/workflows. package.json describes an npm package but is not the action metadata file Actions reads. A Dockerfile is only needed for a Docker container action and still must be referenced from action.yml, so the metadata file is always required.",
+    "tags": [
+      "actions",
+      "metadata",
+      "action-yml"
+    ]
+  },
+  {
+    "id": "gha-125",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "In a composite action, one shell step computes a value and a later shell step in the same action needs it as a step output. How does the first step publish it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Echo name=value into $GITHUB_OUTPUT and give the step an id"
+      },
+      {
+        "id": "o2",
+        "text": "Set it with the outputs key directly on the step"
+      },
+      {
+        "id": "o3",
+        "text": "Return it from the step's run command"
+      },
+      {
+        "id": "o4",
+        "text": "Write it to action.yml at runtime"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Composite action steps publish outputs the same way workflow steps do: append name=value to $GITHUB_OUTPUT and reference it through the step id.",
+    "explanationIncorrect": "There is no outputs key placed directly on an individual shell step to set values; step outputs go through the file. A run command's exit or stdout is not captured as a named output automatically. action.yml is static metadata and is not rewritten at runtime, so writing to it is not how outputs are produced.",
+    "tags": [
+      "composite-actions",
+      "outputs",
+      "github-output"
+    ]
+  },
+  {
+    "id": "gha-126",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want your action to expose an output named result that consumers read as steps.<id>.outputs.result. Where must result also be declared?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Under outputs in action.yml"
+      },
+      {
+        "id": "o2",
+        "text": "Under inputs in action.yml"
+      },
+      {
+        "id": "o3",
+        "text": "In the consuming workflow's env block"
+      },
+      {
+        "id": "o4",
+        "text": "In a separate outputs.yml file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An action's outputs must be declared in the outputs section of action.yml so consumers can reference them predictably.",
+    "explanationIncorrect": "inputs declares values passed into the action, not values it emits. The consuming workflow's env cannot declare an action's output contract; that belongs to the action. There is no separate outputs.yml convention; the metadata for outputs lives in action.yml itself.",
+    "tags": [
+      "actions",
+      "outputs",
+      "action-yml"
+    ]
+  },
+  {
+    "id": "gha-127",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "For a JavaScript action, why is it common practice to commit a bundled dist/index.js produced by a tool like ncc rather than the raw source with node_modules?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The runner does not run npm install for an action, so dependencies must be bundled into the committed entry file"
+      },
+      {
+        "id": "o2",
+        "text": "Bundling encrypts the source to hide it"
+      },
+      {
+        "id": "o3",
+        "text": "GitHub only executes TypeScript, so bundling transpiles it"
+      },
+      {
+        "id": "o4",
+        "text": "Bundling is required to publish to the Marketplace and has no runtime effect"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When an action runs, the runner executes the referenced entry file directly without installing dependencies, so the code and its dependencies must be bundled into a committed file.",
+    "explanationIncorrect": "Bundling does not encrypt or hide source; the output is still readable JavaScript. The runner executes JavaScript, not TypeScript directly, but transpilation is a separate concern from why bundling is needed. Bundling has a real runtime effect precisely because no install step runs, so calling it purely a Marketplace formality is wrong.",
+    "tags": [
+      "javascript-actions",
+      "bundling",
+      "ncc"
+    ]
+  },
+  {
+    "id": "gha-128",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "A Docker container action needs to run some logic after the job's other steps complete, similar to a cleanup hook. Which action.yml keys support pre and post logic for a JavaScript action?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "runs.pre and runs.post pointing to scripts run before and after main"
+      },
+      {
+        "id": "o2",
+        "text": "steps.before and steps.after"
+      },
+      {
+        "id": "o3",
+        "text": "jobs.pre and jobs.post"
+      },
+      {
+        "id": "o4",
+        "text": "hooks.setup and hooks.teardown"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A JavaScript action can declare runs.pre and runs.post scripts that execute before and after the main entry point, useful for setup and cleanup.",
+    "explanationIncorrect": "There are no steps.before or steps.after keys in action metadata. jobs.pre and jobs.post are not action metadata keys either; jobs belong to workflows. hooks.setup and hooks.teardown are invented names; the actual keys are pre and post under runs.",
+    "tags": [
+      "javascript-actions",
+      "pre-post",
+      "action-yml"
+    ]
+  },
+  {
+    "id": "gha-129",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want to give consumers of your action a recognizable icon and color on the Marketplace listing. Where is that configured?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Under the branding key in action.yml"
+      },
+      {
+        "id": "o2",
+        "text": "In the repository's README front matter"
+      },
+      {
+        "id": "o3",
+        "text": "In a marketplace.json file"
+      },
+      {
+        "id": "o4",
+        "text": "In the workflow that uses the action"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The branding section of action.yml lets you set an icon and color used on the action's Marketplace listing.",
+    "explanationIncorrect": "A README has no front matter that controls Marketplace branding. There is no marketplace.json convention for this. A consuming workflow cannot set the branding of an action it merely calls; branding is metadata owned by the action in action.yml.",
+    "tags": [
+      "actions",
+      "branding",
+      "marketplace"
+    ]
+  },
+  {
+    "id": "gha-130",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "In a composite action, each run step must specify one setting that standalone workflow steps can inherit from defaults. What is it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "shell, which is required on every run step in a composite action"
+      },
+      {
+        "id": "o2",
+        "text": "runs-on, chosen per step"
+      },
+      {
+        "id": "o3",
+        "text": "container, required per step"
+      },
+      {
+        "id": "o4",
+        "text": "environment, required per step"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Composite action run steps must each declare a shell explicitly because they do not inherit a workflow-level default shell.",
+    "explanationIncorrect": "runs-on selects the runner for a whole job, not a step inside an action, and is not set per composite step. container is a job-level setting, not a required per-step key in composite actions. environment is a deployment protection concept at the job level, not something each composite step declares, so shell is the required per-step key.",
+    "tags": [
+      "composite-actions",
+      "shell",
+      "steps"
+    ]
+  },
+  {
+    "id": "gha-131",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "You maintain a popular action and want consumers pinned to v3 to automatically receive non-breaking fixes. What release practice supports this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Move a v3 major tag to point at each new v3.x release"
+      },
+      {
+        "id": "o2",
+        "text": "Delete old releases so only v3 remains"
+      },
+      {
+        "id": "o3",
+        "text": "Ask consumers to always reference the main branch"
+      },
+      {
+        "id": "o4",
+        "text": "Publish only full SHAs and no tags"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Maintaining a moving major tag such as v3 that you repoint to each compatible v3.x release is the conventional way consumers on @v3 receive non-breaking updates.",
+    "explanationIncorrect": "Deleting old releases breaks anyone pinned to a specific version and does not create a moving major tag. Pointing consumers at main exposes them to unreleased and possibly breaking changes rather than curated fixes. Publishing only SHAs prevents the very major-tag convenience the scenario asks for, since consumers would have to change the SHA for every fix.",
+    "tags": [
+      "actions",
+      "versioning",
+      "major-tag"
+    ]
+  },
+  {
+    "id": "gha-132",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "An input in your action should be optional with a fallback value used when the caller omits it. How do you express that in action.yml?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Set required: false and provide a default under that input"
+      },
+      {
+        "id": "o2",
+        "text": "Set required: true and provide a default"
+      },
+      {
+        "id": "o3",
+        "text": "Add the input under outputs with a default"
+      },
+      {
+        "id": "o4",
+        "text": "Provide the fallback only in the workflow, not the action"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Marking an input required: false with a default lets callers omit it while the action still receives the fallback value.",
+    "explanationIncorrect": "Marking it required: true forces callers to supply it, contradicting optional behavior. Inputs are declared under inputs, not outputs, so putting it there is wrong. Defining the fallback only in the workflow would not make the action itself supply a default when other callers omit the input, so the default belongs in action.yml.",
+    "tags": [
+      "actions",
+      "inputs",
+      "defaults"
+    ]
   }
 ]
