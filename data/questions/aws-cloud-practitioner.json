@@ -4353,5 +4353,269 @@
       "ec2",
       "spot-instances"
     ]
+  },
+  {
+    "id": "clf-133",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which tool helps you visualize, understand, and forecast your AWS spending over time?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Cost Explorer"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o3",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon GuardDuty"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Cost Explorer lets you visualize and analyze usage and spending trends and forecast future costs.",
+    "explanationIncorrect": "Amazon Inspector assesses workloads for vulnerabilities, not spending. CloudTrail logs API activity for auditing. GuardDuty detects threats, so Cost Explorer is the spending-analysis tool.",
+    "tags": [
+      "billing",
+      "cost-explorer",
+      "forecasting"
+    ]
+  },
+  {
+    "id": "clf-134",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "You want to be alerted when your AWS spending is forecast to exceed a threshold you set. Which feature should you use?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Budgets"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Trusted Advisor only"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Shield"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Budgets lets you set custom cost and usage thresholds and receive alerts when actual or forecasted spend crosses them.",
+    "explanationIncorrect": "Trusted Advisor offers recommendations but is not the budget-threshold alerting feature. CloudFront is a CDN. Shield protects against DDoS, so AWS Budgets is the correct spending-alert feature.",
+    "tags": [
+      "billing",
+      "budgets",
+      "alerts"
+    ]
+  },
+  {
+    "id": "clf-135",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "hard",
+    "stem": "An organization with many AWS accounts wants consolidated billing and volume pricing benefits across them. Which service provides this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Organizations"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Cognito"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Batch"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Organizations enables consolidated billing across multiple accounts and can aggregate usage for volume discounts, plus centralized governance.",
+    "explanationIncorrect": "AWS Config tracks configuration compliance, not billing consolidation. Cognito handles user identity. AWS Batch runs batch jobs, so AWS Organizations is the multi-account billing and management service.",
+    "tags": [
+      "billing",
+      "organizations",
+      "consolidated-billing"
+    ]
+  },
+  {
+    "id": "clf-136",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which AWS Support plan is the minimum that includes 24/7 access to a support engineer via phone, chat, and email for production workloads?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Business Support"
+      },
+      {
+        "id": "o2",
+        "text": "Basic Support"
+      },
+      {
+        "id": "o3",
+        "text": "Developer Support"
+      },
+      {
+        "id": "o4",
+        "text": "No plan includes engineer access"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Business Support is the entry tier offering 24/7 access to cloud support engineers via phone, chat, and email, suitable for production workloads.",
+    "explanationIncorrect": "Basic Support does not include technical support case access to engineers. Developer Support offers business-hours email access to a support associate, not 24/7 engineer access. Support engineer access clearly exists, so Business Support is the correct minimum tier.",
+    "tags": [
+      "support",
+      "support-plans",
+      "business"
+    ]
+  },
+  {
+    "id": "clf-137",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which tool provides recommendations across cost optimization, performance, security, fault tolerance, and service limits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Trusted Advisor"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Trusted Advisor inspects your environment and gives best-practice recommendations across cost, performance, security, fault tolerance, and service quotas.",
+    "explanationIncorrect": "Athena queries data with SQL and does not audit best practices. AWS Glue is an ETL service. SQS is a message queue, so Trusted Advisor is the multi-category recommendation tool.",
+    "tags": [
+      "support",
+      "trusted-advisor",
+      "recommendations"
+    ]
+  },
+  {
+    "id": "clf-138",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "hard",
+    "stem": "A Compute Savings Plan differs from a Reserved Instance mainly in what way?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It offers discounts in exchange for a commitment to a consistent amount of compute usage with flexibility across instance families, sizes, and regions"
+      },
+      {
+        "id": "o2",
+        "text": "It requires no commitment at all"
+      },
+      {
+        "id": "o3",
+        "text": "It only applies to S3 storage"
+      },
+      {
+        "id": "o4",
+        "text": "It is more expensive than On-Demand"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Compute Savings Plans give discounts for committing to a steady dollar-per-hour of compute usage while remaining flexible across instance families, sizes, regions, and even compute services.",
+    "explanationIncorrect": "Savings Plans do require a usage commitment, so no-commitment is false. They apply to compute, not S3 storage. They are cheaper than On-Demand in exchange for commitment, not more expensive, so the flexible compute-commitment description is correct.",
+    "tags": [
+      "billing",
+      "savings-plans",
+      "pricing"
+    ]
+  },
+  {
+    "id": "clf-139",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which statement about the AWS Free Tier is accurate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It offers certain services free within limits, including always-free, 12-month-free, and trial offers"
+      },
+      {
+        "id": "o2",
+        "text": "It makes all AWS services completely free forever"
+      },
+      {
+        "id": "o3",
+        "text": "It is only available to enterprise customers"
+      },
+      {
+        "id": "o4",
+        "text": "It requires a paid Support plan to access"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The AWS Free Tier includes always-free offers, 12-month-free offers for new accounts, and short-term trials, each within specified usage limits.",
+    "explanationIncorrect": "It does not make all services free forever; limits and durations apply. It is available to new accounts broadly, not only enterprises. It does not require a paid Support plan, so the tiered free-offer description is accurate.",
+    "tags": [
+      "billing",
+      "free-tier",
+      "pricing"
+    ]
+  },
+  {
+    "id": "clf-140",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which resource offers a per-service, configurable estimate of your future AWS costs before you deploy?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Pricing Calculator"
+      },
+      {
+        "id": "o2",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Systems Manager"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The AWS Pricing Calculator lets you model services and configurations to estimate costs before committing to a deployment.",
+    "explanationIncorrect": "CloudTrail records API activity after the fact, not pre-deployment cost estimates. Inspector scans for vulnerabilities. Systems Manager manages operational tasks on resources, so the Pricing Calculator is the pre-deployment estimation tool.",
+    "tags": [
+      "billing",
+      "pricing-calculator",
+      "estimation"
+    ]
   }
 ]
