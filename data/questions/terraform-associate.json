@@ -4472,5 +4472,170 @@
       "implicit-dependency",
       "references"
     ]
+  },
+  {
+    "id": "tf-136",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "What is the root module in a Terraform configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The set of .tf files in the main working directory where Terraform is run"
+      },
+      {
+        "id": "o2",
+        "text": "The Terraform Registry's top-level namespace"
+      },
+      {
+        "id": "o3",
+        "text": "The provider plugin directory"
+      },
+      {
+        "id": "o4",
+        "text": "The remote backend bucket"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The root module is the configuration in the working directory where you run Terraform; it may call other child modules.",
+    "explanationIncorrect": "The Registry namespace is where published modules live, not the local root module. The provider plugin directory holds downloaded providers. The backend bucket stores state, so the root module is the working-directory configuration.",
+    "tags": [
+      "modules",
+      "root-module",
+      "concepts"
+    ]
+  },
+  {
+    "id": "tf-137",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "A child module needs to return a value, such as a created resource's ID, to its calling module. How is this exposed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "By declaring an output block in the child module"
+      },
+      {
+        "id": "o2",
+        "text": "By declaring a variable block in the child module"
+      },
+      {
+        "id": "o3",
+        "text": "By writing directly to the parent's state"
+      },
+      {
+        "id": "o4",
+        "text": "By using a provider block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A child module exposes values to its caller through output blocks, which the parent references as module.<name>.<output>.",
+    "explanationIncorrect": "A variable block accepts input into the module, the opposite direction. Modules do not write directly to the parent's state to pass values. A provider block configures a platform integration, not value passing, so an output block is how a module returns values.",
+    "tags": [
+      "modules",
+      "outputs",
+      "composition"
+    ]
+  },
+  {
+    "id": "tf-138",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "How do you pass configuration values into a reusable module when you call it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "By setting the module's input variables as arguments in the module block"
+      },
+      {
+        "id": "o2",
+        "text": "By editing the module's source code each time"
+      },
+      {
+        "id": "o3",
+        "text": "By writing them into the state file"
+      },
+      {
+        "id": "o4",
+        "text": "By passing them as command-line flags to the module"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "You supply a module's input variables as arguments inside the module block that calls it, letting the same module be reused with different values.",
+    "explanationIncorrect": "Editing the module source per use defeats reusability and is unnecessary. You do not hand-write values into state to configure a module. There is no per-module command-line flag mechanism for this, so setting input variables in the module block is correct.",
+    "tags": [
+      "modules",
+      "input-variables",
+      "reuse"
+    ]
+  },
+  {
+    "id": "tf-139",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "When sourcing a module from the public Terraform Registry, why is it recommended to pin a version?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To ensure reproducible builds and avoid unexpected changes from new module releases"
+      },
+      {
+        "id": "o2",
+        "text": "Because unversioned modules cannot be downloaded"
+      },
+      {
+        "id": "o3",
+        "text": "To make the module run faster"
+      },
+      {
+        "id": "o4",
+        "text": "To encrypt the module source"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Pinning a module version keeps builds reproducible and prevents a newly published module release from silently changing your infrastructure.",
+    "explanationIncorrect": "Unversioned modules can still be downloaded; pinning is about control, not availability. Version pinning does not affect runtime speed. It does not encrypt anything, so reproducibility and change control is the reason to pin.",
+    "tags": [
+      "modules",
+      "versioning",
+      "registry"
+    ]
+  },
+  {
+    "id": "tf-140",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "You want to create several similar instances of a module, one per item in a map, each addressable by key. Which meta-argument fits best?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "for_each over the map"
+      },
+      {
+        "id": "o2",
+        "text": "count with a fixed number"
+      },
+      {
+        "id": "o3",
+        "text": "depends_on"
+      },
+      {
+        "id": "o4",
+        "text": "provider aliasing only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "for_each over a map creates one module instance per key and makes each addressable by its key, which is more stable than positional indexing when items change.",
+    "explanationIncorrect": "count uses positional indices, so inserting or removing items can cause churn and it does not key by map entry. depends_on only controls ordering, not multiple instances. Provider aliasing selects providers, not instance multiplication, so for_each is the correct meta-argument.",
+    "tags": [
+      "modules",
+      "for-each",
+      "meta-arguments"
+    ]
   }
 ]
