@@ -4108,5 +4108,302 @@
       "serverless",
       "sqs-lambda"
     ]
+  },
+  {
+    "id": "saa-124",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "An EC2 application needs to read from an S3 bucket. What is the most secure way to grant this access?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Attach an IAM role to the EC2 instance with a policy allowing the needed S3 actions"
+      },
+      {
+        "id": "o2",
+        "text": "Embed an IAM user's access keys in the application code"
+      },
+      {
+        "id": "o3",
+        "text": "Make the S3 bucket public"
+      },
+      {
+        "id": "o4",
+        "text": "Store root credentials on the instance"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Attaching an IAM role to the instance provides temporary, automatically rotated credentials scoped to the needed S3 actions, with no long-lived keys to manage.",
+    "explanationIncorrect": "Embedding static access keys in code risks leaking long-lived credentials. Making the bucket public exposes data far beyond the application. Storing root credentials on the instance is extremely dangerous, so an IAM role is the secure approach.",
+    "tags": [
+      "secure",
+      "iam-roles",
+      "ec2"
+    ]
+  },
+  {
+    "id": "saa-125",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "A database in a private subnet must never be reachable from the internet but needs to download OS patches. Which design meets both needs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Place it in a private subnet and route outbound traffic through a NAT gateway in a public subnet"
+      },
+      {
+        "id": "o2",
+        "text": "Place it in a public subnet with an Elastic IP"
+      },
+      {
+        "id": "o3",
+        "text": "Attach an internet gateway route directly to the database instance"
+      },
+      {
+        "id": "o4",
+        "text": "Open inbound port 22 to 0.0.0.0/0"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A private subnet keeps the database unreachable from the internet, while a NAT gateway in a public subnet lets it make outbound connections for patches without accepting inbound traffic.",
+    "explanationIncorrect": "A public subnet with an Elastic IP exposes the database to the internet. Routing an internet gateway directly to the instance makes it publicly reachable. Opening SSH to the world is a severe exposure, so a private subnet with a NAT gateway satisfies both requirements.",
+    "tags": [
+      "secure",
+      "nat-gateway",
+      "private-subnet"
+    ]
+  },
+  {
+    "id": "saa-126",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which mechanism controls inbound and outbound traffic at the instance level acting as a stateful virtual firewall?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Security groups"
+      },
+      {
+        "id": "o2",
+        "text": "IAM policies"
+      },
+      {
+        "id": "o3",
+        "text": "S3 bucket policies"
+      },
+      {
+        "id": "o4",
+        "text": "Route 53 records"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Security groups are stateful virtual firewalls attached to instances (via their network interfaces) that control allowed inbound and outbound traffic.",
+    "explanationIncorrect": "IAM policies govern API permissions, not network packet flow. S3 bucket policies control access to bucket objects, not instance traffic. Route 53 records handle DNS resolution, so security groups are the instance-level stateful firewall.",
+    "tags": [
+      "secure",
+      "security-groups",
+      "networking"
+    ]
+  },
+  {
+    "id": "saa-127",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "A subnet needs an additional stateless layer of network filtering that applies to all traffic entering and leaving the subnet. Which construct provides this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Network ACLs (NACLs)"
+      },
+      {
+        "id": "o2",
+        "text": "IAM roles"
+      },
+      {
+        "id": "o3",
+        "text": "KMS keys"
+      },
+      {
+        "id": "o4",
+        "text": "CloudWatch alarms"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Network ACLs are stateless subnet-level filters that evaluate rules on all traffic entering and leaving a subnet, complementing security groups.",
+    "explanationIncorrect": "IAM roles grant API permissions, not subnet packet filtering. KMS keys handle encryption, not network rules. CloudWatch alarms trigger on metrics, so NACLs are the stateless subnet-level filtering construct.",
+    "tags": [
+      "secure",
+      "nacl",
+      "subnet"
+    ]
+  },
+  {
+    "id": "saa-128",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "Data stored in S3 must be encrypted at rest with keys whose usage is auditable and controlled by the organization. Which option meets this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Server-side encryption with AWS KMS keys (SSE-KMS)"
+      },
+      {
+        "id": "o2",
+        "text": "No encryption, relying on bucket privacy"
+      },
+      {
+        "id": "o3",
+        "text": "Client-side obfuscation by renaming files"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling versioning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SSE-KMS encrypts objects at rest using KMS keys with fine-grained key policies and CloudTrail-audited usage, meeting controlled and auditable encryption requirements.",
+    "explanationIncorrect": "Relying only on bucket privacy leaves data unencrypted at rest. Renaming files is not encryption and provides no protection. Disabling versioning is unrelated to encryption, so SSE-KMS is the correct choice for auditable, controlled encryption.",
+    "tags": [
+      "secure",
+      "sse-kms",
+      "encryption"
+    ]
+  },
+  {
+    "id": "saa-129",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "An application must retrieve database credentials at runtime with automatic rotation. Which service is designed for this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Secrets Manager"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Secrets Manager securely stores credentials, provides them to applications at runtime, and can automatically rotate them on a schedule.",
+    "explanationIncorrect": "Storing credentials in S3 lacks built-in rotation and secret-specific controls. CloudTrail logs API activity but does not manage secrets. SNS delivers notifications, so Secrets Manager is the service built for credential storage and rotation.",
+    "tags": [
+      "secure",
+      "secrets-manager",
+      "rotation"
+    ]
+  },
+  {
+    "id": "saa-130",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "To let users sign in to a web and mobile app and obtain temporary AWS access scoped to their identity, which service provides user pools and identity federation?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Cognito"
+      },
+      {
+        "id": "o2",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Glue"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Cognito provides user pools for sign-up and sign-in and identity pools that grant temporary, scoped AWS credentials, including federation with external identity providers.",
+    "explanationIncorrect": "AWS Config tracks resource configuration, not user authentication. Inspector assesses vulnerabilities. AWS Glue is an ETL service, so Cognito is the service for app user authentication and federation.",
+    "tags": [
+      "secure",
+      "cognito",
+      "authentication"
+    ]
+  },
+  {
+    "id": "saa-131",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "You want EC2 instances in a private subnet to reach Amazon S3 without traversing the public internet or a NAT gateway. Which feature enables this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A VPC gateway endpoint for S3"
+      },
+      {
+        "id": "o2",
+        "text": "An internet gateway attached to the private subnet"
+      },
+      {
+        "id": "o3",
+        "text": "A public Elastic IP on each instance"
+      },
+      {
+        "id": "o4",
+        "text": "A Route 53 private hosted zone"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A VPC gateway endpoint for S3 provides private connectivity to S3 through route table entries, keeping traffic on the AWS network without a NAT gateway or internet access.",
+    "explanationIncorrect": "An internet gateway would route traffic over the public internet, defeating the goal. Public Elastic IPs expose instances rather than keeping traffic private. A private hosted zone resolves DNS names but does not create private S3 connectivity, so a gateway endpoint is the correct feature.",
+    "tags": [
+      "secure",
+      "vpc-endpoint",
+      "s3"
+    ]
+  },
+  {
+    "id": "saa-132",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice reduces the blast radius if a single set of IAM permissions is compromised?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Grant least-privilege permissions scoped to specific actions and resources"
+      },
+      {
+        "id": "o2",
+        "text": "Attach AdministratorAccess to all roles"
+      },
+      {
+        "id": "o3",
+        "text": "Use one shared IAM user for everyone"
+      },
+      {
+        "id": "o4",
+        "text": "Disable CloudTrail to reduce logging overhead"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Scoping permissions to only the specific actions and resources needed limits what a compromised credential can do, shrinking the blast radius.",
+    "explanationIncorrect": "Attaching AdministratorAccess broadly maximizes the damage from any compromise. A shared IAM user removes accountability and widens exposure. Disabling CloudTrail removes the audit trail you need for detection, so least-privilege scoping is the correct practice.",
+    "tags": [
+      "secure",
+      "least-privilege",
+      "iam"
+    ]
   }
 ]
