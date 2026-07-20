@@ -4967,5 +4967,170 @@
       "idempotency",
       "concepts"
     ]
+  },
+  {
+    "id": "tf-151",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which construct lets you mark an input variable's value as secret so Terraform redacts it from plan and apply output?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Setting sensitive = true on the variable"
+      },
+      {
+        "id": "o2",
+        "text": "Setting type = string on the variable"
+      },
+      {
+        "id": "o3",
+        "text": "Adding a default value"
+      },
+      {
+        "id": "o4",
+        "text": "Wrapping it in the upper() function"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Declaring sensitive = true on a variable tells Terraform to redact its value in plan and apply output, reducing accidental exposure.",
+    "explanationIncorrect": "Setting a type only constrains the value's shape, not its visibility. Adding a default provides a fallback value but does not hide it. The upper() function changes case, not sensitivity, so sensitive = true is the correct construct.",
+    "tags": [
+      "configuration",
+      "sensitive",
+      "variables"
+    ]
+  },
+  {
+    "id": "tf-152",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "You need to build a list by transforming each element of another list, for example prefixing each name. Which Terraform construct expresses this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A for expression, e.g. [for n in var.names : \"app-${n}\"]"
+      },
+      {
+        "id": "o2",
+        "text": "The count meta-argument"
+      },
+      {
+        "id": "o3",
+        "text": "A provider block"
+      },
+      {
+        "id": "o4",
+        "text": "The terraform init command"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A for expression iterates over a collection and produces a transformed list or map, such as prefixing each element to build a new list.",
+    "explanationIncorrect": "count controls how many resource instances are created, not list transformation within an expression. A provider block configures a platform, not data transformation. terraform init initializes a directory, so a for expression is the correct construct.",
+    "tags": [
+      "configuration",
+      "for-expression",
+      "functions"
+    ]
+  },
+  {
+    "id": "tf-153",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which function returns the first non-null, non-empty argument, useful for providing fallbacks?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "coalesce"
+      },
+      {
+        "id": "o2",
+        "text": "join"
+      },
+      {
+        "id": "o3",
+        "text": "length"
+      },
+      {
+        "id": "o4",
+        "text": "file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "coalesce returns the first of its arguments that is non-null and non-empty, making it convenient for supplying fallback values.",
+    "explanationIncorrect": "join concatenates list elements into a string with a separator. length returns the size of a collection or string. file reads a file's contents, so coalesce is the fallback-selection function.",
+    "tags": [
+      "configuration",
+      "functions",
+      "coalesce"
+    ]
+  },
+  {
+    "id": "tf-154",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "What does a local value (declared in a locals block) provide?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A named expression you can reuse within the module to avoid repetition"
+      },
+      {
+        "id": "o2",
+        "text": "An input parameter supplied at apply time"
+      },
+      {
+        "id": "o3",
+        "text": "A value exported to the calling module"
+      },
+      {
+        "id": "o4",
+        "text": "A remote backend configuration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A local value assigns a name to an expression so it can be reused throughout the module, reducing duplication and centralizing logic.",
+    "explanationIncorrect": "Input parameters supplied externally are variables, not locals. Values exported to a caller are outputs. A backend configuration is declared in the terraform block, so a reusable named expression is what a local provides.",
+    "tags": [
+      "configuration",
+      "locals",
+      "expressions"
+    ]
+  },
+  {
+    "id": "tf-155",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "Which function would you use to parse a JSON string from an external source into a Terraform object you can index?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "jsondecode"
+      },
+      {
+        "id": "o2",
+        "text": "jsonencode"
+      },
+      {
+        "id": "o3",
+        "text": "tostring"
+      },
+      {
+        "id": "o4",
+        "text": "base64encode"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "jsondecode parses a JSON-encoded string into a Terraform value such as a map or list that you can then index and reference.",
+    "explanationIncorrect": "jsonencode does the reverse, serializing a value into a JSON string. tostring converts a value to a string rather than parsing structure. base64encode encodes data as base64, not JSON parsing, so jsondecode is the correct function.",
+    "tags": [
+      "configuration",
+      "functions",
+      "jsondecode"
+    ]
   }
 ]
