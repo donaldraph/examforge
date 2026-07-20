@@ -3811,5 +3811,302 @@
       "efs",
       "shared-storage"
     ]
+  },
+  {
+    "id": "saa-115",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "A read-heavy relational workload is straining the primary database. Which approach best scales read throughput?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Add read replicas and route read queries to them"
+      },
+      {
+        "id": "o2",
+        "text": "Increase the primary's storage size only"
+      },
+      {
+        "id": "o3",
+        "text": "Enable Multi-AZ for automatic failover"
+      },
+      {
+        "id": "o4",
+        "text": "Take more frequent snapshots"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Read replicas offload read traffic from the primary, scaling read throughput horizontally for read-heavy workloads.",
+    "explanationIncorrect": "Adding storage does not increase query throughput for reads. Multi-AZ provides high availability, not read scaling, since the standby does not serve reads. More frequent snapshots aid backup but do not scale reads, so read replicas are the right approach.",
+    "tags": [
+      "high-performing",
+      "read-replicas",
+      "scaling"
+    ]
+  },
+  {
+    "id": "saa-116",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A DynamoDB table experiences hot partitions and throttling because many requests target the same partition key. What design change most improves performance?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Choose a high-cardinality partition key that distributes requests evenly"
+      },
+      {
+        "id": "o2",
+        "text": "Reduce the number of items in the table"
+      },
+      {
+        "id": "o3",
+        "text": "Switch the table to a single partition key value"
+      },
+      {
+        "id": "o4",
+        "text": "Add more global secondary indexes with the same key"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Selecting a partition key with high cardinality spreads requests across many partitions, avoiding hot partitions and throttling.",
+    "explanationIncorrect": "Reducing item count does not fix an uneven access pattern. Forcing a single partition key value concentrates all traffic onto one partition, worsening the problem. Adding indexes on the same skewed key repeats the hot-partition issue, so a high-cardinality key is the correct fix.",
+    "tags": [
+      "high-performing",
+      "dynamodb",
+      "partition-key"
+    ]
+  },
+  {
+    "id": "saa-117",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To reduce database load for frequently read, rarely changing data, which service adds an in-memory caching layer?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon ElastiCache"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Athena"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon ElastiCache provides managed in-memory caches (Redis or Memcached) that serve frequently accessed data quickly and offload the database.",
+    "explanationIncorrect": "Glacier is archival storage with retrieval delays, the opposite of a fast cache. Snowball transfers bulk data physically. Athena runs SQL queries over S3 data and is not a caching layer, so ElastiCache is the correct in-memory cache.",
+    "tags": [
+      "high-performing",
+      "elasticache",
+      "caching"
+    ]
+  },
+  {
+    "id": "saa-118",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Global users report slow load times for static assets served from a single Region. Which service reduces latency by serving content from edge locations?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Config"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CloudFront caches content at edge locations worldwide, so users are served from a nearby edge, reducing latency for static assets.",
+    "explanationIncorrect": "EBS is block storage for a single instance and does not distribute content globally. AWS Config tracks configuration compliance. SQS is a message queue, so CloudFront is the service that improves global content delivery performance.",
+    "tags": [
+      "high-performing",
+      "cloudfront",
+      "latency"
+    ]
+  },
+  {
+    "id": "saa-119",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "An application needs very low-latency, high-throughput block storage for a demanding transactional database on EC2. Which EBS volume type is most appropriate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Provisioned IOPS SSD (io1/io2)"
+      },
+      {
+        "id": "o2",
+        "text": "Cold HDD (sc1)"
+      },
+      {
+        "id": "o3",
+        "text": "Throughput Optimized HDD (st1)"
+      },
+      {
+        "id": "o4",
+        "text": "Magnetic (standard)"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Provisioned IOPS SSD volumes deliver consistent, high IOPS and low latency, making them suited to demanding transactional databases.",
+    "explanationIncorrect": "Cold HDD is optimized for infrequently accessed, throughput-oriented data at low cost, not low-latency transactions. Throughput Optimized HDD targets large sequential workloads, not high random IOPS. Magnetic is a legacy low-performance option, so Provisioned IOPS SSD is the right choice.",
+    "tags": [
+      "high-performing",
+      "ebs",
+      "provisioned-iops"
+    ]
+  },
+  {
+    "id": "saa-120",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach lets a fleet of EC2 instances automatically add capacity as CPU utilization rises and remove it as demand drops?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An Auto Scaling group with a target tracking scaling policy"
+      },
+      {
+        "id": "o2",
+        "text": "Manually launching instances during peaks"
+      },
+      {
+        "id": "o3",
+        "text": "A single fixed-size instance fleet"
+      },
+      {
+        "id": "o4",
+        "text": "Vertical scaling by rebooting into a bigger type each time"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An Auto Scaling group with a target tracking policy automatically adjusts capacity to keep a metric like CPU utilization near a target, scaling out and in with demand.",
+    "explanationIncorrect": "Manually launching instances does not respond automatically and lags demand. A fixed-size fleet cannot adapt to load changes. Repeatedly rebooting into bigger types is disruptive vertical scaling that does not elastically track demand, so a target tracking Auto Scaling policy is correct.",
+    "tags": [
+      "high-performing",
+      "auto-scaling",
+      "target-tracking"
+    ]
+  },
+  {
+    "id": "saa-121",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "A data analytics team needs to run complex SQL queries over petabytes of structured data in a data warehouse. Which service is purpose-built for this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon ElastiCache"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Redshift is a managed, columnar data warehouse optimized for complex analytical SQL queries over very large structured datasets.",
+    "explanationIncorrect": "DynamoDB is a NoSQL key-value store, not a warehouse for complex analytical joins at petabyte scale. ElastiCache is an in-memory cache. SQS is a message queue, so Redshift is the data-warehouse service.",
+    "tags": [
+      "high-performing",
+      "redshift",
+      "analytics"
+    ]
+  },
+  {
+    "id": "saa-122",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A read-heavy application on DynamoDB needs microsecond read latency for repeated hot keys. Which fully managed cache fits DynamoDB specifically?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "DynamoDB Accelerator (DAX)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon RDS Proxy"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Global Accelerator"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "DynamoDB Accelerator (DAX) is a fully managed in-memory cache purpose-built for DynamoDB, delivering microsecond read latency for hot items.",
+    "explanationIncorrect": "CloudFront caches web content at edges, not DynamoDB item reads. RDS Proxy pools connections for relational databases, not DynamoDB. Global Accelerator optimizes network paths, not database item caching, so DAX is the DynamoDB-specific cache.",
+    "tags": [
+      "high-performing",
+      "dax",
+      "dynamodb"
+    ]
+  },
+  {
+    "id": "saa-123",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To process a large volume of independent tasks in parallel without managing servers, which pairing is a good serverless fit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SQS triggering AWS Lambda functions that scale with the queue"
+      },
+      {
+        "id": "o2",
+        "text": "A single EC2 instance polling a database in a loop"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Route 53 with weighted records"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon CloudFront with an origin group"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SQS decouples and buffers tasks while Lambda scales out to process messages in parallel, giving a serverless, elastic processing pipeline.",
+    "explanationIncorrect": "A single EC2 instance polling in a loop does not scale in parallel and requires server management. Route 53 weighted records handle DNS traffic distribution, not task processing. CloudFront origin groups provide failover for content delivery, so SQS with Lambda is the serverless parallel-processing fit.",
+    "tags": [
+      "high-performing",
+      "serverless",
+      "sqs-lambda"
+    ]
   }
 ]
