@@ -4390,5 +4390,269 @@
       "inputs",
       "defaults"
     ]
+  },
+  {
+    "id": "gha-133",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An enterprise wants only specific actions to be usable across all organizations, blocking arbitrary Marketplace actions. Which control enforces this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An allow list of permitted actions in the Actions policy settings"
+      },
+      {
+        "id": "o2",
+        "text": "A branch protection rule on the default branch"
+      },
+      {
+        "id": "o3",
+        "text": "A required status check named actions-allowed"
+      },
+      {
+        "id": "o4",
+        "text": "A CODEOWNERS entry for .github/workflows"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Actions policies let an enterprise or organization restrict which actions may run, including an allow list of specific actions and patterns.",
+    "explanationIncorrect": "Branch protection governs merges into branches, not which actions workflows may reference. A status check gates merges based on a job result and does not restrict which actions exist. CODEOWNERS requests reviews for changed paths but cannot block an unlisted action from being invoked, so the allow list policy is the right control.",
+    "tags": [
+      "enterprise",
+      "policy",
+      "allow-list"
+    ]
+  },
+  {
+    "id": "gha-134",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "A team registers self-hosted runners and wants to ensure only workflows from a specific set of repositories can use a runner group. What do they configure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Scope the runner group to selected repositories in its access settings"
+      },
+      {
+        "id": "o2",
+        "text": "Add the repositories to the runner's labels"
+      },
+      {
+        "id": "o3",
+        "text": "Set runs-on to the repository name"
+      },
+      {
+        "id": "o4",
+        "text": "Give each repository the runner's registration token"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Runner groups have access policies that restrict which repositories or organizations may send jobs to the runners in that group.",
+    "explanationIncorrect": "Labels route jobs to runners by capability but do not enforce which repositories are allowed to use them. runs-on selects runners by label, not by naming a repository, and does not restrict access. Sharing a registration token would let a repo add its own runners, not scope access to an existing group, so the group access policy is correct.",
+    "tags": [
+      "self-hosted-runners",
+      "runner-groups",
+      "access"
+    ]
+  },
+  {
+    "id": "gha-135",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "A security review flags that self-hosted runners on public repositories are risky. Why does GitHub recommend against self-hosted runners for public repos?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Forked pull requests could run untrusted code on your infrastructure"
+      },
+      {
+        "id": "o2",
+        "text": "Public repos cannot use secrets at all"
+      },
+      {
+        "id": "o3",
+        "text": "Self-hosted runners cannot check out public code"
+      },
+      {
+        "id": "o4",
+        "text": "GitHub-hosted runners are mandatory for private repos only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "On a public repository, a malicious fork's pull request could execute attacker-controlled code on your self-hosted runner, so GitHub advises against that combination.",
+    "explanationIncorrect": "Public repos can use secrets, though they are restricted for fork PRs, so a blanket no-secrets claim is false. Self-hosted runners can absolutely check out public code. GitHub-hosted runners are not restricted to private repos; the real reason is the untrusted-code execution risk from forks.",
+    "tags": [
+      "self-hosted-runners",
+      "security",
+      "public-repos"
+    ]
+  },
+  {
+    "id": "gha-136",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An organization wants a default GITHUB_TOKEN that is read-only unless a workflow explicitly requests more. Which setting achieves this org-wide?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Set the default workflow token permissions to read-only in Actions settings"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the GITHUB_TOKEN secret"
+      },
+      {
+        "id": "o3",
+        "text": "Add permissions: read to every workflow manually"
+      },
+      {
+        "id": "o4",
+        "text": "Disable Actions entirely for the organization"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The organization Actions settings include a default permissions choice for GITHUB_TOKEN, and setting it to read-only applies unless a workflow declares higher scopes.",
+    "explanationIncorrect": "GITHUB_TOKEN is generated per run and cannot be deleted as a secret. Editing every workflow by hand is error prone and not an org-wide control, which is exactly what the default setting provides. Disabling Actions removes the feature altogether rather than making the token read-only, so the default-permissions setting is the correct lever.",
+    "tags": [
+      "enterprise",
+      "github-token",
+      "permissions"
+    ]
+  },
+  {
+    "id": "gha-137",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You need centralized visibility into who triggered workflow runs and changes to Actions settings across the enterprise. Where do you look?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The enterprise or organization audit log, which records Actions-related events"
+      },
+      {
+        "id": "o2",
+        "text": "The individual run logs of each workflow only"
+      },
+      {
+        "id": "o3",
+        "text": "The repository's Insights traffic graph"
+      },
+      {
+        "id": "o4",
+        "text": "The Dependabot alerts page"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The audit log captures Actions-related administrative and workflow events across the organization or enterprise, giving centralized visibility.",
+    "explanationIncorrect": "Individual run logs show one run at a time and lack settings-change history, so they are not centralized. The traffic graph reports clones and views, not Actions governance events. Dependabot alerts concern vulnerable dependencies, unrelated to who changed Actions settings, so the audit log is the right source.",
+    "tags": [
+      "enterprise",
+      "audit-log",
+      "governance"
+    ]
+  },
+  {
+    "id": "gha-138",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "To control monthly spending on GitHub-hosted runner minutes and storage for private repositories, what does an organization set?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A spending limit for Actions in the billing settings"
+      },
+      {
+        "id": "o2",
+        "text": "A timeout-minutes value on every job"
+      },
+      {
+        "id": "o3",
+        "text": "A concurrency group for all workflows"
+      },
+      {
+        "id": "o4",
+        "text": "A retention period for artifacts only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Billing settings allow an Actions spending limit that caps overage charges for runner minutes and storage beyond the included amounts.",
+    "explanationIncorrect": "timeout-minutes limits a single job's duration but does not cap total monthly spend across all runs. Concurrency limits overlapping runs, not cumulative billed usage. An artifact retention period reduces storage over time but is not the account-level spending cap, which is set in billing.",
+    "tags": [
+      "enterprise",
+      "billing",
+      "spending-limit"
+    ]
+  },
+  {
+    "id": "gha-139",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "An enterprise wants runners that scale up automatically to meet demand and scale to zero when idle, using ephemeral runners. Which approach fits best?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Actions Runner Controller (ARC) on Kubernetes managing ephemeral runners"
+      },
+      {
+        "id": "o2",
+        "text": "A single always-on self-hosted runner VM"
+      },
+      {
+        "id": "o3",
+        "text": "Increasing the GitHub-hosted runner concurrency limit"
+      },
+      {
+        "id": "o4",
+        "text": "Adding more labels to one static runner"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Actions Runner Controller runs on Kubernetes and provisions ephemeral, autoscaling runners that expand under load and can scale to zero when idle.",
+    "explanationIncorrect": "A single always-on VM neither autoscales nor scales to zero. Adjusting GitHub-hosted concurrency does not give you ephemeral self-hosted autoscaling on your own infrastructure. Adding labels to one static runner changes routing, not capacity or autoscaling, so ARC is the intended solution.",
+    "tags": [
+      "self-hosted-runners",
+      "arc",
+      "autoscaling"
+    ]
+  },
+  {
+    "id": "gha-140",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An organization wants to reuse a set of standardized workflow templates that any repository can adopt from a central place. Where are these organization workflow templates stored?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In a workflow-templates directory of the organization's .github repository"
+      },
+      {
+        "id": "o2",
+        "text": "In each repository's .github/workflows directory only"
+      },
+      {
+        "id": "o3",
+        "text": "In a templates branch of every repository"
+      },
+      {
+        "id": "o4",
+        "text": "In the organization's wiki"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization-level starter workflows live in the workflow-templates folder of the special .github repository, from which any repo can create a workflow.",
+    "explanationIncorrect": "Placing them only in each repo's workflows folder makes them local, not shared templates. There is no convention of a templates branch in every repository for this. The wiki holds documentation, not runnable starter workflows, so the .github repository's workflow-templates folder is the right location.",
+    "tags": [
+      "enterprise",
+      "starter-workflows",
+      "templates"
+    ]
   }
 ]
