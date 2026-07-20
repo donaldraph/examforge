@@ -4142,5 +4142,170 @@
       "apply",
       "approval"
     ]
+  },
+  {
+    "id": "tf-126",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Why is a remote backend with state locking recommended when a team collaborates on the same Terraform configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It prevents concurrent operations from corrupting state by locking during writes and shares state centrally"
+      },
+      {
+        "id": "o2",
+        "text": "It removes the need for any state file"
+      },
+      {
+        "id": "o3",
+        "text": "It encrypts the configuration source code"
+      },
+      {
+        "id": "o4",
+        "text": "It automatically writes the configuration for you"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A remote backend stores state centrally and uses locking so two people cannot run conflicting operations at once, preventing state corruption.",
+    "explanationIncorrect": "Terraform still needs a state file; the backend stores it remotely rather than removing it. Backends manage state, not encryption of your source code. They do not author configuration for you, so centralized state with locking is the reason.",
+    "tags": [
+      "state",
+      "remote-backend",
+      "locking"
+    ]
+  },
+  {
+    "id": "tf-127",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "A resource was renamed in configuration and Terraform now plans to destroy the old address and create a new one, though it is the same real resource. Which command avoids the destroy/create by updating state?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform state mv OLD_ADDRESS NEW_ADDRESS"
+      },
+      {
+        "id": "o2",
+        "text": "terraform state rm NEW_ADDRESS"
+      },
+      {
+        "id": "o3",
+        "text": "terraform destroy -target=OLD_ADDRESS"
+      },
+      {
+        "id": "o4",
+        "text": "terraform refresh"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform state mv updates the state to associate the existing resource with its new address, so Terraform sees no need to destroy and recreate it.",
+    "explanationIncorrect": "state rm would remove the resource from state entirely, causing Terraform to try to create it again. destroy -target would delete the real resource, the opposite of what is wanted. refresh only reconciles attribute values and does not move an address, so state mv is the correct command.",
+    "tags": [
+      "state",
+      "state-mv",
+      "refactoring"
+    ]
+  },
+  {
+    "id": "tf-128",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Which statement about the Terraform state file is accurate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It maps configuration resources to real-world objects and can contain sensitive values, so it should be protected"
+      },
+      {
+        "id": "o2",
+        "text": "It never contains sensitive data"
+      },
+      {
+        "id": "o3",
+        "text": "It is optional and Terraform works identically without it"
+      },
+      {
+        "id": "o4",
+        "text": "It should be committed to public version control for sharing"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "State maps your configuration to real resources and can include sensitive attributes, so it must be stored securely, typically in a protected remote backend.",
+    "explanationIncorrect": "State can absolutely contain sensitive values such as passwords, so claiming it never does is false. Terraform relies on state to track resources, so it is not optional. Committing state to public version control would leak sensitive data, so protecting it is the correct guidance.",
+    "tags": [
+      "state",
+      "sensitive-data",
+      "security"
+    ]
+  },
+  {
+    "id": "tf-129",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Which command lets you inspect the resources currently tracked in Terraform state?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform state list"
+      },
+      {
+        "id": "o2",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o3",
+        "text": "terraform init"
+      },
+      {
+        "id": "o4",
+        "text": "terraform validate"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform state list enumerates the resource addresses currently recorded in the state file.",
+    "explanationIncorrect": "terraform fmt formats configuration files and does not read state contents. terraform init initializes the directory. terraform validate checks configuration validity, so state list is the command that inspects tracked resources.",
+    "tags": [
+      "state",
+      "state-list",
+      "inspection"
+    ]
+  },
+  {
+    "id": "tf-130",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "You need to reference outputs from another Terraform configuration's state in a read-only way. Which data source enables this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The terraform_remote_state data source"
+      },
+      {
+        "id": "o2",
+        "text": "The local_file data source"
+      },
+      {
+        "id": "o3",
+        "text": "The external data source running a script"
+      },
+      {
+        "id": "o4",
+        "text": "The null_resource"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The terraform_remote_state data source reads outputs from another configuration's state in read-only fashion, enabling cross-configuration references.",
+    "explanationIncorrect": "local_file reads a file's contents, not another configuration's state outputs. The external data source runs an arbitrary program for data, not remote state access. null_resource is a placeholder resource with no read-of-state capability, so terraform_remote_state is the correct data source.",
+    "tags": [
+      "state",
+      "remote-state",
+      "data-source"
+    ]
   }
 ]
