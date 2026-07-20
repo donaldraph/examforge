@@ -4307,5 +4307,170 @@
       "remote-state",
       "data-source"
     ]
+  },
+  {
+    "id": "tf-131",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "What is the role of a provider in Terraform?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A plugin that lets Terraform manage resources on a specific platform or API"
+      },
+      {
+        "id": "o2",
+        "text": "A file that stores the current infrastructure state"
+      },
+      {
+        "id": "o3",
+        "text": "A command that formats configuration"
+      },
+      {
+        "id": "o4",
+        "text": "A block that defines output values"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A provider is a plugin that implements the resource types and API interactions for a particular platform, such as AWS, Azure, or GitHub.",
+    "explanationIncorrect": "The state file, not a provider, stores current infrastructure state. Formatting is done by the fmt command, not a provider. Output values are defined by output blocks, so a provider is the platform integration plugin.",
+    "tags": [
+      "basics",
+      "providers",
+      "concepts"
+    ]
+  },
+  {
+    "id": "tf-132",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "Which block type declares an external, read-only source of information that Terraform can query but does not manage?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A data block (data source)"
+      },
+      {
+        "id": "o2",
+        "text": "A resource block"
+      },
+      {
+        "id": "o3",
+        "text": "A variable block"
+      },
+      {
+        "id": "o4",
+        "text": "An output block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A data block defines a data source that Terraform reads to fetch information about existing infrastructure or external systems without managing it.",
+    "explanationIncorrect": "A resource block creates and manages infrastructure, not read-only lookups. A variable block declares input parameters. An output block exposes values, so a data block is the read-only external source.",
+    "tags": [
+      "basics",
+      "data-sources",
+      "blocks"
+    ]
+  },
+  {
+    "id": "tf-133",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "hard",
+    "stem": "In a version constraint, what does the pessimistic constraint operator ~> 1.2.0 allow?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Versions >= 1.2.0 and < 1.3.0, allowing patch updates but not a minor bump"
+      },
+      {
+        "id": "o2",
+        "text": "Any version greater than or equal to 1.2.0 with no upper bound"
+      },
+      {
+        "id": "o3",
+        "text": "Only exactly version 1.2.0"
+      },
+      {
+        "id": "o4",
+        "text": "Versions >= 1.0.0 and < 2.0.0"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "With ~> 1.2.0, the rightmost specified component may increment, so it permits 1.2.x patch releases up to but not including 1.3.0.",
+    "explanationIncorrect": "An unbounded >= 1.2.0 is what a plain >= operator means, not the pessimistic one. Pinning to exactly 1.2.0 would use =, not ~>. The range 1.0.0 to 2.0.0 corresponds to ~> 1.0, not ~> 1.2.0, so patch-only updates within 1.2.x is correct.",
+    "tags": [
+      "basics",
+      "version-constraints",
+      "operators"
+    ]
+  },
+  {
+    "id": "tf-134",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "Why does Terraform generate a dependency graph from your configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To determine the correct order to create, update, or destroy resources and to parallelize independent operations"
+      },
+      {
+        "id": "o2",
+        "text": "To format the configuration files"
+      },
+      {
+        "id": "o3",
+        "text": "To encrypt the state file"
+      },
+      {
+        "id": "o4",
+        "text": "To generate documentation automatically"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform builds a dependency graph so it applies changes in the right order based on references and can run independent operations in parallel.",
+    "explanationIncorrect": "Formatting is unrelated to dependency ordering. The graph does not encrypt state. It does not generate documentation, so determining order and enabling parallelism is the purpose of the graph.",
+    "tags": [
+      "basics",
+      "dependency-graph",
+      "ordering"
+    ]
+  },
+  {
+    "id": "tf-135",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "When you reference one resource's attribute in another resource's argument, what does Terraform infer?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An implicit dependency, so the referenced resource is created first"
+      },
+      {
+        "id": "o2",
+        "text": "Nothing; order is random unless depends_on is set"
+      },
+      {
+        "id": "o3",
+        "text": "That the two resources are identical"
+      },
+      {
+        "id": "o4",
+        "text": "That the reference should be ignored"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Referencing another resource's attribute creates an implicit dependency, so Terraform ensures the referenced resource exists before the dependent one is created.",
+    "explanationIncorrect": "Order is not random; references establish ordering without needing depends_on. A reference does not make resources identical. Terraform does not ignore references; it uses them to build the graph, so an implicit dependency is inferred.",
+    "tags": [
+      "basics",
+      "implicit-dependency",
+      "references"
+    ]
   }
 ]
