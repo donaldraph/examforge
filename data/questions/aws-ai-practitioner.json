@@ -4587,5 +4587,236 @@
       "sagemaker-clarify",
       "explainability"
     ]
+  },
+  {
+    "id": "aip-139",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "You want to ensure prompts and data sent to Amazon Bedrock stay within your AWS network and do not traverse the public internet. Which feature helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A VPC interface endpoint (AWS PrivateLink) for Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "A public NAT gateway"
+      },
+      {
+        "id": "o3",
+        "text": "An internet gateway"
+      },
+      {
+        "id": "o4",
+        "text": "A CloudFront distribution"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A VPC interface endpoint powered by AWS PrivateLink keeps traffic to Bedrock on the AWS network without going over the public internet.",
+    "explanationIncorrect": "A NAT gateway enables outbound internet access from private subnets, the opposite of keeping traffic off the internet. An internet gateway explicitly routes to the internet. CloudFront is a public content delivery network, so a PrivateLink endpoint is the correct private-connectivity option.",
+    "tags": [
+      "security",
+      "privatelink",
+      "vpc-endpoint"
+    ]
+  },
+  {
+    "id": "aip-140",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "Which AWS service should you use to control which users and roles can invoke specific Bedrock models and actions?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Identity and Access Management (IAM) policies"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Cost Explorer"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "IAM policies define which principals may perform which Bedrock actions on which resources, enforcing least-privilege access to models.",
+    "explanationIncorrect": "Route 53 is DNS and does not control API permissions. Cost Explorer analyzes spending, not access. SNS delivers notifications, so IAM is the service that governs who can invoke Bedrock.",
+    "tags": [
+      "security",
+      "iam",
+      "access-control"
+    ]
+  },
+  {
+    "id": "aip-141",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "To record and audit all API calls made to Bedrock for governance, which service provides that log of activity?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon QuickSight"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudTrail records API activity across services, including Bedrock, giving an audit trail of who called what and when.",
+    "explanationIncorrect": "Polly is text-to-speech and logs nothing about API governance. Lambda runs code but is not the account-wide API audit log. QuickSight is a BI tool for dashboards, so CloudTrail is the service that provides the audit trail.",
+    "tags": [
+      "governance",
+      "cloudtrail",
+      "audit"
+    ]
+  },
+  {
+    "id": "aip-142",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Before sending customer records to a foundation model, a team wants to automatically discover and classify sensitive personal data stored in Amazon S3. Which service helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Lex"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kinesis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Macie uses machine learning to discover and classify sensitive data such as PII in S3, supporting data governance before it is used with a model.",
+    "explanationIncorrect": "Lex builds conversational chatbots and does not classify stored data. AWS Batch runs batch compute jobs. Kinesis streams real-time data but does not classify sensitivity, so Macie is the correct data-discovery service.",
+    "tags": [
+      "governance",
+      "macie",
+      "data-classification"
+    ]
+  },
+  {
+    "id": "aip-143",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "A governance policy requires that data used with a foundation model be encrypted with keys the organization controls and can audit. Which AWS service manages such keys?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Key Management Service (KMS) with customer managed keys"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Step Functions"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Elastic Beanstalk"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS KMS lets you create and control customer managed keys with usage policies and CloudTrail auditing, satisfying organization-controlled encryption requirements.",
+    "explanationIncorrect": "CloudWatch monitors metrics and logs, not encryption keys. Step Functions orchestrates workflows. Elastic Beanstalk deploys applications, so KMS with customer managed keys is the service for controlled, auditable encryption.",
+    "tags": [
+      "security",
+      "kms",
+      "encryption"
+    ]
+  },
+  {
+    "id": "aip-144",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Under the AWS shared responsibility model, when using a managed service like Amazon Bedrock, who is responsible for securing how you configure access and what data you send?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The customer is responsible for their access configuration, data, and usage"
+      },
+      {
+        "id": "o2",
+        "text": "AWS is responsible for the customer's IAM policies and data choices"
+      },
+      {
+        "id": "o3",
+        "text": "No one is responsible for configuration"
+      },
+      {
+        "id": "o4",
+        "text": "The model provider assumes all customer data responsibility"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In the shared responsibility model, AWS secures the underlying service infrastructure while the customer remains responsible for access configuration, data, and how the service is used.",
+    "explanationIncorrect": "AWS does not set your IAM policies or decide what data you send; those are customer choices. Configuration is always someone's responsibility, namely the customer's. The model provider does not assume responsibility for your data governance, so the customer owns access and data responsibilities.",
+    "tags": [
+      "governance",
+      "shared-responsibility",
+      "compliance"
+    ]
+  },
+  {
+    "id": "aip-145",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "A compliance team asks which AWS resource centralizes reports and certifications (such as SOC and ISO) to demonstrate AWS compliance. Where do they look?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EventBridge"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Artifact is the portal for on-demand access to AWS compliance reports and certifications such as SOC and ISO documents.",
+    "explanationIncorrect": "Comprehend is an NLP service, unrelated to compliance documents. Snowball transfers large data volumes physically. EventBridge routes events between services, so AWS Artifact is where compliance reports live.",
+    "tags": [
+      "compliance",
+      "aws-artifact",
+      "governance"
+    ]
   }
 ]
