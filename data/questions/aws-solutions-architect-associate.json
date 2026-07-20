@@ -4405,5 +4405,269 @@
       "least-privilege",
       "iam"
     ]
+  },
+  {
+    "id": "saa-133",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Infrequently accessed data must remain retrievable within milliseconds but should cost less than S3 Standard. Which storage class fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Standard-Infrequent Access (S3 Standard-IA)"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Glacier Deep Archive"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Standard"
+      },
+      {
+        "id": "o4",
+        "text": "EC2 instance store"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Standard-IA offers millisecond retrieval at a lower storage price than Standard, suited to infrequently accessed but still readily available data.",
+    "explanationIncorrect": "Glacier Deep Archive is far cheaper but has retrieval times of hours, not milliseconds. S3 Standard costs more and is meant for frequent access. Instance store is ephemeral local disk, not durable object storage, so Standard-IA matches the requirements.",
+    "tags": [
+      "cost-optimized",
+      "s3-storage-classes",
+      "standard-ia"
+    ]
+  },
+  {
+    "id": "saa-134",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A workload has unpredictable access patterns and you do not want to manage lifecycle transitions manually while still optimizing storage cost. Which S3 option helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Intelligent-Tiering, which moves objects between tiers automatically based on access"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Standard with no lifecycle rules"
+      },
+      {
+        "id": "o3",
+        "text": "Manually deleting objects weekly"
+      },
+      {
+        "id": "o4",
+        "text": "Glacier Deep Archive for all objects regardless of access"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Intelligent-Tiering automatically moves objects between access tiers based on usage, optimizing cost for unpredictable patterns without manual lifecycle management.",
+    "explanationIncorrect": "Standard with no rules keeps everything at the higher price regardless of access. Manual weekly deletion is error prone and not a tiering strategy. Forcing everything into Deep Archive would break millisecond access needs, so Intelligent-Tiering fits unpredictable access.",
+    "tags": [
+      "cost-optimized",
+      "intelligent-tiering",
+      "s3"
+    ]
+  },
+  {
+    "id": "saa-135",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "A steady-state production workload runs 24/7 for at least a year. Which EC2 pricing model minimizes cost while keeping capacity reserved?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reserved Instances or a Compute Savings Plan with a one- or three-year commitment"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances only"
+      },
+      {
+        "id": "o3",
+        "text": "Spot Instances for the steady workload"
+      },
+      {
+        "id": "o4",
+        "text": "Dedicated Hosts billed hourly"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "For predictable, always-on workloads, a Reserved Instance or Compute Savings Plan commitment provides significant discounts over On-Demand while ensuring capacity.",
+    "explanationIncorrect": "On-Demand is the most expensive option for continuous long-running use. Spot can be reclaimed at any time, unsuitable for steady production needs. Dedicated Hosts add premium cost for physical isolation not required here, so a Reserved or Savings Plan commitment is most cost effective.",
+    "tags": [
+      "cost-optimized",
+      "reserved-instances",
+      "savings-plans"
+    ]
+  },
+  {
+    "id": "saa-136",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "A fault-tolerant batch processing job runs at flexible times and can restart if interrupted. Which purchasing option minimizes its cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spot Instances"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o3",
+        "text": "Standard Reserved Instances"
+      },
+      {
+        "id": "o4",
+        "text": "Dedicated Hosts"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spot Instances offer the deepest discounts for interruption-tolerant, flexible workloads like fault-tolerant batch jobs.",
+    "explanationIncorrect": "On-Demand costs more and is unnecessary for interruptible work. Reserved Instances require a commitment better suited to steady workloads, not flexible batch runs. Dedicated Hosts are premium-priced for isolation, so Spot Instances minimize cost here.",
+    "tags": [
+      "cost-optimized",
+      "spot-instances",
+      "batch"
+    ]
+  },
+  {
+    "id": "saa-137",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A sporadically used internal API receives a few thousand requests per day with long idle periods. Which architecture is most cost-effective?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "API Gateway with AWS Lambda, paying only per request and execution time"
+      },
+      {
+        "id": "o2",
+        "text": "A fleet of always-on EC2 instances behind a load balancer"
+      },
+      {
+        "id": "o3",
+        "text": "A large Reserved Instance running continuously"
+      },
+      {
+        "id": "o4",
+        "text": "A provisioned Redshift cluster"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A serverless API Gateway and Lambda design charges only for actual requests and compute time, so long idle periods incur little cost, ideal for sporadic traffic.",
+    "explanationIncorrect": "Always-on EC2 instances incur cost during the long idle periods regardless of traffic. A continuously running Reserved Instance commits to capacity that mostly sits idle. A provisioned Redshift cluster is an analytics warehouse, unnecessary and costly here, so serverless is the cost-effective choice.",
+    "tags": [
+      "cost-optimized",
+      "serverless",
+      "lambda"
+    ]
+  },
+  {
+    "id": "saa-138",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "To automatically move older S3 objects to cheaper storage classes and eventually expire them, what should you configure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Lifecycle rules"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Cross-Region Replication only"
+      },
+      {
+        "id": "o3",
+        "text": "A CloudFront distribution"
+      },
+      {
+        "id": "o4",
+        "text": "An SQS queue"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Lifecycle rules automatically transition objects to lower-cost classes over time and can expire them on a schedule, optimizing storage cost.",
+    "explanationIncorrect": "Cross-Region Replication copies objects to another Region and does not reduce storage cost. CloudFront caches content for delivery, not lifecycle management. An SQS queue moves messages, so Lifecycle rules are the correct cost-optimization feature.",
+    "tags": [
+      "cost-optimized",
+      "s3-lifecycle",
+      "transitions"
+    ]
+  },
+  {
+    "id": "saa-139",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice helps avoid paying for idle over-provisioned EC2 capacity?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Right-sizing instances based on utilization metrics and using Auto Scaling"
+      },
+      {
+        "id": "o2",
+        "text": "Always choosing the largest instance type to be safe"
+      },
+      {
+        "id": "o3",
+        "text": "Running fixed capacity sized for peak at all times"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling monitoring to cut costs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Right-sizing based on actual utilization and letting Auto Scaling match capacity to demand avoids paying for idle, over-provisioned resources.",
+    "explanationIncorrect": "Always choosing the largest type wastes money on unused capacity. Sizing fixed capacity for peak means paying for peak resources during low demand. Disabling monitoring removes the very data needed to optimize and does not save meaningfully, so right-sizing with Auto Scaling is correct.",
+    "tags": [
+      "cost-optimized",
+      "right-sizing",
+      "auto-scaling"
+    ]
+  },
+  {
+    "id": "saa-140",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "Large volumes of data transferred out from EC2 to the internet are driving up costs. Which change most directly reduces data transfer charges for repeat content?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Serve the content through Amazon CloudFront to cache at the edge and reduce origin data transfer"
+      },
+      {
+        "id": "o2",
+        "text": "Move the instances to a larger type"
+      },
+      {
+        "id": "o3",
+        "text": "Increase the EBS volume size"
+      },
+      {
+        "id": "o4",
+        "text": "Enable Multi-AZ on the database"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Delivering content via CloudFront caches it at edge locations, so repeat requests are served from the CDN, reducing data transferred out from the origin and often lowering overall transfer cost.",
+    "explanationIncorrect": "A larger instance type increases compute cost without reducing data transfer. A bigger EBS volume adds storage cost, not transfer savings. Multi-AZ on the database improves availability but does not cut internet egress, so CloudFront caching is the direct cost reducer.",
+    "tags": [
+      "cost-optimized",
+      "cloudfront",
+      "data-transfer"
+    ]
   }
 ]
