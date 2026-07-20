@@ -3663,5 +3663,236 @@
       "certifications"
     ],
     "isSeed": true
+  },
+  {
+    "id": "aip-111",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "A model performs excellently on its training data but poorly on new, unseen data. Which problem does this describe?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Overfitting"
+      },
+      {
+        "id": "o2",
+        "text": "Underfitting"
+      },
+      {
+        "id": "o3",
+        "text": "Data leakage from the test set into training"
+      },
+      {
+        "id": "o4",
+        "text": "Class imbalance"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Overfitting occurs when a model memorizes training data, including noise, and fails to generalize, producing high training accuracy but poor performance on new data.",
+    "explanationIncorrect": "Underfitting is the opposite, where the model is too simple and does poorly even on training data. Data leakage inflates test performance rather than causing the described gap. Class imbalance concerns skewed label proportions and does not by itself define the train-good, test-bad pattern that overfitting names.",
+    "tags": [
+      "ml-fundamentals",
+      "overfitting",
+      "generalization"
+    ]
+  },
+  {
+    "id": "aip-112",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "You have historical house sales with square footage and sale price and want to predict a continuous price for new houses. Which type of ML task is this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Regression"
+      },
+      {
+        "id": "o2",
+        "text": "Binary classification"
+      },
+      {
+        "id": "o3",
+        "text": "Clustering"
+      },
+      {
+        "id": "o4",
+        "text": "Dimensionality reduction"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Predicting a continuous numeric value such as price from labeled examples is a regression task.",
+    "explanationIncorrect": "Binary classification predicts one of two discrete categories, not a continuous number. Clustering groups unlabeled data by similarity and does not predict a target value. Dimensionality reduction compresses features and is not a prediction task, so regression is the correct fit for predicting price.",
+    "tags": [
+      "ml-fundamentals",
+      "regression",
+      "supervised-learning"
+    ]
+  },
+  {
+    "id": "aip-113",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "A team wants to segment customers into groups without any predefined labels. Which learning paradigm and example algorithm fit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Unsupervised learning, using k-means clustering"
+      },
+      {
+        "id": "o2",
+        "text": "Supervised learning, using linear regression"
+      },
+      {
+        "id": "o3",
+        "text": "Reinforcement learning, using Q-learning"
+      },
+      {
+        "id": "o4",
+        "text": "Supervised learning, using logistic regression"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Grouping data without labels is unsupervised learning, and k-means clustering is a standard algorithm for discovering such segments.",
+    "explanationIncorrect": "Linear and logistic regression are supervised methods that require labeled targets, which the scenario lacks. Reinforcement learning optimizes actions through reward signals in an environment, not static customer segmentation, so unsupervised clustering is the correct paradigm.",
+    "tags": [
+      "ml-fundamentals",
+      "unsupervised",
+      "clustering"
+    ]
+  },
+  {
+    "id": "aip-114",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "For a fraud-detection model where missing a fraudulent transaction is very costly, which metric best captures the share of actual frauds the model catches?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Recall (true positive rate)"
+      },
+      {
+        "id": "o2",
+        "text": "Precision"
+      },
+      {
+        "id": "o3",
+        "text": "Overall accuracy"
+      },
+      {
+        "id": "o4",
+        "text": "Mean squared error"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Recall measures the proportion of actual positives (frauds) the model correctly identifies, which is what matters when missing a fraud is costly.",
+    "explanationIncorrect": "Precision measures how many flagged cases are truly fraud, not how many frauds were caught. Accuracy can look high on imbalanced fraud data while missing most frauds. Mean squared error is a regression metric, not a classification measure, so recall is the right focus.",
+    "tags": [
+      "ml-fundamentals",
+      "metrics",
+      "recall"
+    ]
+  },
+  {
+    "id": "aip-115",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which AWS service is a fully managed platform to build, train, and deploy machine learning models at scale?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Glue"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SageMaker is the managed service for the end-to-end ML lifecycle, covering building, training, and deploying models.",
+    "explanationIncorrect": "Rekognition is a pre-built vision API, not a platform for training your own models generally. Athena queries data in S3 with SQL and is not an ML training platform. AWS Glue is an ETL service for data preparation, so SageMaker is the managed ML platform.",
+    "tags": [
+      "ml-fundamentals",
+      "sagemaker",
+      "aws-services"
+    ]
+  },
+  {
+    "id": "aip-116",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "During model development, why do teams split data into training, validation, and test sets?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To tune on validation and get an unbiased final estimate on the untouched test set"
+      },
+      {
+        "id": "o2",
+        "text": "To train three separate models in parallel"
+      },
+      {
+        "id": "o3",
+        "text": "Because more splits always increase accuracy"
+      },
+      {
+        "id": "o4",
+        "text": "To avoid needing any labeled data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The validation set guides hyperparameter tuning and model selection while the test set is held out untouched to give an unbiased estimate of generalization.",
+    "explanationIncorrect": "The splits are not about training three models in parallel; they serve different evaluation roles. Adding splits does not inherently raise accuracy and can reduce training data. The approach still requires labeled data for supervised learning, so the unbiased-evaluation rationale is correct.",
+    "tags": [
+      "ml-fundamentals",
+      "train-test-split",
+      "validation"
+    ]
+  },
+  {
+    "id": "aip-117",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "What is a feature in a machine learning dataset?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An input variable or attribute used to make predictions"
+      },
+      {
+        "id": "o2",
+        "text": "The final trained model file"
+      },
+      {
+        "id": "o3",
+        "text": "The compute instance used for training"
+      },
+      {
+        "id": "o4",
+        "text": "The evaluation metric reported at the end"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A feature is an individual measurable input attribute, such as age or square footage, that the model uses to predict the target.",
+    "explanationIncorrect": "The trained model file is the output artifact, not an input attribute. The compute instance is infrastructure, unrelated to the data's columns. An evaluation metric summarizes performance rather than serving as an input, so a feature is the input variable definition.",
+    "tags": [
+      "ml-fundamentals",
+      "features",
+      "terminology"
+    ]
   }
 ]
