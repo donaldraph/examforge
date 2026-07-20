@@ -4056,5 +4056,302 @@
       "aws-config",
       "configuration"
     ]
+  },
+  {
+    "id": "clf-124",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which AWS service provides scalable object storage accessed over HTTP with virtually unlimited capacity?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon VPC"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon S3 is object storage offering virtually unlimited, highly durable capacity accessed over HTTP through a simple API.",
+    "explanationIncorrect": "Amazon EBS provides block storage volumes attached to a single EC2 instance, not internet-accessible object storage. EC2 is compute, not storage. VPC is a networking construct, so S3 is the object storage service.",
+    "tags": [
+      "services",
+      "s3",
+      "storage"
+    ]
+  },
+  {
+    "id": "clf-125",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "You want to run code without provisioning or managing servers, paying only for compute time consumed. Which service fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon S3"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Lambda runs code in response to events without server management, billing only for the compute time your functions use.",
+    "explanationIncorrect": "Amazon EC2 requires you to provision and manage instances. Amazon RDS is a managed database, not a serverless function runtime. S3 is storage, so Lambda is the serverless compute service.",
+    "tags": [
+      "services",
+      "lambda",
+      "serverless"
+    ]
+  },
+  {
+    "id": "clf-126",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "An application needs a fully managed NoSQL key-value database with single-digit millisecond latency at any scale. Which service fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Aurora"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Neptune"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon DynamoDB is a fully managed NoSQL key-value and document database delivering single-digit millisecond performance at scale.",
+    "explanationIncorrect": "Redshift is a columnar data warehouse for analytics, not a low-latency key-value store. Aurora is a relational database. Neptune is a graph database, so DynamoDB matches the managed NoSQL key-value requirement.",
+    "tags": [
+      "services",
+      "dynamodb",
+      "nosql"
+    ]
+  },
+  {
+    "id": "clf-127",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is a content delivery network that caches content at edge locations to reduce latency for users?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EFS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Direct Connect"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kinesis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon CloudFront is a CDN that caches and serves content from edge locations close to users, lowering latency.",
+    "explanationIncorrect": "Amazon EFS is a shared file system, not a CDN. Direct Connect provides a dedicated network link to AWS, not edge caching. Kinesis handles streaming data, so CloudFront is the content delivery network.",
+    "tags": [
+      "services",
+      "cloudfront",
+      "cdn"
+    ]
+  },
+  {
+    "id": "clf-128",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service lets you provision a logically isolated section of the AWS Cloud with your own IP ranges, subnets, and route tables?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon VPC (Virtual Private Cloud)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS IAM"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon VPC provides a logically isolated virtual network where you define IP ranges, subnets, route tables, and gateways.",
+    "explanationIncorrect": "S3 is object storage, not a network. IAM manages identities and permissions, not network topology. SNS is a messaging service, so VPC is the isolated networking service.",
+    "tags": [
+      "services",
+      "vpc",
+      "networking"
+    ]
+  },
+  {
+    "id": "clf-129",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "A team wants to define their entire AWS infrastructure as code using templates that AWS provisions and manages. Which service provides this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudFormation"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudWatch"
+      },
+      {
+        "id": "o3",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Cognito"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudFormation lets you model and provision AWS resources declaratively through templates, treating infrastructure as code.",
+    "explanationIncorrect": "CloudWatch monitors metrics and logs rather than provisioning infrastructure. CloudTrail records API activity. Cognito handles user authentication, so CloudFormation is the infrastructure-as-code service.",
+    "tags": [
+      "services",
+      "cloudformation",
+      "iac"
+    ]
+  },
+  {
+    "id": "clf-130",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service distributes incoming application traffic across multiple targets such as EC2 instances to improve availability?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Elastic Load Balancing (ELB)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowcone"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Macie"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elastic Load Balancing automatically distributes incoming traffic across multiple targets, improving fault tolerance and availability.",
+    "explanationIncorrect": "Glacier is low-cost archival storage. Snowcone is a small edge data-transfer and compute device. Macie discovers sensitive data, so Elastic Load Balancing is the traffic-distribution service.",
+    "tags": [
+      "services",
+      "elb",
+      "load-balancing"
+    ]
+  },
+  {
+    "id": "clf-131",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service provides managed relational databases supporting engines like MySQL, PostgreSQL, and SQL Server?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon RDS is a managed relational database service supporting engines including MySQL, PostgreSQL, MariaDB, Oracle, and SQL Server.",
+    "explanationIncorrect": "DynamoDB is NoSQL, not a relational engine host. S3 is object storage. Lambda is serverless compute, so RDS is the managed relational database service.",
+    "tags": [
+      "services",
+      "rds",
+      "database"
+    ]
+  },
+  {
+    "id": "clf-132",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "A batch job needs interruptible compute at the lowest cost and can tolerate being reclaimed with short notice. Which EC2 purchasing option fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spot Instances"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o3",
+        "text": "Reserved Instances"
+      },
+      {
+        "id": "o4",
+        "text": "Dedicated Hosts"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spot Instances offer spare capacity at steep discounts but can be reclaimed with short notice, ideal for fault-tolerant, interruptible batch work.",
+    "explanationIncorrect": "On-Demand costs more and is meant for steady, uninterrupted needs. Reserved Instances trade a commitment for a discount on always-on workloads. Dedicated Hosts provide physical isolation at premium cost, so Spot is the lowest-cost interruptible option.",
+    "tags": [
+      "services",
+      "ec2",
+      "spot-instances"
+    ]
   }
 ]
