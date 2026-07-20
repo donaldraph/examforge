@@ -3462,5 +3462,302 @@
       "billing"
     ],
     "isSeed": true
+  },
+  {
+    "id": "clf-106",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which cloud benefit is illustrated by turning a large upfront data-center investment into a variable operating expense you pay only for what you use?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Trading capital expense for variable expense"
+      },
+      {
+        "id": "o2",
+        "text": "Increasing time to market by owning hardware"
+      },
+      {
+        "id": "o3",
+        "text": "Guaranteeing zero cost regardless of usage"
+      },
+      {
+        "id": "o4",
+        "text": "Eliminating the need for any architecture"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A core cloud value proposition is replacing large upfront capital expenditure on hardware with variable operating expense billed by actual consumption.",
+    "explanationIncorrect": "Owning hardware slows time to market rather than improving it, so that is not the benefit. The cloud is not free; you pay for what you use, so zero cost is false. Good architecture is still required in the cloud, so trading capex for variable expense is the illustrated benefit.",
+    "tags": [
+      "cloud-concepts",
+      "economics",
+      "capex-opex"
+    ]
+  },
+  {
+    "id": "clf-107",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "A workload automatically adds servers during peak traffic and removes them when demand falls. Which cloud characteristic is this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Elasticity"
+      },
+      {
+        "id": "o2",
+        "text": "Vendor lock-in"
+      },
+      {
+        "id": "o3",
+        "text": "Colocation"
+      },
+      {
+        "id": "o4",
+        "text": "Manual capacity planning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elasticity is the ability to automatically scale resources out and in to match demand, adding capacity at peak and releasing it when idle.",
+    "explanationIncorrect": "Vendor lock-in describes dependence on one provider, not automatic scaling. Colocation is renting space in a data center for your own hardware. Manual capacity planning is the opposite of automatic scaling, so elasticity names the described behavior.",
+    "tags": [
+      "cloud-concepts",
+      "elasticity",
+      "scaling"
+    ]
+  },
+  {
+    "id": "clf-108",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "Which AWS Well-Architected Framework pillar focuses on the ability to recover from failures and meet demand?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reliability"
+      },
+      {
+        "id": "o2",
+        "text": "Cost Optimization"
+      },
+      {
+        "id": "o3",
+        "text": "Operational Excellence"
+      },
+      {
+        "id": "o4",
+        "text": "Sustainability"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Reliability pillar addresses a workload's ability to recover from disruptions, dynamically acquire resources, and meet demand.",
+    "explanationIncorrect": "Cost Optimization focuses on avoiding unnecessary spend, not recovery from failure. Operational Excellence covers running and monitoring systems and improving processes. Sustainability addresses environmental impact, so Reliability is the pillar about recovery and meeting demand.",
+    "tags": [
+      "cloud-concepts",
+      "well-architected",
+      "reliability"
+    ]
+  },
+  {
+    "id": "clf-109",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "What does the term high availability mean for a cloud workload?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The system remains operational for a very high percentage of time, tolerating component failures"
+      },
+      {
+        "id": "o2",
+        "text": "The system uses the cheapest possible instances"
+      },
+      {
+        "id": "o3",
+        "text": "The system stores data only in one location"
+      },
+      {
+        "id": "o4",
+        "text": "The system runs only during business hours"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "High availability means designing so the system keeps running through component failures, minimizing downtime and maintaining a high uptime percentage.",
+    "explanationIncorrect": "Choosing the cheapest instances is a cost concern that can even reduce availability. Storing data in a single location undermines availability by creating a single point of failure. Running only during business hours describes limited availability, so tolerating failures to stay up is the correct meaning.",
+    "tags": [
+      "cloud-concepts",
+      "high-availability",
+      "resilience"
+    ]
+  },
+  {
+    "id": "clf-110",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which deployment model combines on-premises infrastructure with public cloud resources working together?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Hybrid cloud"
+      },
+      {
+        "id": "o2",
+        "text": "Pure public cloud"
+      },
+      {
+        "id": "o3",
+        "text": "Pure on-premises"
+      },
+      {
+        "id": "o4",
+        "text": "Multi-tenant SaaS only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A hybrid model integrates on-premises infrastructure with public cloud resources so workloads and data can span both environments.",
+    "explanationIncorrect": "A pure public cloud model uses no on-premises component. Pure on-premises uses no cloud at all. Multi-tenant SaaS describes a software delivery model, not the combination of on-premises and cloud, so hybrid cloud is correct.",
+    "tags": [
+      "cloud-concepts",
+      "deployment-models",
+      "hybrid"
+    ]
+  },
+  {
+    "id": "clf-111",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "An AWS Region is composed of multiple isolated locations. What are these locations called, and why do they matter?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Availability Zones, which let you build fault-tolerant architectures across isolated data centers"
+      },
+      {
+        "id": "o2",
+        "text": "Edge locations, which only cache content"
+      },
+      {
+        "id": "o3",
+        "text": "Local Zones, which are the only compute option"
+      },
+      {
+        "id": "o4",
+        "text": "Subnets, which span all Regions globally"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A Region contains multiple Availability Zones, each one or more isolated data centers, so distributing across AZs provides fault tolerance within a Region.",
+    "explanationIncorrect": "Edge locations serve CloudFront caching and are not the AZs that make up a Region. Local Zones extend a Region closer to users but are not the standard building block within every Region. Subnets are per-VPC and do not span all Regions, so Availability Zones is the correct answer.",
+    "tags": [
+      "cloud-concepts",
+      "availability-zones",
+      "regions"
+    ]
+  },
+  {
+    "id": "clf-112",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which statement best describes the agility benefit of cloud computing?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "You can provision resources in minutes, enabling faster experimentation and innovation"
+      },
+      {
+        "id": "o2",
+        "text": "You must wait weeks to procure servers"
+      },
+      {
+        "id": "o3",
+        "text": "You can never change resource sizes once chosen"
+      },
+      {
+        "id": "o4",
+        "text": "You always pay a fixed annual fee regardless of use"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Agility comes from being able to spin up resources on demand in minutes, which shortens experimentation cycles and speeds innovation.",
+    "explanationIncorrect": "Waiting weeks to procure servers is the on-premises constraint the cloud removes. Cloud resources can be resized, so being locked to one size is false. Consumption-based pricing rather than a fixed annual fee is the norm, so rapid provisioning is the agility benefit.",
+    "tags": [
+      "cloud-concepts",
+      "agility",
+      "innovation"
+    ]
+  },
+  {
+    "id": "clf-113",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "In which cloud service model does the provider manage the operating system and runtime while you deploy and manage only your application code and data?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Platform as a Service (PaaS)"
+      },
+      {
+        "id": "o2",
+        "text": "Infrastructure as a Service (IaaS)"
+      },
+      {
+        "id": "o3",
+        "text": "Software as a Service (SaaS)"
+      },
+      {
+        "id": "o4",
+        "text": "Colocation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In PaaS, the provider manages the underlying infrastructure, operating system, and runtime, leaving you responsible mainly for your application and data.",
+    "explanationIncorrect": "With IaaS you still manage the operating system yourself. With SaaS you consume a finished application and do not deploy your own code. Colocation is housing your own hardware in a data center, so PaaS matches the described division of responsibility.",
+    "tags": [
+      "cloud-concepts",
+      "service-models",
+      "paas"
+    ]
+  },
+  {
+    "id": "clf-114",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "Why does the cloud offer economies of scale that individual companies typically cannot match on their own?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Aggregated usage from many customers lets the provider achieve lower per-unit costs and pass on savings"
+      },
+      {
+        "id": "o2",
+        "text": "Because each customer runs their own private data center"
+      },
+      {
+        "id": "o3",
+        "text": "Because cloud resources are always free"
+      },
+      {
+        "id": "o4",
+        "text": "Because customers must buy hardware in bulk themselves"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "By aggregating demand across many customers, a cloud provider buys and operates at massive scale, achieving lower per-unit costs it can pass along.",
+    "explanationIncorrect": "Each customer running a private data center is the opposite of shared scale. Cloud resources are paid, not free. Customers do not buy the underlying hardware in bulk themselves; the provider does, so aggregated usage driving down unit cost is the reason.",
+    "tags": [
+      "cloud-concepts",
+      "economies-of-scale",
+      "economics"
+    ]
   }
 ]
