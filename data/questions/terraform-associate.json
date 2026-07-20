@@ -4637,5 +4637,170 @@
       "for-each",
       "meta-arguments"
     ]
+  },
+  {
+    "id": "tf-141",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "In HCP Terraform (formerly Terraform Cloud), what is a workspace?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A managed unit that holds its own state, variables, and run history for a configuration"
+      },
+      {
+        "id": "o2",
+        "text": "A single .tf file"
+      },
+      {
+        "id": "o3",
+        "text": "A provider plugin"
+      },
+      {
+        "id": "o4",
+        "text": "A local directory only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An HCP Terraform workspace is a managed environment that stores its own state, variables, and run history, and executes runs remotely.",
+    "explanationIncorrect": "A workspace is not a single file; it encompasses state and runs. It is not a provider plugin. It is a remote managed construct, not merely a local directory, so the managed state-and-runs unit is the correct definition.",
+    "tags": [
+      "hcp-terraform",
+      "workspaces",
+      "concepts"
+    ]
+  },
+  {
+    "id": "tf-142",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "Which HCP Terraform capability lets you enforce policies, such as prohibiting certain resource types, before an apply proceeds?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Policy as code with Sentinel (or OPA)"
+      },
+      {
+        "id": "o2",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o3",
+        "text": "State locking"
+      },
+      {
+        "id": "o4",
+        "text": "The dependency graph"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform supports policy as code with Sentinel or OPA to evaluate runs against governance rules and block noncompliant applies.",
+    "explanationIncorrect": "terraform fmt only formats configuration and enforces no policy. State locking prevents concurrent writes, not policy compliance. The dependency graph orders operations but does not evaluate governance rules, so policy as code with Sentinel or OPA is correct.",
+    "tags": [
+      "hcp-terraform",
+      "sentinel",
+      "policy-as-code"
+    ]
+  },
+  {
+    "id": "tf-143",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "A benefit of running Terraform in HCP Terraform's remote execution rather than each engineer's laptop is what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Consistent run environments, centralized state, and secure variable storage"
+      },
+      {
+        "id": "o2",
+        "text": "It removes the need to write any configuration"
+      },
+      {
+        "id": "o3",
+        "text": "It makes the state file unnecessary"
+      },
+      {
+        "id": "o4",
+        "text": "It disables the plan step"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Remote execution gives consistent, controlled run environments, centralizes state, and stores sensitive variables securely, improving collaboration and governance.",
+    "explanationIncorrect": "You still author configuration; remote execution does not write it for you. State is still required and is centralized, not eliminated. The plan step still runs, so consistent environments and centralized, secure management is the benefit.",
+    "tags": [
+      "hcp-terraform",
+      "remote-execution",
+      "collaboration"
+    ]
+  },
+  {
+    "id": "tf-144",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "How can HCP Terraform trigger runs automatically when configuration changes are pushed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "By connecting a workspace to a VCS repository so commits trigger plans"
+      },
+      {
+        "id": "o2",
+        "text": "By polling the local filesystem every minute"
+      },
+      {
+        "id": "o3",
+        "text": "By reading the state file for changes"
+      },
+      {
+        "id": "o4",
+        "text": "By running terraform fmt on a schedule"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Connecting a workspace to a version control repository lets HCP Terraform start a run automatically when new commits are pushed to the tracked branch.",
+    "explanationIncorrect": "HCP Terraform integrates with VCS rather than polling a local filesystem it cannot see. Watching the state file does not detect configuration source changes. Scheduled fmt only formats code and triggers no runs, so VCS integration is the mechanism.",
+    "tags": [
+      "hcp-terraform",
+      "vcs",
+      "automation"
+    ]
+  },
+  {
+    "id": "tf-145",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "A team wants sensitive input values stored in HCP Terraform so they are not exposed in the UI or logs. Which feature supports this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Marking workspace variables as sensitive"
+      },
+      {
+        "id": "o2",
+        "text": "Committing them to the VCS repository"
+      },
+      {
+        "id": "o3",
+        "text": "Printing them with an output block"
+      },
+      {
+        "id": "o4",
+        "text": "Storing them in terraform fmt"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform lets you mark workspace variables as sensitive so their values are write-only in the UI and are not displayed in logs.",
+    "explanationIncorrect": "Committing secrets to VCS exposes them in source history. Printing them via an output would reveal them in run output. terraform fmt is a formatting command and stores nothing, so marking variables sensitive is the correct feature.",
+    "tags": [
+      "hcp-terraform",
+      "sensitive-variables",
+      "security"
+    ]
   }
 ]
