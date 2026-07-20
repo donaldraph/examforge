@@ -3796,5 +3796,302 @@
       "github-token",
       "least-privilege"
     ]
+  },
+  {
+    "id": "gha-115",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want to call a reusable workflow stored in another repository at a fixed release. Which uses reference is valid?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "uses: octo-org/shared/.github/workflows/build.yml@v2"
+      },
+      {
+        "id": "o2",
+        "text": "uses: octo-org/shared/build.yml@v2"
+      },
+      {
+        "id": "o3",
+        "text": "uses: ./.github/workflows/build.yml from another repo"
+      },
+      {
+        "id": "o4",
+        "text": "run: octo-org/shared/build.yml@v2"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A cross-repository reusable workflow is referenced as owner/repo/.github/workflows/file.yml@ref, including the full path under .github/workflows and a ref.",
+    "explanationIncorrect": "Dropping the .github/workflows/ path segment makes the reference invalid because reusable workflows must live in that directory. The ./ relative form only works for a workflow in the same repository, not another one. run is for shell commands, not for calling a reusable workflow, which must use the uses keyword at the job level.",
+    "tags": [
+      "reusable-workflows",
+      "uses",
+      "cross-repo"
+    ]
+  },
+  {
+    "id": "gha-116",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A caller wants a called reusable workflow to have access to all of the caller's secrets without listing each one. What does the caller specify?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "secrets: inherit"
+      },
+      {
+        "id": "o2",
+        "text": "secrets: all"
+      },
+      {
+        "id": "o3",
+        "text": "with: secrets"
+      },
+      {
+        "id": "o4",
+        "text": "permissions: inherit"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "secrets: inherit passes every secret available to the caller down to the reusable workflow without naming them individually.",
+    "explanationIncorrect": "secrets: all is not valid syntax; the keyword is inherit. with is for passing inputs, not secrets, so listing secrets under it does nothing. permissions controls GITHUB_TOKEN scopes and has no inherit form that forwards secrets, so it cannot accomplish secret passing.",
+    "tags": [
+      "reusable-workflows",
+      "secrets",
+      "inherit"
+    ]
+  },
+  {
+    "id": "gha-117",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "A reusable workflow declares outputs under workflow_call.outputs, mapping them from a job's outputs. How does the calling job reference one of those outputs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "needs.<callJobId>.outputs.<outputName>"
+      },
+      {
+        "id": "o2",
+        "text": "steps.<callJobId>.outputs.<outputName>"
+      },
+      {
+        "id": "o3",
+        "text": "jobs.<callJobId>.outputs.<outputName>"
+      },
+      {
+        "id": "o4",
+        "text": "env.<outputName>"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The reusable workflow's declared outputs surface on the calling job as outputs, so a dependent job reads them via needs.<callJobId>.outputs.<name>.",
+    "explanationIncorrect": "The steps context refers to steps within the current job, not to another job's outputs. There is no jobs context usable inside a workflow to read another job's outputs at runtime that way. env holds environment variables, not the outputs a called workflow exposes, so none of these reach the reusable workflow's outputs.",
+    "tags": [
+      "reusable-workflows",
+      "outputs",
+      "needs"
+    ]
+  },
+  {
+    "id": "gha-118",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want to pin a third-party marketplace action to an immutable reference so a moved tag cannot change what code runs. Which reference is safest?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A full-length commit SHA, e.g. actions/checkout@8f4b7f8..."
+      },
+      {
+        "id": "o2",
+        "text": "A major version tag, e.g. actions/checkout@v4"
+      },
+      {
+        "id": "o3",
+        "text": "A branch name, e.g. actions/checkout@main"
+      },
+      {
+        "id": "o4",
+        "text": "No ref, letting it default to the latest release"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A full commit SHA is immutable, so pinning to it guarantees the exact code runs even if tags or branches are later moved.",
+    "explanationIncorrect": "A major version tag like v4 is a moving reference the maintainer can repoint to new commits. A branch such as main advances with every merge, giving no reproducibility. Omitting the ref is not even valid for actions and would not pin anything, so only the SHA is truly immutable.",
+    "tags": [
+      "actions",
+      "pinning",
+      "supply-chain"
+    ]
+  },
+  {
+    "id": "gha-119",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A composite action you consume needs two inputs, region and stage. How do you pass them when calling it in a step?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Provide a with: block containing region and stage"
+      },
+      {
+        "id": "o2",
+        "text": "Provide an env: block containing region and stage"
+      },
+      {
+        "id": "o3",
+        "text": "Pass them as positional args after uses"
+      },
+      {
+        "id": "o4",
+        "text": "Provide a secrets: block containing region and stage"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Action inputs are supplied via the with map on the step that references the action.",
+    "explanationIncorrect": "env sets environment variables for the step rather than binding declared action inputs. Actions do not accept positional arguments after uses; inputs are named. secrets is not how inputs are passed to an action step, so only the with block maps to the action's declared inputs.",
+    "tags": [
+      "actions",
+      "inputs",
+      "with"
+    ]
+  },
+  {
+    "id": "gha-120",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "There is a limit on how deeply reusable workflows may call other reusable workflows. What is that nesting limit including the top-level caller?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Up to four levels of reusable workflows"
+      },
+      {
+        "id": "o2",
+        "text": "Unlimited nesting"
+      },
+      {
+        "id": "o3",
+        "text": "Exactly two levels"
+      },
+      {
+        "id": "o4",
+        "text": "Up to ten levels"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub allows a chain of up to four levels of reusable workflows, counting the initial caller and up to three nested calls.",
+    "explanationIncorrect": "Nesting is not unlimited; a fixed cap exists to prevent runaway chains. A limit of exactly two would forbid common patterns that GitHub actually supports. Ten is higher than the documented maximum, so a chain that deep would be rejected before running.",
+    "tags": [
+      "reusable-workflows",
+      "nesting",
+      "limits"
+    ]
+  },
+  {
+    "id": "gha-121",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You reference a Docker container action from a public registry in a step. Which uses syntax is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "uses: docker://alpine:3.19"
+      },
+      {
+        "id": "o2",
+        "text": "uses: image://alpine:3.19"
+      },
+      {
+        "id": "o3",
+        "text": "run: docker run alpine:3.19"
+      },
+      {
+        "id": "o4",
+        "text": "container: alpine:3.19 under uses"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A step can run a published container directly with uses: docker://<image>:<tag> using the docker:// scheme.",
+    "explanationIncorrect": "There is no image:// scheme for the uses keyword. Using run with docker run is a shell command, not a container action reference, and does not use the Actions container-action mechanism. container is a job-level key for a service or job container, not a value you place under uses in a step.",
+    "tags": [
+      "actions",
+      "docker",
+      "uses"
+    ]
+  },
+  {
+    "id": "gha-122",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A workflow calls a reusable workflow and needs to pass a numeric input build_number defined under workflow_call.inputs. How is it supplied?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Under the calling job's with: block, e.g. with: { build_number: 42 }"
+      },
+      {
+        "id": "o2",
+        "text": "As an environment variable named build_number"
+      },
+      {
+        "id": "o3",
+        "text": "Under a needs: block on the calling job"
+      },
+      {
+        "id": "o4",
+        "text": "As a secret named build_number"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Inputs declared under workflow_call are passed by the caller through the with map on the job that references the reusable workflow.",
+    "explanationIncorrect": "An environment variable is not automatically bound to a declared workflow_call input. needs controls job ordering, not input passing. A secret is a separate channel from inputs and would not populate an input declared under workflow_call.inputs, so with is the only correct place.",
+    "tags": [
+      "reusable-workflows",
+      "inputs",
+      "with"
+    ]
+  },
+  {
+    "id": "gha-123",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "When a caller passes secrets: inherit to a reusable workflow in a different repository within the same organization, what is required for that to succeed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The reusable workflow's repository must be granted access to be used by the caller's repository"
+      },
+      {
+        "id": "o2",
+        "text": "Nothing extra; any repo can call any other repo's workflows"
+      },
+      {
+        "id": "o3",
+        "text": "The caller must copy all secrets into the called repo first"
+      },
+      {
+        "id": "o4",
+        "text": "The workflows must live in the same repository"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Cross-repository reuse requires that the reusable workflow's repository allow access from the calling repository, configured through Actions access settings.",
+    "explanationIncorrect": "Access is not automatic; without granting it the call is rejected. Copying secrets into the called repo would defeat the purpose of inherit and is unnecessary once access is granted. Requiring both to live in the same repository contradicts the premise of a cross-repository call, which GitHub supports once access is configured.",
+    "tags": [
+      "reusable-workflows",
+      "access",
+      "organization"
+    ]
   }
 ]
