@@ -3899,5 +3899,236 @@
       "taint-tracking",
       "source-sink"
     ]
+  },
+  {
+    "id": "ghas-118",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Secret scanning push protection does what when a developer tries to push a commit containing a recognized secret?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Blocks the push and requires the developer to remove or explicitly bypass the secret"
+      },
+      {
+        "id": "o2",
+        "text": "Silently rewrites the commit to redact the secret"
+      },
+      {
+        "id": "o3",
+        "text": "Allows the push but emails the secret to admins"
+      },
+      {
+        "id": "o4",
+        "text": "Rotates the credential automatically at the provider"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection stops the push when a supported secret pattern is detected, prompting the developer to remove it or provide a bypass reason before proceeding.",
+    "explanationIncorrect": "GitHub does not silently rewrite a developer's commit contents. Emailing the secret would itself expose the credential and is not how it works. Automatic rotation at the upstream provider is beyond GitHub's control and is not part of push protection, which simply blocks the push.",
+    "tags": [
+      "secret-scanning",
+      "push-protection",
+      "prevention"
+    ]
+  },
+  {
+    "id": "ghas-119",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "For certain supported secret types, GitHub can notify the credential issuer when a match is found in a public repository. What is this capability called?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Partner (secret scanning) validity and partner alerts, via the secret scanning partner program"
+      },
+      {
+        "id": "o2",
+        "text": "Dependabot security updates"
+      },
+      {
+        "id": "o3",
+        "text": "Code scanning autofix"
+      },
+      {
+        "id": "o4",
+        "text": "Branch protection webhooks"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Through the secret scanning partner program, GitHub notifies participating providers when their secret patterns are detected in public repositories so they can validate or revoke the credential.",
+    "explanationIncorrect": "Dependabot security updates open PRs for vulnerable dependencies, unrelated to notifying secret issuers. Code scanning autofix suggests fixes for code alerts, not credential leaks to partners. Branch protection webhooks concern merge rules and event delivery, not the partner notification flow for leaked secrets.",
+    "tags": [
+      "secret-scanning",
+      "partner-program",
+      "public-repos"
+    ]
+  },
+  {
+    "id": "ghas-120",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "An organization has secrets that follow an internal custom format not covered by built-in detectors. How can they still catch these in secret scanning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Define a custom pattern using a regular expression"
+      },
+      {
+        "id": "o2",
+        "text": "File a support ticket for every commit"
+      },
+      {
+        "id": "o3",
+        "text": "Rely on Dependabot to detect them"
+      },
+      {
+        "id": "o4",
+        "text": "Add the secrets to a .gitignore pattern"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning supports custom patterns defined with regular expressions, letting organizations detect their own credential formats.",
+    "explanationIncorrect": "Filing a ticket per commit is not a scanning mechanism and would not scale. Dependabot addresses vulnerable dependencies, not organization-specific secret formats. A .gitignore rule only prevents files from being tracked and does nothing to scan committed content, so custom regex patterns are the answer.",
+    "tags": [
+      "secret-scanning",
+      "custom-patterns",
+      "regex"
+    ]
+  },
+  {
+    "id": "ghas-121",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "A leaked API key was detected by secret scanning. What is the most important immediate remediation step?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Revoke or rotate the exposed credential at its provider"
+      },
+      {
+        "id": "o2",
+        "text": "Only delete the commit from history and stop there"
+      },
+      {
+        "id": "o3",
+        "text": "Mark the alert as a false positive"
+      },
+      {
+        "id": "o4",
+        "text": "Make the repository private and consider it resolved"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because a committed secret may already have been copied, the essential step is to revoke or rotate the credential so the exposed value no longer works.",
+    "explanationIncorrect": "Deleting the commit does not invalidate a secret that may already have been captured from history or forks. Marking a real leak as a false positive hides it without fixing anything. Making the repo private does not undo prior exposure, so rotating the credential is the critical action.",
+    "tags": [
+      "secret-scanning",
+      "remediation",
+      "rotation"
+    ]
+  },
+  {
+    "id": "ghas-122",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "A developer legitimately needs to commit a placeholder that matches a secret pattern and hits push protection. What is the sanctioned way to proceed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Bypass the block by selecting a reason (for example, used in tests or false positive), which is recorded"
+      },
+      {
+        "id": "o2",
+        "text": "Disable secret scanning for the organization"
+      },
+      {
+        "id": "o3",
+        "text": "Force-push with --no-verify to skip server checks"
+      },
+      {
+        "id": "o4",
+        "text": "Base64-encode the value so it is not detected"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection lets an author bypass the block by choosing a documented reason, and that bypass is recorded and can alert administrators for review.",
+    "explanationIncorrect": "Disabling secret scanning org-wide removes protection for everyone to unblock one push. Server-side push protection is not skipped by a local --no-verify hook, which only affects client hooks. Encoding the value to dodge detection is exactly the evasion the control is meant to catch, so the recorded bypass reason is the sanctioned path.",
+    "tags": [
+      "secret-scanning",
+      "push-protection",
+      "bypass"
+    ]
+  },
+  {
+    "id": "ghas-123",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Where do secret scanning alerts appear for a repository so security teams can triage them?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Under the Security tab, in the Secret scanning alerts section"
+      },
+      {
+        "id": "o2",
+        "text": "In the repository's Actions tab"
+      },
+      {
+        "id": "o3",
+        "text": "In the Pull requests tab only"
+      },
+      {
+        "id": "o4",
+        "text": "In the repository wiki"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning alerts are listed in the Security tab under their own section where teams can review and resolve them.",
+    "explanationIncorrect": "The Actions tab shows workflow runs, not secret alerts. The Pull requests tab lists PRs and may show inline push-protection prompts but is not the alert triage list. The wiki holds documentation, not security alerts, so the Security tab is where secret scanning alerts live.",
+    "tags": [
+      "secret-scanning",
+      "security-tab",
+      "triage"
+    ]
+  },
+  {
+    "id": "ghas-124",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Secret scanning historically scans the entire Git history of a repository when first enabled, not just new commits. Why does this matter?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Secrets committed long ago remain valid and exposed until rotated, so historical detection is essential"
+      },
+      {
+        "id": "o2",
+        "text": "Only the latest commit can ever contain a secret"
+      },
+      {
+        "id": "o3",
+        "text": "History scanning replaces the need to rotate credentials"
+      },
+      {
+        "id": "o4",
+        "text": "Older commits are automatically deleted after scanning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A secret buried in old history is still a live credential until it is revoked, so scanning the full history surfaces exposures that a commits-only scan would miss.",
+    "explanationIncorrect": "Secrets can appear in any commit, not only the latest, which is why full-history scanning matters. Detecting a historical secret does not rotate it; rotation is still required. GitHub does not delete older commits after scanning, so preserving and scanning history is the point.",
+    "tags": [
+      "secret-scanning",
+      "history",
+      "detection"
+    ]
   }
 ]
