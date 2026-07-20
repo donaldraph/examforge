@@ -4130,5 +4130,236 @@
       "history",
       "detection"
     ]
+  },
+  {
+    "id": "ghas-125",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "What is the difference between Dependabot alerts and Dependabot security updates?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Alerts notify you of vulnerable dependencies; security updates open pull requests to fix them"
+      },
+      {
+        "id": "o2",
+        "text": "Alerts open pull requests; security updates only send email"
+      },
+      {
+        "id": "o3",
+        "text": "They are two names for the exact same feature"
+      },
+      {
+        "id": "o4",
+        "text": "Alerts scan code while security updates scan secrets"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot alerts inform you that a dependency has a known vulnerability, while Dependabot security updates automatically raise pull requests bumping the dependency to a fixed version.",
+    "explanationIncorrect": "It is the security updates, not the alerts, that open pull requests, so that pairing is reversed. They are distinct features, not the same thing. Neither one scans your first-party code or secrets; both concern dependencies, so the alert-versus-fix distinction is the correct one.",
+    "tags": [
+      "dependabot",
+      "alerts",
+      "security-updates"
+    ]
+  },
+  {
+    "id": "ghas-126",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "You want Dependabot to keep dependencies current on a schedule regardless of known vulnerabilities. Which feature and file configure this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Dependabot version updates, configured in dependabot.yml"
+      },
+      {
+        "id": "o2",
+        "text": "Dependabot security updates, which require no configuration file"
+      },
+      {
+        "id": "o3",
+        "text": "Code scanning, configured in codeql.yml"
+      },
+      {
+        "id": "o4",
+        "text": "Secret scanning custom patterns"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot version updates keep dependencies up to date on a defined schedule and are configured via the dependabot.yml file in the repository.",
+    "explanationIncorrect": "Security updates react to vulnerabilities rather than routinely bumping all dependencies on a schedule. Code scanning analyzes source code, not dependency versions. Secret scanning custom patterns detect credentials and have nothing to do with dependency currency, so version updates via dependabot.yml is correct.",
+    "tags": [
+      "dependabot",
+      "version-updates",
+      "dependabot-yml"
+    ]
+  },
+  {
+    "id": "ghas-127",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Dependency review adds what capability to pull requests?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It shows dependency changes in the PR and flags newly introduced vulnerable or disallowed dependencies before merge"
+      },
+      {
+        "id": "o2",
+        "text": "It rewrites the lockfile automatically"
+      },
+      {
+        "id": "o3",
+        "text": "It scans the diff for hardcoded secrets"
+      },
+      {
+        "id": "o4",
+        "text": "It runs the full test suite"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependency review surfaces the dependency changes a pull request introduces and warns about newly added vulnerable or policy-violating packages so they can be caught before merging.",
+    "explanationIncorrect": "It reviews changes rather than rewriting the lockfile itself. Scanning for hardcoded secrets is the job of secret scanning, not dependency review. Running tests is what CI workflows do, so dependency review's distinct value is catching risky dependency changes at the PR stage.",
+    "tags": [
+      "dependency-review",
+      "pull-requests",
+      "vulnerabilities"
+    ]
+  },
+  {
+    "id": "ghas-128",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Which feature generates the data that powers dependency graph, Dependabot alerts, and dependency review by parsing manifest and lock files?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The dependency graph"
+      },
+      {
+        "id": "o2",
+        "text": "The CodeQL database"
+      },
+      {
+        "id": "o3",
+        "text": "The Git object store"
+      },
+      {
+        "id": "o4",
+        "text": "The Actions cache"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency graph parses manifests and lockfiles to enumerate dependencies, and that graph underpins Dependabot alerts and dependency review.",
+    "explanationIncorrect": "The CodeQL database models source code for code scanning, not the dependency inventory. The Git object store holds commits and blobs but does not by itself compute the dependency relationships. The Actions cache speeds up workflows and has no role in dependency enumeration, so the dependency graph is the foundation.",
+    "tags": [
+      "dependency-graph",
+      "dependabot",
+      "manifests"
+    ]
+  },
+  {
+    "id": "ghas-129",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "A team wants dependency review to fail the pull request check when a dependency with a high-severity vulnerability is introduced. How do they enforce this in CI?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use the dependency-review-action and set a fail-on-severity threshold"
+      },
+      {
+        "id": "o2",
+        "text": "Enable Dependabot security updates only"
+      },
+      {
+        "id": "o3",
+        "text": "Add the dependency to .gitignore"
+      },
+      {
+        "id": "o4",
+        "text": "Turn on secret scanning push protection"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency-review-action runs in a workflow and can fail the check based on a configured severity threshold, blocking merges that add high-severity vulnerabilities.",
+    "explanationIncorrect": "Security updates open fix PRs after the fact and do not fail a PR that introduces a vulnerable dependency. Adding a dependency to .gitignore does not stop it from being installed and is irrelevant. Secret scanning push protection blocks credentials, not vulnerable dependencies, so the dependency-review-action with fail-on-severity is the enforcement mechanism.",
+    "tags": [
+      "dependency-review",
+      "action",
+      "fail-on-severity"
+    ]
+  },
+  {
+    "id": "ghas-130",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Dependabot alerts draw on which curated data source for known vulnerabilities affecting open-source packages?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The GitHub Advisory Database"
+      },
+      {
+        "id": "o2",
+        "text": "The GitHub Marketplace"
+      },
+      {
+        "id": "o3",
+        "text": "The npm audit cache exclusively"
+      },
+      {
+        "id": "o4",
+        "text": "The repository's own issue tracker"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot alerts are based on the GitHub Advisory Database, a curated set of vulnerabilities mapped to affected package versions.",
+    "explanationIncorrect": "The Marketplace lists apps and actions, not vulnerability advisories. npm audit is one ecosystem's tool and is not the cross-ecosystem source Dependabot relies on. A repository's issue tracker holds project-specific issues, not curated CVE data, so the Advisory Database is the source.",
+    "tags": [
+      "dependabot",
+      "advisory-database",
+      "vulnerabilities"
+    ]
+  },
+  {
+    "id": "ghas-131",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "A Dependabot version-update pull request bundles too many ecosystems at once and is noisy. Which dependabot.yml concept lets you separate updates by ecosystem and directory?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Separate updates entries, each with its own package-ecosystem and directory"
+      },
+      {
+        "id": "o2",
+        "text": "A single wildcard entry covering everything"
+      },
+      {
+        "id": "o3",
+        "text": "Branch protection rules"
+      },
+      {
+        "id": "o4",
+        "text": "A CODEOWNERS file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Each entry under updates in dependabot.yml targets a specific package-ecosystem and directory, so you can configure and schedule them independently.",
+    "explanationIncorrect": "There is no single wildcard entry that spans all ecosystems; each ecosystem is configured explicitly. Branch protection governs merges, not how Dependabot groups updates. CODEOWNERS assigns reviewers by path and does not control Dependabot's per-ecosystem configuration, so separate updates entries are the mechanism.",
+    "tags": [
+      "dependabot",
+      "configuration",
+      "ecosystems"
+    ]
   }
 ]
