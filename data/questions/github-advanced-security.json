@@ -4361,5 +4361,236 @@
       "configuration",
       "ecosystems"
     ]
+  },
+  {
+    "id": "ghas-132",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which set of features is included under GitHub Advanced Security for a repository?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Code scanning, secret scanning, and dependency review (with the security overview)"
+      },
+      {
+        "id": "o2",
+        "text": "Only Dependabot version updates"
+      },
+      {
+        "id": "o3",
+        "text": "Pages, Discussions, and Projects"
+      },
+      {
+        "id": "o4",
+        "text": "Only branch protection rules"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS bundles code scanning, secret scanning, and dependency review, surfaced together through the security overview.",
+    "explanationIncorrect": "Dependabot version updates are available broadly and are not the defining GHAS bundle by themselves. Pages, Discussions, and Projects are collaboration features unrelated to Advanced Security. Branch protection is a general repository setting, not a GHAS feature, so the scanning-and-review bundle is what GHAS provides.",
+    "tags": [
+      "ghas",
+      "features",
+      "overview"
+    ]
+  },
+  {
+    "id": "ghas-133",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "On GitHub Enterprise Cloud, how is GHAS typically billed, which motivates enabling it selectively?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Per active committer (unique committers to repositories with GHAS enabled)"
+      },
+      {
+        "id": "o2",
+        "text": "Per repository regardless of activity"
+      },
+      {
+        "id": "o3",
+        "text": "Per workflow run minute"
+      },
+      {
+        "id": "o4",
+        "text": "Per code scanning alert raised"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS is licensed by active committer, counting unique committers to repositories that have GHAS enabled, which is why organizations enable it where it matters.",
+    "explanationIncorrect": "It is not a flat per-repository charge independent of who commits. It is not metered by workflow minutes, which is how Actions usage is billed. It is not charged per alert, since findings themselves are not the billing unit, so the active-committer model is correct.",
+    "tags": [
+      "ghas",
+      "billing",
+      "active-committers"
+    ]
+  },
+  {
+    "id": "ghas-134",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "The security overview dashboard at the organization level primarily helps security teams do what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "See aggregated alert status across repositories to prioritize remediation"
+      },
+      {
+        "id": "o2",
+        "text": "Edit source code directly across all repos"
+      },
+      {
+        "id": "o3",
+        "text": "Manage billing invoices"
+      },
+      {
+        "id": "o4",
+        "text": "Configure Pages sites"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The security overview aggregates code, secret, and dependency alert status across an organization's repositories so teams can spot risk and prioritize fixes.",
+    "explanationIncorrect": "It is a reporting and triage surface, not a code editor for bulk changes. Billing invoices are handled in billing settings, not the security overview. Configuring Pages is a publishing concern unrelated to the security dashboard, so cross-repo alert visibility is its purpose.",
+    "tags": [
+      "ghas",
+      "security-overview",
+      "prioritization"
+    ]
+  },
+  {
+    "id": "ghas-135",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which GHAS feature is available at no cost on public repositories?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Code scanning, secret scanning, and dependency review are free on public repositories"
+      },
+      {
+        "id": "o2",
+        "text": "None; GHAS always requires a license even on public repos"
+      },
+      {
+        "id": "o3",
+        "text": "Only secret scanning, and only after purchase"
+      },
+      {
+        "id": "o4",
+        "text": "Only dependency review, on private repos only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "On public repositories, code scanning, secret scanning, and dependency review are available at no charge, whereas private repositories require GHAS licensing.",
+    "explanationIncorrect": "It is not true that a license is always required, since public repos get these features free. Limiting it to only paid secret scanning ignores the free public-repo coverage. Restricting dependency review to private repos is backwards, as the free tier is on public repositories.",
+    "tags": [
+      "ghas",
+      "public-repos",
+      "free-tier"
+    ]
+  },
+  {
+    "id": "ghas-136",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "An organization wants GHAS automatically turned on for every new repository created. Which setting accomplishes this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Enable GHAS features by default for new repositories in organization security settings"
+      },
+      {
+        "id": "o2",
+        "text": "Add a workflow that runs on repository creation"
+      },
+      {
+        "id": "o3",
+        "text": "Put a dependabot.yml in a template branch"
+      },
+      {
+        "id": "o4",
+        "text": "Require signed commits organization-wide"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization security settings include options to enable GHAS features by default for newly created repositories, applying the policy automatically.",
+    "explanationIncorrect": "There is no repository-creation workflow trigger that toggles GHAS licensing. A dependabot.yml only configures Dependabot, not the full GHAS feature set. Requiring signed commits is a separate integrity control and does not enable scanning features, so the default-on organization setting is correct.",
+    "tags": [
+      "ghas",
+      "organization-settings",
+      "defaults"
+    ]
+  },
+  {
+    "id": "ghas-137",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Security teams can automate reactions to GHAS alerts by consuming which programmatic surfaces?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The REST/GraphQL APIs and webhooks for code scanning, secret scanning, and Dependabot alerts"
+      },
+      {
+        "id": "o2",
+        "text": "Only the web UI, since alerts have no API"
+      },
+      {
+        "id": "o3",
+        "text": "The Git protocol packfiles"
+      },
+      {
+        "id": "o4",
+        "text": "The Pages build logs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS alerts are exposed through REST and GraphQL APIs and webhook events, letting teams build automation and integrations around them.",
+    "explanationIncorrect": "Alerts are not UI-only; there are documented APIs. Git packfiles carry repository objects, not alert data. Pages build logs concern site publishing and contain no alert information, so the alert APIs and webhooks are the integration surfaces.",
+    "tags": [
+      "ghas",
+      "api",
+      "webhooks"
+    ]
+  },
+  {
+    "id": "ghas-138",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which statement best distinguishes secret scanning from code scanning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Secret scanning looks for exposed credentials in content; code scanning analyzes code for vulnerabilities and errors"
+      },
+      {
+        "id": "o2",
+        "text": "Both only analyze dependency manifests"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning compiles code while code scanning reads text"
+      },
+      {
+        "id": "o4",
+        "text": "They are the same feature under two names"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning searches repository content for leaked credentials by pattern, while code scanning statically analyzes source code to find security vulnerabilities and coding errors.",
+    "explanationIncorrect": "Neither is limited to dependency manifests; that is the dependency graph's domain. Secret scanning does not compile code, and describing the pair that way misstates both. They are separate features with different goals, so the credentials-versus-code-analysis distinction is correct.",
+    "tags": [
+      "ghas",
+      "secret-scanning",
+      "code-scanning"
+    ]
   }
 ]
