@@ -3894,5 +3894,236 @@
       "features",
       "terminology"
     ]
+  },
+  {
+    "id": "aip-118",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What does the temperature parameter control when generating text from a large language model?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The randomness of the output; higher values produce more varied, less deterministic responses"
+      },
+      {
+        "id": "o2",
+        "text": "The maximum number of tokens returned"
+      },
+      {
+        "id": "o3",
+        "text": "The model's training cost"
+      },
+      {
+        "id": "o4",
+        "text": "The number of GPUs used for inference"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Temperature scales the probability distribution over next tokens; higher temperature increases randomness and diversity, while lower temperature makes output more focused and deterministic.",
+    "explanationIncorrect": "The output length cap is controlled by a max tokens setting, not temperature. Training cost is a separate concern unrelated to a sampling parameter. The number of GPUs is an infrastructure choice, not something temperature sets, so temperature governs output randomness.",
+    "tags": [
+      "generative-ai",
+      "temperature",
+      "inference-parameters"
+    ]
+  },
+  {
+    "id": "aip-119",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "In generative AI, what is a token?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A chunk of text (such as a word or subword) that the model processes as a unit"
+      },
+      {
+        "id": "o2",
+        "text": "An authentication credential for the API"
+      },
+      {
+        "id": "o3",
+        "text": "A GPU memory page"
+      },
+      {
+        "id": "o4",
+        "text": "A billing invoice line"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A token is a unit of text, often a word or subword fragment, and models read and generate text token by token.",
+    "explanationIncorrect": "An authentication credential is an API key or token in the security sense, a different meaning from the modeling term. A GPU memory page is a hardware concept unrelated to text units. A billing line is an accounting artifact, so in generative AI a token is a unit of text.",
+    "tags": [
+      "generative-ai",
+      "tokens",
+      "terminology"
+    ]
+  },
+  {
+    "id": "aip-120",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "Which description best characterizes a transformer's self-attention mechanism?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It lets each token weigh the relevance of other tokens in the sequence to build context-aware representations"
+      },
+      {
+        "id": "o2",
+        "text": "It processes tokens strictly one at a time with no cross-token interaction"
+      },
+      {
+        "id": "o3",
+        "text": "It compresses images into embeddings only"
+      },
+      {
+        "id": "o4",
+        "text": "It stores the training dataset for exact retrieval"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Self-attention computes weighted relationships among tokens so each position's representation incorporates relevant context from the rest of the sequence.",
+    "explanationIncorrect": "Strictly sequential processing with no cross-token interaction describes older recurrent models, not attention. Attention is not limited to compressing images; it operates on token sequences broadly. Transformers do not store the dataset for exact lookup, so the context-weighting description is correct.",
+    "tags": [
+      "generative-ai",
+      "transformers",
+      "attention"
+    ]
+  },
+  {
+    "id": "aip-121",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which AWS service provides access to multiple foundation models from different providers through a single API?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kendra"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Bedrock is a managed service offering foundation models from several providers behind a single API, without managing infrastructure.",
+    "explanationIncorrect": "Comprehend is an NLP service for tasks like entity and sentiment analysis, not a multi-provider FM gateway. Polly is text-to-speech. Kendra is an enterprise search service, so Bedrock is the service that unifies access to foundation models.",
+    "tags": [
+      "generative-ai",
+      "bedrock",
+      "foundation-models"
+    ]
+  },
+  {
+    "id": "aip-122",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What is a hallucination in the context of large language models?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "When the model produces confident but factually incorrect or fabricated content"
+      },
+      {
+        "id": "o2",
+        "text": "When the model refuses to answer any question"
+      },
+      {
+        "id": "o3",
+        "text": "When training data is encrypted at rest"
+      },
+      {
+        "id": "o4",
+        "text": "When the GPU overheats during inference"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A hallucination is output that sounds plausible and confident but is factually wrong or invented, a known risk with generative models.",
+    "explanationIncorrect": "Refusing to answer is a guardrail behavior, not a hallucination. Encryption of training data is a security control unrelated to output correctness. GPU overheating is a hardware issue, so fabricated but confident content is what hallucination means.",
+    "tags": [
+      "generative-ai",
+      "hallucination",
+      "reliability"
+    ]
+  },
+  {
+    "id": "aip-123",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "An embedding model converts text into vectors. What property makes these vectors useful for semantic search?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Semantically similar text maps to vectors that are close together in the vector space"
+      },
+      {
+        "id": "o2",
+        "text": "Each vector is a unique random number with no relation to meaning"
+      },
+      {
+        "id": "o3",
+        "text": "Vectors store the original text verbatim for exact matching"
+      },
+      {
+        "id": "o4",
+        "text": "Vectors are always identical regardless of input"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Embeddings place semantically related text near each other in vector space, so similarity can be measured by distance, enabling semantic search.",
+    "explanationIncorrect": "Random unrelated numbers would carry no semantic signal and be useless for search. Embeddings encode meaning numerically rather than storing verbatim text for exact matching. Identical vectors regardless of input would convey nothing, so proximity reflecting similarity is the key property.",
+    "tags": [
+      "generative-ai",
+      "embeddings",
+      "semantic-search"
+    ]
+  },
+  {
+    "id": "aip-124",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What distinguishes a foundation model from a traditional narrow ML model?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It is pre-trained on broad data at scale and adaptable to many downstream tasks"
+      },
+      {
+        "id": "o2",
+        "text": "It can only perform one fixed task and cannot be adapted"
+      },
+      {
+        "id": "o3",
+        "text": "It never requires any data to train"
+      },
+      {
+        "id": "o4",
+        "text": "It runs only on a single CPU core"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Foundation models are trained on large, broad datasets and can be adapted through prompting or fine-tuning to a wide range of tasks.",
+    "explanationIncorrect": "Being locked to a single fixed task describes a narrow model, the opposite of a foundation model. All models require training data, so needing none is false. Foundation models are large and typically need substantial compute, not a single CPU core, so broad pre-training and adaptability is the distinction.",
+    "tags": [
+      "generative-ai",
+      "foundation-models",
+      "concepts"
+    ]
   }
 ]
