@@ -3977,5 +3977,170 @@
       "collections"
     ],
     "isSeed": true
+  },
+  {
+    "id": "tf-121",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command downloads provider plugins and prepares the working directory, and must run before plan or apply in a new configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform init"
+      },
+      {
+        "id": "o2",
+        "text": "terraform validate"
+      },
+      {
+        "id": "o3",
+        "text": "terraform output"
+      },
+      {
+        "id": "o4",
+        "text": "terraform refresh"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform init initializes the working directory, downloading required providers and modules and configuring the backend, and is the first step before plan or apply.",
+    "explanationIncorrect": "terraform validate checks syntax and internal consistency but does not download providers. terraform output prints output values after an apply. terraform refresh reconciles state with real resources but assumes initialization has already happened, so init is the required first command.",
+    "tags": [
+      "core-workflow",
+      "init",
+      "providers"
+    ]
+  },
+  {
+    "id": "tf-122",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "You want to review the changes Terraform will make and save them so the subsequent apply executes exactly that set. Which approach does this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run terraform plan -out=plan.tfplan then terraform apply plan.tfplan"
+      },
+      {
+        "id": "o2",
+        "text": "Run terraform apply -auto-approve directly"
+      },
+      {
+        "id": "o3",
+        "text": "Run terraform validate then terraform apply"
+      },
+      {
+        "id": "o4",
+        "text": "Run terraform output then terraform apply"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Saving the plan with -out and passing that file to apply guarantees Terraform performs exactly the reviewed set of changes with no re-planning.",
+    "explanationIncorrect": "apply -auto-approve skips review and re-plans at apply time rather than executing a saved plan. validate only checks configuration correctness, not the change set. output prints values and does not capture a plan, so the saved-plan workflow is the correct one.",
+    "tags": [
+      "core-workflow",
+      "plan",
+      "apply"
+    ]
+  },
+  {
+    "id": "tf-123",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "hard",
+    "stem": "A single resource is misbehaving and you want to recreate just it on the next apply without affecting others. Which current command marks it for recreation?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform apply -replace=ADDRESS"
+      },
+      {
+        "id": "o2",
+        "text": "terraform taint ADDRESS, which is the only supported method"
+      },
+      {
+        "id": "o3",
+        "text": "terraform destroy ADDRESS"
+      },
+      {
+        "id": "o4",
+        "text": "terraform import ADDRESS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The -replace option on plan or apply flags a specific resource for destruction and recreation, and it is the recommended replacement for the older taint workflow.",
+    "explanationIncorrect": "terraform taint still exists but is deprecated in favor of -replace, so calling it the only supported method is wrong. terraform destroy with an address would remove the resource without recreating it in the same run. terraform import brings an existing resource under management and does not recreate it, so -replace is correct.",
+    "tags": [
+      "core-workflow",
+      "replace",
+      "taint"
+    ]
+  },
+  {
+    "id": "tf-124",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "What does terraform fmt do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Rewrites configuration files to a canonical format and style"
+      },
+      {
+        "id": "o2",
+        "text": "Formats the state file into JSON"
+      },
+      {
+        "id": "o3",
+        "text": "Applies changes to infrastructure"
+      },
+      {
+        "id": "o4",
+        "text": "Deletes unused variables"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform fmt reformats .tf files to the canonical HCL style, standardizing indentation and alignment across a configuration.",
+    "explanationIncorrect": "It does not reformat the state file; state is managed separately. It makes no changes to real infrastructure. It does not remove unused variables, only adjusts formatting, so canonical style formatting is what fmt does.",
+    "tags": [
+      "core-workflow",
+      "fmt",
+      "formatting"
+    ]
+  },
+  {
+    "id": "tf-125",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "During terraform apply, why does Terraform typically show a plan and prompt for confirmation before making changes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To let you review the proposed changes and approve them before Terraform modifies infrastructure"
+      },
+      {
+        "id": "o2",
+        "text": "Because apply cannot make changes without a saved plan file"
+      },
+      {
+        "id": "o3",
+        "text": "To download providers at that moment"
+      },
+      {
+        "id": "o4",
+        "text": "To format the configuration files"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "apply generates and displays a plan, then asks for approval so you can confirm the intended changes before any infrastructure is modified.",
+    "explanationIncorrect": "apply can generate its own plan and does not strictly require a saved plan file. Providers are downloaded during init, not at the apply prompt. Formatting is handled by fmt, so the confirmation step exists to review and approve changes.",
+    "tags": [
+      "core-workflow",
+      "apply",
+      "approval"
+    ]
   }
 ]
