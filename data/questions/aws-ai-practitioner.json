@@ -4356,5 +4356,236 @@
       "agents",
       "tool-use"
     ]
+  },
+  {
+    "id": "aip-132",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "A hiring model systematically scores one demographic group lower due to skewed historical training data. Which responsible-AI concern is this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Bias and fairness"
+      },
+      {
+        "id": "o2",
+        "text": "Latency"
+      },
+      {
+        "id": "o3",
+        "text": "Throughput"
+      },
+      {
+        "id": "o4",
+        "text": "Cost optimization"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When a model produces systematically different outcomes for groups due to skewed data, it is a bias and fairness problem, a core responsible-AI concern.",
+    "explanationIncorrect": "Latency and throughput are performance characteristics, not fairness issues. Cost optimization concerns spending efficiency, not equitable outcomes, so bias and fairness is the correct responsible-AI dimension.",
+    "tags": [
+      "responsible-ai",
+      "bias",
+      "fairness"
+    ]
+  },
+  {
+    "id": "aip-133",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "Which AWS capability lets you configure content filters and denied topics to block harmful or unwanted model inputs and outputs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Guardrails for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon CloudFront"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Guardrails for Amazon Bedrock let you define content filters, denied topics, and word filters to keep model interactions within safe and acceptable bounds.",
+    "explanationIncorrect": "Macie discovers and protects sensitive data in S3, not model content filtering. AWS Shield is DDoS protection. CloudFront is a content delivery network, so Guardrails is the responsible-AI control for filtering model inputs and outputs.",
+    "tags": [
+      "responsible-ai",
+      "guardrails",
+      "content-filtering"
+    ]
+  },
+  {
+    "id": "aip-134",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Why is transparency, such as documenting a model's intended use and limitations, important in responsible AI?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It helps stakeholders understand how and when to appropriately rely on the model"
+      },
+      {
+        "id": "o2",
+        "text": "It automatically improves model accuracy"
+      },
+      {
+        "id": "o3",
+        "text": "It reduces the model's inference latency"
+      },
+      {
+        "id": "o4",
+        "text": "It eliminates the need for testing"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Documenting intended use and limitations gives stakeholders the context to use the model appropriately and recognize situations where it should not be trusted.",
+    "explanationIncorrect": "Documentation does not by itself change model accuracy. It has no effect on inference latency. It complements rather than replaces testing, so enabling appropriate reliance is the reason transparency matters.",
+    "tags": [
+      "responsible-ai",
+      "transparency",
+      "documentation"
+    ]
+  },
+  {
+    "id": "aip-135",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "A document tool that captures a model's performance, intended uses, limitations, and evaluation results to promote transparency is often called what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A model card"
+      },
+      {
+        "id": "o2",
+        "text": "A load balancer"
+      },
+      {
+        "id": "o3",
+        "text": "A CloudFormation template"
+      },
+      {
+        "id": "o4",
+        "text": "A security group"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A model card summarizes a model's intended use, performance, limitations, and evaluation details to support transparency and responsible use.",
+    "explanationIncorrect": "A load balancer distributes network traffic and documents nothing about a model. A CloudFormation template provisions infrastructure. A security group is a virtual firewall, so a model card is the transparency artifact described.",
+    "tags": [
+      "responsible-ai",
+      "model-cards",
+      "transparency"
+    ]
+  },
+  {
+    "id": "aip-136",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "For a high-stakes medical decision system, why is keeping a human in the loop a responsible-AI best practice?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A qualified human can review and override model outputs, adding accountability for consequential decisions"
+      },
+      {
+        "id": "o2",
+        "text": "It makes the model train faster"
+      },
+      {
+        "id": "o3",
+        "text": "It removes the need to evaluate the model"
+      },
+      {
+        "id": "o4",
+        "text": "It guarantees the model can never be wrong"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Human oversight lets a qualified person review, validate, or override outputs for consequential decisions, providing accountability the model alone cannot supply.",
+    "explanationIncorrect": "Human review does not speed up training, which is a separate process. It complements rather than removes evaluation. It cannot guarantee the model is never wrong; it exists precisely because models can err, so accountability through oversight is the reason.",
+    "tags": [
+      "responsible-ai",
+      "human-in-the-loop",
+      "oversight"
+    ]
+  },
+  {
+    "id": "aip-137",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which practice helps detect bias before a model is deployed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Evaluating model performance across different subgroups and data slices"
+      },
+      {
+        "id": "o2",
+        "text": "Measuring only overall accuracy on the full dataset"
+      },
+      {
+        "id": "o3",
+        "text": "Skipping evaluation to save time"
+      },
+      {
+        "id": "o4",
+        "text": "Increasing the model size automatically"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Breaking down performance by subgroup and data slice surfaces disparities that an aggregate metric can mask, helping detect bias before deployment.",
+    "explanationIncorrect": "Overall accuracy alone can hide poor performance on specific groups. Skipping evaluation forgoes any chance to detect bias. Simply making the model larger does not address fairness, so evaluating across subgroups is the correct practice.",
+    "tags": [
+      "responsible-ai",
+      "bias-detection",
+      "evaluation"
+    ]
+  },
+  {
+    "id": "aip-138",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Amazon SageMaker Clarify primarily helps teams with which responsible-AI task?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Detecting bias in data and models and explaining model predictions"
+      },
+      {
+        "id": "o2",
+        "text": "Serving static websites"
+      },
+      {
+        "id": "o3",
+        "text": "Managing DNS records"
+      },
+      {
+        "id": "o4",
+        "text": "Encrypting network traffic in transit"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "SageMaker Clarify helps detect bias in datasets and models and provides feature-attribution explanations for predictions.",
+    "explanationIncorrect": "Serving static websites is unrelated to model fairness tooling. Managing DNS records is a networking task. Encrypting traffic is a security control, so bias detection and explainability is what Clarify provides.",
+    "tags": [
+      "responsible-ai",
+      "sagemaker-clarify",
+      "explainability"
+    ]
   }
 ]
