@@ -5345,5 +5345,341 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "AWS Security Hub aggregates and prioritizes security findings from multiple services and checks compliance against standards in one place.",
     "explanationIncorrect": "Amazon Kinesis streams real-time data. AWS Amplify supports building web and mobile apps. Amazon MQ is a managed message broker, so AWS Security Hub is the centralized security and compliance view."
+  },
+  {
+    "id": "clf-167",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which AWS service provides scalable object storage for files, backups, and static website content?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon S3 is highly durable, scalable object storage well suited to files, backups, and hosting static website content.",
+    "explanationIncorrect": "Amazon EC2 provides virtual servers, not object storage. Amazon RDS is a managed relational database. AWS Lambda runs code without servers, so Amazon S3 is the object storage service."
+  },
+  {
+    "id": "clf-168",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service lets you run code without provisioning or managing servers, paying only for compute time used?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon VPC"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Direct Connect"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Lambda runs your code in response to events without you managing servers, billing only for the compute time consumed.",
+    "explanationIncorrect": "Amazon EBS provides block storage volumes for EC2. Amazon VPC provides isolated networking. AWS Direct Connect is a dedicated network link, so AWS Lambda is the serverless compute service."
+  },
+  {
+    "id": "clf-169",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "Which service is a fully managed relational database supporting engines like MySQL, PostgreSQL, and others?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon RDS is a managed relational database service that runs engines such as MySQL and PostgreSQL, handling patching, backups, and failover.",
+    "explanationIncorrect": "Amazon DynamoDB is a NoSQL key-value database, not relational. Amazon S3 is object storage. Amazon SNS is a notification service, so Amazon RDS is the managed relational database."
+  },
+  {
+    "id": "clf-170",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is a fully managed NoSQL database offering single-digit millisecond performance at scale?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Glue"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon DynamoDB is a managed NoSQL key-value and document database delivering consistent low-latency performance at any scale.",
+    "explanationIncorrect": "Amazon Redshift is a data warehouse for analytics, not a low-latency operational NoSQL store. Amazon EC2 provides virtual servers. AWS Glue is an ETL service, so Amazon DynamoDB is the managed NoSQL database."
+  },
+  {
+    "id": "clf-171",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service distributes incoming application traffic across multiple targets such as EC2 instances?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Elastic Load Balancing"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Comprehend"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elastic Load Balancing automatically spreads incoming traffic across healthy targets like EC2 instances to improve availability and scale.",
+    "explanationIncorrect": "Amazon Glacier is archival storage. AWS Artifact provides compliance reports. Amazon Comprehend is a natural-language processing service, so Elastic Load Balancing is the traffic distribution service."
+  },
+  {
+    "id": "clf-172",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "Which service automatically adjusts the number of EC2 instances to match demand based on defined policies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon EC2 Auto Scaling"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Polly"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon EC2 Auto Scaling adds or removes instances automatically according to scaling policies so capacity tracks demand.",
+    "explanationIncorrect": "Amazon Athena runs SQL queries on data in S3. AWS Snowball transfers large data physically. Amazon Polly synthesizes speech, so Amazon EC2 Auto Scaling is the service that adjusts instance counts."
+  },
+  {
+    "id": "clf-173",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service is a content delivery network that caches content at edge locations to reduce latency?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EFS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Cognito"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon CloudFront caches and serves content from edge locations close to users, lowering latency and offloading origins.",
+    "explanationIncorrect": "Amazon EFS is a shared file system, not a CDN. AWS Batch runs batch jobs. Amazon Cognito handles user authentication, so Amazon CloudFront is the content delivery network."
+  },
+  {
+    "id": "clf-174",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service provides a logically isolated virtual network where you control IP ranges, subnets, and routing?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon VPC"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SES"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon VPC lets you define an isolated virtual network with your own IP address ranges, subnets, route tables, and gateways.",
+    "explanationIncorrect": "Amazon S3 is object storage, not networking. AWS Lambda runs serverless functions. Amazon SES sends email, so Amazon VPC is the isolated virtual network service."
+  },
+  {
+    "id": "clf-175",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "A team needs a managed message queue to decouple microservices. Which service fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Artifact"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SQS is a fully managed message queue that decouples microservices by buffering messages between producers and consumers.",
+    "explanationIncorrect": "Amazon Redshift is a data warehouse. Amazon EBS provides block storage volumes. AWS Artifact serves compliance documents, so Amazon SQS is the managed message queue for decoupling services."
+  },
+  {
+    "id": "clf-176",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service provides managed DNS and domain routing?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Rekognition"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon QuickSight"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Route 53 is a scalable managed DNS service that also handles domain registration and traffic routing policies.",
+    "explanationIncorrect": "Amazon Rekognition analyzes images and video. AWS Glue is an ETL service. Amazon QuickSight is a business intelligence tool, so Amazon Route 53 is the managed DNS service."
+  },
+  {
+    "id": "clf-177",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service lets you define AWS infrastructure as code using templates for repeatable deployments?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudFormation"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Shield"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudFormation provisions and manages infrastructure through declarative templates, enabling repeatable, version-controlled deployments.",
+    "explanationIncorrect": "Amazon Polly converts text to speech. Amazon Macie discovers sensitive data. AWS Shield protects against DDoS, so AWS CloudFormation is the infrastructure-as-code service."
+  },
+  {
+    "id": "clf-178",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "Which service offers a fully managed data warehouse optimized for analytical queries over large datasets?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon DynamoDB"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Redshift is a managed data warehouse built for fast analytical queries across very large datasets using columnar storage.",
+    "explanationIncorrect": "Amazon DynamoDB is an operational NoSQL database, not an analytics warehouse. Amazon SQS is a message queue. AWS Lambda runs event-driven code, so Amazon Redshift is the managed data warehouse."
   }
 ]
