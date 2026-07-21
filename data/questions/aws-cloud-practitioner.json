@@ -5681,5 +5681,341 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Redshift is a managed data warehouse built for fast analytical queries across very large datasets using columnar storage.",
     "explanationIncorrect": "Amazon DynamoDB is an operational NoSQL database, not an analytics warehouse. Amazon SQS is a message queue. AWS Lambda runs event-driven code, so Amazon Redshift is the managed data warehouse."
+  },
+  {
+    "id": "clf-179",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which tool lets you visualize and analyze your AWS spending over time with filtering and grouping?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Cost Explorer"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Rekognition"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Cost Explorer provides visualizations and reports of spending over time, with filtering and grouping to analyze cost drivers.",
+    "explanationIncorrect": "Amazon Inspector scans for vulnerabilities, not costs. AWS Shield protects against DDoS. Amazon Rekognition analyzes images, so AWS Cost Explorer is the spending-analysis tool."
+  },
+  {
+    "id": "clf-180",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which purchasing option offers the largest discount on EC2 in exchange for a one- or three-year commitment?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reserved Instances or Savings Plans"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o3",
+        "text": "Dedicated Hosts billed hourly with no commitment"
+      },
+      {
+        "id": "o4",
+        "text": "Spot Instances only for steady workloads"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Reserved Instances and Savings Plans give significant discounts versus On-Demand in exchange for a one- or three-year usage commitment.",
+    "explanationIncorrect": "On-Demand has no commitment and the highest per-hour price. Dedicated Hosts billed hourly without commitment do not provide the committed-use discount described. Spot Instances suit interruptible, not steady, workloads and are not commitment-based, so Reserved Instances or Savings Plans is correct."
+  },
+  {
+    "id": "clf-181",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "hard",
+    "stem": "Which EC2 purchasing option offers steep discounts for fault-tolerant workloads that can tolerate interruption?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spot Instances"
+      },
+      {
+        "id": "o2",
+        "text": "Reserved Instances"
+      },
+      {
+        "id": "o3",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o4",
+        "text": "Dedicated Hosts"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spot Instances use spare capacity at deep discounts but can be reclaimed with short notice, making them ideal for interruption-tolerant workloads.",
+    "explanationIncorrect": "Reserved Instances discount steady, committed usage, not interruptible spare capacity. On-Demand is flexible but not deeply discounted. Dedicated Hosts provide physical isolation at a premium, so Spot Instances fit interruption-tolerant workloads."
+  },
+  {
+    "id": "clf-182",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which tool lets you set a custom spending or usage threshold and receive alerts when it is exceeded?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Budgets"
+      },
+      {
+        "id": "o2",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EFS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Glue"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Budgets lets you define cost or usage thresholds and sends alerts when actual or forecasted spending crosses them.",
+    "explanationIncorrect": "AWS CloudTrail records API activity, not budget alerts. Amazon EFS is a file system. AWS Glue is an ETL service, so AWS Budgets is the tool for spending thresholds and alerts."
+  },
+  {
+    "id": "clf-183",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which support plan is the minimum that provides a technical account manager and the fastest response commitments for business-critical systems?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Enterprise Support"
+      },
+      {
+        "id": "o2",
+        "text": "Basic Support"
+      },
+      {
+        "id": "o3",
+        "text": "Developer Support"
+      },
+      {
+        "id": "o4",
+        "text": "Free Tier Support"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Enterprise Support includes a designated technical account manager and the fastest response times, suited to business- and mission-critical workloads.",
+    "explanationIncorrect": "Basic Support offers no technical case support beyond account and billing help. Developer Support provides business-hours guidance without a technical account manager. Free Tier Support is not a named plan, so Enterprise Support is the correct answer."
+  },
+  {
+    "id": "clf-184",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "hard",
+    "stem": "An organization with many accounts wants a single consolidated bill and combined usage for volume discounts. Which feature helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Consolidated billing in AWS Organizations"
+      },
+      {
+        "id": "o2",
+        "text": "Creating separate unrelated accounts with no link"
+      },
+      {
+        "id": "o3",
+        "text": "Using one giant EC2 instance"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling billing entirely"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Consolidated billing in AWS Organizations combines charges from multiple accounts into one bill and can aggregate usage to reach volume pricing tiers.",
+    "explanationIncorrect": "Keeping accounts unlinked forgoes both the single bill and combined usage. Using one giant EC2 instance does not address multi-account billing. Disabling billing is not possible and would not consolidate anything, so consolidated billing in AWS Organizations is correct."
+  },
+  {
+    "id": "clf-185",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which service provides recommendations across cost optimization, security, performance, and fault tolerance?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Trusted Advisor"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Cognito"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Snowball"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Trusted Advisor inspects your account and offers recommendations spanning cost optimization, security, performance, fault tolerance, and service limits.",
+    "explanationIncorrect": "Amazon Athena queries data with SQL. Amazon Cognito manages user identities. AWS Snowball transfers data physically, so AWS Trusted Advisor is the recommendations service."
+  },
+  {
+    "id": "clf-186",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Under AWS pricing, which is generally free of charge?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Inbound data transfer into AWS"
+      },
+      {
+        "id": "o2",
+        "text": "All outbound data transfer to the internet"
+      },
+      {
+        "id": "o3",
+        "text": "Every EC2 instance hour"
+      },
+      {
+        "id": "o4",
+        "text": "All storage of any size"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Data transfer into AWS from the internet is generally free, while outbound transfer and most compute and storage are billed.",
+    "explanationIncorrect": "Outbound data transfer to the internet is typically charged beyond a free allowance. EC2 instance hours are billed based on the instance and option chosen. Storage is billed by amount used, so inbound data transfer is the item generally free of charge."
+  },
+  {
+    "id": "clf-187",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "hard",
+    "stem": "Which pricing principle explains why using managed services can lower total cost of ownership despite a per-hour price?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reduced operational overhead offsets service cost by lowering staffing and maintenance effort"
+      },
+      {
+        "id": "o2",
+        "text": "Managed services are always cheaper per hour than raw compute"
+      },
+      {
+        "id": "o3",
+        "text": "Managed services remove all data transfer charges"
+      },
+      {
+        "id": "o4",
+        "text": "Managed services never incur any cost"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Managed services offload patching, scaling, and maintenance, so lower operational effort and staffing can reduce total cost of ownership even with a service fee.",
+    "explanationIncorrect": "Managed services are not always cheaper per hour than raw compute; the savings come from reduced operations. They do not remove all data transfer charges. They are not free of cost, so lower operational overhead offsetting the fee is the correct principle."
+  },
+  {
+    "id": "clf-188",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which resource provides an estimate of monthly costs for a proposed AWS architecture before you build it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Pricing Calculator"
+      },
+      {
+        "id": "o2",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EFS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The AWS Pricing Calculator lets you model a planned architecture and estimate its monthly cost before deploying anything.",
+    "explanationIncorrect": "AWS CloudTrail logs API activity, not cost estimates. Amazon GuardDuty detects threats. Amazon EFS is a file system, so the AWS Pricing Calculator is the estimation resource."
+  },
+  {
+    "id": "clf-189",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which tagging practice most helps allocate AWS costs to teams or projects?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Applying consistent cost allocation tags to resources"
+      },
+      {
+        "id": "o2",
+        "text": "Leaving all resources untagged"
+      },
+      {
+        "id": "o3",
+        "text": "Using random tag values each time"
+      },
+      {
+        "id": "o4",
+        "text": "Tagging only the account root user"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Consistent cost allocation tags let you group spending by team, project, or environment in billing reports for accurate chargeback.",
+    "explanationIncorrect": "Leaving resources untagged makes cost attribution impossible. Random tag values prevent meaningful grouping. Tagging only the root user does not map costs to workloads, so consistent cost allocation tags is the effective practice."
+  },
+  {
+    "id": "clf-190",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "hard",
+    "stem": "A startup wants to try services with no upfront cost within usage limits for a period. Which offering supports this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The AWS Free Tier"
+      },
+      {
+        "id": "o2",
+        "text": "Enterprise Support"
+      },
+      {
+        "id": "o3",
+        "text": "Dedicated Hosts"
+      },
+      {
+        "id": "o4",
+        "text": "Reserved Instances"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The AWS Free Tier lets new customers explore many services at no cost within defined usage limits, ideal for experimentation.",
+    "explanationIncorrect": "Enterprise Support is a paid support plan, not a free usage offering. Dedicated Hosts are a premium isolation option. Reserved Instances require a paid commitment, so the AWS Free Tier is the offering that supports free trial usage."
   }
 ]
