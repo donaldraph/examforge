@@ -5356,5 +5356,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "The apply confirmation is a safety gate that shows the plan and asks you to approve before Terraform changes real infrastructure.",
     "explanationIncorrect": "Downloading provider plugins happens during init, not at the apply prompt. Formatting is done by fmt. Authenticating to version control is unrelated to the apply approval, so reviewing planned changes before they occur is the reason for the prompt."
+  },
+  {
+    "id": "tf-164",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Why does Terraform maintain a state file?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To map configuration to real-world resources and track metadata for planning"
+      },
+      {
+        "id": "o2",
+        "text": "To store provider plugin binaries"
+      },
+      {
+        "id": "o3",
+        "text": "To hold the formatted source code"
+      },
+      {
+        "id": "o4",
+        "text": "To cache the CLI help text"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The state file records the mapping between your configuration and real resources, along with metadata Terraform uses to plan efficient changes.",
+    "explanationIncorrect": "Provider plugin binaries live in the initialized plugin directory, not state. Formatted source code stays in the .tf files. The CLI help text is not cached in state, so mapping configuration to real resources is the state file's purpose."
+  },
+  {
+    "id": "tf-165",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "A team shares infrastructure and needs to prevent two people from applying at the same time. Which backend feature helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "State locking provided by a remote backend"
+      },
+      {
+        "id": "o2",
+        "text": "Formatting the configuration"
+      },
+      {
+        "id": "o3",
+        "text": "Increasing parallelism"
+      },
+      {
+        "id": "o4",
+        "text": "Using a larger local disk"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A remote backend that supports state locking prevents concurrent operations from corrupting state by ensuring only one apply proceeds at a time.",
+    "explanationIncorrect": "Formatting the configuration has no effect on concurrency. Increasing parallelism speeds a single run but does not coordinate multiple users. A larger local disk does not prevent simultaneous applies, so state locking from a remote backend is the correct feature."
+  },
+  {
+    "id": "tf-166",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Which command lists the resources currently tracked in the state?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform state list"
+      },
+      {
+        "id": "o2",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o3",
+        "text": "terraform validate"
+      },
+      {
+        "id": "o4",
+        "text": "terraform login"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform state list enumerates the resource addresses currently recorded in the Terraform state.",
+    "explanationIncorrect": "terraform fmt formats configuration files. terraform validate checks configuration validity. terraform login authenticates to a remote host, so terraform state list is the command that lists tracked resources."
+  },
+  {
+    "id": "tf-167",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Why should sensitive values in state be protected, for example by using a remote backend with encryption?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "State can contain secrets in plaintext, so it must be secured"
+      },
+      {
+        "id": "o2",
+        "text": "State is always encrypted no matter where it is stored"
+      },
+      {
+        "id": "o3",
+        "text": "State never contains any sensitive data"
+      },
+      {
+        "id": "o4",
+        "text": "State is only the CLI configuration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform state may store sensitive attributes such as passwords in plaintext, so it should be kept in a secured, encrypted backend with restricted access.",
+    "explanationIncorrect": "State is not automatically encrypted everywhere, especially a plain local file. It is false that state never contains sensitive data, since many resources record secrets. State is far more than CLI configuration, so protecting potentially plaintext secrets is the reason."
+  },
+  {
+    "id": "tf-168",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "You renamed a resource in configuration and want Terraform to treat it as the same object rather than destroy and recreate it. Which action helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use a moved block or terraform state mv to update the resource address in state"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the state file"
+      },
+      {
+        "id": "o3",
+        "text": "Run terraform fmt"
+      },
+      {
+        "id": "o4",
+        "text": "Increase parallelism"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A moved block or terraform state mv updates the address in state so Terraform recognizes the renamed resource as the existing object and avoids recreation.",
+    "explanationIncorrect": "Deleting the state file makes Terraform lose track of all resources and try to recreate them. terraform fmt only formats code. Increasing parallelism does not remap addresses, so a moved block or state mv is the correct action."
+  },
+  {
+    "id": "tf-169",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Which command refreshes the state to match real infrastructure and can be run as part of planning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform refresh (or a plan with refresh enabled)"
+      },
+      {
+        "id": "o2",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o3",
+        "text": "terraform login"
+      },
+      {
+        "id": "o4",
+        "text": "terraform version"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform refresh reconciles state with the real resources' current attributes, and planning also performs a refresh by default to detect drift.",
+    "explanationIncorrect": "terraform fmt only formats code. terraform login authenticates to a remote host. terraform version prints the version, so refreshing state to match reality is done by terraform refresh or a refreshing plan."
+  },
+  {
+    "id": "tf-170",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "What is a key advantage of a remote backend over local state for teams?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Shared, centralized state with locking and access control"
+      },
+      {
+        "id": "o2",
+        "text": "It formats the code automatically"
+      },
+      {
+        "id": "o3",
+        "text": "It removes the need for providers"
+      },
+      {
+        "id": "o4",
+        "text": "It eliminates the plan step"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A remote backend centralizes state so team members share one source of truth, with locking and access controls that local files lack.",
+    "explanationIncorrect": "A remote backend does not format code. It does not remove the need for providers, which are still required. It does not eliminate the plan step, so shared centralized state with locking and access control is the key advantage."
   }
 ]
