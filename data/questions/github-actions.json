@@ -6278,5 +6278,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "A local action in the same repository is referenced by a relative path starting with ./ that points to the directory containing its action.yml.",
     "explanationIncorrect": "The owner/my-action@subdir form is not how local subdirectory actions are addressed. A bare URL is not a valid uses reference. Pointing at a single YAML file name without the directory path is incorrect, so the relative ./ path is the right reference."
+  },
+  {
+    "id": "gha-199",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "In a composite action, why must each run step specify a shell?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Composite action run steps require an explicit shell since there is no default"
+      },
+      {
+        "id": "o2",
+        "text": "The shell key sets the action's name"
+      },
+      {
+        "id": "o3",
+        "text": "It selects the runner operating system"
+      },
+      {
+        "id": "o4",
+        "text": "It defines the action's inputs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Unlike workflow steps, composite action run steps have no implicit default shell, so each run step must name the shell explicitly.",
+    "explanationIncorrect": "The shell key does not set the action's name, which lives in the name field. It does not select the runner OS, which is chosen by the calling workflow. It does not define inputs, which are declared under inputs, so the required explicit shell is the reason."
+  },
+  {
+    "id": "gha-200",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "Your JavaScript action must run cleanup logic even if the main step fails. Which action.yml feature supports this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A post entry under runs that always executes after the job"
+      },
+      {
+        "id": "o2",
+        "text": "A second main entry"
+      },
+      {
+        "id": "o3",
+        "text": "A branding block"
+      },
+      {
+        "id": "o4",
+        "text": "An on.schedule trigger"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A JavaScript action can declare a post script under runs that GitHub runs at the end of the job for cleanup, even after failures.",
+    "explanationIncorrect": "There is no second main entry; an action has one main entry point. A branding block only sets Marketplace icon and color. on.schedule is a workflow trigger, not part of action metadata, so a post entry is the feature for cleanup."
+  },
+  {
+    "id": "gha-201",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "Which runs.using value indicates a JavaScript action running on Node?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "node20"
+      },
+      {
+        "id": "o2",
+        "text": "docker"
+      },
+      {
+        "id": "o3",
+        "text": "composite"
+      },
+      {
+        "id": "o4",
+        "text": "bash"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A JavaScript action sets runs.using to a Node runtime such as node20 and points main at its entry file.",
+    "explanationIncorrect": "docker indicates a container action, not a JavaScript one. composite indicates an action composed of multiple steps. bash is not a valid runs.using value, so node20 identifies a JavaScript action."
+  },
+  {
+    "id": "gha-202",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want to give an action input a documented default value. Which field provides it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "inputs.<name>.default"
+      },
+      {
+        "id": "o2",
+        "text": "inputs.<name>.value"
+      },
+      {
+        "id": "o3",
+        "text": "outputs.<name>.default"
+      },
+      {
+        "id": "o4",
+        "text": "runs.default"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The default field on an input supplies the value used when the caller does not provide that input.",
+    "explanationIncorrect": "There is no value field on an input for defaults. outputs describe produced values, not input defaults. runs has no default field for inputs, so inputs.<name>.default is correct."
+  },
+  {
+    "id": "gha-203",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An enterprise wants to reuse one set of secrets and variables across many repositories for a shared team. Which feature helps most?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Organization secrets and variables scoped to selected repositories"
+      },
+      {
+        "id": "o2",
+        "text": "Copying secrets into each repository by hand"
+      },
+      {
+        "id": "o3",
+        "text": "Storing them in each README"
+      },
+      {
+        "id": "o4",
+        "text": "A per-repository matrix"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization-level secrets and variables are defined once and shared with selected repositories, avoiding duplication and easing rotation.",
+    "explanationIncorrect": "Copying secrets by hand into each repository is error-prone and hard to rotate. Storing them in a README exposes them and does not make them secrets. A per-repository matrix fans out jobs and shares nothing, so organization secrets and variables is the best fit."
+  },
+  {
+    "id": "gha-204",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "To ensure a specific deployment can only proceed after a wait timer and reviewer approval, which construct do you configure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An environment with a wait timer and required reviewers protection rules"
+      },
+      {
+        "id": "o2",
+        "text": "A concurrency group with cancel-in-progress"
+      },
+      {
+        "id": "o3",
+        "text": "A paths-ignore filter"
+      },
+      {
+        "id": "o4",
+        "text": "A matrix with max-parallel"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An environment supports protection rules including a wait timer and required reviewers, so a job targeting it pauses for the delay and approval before running.",
+    "explanationIncorrect": "A concurrency group only serializes runs and cancels older ones, adding no approval. A paths-ignore filter controls whether a workflow triggers on file changes. A matrix with max-parallel limits parallel legs, so an environment with a wait timer and required reviewers is correct."
+  },
+  {
+    "id": "gha-205",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "Which choice reduces the risk that a self-hosted runner retains state between untrusted jobs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Using ephemeral runners that are removed after a single job"
+      },
+      {
+        "id": "o2",
+        "text": "Reusing one persistent runner for all jobs"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling audit logging"
+      },
+      {
+        "id": "o4",
+        "text": "Granting the runner admin on every repo"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Ephemeral runners run one job and are then destroyed, so no residual state or secrets carry over to subsequent jobs.",
+    "explanationIncorrect": "Reusing one persistent runner is exactly what lets state leak between jobs. Disabling audit logging weakens security and does not address state retention. Granting broad admin increases risk rather than reducing it, so ephemeral runners are the correct mitigation."
   }
 ]
