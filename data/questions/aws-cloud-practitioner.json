@@ -6017,5 +6017,229 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "The AWS Free Tier lets new customers explore many services at no cost within defined usage limits, ideal for experimentation.",
     "explanationIncorrect": "Enterprise Support is a paid support plan, not a free usage offering. Dedicated Hosts are a premium isolation option. Reserved Instances require a paid commitment, so the AWS Free Tier is the offering that supports free trial usage."
+  },
+  {
+    "id": "clf-191",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which benefit lets you provision resources in minutes and experiment cheaply, then remove them when done?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Agility"
+      },
+      {
+        "id": "o2",
+        "text": "Vendor lock-in"
+      },
+      {
+        "id": "o3",
+        "text": "Data gravity"
+      },
+      {
+        "id": "o4",
+        "text": "Overprovisioning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Cloud agility means you can provision and de-provision resources in minutes, enabling fast, low-risk experimentation.",
+    "explanationIncorrect": "Vendor lock-in is a dependency risk, not a speed benefit. Data gravity describes data attracting services. Overprovisioning is the costly practice the cloud helps avoid, so agility is the benefit described."
+  },
+  {
+    "id": "clf-192",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which Well-Architected pillar focuses on protecting information, systems, and assets?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Security"
+      },
+      {
+        "id": "o2",
+        "text": "Cost Optimization"
+      },
+      {
+        "id": "o3",
+        "text": "Performance Efficiency"
+      },
+      {
+        "id": "o4",
+        "text": "Operational Excellence"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Security pillar centers on protecting data, systems, and assets through controls like identity management, detection, and encryption.",
+    "explanationIncorrect": "Cost Optimization is about avoiding unnecessary spend. Performance Efficiency concerns using resources effectively as demand changes. Operational Excellence is about running and improving operations, so Security is the protection-focused pillar."
+  },
+  {
+    "id": "clf-193",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "Which statement best describes the relationship between Regions and Availability Zones?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A Region contains multiple isolated Availability Zones for fault isolation"
+      },
+      {
+        "id": "o2",
+        "text": "An Availability Zone contains many Regions"
+      },
+      {
+        "id": "o3",
+        "text": "A Region and an Availability Zone are the same thing"
+      },
+      {
+        "id": "o4",
+        "text": "Availability Zones exist only outside Regions"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Each Region is a geographic area made up of multiple physically isolated Availability Zones, enabling high availability and fault isolation.",
+    "explanationIncorrect": "An Availability Zone does not contain Regions; the hierarchy is the reverse. A Region and an Availability Zone are not the same, since a Region has several zones. Availability Zones exist within Regions, not outside them, so a Region containing multiple isolated zones is correct."
+  },
+  {
+    "id": "clf-194",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which service model gives you the most control over the operating system and runtime you manage?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Infrastructure as a Service (IaaS)"
+      },
+      {
+        "id": "o2",
+        "text": "Software as a Service (SaaS)"
+      },
+      {
+        "id": "o3",
+        "text": "Function as a fully managed product with no OS access"
+      },
+      {
+        "id": "o4",
+        "text": "A pre-built mobile app"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "IaaS such as EC2 gives you control over the operating system, runtime, and installed software while AWS manages the underlying hardware.",
+    "explanationIncorrect": "SaaS abstracts away the OS and runtime entirely, giving the least control. A fully managed function product hides the OS by design. A pre-built mobile app is an end-user product with no infrastructure control, so IaaS offers the most OS-level control."
+  },
+  {
+    "id": "clf-195",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Under the shared responsibility model, which task is the customer's responsibility?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Configuring IAM permissions and managing their data"
+      },
+      {
+        "id": "o2",
+        "text": "Securing the physical data centers"
+      },
+      {
+        "id": "o3",
+        "text": "Maintaining the hardware of the global infrastructure"
+      },
+      {
+        "id": "o4",
+        "text": "Patching the hypervisor of managed services"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Customers are responsible for security in the cloud, including configuring IAM permissions and protecting the data they put into AWS.",
+    "explanationIncorrect": "Securing physical data centers is AWS's responsibility. Maintaining the global infrastructure hardware is AWS's job. Patching the hypervisor of managed services falls to AWS, so configuring IAM and managing data is the customer's responsibility."
+  },
+  {
+    "id": "clf-196",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service provides on-demand access to AWS compliance reports like SOC and ISO?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Inspector"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Artifact is the self-service portal for downloading AWS compliance documents and audit reports such as SOC and ISO.",
+    "explanationIncorrect": "Amazon GuardDuty is a threat-detection service. AWS Shield protects against DDoS. Amazon Inspector scans workloads for vulnerabilities, so AWS Artifact is the source of compliance reports."
+  },
+  {
+    "id": "clf-197",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "Why is enabling MFA on the account root user strongly recommended?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The root user has unrestricted power, so a second factor greatly reduces the impact of a stolen password"
+      },
+      {
+        "id": "o2",
+        "text": "MFA makes the root user unable to log in"
+      },
+      {
+        "id": "o3",
+        "text": "MFA lowers the account bill"
+      },
+      {
+        "id": "o4",
+        "text": "MFA removes the need for IAM"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because the root user can do anything in the account, adding MFA means a stolen password alone cannot compromise it, sharply reducing risk.",
+    "explanationIncorrect": "MFA does not prevent the root user from logging in; it adds a factor for legitimate sign-in. It does not lower the bill. It does not remove the need for IAM, which is still used for daily access, so reducing the impact of a stolen password is the reason."
+  },
+  {
+    "id": "clf-198",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service continuously monitors for malicious or unauthorized activity using threat intelligence?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Budgets"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Route 53"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon GuardDuty continuously analyzes account and network activity and applies threat intelligence to flag malicious or unauthorized behavior.",
+    "explanationIncorrect": "Amazon S3 is object storage. AWS Budgets tracks spending. Amazon Route 53 is DNS and routing, so Amazon GuardDuty is the continuous threat-detection service."
   }
 ]
