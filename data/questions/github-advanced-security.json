@@ -6475,5 +6475,173 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "The .github/dependabot.yml file declares each package ecosystem, directory, and update schedule Dependabot should follow.",
     "explanationIncorrect": "There is no standard .github/codeql.yml used for Dependabot configuration. package.json lists dependencies but does not configure Dependabot's schedule. CODEOWNERS assigns reviewers, so .github/dependabot.yml is the configuration file."
+  },
+  {
+    "id": "ghas-205",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "What must CodeQL build before it can analyze a compiled-language project?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A CodeQL database extracted from the code, typically by observing the build"
+      },
+      {
+        "id": "o2",
+        "text": "A container registry"
+      },
+      {
+        "id": "o3",
+        "text": "A release tag"
+      },
+      {
+        "id": "o4",
+        "text": "A wiki page"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CodeQL first extracts a database representing the code, and for compiled languages this usually means observing the build so all compiled sources are captured.",
+    "explanationIncorrect": "A container registry stores images, not analysis data. A release tag marks a version and does not enable analysis. A wiki page is documentation, so building a CodeQL database is the required prerequisite."
+  },
+  {
+    "id": "ghas-206",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "A CodeQL data-flow query reports a path from user input to a database query with no sanitization. What class of issue does this typically indicate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An injection vulnerability such as SQL injection"
+      },
+      {
+        "id": "o2",
+        "text": "A slow build"
+      },
+      {
+        "id": "o3",
+        "text": "A licensing violation"
+      },
+      {
+        "id": "o4",
+        "text": "A merge conflict"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An unsanitized path from untrusted input to a query sink is the classic signature of an injection vulnerability like SQL injection.",
+    "explanationIncorrect": "A slow build is a performance concern, not a data-flow finding. A licensing violation relates to dependency terms, not taint flow. A merge conflict is a version-control state, so an injection vulnerability is what this path indicates."
+  },
+  {
+    "id": "ghas-207",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Which setup option enables CodeQL with GitHub automatically choosing languages and queries and minimal configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Default setup"
+      },
+      {
+        "id": "o2",
+        "text": "Advanced setup with a hand-written workflow"
+      },
+      {
+        "id": "o3",
+        "text": "A manual database export"
+      },
+      {
+        "id": "o4",
+        "text": "A self-hosted analysis server"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Default setup enables CodeQL with GitHub selecting languages and query suites automatically, requiring little manual configuration.",
+    "explanationIncorrect": "Advanced setup requires authoring the workflow yourself and is the opposite of minimal configuration. A manual database export is a low-level operation, not the easy path. A self-hosted analysis server is unnecessary for default setup, so default setup is correct."
+  },
+  {
+    "id": "ghas-208",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which practice best embodies shifting security left?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Running scanning and dependency review on pull requests before merge"
+      },
+      {
+        "id": "o2",
+        "text": "Scanning only once a year"
+      },
+      {
+        "id": "o3",
+        "text": "Reviewing security only after deployment"
+      },
+      {
+        "id": "o4",
+        "text": "Ignoring alerts until an incident occurs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Running scanning and dependency review on pull requests catches problems early, before they merge, which is the essence of shifting left.",
+    "explanationIncorrect": "Scanning once a year finds issues long after they ship. Reviewing security only after deployment is the opposite of early detection. Ignoring alerts until an incident maximizes exposure, so PR-time scanning embodies shifting left."
+  },
+  {
+    "id": "ghas-209",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "You face hundreds of open alerts. Which triage approach makes the best use of limited time?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Prioritize by severity and real exploitability, fixing high-severity reachable issues first"
+      },
+      {
+        "id": "o2",
+        "text": "Fix alerts alphabetically by file name"
+      },
+      {
+        "id": "o3",
+        "text": "Dismiss every alert to clear the queue"
+      },
+      {
+        "id": "o4",
+        "text": "Only fix the single newest alert"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Ranking by severity and genuine exploitability ensures the most dangerous, reachable issues are remediated first, maximizing risk reduction per effort.",
+    "explanationIncorrect": "Fixing alphabetically ignores risk and wastes effort. Dismissing every alert hides real vulnerabilities. Fixing only the newest alert leaves serious older issues unaddressed, so severity-and-exploitability prioritization is the best approach."
+  },
+  {
+    "id": "ghas-210",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "After fixing a vulnerability, how do you confirm the code scanning alert is resolved?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Re-run the analysis so GitHub marks the alert as fixed when the pattern is gone"
+      },
+      {
+        "id": "o2",
+        "text": "Manually delete the alert from the database"
+      },
+      {
+        "id": "o3",
+        "text": "Assume it is fixed without re-scanning"
+      },
+      {
+        "id": "o4",
+        "text": "Archive the repository"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Running code scanning again on the fixed code lets GitHub mark the alert as fixed once the vulnerable pattern no longer appears, confirming the remediation.",
+    "explanationIncorrect": "Manually deleting the alert skips verification that the fix actually worked. Assuming it is fixed without re-scanning risks an incomplete remediation. Archiving the repository is drastic and unnecessary, so re-running the analysis confirms resolution."
   }
 ]
