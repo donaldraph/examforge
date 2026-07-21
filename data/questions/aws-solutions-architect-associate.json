@@ -4669,5 +4669,369 @@
       "cloudfront",
       "data-transfer"
     ]
+  },
+  {
+    "id": "saa-141",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To make a stateless web tier resilient to the loss of a single Availability Zone, what should you do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run instances in multiple AZs behind an Elastic Load Balancer with Auto Scaling"
+      },
+      {
+        "id": "o2",
+        "text": "Run all instances in one AZ with a larger size"
+      },
+      {
+        "id": "o3",
+        "text": "Use a single instance with frequent reboots"
+      },
+      {
+        "id": "o4",
+        "text": "Store sessions only on local disk"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Distributing instances across multiple AZs behind a load balancer with Auto Scaling means the loss of one zone leaves healthy capacity serving traffic.",
+    "explanationIncorrect": "Concentrating instances in one AZ leaves the tier fully exposed to that zone's failure. A single instance is a single point of failure regardless of reboots. Storing sessions on local disk ties users to one instance and breaks resilience, so multi-AZ behind an ELB with Auto Scaling is correct."
+  },
+  {
+    "id": "saa-142",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "A relational database must survive an Availability Zone failure with minimal manual effort. Which configuration fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon RDS Multi-AZ deployment with automatic failover to a standby"
+      },
+      {
+        "id": "o2",
+        "text": "A single-AZ RDS instance with nightly snapshots only"
+      },
+      {
+        "id": "o3",
+        "text": "Running the database on one EC2 instance"
+      },
+      {
+        "id": "o4",
+        "text": "Storing the database in a single S3 object"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RDS Multi-AZ maintains a synchronous standby in another zone and fails over automatically, providing resilience with little manual intervention.",
+    "explanationIncorrect": "A single-AZ instance with nightly snapshots loses data since the last snapshot and requires manual restore. A single EC2-hosted database is a manual, single point of failure. A relational database cannot run as one S3 object, so RDS Multi-AZ is the fitting configuration."
+  },
+  {
+    "id": "saa-143",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which storage service provides eleven nines of durability by redundantly storing objects across multiple facilities?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EC2 instance store"
+      },
+      {
+        "id": "o3",
+        "text": "A single EBS volume"
+      },
+      {
+        "id": "o4",
+        "text": "Local NVMe on one host"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon S3 is designed for eleven nines of durability by redundantly storing each object across multiple devices and facilities within a Region.",
+    "explanationIncorrect": "EC2 instance store is ephemeral and lost when the instance stops. A single EBS volume is durable within one AZ but not designed for that cross-facility level alone. Local NVMe on one host has no cross-facility redundancy, so Amazon S3 provides the described durability."
+  },
+  {
+    "id": "saa-144",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To decouple a spiky producer from a slower consumer so no requests are lost during bursts, which service helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SQS as a buffer between the components"
+      },
+      {
+        "id": "o2",
+        "text": "A direct synchronous call from producer to consumer"
+      },
+      {
+        "id": "o3",
+        "text": "Storing requests in a single log file"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon CloudFront caching"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SQS buffers messages so a burst from the producer is queued and the consumer processes at its own pace without losing requests.",
+    "explanationIncorrect": "A direct synchronous call couples the two and can drop or block requests during bursts. A single log file is not a managed, scalable queue and risks contention. CloudFront caches content and does not buffer work items, so Amazon SQS is the decoupling buffer."
+  },
+  {
+    "id": "saa-145",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "A workload needs a Region-wide outage recovery strategy with the lowest recovery time and point objectives, at higher cost. Which approach fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A multi-Region active-active or hot standby architecture"
+      },
+      {
+        "id": "o2",
+        "text": "Backup and restore to another Region only"
+      },
+      {
+        "id": "o3",
+        "text": "A single-Region deployment with no DR"
+      },
+      {
+        "id": "o4",
+        "text": "Manual rebuild from documentation after an outage"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An active-active or hot standby across Regions keeps a running environment ready, minimizing recovery time and data loss at the cost of running duplicate infrastructure.",
+    "explanationIncorrect": "Backup and restore has the highest recovery time and larger data loss, not the lowest objectives. A single-Region deployment offers no protection against a Region-wide outage. Manual rebuild from documentation is the slowest option, so a multi-Region active-active or hot standby fits the lowest objectives."
+  },
+  {
+    "id": "saa-146",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which feature routes users to a healthy endpoint and away from a failed one using health checks and DNS?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Route 53 health checks with failover routing"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3 versioning"
+      },
+      {
+        "id": "o3",
+        "text": "EBS snapshots"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Budgets"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Route 53 failover routing uses health checks to direct traffic to a healthy endpoint and away from one that is failing, improving resilience.",
+    "explanationIncorrect": "S3 versioning preserves object versions and does not route traffic. EBS snapshots back up volumes, not DNS routing. AWS Budgets tracks spending, so Route 53 health checks with failover routing is the correct feature."
+  },
+  {
+    "id": "saa-147",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To ensure a DynamoDB-backed app survives an AZ failure, what must the architect do about DynamoDB?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Nothing special, since DynamoDB automatically replicates across multiple AZs in a Region"
+      },
+      {
+        "id": "o2",
+        "text": "Manually copy the table to another AZ nightly"
+      },
+      {
+        "id": "o3",
+        "text": "Run DynamoDB on a single EC2 instance"
+      },
+      {
+        "id": "o4",
+        "text": "Store the table on one EBS volume"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "DynamoDB is a managed service that automatically replicates data across multiple Availability Zones in a Region, so it inherently survives an AZ failure.",
+    "explanationIncorrect": "Manual nightly copies are unnecessary and risk data loss between copies. DynamoDB is not something you run on your own EC2 instance. It does not sit on a single EBS volume you manage, so relying on its built-in multi-AZ replication is correct."
+  },
+  {
+    "id": "saa-148",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "A fleet behind an ELB occasionally serves errors from unhealthy instances. Which mechanism removes them from rotation automatically?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Load balancer health checks that stop routing to unhealthy targets"
+      },
+      {
+        "id": "o2",
+        "text": "Increasing the instance size"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling the load balancer"
+      },
+      {
+        "id": "o4",
+        "text": "Turning off Auto Scaling"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "ELB health checks continuously test targets and stop sending traffic to any that fail, so unhealthy instances are automatically taken out of rotation.",
+    "explanationIncorrect": "Increasing instance size does not detect or remove unhealthy instances. Disabling the load balancer removes the very mechanism that routes around failures. Turning off Auto Scaling reduces resilience, so load balancer health checks are the correct mechanism."
+  },
+  {
+    "id": "saa-149",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach lets an Auto Scaling group replace a failed instance automatically to maintain desired capacity?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Auto Scaling health checks that terminate and relaunch unhealthy instances"
+      },
+      {
+        "id": "o2",
+        "text": "Manually launching a replacement each time"
+      },
+      {
+        "id": "o3",
+        "text": "Ignoring failed instances"
+      },
+      {
+        "id": "o4",
+        "text": "Reducing desired capacity to zero"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Auto Scaling uses health checks to detect unhealthy instances, terminate them, and launch replacements to keep the group at desired capacity.",
+    "explanationIncorrect": "Manually launching replacements defeats the automation Auto Scaling provides. Ignoring failed instances leaves capacity degraded. Reducing desired capacity to zero removes the workload entirely, so Auto Scaling health checks with automatic replacement is correct."
+  },
+  {
+    "id": "saa-150",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which storage option provides shared, elastic file storage accessible from many EC2 instances across AZs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon EFS"
+      },
+      {
+        "id": "o2",
+        "text": "A single EBS volume attached to one instance"
+      },
+      {
+        "id": "o3",
+        "text": "Instance store"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Glacier"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon EFS is an elastic, shared file system that many EC2 instances across Availability Zones can mount concurrently.",
+    "explanationIncorrect": "A single EBS volume attaches to one instance at a time in one AZ, not shared across many. Instance store is ephemeral local storage. Amazon Glacier is archival, not a live shared file system, so Amazon EFS is the correct shared storage."
+  },
+  {
+    "id": "saa-151",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "To protect against accidental object deletion and enable recovery, which S3 feature should you enable?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Versioning, optionally with MFA Delete"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Transfer Acceleration"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Static Website Hosting"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Requester Pays"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Versioning keeps previous versions of objects so deletions can be undone, and MFA Delete adds protection against unintended or malicious removal.",
+    "explanationIncorrect": "Transfer Acceleration speeds uploads over long distances and does not protect against deletion. Static Website Hosting serves content and offers no recovery. Requester Pays shifts data transfer costs, so S3 Versioning with optional MFA Delete is the correct protection."
+  },
+  {
+    "id": "saa-152",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which pattern improves resilience by processing messages so that duplicate deliveries do not cause incorrect results?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Idempotent message processing"
+      },
+      {
+        "id": "o2",
+        "text": "Storing state only in memory"
+      },
+      {
+        "id": "o3",
+        "text": "Ignoring all retries"
+      },
+      {
+        "id": "o4",
+        "text": "Processing messages twice on purpose"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Idempotent processing ensures that handling the same message more than once yields the same result, which is important because queues may deliver duplicates.",
+    "explanationIncorrect": "Storing state only in memory risks loss and does not address duplicates. Ignoring all retries can drop legitimate work. Intentionally processing messages twice causes exactly the double-effect idempotency prevents, so idempotent processing is the resilient pattern."
+  },
+  {
+    "id": "saa-153",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which service lets you capture and replay changes for point-in-time recovery of a DynamoDB table?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "DynamoDB point-in-time recovery (PITR)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SES"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "DynamoDB point-in-time recovery continuously backs up table data so you can restore to any second within the retention window.",
+    "explanationIncorrect": "Amazon CloudFront caches content and offers no database recovery. AWS Shield protects against DDoS. Amazon SES sends email, so DynamoDB point-in-time recovery is the correct feature for restoring a table."
   }
 ]
