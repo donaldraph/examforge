@@ -4823,5 +4823,285 @@
       "branch-protection",
       "required-checks"
     ]
+  },
+  {
+    "id": "ghas-146",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which three capabilities are the core pillars of GitHub Advanced Security?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Code scanning, secret scanning, and dependency review"
+      },
+      {
+        "id": "o2",
+        "text": "Pages, Packages, and Projects"
+      },
+      {
+        "id": "o3",
+        "text": "Actions, Codespaces, and Copilot"
+      },
+      {
+        "id": "o4",
+        "text": "Issues, Discussions, and Wikis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS centers on code scanning for vulnerabilities, secret scanning for leaked credentials, and dependency review for risky dependency changes.",
+    "explanationIncorrect": "Pages, Packages, and Projects are general platform features unrelated to the security suite. Actions, Codespaces, and Copilot are productivity and CI tools, not the GHAS pillars. Issues, Discussions, and Wikis are collaboration features, so code scanning, secret scanning, and dependency review are the correct trio."
+  },
+  {
+    "id": "ghas-147",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Where do code scanning and secret scanning alerts appear for a repository?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Under the repository's Security tab"
+      },
+      {
+        "id": "o2",
+        "text": "In the repository's Wiki"
+      },
+      {
+        "id": "o3",
+        "text": "In the Projects board only"
+      },
+      {
+        "id": "o4",
+        "text": "In the repository's Releases page"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS surfaces code scanning and secret scanning alerts in the repository's Security tab, which centralizes security findings.",
+    "explanationIncorrect": "The Wiki holds documentation, not alerts. A Projects board tracks work items, not security findings. The Releases page lists shipped versions, so the Security tab is where these alerts appear."
+  },
+  {
+    "id": "ghas-148",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "For GitHub Enterprise Cloud, which licensing basis has traditionally governed GitHub Advanced Security consumption?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A committer-based model counting unique active committers to repositories with GHAS enabled"
+      },
+      {
+        "id": "o2",
+        "text": "A per-open-issue model"
+      },
+      {
+        "id": "o3",
+        "text": "A per-workflow-run model"
+      },
+      {
+        "id": "o4",
+        "text": "A per-star model"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS licensing has traditionally been measured by unique active committers to repositories where Advanced Security is enabled, so each such committer consumes a seat.",
+    "explanationIncorrect": "Open issue counts have no bearing on GHAS licensing. Workflow runs relate to Actions minutes, not GHAS seats. Repository stars are a popularity metric with no licensing role, so the committer-based model is the correct basis."
+  },
+  {
+    "id": "ghas-149",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which GHAS feature is available on public repositories at no cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Code scanning and secret scanning are free for public repositories"
+      },
+      {
+        "id": "o2",
+        "text": "GHAS features are never available on public repositories"
+      },
+      {
+        "id": "o3",
+        "text": "Only paid private repositories can use any scanning"
+      },
+      {
+        "id": "o4",
+        "text": "Scanning requires a self-hosted server for public repos"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub offers code scanning and secret scanning for public repositories at no charge, making these protections broadly available to open source.",
+    "explanationIncorrect": "It is false that GHAS features are never on public repos, since public repos get scanning free. Scanning is not limited to paid private repos. Public repository scanning does not require a self-hosted server, so free availability on public repos is correct."
+  },
+  {
+    "id": "ghas-150",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "A security manager wants an organization-wide view of alerts across all repositories. Which GHAS capability provides this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The security overview dashboard at the organization level"
+      },
+      {
+        "id": "o2",
+        "text": "A single repository's Insights tab"
+      },
+      {
+        "id": "o3",
+        "text": "The Actions tab"
+      },
+      {
+        "id": "o4",
+        "text": "The repository's commit history"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The security overview aggregates code scanning, secret scanning, and Dependabot alerts across an organization's repositories in one dashboard.",
+    "explanationIncorrect": "A single repository's Insights tab shows metrics for that repo only, not an org-wide roll-up. The Actions tab shows workflow runs, not security alerts. Commit history lists changes, not aggregated alerts, so the organization security overview is the right capability."
+  },
+  {
+    "id": "ghas-151",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "Which statement best describes how GHAS integrates results into the pull request workflow?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Findings can appear as PR checks and inline annotations so issues are caught before merge"
+      },
+      {
+        "id": "o2",
+        "text": "Findings are only emailed weekly"
+      },
+      {
+        "id": "o3",
+        "text": "Findings are hidden until after deployment"
+      },
+      {
+        "id": "o4",
+        "text": "Findings appear only in the wiki"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GHAS surfaces code scanning and dependency review results directly on pull requests as checks and inline annotations, shifting detection left before merge.",
+    "explanationIncorrect": "GHAS does not restrict findings to a weekly email; results are near-real-time on PRs. It does not hide findings until after deployment, which would defeat shift-left goals. Findings are not confined to the wiki, so PR checks and inline annotations describe the integration correctly."
+  },
+  {
+    "id": "ghas-152",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which format do code scanning tools use to upload results to GitHub so they appear as alerts?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "SARIF"
+      },
+      {
+        "id": "o2",
+        "text": "CSV"
+      },
+      {
+        "id": "o3",
+        "text": "PNG"
+      },
+      {
+        "id": "o4",
+        "text": "INI"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Code scanning consumes SARIF, the Static Analysis Results Interchange Format, so any tool that emits SARIF can upload findings as alerts.",
+    "explanationIncorrect": "CSV is a generic tabular format that code scanning does not ingest as alerts. PNG is an image format, not analysis results. INI is a configuration format, so SARIF is the correct interchange format for code scanning results."
+  },
+  {
+    "id": "ghas-153",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which GHAS feature specifically warns you about vulnerable or malicious dependencies introduced in a pull request?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Dependency review"
+      },
+      {
+        "id": "o2",
+        "text": "Secret scanning"
+      },
+      {
+        "id": "o3",
+        "text": "Code scanning of first-party code"
+      },
+      {
+        "id": "o4",
+        "text": "Branch protection"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependency review inspects the dependency changes in a pull request and flags additions of known-vulnerable packages before they merge.",
+    "explanationIncorrect": "Secret scanning looks for leaked credentials, not dependency risk. Code scanning of first-party code analyzes your own source, not third-party dependency changes. Branch protection enforces merge rules but does not analyze dependencies, so dependency review is the correct feature."
+  },
+  {
+    "id": "ghas-154",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "An admin wants to turn on GHAS features for all new repositories in an organization automatically. Where is this default set?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In the organization's code security and analysis settings, enabling features for new repositories"
+      },
+      {
+        "id": "o2",
+        "text": "In each repository's README"
+      },
+      {
+        "id": "o3",
+        "text": "In the runner configuration"
+      },
+      {
+        "id": "o4",
+        "text": "In a workflow's concurrency block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization code security and analysis settings include toggles to automatically enable GHAS features for newly created repositories.",
+    "explanationIncorrect": "A README is documentation and cannot enable features. Runner configuration governs job execution machines, not security defaults. A concurrency block serializes runs, so the organization code security and analysis settings are where this default lives."
+  },
+  {
+    "id": "ghas-155",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which statement about secret scanning push protection is accurate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It can block a push that contains a detected secret before it reaches the repository"
+      },
+      {
+        "id": "o2",
+        "text": "It only scans after a release is published"
+      },
+      {
+        "id": "o3",
+        "text": "It deletes the repository on detection"
+      },
+      {
+        "id": "o4",
+        "text": "It rewrites the secret to a random value silently"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection intercepts a push containing a recognized secret pattern and blocks it, prompting the developer to remove the secret before it lands.",
+    "explanationIncorrect": "Push protection acts at push time, not only after a release. It never deletes the repository, which would be destructive and unnecessary. It does not silently rewrite secrets, since the developer must resolve the finding, so blocking the push is the accurate behavior."
   }
 ]
