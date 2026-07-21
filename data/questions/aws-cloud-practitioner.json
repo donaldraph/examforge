@@ -6241,5 +6241,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon GuardDuty continuously analyzes account and network activity and applies threat intelligence to flag malicious or unauthorized behavior.",
     "explanationIncorrect": "Amazon S3 is object storage. AWS Budgets tracks spending. Amazon Route 53 is DNS and routing, so Amazon GuardDuty is the continuous threat-detection service."
+  },
+  {
+    "id": "clf-199",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service runs code without provisioning servers, charging only for compute time used?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon VPC"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Direct Connect"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Lambda runs your code in response to events without server management, billing only for the compute time consumed.",
+    "explanationIncorrect": "Amazon EBS provides block storage for EC2. Amazon VPC provides isolated networking. AWS Direct Connect is a dedicated network link, so AWS Lambda is the serverless compute service."
+  },
+  {
+    "id": "clf-200",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service provides scalable object storage suited to backups and static website content?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EC2"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon S3 is durable, scalable object storage well suited to backups, files, and hosting static website content.",
+    "explanationIncorrect": "Amazon RDS is a managed relational database. Amazon EC2 provides virtual servers. Amazon SQS is a message queue, so Amazon S3 is the object storage service."
+  },
+  {
+    "id": "clf-201",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "hard",
+    "stem": "Which service lets you define AWS infrastructure with declarative templates for repeatable deployments?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudFormation"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Macie"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudFormation provisions and manages infrastructure through declarative templates, enabling repeatable, version-controlled deployments.",
+    "explanationIncorrect": "Amazon Polly converts text to speech. AWS Shield protects against DDoS. Amazon Macie discovers sensitive data, so AWS CloudFormation is the infrastructure-as-code service."
+  },
+  {
+    "id": "clf-202",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Technology and Services",
+    "difficulty": "medium",
+    "stem": "Which service distributes incoming traffic across multiple healthy targets?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Elastic Load Balancing"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Comprehend"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elastic Load Balancing spreads incoming traffic across healthy targets such as EC2 instances to improve availability and scale.",
+    "explanationIncorrect": "Amazon Glacier is archival storage. AWS Artifact provides compliance reports. Amazon Comprehend is a natural-language service, so Elastic Load Balancing is the traffic distribution service."
+  },
+  {
+    "id": "clf-203",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which tool lets you visualize and analyze AWS spending over time?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Cost Explorer"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Rekognition"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Cost Explorer provides visualizations and reports of spending over time with filtering and grouping to analyze cost drivers.",
+    "explanationIncorrect": "Amazon Inspector scans for vulnerabilities. AWS Shield protects against DDoS. Amazon Rekognition analyzes images, so AWS Cost Explorer is the spending-analysis tool."
+  },
+  {
+    "id": "clf-204",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "hard",
+    "stem": "A steady production workload runs 24/7 for three years. Which pricing minimizes its compute cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A Reserved Instance or Savings Plan with a committed term"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand for the full three years"
+      },
+      {
+        "id": "o3",
+        "text": "Spot Instances for the always-on tier"
+      },
+      {
+        "id": "o4",
+        "text": "Recreating instances hourly"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A committed Reserved Instance or Savings Plan deeply discounts predictable, steady usage over one or three years, minimizing cost.",
+    "explanationIncorrect": "On-Demand for years pays full price for predictable capacity. Spot is unsuitable for an always-on tier that cannot tolerate interruption. Recreating instances hourly does not reduce billing, so a committed Reserved Instance or Savings Plan is cheapest."
+  },
+  {
+    "id": "clf-205",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Billing, Pricing, and Support",
+    "difficulty": "medium",
+    "stem": "Which service provides best-practice recommendations across cost, security, performance, and fault tolerance?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Trusted Advisor"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Cognito"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Snowball"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Trusted Advisor inspects your account and offers recommendations spanning cost optimization, security, performance, fault tolerance, and service limits.",
+    "explanationIncorrect": "Amazon Athena queries data with SQL. Amazon Cognito manages user identities. AWS Snowball transfers data physically, so AWS Trusted Advisor is the recommendations service."
   }
 ]
