@@ -5397,5 +5397,341 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Amazon Kinesis ingests and processes large streams of real-time data like clickstreams and telemetry for immediate analysis.",
     "explanationIncorrect": "Amazon Glacier is archival storage, not a streaming service. AWS Artifact provides compliance documents. Amazon Polly synthesizes speech, so Amazon Kinesis is the real-time streaming service."
+  },
+  {
+    "id": "saa-167",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which construct controls inbound and outbound traffic at the instance level using stateful rules?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A security group"
+      },
+      {
+        "id": "o2",
+        "text": "A network ACL"
+      },
+      {
+        "id": "o3",
+        "text": "An S3 bucket policy"
+      },
+      {
+        "id": "o4",
+        "text": "An IAM role"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A security group acts as a stateful virtual firewall at the instance level, where return traffic is automatically allowed for permitted connections.",
+    "explanationIncorrect": "A network ACL operates at the subnet level and is stateless, requiring explicit rules for return traffic. An S3 bucket policy governs S3 access, not instance networking. An IAM role grants permissions, not packet filtering, so a security group is the correct instance-level control."
+  },
+  {
+    "id": "saa-168",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "You need private EC2 instances in a private subnet to reach the internet for updates without being reachable from it. What should you use?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A NAT gateway in a public subnet"
+      },
+      {
+        "id": "o2",
+        "text": "An internet gateway attached directly to the private subnet's instances"
+      },
+      {
+        "id": "o3",
+        "text": "A public IP on each private instance"
+      },
+      {
+        "id": "o4",
+        "text": "A VPC peering connection to the internet"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A NAT gateway lets instances in a private subnet initiate outbound internet connections for updates while preventing unsolicited inbound connections from the internet.",
+    "explanationIncorrect": "An internet gateway would make the instances directly reachable, defeating the privacy requirement. Assigning public IPs likewise exposes them inbound. VPC peering connects VPCs, not the public internet, so a NAT gateway is the correct approach."
+  },
+  {
+    "id": "saa-169",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach grants an application running on EC2 temporary credentials to access S3 securely?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An IAM role attached to the instance profile"
+      },
+      {
+        "id": "o2",
+        "text": "Hardcoded long-term access keys"
+      },
+      {
+        "id": "o3",
+        "text": "The account root credentials"
+      },
+      {
+        "id": "o4",
+        "text": "A shared password file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An IAM role via the instance profile supplies automatically rotated temporary credentials, avoiding stored long-term keys on the instance.",
+    "explanationIncorrect": "Hardcoded long-term keys risk leaking durable credentials. Root credentials should never be used by applications given their unrestricted power. A shared password file is insecure and unauditable, so an IAM role on the instance profile is the secure approach."
+  },
+  {
+    "id": "saa-170",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "To let a mobile app access only a specific S3 prefix per user without embedding credentials, which service federates temporary access?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Cognito with IAM roles for temporary credentials"
+      },
+      {
+        "id": "o2",
+        "text": "Hardcoded keys in the app binary"
+      },
+      {
+        "id": "o3",
+        "text": "A public bucket for all users"
+      },
+      {
+        "id": "o4",
+        "text": "Emailing credentials to each user"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Cognito federates identities and vends scoped temporary credentials through IAM roles, granting each user access to only their permitted resources.",
+    "explanationIncorrect": "Hardcoded keys in an app binary can be extracted and abused. A public bucket exposes all users' data to everyone. Emailing credentials is insecure and unscalable, so Amazon Cognito with IAM roles is the correct federation approach."
+  },
+  {
+    "id": "saa-171",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "A database in a private subnet must be reachable only by the application tier, not the internet. Which design enforces this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Place the database in a private subnet and allow its security group only from the app tier's security group"
+      },
+      {
+        "id": "o2",
+        "text": "Put the database in a public subnet with a public IP"
+      },
+      {
+        "id": "o3",
+        "text": "Open the database port to 0.0.0.0/0"
+      },
+      {
+        "id": "o4",
+        "text": "Disable all security groups"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Keeping the database in a private subnet and referencing the app tier's security group as the only allowed source restricts access to the application tier alone.",
+    "explanationIncorrect": "Placing the database in a public subnet with a public IP exposes it to the internet. Opening the port to 0.0.0.0/0 allows the entire internet. Disabling security groups removes protection, so a private subnet with a security-group source restriction enforces the requirement."
+  },
+  {
+    "id": "saa-172",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which service stores and rotates database credentials, retrieving them at runtime instead of hardcoding?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Secrets Manager"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EFS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Batch"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Secrets Manager securely stores secrets like database credentials, supports automatic rotation, and provides them to applications at runtime.",
+    "explanationIncorrect": "Amazon CloudFront is a content delivery network. Amazon EFS is a shared file system. AWS Batch runs batch jobs, so AWS Secrets Manager is the service for storing and rotating credentials."
+  },
+  {
+    "id": "saa-173",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "To ensure objects in an S3 bucket are encrypted at rest by default, what should you configure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Default bucket encryption using SSE-S3 or SSE-KMS"
+      },
+      {
+        "id": "o2",
+        "text": "Public read access on the bucket"
+      },
+      {
+        "id": "o3",
+        "text": "Transfer Acceleration"
+      },
+      {
+        "id": "o4",
+        "text": "A shorter bucket name"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Enabling default bucket encryption ensures every new object is automatically encrypted at rest with SSE-S3 or SSE-KMS keys.",
+    "explanationIncorrect": "Public read access exposes data and is unrelated to encryption. Transfer Acceleration speeds uploads but does not encrypt at rest. A shorter bucket name has no security effect, so default bucket encryption is the correct configuration."
+  },
+  {
+    "id": "saa-174",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "You want to access S3 from private instances without traversing the public internet or using a NAT gateway. What should you create?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An S3 gateway VPC endpoint"
+      },
+      {
+        "id": "o2",
+        "text": "An internet gateway"
+      },
+      {
+        "id": "o3",
+        "text": "A public IP on each instance"
+      },
+      {
+        "id": "o4",
+        "text": "A Direct Connect to the internet"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A gateway VPC endpoint for S3 routes traffic to S3 privately within the AWS network, avoiding the public internet and NAT charges.",
+    "explanationIncorrect": "An internet gateway sends traffic over the public internet. Public IPs expose instances and still use the internet path. Direct Connect links your network to AWS, not private instances to S3 within a VPC, so an S3 gateway VPC endpoint is the correct choice."
+  },
+  {
+    "id": "saa-175",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice enforces separation of duties across many AWS accounts under central governance?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Using AWS Organizations with service control policies (SCPs)"
+      },
+      {
+        "id": "o2",
+        "text": "Sharing one account for everything"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling IAM in each account"
+      },
+      {
+        "id": "o4",
+        "text": "Giving every user admin in one account"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Organizations with service control policies centrally governs multiple accounts, setting guardrails that enforce separation and limit permissions across the organization.",
+    "explanationIncorrect": "Sharing one account for everything prevents separation of duties. Disabling IAM removes access control entirely. Giving every user admin in one account maximizes risk, so AWS Organizations with SCPs is the correct governance practice."
+  },
+  {
+    "id": "saa-176",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which service inspects and filters HTTP requests to block SQL injection before they reach your application behind a load balancer?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS WAF associated with the load balancer or CloudFront"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Glue"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS WAF filters incoming HTTP requests using managed and custom rules to block common attacks like SQL injection when attached to a load balancer or CloudFront.",
+    "explanationIncorrect": "Amazon Route 53 is DNS and does not inspect HTTP payloads. Amazon EBS is block storage. AWS Glue is an ETL service, so AWS WAF is the service for filtering malicious web requests."
+  },
+  {
+    "id": "saa-177",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "To meet a requirement that encryption keys never leave a hardware boundary you control, which service fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudHSM"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3 Standard"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Budgets"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudHSM provides dedicated hardware security modules that you control, keeping key material within a validated hardware boundary.",
+    "explanationIncorrect": "Amazon S3 Standard is object storage, not a key custody solution. AWS Budgets tracks spend. Amazon SNS sends notifications, so AWS CloudHSM meets the dedicated hardware key requirement."
+  },
+  {
+    "id": "saa-178",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice reduces the attack surface of an application's IAM policies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Applying least privilege and scoping policies to specific resources and actions"
+      },
+      {
+        "id": "o2",
+        "text": "Granting wildcard permissions on all resources"
+      },
+      {
+        "id": "o3",
+        "text": "Attaching AdministratorAccess to every role"
+      },
+      {
+        "id": "o4",
+        "text": "Sharing one role for unrelated services"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Scoping IAM policies to only the needed actions and resources follows least privilege and minimizes what a compromised identity could do.",
+    "explanationIncorrect": "Granting wildcard permissions broadens the attack surface. Attaching AdministratorAccess everywhere removes meaningful restrictions. Sharing one role across unrelated services blurs boundaries and over-grants access, so least privilege with scoped policies is the correct practice."
   }
 ]
