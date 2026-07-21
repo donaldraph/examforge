@@ -5018,5 +5018,369 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "The permissions key controls the scopes granted to the automatic GITHUB_TOKEN, and contents: read limits it to reading repository content following least privilege.",
     "explanationIncorrect": "There is no secrets block that assigns token scopes; secrets store values, not permissions. runs-on selects a runner and has no read-only mode. Manually setting env.GITHUB_TOKEN does not reduce the token's granted scopes, so the permissions block is the correct place to restrict access."
+  },
+  {
+    "id": "gha-154",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want to call a reusable workflow stored in another repository from your own workflow. Which key references it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "jobs.<id>.uses pointing to owner/repo/.github/workflows/file.yml@ref"
+      },
+      {
+        "id": "o2",
+        "text": "jobs.<id>.run pointing to the file path"
+      },
+      {
+        "id": "o3",
+        "text": "steps.uses with the repo name only"
+      },
+      {
+        "id": "o4",
+        "text": "on.workflow_call in the caller"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A job that calls a reusable workflow uses jobs.<id>.uses with the full owner/repo/path@ref reference so GitHub can resolve and pin the called workflow.",
+    "explanationIncorrect": "jobs.<id>.run executes shell commands and cannot invoke a workflow file. steps-level uses references an action, not a reusable workflow, and needs the full path plus ref. on.workflow_call belongs in the called workflow to declare it callable, not in the caller, so the job-level uses reference is correct."
+  },
+  {
+    "id": "gha-155",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A reusable workflow needs to accept a value from its caller. What must the reusable workflow declare?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on.workflow_call.inputs with the input's name and type"
+      },
+      {
+        "id": "o2",
+        "text": "on.push.inputs"
+      },
+      {
+        "id": "o3",
+        "text": "env at the top level"
+      },
+      {
+        "id": "o4",
+        "text": "jobs.<id>.with"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A callable workflow declares the parameters it accepts under on.workflow_call.inputs, each with a name and type, and reads them via the inputs context.",
+    "explanationIncorrect": "The push event does not support an inputs schema for callers. A top-level env sets variables but does not define a caller-supplied input contract. jobs.<id>.with is how the caller passes values in, not how the callee declares them, so on.workflow_call.inputs is the correct declaration."
+  },
+  {
+    "id": "gha-156",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "When calling a reusable workflow, how does the caller supply the input values it expects?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "With a with block on the calling job"
+      },
+      {
+        "id": "o2",
+        "text": "With a run block echoing the values"
+      },
+      {
+        "id": "o3",
+        "text": "By editing the reusable workflow file directly"
+      },
+      {
+        "id": "o4",
+        "text": "With a needs block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The caller passes inputs to a reusable workflow through a with map on the same job that uses the workflow, matching the names declared by workflow_call.inputs.",
+    "explanationIncorrect": "A run block executes commands and cannot bind workflow inputs. Editing the reusable file directly defeats reuse and is not how values are passed per call. A needs block orders jobs and carries no input values, so a with block is the correct way to supply inputs."
+  },
+  {
+    "id": "gha-157",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "A reusable workflow must expose a value it computed back to the caller so a later job can use it. What does the reusable workflow define?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on.workflow_call.outputs mapped from a job's outputs"
+      },
+      {
+        "id": "o2",
+        "text": "A top-level env variable"
+      },
+      {
+        "id": "o3",
+        "text": "A secret with the value"
+      },
+      {
+        "id": "o4",
+        "text": "An artifact only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A callable workflow declares on.workflow_call.outputs and maps each output to a job output, letting the caller read them through the called job's outputs context.",
+    "explanationIncorrect": "A top-level env is internal to the workflow and is not returned to callers. Storing the value as a secret is inappropriate for a computed non-secret result and still would not be a workflow output. An artifact transfers files but is not the declared output contract, so workflow_call.outputs is the correct definition."
+  },
+  {
+    "id": "gha-158",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You pin a third-party action to a full commit SHA rather than a tag. What is the primary benefit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It guarantees the exact reviewed code runs and cannot be moved by the maintainer"
+      },
+      {
+        "id": "o2",
+        "text": "It makes the action run faster"
+      },
+      {
+        "id": "o3",
+        "text": "It automatically updates to new releases"
+      },
+      {
+        "id": "o4",
+        "text": "It removes the need for permissions"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A commit SHA is immutable, so pinning to it ensures the precise code you reviewed executes even if the maintainer later re-points a tag to different code.",
+    "explanationIncorrect": "Pinning does not change execution speed at all. It is the opposite of auto-updating, since a fixed SHA never moves to new releases on its own. Pinning has no effect on the permissions the action needs, so guaranteeing the exact reviewed code is the real benefit."
+  },
+  {
+    "id": "gha-159",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want to reuse a common sequence of steps within the same repository without creating a separate reusable workflow. Which action type helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A composite action stored in the repository"
+      },
+      {
+        "id": "o2",
+        "text": "A schedule trigger"
+      },
+      {
+        "id": "o3",
+        "text": "A concurrency group"
+      },
+      {
+        "id": "o4",
+        "text": "A matrix"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A composite action bundles multiple steps into one reusable action that a workflow can call with uses, ideal for sharing a step sequence.",
+    "explanationIncorrect": "A schedule trigger only controls when a workflow runs and packages no steps. A concurrency group manages serialization, not step reuse. A matrix fans a job across values but does not encapsulate a shared step sequence, so a composite action is the right tool."
+  },
+  {
+    "id": "gha-160",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A workflow uses actions/checkout to get the repository code. What does this action primarily do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Clones the repository onto the runner so later steps can access the files"
+      },
+      {
+        "id": "o2",
+        "text": "Publishes a release"
+      },
+      {
+        "id": "o3",
+        "text": "Deploys to production"
+      },
+      {
+        "id": "o4",
+        "text": "Deletes the workspace"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "actions/checkout fetches the repository at the triggering ref onto the runner's workspace so subsequent steps can build, test, or read the source.",
+    "explanationIncorrect": "Publishing a release is a separate action or API call, not what checkout does. Deployment is handled by other steps or actions after code is present. Checkout populates the workspace rather than deleting it, so cloning the repository is its primary function."
+  },
+  {
+    "id": "gha-161",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "A caller wants to pass a secret to a reusable workflow. What is the recommended explicit approach?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use a secrets block on the calling job to map named secrets, or secrets: inherit"
+      },
+      {
+        "id": "o2",
+        "text": "Hardcode the secret in the with block"
+      },
+      {
+        "id": "o3",
+        "text": "Print the secret to logs so the callee can read it"
+      },
+      {
+        "id": "o4",
+        "text": "Store it in the workflow file as plaintext"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The caller passes secrets explicitly through a secrets map on the calling job, or forwards all with secrets: inherit, keeping values out of plaintext.",
+    "explanationIncorrect": "Placing a secret in the with block treats it as a non-secret input and can expose it. Printing a secret to logs leaks it and GitHub masks it precisely to prevent that. Hardcoding it in the workflow file as plaintext is a serious security mistake, so an explicit secrets map or inherit is the recommended method."
+  },
+  {
+    "id": "gha-162",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want to reference an action published in the GitHub Marketplace at a stable major version line. Which reference style is common and reasonable?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "owner/action@v4"
+      },
+      {
+        "id": "o2",
+        "text": "owner/action@main-only"
+      },
+      {
+        "id": "o3",
+        "text": "owner/action@marketplace"
+      },
+      {
+        "id": "o4",
+        "text": "owner/action without any ref"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Referencing an action with a major version tag such as @v4 follows the common convention where maintainers keep a moving major tag pointing at the latest compatible release.",
+    "explanationIncorrect": "There is no @main-only convention; branches are referenced by their real names. @marketplace is not a valid ref because the Marketplace is a listing, not a git ref. Omitting the ref entirely is invalid syntax for a uses reference, so a major version tag like @v4 is the standard reasonable choice."
+  },
+  {
+    "id": "gha-163",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A reusable workflow declares an input with a default value. What happens if the caller does not provide that input?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The declared default value is used"
+      },
+      {
+        "id": "o2",
+        "text": "The workflow fails to start"
+      },
+      {
+        "id": "o3",
+        "text": "The input becomes an empty required error"
+      },
+      {
+        "id": "o4",
+        "text": "The caller's repository name is used"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When an input defines a default and the caller omits it, the reusable workflow simply uses that default value.",
+    "explanationIncorrect": "The workflow does not fail to start, because a default exists precisely to cover the omitted case. It does not raise a required error unless the input is marked required and has no default. It never substitutes the caller's repository name, so the declared default value is what applies."
+  },
+  {
+    "id": "gha-164",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "You want to limit which repositories or organizations may call a reusable workflow you publish. Where is this access controlled?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In the repository's Actions settings under access for reusable workflows"
+      },
+      {
+        "id": "o2",
+        "text": "In the workflow's on.push filter"
+      },
+      {
+        "id": "o3",
+        "text": "By adding a matrix"
+      },
+      {
+        "id": "o4",
+        "text": "By setting timeout-minutes"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Repository Actions settings include an access control that governs whether the repository's workflows, including reusable ones, can be used by other repositories in the organization or enterprise.",
+    "explanationIncorrect": "An on.push filter controls which pushes trigger a workflow, not who may call it as reusable. A matrix fans out a job and grants no access control. timeout-minutes limits run duration only, so the Actions access setting is where cross-repository reuse is authorized."
+  },
+  {
+    "id": "gha-165",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "You want to cache dependencies between runs to speed up builds. Which action is commonly used for this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "actions/cache with a key derived from the lockfile"
+      },
+      {
+        "id": "o2",
+        "text": "actions/checkout with a cache flag"
+      },
+      {
+        "id": "o3",
+        "text": "actions/deploy-cache"
+      },
+      {
+        "id": "o4",
+        "text": "actions/matrix-cache"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "actions/cache saves and restores directories keyed by a hash of the lockfile, so unchanged dependencies are reused across runs to save time.",
+    "explanationIncorrect": "actions/checkout clones the repo and has no general dependency-cache flag of this kind. actions/deploy-cache is not a real action. actions/matrix-cache does not exist as a caching mechanism, so actions/cache with a lockfile-based key is the standard approach."
+  },
+  {
+    "id": "gha-166",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A workflow calls a reusable workflow, which itself calls another reusable workflow. What limit should you keep in mind?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "There is a maximum nesting depth for reusable workflow calls"
+      },
+      {
+        "id": "o2",
+        "text": "Reusable workflows can never call other reusable workflows"
+      },
+      {
+        "id": "o3",
+        "text": "Nesting removes all inputs"
+      },
+      {
+        "id": "o4",
+        "text": "Only push events allow nesting"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub allows reusable workflows to call other reusable workflows but enforces a maximum nesting depth, so chains cannot be arbitrarily deep.",
+    "explanationIncorrect": "It is not true that reusable workflows can never call others; nesting is explicitly supported up to a limit. Nesting does not strip inputs, which continue to flow through with blocks. Nesting is not restricted to push events, so the key consideration is the maximum nesting depth."
   }
 ]
