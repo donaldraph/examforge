@@ -4617,5 +4617,369 @@
       "pricing-calculator",
       "estimation"
     ]
+  },
+  {
+    "id": "clf-141",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which benefit of cloud computing lets you scale resources up or down to match demand instead of provisioning for peak?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Elasticity"
+      },
+      {
+        "id": "o2",
+        "text": "Colocation"
+      },
+      {
+        "id": "o3",
+        "text": "On-premises overprovisioning"
+      },
+      {
+        "id": "o4",
+        "text": "Manual capacity planning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Elasticity allows resources to expand and contract automatically with demand, so you pay for what you use instead of provisioning for peak.",
+    "explanationIncorrect": "Colocation just places your own hardware in a shared data center without elastic scaling. On-premises overprovisioning is the costly practice cloud elasticity avoids. Manual capacity planning is slower and less responsive, so elasticity is the benefit described."
+  },
+  {
+    "id": "clf-142",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Moving from large upfront hardware purchases to paying only for resources consumed is an example of which shift?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Capital expense to variable expense"
+      },
+      {
+        "id": "o2",
+        "text": "Variable expense to capital expense"
+      },
+      {
+        "id": "o3",
+        "text": "Fixed latency to variable latency"
+      },
+      {
+        "id": "o4",
+        "text": "Public cloud to private cloud"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The cloud trades large capital expenditures for variable operating expenses, so you pay only for what you consume rather than buying hardware upfront.",
+    "explanationIncorrect": "Going variable to capital expense is the reverse of the cloud model. Latency is a performance property, not an expense category. Moving public to private cloud is a deployment change, not the expense shift described, so capital to variable expense is correct."
+  },
+  {
+    "id": "clf-143",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "Which AWS Well-Architected Framework pillar focuses on running and monitoring systems to deliver business value and continually improve processes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Operational Excellence"
+      },
+      {
+        "id": "o2",
+        "text": "Cost Optimization"
+      },
+      {
+        "id": "o3",
+        "text": "Performance Efficiency"
+      },
+      {
+        "id": "o4",
+        "text": "Security"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The Operational Excellence pillar centers on running, monitoring, and improving systems and processes to deliver ongoing business value.",
+    "explanationIncorrect": "Cost Optimization focuses on avoiding unnecessary spend, not process improvement. Performance Efficiency is about using resources efficiently as demand changes. Security concerns protecting data and systems, so Operational Excellence is the pillar about operations and continual improvement."
+  },
+  {
+    "id": "clf-144",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "What does an AWS Region consist of?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Multiple isolated Availability Zones in a geographic area"
+      },
+      {
+        "id": "o2",
+        "text": "A single data center only"
+      },
+      {
+        "id": "o3",
+        "text": "A group of edge caches only"
+      },
+      {
+        "id": "o4",
+        "text": "One physical server"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An AWS Region is a geographic area containing multiple, physically separated Availability Zones that enable high availability and fault isolation.",
+    "explanationIncorrect": "A Region is more than a single data center, since it spans multiple zones. Edge caches are part of the content delivery network, not the definition of a Region. A single physical server is far smaller than a Region, so multiple isolated Availability Zones is correct."
+  },
+  {
+    "id": "clf-145",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Deploying resources across multiple Availability Zones primarily improves what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "High availability and fault tolerance"
+      },
+      {
+        "id": "o2",
+        "text": "Monthly bill predictability only"
+      },
+      {
+        "id": "o3",
+        "text": "Source code readability"
+      },
+      {
+        "id": "o4",
+        "text": "The number of IAM users"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spreading resources across zones means a failure in one zone does not take down the whole workload, improving availability and fault tolerance.",
+    "explanationIncorrect": "Multi-AZ deployment does not primarily make the bill more predictable and may increase cost. It has nothing to do with source code readability. It does not change the number of IAM users, so high availability and fault tolerance is the primary benefit."
+  },
+  {
+    "id": "clf-146",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "Which cloud characteristic allows a new environment to be provisioned in minutes rather than weeks?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Agility through on-demand self-service provisioning"
+      },
+      {
+        "id": "o2",
+        "text": "Long hardware procurement cycles"
+      },
+      {
+        "id": "o3",
+        "text": "Manual cabling in a data center"
+      },
+      {
+        "id": "o4",
+        "text": "Fixed multi-year contracts for each server"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Cloud agility comes from on-demand self-service, letting teams provision environments in minutes without waiting on procurement.",
+    "explanationIncorrect": "Long hardware procurement cycles are exactly what the cloud eliminates. Manual cabling is a slow physical task cloud avoids. Fixed multi-year per-server contracts reduce flexibility, so agility via on-demand self-service is the characteristic that enables fast provisioning."
+  },
+  {
+    "id": "clf-147",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which deployment model runs applications partly on-premises and partly in the AWS Cloud with connectivity between them?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Hybrid"
+      },
+      {
+        "id": "o2",
+        "text": "All-in cloud"
+      },
+      {
+        "id": "o3",
+        "text": "Purely on-premises"
+      },
+      {
+        "id": "o4",
+        "text": "Edge-only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A hybrid model integrates on-premises infrastructure with the AWS Cloud, connecting the two so workloads can span both.",
+    "explanationIncorrect": "An all-in cloud model runs everything in the cloud with nothing on-premises. A purely on-premises model uses no cloud at all. Edge-only is not a standard deployment model for this scenario, so hybrid is the correct term."
+  },
+  {
+    "id": "clf-148",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which benefit describes AWS passing on lower costs to customers as it achieves greater scale?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Economies of scale"
+      },
+      {
+        "id": "o2",
+        "text": "Vendor lock-in"
+      },
+      {
+        "id": "o3",
+        "text": "Data gravity"
+      },
+      {
+        "id": "o4",
+        "text": "Latency arbitrage"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because AWS aggregates usage from many customers, it achieves economies of scale and can lower prices as efficiency improves.",
+    "explanationIncorrect": "Vendor lock-in is a risk of dependency, not a pricing benefit. Data gravity describes data attracting services, not cost reductions. Latency arbitrage is not a standard cloud pricing concept, so economies of scale is the benefit described."
+  },
+  {
+    "id": "clf-149",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "A company wants to stop guessing capacity and instead let systems automatically add resources as traffic grows. Which design principle does this reflect?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Scale horizontally on demand rather than guessing capacity"
+      },
+      {
+        "id": "o2",
+        "text": "Buy the largest server possible upfront"
+      },
+      {
+        "id": "o3",
+        "text": "Keep all capacity fixed forever"
+      },
+      {
+        "id": "o4",
+        "text": "Avoid automation entirely"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A key cloud principle is to stop guessing capacity and instead scale out automatically as demand changes, matching supply to actual load.",
+    "explanationIncorrect": "Buying the largest server upfront is capacity guessing that wastes money at low load. Keeping capacity fixed forever cannot adapt to demand. Avoiding automation contradicts the goal of automatic scaling, so scaling on demand is the principle reflected."
+  },
+  {
+    "id": "clf-150",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which of the following is an example of Infrastructure as a Service (IaaS)?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon EC2 virtual machines you manage"
+      },
+      {
+        "id": "o2",
+        "text": "A fully managed SaaS email product"
+      },
+      {
+        "id": "o3",
+        "text": "A pre-built mobile app from a store"
+      },
+      {
+        "id": "o4",
+        "text": "A spreadsheet template"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon EC2 gives you virtual machines whose operating system and software you manage, the hallmark of Infrastructure as a Service.",
+    "explanationIncorrect": "A fully managed SaaS email product is Software as a Service, where you manage nothing but data and settings. A pre-built mobile app is an end-user application, not infrastructure. A spreadsheet template is a document, so EC2 is the IaaS example."
+  },
+  {
+    "id": "clf-151",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "What is the main advantage of going global in minutes with AWS?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "You can deploy to multiple Regions worldwide to serve users with lower latency"
+      },
+      {
+        "id": "o2",
+        "text": "You must build data centers yourself first"
+      },
+      {
+        "id": "o3",
+        "text": "You are limited to one country"
+      },
+      {
+        "id": "o4",
+        "text": "You need to ship hardware overseas"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS's global infrastructure lets you deploy across Regions in minutes, placing workloads closer to users to reduce latency.",
+    "explanationIncorrect": "You do not build data centers yourself, since AWS already operates them. You are not limited to one country, as many Regions exist worldwide. You do not ship hardware overseas, so deploying to multiple Regions for lower latency is the advantage."
+  },
+  {
+    "id": "clf-152",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "hard",
+    "stem": "Which statement best captures the concept of loose coupling in cloud architecture?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Components interact through well-defined interfaces so failure in one does not cascade to others"
+      },
+      {
+        "id": "o2",
+        "text": "All components share one process and one server"
+      },
+      {
+        "id": "o3",
+        "text": "Every component depends directly on every other"
+      },
+      {
+        "id": "o4",
+        "text": "Components can never communicate"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Loose coupling connects components through defined interfaces, often with queues or load balancers, so a failure in one is contained rather than cascading.",
+    "explanationIncorrect": "Sharing one process and server is tight coupling with a single point of failure. Having every component depend directly on every other is the opposite of loose coupling. Components must still communicate, just through defined interfaces, so contained failure via well-defined interfaces is correct."
+  },
+  {
+    "id": "clf-153",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Cloud Concepts",
+    "difficulty": "medium",
+    "stem": "Which term describes the ability of a system to remain operational even when some components fail?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Fault tolerance"
+      },
+      {
+        "id": "o2",
+        "text": "Vendor lock-in"
+      },
+      {
+        "id": "o3",
+        "text": "Data residency"
+      },
+      {
+        "id": "o4",
+        "text": "Tagging"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Fault tolerance is the property that lets a system keep functioning despite the failure of one or more components.",
+    "explanationIncorrect": "Vendor lock-in is a dependency risk, not a resilience property. Data residency concerns where data is stored geographically. Tagging is a way to label resources for organization, so fault tolerance is the correct term for surviving component failures."
   }
 ]
