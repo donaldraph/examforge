@@ -5103,5 +5103,285 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Push protection intercepts a push containing a recognized secret pattern and blocks it, prompting the developer to remove the secret before it lands.",
     "explanationIncorrect": "Push protection acts at push time, not only after a release. It never deletes the repository, which would be destructive and unnecessary. It does not silently rewrite secrets, since the developer must resolve the finding, so blocking the push is the accurate behavior."
+  },
+  {
+    "id": "ghas-156",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "When secret scanning detects a leaked token from a supported provider, what mechanism can notify that provider automatically?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Partner secret scanning, where GitHub alerts the token's issuer to validate or revoke it"
+      },
+      {
+        "id": "o2",
+        "text": "A pull request comment to the provider"
+      },
+      {
+        "id": "o3",
+        "text": "A wiki page update"
+      },
+      {
+        "id": "o4",
+        "text": "A new release tag"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Through the partner program, GitHub forwards matches for supported providers' token types to the issuer so they can validate and revoke the exposed credential.",
+    "explanationIncorrect": "A PR comment notifies repository collaborators, not the external token issuer. A wiki page update is documentation and triggers no provider action. A release tag marks a version and does not contact a provider, so partner secret scanning is the correct mechanism."
+  },
+  {
+    "id": "ghas-157",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "You want to detect leaks of your own internally issued token format. What should you configure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A custom secret scanning pattern using a regular expression"
+      },
+      {
+        "id": "o2",
+        "text": "A new branch protection rule"
+      },
+      {
+        "id": "o3",
+        "text": "A CodeQL query pack"
+      },
+      {
+        "id": "o4",
+        "text": "A Dependabot config"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Custom patterns let you define a regular expression that matches your organization's proprietary token format so secret scanning can detect it.",
+    "explanationIncorrect": "Branch protection governs merges, not secret detection. CodeQL analyzes code for vulnerabilities and is not the tool for defining secret patterns. Dependabot manages dependencies, so a custom secret scanning pattern is the right configuration."
+  },
+  {
+    "id": "ghas-158",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "A developer needs to commit a legitimate example value that matches a secret pattern but is not a real credential. In push protection, what is the appropriate path?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Bypass the block with a documented reason such as false positive or test data, which is recorded"
+      },
+      {
+        "id": "o2",
+        "text": "Disable secret scanning for the whole organization"
+      },
+      {
+        "id": "o3",
+        "text": "Delete the branch"
+      },
+      {
+        "id": "o4",
+        "text": "Rename the file to hide it"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection lets an authorized user bypass the block by selecting a reason like false positive or used in tests, and the bypass is logged for audit.",
+    "explanationIncorrect": "Disabling secret scanning org-wide removes protection everywhere to solve one benign case, which is disproportionate. Deleting the branch discards the work rather than committing the example. Renaming the file does not change the matched content, so a documented, recorded bypass is the appropriate path."
+  },
+  {
+    "id": "ghas-159",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "After a real secret is confirmed leaked and detected, what is the most important remediation step?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Revoke and rotate the exposed credential immediately"
+      },
+      {
+        "id": "o2",
+        "text": "Only close the alert without other action"
+      },
+      {
+        "id": "o3",
+        "text": "Add the secret to the README so it is documented"
+      },
+      {
+        "id": "o4",
+        "text": "Wait for the next release to address it"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because a leaked secret may already be compromised, the priority is to revoke it and issue a new credential so the exposed one is useless.",
+    "explanationIncorrect": "Closing the alert without rotating leaves the compromised secret valid. Adding it to the README exposes it further. Waiting for the next release leaves a live credential exposed in the meantime, so immediate revocation and rotation is the key step."
+  },
+  {
+    "id": "ghas-160",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Why is removing a secret only from the latest commit often insufficient?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The secret still exists in git history and can be recovered from earlier commits"
+      },
+      {
+        "id": "o2",
+        "text": "The secret is automatically re-added by GitHub"
+      },
+      {
+        "id": "o3",
+        "text": "Latest-commit removal corrupts the repository"
+      },
+      {
+        "id": "o4",
+        "text": "GitHub blocks all future pushes"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Git retains full history, so a secret introduced in an earlier commit remains retrievable even after the newest commit no longer contains it, which is why rotation matters most.",
+    "explanationIncorrect": "GitHub does not re-add removed secrets. Removing content from the latest commit does not corrupt the repository. GitHub does not block all future pushes because of a prior secret, so the persistence in git history is the real reason."
+  },
+  {
+    "id": "ghas-161",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "An organization wants secret scanning alerts to be triaged consistently. Which built-in state helps mark an alert that is a real but accepted risk versus a false detection?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Resolving the alert with a reason such as revoked, false positive, or used in tests"
+      },
+      {
+        "id": "o2",
+        "text": "Converting the alert into a milestone"
+      },
+      {
+        "id": "o3",
+        "text": "Pinning the alert to the profile"
+      },
+      {
+        "id": "o4",
+        "text": "Merging the alert into main"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Secret scanning alerts can be resolved with a specific reason like revoked, false positive, or used in tests, giving consistent triage semantics.",
+    "explanationIncorrect": "Milestones group issues and pull requests, not security alert states. Pinning to a profile is for showcasing repositories, not triage. Alerts are not merged into a branch, so resolving with a reason is the correct triage mechanism."
+  },
+  {
+    "id": "ghas-162",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Which of the following best reduces the chance of committing secrets in the first place?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Enabling push protection and using environment variables or a secrets manager instead of hardcoding"
+      },
+      {
+        "id": "o2",
+        "text": "Committing secrets to a private repo only"
+      },
+      {
+        "id": "o3",
+        "text": "Storing secrets in code comments"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling all scanning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection stops secrets at commit time, and sourcing credentials from environment variables or a secrets manager avoids putting them in code at all.",
+    "explanationIncorrect": "A private repo still stores the secret in history and can be cloned or leaked. Code comments are still committed content and offer no protection. Disabling scanning removes the safety net entirely, so push protection plus externalized secrets is the best prevention."
+  },
+  {
+    "id": "ghas-163",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Secret scanning validity checks add what useful information to certain provider alerts?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Whether the detected credential is currently active or already inactive"
+      },
+      {
+        "id": "o2",
+        "text": "The commit author's home address"
+      },
+      {
+        "id": "o3",
+        "text": "The number of stars on the repo"
+      },
+      {
+        "id": "o4",
+        "text": "The size of the repository in bytes"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Validity checks query supported providers to indicate whether a detected token is still active, helping prioritize the most dangerous live leaks.",
+    "explanationIncorrect": "Secret scanning does not expose an author's home address, which it has no access to. Star counts are a popularity metric unrelated to credential validity. Repository size in bytes is irrelevant to a secret's status, so active-or-inactive validity is the useful added information."
+  },
+  {
+    "id": "ghas-164",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "Push protection is enabled but a developer's secret pattern is not covered by any default or custom pattern. What is the realistic outcome?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The secret can be pushed because push protection only blocks patterns it recognizes"
+      },
+      {
+        "id": "o2",
+        "text": "The push is always blocked regardless of pattern"
+      },
+      {
+        "id": "o3",
+        "text": "The repository is locked permanently"
+      },
+      {
+        "id": "o4",
+        "text": "GitHub invents a pattern automatically for it"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Push protection can only block secrets that match a known default or configured custom pattern, so an unrecognized format may pass, underscoring the value of custom patterns.",
+    "explanationIncorrect": "It is not true that all pushes are blocked, since protection is pattern-driven. The repository is not locked permanently by a push. GitHub does not automatically invent a matching pattern for unknown formats, so an unrecognized secret can slip through."
+  },
+  {
+    "id": "ghas-165",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Which scope of scanning does secret scanning perform on an enabled repository by default?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It scans the full git history and new commits for known secret patterns"
+      },
+      {
+        "id": "o2",
+        "text": "It scans only the repository description"
+      },
+      {
+        "id": "o3",
+        "text": "It scans only open issues"
+      },
+      {
+        "id": "o4",
+        "text": "It scans only the default branch's latest file listing without history"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When enabled, secret scanning examines the entire git history as well as incoming commits, so previously committed secrets are also surfaced.",
+    "explanationIncorrect": "It does not limit itself to the repository description. It is not restricted to open issues. It does not ignore history and look only at the current file listing, since historical leaks matter, so full-history plus new-commit scanning is correct."
   }
 ]
