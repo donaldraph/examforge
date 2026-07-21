@@ -5033,5 +5033,369 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "DynamoDB point-in-time recovery continuously backs up table data so you can restore to any second within the retention window.",
     "explanationIncorrect": "Amazon CloudFront caches content and offers no database recovery. AWS Shield protects against DDoS. Amazon SES sends email, so DynamoDB point-in-time recovery is the correct feature for restoring a table."
+  },
+  {
+    "id": "saa-154",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To reduce read load on a relational database for frequently accessed data, which service adds an in-memory cache?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon ElastiCache"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SES"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon ElastiCache provides managed in-memory caching with Redis or Memcached, offloading repeated reads from the database and cutting latency.",
+    "explanationIncorrect": "Amazon Glacier is archival storage with retrieval delays, the opposite of a fast cache. AWS Snowball transfers data physically. Amazon SES sends email, so Amazon ElastiCache is the in-memory caching service."
+  },
+  {
+    "id": "saa-155",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A read-heavy relational workload needs to scale reads beyond a single primary instance. Which RDS feature helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Read replicas that serve read traffic"
+      },
+      {
+        "id": "o2",
+        "text": "Multi-AZ standby used for reads"
+      },
+      {
+        "id": "o3",
+        "text": "Instance store volumes"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Transfer Acceleration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RDS read replicas provide additional read-only endpoints, letting you distribute read traffic and scale read capacity horizontally.",
+    "explanationIncorrect": "The Multi-AZ standby is for failover and does not serve read traffic. Instance store volumes are ephemeral local disks, not a read-scaling feature. S3 Transfer Acceleration speeds S3 uploads, so read replicas are the correct feature for scaling reads."
+  },
+  {
+    "id": "saa-156",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To serve global users with low latency for static assets, which service caches content near users?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Cognito"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon CloudFront caches static assets at edge locations worldwide, reducing latency by serving content close to users.",
+    "explanationIncorrect": "Amazon RDS is a database, not a content delivery network. AWS Batch runs batch jobs. Amazon Cognito manages authentication, so Amazon CloudFront is the service for low-latency global content delivery."
+  },
+  {
+    "id": "saa-157",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which EBS volume type is best suited for a high-throughput big data workload that streams large sequential reads and writes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Throughput Optimized HDD (st1)"
+      },
+      {
+        "id": "o2",
+        "text": "General Purpose SSD for tiny random IO only"
+      },
+      {
+        "id": "o3",
+        "text": "Cold HDD for frequent random access"
+      },
+      {
+        "id": "o4",
+        "text": "Instance store that is ephemeral"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Throughput Optimized HDD (st1) is designed for large, sequential throughput-heavy workloads such as big data and log processing.",
+    "explanationIncorrect": "General Purpose SSD targets a balance of price and performance for smaller random IO, not maximum sequential throughput. Cold HDD is for infrequently accessed data, not frequent access. Instance store is ephemeral and not an EBS type, so Throughput Optimized HDD is the best fit."
+  },
+  {
+    "id": "saa-158",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "An application must handle unpredictable, spiky traffic without managing servers and scale to zero when idle. Which compute choice fits best?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Lambda with event-driven invocation"
+      },
+      {
+        "id": "o2",
+        "text": "A fixed fleet of always-on EC2 instances"
+      },
+      {
+        "id": "o3",
+        "text": "A single large EC2 instance"
+      },
+      {
+        "id": "o4",
+        "text": "A Dedicated Host reserved for a year"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Lambda scales automatically with each event and incurs no charge when idle, fitting spiky, unpredictable traffic without server management.",
+    "explanationIncorrect": "A fixed always-on fleet pays for idle capacity and requires management. A single large instance cannot scale to zero and is a single point of failure. A year-long Dedicated Host is a costly fixed commitment, so AWS Lambda best fits the requirement."
+  },
+  {
+    "id": "saa-159",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which service provides a fully managed, in-memory-accelerated caching layer in front of DynamoDB for microsecond reads?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "DynamoDB Accelerator (DAX)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EFS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "DynamoDB Accelerator (DAX) is a managed in-memory cache for DynamoDB that delivers microsecond read latency for eligible requests.",
+    "explanationIncorrect": "Amazon Athena queries data in S3 with SQL. AWS Glue is an ETL service. Amazon EFS is a shared file system, so DynamoDB Accelerator is the caching layer for DynamoDB."
+  },
+  {
+    "id": "saa-160",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To improve upload performance for users far from an S3 bucket's Region, which feature helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Transfer Acceleration"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Versioning"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Requester Pays"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Object Lock"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Transfer Acceleration routes uploads through nearby edge locations over the optimized AWS network, speeding transfers for distant users.",
+    "explanationIncorrect": "S3 Versioning retains object versions and does not accelerate transfers. S3 Requester Pays shifts costs to requesters. S3 Object Lock enforces retention, so S3 Transfer Acceleration is the performance feature for distant uploads."
+  },
+  {
+    "id": "saa-161",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A workload needs to run analytical SQL queries directly on data stored in S3 without loading it into a database first. Which service fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon ElastiCache"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Shield"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Athena runs serverless SQL queries directly against data in S3, with no need to load it into a separate database first.",
+    "explanationIncorrect": "Amazon RDS requires loading data into a managed relational database. Amazon ElastiCache is an in-memory cache, not a query engine over S3. AWS Shield is DDoS protection, so Amazon Athena is the service to query S3 data directly."
+  },
+  {
+    "id": "saa-162",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach lets a fleet scale out based on a custom application metric such as queue depth?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Auto Scaling with a target tracking or step policy on a CloudWatch metric"
+      },
+      {
+        "id": "o2",
+        "text": "Manually adding instances when someone notices load"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling metrics collection"
+      },
+      {
+        "id": "o4",
+        "text": "Using a single fixed instance"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Auto Scaling can react to CloudWatch metrics like queue depth using target tracking or step scaling policies to add or remove capacity automatically.",
+    "explanationIncorrect": "Manual scaling when someone notices is slow and error-prone. Disabling metrics removes the signal Auto Scaling needs. A single fixed instance cannot scale at all, so Auto Scaling driven by a CloudWatch metric is the correct approach."
+  },
+  {
+    "id": "saa-163",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which purpose-built database is optimized for highly connected data and relationship queries?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Neptune"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Lambda"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Neptune is a managed graph database optimized for storing and querying highly connected data and relationships.",
+    "explanationIncorrect": "Amazon S3 is object storage, not a graph database. Amazon SQS is a message queue. AWS Lambda runs code, so Amazon Neptune is the purpose-built graph database."
+  },
+  {
+    "id": "saa-164",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A compute-heavy job can be split into many independent tasks. Which design maximizes throughput cost-effectively?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Parallelize across many instances, using Spot capacity for the interruptible tasks"
+      },
+      {
+        "id": "o2",
+        "text": "Run everything sequentially on one instance"
+      },
+      {
+        "id": "o3",
+        "text": "Use a single Reserved Instance for a year"
+      },
+      {
+        "id": "o4",
+        "text": "Move the job to Glacier"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Splitting the work across many parallel instances increases throughput, and using Spot capacity for interruptible tasks keeps costs low.",
+    "explanationIncorrect": "Running sequentially on one instance underuses the parallelism available and is slow. A single Reserved Instance still processes serially. Glacier is archival storage and cannot run compute, so parallelizing with Spot capacity maximizes throughput cost-effectively."
+  },
+  {
+    "id": "saa-165",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which feature places multiple instances in the same rack-level grouping for the lowest network latency between them?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A cluster placement group"
+      },
+      {
+        "id": "o2",
+        "text": "A security group"
+      },
+      {
+        "id": "o3",
+        "text": "A subnet ACL"
+      },
+      {
+        "id": "o4",
+        "text": "A launch template alone"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A cluster placement group packs instances close together within an Availability Zone to achieve low latency and high throughput between them.",
+    "explanationIncorrect": "A security group controls traffic rules, not physical placement. A subnet ACL filters traffic at the subnet level. A launch template defines instance settings but does not group instances for low latency, so a cluster placement group is the correct feature."
+  },
+  {
+    "id": "saa-166",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which service streams and processes large volumes of real-time data such as clickstreams?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Kinesis"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Polly"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Kinesis ingests and processes large streams of real-time data like clickstreams and telemetry for immediate analysis.",
+    "explanationIncorrect": "Amazon Glacier is archival storage, not a streaming service. AWS Artifact provides compliance documents. Amazon Polly synthesizes speech, so Amazon Kinesis is the real-time streaming service."
   }
 ]
