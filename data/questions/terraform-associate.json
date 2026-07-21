@@ -6140,5 +6140,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "The private module registry lets an organization publish, version, and discover internal modules for reuse across teams.",
     "explanationIncorrect": "It is not a DNS service. It is not a container image build farm. It is not a code formatter, so publishing and sharing versioned internal modules is what the private module registry provides."
+  },
+  {
+    "id": "tf-192",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "What is a primary benefit of managing infrastructure as code?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Version-controlled, repeatable, and reviewable infrastructure changes"
+      },
+      {
+        "id": "o2",
+        "text": "Faster typing in the console"
+      },
+      {
+        "id": "o3",
+        "text": "Eliminating the need for any testing"
+      },
+      {
+        "id": "o4",
+        "text": "Guaranteeing zero cost"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Infrastructure as code makes changes version-controlled, repeatable, and reviewable like application code, improving consistency and collaboration.",
+    "explanationIncorrect": "It is not about typing speed in the console, which IaC largely replaces. It does not eliminate the need for testing, which remains important. It does not guarantee zero cost, so version-controlled, repeatable, reviewable changes is the primary benefit."
+  },
+  {
+    "id": "tf-193",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "How does Terraform's cloud-agnostic design benefit multi-cloud environments?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "One tool and workflow can manage resources across many providers"
+      },
+      {
+        "id": "o2",
+        "text": "It only works with a single cloud"
+      },
+      {
+        "id": "o3",
+        "text": "It requires a different CLI per cloud"
+      },
+      {
+        "id": "o4",
+        "text": "It forbids using more than one provider"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform uses a consistent workflow and language across many providers, so teams can manage multi-cloud and hybrid infrastructure with one tool.",
+    "explanationIncorrect": "It is not limited to a single cloud. It does not require a different CLI per cloud, since one CLI drives many providers. It does not forbid multiple providers, which it explicitly supports, so a single tool managing many providers is the benefit."
+  },
+  {
+    "id": "tf-194",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "hard",
+    "stem": "What does idempotency mean in the context of Terraform applies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Re-running apply on an unchanged configuration makes no further changes"
+      },
+      {
+        "id": "o2",
+        "text": "Every apply recreates all resources"
+      },
+      {
+        "id": "o3",
+        "text": "Applies always fail the second time"
+      },
+      {
+        "id": "o4",
+        "text": "State is discarded after each run"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Idempotency means that applying an unchanged configuration converges to the same state and produces no additional changes on subsequent runs.",
+    "explanationIncorrect": "Terraform does not recreate all resources on every apply; it only changes what differs. Applies do not always fail the second time. State is preserved between runs, not discarded, so no further changes on an unchanged configuration defines idempotency."
+  },
+  {
+    "id": "tf-195",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "What is configuration drift?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "When real infrastructure differs from what the Terraform configuration and state describe"
+      },
+      {
+        "id": "o2",
+        "text": "When the CLI version changes"
+      },
+      {
+        "id": "o3",
+        "text": "When code is reformatted"
+      },
+      {
+        "id": "o4",
+        "text": "When a variable is renamed"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Drift occurs when someone changes infrastructure outside Terraform, so the real resources no longer match the configuration and recorded state.",
+    "explanationIncorrect": "A CLI version change is not drift. Reformatting code does not change infrastructure. Renaming a variable is a configuration edit, not a mismatch with real resources, so a difference between real infrastructure and the configuration and state is drift."
+  },
+  {
+    "id": "tf-196",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "Why is a declarative provisioning tool like Terraform often preferred over ad hoc scripts?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It tracks state and converges to a desired end state rather than running blind imperative steps"
+      },
+      {
+        "id": "o2",
+        "text": "It runs faster than any script always"
+      },
+      {
+        "id": "o3",
+        "text": "It needs no configuration"
+      },
+      {
+        "id": "o4",
+        "text": "It cannot be version controlled"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform tracks state and plans the changes needed to reach the desired end state, which is safer and more predictable than imperative scripts that must handle every step and edge case.",
+    "explanationIncorrect": "It is not guaranteed to run faster than every script. It does require configuration, namely the .tf files. It can and should be version controlled, so tracking state and converging to a desired end state is the reason it is preferred."
+  },
+  {
+    "id": "tf-197",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "hard",
+    "stem": "Which statement best distinguishes provisioning tools like Terraform from configuration management tools like Ansible in their primary focus?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Terraform focuses on creating and managing infrastructure resources, while configuration management focuses on configuring software on existing machines"
+      },
+      {
+        "id": "o2",
+        "text": "They are identical with no difference"
+      },
+      {
+        "id": "o3",
+        "text": "Terraform only edits text files locally"
+      },
+      {
+        "id": "o4",
+        "text": "Configuration management cannot install software"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform primarily provisions infrastructure resources, whereas configuration management tools primarily configure and maintain software on machines that already exist, though the categories can overlap.",
+    "explanationIncorrect": "They are not identical, since their primary focuses differ. Terraform does far more than edit local text files, as it manages real infrastructure. Configuration management tools can install software, which is a core function, so the provisioning-versus-software-configuration distinction is correct."
+  },
+  {
+    "id": "tf-198",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "How does infrastructure as code improve disaster recovery?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Infrastructure can be recreated reliably from code in a new environment"
+      },
+      {
+        "id": "o2",
+        "text": "It prevents all outages from ever occurring"
+      },
+      {
+        "id": "o3",
+        "text": "It stores backups of application data automatically"
+      },
+      {
+        "id": "o4",
+        "text": "It removes the need for any recovery plan"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because the infrastructure is defined in code, it can be reliably and quickly recreated in a new environment during recovery, reducing manual rebuild effort.",
+    "explanationIncorrect": "IaC does not prevent all outages from occurring. It does not automatically back up application data, which is a separate concern. It does not remove the need for a recovery plan, so reliably recreating infrastructure from code is the improvement."
   }
 ]
