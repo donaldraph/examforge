@@ -6223,5 +6223,257 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Tracking mean time to remediate and the open-versus-resolved trend shows whether the team is closing findings faster than new ones arrive.",
     "explanationIncorrect": "Repository stars measure popularity, not security posture. The number of wiki pages reflects documentation volume, not remediation. An avatar's color is cosmetic, so remediation time and open-versus-resolved trends are the meaningful metrics."
+  },
+  {
+    "id": "ghas-196",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which GHAS feature helps you understand your project's direct and transitive dependencies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The dependency graph"
+      },
+      {
+        "id": "o2",
+        "text": "The commit graph"
+      },
+      {
+        "id": "o3",
+        "text": "The network graph of forks"
+      },
+      {
+        "id": "o4",
+        "text": "The contributor graph"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency graph parses manifests and lockfiles to map direct and transitive dependencies, underpinning Dependabot alerts and dependency review.",
+    "explanationIncorrect": "The commit graph visualizes commit history, not dependencies. The network graph shows forks and branches across the repository network. The contributor graph shows who contributed, so the dependency graph is the feature that maps dependencies."
+  },
+  {
+    "id": "ghas-197",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "hard",
+    "stem": "A team wants code scanning results to block merges when a high-severity alert is present. What must they combine code scanning with?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A required status check via branch protection or a ruleset"
+      },
+      {
+        "id": "o2",
+        "text": "A repository star threshold"
+      },
+      {
+        "id": "o3",
+        "text": "A wiki page"
+      },
+      {
+        "id": "o4",
+        "text": "A larger runner"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Making the code scanning check required through branch protection or a ruleset prevents merging when the check fails on high-severity findings.",
+    "explanationIncorrect": "A star threshold measures popularity and cannot gate merges. A wiki page is documentation with no enforcement. A larger runner only affects performance, so a required status check through branch protection is what enforces the merge block."
+  },
+  {
+    "id": "ghas-198",
+    "exam": "github-advanced-security",
+    "domain": "GHAS features and functionality",
+    "difficulty": "medium",
+    "stem": "Which GHAS surface gives an organization security manager a roll-up of alerts across many repositories?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The organization security overview"
+      },
+      {
+        "id": "o2",
+        "text": "A single repository's Actions tab"
+      },
+      {
+        "id": "o3",
+        "text": "The commit history of one repo"
+      },
+      {
+        "id": "o4",
+        "text": "The releases page"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The organization security overview aggregates code scanning, secret scanning, and Dependabot alerts across repositories for a portfolio-wide view.",
+    "explanationIncorrect": "One repository's Actions tab shows workflow runs, not aggregated alerts. A single repo's commit history lists changes, not security posture. The releases page lists versions, so the organization security overview is the correct roll-up surface."
+  },
+  {
+    "id": "ghas-199",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "Push protection blocks a commit containing a detected AWS key. What is the developer's correct first response?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Remove the secret from the commit and use a secure secret store instead"
+      },
+      {
+        "id": "o2",
+        "text": "Disable secret scanning to allow the push"
+      },
+      {
+        "id": "o3",
+        "text": "Rename the file and push again"
+      },
+      {
+        "id": "o4",
+        "text": "Base64-encode the key to hide it"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The right response is to remove the secret from the commit and source it from a secure secret store rather than hardcoding it.",
+    "explanationIncorrect": "Disabling secret scanning removes protection to push a real secret. Renaming the file does not change the matched content. Base64-encoding merely obscures the key while still committing it, so removing the secret and using a secret store is correct."
+  },
+  {
+    "id": "ghas-200",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "hard",
+    "stem": "Why does secret scanning examine the full commit history rather than only the latest commit?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Secrets committed earlier remain retrievable from history and stay a risk"
+      },
+      {
+        "id": "o2",
+        "text": "History scanning is faster than tip scanning"
+      },
+      {
+        "id": "o3",
+        "text": "The latest commit is always empty"
+      },
+      {
+        "id": "o4",
+        "text": "History contains no secrets by definition"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A secret introduced in an old commit persists in git history and can be recovered, so scanning history surfaces leaks that a tip-only scan would miss.",
+    "explanationIncorrect": "History scanning is not chosen because it is faster; it is more thorough. The latest commit is not always empty. History very much can contain secrets, which is the whole point, so persistence of historical secrets is the reason."
+  },
+  {
+    "id": "ghas-201",
+    "exam": "github-advanced-security",
+    "domain": "Secret scanning",
+    "difficulty": "medium",
+    "stem": "What does a custom secret scanning pattern let an organization detect?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Its own proprietary token formats not covered by default patterns"
+      },
+      {
+        "id": "o2",
+        "text": "Vulnerabilities in first-party source code"
+      },
+      {
+        "id": "o3",
+        "text": "Outdated dependency versions"
+      },
+      {
+        "id": "o4",
+        "text": "Slow-running workflows"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Custom patterns use regular expressions to detect an organization's internally issued token formats that the built-in patterns do not recognize.",
+    "explanationIncorrect": "Detecting source-code vulnerabilities is the job of code scanning, not secret patterns. Outdated dependencies are found by Dependabot. Slow workflows are a performance concern unrelated to secret detection, so custom patterns detect proprietary token formats."
+  },
+  {
+    "id": "ghas-202",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Which Dependabot function opens pull requests to keep dependencies current regardless of known vulnerabilities?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Dependabot version updates"
+      },
+      {
+        "id": "o2",
+        "text": "Dependabot security updates"
+      },
+      {
+        "id": "o3",
+        "text": "Secret scanning"
+      },
+      {
+        "id": "o4",
+        "text": "Code scanning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot version updates raise pull requests to move dependencies to newer releases on a schedule, independent of vulnerability status.",
+    "explanationIncorrect": "Dependabot security updates specifically target dependencies with known vulnerabilities, not routine currency. Secret scanning finds leaked credentials. Code scanning analyzes source for vulnerabilities, so version updates is the routine-currency function."
+  },
+  {
+    "id": "ghas-203",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "A pull request adds a dependency with a known high-severity advisory. How does dependency review help the reviewer decide?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It flags the vulnerable dependency in the PR so the reviewer can block or reconsider before merge"
+      },
+      {
+        "id": "o2",
+        "text": "It automatically merges the PR"
+      },
+      {
+        "id": "o3",
+        "text": "It rewrites the dependency's code"
+      },
+      {
+        "id": "o4",
+        "text": "It hides the change until after release"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependency review surfaces the vulnerable addition directly in the pull request, giving the reviewer the context to reject or rework the change before it merges.",
+    "explanationIncorrect": "It does not auto-merge; it informs the human decision. It cannot rewrite the third-party dependency's code. It does not hide the change until after release, which would defeat shifting left, so flagging it in the PR for an informed decision is correct."
+  },
+  {
+    "id": "ghas-204",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Which file configures which package ecosystems Dependabot monitors and how often it checks?",
+    "options": [
+      {
+        "id": "o1",
+        "text": ".github/dependabot.yml"
+      },
+      {
+        "id": "o2",
+        "text": ".github/codeql.yml"
+      },
+      {
+        "id": "o3",
+        "text": "package.json"
+      },
+      {
+        "id": "o4",
+        "text": "CODEOWNERS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The .github/dependabot.yml file declares each package ecosystem, directory, and update schedule Dependabot should follow.",
+    "explanationIncorrect": "There is no standard .github/codeql.yml used for Dependabot configuration. package.json lists dependencies but does not configure Dependabot's schedule. CODEOWNERS assigns reviewers, so .github/dependabot.yml is the configuration file."
   }
 ]
