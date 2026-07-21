@@ -5748,5 +5748,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "In a declarative model you state the desired end configuration, and Terraform determines the actions needed to reach and maintain that state.",
     "explanationIncorrect": "Writing step-by-step imperative commands is the opposite of declarative. You do not specify the exact API calls, since providers handle that. Managing only through the console is manual, not declarative code, so describing the desired end state is what declarative means."
+  },
+  {
+    "id": "tf-178",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "What is a Terraform module?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A reusable container of Terraform configuration called from other configurations"
+      },
+      {
+        "id": "o2",
+        "text": "A single state file"
+      },
+      {
+        "id": "o3",
+        "text": "A provider plugin binary"
+      },
+      {
+        "id": "o4",
+        "text": "A CLI subcommand"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A module is a reusable collection of .tf files that can be called from other configurations to encapsulate and share infrastructure patterns.",
+    "explanationIncorrect": "A single state file records resources but is not a module. A provider plugin binary implements resource types, not reusable configuration. A CLI subcommand is a command, so a reusable container of configuration is what a module is."
+  },
+  {
+    "id": "tf-179",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "How does a calling configuration pass values into a child module?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Through input variables set in the module block"
+      },
+      {
+        "id": "o2",
+        "text": "By editing the module's source files each call"
+      },
+      {
+        "id": "o3",
+        "text": "Through the state file only"
+      },
+      {
+        "id": "o4",
+        "text": "By using terraform fmt"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A module block sets the child module's input variables, passing values in cleanly without modifying the module's own source.",
+    "explanationIncorrect": "Editing the module's source per call defeats reuse and is not how inputs are passed. The state file is not the mechanism for passing inputs. terraform fmt only formats code, so setting input variables in the module block is the correct method."
+  },
+  {
+    "id": "tf-180",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "A module needs to expose a created resource's id to its caller. What should the module define?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An output value that returns the id"
+      },
+      {
+        "id": "o2",
+        "text": "An input variable for the id"
+      },
+      {
+        "id": "o3",
+        "text": "A provider block"
+      },
+      {
+        "id": "o4",
+        "text": "A backend block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A module returns data to its caller through output values, so defining an output for the resource id makes it available to the calling configuration.",
+    "explanationIncorrect": "An input variable receives values, it does not return them. A provider block configures a provider, not module outputs. A backend block configures state storage and is not valid inside a child module, so an output value is the correct construct."
+  },
+  {
+    "id": "tf-181",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "Where can Terraform source modules from?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Local paths, the Terraform Registry, Git repositories, and more"
+      },
+      {
+        "id": "o2",
+        "text": "Only the local filesystem"
+      },
+      {
+        "id": "o3",
+        "text": "Only the state file"
+      },
+      {
+        "id": "o4",
+        "text": "Only environment variables"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Modules can be sourced from local paths, the public or private Terraform Registry, Git and other version control, HTTP URLs, and cloud storage.",
+    "explanationIncorrect": "Modules are not limited to the local filesystem, since registries and Git are supported. They do not come from the state file. They are not sourced from environment variables, so many sources including local, registry, and Git is correct."
+  },
+  {
+    "id": "tf-182",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "Why is pinning a module version with a version constraint a good practice?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It prevents unexpected changes from a new module release breaking your configuration"
+      },
+      {
+        "id": "o2",
+        "text": "It makes the module run faster"
+      },
+      {
+        "id": "o3",
+        "text": "It disables the module's variables"
+      },
+      {
+        "id": "o4",
+        "text": "It removes the need to run init"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Pinning a module version ensures you get a known, tested version and are not surprised by breaking changes when a new version is published.",
+    "explanationIncorrect": "Version pinning does not affect execution speed. It does not disable the module's variables. It does not remove the need to run init, which still installs modules, so preventing unexpected breaking changes is the reason to pin."
+  },
+  {
+    "id": "tf-183",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "You want to create several similar instances of a module with different inputs from a map. Which meta-argument helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "for_each on the module block"
+      },
+      {
+        "id": "o2",
+        "text": "provider on the module block"
+      },
+      {
+        "id": "o3",
+        "text": "backend on the module block"
+      },
+      {
+        "id": "o4",
+        "text": "lifecycle on the module block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The for_each meta-argument on a module block instantiates the module once per entry in a map or set, each with its own inputs.",
+    "explanationIncorrect": "A provider argument passes provider configuration, not multiple instances. A backend block configures state and is not a module meta-argument. A lifecycle block adjusts resource behavior, not module iteration, so for_each is the correct meta-argument."
+  },
+  {
+    "id": "tf-184",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "What is the root module in a Terraform configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The configuration in the working directory where you run Terraform"
+      },
+      {
+        "id": "o2",
+        "text": "The first module downloaded from the registry"
+      },
+      {
+        "id": "o3",
+        "text": "The provider plugin"
+      },
+      {
+        "id": "o4",
+        "text": "The remote backend"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The root module is the set of .tf files in the directory where you run Terraform, and it can call other child modules.",
+    "explanationIncorrect": "The first registry module is a child module, not the root. The provider plugin is not a module. The remote backend stores state and is not the root module, so the configuration in the working directory is the root module."
   }
 ]
