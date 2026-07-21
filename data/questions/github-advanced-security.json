@@ -5663,5 +5663,285 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Marking the dependency review check as required through branch protection or a ruleset prevents merging a PR until the check passes.",
     "explanationIncorrect": "A wiki page cannot enforce merge gating. A star threshold is a popularity metric with no gating role. A release draft is unrelated to merge requirements, so a branch protection rule or ruleset requiring the check is correct."
+  },
+  {
+    "id": "ghas-176",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "What is CodeQL at its core?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A query language and engine that analyzes code modeled as a queryable database"
+      },
+      {
+        "id": "o2",
+        "text": "A container registry"
+      },
+      {
+        "id": "o3",
+        "text": "A package manager"
+      },
+      {
+        "id": "o4",
+        "text": "A branch protection feature"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CodeQL treats source code as data by building a database and lets queries find vulnerable patterns by querying that database.",
+    "explanationIncorrect": "It is not a container registry, which stores images. It is not a package manager for dependencies. It is not a branch protection feature, which governs merges, so a code-analysis query language and engine is what CodeQL is."
+  },
+  {
+    "id": "ghas-177",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Which step must occur before CodeQL can run queries against a compiled language project?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Building a CodeQL database, often by observing the build"
+      },
+      {
+        "id": "o2",
+        "text": "Publishing a release"
+      },
+      {
+        "id": "o3",
+        "text": "Creating a wiki"
+      },
+      {
+        "id": "o4",
+        "text": "Adding a CODEOWNERS file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CodeQL first extracts a database representing the code, and for compiled languages this typically means observing the build so all compiled sources are captured.",
+    "explanationIncorrect": "Publishing a release does not create the analysis database. Creating a wiki is documentation and unrelated. Adding CODEOWNERS assigns reviewers and does not build a database, so constructing the CodeQL database is the prerequisite step."
+  },
+  {
+    "id": "ghas-178",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "A team wants CodeQL to find a vulnerability class specific to their framework that default queries miss. What can they do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Write or add custom CodeQL queries or query packs to the analysis"
+      },
+      {
+        "id": "o2",
+        "text": "Increase the runner's memory only"
+      },
+      {
+        "id": "o3",
+        "text": "Enable more branch protections"
+      },
+      {
+        "id": "o4",
+        "text": "Add more Dependabot ecosystems"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CodeQL is extensible, so teams can author custom queries or include additional query packs to detect framework-specific vulnerability patterns.",
+    "explanationIncorrect": "Adding runner memory may help performance but finds no new vulnerability class. More branch protections gate merges, not analysis coverage. Adding Dependabot ecosystems concerns dependency updates, not first-party code queries, so custom CodeQL queries are the correct approach."
+  },
+  {
+    "id": "ghas-179",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "How is CodeQL analysis most commonly run in a repository?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "As a GitHub Actions workflow using the CodeQL action on a schedule and on pull requests"
+      },
+      {
+        "id": "o2",
+        "text": "By editing the README"
+      },
+      {
+        "id": "o3",
+        "text": "By opening an issue"
+      },
+      {
+        "id": "o4",
+        "text": "By starring the repository"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The typical setup runs the CodeQL action within a workflow triggered on pull requests and on a schedule, uploading results as code scanning alerts.",
+    "explanationIncorrect": "Editing the README does not execute analysis. Opening an issue tracks work but runs no scan. Starring a repository is a bookmark action, so running the CodeQL action in a workflow is the common method."
+  },
+  {
+    "id": "ghas-180",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "In taint-tracking terms, what two endpoints does a CodeQL data-flow query typically connect to find an injection?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A source of untrusted input and a sensitive sink"
+      },
+      {
+        "id": "o2",
+        "text": "Two unrelated comments"
+      },
+      {
+        "id": "o3",
+        "text": "A branch and a tag"
+      },
+      {
+        "id": "o4",
+        "text": "A star and a fork"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Data-flow and taint-tracking queries trace untrusted input from a source to a dangerous sink, and a reachable path indicates a potential injection vulnerability.",
+    "explanationIncorrect": "Comments carry no data-flow relationship for taint tracking. Branches and tags are git refs, not code data-flow endpoints. Stars and forks are engagement metrics, so a source-to-sink path is what such a query connects."
+  },
+  {
+    "id": "ghas-181",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "A CodeQL alert is a confirmed false positive due to a sanitizer the query does not recognize. What is a sustainable fix beyond dismissing it once?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Model the sanitizer in a custom query so future analyses treat the path as safe"
+      },
+      {
+        "id": "o2",
+        "text": "Disable code scanning permanently"
+      },
+      {
+        "id": "o3",
+        "text": "Delete the source file"
+      },
+      {
+        "id": "o4",
+        "text": "Rename variables to confuse the analyzer"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Teaching CodeQL about the custom sanitizer through a query customization makes the engine recognize the safe path, preventing the same false positive recurring.",
+    "explanationIncorrect": "Disabling code scanning removes all protection to silence one finding. Deleting the source file destroys working code. Renaming variables to confuse the analyzer degrades analysis rather than improving accuracy, so modeling the sanitizer in a custom query is the sustainable fix."
+  },
+  {
+    "id": "ghas-182",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "For an interpreted language like Python or JavaScript, how does CodeQL database creation typically differ from a compiled language?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "No build is required, since the extractor can process the source directly"
+      },
+      {
+        "id": "o2",
+        "text": "It requires two separate build servers"
+      },
+      {
+        "id": "o3",
+        "text": "It cannot be analyzed at all"
+      },
+      {
+        "id": "o4",
+        "text": "It needs a Dockerfile in every folder"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "For interpreted languages CodeQL can extract the database directly from source without a compilation step, unlike compiled languages that usually need a build.",
+    "explanationIncorrect": "It does not require two build servers. Interpreted languages are fully analyzable, not impossible to scan. It does not need a Dockerfile in every folder, so the absence of a build step is the key difference."
+  },
+  {
+    "id": "ghas-183",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "Which setup option lets you enable CodeQL with minimal configuration and GitHub-managed query selection?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Default setup for code scanning"
+      },
+      {
+        "id": "o2",
+        "text": "A mandatory manual database build script"
+      },
+      {
+        "id": "o3",
+        "text": "A third-party CI server requirement"
+      },
+      {
+        "id": "o4",
+        "text": "A self-hosted database host"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Default setup enables CodeQL code scanning with GitHub choosing languages and queries automatically, requiring little to no manual workflow authoring.",
+    "explanationIncorrect": "A mandatory manual build script describes advanced setup, not the low-config path. A third-party CI server is not required to use default setup. A self-hosted database host is not needed, so default setup is the minimal-configuration option."
+  },
+  {
+    "id": "ghas-184",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "hard",
+    "stem": "When would you choose advanced setup with a custom workflow over default setup for CodeQL?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "When you need custom build steps, specific query packs, or matrix builds the default cannot express"
+      },
+      {
+        "id": "o2",
+        "text": "When you want fewer configuration options"
+      },
+      {
+        "id": "o3",
+        "text": "When you want to disable scanning"
+      },
+      {
+        "id": "o4",
+        "text": "When the repository is empty"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Advanced setup exposes the workflow file so you can add custom build commands, choose query packs, and use matrices that default setup cannot accommodate.",
+    "explanationIncorrect": "Advanced setup gives more, not fewer, configuration options. It is not a way to disable scanning. An empty repository has nothing to scan and does not motivate advanced setup, so the need for custom builds or queries is the reason to choose it."
+  },
+  {
+    "id": "ghas-185",
+    "exam": "github-advanced-security",
+    "domain": "Code scanning with CodeQL",
+    "difficulty": "medium",
+    "stem": "A CodeQL alert on a pull request shows the exact data-flow path. Why is this path view valuable to a developer?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It shows how untrusted input reaches the vulnerable sink so the developer can fix the right point"
+      },
+      {
+        "id": "o2",
+        "text": "It lists all repository contributors"
+      },
+      {
+        "id": "o3",
+        "text": "It counts the lines of code"
+      },
+      {
+        "id": "o4",
+        "text": "It shows the repository size"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The path view traces input from source to sink, giving the developer the context to add validation or sanitization at the correct location.",
+    "explanationIncorrect": "It does not list contributors, which is unrelated to the finding. It is not a line counter. It does not report repository size, so revealing the source-to-sink path for targeted remediation is the value."
   }
 ]
