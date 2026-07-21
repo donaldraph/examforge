@@ -4818,5 +4818,285 @@
       "aws-artifact",
       "governance"
     ]
+  },
+  {
+    "id": "aip-146",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which learning paradigm trains a model on labeled examples to predict an output for new inputs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Supervised learning"
+      },
+      {
+        "id": "o2",
+        "text": "Unsupervised learning"
+      },
+      {
+        "id": "o3",
+        "text": "Reinforcement learning"
+      },
+      {
+        "id": "o4",
+        "text": "Clustering"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Supervised learning uses input-output pairs with known labels so the model learns to map inputs to the correct outputs and generalizes to new data.",
+    "explanationIncorrect": "Unsupervised learning works without labels, finding structure rather than predicting known targets. Reinforcement learning learns from rewards through interaction, not from labeled pairs. Clustering is an unsupervised technique that groups data, so supervised learning is the paradigm that uses labeled examples."
+  },
+  {
+    "id": "aip-147",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "A model performs very well on training data but poorly on new data. What is this called?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Overfitting"
+      },
+      {
+        "id": "o2",
+        "text": "Underfitting"
+      },
+      {
+        "id": "o3",
+        "text": "Regularization"
+      },
+      {
+        "id": "o4",
+        "text": "Normalization"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Overfitting occurs when a model memorizes training data including noise, so it fails to generalize and performs poorly on unseen data.",
+    "explanationIncorrect": "Underfitting is the opposite, where the model is too simple to capture patterns even in training data. Regularization is a technique to reduce overfitting, not the problem itself. Normalization scales features and is a preprocessing step, so overfitting is the correct term."
+  },
+  {
+    "id": "aip-148",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "You split data into training, validation, and test sets. What is the purpose of the validation set specifically?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To tune hyperparameters and select models without touching the test set"
+      },
+      {
+        "id": "o2",
+        "text": "To train the model's weights directly"
+      },
+      {
+        "id": "o3",
+        "text": "To store production traffic"
+      },
+      {
+        "id": "o4",
+        "text": "To replace the need for a test set"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The validation set guides hyperparameter tuning and model selection, keeping the test set untouched so it gives an unbiased final estimate.",
+    "explanationIncorrect": "Training the model's weights is the training set's job, not the validation set's. The validation set is not for storing production traffic. It does not replace the test set, whose role is the final unbiased evaluation, so tuning and selection is the validation set's purpose."
+  },
+  {
+    "id": "aip-149",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which AWS service provides a fully managed environment to build, train, and deploy machine learning models end to end?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o4",
+        "text": "AWS CloudTrail"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SageMaker is the managed platform for the full ML lifecycle, covering data preparation, training, tuning, and deployment.",
+    "explanationIncorrect": "Amazon S3 is object storage and only holds data, not a training platform. Amazon Route 53 is DNS and traffic routing. AWS CloudTrail records API activity for auditing, so SageMaker is the managed ML environment."
+  },
+  {
+    "id": "aip-150",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which metric is most appropriate to evaluate a regression model that predicts a continuous value?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Root mean squared error"
+      },
+      {
+        "id": "o2",
+        "text": "Precision"
+      },
+      {
+        "id": "o3",
+        "text": "Recall"
+      },
+      {
+        "id": "o4",
+        "text": "F1 score"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Root mean squared error measures the average magnitude of prediction errors for continuous targets, making it well suited to regression.",
+    "explanationIncorrect": "Precision, recall, and F1 score are classification metrics based on true and false positives, which do not apply directly to continuous predictions. They evaluate categorical outcomes rather than numeric error, so root mean squared error is the appropriate regression metric."
+  },
+  {
+    "id": "aip-151",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "A dataset has 95% of one class and 5% of another, and a model predicts the majority class every time. Why can accuracy be misleading here?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It reports 95% while completely missing the minority class"
+      },
+      {
+        "id": "o2",
+        "text": "It cannot be computed on imbalanced data"
+      },
+      {
+        "id": "o3",
+        "text": "It always equals the F1 score"
+      },
+      {
+        "id": "o4",
+        "text": "It requires a regression target"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "With heavy class imbalance, always predicting the majority yields high accuracy such as 95% while entirely failing to detect the minority class that often matters most.",
+    "explanationIncorrect": "Accuracy can still be computed on imbalanced data; it is just misleading. It does not always equal the F1 score, which weighs precision and recall differently. It does not require a regression target, since it is a classification metric, so masking poor minority-class performance is why accuracy misleads."
+  },
+  {
+    "id": "aip-152",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which term describes the individual measurable properties, such as age or income, used as model inputs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Features"
+      },
+      {
+        "id": "o2",
+        "text": "Labels"
+      },
+      {
+        "id": "o3",
+        "text": "Epochs"
+      },
+      {
+        "id": "o4",
+        "text": "Gradients"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Features are the input variables or attributes a model uses to make predictions, such as age or income.",
+    "explanationIncorrect": "Labels are the target outputs the model predicts, not the inputs. Epochs count passes over the training data during training. Gradients are used to update weights during optimization, so features is the term for input attributes."
+  },
+  {
+    "id": "aip-153",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which of the following is an example of unsupervised learning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Grouping customers into segments without predefined labels"
+      },
+      {
+        "id": "o2",
+        "text": "Predicting house prices from labeled sales"
+      },
+      {
+        "id": "o3",
+        "text": "Classifying emails using labeled spam examples"
+      },
+      {
+        "id": "o4",
+        "text": "Forecasting demand from labeled history"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Clustering customers into segments without labels is unsupervised learning, since the algorithm discovers structure without target values.",
+    "explanationIncorrect": "Predicting house prices from labeled sales is supervised regression. Classifying emails from labeled spam is supervised classification. Forecasting demand from labeled history is also supervised, so segmenting customers without labels is the unsupervised example."
+  },
+  {
+    "id": "aip-154",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "Why is feature scaling often applied before training models that rely on distance calculations?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "So features with large ranges do not dominate the distance and skew results"
+      },
+      {
+        "id": "o2",
+        "text": "To increase the number of training examples"
+      },
+      {
+        "id": "o3",
+        "text": "To convert regression into classification"
+      },
+      {
+        "id": "o4",
+        "text": "To remove the need for a validation set"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Scaling puts features on comparable ranges so that distance-based algorithms are not dominated by a single large-magnitude feature.",
+    "explanationIncorrect": "Scaling does not add training examples; it transforms existing ones. It does not convert regression into classification, which is a different task type. It does not remove the need for a validation set, so preventing large-range features from dominating distances is the reason."
+  },
+  {
+    "id": "aip-155",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which scenario is best suited to reinforcement learning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Training an agent to play a game by rewarding good moves over time"
+      },
+      {
+        "id": "o2",
+        "text": "Labeling images with known categories"
+      },
+      {
+        "id": "o3",
+        "text": "Averaging numeric columns"
+      },
+      {
+        "id": "o4",
+        "text": "Sorting a list alphabetically"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Reinforcement learning trains an agent through trial and error using rewards, which fits learning to play a game by maximizing cumulative reward.",
+    "explanationIncorrect": "Labeling images with known categories is supervised classification. Averaging numeric columns is a simple statistic, not learning. Sorting a list is a deterministic algorithm, so training a rewarded game-playing agent is the reinforcement learning scenario."
   }
 ]
