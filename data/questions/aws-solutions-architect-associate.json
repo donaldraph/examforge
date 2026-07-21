@@ -5733,5 +5733,341 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Scoping IAM policies to only the needed actions and resources follows least privilege and minimizes what a compromised identity could do.",
     "explanationIncorrect": "Granting wildcard permissions broadens the attack surface. Attaching AdministratorAccess everywhere removes meaningful restrictions. Sharing one role across unrelated services blurs boundaries and over-grants access, so least privilege with scoped policies is the correct practice."
+  },
+  {
+    "id": "saa-179",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which S3 storage class is most cost-effective for data accessed rarely but needing millisecond retrieval when required?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Standard-Infrequent Access"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Standard"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Glacier Deep Archive"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Express One Zone for hot data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Standard-Infrequent Access offers lower storage cost for rarely accessed data while still providing millisecond retrieval when it is needed.",
+    "explanationIncorrect": "S3 Standard costs more per GB and suits frequently accessed data. S3 Glacier Deep Archive is cheapest but has retrieval times of hours, not milliseconds. S3 Express One Zone targets very hot, latency-sensitive data at higher cost, so Standard-Infrequent Access fits rare access with fast retrieval."
+  },
+  {
+    "id": "saa-180",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A batch workload runs nightly and can restart if interrupted. Which EC2 pricing minimizes cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spot Instances"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o3",
+        "text": "Dedicated Hosts"
+      },
+      {
+        "id": "o4",
+        "text": "A three-year all-upfront Reserved Instance running 24/7"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because the batch job tolerates interruption and restart, Spot Instances provide the deepest discount and best fit the fault-tolerant, non-urgent schedule.",
+    "explanationIncorrect": "On-Demand costs far more for interruptible work. Dedicated Hosts are a premium isolation option. A three-year 24/7 Reserved Instance pays for constant capacity a nightly job does not need, so Spot Instances minimize cost here."
+  },
+  {
+    "id": "saa-181",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which feature automatically transitions objects to cheaper storage classes based on age to reduce cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Lifecycle policies"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Transfer Acceleration"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Object Lock"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Requester Pays"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Lifecycle policies automatically move objects to lower-cost classes or expire them as they age, optimizing storage spend without manual work.",
+    "explanationIncorrect": "Transfer Acceleration speeds uploads, not cost tiering. Object Lock enforces retention for compliance. Requester Pays shifts data transfer costs to requesters, so S3 Lifecycle policies are the cost-optimizing feature."
+  },
+  {
+    "id": "saa-182",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which option gives flexible discounts across instance families and Regions in exchange for a committed hourly spend?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Compute Savings Plans"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand pricing"
+      },
+      {
+        "id": "o3",
+        "text": "Spot Instances"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Intelligent-Tiering"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Compute Savings Plans provide discounts in return for a committed hourly spend and apply flexibly across instance families, sizes, and Regions.",
+    "explanationIncorrect": "On-Demand has no commitment or discount. Spot offers deep but interruptible discounts without the flexible commitment model described. S3 Intelligent-Tiering optimizes storage, not compute commitment, so Compute Savings Plans is the correct option."
+  },
+  {
+    "id": "saa-183",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "Objects have unpredictable and changing access patterns, and the team wants automatic cost optimization without performance impact or retrieval fees. Which S3 class fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Intelligent-Tiering"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Glacier Deep Archive"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Standard only"
+      },
+      {
+        "id": "o4",
+        "text": "S3 One Zone-IA for critical data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Intelligent-Tiering automatically moves objects between access tiers based on usage, optimizing cost for unpredictable patterns without retrieval fees or performance impact.",
+    "explanationIncorrect": "Glacier Deep Archive has long retrieval times unsuitable for unpredictable immediate access. Standard alone does not optimize automatically and costs more for cold data. One Zone-IA stores in a single AZ, reducing durability for critical data, so Intelligent-Tiering fits changing patterns."
+  },
+  {
+    "id": "saa-184",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "To reduce cost of a lightly used relational database that can pause when idle, which option helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Aurora Serverless that scales capacity and can pause when idle"
+      },
+      {
+        "id": "o2",
+        "text": "A large always-on provisioned instance"
+      },
+      {
+        "id": "o3",
+        "text": "A fleet of On-Demand EC2 databases"
+      },
+      {
+        "id": "o4",
+        "text": "Storing the database in Glacier"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Aurora Serverless automatically scales database capacity to demand and can pause during idle periods, cutting cost for intermittent workloads.",
+    "explanationIncorrect": "A large always-on provisioned instance pays for idle capacity. A fleet of self-managed EC2 databases adds operational cost and complexity. Glacier is archival storage and cannot run a live database, so Aurora Serverless best reduces cost for a lightly used database."
+  },
+  {
+    "id": "saa-185",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which practice helps identify idle or oversized resources to reduce ongoing spend?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Right-sizing using AWS Cost Explorer and Compute Optimizer recommendations"
+      },
+      {
+        "id": "o2",
+        "text": "Always choosing the largest instance available"
+      },
+      {
+        "id": "o3",
+        "text": "Never reviewing utilization"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling monitoring to save cost"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Right-sizing with Cost Explorer and Compute Optimizer highlights underused or oversized resources so you can downsize and cut spend.",
+    "explanationIncorrect": "Always choosing the largest instance guarantees waste. Never reviewing utilization leaves overspending undetected. Disabling monitoring removes the data needed to optimize, so right-sizing with these tools is the cost-reducing practice."
+  },
+  {
+    "id": "saa-186",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A serverless architecture using Lambda and API Gateway had a sudden cost spike. Which factor most likely drove it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A surge in request volume, since these services bill per request and execution"
+      },
+      {
+        "id": "o2",
+        "text": "The number of IAM users created"
+      },
+      {
+        "id": "o3",
+        "text": "The length of the function name"
+      },
+      {
+        "id": "o4",
+        "text": "The color of the console theme"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Lambda and API Gateway are billed by requests and execution, so a surge in traffic directly increases cost, making request volume the likely driver.",
+    "explanationIncorrect": "The number of IAM users does not drive Lambda or API Gateway usage charges. The function name length has no billing impact. The console theme color is purely cosmetic, so a surge in request volume is the most likely cause."
+  },
+  {
+    "id": "saa-187",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "To avoid paying for a NAT gateway when private instances only need to reach S3 and DynamoDB, what can you use instead?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Gateway VPC endpoints for S3 and DynamoDB"
+      },
+      {
+        "id": "o2",
+        "text": "A second NAT gateway"
+      },
+      {
+        "id": "o3",
+        "text": "Public IPs on all instances"
+      },
+      {
+        "id": "o4",
+        "text": "An internet gateway for each subnet"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Gateway VPC endpoints for S3 and DynamoDB provide private access at no per-GB endpoint charge, avoiding NAT gateway data processing costs for that traffic.",
+    "explanationIncorrect": "Adding a second NAT gateway increases cost rather than avoiding it. Public IPs expose instances and still route over the internet. An internet gateway per subnet also uses the public path, so gateway VPC endpoints are the cost-saving alternative."
+  },
+  {
+    "id": "saa-188",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which S3 storage class offers the lowest storage cost for long-term archives that tolerate retrieval times of hours?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Glacier Deep Archive"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Standard"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Standard-Infrequent Access"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Intelligent-Tiering frequent tier"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Glacier Deep Archive provides the lowest storage price for long-term data that is rarely accessed and can tolerate multi-hour retrieval.",
+    "explanationIncorrect": "S3 Standard is priced for frequent access and costs much more per GB. Standard-Infrequent Access is cheaper than Standard but pricier than Deep Archive. The Intelligent-Tiering frequent tier is not the lowest-cost archive option, so Glacier Deep Archive is correct."
+  },
+  {
+    "id": "saa-189",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A predictable production workload runs steadily 24/7 for years. Which pricing minimizes its compute cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reserved Instances or a Savings Plan committed for one or three years"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand for the entire duration"
+      },
+      {
+        "id": "o3",
+        "text": "Spot Instances for the always-on tier"
+      },
+      {
+        "id": "o4",
+        "text": "Recreating instances hourly to reset billing"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A steady, long-running workload benefits most from a one- or three-year Reserved Instance or Savings Plan commitment, which deeply discounts predictable usage.",
+    "explanationIncorrect": "On-Demand for years pays full price for predictable capacity. Spot is unsuitable for an always-on production tier that cannot tolerate interruption. Recreating instances hourly does not reset or reduce billing, so a committed Reserved Instance or Savings Plan minimizes cost."
+  },
+  {
+    "id": "saa-190",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach reduces data transfer costs for serving the same content to many users repeatedly?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Serving through Amazon CloudFront to cache content at the edge"
+      },
+      {
+        "id": "o2",
+        "text": "Serving every request directly from the origin in another Region"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling caching entirely"
+      },
+      {
+        "id": "o4",
+        "text": "Duplicating the origin in every AZ manually"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "CloudFront caches content at edge locations so repeated requests are served from the cache, reducing origin data transfer and often lowering cost.",
+    "explanationIncorrect": "Serving every request from a distant origin maximizes transfer cost and latency. Disabling caching forces every request back to the origin. Manually duplicating the origin in every AZ adds cost and complexity, so serving through CloudFront reduces repeated transfer costs."
   }
 ]
