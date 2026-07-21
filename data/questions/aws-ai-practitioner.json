@@ -5658,5 +5658,285 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Prompting the model to work through intermediate steps, often called chain-of-thought, can improve performance on tasks that benefit from explicit reasoning.",
     "explanationIncorrect": "Disabling the context window is not possible and would prevent the model from reading the prompt. A smaller vocabulary does not induce reasoning. Removing punctuation can hurt clarity, so chain-of-thought style prompting is the approach that aids step-by-step reasoning."
+  },
+  {
+    "id": "aip-176",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which AWS capability helps configure safeguards that filter harmful content and block disallowed topics for generative AI applications?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Guardrails for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Lightsail"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Guardrails for Amazon Bedrock let you define content filters, denied topics, and policies to keep generative AI outputs safe and on-policy.",
+    "explanationIncorrect": "Amazon Athena queries data in S3 with SQL and has no safety-filtering role. AWS Snowball physically transfers large data sets. Amazon Lightsail offers simplified compute instances, so Guardrails for Amazon Bedrock is the responsible-AI safeguard capability."
+  },
+  {
+    "id": "aip-177",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "A hiring model systematically disadvantages a demographic group. Which responsible AI concern does this represent?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Bias and fairness"
+      },
+      {
+        "id": "o2",
+        "text": "Network latency"
+      },
+      {
+        "id": "o3",
+        "text": "Storage durability"
+      },
+      {
+        "id": "o4",
+        "text": "Compute autoscaling"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Systematic disadvantage to a group reflects bias and a failure of fairness, a core responsible AI concern that must be measured and mitigated.",
+    "explanationIncorrect": "Network latency is a performance metric unrelated to fairness. Storage durability concerns data loss, not discrimination. Compute autoscaling adjusts capacity, so bias and fairness is the responsible AI concern at play."
+  },
+  {
+    "id": "aip-178",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "Why is explainability important when deploying AI in high-stakes decisions like lending?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Stakeholders and regulators need to understand and justify why a decision was made"
+      },
+      {
+        "id": "o2",
+        "text": "It increases the model's parameter count"
+      },
+      {
+        "id": "o3",
+        "text": "It reduces the need for any data"
+      },
+      {
+        "id": "o4",
+        "text": "It speeds up GPU training"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Explainability lets people understand and justify decisions, which is essential for trust, accountability, and regulatory compliance in high-stakes areas like lending.",
+    "explanationIncorrect": "Explainability does not increase parameter count, which is an architectural property. It does not reduce the need for data. It does not speed up training, so the need to understand and justify decisions is why explainability matters."
+  },
+  {
+    "id": "aip-179",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which AWS tool can help detect bias in datasets and models and explain feature importance?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker Clarify"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon VPC"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SageMaker Clarify detects potential bias in data and models and provides explanations such as feature importance to support responsible AI.",
+    "explanationIncorrect": "Amazon Redshift is a data warehouse for analytics, not a bias-detection tool. AWS Lambda runs event-driven functions. Amazon VPC provides isolated networking, so SageMaker Clarify is the tool for bias detection and explainability."
+  },
+  {
+    "id": "aip-180",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Keeping a human in the loop for sensitive AI decisions primarily supports which principle?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Accountability and oversight of automated decisions"
+      },
+      {
+        "id": "o2",
+        "text": "Faster inference latency"
+      },
+      {
+        "id": "o3",
+        "text": "Lower storage cost"
+      },
+      {
+        "id": "o4",
+        "text": "Higher token limits"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A human in the loop provides oversight and accountability, letting people review or override automated decisions in sensitive contexts.",
+    "explanationIncorrect": "Human review typically adds, rather than reduces, latency, so it is not about faster inference. It does not lower storage cost. It does not raise token limits, so accountability and oversight is the principle it supports."
+  },
+  {
+    "id": "aip-181",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "A generative model trained on biased historical data risks doing what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Reproducing and amplifying the biases present in its training data"
+      },
+      {
+        "id": "o2",
+        "text": "Automatically correcting all historical bias"
+      },
+      {
+        "id": "o3",
+        "text": "Becoming immune to bias by default"
+      },
+      {
+        "id": "o4",
+        "text": "Eliminating the need for evaluation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Models learn patterns from their data, so biased training data can lead the model to reproduce and even amplify those biases in its outputs.",
+    "explanationIncorrect": "Models do not automatically correct historical bias; they tend to inherit it. They are not immune to bias by default. They do not eliminate the need for evaluation, which is more important with biased data, so reproducing and amplifying bias is the real risk."
+  },
+  {
+    "id": "aip-182",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which practice supports transparency with users of an AI system?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Disclosing that they are interacting with AI and how their data is used"
+      },
+      {
+        "id": "o2",
+        "text": "Hiding that AI is involved"
+      },
+      {
+        "id": "o3",
+        "text": "Refusing to document the system"
+      },
+      {
+        "id": "o4",
+        "text": "Collecting data without any notice"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Telling users they are interacting with AI and explaining data usage builds transparency and trust, a key responsible AI practice.",
+    "explanationIncorrect": "Hiding AI involvement undermines transparency. Refusing to document the system reduces accountability. Collecting data without notice violates transparency and often privacy norms, so disclosing AI involvement and data use is the correct practice."
+  },
+  {
+    "id": "aip-183",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "What is a model card commonly used for in responsible AI?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Documenting a model's intended use, limitations, and performance characteristics"
+      },
+      {
+        "id": "o2",
+        "text": "Storing the model's binary weights"
+      },
+      {
+        "id": "o3",
+        "text": "Serving as a payment method"
+      },
+      {
+        "id": "o4",
+        "text": "Encrypting network traffic"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A model card documents a model's purpose, appropriate use, known limitations, and evaluation results to support informed and responsible use.",
+    "explanationIncorrect": "It does not store the binary weights, which live in model artifacts. It is not a payment method. It does not encrypt network traffic, so documenting intended use, limitations, and performance is a model card's role."
+  },
+  {
+    "id": "aip-184",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "To reduce harmful outputs, why might you combine guardrails with human review rather than relying on one alone?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Layered defenses catch cases that automated filters or humans alone would miss"
+      },
+      {
+        "id": "o2",
+        "text": "Guardrails make human review illegal"
+      },
+      {
+        "id": "o3",
+        "text": "Human review disables the model"
+      },
+      {
+        "id": "o4",
+        "text": "Combining them removes all cost"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Defense in depth means automated guardrails and human oversight complement each other, catching different failure modes that either alone might miss.",
+    "explanationIncorrect": "Guardrails do not make human review illegal. Human review does not disable the model; it supervises it. Combining controls does not remove cost and generally adds some, so layered defenses covering each other's gaps is the reason to combine them."
+  },
+  {
+    "id": "aip-185",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which is an example of a fairness-aware evaluation step?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Measuring model performance separately across demographic subgroups"
+      },
+      {
+        "id": "o2",
+        "text": "Only reporting overall accuracy"
+      },
+      {
+        "id": "o3",
+        "text": "Ignoring subgroup outcomes"
+      },
+      {
+        "id": "o4",
+        "text": "Testing only on the training data"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Evaluating performance for each demographic subgroup reveals disparities that a single overall metric can hide, supporting fairness assessment.",
+    "explanationIncorrect": "Reporting only overall accuracy can mask subgroup disparities. Ignoring subgroup outcomes defeats fairness evaluation. Testing only on training data gives an overly optimistic and non-representative result, so measuring across subgroups is the fairness-aware step."
   }
 ]
