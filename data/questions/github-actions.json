@@ -5382,5 +5382,341 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "GitHub allows reusable workflows to call other reusable workflows but enforces a maximum nesting depth, so chains cannot be arbitrarily deep.",
     "explanationIncorrect": "It is not true that reusable workflows can never call others; nesting is explicitly supported up to a limit. Nesting does not strip inputs, which continue to flow through with blocks. Nesting is not restricted to push events, so the key consideration is the maximum nesting depth."
+  },
+  {
+    "id": "gha-167",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You are writing a JavaScript action. Which file declares its name, inputs, outputs, and entry point?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "action.yml (or action.yaml) at the action's root"
+      },
+      {
+        "id": "o2",
+        "text": "workflow.yml in .github/workflows"
+      },
+      {
+        "id": "o3",
+        "text": "package.json only"
+      },
+      {
+        "id": "o4",
+        "text": "Dockerfile only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Every action is defined by an action.yml (or action.yaml) metadata file at its root that declares its name, inputs, outputs, and how it runs.",
+    "explanationIncorrect": "A workflow file in .github/workflows defines a workflow, not an action's metadata. package.json lists Node dependencies but does not define action inputs and outputs. A Dockerfile alone describes a container image and is referenced by, not a replacement for, action.yml, so the metadata file is action.yml."
+  },
+  {
+    "id": "gha-168",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "In action.yml, which runs.using value indicates a Docker container action?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "docker"
+      },
+      {
+        "id": "o2",
+        "text": "node20"
+      },
+      {
+        "id": "o3",
+        "text": "composite"
+      },
+      {
+        "id": "o4",
+        "text": "shell"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A container action sets runs.using to docker and points image to a Dockerfile or published image that the runner executes.",
+    "explanationIncorrect": "node20 indicates a JavaScript action running on the Node 20 runtime, not a container. composite indicates an action made of multiple steps. There is no shell value for runs.using, so docker is the correct setting for a container action."
+  },
+  {
+    "id": "gha-169",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "Your JavaScript action needs to read an input the user passed and set an output. Which toolkit is designed for this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The @actions/core package with getInput and setOutput"
+      },
+      {
+        "id": "o2",
+        "text": "The express web framework"
+      },
+      {
+        "id": "o3",
+        "text": "The @actions/matrix package"
+      },
+      {
+        "id": "o4",
+        "text": "The jest testing library"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The @actions/core toolkit provides getInput to read declared inputs and setOutput to write outputs, wiring cleanly into the Actions runtime.",
+    "explanationIncorrect": "Express is a web server framework unrelated to reading action inputs. There is no @actions/matrix package for this purpose. Jest is for running tests, not for interacting with the Actions runtime, so @actions/core is the correct toolkit."
+  },
+  {
+    "id": "gha-170",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "A composite action defines steps under runs.steps. How does one of its steps run a shell command?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "With a run key and a shell key on the step"
+      },
+      {
+        "id": "o2",
+        "text": "With a uses key pointing at itself"
+      },
+      {
+        "id": "o3",
+        "text": "With an on key"
+      },
+      {
+        "id": "o4",
+        "text": "With a jobs key"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Inside a composite action, a step that runs commands must specify both run and an explicit shell, since composite steps require the shell to be named.",
+    "explanationIncorrect": "A uses key pointing at itself would create a recursive reference, not run a command. An on key defines triggers and is not valid inside action steps. A jobs key belongs to workflows, not composite action steps, so run plus shell is the correct way."
+  },
+  {
+    "id": "gha-171",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want your action to declare a required input that has no default. Which field marks it required?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "inputs.<name>.required set to true"
+      },
+      {
+        "id": "o2",
+        "text": "inputs.<name>.mandatory set to yes"
+      },
+      {
+        "id": "o3",
+        "text": "inputs.<name>.default set to required"
+      },
+      {
+        "id": "o4",
+        "text": "runs.required set to true"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In action metadata, setting inputs.<name>.required to true tells consumers the input must be provided.",
+    "explanationIncorrect": "There is no mandatory field in the input schema. Setting default to the string required just supplies a literal default and does not enforce the input. runs.required is not a valid metadata field, so required: true on the input is correct."
+  },
+  {
+    "id": "gha-172",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "You maintain a popular action and release v2 with breaking changes. What is the conventional way to let existing users stay on the old behavior while new users adopt v2?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Keep a moving v1 major tag and introduce a separate v2 major tag"
+      },
+      {
+        "id": "o2",
+        "text": "Delete all old tags immediately"
+      },
+      {
+        "id": "o3",
+        "text": "Force everyone onto main"
+      },
+      {
+        "id": "o4",
+        "text": "Remove action.yml between versions"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Maintaining separate moving major tags such as v1 and v2 lets existing users pin to v1 for stability while new users opt into v2's changes.",
+    "explanationIncorrect": "Deleting old tags breaks every workflow pinned to them and is hostile to users. Forcing everyone onto main removes version stability entirely. Removing action.yml between versions would break the action outright, so keeping distinct major tags is the conventional approach."
+  },
+  {
+    "id": "gha-173",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "Your Docker container action needs to pass an input to the container. How is a declared input made available inside the container by convention?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "As an environment variable named INPUT_<NAME> in uppercase"
+      },
+      {
+        "id": "o2",
+        "text": "As a mounted secret file only"
+      },
+      {
+        "id": "o3",
+        "text": "As a command-line flag named --input"
+      },
+      {
+        "id": "o4",
+        "text": "As a value in action.yml's jobs block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Declared inputs are exposed to actions as environment variables named INPUT_ followed by the uppercased input name with spaces replaced, so the container reads INPUT_<NAME>.",
+    "explanationIncorrect": "Inputs are not delivered as mounted secret files by default. There is no automatic --input command-line flag convention. action.yml has no jobs block, since jobs belong to workflows, so the INPUT_<NAME> environment variable convention is correct."
+  },
+  {
+    "id": "gha-174",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want to publish your action so others can easily discover it. What should you do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Publish it to the GitHub Marketplace from a public repository with a valid action.yml"
+      },
+      {
+        "id": "o2",
+        "text": "Email the YAML to interested users"
+      },
+      {
+        "id": "o3",
+        "text": "Put it only in a private gist"
+      },
+      {
+        "id": "o4",
+        "text": "Add it to the repository wiki"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Actions gain discoverability by being published to the GitHub Marketplace from a public repository that contains a valid action metadata file and a release.",
+    "explanationIncorrect": "Emailing YAML provides no discovery or versioning. A private gist is not accessible to the community and cannot be a Marketplace listing. The wiki holds documentation and does not make an action installable or discoverable, so Marketplace publishing is the right path."
+  },
+  {
+    "id": "gha-175",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "A JavaScript action is distributed by committing its node_modules or a bundled file. Why do maintainers commonly bundle the code with a tool like ncc?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "So the action runs without an install step, since the runner does not run npm install for actions"
+      },
+      {
+        "id": "o2",
+        "text": "To make the action a Docker action automatically"
+      },
+      {
+        "id": "o3",
+        "text": "To hide the source from users"
+      },
+      {
+        "id": "o4",
+        "text": "To bypass the need for action.yml"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The runner executes a JavaScript action's entry file directly without running npm install, so dependencies must be committed, and bundlers like ncc compile everything into one file.",
+    "explanationIncorrect": "Bundling JavaScript does not turn the action into a Docker action, which requires runs.using docker. Bundling is about dependency availability, not hiding source, which remains inspectable. It does not remove the need for action.yml, which still defines the action, so avoiding an install step is the real reason."
+  },
+  {
+    "id": "gha-176",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "In action.yml, which section documents the values your action produces for downstream steps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "outputs"
+      },
+      {
+        "id": "o2",
+        "text": "on"
+      },
+      {
+        "id": "o3",
+        "text": "concurrency"
+      },
+      {
+        "id": "o4",
+        "text": "strategy"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The outputs section of action.yml declares the named values the action produces so calling workflows can reference them.",
+    "explanationIncorrect": "The on section defines workflow triggers and is not part of action metadata. concurrency governs serialization of workflow runs. strategy configures matrices in workflows, so outputs is the correct action-metadata section for produced values."
+  },
+  {
+    "id": "gha-177",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "medium",
+    "stem": "You want your action to show a custom icon and color in the Marketplace listing. Where do you set these?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In the branding section of action.yml"
+      },
+      {
+        "id": "o2",
+        "text": "In the workflow file's env"
+      },
+      {
+        "id": "o3",
+        "text": "In the repository's LICENSE"
+      },
+      {
+        "id": "o4",
+        "text": "In the runner configuration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "action.yml supports a branding section with icon and color fields that control how the action appears in the Marketplace.",
+    "explanationIncorrect": "A workflow's env sets variables and has no branding effect. The LICENSE file conveys licensing, not visual branding. Runner configuration concerns execution environments, not Marketplace appearance, so the branding section of action.yml is correct."
+  },
+  {
+    "id": "gha-178",
+    "exam": "github-actions",
+    "domain": "Author and maintain actions",
+    "difficulty": "hard",
+    "stem": "You want your composite action to fail fast if a required tool is missing before running the main logic. What is a clean way to do this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Add an early composite step that checks for the tool and exits non-zero if absent"
+      },
+      {
+        "id": "o2",
+        "text": "Set continue-on-error true on every step"
+      },
+      {
+        "id": "o3",
+        "text": "Remove the tool dependency from documentation"
+      },
+      {
+        "id": "o4",
+        "text": "Rely on the workflow's concurrency group"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An early composite step that verifies the tool and exits with a non-zero status when it is missing halts the action before the main logic runs, giving a clear failure.",
+    "explanationIncorrect": "Setting continue-on-error true everywhere would hide the very failure you want to surface. Removing the dependency from documentation hides the requirement without enforcing it. A concurrency group controls serialization and cannot detect a missing tool, so an early failing check step is the clean approach."
   }
 ]
