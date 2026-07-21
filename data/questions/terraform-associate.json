@@ -5132,5 +5132,229 @@
       "functions",
       "jsondecode"
     ]
+  },
+  {
+    "id": "tf-156",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command previews the actions Terraform will take without changing any real infrastructure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform plan"
+      },
+      {
+        "id": "o2",
+        "text": "terraform apply"
+      },
+      {
+        "id": "o3",
+        "text": "terraform destroy"
+      },
+      {
+        "id": "o4",
+        "text": "terraform import"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform plan computes and displays the changes needed to reach the desired state without modifying any real resources.",
+    "explanationIncorrect": "terraform apply actually makes the changes, so it is not a no-op preview. terraform destroy removes resources rather than previewing. terraform import brings existing resources under management, so terraform plan is the command that only previews."
+  },
+  {
+    "id": "tf-157",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command must you run first in a new configuration directory to download provider plugins and prepare the backend?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform init"
+      },
+      {
+        "id": "o2",
+        "text": "terraform plan"
+      },
+      {
+        "id": "o3",
+        "text": "terraform validate"
+      },
+      {
+        "id": "o4",
+        "text": "terraform output"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform init initializes the working directory, downloading provider plugins and configuring the backend before other commands can run.",
+    "explanationIncorrect": "terraform plan requires initialization to have already happened. terraform validate checks syntax but does not download providers or set up the backend. terraform output reads existing state, so terraform init is the required first command."
+  },
+  {
+    "id": "tf-158",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "hard",
+    "stem": "You want to apply exactly the changes shown in a reviewed plan with no re-evaluation. What should you do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Save the plan with terraform plan -out and run terraform apply on that saved plan file"
+      },
+      {
+        "id": "o2",
+        "text": "Run terraform apply with no arguments and hope it matches"
+      },
+      {
+        "id": "o3",
+        "text": "Edit the state file directly"
+      },
+      {
+        "id": "o4",
+        "text": "Run terraform destroy first"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Saving the plan with terraform plan -out and applying that file guarantees Terraform executes exactly the reviewed actions without recomputing.",
+    "explanationIncorrect": "Running apply with no arguments recomputes the plan and may differ from what was reviewed. Editing the state file directly is risky and does not apply the reviewed plan. Running destroy removes resources rather than applying the plan, so applying a saved plan file is correct."
+  },
+  {
+    "id": "tf-159",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command formats configuration files to the canonical style?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o2",
+        "text": "terraform plan"
+      },
+      {
+        "id": "o3",
+        "text": "terraform apply"
+      },
+      {
+        "id": "o4",
+        "text": "terraform state"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform fmt rewrites configuration files to the canonical formatting conventions for consistent, readable code.",
+    "explanationIncorrect": "terraform plan previews changes and does not reformat files. terraform apply executes changes. terraform state manages state entries, so terraform fmt is the formatting command."
+  },
+  {
+    "id": "tf-160",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command checks whether the configuration is syntactically valid and internally consistent without contacting providers' remote APIs?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform validate"
+      },
+      {
+        "id": "o2",
+        "text": "terraform apply"
+      },
+      {
+        "id": "o3",
+        "text": "terraform destroy"
+      },
+      {
+        "id": "o4",
+        "text": "terraform login"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform validate verifies that the configuration is syntactically valid and internally consistent, without needing to reach remote infrastructure.",
+    "explanationIncorrect": "terraform apply makes real changes and contacts providers. terraform destroy removes resources. terraform login authenticates to a remote host, so terraform validate is the correct validation command."
+  },
+  {
+    "id": "tf-161",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "hard",
+    "stem": "After changing provider version constraints, which command updates the dependency lock and installs matching plugin versions?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform init with the upgrade option"
+      },
+      {
+        "id": "o2",
+        "text": "terraform output"
+      },
+      {
+        "id": "o3",
+        "text": "terraform show"
+      },
+      {
+        "id": "o4",
+        "text": "terraform taint"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Running terraform init with the upgrade flag re-evaluates version constraints, installs matching provider versions, and updates the dependency lock file.",
+    "explanationIncorrect": "terraform output reads output values, not provider versions. terraform show displays state or a plan. terraform taint marks a resource for recreation but does not manage provider versions, so terraform init with upgrade is correct."
+  },
+  {
+    "id": "tf-162",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command destroys all resources tracked in the current state?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform destroy"
+      },
+      {
+        "id": "o2",
+        "text": "terraform plan"
+      },
+      {
+        "id": "o3",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o4",
+        "text": "terraform validate"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform destroy removes all infrastructure that Terraform manages in the current state, after showing a plan for confirmation.",
+    "explanationIncorrect": "terraform plan only previews changes. terraform fmt formats files. terraform validate checks configuration validity, so terraform destroy is the command that tears down managed resources."
+  },
+  {
+    "id": "tf-163",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "During terraform apply, why does Terraform typically prompt for confirmation before proceeding?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To let you review the planned changes before they are made"
+      },
+      {
+        "id": "o2",
+        "text": "To download provider plugins"
+      },
+      {
+        "id": "o3",
+        "text": "To format the code"
+      },
+      {
+        "id": "o4",
+        "text": "To authenticate to version control"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The apply confirmation is a safety gate that shows the plan and asks you to approve before Terraform changes real infrastructure.",
+    "explanationIncorrect": "Downloading provider plugins happens during init, not at the apply prompt. Formatting is done by fmt. Authenticating to version control is unrelated to the apply approval, so reviewing planned changes before they occur is the reason for the prompt."
   }
 ]
