@@ -5383,5 +5383,285 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "When enabled, secret scanning examines the entire git history as well as incoming commits, so previously committed secrets are also surfaced.",
     "explanationIncorrect": "It does not limit itself to the repository description. It is not restricted to open issues. It does not ignore history and look only at the current file listing, since historical leaks matter, so full-history plus new-commit scanning is correct."
+  },
+  {
+    "id": "ghas-166",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Which Dependabot capability opens pull requests to update dependencies that have known vulnerabilities?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Dependabot security updates"
+      },
+      {
+        "id": "o2",
+        "text": "Dependabot version pinning"
+      },
+      {
+        "id": "o3",
+        "text": "Dependabot secret rotation"
+      },
+      {
+        "id": "o4",
+        "text": "Dependabot code scanning"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot security updates automatically raise pull requests to bump dependencies flagged with known vulnerabilities to a fixed version.",
+    "explanationIncorrect": "There is no distinct Dependabot version pinning product that does this; pinning is a practice, not the update feature. Dependabot does not rotate secrets. Dependabot does not perform code scanning, which is a separate CodeQL-based feature, so Dependabot security updates is correct."
+  },
+  {
+    "id": "ghas-167",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Which file configures Dependabot version updates, including the package ecosystems and update schedule?",
+    "options": [
+      {
+        "id": "o1",
+        "text": ".github/dependabot.yml"
+      },
+      {
+        "id": "o2",
+        "text": ".github/workflows/ci.yml"
+      },
+      {
+        "id": "o3",
+        "text": "package-lock.json"
+      },
+      {
+        "id": "o4",
+        "text": "CODEOWNERS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot version updates are driven by .github/dependabot.yml, where you declare each ecosystem, directory, and update interval.",
+    "explanationIncorrect": "A workflow file under .github/workflows configures Actions, not Dependabot updates. package-lock.json records resolved dependency versions but does not configure Dependabot. CODEOWNERS assigns review ownership, so .github/dependabot.yml is the correct configuration file."
+  },
+  {
+    "id": "ghas-168",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "Dependency review in a pull request warns that a newly added package introduces a high-severity vulnerability. What does this let reviewers do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "See the risk and block or reconsider the change before it merges"
+      },
+      {
+        "id": "o2",
+        "text": "Automatically deploy the package to production"
+      },
+      {
+        "id": "o3",
+        "text": "Rewrite the package's source code"
+      },
+      {
+        "id": "o4",
+        "text": "Delete the vulnerability from the upstream project"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependency review surfaces the vulnerable dependency in the PR so reviewers can reject, revise, or accept the change with full awareness before merge.",
+    "explanationIncorrect": "It does not deploy anything to production; it informs the review. It cannot rewrite the third-party package's source. It cannot remove a vulnerability from the upstream project, which is outside your repository, so enabling an informed block or reconsideration is the correct outcome."
+  },
+  {
+    "id": "ghas-169",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "Which data source underpins Dependabot alerts about vulnerable dependencies?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The GitHub Advisory Database"
+      },
+      {
+        "id": "o2",
+        "text": "The repository's issue tracker"
+      },
+      {
+        "id": "o3",
+        "text": "The commit message history"
+      },
+      {
+        "id": "o4",
+        "text": "The Actions run logs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dependabot compares your dependencies against the GitHub Advisory Database of known vulnerabilities to generate alerts.",
+    "explanationIncorrect": "The issue tracker holds project discussions, not a curated vulnerability database. Commit messages describe changes and are not an advisory source. Actions run logs record CI output, so the GitHub Advisory Database is the underpinning source."
+  },
+  {
+    "id": "ghas-170",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "You want Dependabot to also keep your GitHub Actions versions up to date. What do you configure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A dependabot.yml entry with package-ecosystem set to github-actions"
+      },
+      {
+        "id": "o2",
+        "text": "A CodeQL configuration"
+      },
+      {
+        "id": "o3",
+        "text": "A branch protection rule"
+      },
+      {
+        "id": "o4",
+        "text": "A secret scanning custom pattern"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Adding a package-ecosystem of github-actions to dependabot.yml makes Dependabot propose updates to the action versions referenced in your workflows.",
+    "explanationIncorrect": "A CodeQL configuration governs code scanning, not action version updates. Branch protection controls merges and does not update actions. A secret scanning custom pattern detects credentials, so the github-actions ecosystem entry in dependabot.yml is correct."
+  },
+  {
+    "id": "ghas-171",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "A team is overwhelmed by many low-priority Dependabot version-update PRs. Which configuration reduces noise while keeping security fixes?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Group updates and adjust schedules in dependabot.yml while keeping security updates enabled"
+      },
+      {
+        "id": "o2",
+        "text": "Disable Dependabot entirely including security updates"
+      },
+      {
+        "id": "o3",
+        "text": "Delete package manifests"
+      },
+      {
+        "id": "o4",
+        "text": "Ignore all alerts permanently"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "dependabot.yml supports grouping related updates and tuning schedules to cut PR volume, while security updates can stay on so critical fixes still arrive.",
+    "explanationIncorrect": "Disabling Dependabot entirely also removes security updates, defeating the goal. Deleting manifests breaks the project's dependency definition. Ignoring all alerts permanently discards real risks, so grouping and scheduling while keeping security updates is the balanced answer."
+  },
+  {
+    "id": "ghas-172",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "What does a repository's dependency graph provide that Dependabot builds upon?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A map of the project's direct and transitive dependencies parsed from manifests and lockfiles"
+      },
+      {
+        "id": "o2",
+        "text": "A list of open pull requests only"
+      },
+      {
+        "id": "o3",
+        "text": "A diagram of the branch structure"
+      },
+      {
+        "id": "o4",
+        "text": "A record of who starred the repo"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The dependency graph parses manifests and lockfiles to enumerate direct and transitive dependencies, which Dependabot cross-references against advisories.",
+    "explanationIncorrect": "It is not merely a list of open pull requests. It does not diagram branches, which is a git concept unrelated to dependencies. It does not record stargazers, so the map of direct and transitive dependencies is what the graph provides."
+  },
+  {
+    "id": "ghas-173",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "A Dependabot alert exists but no fixed version is available upstream yet. What is a reasonable interim action?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Apply a mitigation or dismiss with a documented reason while tracking for a future fix"
+      },
+      {
+        "id": "o2",
+        "text": "Immediately delete the dependency and break the build"
+      },
+      {
+        "id": "o3",
+        "text": "Publish the vulnerability details as a release note"
+      },
+      {
+        "id": "o4",
+        "text": "Disable the dependency graph"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "When no patch exists, teams typically apply available mitigations or dismiss the alert with a documented rationale while monitoring for an upstream fix.",
+    "explanationIncorrect": "Deleting the dependency to break the build is disruptive when a mitigation may suffice. Publishing exploit details in release notes can aid attackers and helps no one. Disabling the dependency graph hides the tracking you need, so a documented mitigation or dismissal is the reasonable interim action."
+  },
+  {
+    "id": "ghas-174",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "hard",
+    "stem": "Why can a single vulnerable transitive dependency still put your project at risk even if you never imported it directly?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Your direct dependencies pull it in, so its vulnerable code runs as part of your application"
+      },
+      {
+        "id": "o2",
+        "text": "Transitive dependencies are never executed"
+      },
+      {
+        "id": "o3",
+        "text": "Only direct dependencies are ever installed"
+      },
+      {
+        "id": "o4",
+        "text": "Transitive dependencies exist only in documentation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A transitive dependency is installed and executed because a direct dependency requires it, so its vulnerability is part of your running application's attack surface.",
+    "explanationIncorrect": "It is false that transitive dependencies are never executed; they run as part of the dependency tree. Package managers install transitive dependencies, not only direct ones. They are real installed code, not just documentation, so the fact that direct dependencies pull them in explains the risk."
+  },
+  {
+    "id": "ghas-175",
+    "exam": "github-advanced-security",
+    "domain": "Dependabot and dependency review",
+    "difficulty": "medium",
+    "stem": "To require dependency review to pass before merging, what should you combine it with?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A branch protection rule or ruleset that makes the dependency review check required"
+      },
+      {
+        "id": "o2",
+        "text": "A wiki page"
+      },
+      {
+        "id": "o3",
+        "text": "A repository star threshold"
+      },
+      {
+        "id": "o4",
+        "text": "A release draft"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Marking the dependency review check as required through branch protection or a ruleset prevents merging a PR until the check passes.",
+    "explanationIncorrect": "A wiki page cannot enforce merge gating. A star threshold is a popularity metric with no gating role. A release draft is unrelated to merge requirements, so a branch protection rule or ruleset requiring the check is correct."
   }
 ]
