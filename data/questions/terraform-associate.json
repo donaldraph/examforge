@@ -6336,5 +6336,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Because the infrastructure is defined in code, it can be reliably and quickly recreated in a new environment during recovery, reducing manual rebuild effort.",
     "explanationIncorrect": "IaC does not prevent all outages from occurring. It does not automatically back up application data, which is a separate concern. It does not remove the need for a recovery plan, so reliably recreating infrastructure from code is the improvement."
+  },
+  {
+    "id": "tf-199",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which construct lets you define a value once and reuse it across a configuration without it being an input?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A local value defined in a locals block"
+      },
+      {
+        "id": "o2",
+        "text": "An output block"
+      },
+      {
+        "id": "o3",
+        "text": "A provider block"
+      },
+      {
+        "id": "o4",
+        "text": "A backend block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A local value in a locals block names an expression you can reference repeatedly, reducing duplication without exposing an input variable.",
+    "explanationIncorrect": "An output block exposes values to callers, not internal reuse. A provider block configures a provider. A backend block configures state storage, so a local value is the construct for reusable internal values."
+  },
+  {
+    "id": "tf-200",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "Which function returns the first non-null argument, useful for providing a fallback default?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "coalesce"
+      },
+      {
+        "id": "o2",
+        "text": "join"
+      },
+      {
+        "id": "o3",
+        "text": "length"
+      },
+      {
+        "id": "o4",
+        "text": "upper"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "coalesce returns the first non-null, non-empty argument, making it handy for supplying a default when a value may be unset.",
+    "explanationIncorrect": "join concatenates list elements into a string. length returns the number of elements or characters. upper converts a string to uppercase, so coalesce is the function that returns the first non-null value."
+  },
+  {
+    "id": "tf-201",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which meta-argument creates multiple instances of a resource from a set or map, keyed by each element?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "for_each"
+      },
+      {
+        "id": "o2",
+        "text": "depends_on"
+      },
+      {
+        "id": "o3",
+        "text": "provider"
+      },
+      {
+        "id": "o4",
+        "text": "lifecycle"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "for_each creates one resource instance per element of a map or set, with each instance addressed by its key.",
+    "explanationIncorrect": "depends_on declares explicit dependencies, not multiple instances. provider selects a provider configuration. lifecycle adjusts create and destroy behavior, so for_each is the meta-argument for keyed multiple instances."
+  },
+  {
+    "id": "tf-202",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which expression type transforms one collection into another, for example building a list from a map?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A for expression"
+      },
+      {
+        "id": "o2",
+        "text": "A provider block"
+      },
+      {
+        "id": "o3",
+        "text": "A backend block"
+      },
+      {
+        "id": "o4",
+        "text": "A terraform block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A for expression iterates over a collection and produces a new list or map, enabling flexible transformations in configuration.",
+    "explanationIncorrect": "A provider block configures a provider and does not transform collections. A backend block configures state storage. A terraform block sets top-level settings, so a for expression is the construct that transforms collections."
+  },
+  {
+    "id": "tf-203",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "You mark an output as sensitive. What effect does this have?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Terraform redacts the value in CLI output to avoid displaying it"
+      },
+      {
+        "id": "o2",
+        "text": "It encrypts the entire state file"
+      },
+      {
+        "id": "o3",
+        "text": "It deletes the value after apply"
+      },
+      {
+        "id": "o4",
+        "text": "It prevents the output from being defined"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Marking an output sensitive causes Terraform to redact its value in plan and apply output so it is not shown on screen, though it still exists in state.",
+    "explanationIncorrect": "Marking an output sensitive does not encrypt the whole state file. It does not delete the value after apply, which remains available. It does not prevent defining the output, so redacting the value in CLI output is the effect."
+  },
+  {
+    "id": "tf-204",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which function converts a JSON-encoded string into a Terraform value you can index into?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "jsondecode"
+      },
+      {
+        "id": "o2",
+        "text": "jsonencode"
+      },
+      {
+        "id": "o3",
+        "text": "tostring"
+      },
+      {
+        "id": "o4",
+        "text": "trim"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "jsondecode parses a JSON string into a native Terraform value such as an object or list that you can then reference by key or index.",
+    "explanationIncorrect": "jsonencode does the reverse, turning a value into a JSON string. tostring converts a value to a string, not a structured value. trim removes characters from a string, so jsondecode is the function that parses JSON into a value."
+  },
+  {
+    "id": "tf-205",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which type constraint would you use for a variable that must be a set of key-value string pairs, such as tags?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "map(string)"
+      },
+      {
+        "id": "o2",
+        "text": "number"
+      },
+      {
+        "id": "o3",
+        "text": "bool"
+      },
+      {
+        "id": "o4",
+        "text": "list(number)"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "map(string) declares a collection of string values addressed by string keys, which fits key-value data like resource tags.",
+    "explanationIncorrect": "number holds a single numeric value, not key-value pairs. bool is a single true or false. list(number) is an ordered list of numbers without keys, so map(string) is the correct type for tag-like key-value pairs."
   }
 ]
