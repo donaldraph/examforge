@@ -4981,5 +4981,369 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Fault tolerance is the property that lets a system keep functioning despite the failure of one or more components.",
     "explanationIncorrect": "Vendor lock-in is a dependency risk, not a resilience property. Data residency concerns where data is stored geographically. Tagging is a way to label resources for organization, so fault tolerance is the correct term for surviving component failures."
+  },
+  {
+    "id": "clf-154",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Under the AWS shared responsibility model, which is AWS responsible for?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Security of the cloud, such as the physical infrastructure and hardware"
+      },
+      {
+        "id": "o2",
+        "text": "Configuring customer IAM policies"
+      },
+      {
+        "id": "o3",
+        "text": "Patching the customer's application code"
+      },
+      {
+        "id": "o4",
+        "text": "Managing customer data classification"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS is responsible for security of the cloud, including the physical facilities, hardware, and the global infrastructure that runs its services.",
+    "explanationIncorrect": "Configuring IAM policies is the customer's responsibility in the cloud. Patching the customer's application code is likewise the customer's job. Classifying customer data belongs to the customer, so security of the underlying infrastructure is AWS's responsibility."
+  },
+  {
+    "id": "clf-155",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which practice adds a second factor beyond a password to protect an AWS account sign-in?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Enabling multi-factor authentication (MFA)"
+      },
+      {
+        "id": "o2",
+        "text": "Using a longer bucket name"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling CloudTrail"
+      },
+      {
+        "id": "o4",
+        "text": "Sharing credentials among the team"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Multi-factor authentication requires an additional verification factor beyond the password, greatly reducing the risk of compromised credentials.",
+    "explanationIncorrect": "A longer bucket name has no bearing on sign-in security. Disabling CloudTrail removes auditing and weakens security. Sharing credentials increases risk and reduces accountability, so enabling MFA is the correct protective practice."
+  },
+  {
+    "id": "clf-156",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "Which service provides on-demand access to AWS compliance reports and certifications such as SOC and ISO?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Artifact"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon GuardDuty"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Artifact is the portal for downloading AWS compliance documents and audit artifacts like SOC and ISO reports on demand.",
+    "explanationIncorrect": "Amazon Inspector assesses workloads for vulnerabilities, not compliance report distribution. AWS Shield protects against DDoS attacks. Amazon GuardDuty is a threat-detection service, so AWS Artifact is the source of compliance reports."
+  },
+  {
+    "id": "clf-157",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service continuously monitors for malicious activity and unauthorized behavior using threat intelligence?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon GuardDuty"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon S3"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Budgets"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Route 53"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon GuardDuty is a threat-detection service that continuously analyzes activity and uses threat intelligence to flag malicious or unauthorized behavior.",
+    "explanationIncorrect": "Amazon S3 is object storage, not a threat detector. AWS Budgets tracks and alerts on spending. Amazon Route 53 is DNS and routing, so Amazon GuardDuty is the continuous threat-detection service."
+  },
+  {
+    "id": "clf-158",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "What is the recommended way to grant an application on EC2 access to other AWS services without embedding long-term keys?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Attach an IAM role to the EC2 instance"
+      },
+      {
+        "id": "o2",
+        "text": "Hardcode access keys in the code"
+      },
+      {
+        "id": "o3",
+        "text": "Store the root password on the instance"
+      },
+      {
+        "id": "o4",
+        "text": "Email keys to the instance"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Attaching an IAM role to the instance provides temporary, automatically rotated credentials so no long-term keys need to be stored on the instance.",
+    "explanationIncorrect": "Hardcoding access keys in code risks leaking long-term credentials. Storing the root password on the instance is dangerous and unnecessary. Emailing keys is insecure, so attaching an IAM role is the recommended approach."
+  },
+  {
+    "id": "clf-159",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "A security best practice recommends not using the AWS account root user for daily tasks. Why?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The root user has unrestricted access, so its compromise is catastrophic; use least-privilege IAM identities instead"
+      },
+      {
+        "id": "o2",
+        "text": "The root user cannot log in at all"
+      },
+      {
+        "id": "o3",
+        "text": "The root user is billed double"
+      },
+      {
+        "id": "o4",
+        "text": "The root user cannot create resources"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The root user can do anything in the account, so using scoped IAM identities for daily work limits damage if credentials are compromised.",
+    "explanationIncorrect": "The root user can log in; the guidance is to avoid daily use, not that it cannot sign in. It is not billed double. It can create resources, which is part of why it is so powerful, so avoiding catastrophic compromise via least privilege is the reason."
+  },
+  {
+    "id": "clf-160",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service helps protect web applications from common exploits like SQL injection and cross-site scripting?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS WAF"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EFS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS WAF is a web application firewall that filters and blocks common web exploits such as SQL injection and cross-site scripting.",
+    "explanationIncorrect": "Amazon Glacier is archival storage. AWS Batch runs batch compute jobs. Amazon EFS provides shared file storage, so AWS WAF is the service that protects web apps from common exploits."
+  },
+  {
+    "id": "clf-161",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service specifically defends against distributed denial-of-service attacks?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Shield"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Shield provides managed protection against distributed denial-of-service attacks, with a standard tier and an advanced paid tier.",
+    "explanationIncorrect": "Amazon Athena queries data with SQL and offers no DDoS defense. AWS Glue is an ETL service. Amazon SQS is a message queue, so AWS Shield is the DDoS protection service."
+  },
+  {
+    "id": "clf-162",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "Which principle should guide IAM permission assignment to reduce risk?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Grant least privilege, only the permissions a user or service needs"
+      },
+      {
+        "id": "o2",
+        "text": "Grant everyone administrator access"
+      },
+      {
+        "id": "o3",
+        "text": "Disable IAM to simplify access"
+      },
+      {
+        "id": "o4",
+        "text": "Use one shared login for all staff"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Least privilege grants only the permissions needed for a task, minimizing the potential damage from misuse or compromise.",
+    "explanationIncorrect": "Granting everyone administrator access maximizes risk. Disabling IAM removes access control entirely. Using one shared login destroys accountability and auditability, so least privilege is the guiding principle."
+  },
+  {
+    "id": "clf-163",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service assesses EC2 instances and container images for software vulnerabilities and unintended network exposure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Inspector"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Polly"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Direct Connect"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon CloudFront"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Inspector automatically scans workloads such as EC2 and container images for known vulnerabilities and exposure, reporting prioritized findings.",
+    "explanationIncorrect": "Amazon Polly converts text to speech. AWS Direct Connect provides a dedicated network connection. Amazon CloudFront is a content delivery network, so Amazon Inspector is the vulnerability assessment service."
+  },
+  {
+    "id": "clf-164",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which AWS service lets you centrally manage encryption keys used to protect data across services?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Key Management Service (KMS)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon SNS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Step Functions"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Lightsail"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS KMS centrally creates, stores, and controls encryption keys used to encrypt data across many AWS services.",
+    "explanationIncorrect": "Amazon SNS is a notification service. AWS Step Functions orchestrates workflows. Amazon Lightsail offers simplified virtual servers, so AWS KMS is the key-management service."
+  },
+  {
+    "id": "clf-165",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "hard",
+    "stem": "Why does encrypting data both at rest and in transit provide stronger protection than either alone?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It protects data when stored and while moving across networks, closing both exposure paths"
+      },
+      {
+        "id": "o2",
+        "text": "It doubles the storage capacity"
+      },
+      {
+        "id": "o3",
+        "text": "It removes the need for IAM"
+      },
+      {
+        "id": "o4",
+        "text": "It makes data uncompressible"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Encrypting at rest guards stored data and encrypting in transit guards data crossing networks, so combining them closes both avenues of exposure.",
+    "explanationIncorrect": "Encryption does not double storage capacity. It does not remove the need for IAM access controls, which remain essential. It does not make data uncompressible in a meaningful protective sense, so covering both stored and moving data is the reason it is stronger."
+  },
+  {
+    "id": "clf-166",
+    "exam": "aws-cloud-practitioner",
+    "domain": "Security and Compliance",
+    "difficulty": "medium",
+    "stem": "Which service provides a centralized view of security alerts and compliance status across an AWS account?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Security Hub"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Kinesis"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Amplify"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon MQ"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS Security Hub aggregates and prioritizes security findings from multiple services and checks compliance against standards in one place.",
+    "explanationIncorrect": "Amazon Kinesis streams real-time data. AWS Amplify supports building web and mobile apps. Amazon MQ is a managed message broker, so AWS Security Hub is the centralized security and compliance view."
   }
 ]
