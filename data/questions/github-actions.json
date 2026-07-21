@@ -6054,5 +6054,229 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Organization Actions settings let administrators enable Actions for all, selected, or no repositories, giving per-repository control.",
     "explanationIncorrect": "Deleting the .github folder is a manual per-repo hack that users can undo and does not enforce policy. Runner OS settings govern the machine, not organization policy. Branch protection rules guard branches, not whether Actions is enabled, so the organization Actions settings are the correct control."
+  },
+  {
+    "id": "gha-191",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a workflow step to continue the job even if that step fails. Which key do you set on the step?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "continue-on-error set to true"
+      },
+      {
+        "id": "o2",
+        "text": "if set to failure()"
+      },
+      {
+        "id": "o3",
+        "text": "needs set to the step id"
+      },
+      {
+        "id": "o4",
+        "text": "timeout-minutes set to 0"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Setting continue-on-error to true on a step lets the job proceed to later steps even when that step returns a non-zero exit code.",
+    "explanationIncorrect": "An if of failure() controls whether a step runs based on prior results but does not prevent a failing step from failing the job. needs orders jobs, not steps within a job. A timeout of 0 is invalid and does not tolerate failure, so continue-on-error is the correct key."
+  },
+  {
+    "id": "gha-192",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "Which context provides information about the event that triggered the workflow, such as the pull request number?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The github context"
+      },
+      {
+        "id": "o2",
+        "text": "The runner context"
+      },
+      {
+        "id": "o3",
+        "text": "The strategy context"
+      },
+      {
+        "id": "o4",
+        "text": "The secrets context"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The github context exposes event details like github.event, github.ref, and github.actor, including the triggering event's payload.",
+    "explanationIncorrect": "The runner context describes the runner's OS and temp paths, not the event. The strategy context reports matrix strategy details. The secrets context holds secret values, so the github context is where triggering-event data lives."
+  },
+  {
+    "id": "gha-193",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "A workflow should only run its deploy job when the run is on the main branch and triggered by a push. Which job-level if expression is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "github.event_name == 'push' && github.ref == 'refs/heads/main'"
+      },
+      {
+        "id": "o2",
+        "text": "github.event == 'push' || github.ref == 'main'"
+      },
+      {
+        "id": "o3",
+        "text": "github.ref == 'main' && github.push == true"
+      },
+      {
+        "id": "o4",
+        "text": "github.branch == 'refs/heads/main'"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "github.event_name holds the trigger name and github.ref for a branch is the full refs/heads/main, so combining both with && gates the job precisely.",
+    "explanationIncorrect": "Using || would run the job when only one condition holds, and github.event is not the event name property. There is no github.push boolean, and github.ref is not the bare name main. There is no github.branch context, so the event_name and full-ref check is correct."
+  },
+  {
+    "id": "gha-194",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want to define a job-level environment variable that overrides a workflow-level one of the same name. Where do you place it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In an env block under the specific job"
+      },
+      {
+        "id": "o2",
+        "text": "In the workflow's on block"
+      },
+      {
+        "id": "o3",
+        "text": "In the repository description"
+      },
+      {
+        "id": "o4",
+        "text": "In a matrix include entry only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A job-level env block sets variables scoped to that job and takes precedence over a workflow-level variable of the same name for that job.",
+    "explanationIncorrect": "The on block defines triggers, not environment variables. The repository description is free text never read for env values. A matrix include entry supplies matrix values, not a general job env override, so a job-level env block is correct."
+  },
+  {
+    "id": "gha-195",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "When a reusable workflow is called, on which runner do its jobs execute?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "On runners selected by the reusable workflow's own runs-on settings"
+      },
+      {
+        "id": "o2",
+        "text": "Always on the caller's first runner"
+      },
+      {
+        "id": "o3",
+        "text": "On a special reusable-only runner"
+      },
+      {
+        "id": "o4",
+        "text": "They do not run on any runner"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A reusable workflow's jobs run on the runners defined by that workflow's own runs-on, independent of the caller's job runners.",
+    "explanationIncorrect": "The jobs do not automatically inherit the caller's first runner. There is no special reusable-only runner class. The jobs certainly do run on runners, so the reusable workflow's own runs-on settings determine the runner."
+  },
+  {
+    "id": "gha-196",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "hard",
+    "stem": "You reference a third-party action with owner/action@v3 and want to verify exactly what code runs. What is the most reliable approach?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Replace the tag with the full commit SHA the tag currently points to after reviewing that commit"
+      },
+      {
+        "id": "o2",
+        "text": "Trust the tag because tags are immutable"
+      },
+      {
+        "id": "o3",
+        "text": "Rename the action locally"
+      },
+      {
+        "id": "o4",
+        "text": "Add a comment describing the action"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Pinning to the full commit SHA after reviewing that commit guarantees the exact reviewed code runs, since a SHA is immutable while a tag can be moved.",
+    "explanationIncorrect": "Tags are not immutable and a maintainer can repoint them, so trusting the tag is unsafe. Renaming the action locally does not change what code executes. A descriptive comment documents intent but verifies nothing, so pinning to the reviewed SHA is the reliable approach."
+  },
+  {
+    "id": "gha-197",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "A reusable workflow declares a required input with no default. What happens if the caller omits it?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The workflow call fails validation because the required input is missing"
+      },
+      {
+        "id": "o2",
+        "text": "The input silently becomes an empty string and runs anyway"
+      },
+      {
+        "id": "o3",
+        "text": "The caller's repository name is substituted"
+      },
+      {
+        "id": "o4",
+        "text": "The reusable workflow is skipped without error"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A required input with no default must be supplied by the caller; omitting it causes the call to fail because the contract is unmet.",
+    "explanationIncorrect": "It does not silently default to an empty string, since the input is marked required. It does not substitute the caller's repository name. It does not skip silently, because the missing required input is an error, so failing validation is correct."
+  },
+  {
+    "id": "gha-198",
+    "exam": "github-actions",
+    "domain": "Consume workflows",
+    "difficulty": "medium",
+    "stem": "Which uses reference correctly calls an action defined in a subdirectory of the same repository?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "./.github/actions/my-action"
+      },
+      {
+        "id": "o2",
+        "text": "owner/my-action@subdir"
+      },
+      {
+        "id": "o3",
+        "text": "https://github.com/actions"
+      },
+      {
+        "id": "o4",
+        "text": "my-action.yml"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A local action in the same repository is referenced by a relative path starting with ./ that points to the directory containing its action.yml.",
+    "explanationIncorrect": "The owner/my-action@subdir form is not how local subdirectory actions are addressed. A bare URL is not a valid uses reference. Pointing at a single YAML file name without the directory path is incorrect, so the relative ./ path is the right reference."
   }
 ]
