@@ -6784,5 +6784,173 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "A module returns data to its caller through output values, so defining an output for the resource id makes it available to the calling configuration.",
     "explanationIncorrect": "An input variable receives values, it does not return them. A provider block configures a provider. A backend block configures state storage and is not valid in a child module, so an output value is correct."
+  },
+  {
+    "id": "tf-215",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "What does a workspace in HCP Terraform manage?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A distinct state and set of variables for a collection of infrastructure"
+      },
+      {
+        "id": "o2",
+        "text": "The formatting of configuration files"
+      },
+      {
+        "id": "o3",
+        "text": "The compilation of provider plugins"
+      },
+      {
+        "id": "o4",
+        "text": "The CLI binary storage"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An HCP Terraform workspace holds its own state, variables, and run history for a specific set of infrastructure, enabling isolation and collaboration.",
+    "explanationIncorrect": "Formatting is handled by terraform fmt. Provider plugins are not compiled by workspaces. The CLI binary is not stored in a workspace, so managing distinct state and variables is the workspace's role."
+  },
+  {
+    "id": "tf-216",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "Which HCP Terraform capability enforces policies such as required tags before an apply?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Policy as code with Sentinel or OPA"
+      },
+      {
+        "id": "o2",
+        "text": "terraform validate alone"
+      },
+      {
+        "id": "o3",
+        "text": "The state list command"
+      },
+      {
+        "id": "o4",
+        "text": "The fmt command"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform supports policy as code using Sentinel or Open Policy Agent to enforce guardrails, blocking applies that violate defined policies.",
+    "explanationIncorrect": "terraform validate only checks configuration validity, not organizational policy. terraform state list enumerates resources without enforcement. terraform fmt formats code, so policy as code with Sentinel or OPA is the enforcement capability."
+  },
+  {
+    "id": "tf-217",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "medium",
+    "stem": "What is a primary benefit of managing infrastructure as code?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Version-controlled, repeatable, and reviewable infrastructure changes"
+      },
+      {
+        "id": "o2",
+        "text": "Faster typing in the console"
+      },
+      {
+        "id": "o3",
+        "text": "Eliminating all testing"
+      },
+      {
+        "id": "o4",
+        "text": "Guaranteeing zero cost"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Infrastructure as code makes changes version-controlled, repeatable, and reviewable like application code, improving consistency and collaboration.",
+    "explanationIncorrect": "It is not about console typing speed, which IaC largely replaces. It does not eliminate testing, which remains important. It does not guarantee zero cost, so version-controlled, repeatable, reviewable changes is the benefit."
+  },
+  {
+    "id": "tf-218",
+    "exam": "terraform-associate",
+    "domain": "IaC concepts and Terraform's purpose",
+    "difficulty": "hard",
+    "stem": "What does configuration drift mean?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Real infrastructure differs from what the configuration and state describe"
+      },
+      {
+        "id": "o2",
+        "text": "The CLI version changed"
+      },
+      {
+        "id": "o3",
+        "text": "The code was reformatted"
+      },
+      {
+        "id": "o4",
+        "text": "A variable was renamed"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Drift occurs when infrastructure is changed outside Terraform, so the real resources no longer match the configuration and recorded state.",
+    "explanationIncorrect": "A CLI version change is not drift. Reformatting code does not change infrastructure. Renaming a variable is a configuration edit, not a mismatch with real resources, so a difference between real infrastructure and the configuration and state is drift."
+  },
+  {
+    "id": "tf-219",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "medium",
+    "stem": "Which construct lets you name an expression once and reuse it across a configuration without exposing an input?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A local value in a locals block"
+      },
+      {
+        "id": "o2",
+        "text": "An output block"
+      },
+      {
+        "id": "o3",
+        "text": "A provider block"
+      },
+      {
+        "id": "o4",
+        "text": "A backend block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A local value in a locals block names an expression you can reference repeatedly, reducing duplication without exposing an input variable.",
+    "explanationIncorrect": "An output block exposes values to callers, not internal reuse. A provider block configures a provider. A backend block configures state storage, so a local value is the construct for reusable internal values."
+  },
+  {
+    "id": "tf-220",
+    "exam": "terraform-associate",
+    "domain": "Configuration and functions",
+    "difficulty": "hard",
+    "stem": "Which function returns the first non-null argument, useful for a fallback default?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "coalesce"
+      },
+      {
+        "id": "o2",
+        "text": "join"
+      },
+      {
+        "id": "o3",
+        "text": "length"
+      },
+      {
+        "id": "o4",
+        "text": "upper"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "coalesce returns the first non-null, non-empty argument, making it handy for supplying a default when a value may be unset.",
+    "explanationIncorrect": "join concatenates list elements into a string. length returns the number of elements or characters. upper converts a string to uppercase, so coalesce is the function that returns the first non-null value."
   }
 ]
