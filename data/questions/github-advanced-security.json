@@ -5943,5 +5943,285 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "The path view traces input from source to sink, giving the developer the context to add validation or sanitization at the correct location.",
     "explanationIncorrect": "It does not list contributors, which is unrelated to the finding. It is not a line counter. It does not report repository size, so revealing the source-to-sink path for targeted remediation is the value."
+  },
+  {
+    "id": "ghas-186",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which practice best embodies shifting security left with GHAS?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Running code scanning and dependency review on pull requests before merge"
+      },
+      {
+        "id": "o2",
+        "text": "Only scanning production once a quarter"
+      },
+      {
+        "id": "o3",
+        "text": "Reviewing security after release"
+      },
+      {
+        "id": "o4",
+        "text": "Relying solely on manual annual audits"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Shifting left means catching issues early, so running code scanning and dependency review on pull requests stops problems before they merge.",
+    "explanationIncorrect": "Scanning production only quarterly finds issues long after they ship. Reviewing security after release is the opposite of shifting left. Relying solely on annual audits leaves long windows of exposure, so PR-time scanning is the best embodiment."
+  },
+  {
+    "id": "ghas-187",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "To prevent unreviewed code from reaching main, which control should accompany GHAS checks?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Branch protection or rulesets requiring reviews and passing security checks"
+      },
+      {
+        "id": "o2",
+        "text": "Allowing direct pushes to main by everyone"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling pull requests"
+      },
+      {
+        "id": "o4",
+        "text": "Removing all required checks"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Branch protection or rulesets can require pull request reviews and mandate that security checks pass before code merges into main.",
+    "explanationIncorrect": "Allowing everyone to push directly to main bypasses review entirely. Disabling pull requests removes the review surface GHAS integrates with. Removing required checks defeats enforcement, so branch protection requiring reviews and checks is the correct accompanying control."
+  },
+  {
+    "id": "ghas-188",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "A backlog contains hundreds of code scanning alerts. Which triage strategy is most effective?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Prioritize by severity and exploitability, focusing first on high-severity reachable issues"
+      },
+      {
+        "id": "o2",
+        "text": "Fix alerts in random order"
+      },
+      {
+        "id": "o3",
+        "text": "Dismiss every alert to clear the list"
+      },
+      {
+        "id": "o4",
+        "text": "Only address the newest alert and ignore the rest"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Effective triage ranks alerts by severity and real exploitability so the most dangerous, reachable vulnerabilities are remediated first.",
+    "explanationIncorrect": "Fixing in random order wastes effort on low-impact items while critical ones linger. Dismissing every alert hides genuine risk. Addressing only the newest alert ignores serious older ones, so severity-and-exploitability prioritization is the most effective strategy."
+  },
+  {
+    "id": "ghas-189",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which practice reduces the blast radius if a workflow token is misused?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Grant least-privilege permissions to the GITHUB_TOKEN per workflow"
+      },
+      {
+        "id": "o2",
+        "text": "Always grant write-all permissions"
+      },
+      {
+        "id": "o3",
+        "text": "Share one personal access token across all repos"
+      },
+      {
+        "id": "o4",
+        "text": "Print the token in logs for debugging"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Scoping the automatic token to only the permissions a workflow needs limits what an attacker could do if that token were misused.",
+    "explanationIncorrect": "Granting write-all maximizes rather than reduces the blast radius. Sharing one personal access token everywhere spreads risk widely and complicates revocation. Printing the token in logs leaks it outright, so least-privilege token scoping is the correct practice."
+  },
+  {
+    "id": "ghas-190",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Why should you pin third-party actions to a full commit SHA in security-sensitive workflows?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "To prevent a maintainer from moving a tag to malicious code you did not review"
+      },
+      {
+        "id": "o2",
+        "text": "To make the workflow file shorter"
+      },
+      {
+        "id": "o3",
+        "text": "To disable the action's inputs"
+      },
+      {
+        "id": "o4",
+        "text": "To skip the checkout step"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A commit SHA is immutable, so pinning ensures the exact reviewed code runs and a moved tag cannot silently introduce malicious changes.",
+    "explanationIncorrect": "Pinning to a SHA makes the reference longer, not shorter. It does not disable the action's inputs. It has no relationship to skipping checkout, so preventing a tag from being re-pointed to malicious code is the security reason."
+  },
+  {
+    "id": "ghas-191",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "An organization wants consistent security policy across many repositories without configuring each one by hand. Which approach scales best?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use organization-level security settings, rulesets, and required workflows to enforce policy centrally"
+      },
+      {
+        "id": "o2",
+        "text": "Manually edit each repository every week"
+      },
+      {
+        "id": "o3",
+        "text": "Rely on individual developers to remember policy"
+      },
+      {
+        "id": "o4",
+        "text": "Document policy only in a shared spreadsheet"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Central controls like organization security settings, rulesets, and required workflows apply policy across repositories consistently and at scale.",
+    "explanationIncorrect": "Manually editing each repository weekly is error-prone and does not scale. Relying on developers to remember policy yields inconsistent enforcement. A spreadsheet documents intent but enforces nothing, so central organization-level controls scale best."
+  },
+  {
+    "id": "ghas-192",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "After remediating a vulnerability, how do you confirm the fix in code scanning?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Re-run the analysis and verify the alert is resolved as fixed"
+      },
+      {
+        "id": "o2",
+        "text": "Delete the alert from the database manually"
+      },
+      {
+        "id": "o3",
+        "text": "Assume it is fixed without re-scanning"
+      },
+      {
+        "id": "o4",
+        "text": "Close the repository"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Running code scanning again on the fixed code lets GitHub mark the alert as fixed when the vulnerable pattern is no longer present, confirming the remediation.",
+    "explanationIncorrect": "Manually deleting the alert from the database is not the intended workflow and skips verification. Assuming a fix without re-scanning risks an incomplete remediation. Closing the repository is drastic and unnecessary, so re-running analysis to verify resolution is correct."
+  },
+  {
+    "id": "ghas-193",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which habit most reduces the introduction of secrets into repositories over time?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Developer education combined with push protection and pre-commit checks"
+      },
+      {
+        "id": "o2",
+        "text": "Turning off all alerts to avoid noise"
+      },
+      {
+        "id": "o3",
+        "text": "Committing secrets to a private branch"
+      },
+      {
+        "id": "o4",
+        "text": "Emailing secrets between developers"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Combining developer awareness with automated push protection and pre-commit hooks addresses both human and technical causes of secret leakage.",
+    "explanationIncorrect": "Turning off alerts removes the feedback that catches leaks. Committing secrets to a private branch still records them in history. Emailing secrets spreads them insecurely, so education plus push protection and pre-commit checks is the most effective habit."
+  },
+  {
+    "id": "ghas-194",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "hard",
+    "stem": "A code scanning alert is genuinely not exploitable in your context. What is the correct way to record this decision?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Dismiss the alert with a reason such as won't fix or used in tests, preserving an auditable rationale"
+      },
+      {
+        "id": "o2",
+        "text": "Silently ignore it with no record"
+      },
+      {
+        "id": "o3",
+        "text": "Delete the scanning workflow"
+      },
+      {
+        "id": "o4",
+        "text": "Force-push to erase the file history"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Dismissing with a documented reason records why the alert was accepted, keeping an auditable trail while removing it from the active list.",
+    "explanationIncorrect": "Silently ignoring it leaves no rationale for future reviewers. Deleting the scanning workflow removes protection across the whole repo. Force-pushing to erase history is destructive and does not address the decision record, so dismissing with a documented reason is correct."
+  },
+  {
+    "id": "ghas-195",
+    "exam": "github-advanced-security",
+    "domain": "Best practices and remediation",
+    "difficulty": "medium",
+    "stem": "Which metric helps leadership understand whether the team is keeping up with security findings?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Mean time to remediate alerts and the trend of open versus resolved alerts"
+      },
+      {
+        "id": "o2",
+        "text": "The number of repository stars"
+      },
+      {
+        "id": "o3",
+        "text": "The count of wiki pages"
+      },
+      {
+        "id": "o4",
+        "text": "The color of the repository avatar"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Tracking mean time to remediate and the open-versus-resolved trend shows whether the team is closing findings faster than new ones arrive.",
+    "explanationIncorrect": "Repository stars measure popularity, not security posture. The number of wiki pages reflects documentation volume, not remediation. An avatar's color is cosmetic, so remediation time and open-versus-resolved trends are the meaningful metrics."
   }
 ]
