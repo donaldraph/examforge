@@ -6069,5 +6069,229 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "CloudFront caches content at edge locations so repeated requests are served from the cache, reducing origin data transfer and often lowering cost.",
     "explanationIncorrect": "Serving every request from a distant origin maximizes transfer cost and latency. Disabling caching forces every request back to the origin. Manually duplicating the origin in every AZ adds cost and complexity, so serving through CloudFront reduces repeated transfer costs."
+  },
+  {
+    "id": "saa-191",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "To make a stateless web tier survive the loss of one Availability Zone, what should you do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run instances across multiple AZs behind an ELB with Auto Scaling"
+      },
+      {
+        "id": "o2",
+        "text": "Run all instances in one AZ with a bigger size"
+      },
+      {
+        "id": "o3",
+        "text": "Use one instance and reboot on failure"
+      },
+      {
+        "id": "o4",
+        "text": "Store sessions on local instance disk"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Spreading instances across multiple AZs behind a load balancer with Auto Scaling keeps healthy capacity serving traffic when a zone fails.",
+    "explanationIncorrect": "Concentrating instances in one AZ leaves the tier exposed to that zone's failure. A single instance is a single point of failure regardless of reboots. Local-disk sessions tie users to one instance and break resilience, so multi-AZ behind an ELB with Auto Scaling is correct."
+  },
+  {
+    "id": "saa-192",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "hard",
+    "stem": "A relational database must fail over automatically if its Availability Zone fails. Which configuration fits?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon RDS Multi-AZ with a synchronous standby"
+      },
+      {
+        "id": "o2",
+        "text": "A single-AZ RDS instance with nightly snapshots"
+      },
+      {
+        "id": "o3",
+        "text": "A self-managed database on one EC2 instance"
+      },
+      {
+        "id": "o4",
+        "text": "The database stored as one S3 object"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RDS Multi-AZ maintains a synchronous standby in another zone and fails over automatically, meeting the requirement with minimal manual effort.",
+    "explanationIncorrect": "A single-AZ instance with nightly snapshots loses recent data and requires manual restore. A self-managed EC2 database is a manual single point of failure. A relational database cannot run as one S3 object, so RDS Multi-AZ is the fitting configuration."
+  },
+  {
+    "id": "saa-193",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which feature routes users away from a failed endpoint to a healthy one using DNS health checks?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Route 53 failover routing with health checks"
+      },
+      {
+        "id": "o2",
+        "text": "S3 versioning"
+      },
+      {
+        "id": "o3",
+        "text": "EBS snapshots"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Budgets"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Route 53 failover routing uses health checks to send traffic to a healthy endpoint and away from a failing one, improving resilience.",
+    "explanationIncorrect": "S3 versioning preserves object versions and does not route traffic. EBS snapshots back up volumes. AWS Budgets tracks spending, so Route 53 failover routing with health checks is the correct feature."
+  },
+  {
+    "id": "saa-194",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Resilient Architectures",
+    "difficulty": "medium",
+    "stem": "Which service buffers a spiky producer's messages so a slower consumer loses no requests?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SQS"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EBS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SQS queues messages so a burst from the producer is buffered and the consumer processes at its own pace without dropping requests.",
+    "explanationIncorrect": "Amazon CloudFront caches content, not work items. Amazon Route 53 is DNS. Amazon EBS is block storage, so Amazon SQS is the decoupling buffer that prevents request loss."
+  },
+  {
+    "id": "saa-195",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To offload repeated reads from a relational database, which service adds an in-memory cache?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon ElastiCache"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SES"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon ElastiCache provides managed in-memory caching with Redis or Memcached, offloading repeated reads and cutting latency.",
+    "explanationIncorrect": "Amazon Glacier is archival storage with slow retrieval. AWS Snowball transfers data physically. Amazon SES sends email, so Amazon ElastiCache is the in-memory caching service."
+  },
+  {
+    "id": "saa-196",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "hard",
+    "stem": "A read-heavy relational workload must scale reads beyond a single primary. Which RDS feature helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Read replicas that serve read traffic"
+      },
+      {
+        "id": "o2",
+        "text": "The Multi-AZ standby used for reads"
+      },
+      {
+        "id": "o3",
+        "text": "Instance store volumes"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Transfer Acceleration"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "RDS read replicas add read-only endpoints so read traffic can be distributed, scaling read capacity horizontally.",
+    "explanationIncorrect": "The Multi-AZ standby is for failover and does not serve reads. Instance store volumes are ephemeral local disks. S3 Transfer Acceleration speeds S3 uploads, so read replicas are the feature for scaling reads."
+  },
+  {
+    "id": "saa-197",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "To serve global users low-latency static content, which service caches at edge locations?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon RDS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Cognito"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon CloudFront caches static content at edge locations worldwide, reducing latency by serving it close to users.",
+    "explanationIncorrect": "Amazon RDS is a database. AWS Batch runs batch jobs. Amazon Cognito manages authentication, so Amazon CloudFront is the low-latency content delivery service."
+  },
+  {
+    "id": "saa-198",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design High-Performing Architectures",
+    "difficulty": "medium",
+    "stem": "Which service provides a managed in-memory cache in front of DynamoDB for microsecond reads?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "DynamoDB Accelerator (DAX)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon EFS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "DynamoDB Accelerator is a managed in-memory cache for DynamoDB that delivers microsecond read latency for eligible requests.",
+    "explanationIncorrect": "Amazon Athena queries S3 data with SQL. AWS Glue is an ETL service. Amazon EFS is a shared file system, so DynamoDB Accelerator is the caching layer for DynamoDB."
   }
 ]
