@@ -6470,5 +6470,173 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Few-shot prompting includes a small number of examples in the prompt so the model infers the desired pattern at inference time without weight updates.",
     "explanationIncorrect": "Full fine-tuning updates weights on new data, unlike in-prompt examples. Data sharding splits data across storage. Hyperparameter search tunes training settings, so few-shot prompting is the technique described."
+  },
+  {
+    "id": "aip-205",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which AWS capability lets you filter harmful content and block disallowed topics in a generative AI app?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Guardrails for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Athena"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Snowball"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Lightsail"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Guardrails for Amazon Bedrock let you configure content filters and denied topics so generative outputs stay safe and on-policy.",
+    "explanationIncorrect": "Amazon Athena queries data in S3 and has no safety-filtering role. AWS Snowball moves data physically. Amazon Lightsail offers simplified compute, so Guardrails for Amazon Bedrock is the safeguard capability."
+  },
+  {
+    "id": "aip-206",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "hard",
+    "stem": "Why does keeping a human in the loop matter for high-stakes AI decisions?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It provides oversight and accountability, allowing review or override of automated decisions"
+      },
+      {
+        "id": "o2",
+        "text": "It always makes inference faster"
+      },
+      {
+        "id": "o3",
+        "text": "It reduces storage costs"
+      },
+      {
+        "id": "o4",
+        "text": "It increases the model's token limit"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A human in the loop adds oversight and accountability so people can review or override automated decisions in sensitive contexts.",
+    "explanationIncorrect": "Human review typically adds latency rather than speeding inference. It does not reduce storage costs. It does not change the model's token limit, so oversight and accountability is why it matters."
+  },
+  {
+    "id": "aip-207",
+    "exam": "aws-ai-practitioner",
+    "domain": "Guidelines for Responsible AI",
+    "difficulty": "medium",
+    "stem": "Which AWS tool helps detect bias in data and models and explain feature importance?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker Clarify"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Redshift"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Lambda"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon VPC"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SageMaker Clarify detects potential bias in datasets and models and provides explanations such as feature importance for responsible AI.",
+    "explanationIncorrect": "Amazon Redshift is a data warehouse. AWS Lambda runs event-driven code. Amazon VPC provides isolated networking, so SageMaker Clarify is the bias-detection and explainability tool."
+  },
+  {
+    "id": "aip-208",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which service manages fine-grained permissions for who can invoke a Bedrock model?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Identity and Access Management (IAM)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SES"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Snow Family"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "IAM defines fine-grained policies controlling which identities can invoke models and access resources, enforcing least privilege.",
+    "explanationIncorrect": "Amazon CloudFront is a content delivery network. Amazon SES sends email. The AWS Snow Family moves data physically, so IAM is the service that governs invocation permissions."
+  },
+  {
+    "id": "aip-209",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "To keep traffic to a managed AI service off the public internet, which networking construct helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A VPC endpoint using AWS PrivateLink"
+      },
+      {
+        "id": "o2",
+        "text": "A public S3 website endpoint"
+      },
+      {
+        "id": "o3",
+        "text": "Disabling IAM"
+      },
+      {
+        "id": "o4",
+        "text": "Emailing the data instead"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A VPC endpoint backed by AWS PrivateLink keeps traffic to the service on the AWS private network rather than traversing the public internet.",
+    "explanationIncorrect": "A public S3 website endpoint exposes content to everyone, the opposite of private. Disabling IAM removes access controls and raises risk. Emailing data is insecure and unrelated to network isolation, so a VPC endpoint with PrivateLink is correct."
+  },
+  {
+    "id": "aip-210",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which practice reduces exposure of personally identifiable information when preparing training data?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Redacting or anonymizing PII before training"
+      },
+      {
+        "id": "o2",
+        "text": "Publishing raw PII to a public bucket"
+      },
+      {
+        "id": "o3",
+        "text": "Emailing PII to the whole company"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling all encryption"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Redacting or anonymizing PII before training limits exposure and supports privacy and compliance requirements.",
+    "explanationIncorrect": "Publishing raw PII to a public bucket exposes it broadly. Emailing PII company-wide spreads it needlessly. Disabling encryption increases risk, so redacting or anonymizing PII is the risk-reducing practice."
   }
 ]
