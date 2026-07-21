@@ -5938,5 +5938,285 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Evaluating performance for each demographic subgroup reveals disparities that a single overall metric can hide, supporting fairness assessment.",
     "explanationIncorrect": "Reporting only overall accuracy can mask subgroup disparities. Ignoring subgroup outcomes defeats fairness evaluation. Testing only on training data gives an overly optimistic and non-representative result, so measuring across subgroups is the fairness-aware step."
+  },
+  {
+    "id": "aip-186",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which AWS service manages fine-grained permissions controlling who can invoke a Bedrock model or access training data?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Identity and Access Management (IAM)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "Amazon SES"
+      },
+      {
+        "id": "o4",
+        "text": "AWS Snow Family"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "IAM defines fine-grained policies that control which identities may invoke models or access data, enforcing least-privilege access.",
+    "explanationIncorrect": "Amazon CloudFront is a content delivery network, not an access-control service. Amazon SES sends email. The AWS Snow Family moves data physically, so IAM is the service that governs permissions."
+  },
+  {
+    "id": "aip-187",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "To keep training data encrypted at rest with managed keys, which service do you typically use?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS Key Management Service (KMS)"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Comprehend"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Step Functions"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Polly"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS KMS creates and manages encryption keys used to encrypt data at rest across many AWS services, including data used for AI workloads.",
+    "explanationIncorrect": "Amazon Comprehend is an NLP service, not a key manager. AWS Step Functions orchestrates workflows. Amazon Polly converts text to speech, so AWS KMS is the service for managed encryption keys."
+  },
+  {
+    "id": "aip-188",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "You must ensure that data sent to a Bedrock model stays within your private network path and is not exposed to the public internet. Which approach helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use a VPC endpoint (AWS PrivateLink) to reach the service privately"
+      },
+      {
+        "id": "o2",
+        "text": "Publish the data to a public S3 website"
+      },
+      {
+        "id": "o3",
+        "text": "Email the data to the model"
+      },
+      {
+        "id": "o4",
+        "text": "Disable IAM entirely"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A VPC endpoint powered by AWS PrivateLink lets traffic reach the service over the AWS private network without traversing the public internet.",
+    "explanationIncorrect": "Publishing data to a public S3 website exposes it to everyone, the opposite of private. Emailing data is insecure and unrelated to network isolation. Disabling IAM removes access controls and increases risk, so a VPC endpoint with PrivateLink is the correct approach."
+  },
+  {
+    "id": "aip-189",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which service records API calls across your account to support auditing of who did what and when with AI resources?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon QuickSight"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Amplify"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Cognito"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "AWS CloudTrail logs API activity across the account, providing an audit trail of actions taken on AI and other resources.",
+    "explanationIncorrect": "Amazon QuickSight is a business intelligence and dashboard service. AWS Amplify helps build and host web and mobile apps. Amazon Cognito manages user authentication, so AWS CloudTrail is the service that records API activity for auditing."
+  },
+  {
+    "id": "aip-190",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Before using a public dataset to train a commercial model, which governance concern is most important to check?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The dataset's license and permitted uses"
+      },
+      {
+        "id": "o2",
+        "text": "The dataset's file color scheme"
+      },
+      {
+        "id": "o3",
+        "text": "The number of GPUs available"
+      },
+      {
+        "id": "o4",
+        "text": "The monitor resolution"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Verifying the dataset's license and permitted uses ensures you have the legal right to train a commercial model on it, a core data-governance concern.",
+    "explanationIncorrect": "A dataset has no meaningful color scheme to evaluate. The number of GPUs is an infrastructure matter, not a governance one. Monitor resolution is irrelevant to data rights, so checking the license and permitted uses is the key concern."
+  },
+  {
+    "id": "aip-191",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "Under the AWS shared responsibility model for a managed AI service, who is responsible for configuring access permissions and protecting the data you put in?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The customer is responsible for their data and access configuration"
+      },
+      {
+        "id": "o2",
+        "text": "AWS is responsible for the customer's IAM policies"
+      },
+      {
+        "id": "o3",
+        "text": "No one is responsible for access"
+      },
+      {
+        "id": "o4",
+        "text": "The internet service provider handles it"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In the shared responsibility model AWS secures the underlying infrastructure, while the customer configures access and safeguards the data they bring, described as security in the cloud.",
+    "explanationIncorrect": "AWS does not author the customer's IAM policies, which the customer must define. It is false that no one is responsible for access, since the customer is. The internet service provider has no role in AWS access configuration, so the customer owning data and access is correct."
+  },
+  {
+    "id": "aip-192",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which practice reduces the risk of exposing personally identifiable information when preparing training data?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Redacting or anonymizing PII before training"
+      },
+      {
+        "id": "o2",
+        "text": "Publishing raw PII to a public bucket"
+      },
+      {
+        "id": "o3",
+        "text": "Emailing PII to the whole company"
+      },
+      {
+        "id": "o4",
+        "text": "Disabling all encryption"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Redacting or anonymizing personally identifiable information before training limits exposure and supports privacy and compliance requirements.",
+    "explanationIncorrect": "Publishing raw PII to a public bucket exposes it broadly. Emailing PII company-wide spreads it unnecessarily. Disabling encryption increases risk, so redacting or anonymizing PII is the risk-reducing practice."
+  },
+  {
+    "id": "aip-193",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which service can automatically discover and classify sensitive data such as PII stored in Amazon S3?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Macie"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Lex"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Fargate"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Neptune"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Macie uses machine learning to discover and classify sensitive data like PII in Amazon S3, helping with data governance.",
+    "explanationIncorrect": "Amazon Lex builds conversational chatbots and does not classify stored data. AWS Fargate runs containers serverlessly. Amazon Neptune is a graph database, so Amazon Macie is the service for discovering sensitive data in S3."
+  },
+  {
+    "id": "aip-194",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "hard",
+    "stem": "Why is it important to control and monitor prompts and outputs in a generative AI application handling customer data?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Prompts and outputs can contain sensitive data, so logging and access must be governed to prevent leaks"
+      },
+      {
+        "id": "o2",
+        "text": "Prompts never contain sensitive information"
+      },
+      {
+        "id": "o3",
+        "text": "Outputs are always encrypted regardless of configuration"
+      },
+      {
+        "id": "o4",
+        "text": "Monitoring is prohibited by AWS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because prompts and responses may include sensitive customer data, governing their logging, storage, and access prevents inadvertent leaks and supports compliance.",
+    "explanationIncorrect": "It is false that prompts never contain sensitive information; they often do. Outputs are not automatically encrypted regardless of how you configure the system. AWS does not prohibit monitoring, which it encourages, so governing prompts and outputs to prevent leaks is the correct rationale."
+  },
+  {
+    "id": "aip-195",
+    "exam": "aws-ai-practitioner",
+    "domain": "Security, Compliance, and Governance for AI Solutions",
+    "difficulty": "medium",
+    "stem": "Which principle should guide the permissions granted to an application that calls a foundation model?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Least privilege, granting only the access the application needs"
+      },
+      {
+        "id": "o2",
+        "text": "Grant full administrator access for convenience"
+      },
+      {
+        "id": "o3",
+        "text": "Share one root credential across services"
+      },
+      {
+        "id": "o4",
+        "text": "Disable authentication to simplify calls"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Following least privilege, the application should receive only the specific permissions required to invoke the model and access needed resources, limiting risk.",
+    "explanationIncorrect": "Granting full administrator access for convenience violates least privilege and widens the blast radius. Sharing a root credential is dangerous and unauditable. Disabling authentication removes access control entirely, so least privilege is the guiding principle."
   }
 ]
