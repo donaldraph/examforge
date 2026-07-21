@@ -6532,5 +6532,257 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "map(string) declares a collection of string values addressed by string keys, which fits key-value data like resource tags.",
     "explanationIncorrect": "number holds a single numeric value, not key-value pairs. bool is a single true or false. list(number) is an ordered list of numbers without keys, so map(string) is the correct type for tag-like key-value pairs."
+  },
+  {
+    "id": "tf-206",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command initializes a working directory, downloading providers and configuring the backend?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform init"
+      },
+      {
+        "id": "o2",
+        "text": "terraform plan"
+      },
+      {
+        "id": "o3",
+        "text": "terraform apply"
+      },
+      {
+        "id": "o4",
+        "text": "terraform output"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform init prepares the working directory by downloading provider plugins and configuring the backend before other commands run.",
+    "explanationIncorrect": "terraform plan requires initialization to have already occurred. terraform apply makes changes and also depends on init. terraform output reads existing values, so terraform init is the initialization command."
+  },
+  {
+    "id": "tf-207",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "hard",
+    "stem": "You want to apply exactly the actions from a reviewed plan with no re-evaluation. What should you do?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Run terraform plan -out to save the plan, then terraform apply on that file"
+      },
+      {
+        "id": "o2",
+        "text": "Run terraform apply with no arguments and hope it matches"
+      },
+      {
+        "id": "o3",
+        "text": "Edit the state file directly"
+      },
+      {
+        "id": "o4",
+        "text": "Run terraform destroy first"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Saving the plan with terraform plan -out and applying that file guarantees Terraform executes exactly the reviewed actions without recomputing.",
+    "explanationIncorrect": "Applying with no arguments recomputes the plan and may differ from what was reviewed. Editing state directly is risky and does not apply the reviewed plan. Destroying removes resources rather than applying the plan, so applying a saved plan file is correct."
+  },
+  {
+    "id": "tf-208",
+    "exam": "terraform-associate",
+    "domain": "Core workflow",
+    "difficulty": "medium",
+    "stem": "Which command previews changes without modifying real infrastructure?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "terraform plan"
+      },
+      {
+        "id": "o2",
+        "text": "terraform apply"
+      },
+      {
+        "id": "o3",
+        "text": "terraform destroy"
+      },
+      {
+        "id": "o4",
+        "text": "terraform import"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "terraform plan computes and displays the changes needed to reach the desired state without changing any real resources.",
+    "explanationIncorrect": "terraform apply actually makes the changes. terraform destroy removes resources. terraform import brings existing resources under management, so terraform plan is the preview command."
+  },
+  {
+    "id": "tf-209",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "medium",
+    "stem": "Why does a remote backend that supports state locking help teams?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It prevents concurrent operations from corrupting shared state"
+      },
+      {
+        "id": "o2",
+        "text": "It formats the configuration files"
+      },
+      {
+        "id": "o3",
+        "text": "It removes the need for providers"
+      },
+      {
+        "id": "o4",
+        "text": "It eliminates the plan step"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "State locking ensures only one operation modifies shared state at a time, preventing corruption from simultaneous applies.",
+    "explanationIncorrect": "A backend does not format configuration files. It does not remove the need for providers. It does not eliminate the plan step, so preventing concurrent corruption of shared state is the benefit of locking."
+  },
+  {
+    "id": "tf-210",
+    "exam": "terraform-associate",
+    "domain": "State management",
+    "difficulty": "hard",
+    "stem": "You renamed a resource and want Terraform to treat it as the same object rather than destroy and recreate it. What helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A moved block or terraform state mv to update the address in state"
+      },
+      {
+        "id": "o2",
+        "text": "Deleting the state file"
+      },
+      {
+        "id": "o3",
+        "text": "Running terraform fmt"
+      },
+      {
+        "id": "o4",
+        "text": "Increasing parallelism"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A moved block or terraform state mv updates the resource's address in state so Terraform recognizes the renamed resource as the existing object.",
+    "explanationIncorrect": "Deleting the state file makes Terraform lose track of resources and try to recreate them. terraform fmt only formats code. Increasing parallelism does not remap addresses, so a moved block or state mv is correct."
+  },
+  {
+    "id": "tf-211",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "Which block lets you read attributes of existing infrastructure this configuration does not manage?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A data source block"
+      },
+      {
+        "id": "o2",
+        "text": "A resource block"
+      },
+      {
+        "id": "o3",
+        "text": "An output block"
+      },
+      {
+        "id": "o4",
+        "text": "A provisioner block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A data source block queries and reads attributes of existing infrastructure so the configuration can reference values it does not manage.",
+    "explanationIncorrect": "A resource block creates and manages infrastructure. An output block exposes values from the configuration. A provisioner runs actions during create or destroy, so a data source block reads existing infrastructure."
+  },
+  {
+    "id": "tf-212",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "What is a Terraform provider?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A plugin that lets Terraform manage a platform's resources via its API"
+      },
+      {
+        "id": "o2",
+        "text": "The project's state file"
+      },
+      {
+        "id": "o3",
+        "text": "A formatting tool"
+      },
+      {
+        "id": "o4",
+        "text": "A local variable"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A provider is a plugin that implements resource types and data sources for a platform, translating Terraform operations into that platform's API calls.",
+    "explanationIncorrect": "The state file records managed resources but is not a provider. A formatting tool is terraform fmt. A local variable is a configuration value, so a plugin that manages a platform's resources is the provider."
+  },
+  {
+    "id": "tf-213",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "medium",
+    "stem": "How does a calling configuration pass values into a child module?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Through input variables set in the module block"
+      },
+      {
+        "id": "o2",
+        "text": "By editing the module's source files"
+      },
+      {
+        "id": "o3",
+        "text": "Through the state file only"
+      },
+      {
+        "id": "o4",
+        "text": "By running terraform fmt"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A module block sets the child module's input variables, passing values in cleanly without modifying the module's own source.",
+    "explanationIncorrect": "Editing the module's source per call defeats reuse. The state file is not the mechanism for passing inputs. terraform fmt only formats code, so setting input variables in the module block is correct."
+  },
+  {
+    "id": "tf-214",
+    "exam": "terraform-associate",
+    "domain": "Modules",
+    "difficulty": "hard",
+    "stem": "A module must return a created resource's id to its caller. What should the module define?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An output value that returns the id"
+      },
+      {
+        "id": "o2",
+        "text": "An input variable for the id"
+      },
+      {
+        "id": "o3",
+        "text": "A provider block"
+      },
+      {
+        "id": "o4",
+        "text": "A backend block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A module returns data to its caller through output values, so defining an output for the resource id makes it available to the calling configuration.",
+    "explanationIncorrect": "An input variable receives values, it does not return them. A provider block configures a provider. A backend block configures state storage and is not valid in a child module, so an output value is correct."
   }
 ]
