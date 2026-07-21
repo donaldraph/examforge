@@ -3,6 +3,23 @@
 Running journal at RUN-MD standard: what was built, why, and what proved it, in
 real time. Newest entries at the top of each phase.
 
+## Question banks — expansion to 1165
+
+### 2026-07-21 — another 50 questions per exam, domain-grouped
+
+- Added 50 more questions to every exam, spread across each exam's domains by
+  blueprint weight: GitHub Actions 190, GitHub Advanced Security 195, AWS AI
+  Practitioner 195, AWS Cloud Practitioner 190, AWS Solutions Architect
+  Associate 190, Terraform Associate 205. That is 300 new questions, 1165 total.
+
+- Same discipline: each domain slice appended, run through the committed
+  validator, and committed on its own so every commit is a single exam-domain
+  slice (30 commits). No duplicate ids, every declared domain covered,
+  wrong-answer explanations strictly longer than the correct one. All 1165 pass
+  the validator, 18 unit tests green, clean vite build (152 kB JS). All three
+  CDK stacks redeployed and live CloudFront per-exam counts verified
+  (190/195/195/190/190/205).
+
 ## Question banks — expansion to 865
 
 ### 2026-07-20 — another 35 questions per exam, domain-grouped
