@@ -5378,5 +5378,285 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Prompt engineering is the practice of designing and iterating on the wording, structure, and examples in a prompt to steer the model toward desired results.",
     "explanationIncorrect": "It does not involve manually rewiring neural weights, which is training, not prompting. It is not about provisioning GPU clusters, which is infrastructure. It is not encrypting the model file, so crafting effective input instructions is what prompt engineering means."
+  },
+  {
+    "id": "aip-166",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which technique adapts a foundation model to a specialized domain by further training it on domain-specific labeled data?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Fine-tuning"
+      },
+      {
+        "id": "o2",
+        "text": "Load balancing"
+      },
+      {
+        "id": "o3",
+        "text": "Sharding"
+      },
+      {
+        "id": "o4",
+        "text": "Caching"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Fine-tuning continues training a foundation model on domain-specific examples so it better fits a specialized task or style.",
+    "explanationIncorrect": "Load balancing spreads traffic across servers and does not adapt a model. Sharding partitions data or storage, not model knowledge. Caching stores results for reuse, so fine-tuning is the adaptation technique."
+  },
+  {
+    "id": "aip-167",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "In a retrieval-augmented generation system, which component stores embeddings for fast similarity search?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A vector database or vector store"
+      },
+      {
+        "id": "o2",
+        "text": "A DNS server"
+      },
+      {
+        "id": "o3",
+        "text": "A load balancer"
+      },
+      {
+        "id": "o4",
+        "text": "A message queue"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A vector database indexes embeddings and enables fast nearest-neighbor similarity search to retrieve relevant context for the model.",
+    "explanationIncorrect": "A DNS server resolves domain names and stores no embeddings. A load balancer distributes requests. A message queue buffers messages between components, so a vector database is the component that stores embeddings for retrieval."
+  },
+  {
+    "id": "aip-168",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "You provide the model a few input-output examples directly in the prompt to shape its behavior without changing weights. What is this called?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Few-shot prompting"
+      },
+      {
+        "id": "o2",
+        "text": "Full pretraining"
+      },
+      {
+        "id": "o3",
+        "text": "Hyperparameter search"
+      },
+      {
+        "id": "o4",
+        "text": "Data sharding"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Few-shot prompting includes a handful of examples in the prompt so the model infers the desired pattern at inference time without any weight updates.",
+    "explanationIncorrect": "Full pretraining builds a model from scratch on massive data and changes weights extensively. Hyperparameter search tunes training settings, not in-prompt examples. Data sharding splits data across storage, so providing examples in the prompt is few-shot prompting."
+  },
+  {
+    "id": "aip-169",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which AWS Bedrock capability lets a model take actions and call APIs to complete multi-step tasks on a user's behalf?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Agents for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kinesis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Agents for Amazon Bedrock orchestrate multi-step tasks, invoking APIs and knowledge sources so the model can act to fulfill a user request.",
+    "explanationIncorrect": "Amazon Glacier is low-cost archival storage, not an agent framework. AWS Batch runs batch computing jobs. Amazon Kinesis streams real-time data, so Agents for Amazon Bedrock is the capability for action-taking workflows."
+  },
+  {
+    "id": "aip-170",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which is a strong use case for a foundation model summarization application?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Condensing long support transcripts into short summaries for agents"
+      },
+      {
+        "id": "o2",
+        "text": "Computing exact tax owed to the cent"
+      },
+      {
+        "id": "o3",
+        "text": "Serving as the sole system of record for finance"
+      },
+      {
+        "id": "o4",
+        "text": "Guaranteeing bit-perfect data backups"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Summarizing lengthy transcripts into concise, useful overviews is a natural strength of foundation models that handle language well.",
+    "explanationIncorrect": "Computing exact tax to the cent demands deterministic arithmetic that a generative model should not be trusted to guarantee. Serving as the sole financial system of record needs verifiable, auditable storage, not generation. Bit-perfect backups require storage systems, so transcript summarization is the strong use case."
+  },
+  {
+    "id": "aip-171",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "Compared to fine-tuning, why might a team prefer retrieval-augmented generation for frequently changing knowledge?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "They can update the document store without retraining, keeping answers current"
+      },
+      {
+        "id": "o2",
+        "text": "It permanently bakes the knowledge into the weights"
+      },
+      {
+        "id": "o3",
+        "text": "It eliminates the need for any prompt"
+      },
+      {
+        "id": "o4",
+        "text": "It requires labeling millions of examples"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Retrieval-augmented generation reads from an external store at query time, so updating documents immediately changes the answers without a retraining cycle.",
+    "explanationIncorrect": "Baking knowledge into weights describes fine-tuning, which goes stale as facts change. Retrieval still uses a prompt that includes the retrieved context. It does not require labeling millions of examples, so the ability to update the store without retraining is the advantage."
+  },
+  {
+    "id": "aip-172",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which Bedrock feature lets you connect your data sources so a model can answer using your content with managed retrieval?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Knowledge Bases for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon CloudFront"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Direct Connect"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SNS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Knowledge Bases for Amazon Bedrock manage ingestion, embedding, and retrieval of your data so models can ground responses in your content.",
+    "explanationIncorrect": "Amazon CloudFront is a content delivery network for caching web assets. AWS Direct Connect provides a dedicated network link to AWS. Amazon SNS is a notification service, so Knowledge Bases for Amazon Bedrock is the managed retrieval feature."
+  },
+  {
+    "id": "aip-173",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "What is a practical benefit of using a smaller, distilled model instead of a very large one for a simple classification task?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Lower latency and cost while still meeting the task's accuracy needs"
+      },
+      {
+        "id": "o2",
+        "text": "It guarantees zero errors"
+      },
+      {
+        "id": "o3",
+        "text": "It removes the need for any evaluation"
+      },
+      {
+        "id": "o4",
+        "text": "It always outperforms larger models on every task"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A smaller model can run faster and cheaper, and when the task is simple it can meet accuracy requirements without the overhead of a very large model.",
+    "explanationIncorrect": "No model guarantees zero errors. Using a smaller model does not remove the need to evaluate quality. Smaller models do not always outperform larger ones on every task, so lower latency and cost while meeting needs is the practical benefit."
+  },
+  {
+    "id": "aip-174",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "A prompt yields inconsistent formatting in outputs. Which prompt-engineering tactic most directly improves consistency?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Provide explicit format instructions and example outputs to imitate"
+      },
+      {
+        "id": "o2",
+        "text": "Increase the temperature substantially"
+      },
+      {
+        "id": "o3",
+        "text": "Remove all instructions from the prompt"
+      },
+      {
+        "id": "o4",
+        "text": "Ask the model to be creative"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Specifying the exact desired format and showing example outputs gives the model a concrete pattern to follow, improving output consistency.",
+    "explanationIncorrect": "Increasing temperature adds randomness and worsens consistency. Removing all instructions leaves the model to guess the format. Asking for creativity encourages variation rather than a fixed format, so explicit format instructions with examples is the correct tactic."
+  },
+  {
+    "id": "aip-175",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which approach helps a model perform step-by-step reasoning on a complex problem?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Chain-of-thought style prompting that asks the model to reason through steps"
+      },
+      {
+        "id": "o2",
+        "text": "Disabling the context window"
+      },
+      {
+        "id": "o3",
+        "text": "Using a smaller vocabulary"
+      },
+      {
+        "id": "o4",
+        "text": "Removing all punctuation"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Prompting the model to work through intermediate steps, often called chain-of-thought, can improve performance on tasks that benefit from explicit reasoning.",
+    "explanationIncorrect": "Disabling the context window is not possible and would prevent the model from reading the prompt. A smaller vocabulary does not induce reasoning. Removing punctuation can hurt clarity, so chain-of-thought style prompting is the approach that aids step-by-step reasoning."
   }
 ]
