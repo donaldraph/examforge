@@ -5718,5 +5718,341 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "An early composite step that verifies the tool and exits with a non-zero status when it is missing halts the action before the main logic runs, giving a clear failure.",
     "explanationIncorrect": "Setting continue-on-error true everywhere would hide the very failure you want to surface. Removing the dependency from documentation hides the requirement without enforcing it. A concurrency group controls serialization and cannot detect a missing tool, so an early failing check step is the clean approach."
+  },
+  {
+    "id": "gha-179",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An enterprise wants to allow only actions published by GitHub and a specific list of trusted third parties. Where is this policy configured?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In the Actions policy settings allowing selected actions with an allow list"
+      },
+      {
+        "id": "o2",
+        "text": "In each workflow's env block"
+      },
+      {
+        "id": "o3",
+        "text": "In the runner's Dockerfile"
+      },
+      {
+        "id": "o4",
+        "text": "In the repository README"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Enterprise and organization Actions policies can restrict usage to actions created by GitHub plus a configurable allow list of specific third-party actions.",
+    "explanationIncorrect": "A workflow's env block sets variables and cannot enforce an organization-wide allow list. A runner Dockerfile describes an image, not action-usage policy. The README is documentation with no enforcement, so the Actions policy allow list is the correct control."
+  },
+  {
+    "id": "gha-180",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "You need runners with a specific GPU that GitHub-hosted runners do not offer. What should you provision?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Self-hosted runners on machines with the required hardware"
+      },
+      {
+        "id": "o2",
+        "text": "A larger matrix"
+      },
+      {
+        "id": "o3",
+        "text": "More secrets"
+      },
+      {
+        "id": "o4",
+        "text": "A schedule trigger"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Self-hosted runners let you attach your own hardware, including specialized GPUs, and register them to run jobs GitHub-hosted images cannot serve.",
+    "explanationIncorrect": "A larger matrix only fans out jobs and provides no special hardware. Adding secrets stores values and grants no compute capability. A schedule trigger changes timing, not the underlying machine, so self-hosted runners are the correct provisioning."
+  },
+  {
+    "id": "gha-181",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You want to group several self-hosted runners so that only certain repositories can send jobs to them. Which feature provides this scoping?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Runner groups"
+      },
+      {
+        "id": "o2",
+        "text": "Environments"
+      },
+      {
+        "id": "o3",
+        "text": "Concurrency groups"
+      },
+      {
+        "id": "o4",
+        "text": "Matrices"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Runner groups organize self-hosted runners and control which organizations or repositories are allowed to use them, providing access scoping.",
+    "explanationIncorrect": "Environments gate deployments with protection rules but do not scope which repos reach a runner. Concurrency groups serialize runs and grant no runner access control. Matrices fan out jobs and have nothing to do with runner scoping, so runner groups are the correct feature."
+  },
+  {
+    "id": "gha-182",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An organization wants secrets that many repositories can share without duplicating them per repository. What should they use?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Organization-level secrets scoped to selected repositories"
+      },
+      {
+        "id": "o2",
+        "text": "A single repository secret copied everywhere"
+      },
+      {
+        "id": "o3",
+        "text": "Environment variables in the README"
+      },
+      {
+        "id": "o4",
+        "text": "A matrix of secrets"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization-level secrets are defined once and made available to selected or all repositories, avoiding per-repository duplication.",
+    "explanationIncorrect": "Copying a repository secret everywhere is exactly the duplication org secrets remove and is error-prone to rotate. Putting values in the README exposes them and does not make them secrets. There is no matrix-of-secrets construct, so organization-level secrets are the right choice."
+  },
+  {
+    "id": "gha-183",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "A deployment job must require manual approval from a designated reviewer before it runs against production. Which feature enforces this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An environment with a required reviewers protection rule"
+      },
+      {
+        "id": "o2",
+        "text": "A concurrency group"
+      },
+      {
+        "id": "o3",
+        "text": "A matrix leg"
+      },
+      {
+        "id": "o4",
+        "text": "A paths filter"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A deployment environment can define protection rules, including required reviewers who must approve before a job targeting that environment proceeds.",
+    "explanationIncorrect": "A concurrency group only serializes runs and requests no approval. A matrix leg is just one combination of a fanned-out job. A paths filter decides whether a workflow triggers based on changed files, so an environment with required reviewers is the enforcing feature."
+  },
+  {
+    "id": "gha-184",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "To reduce standing cloud credentials in workflows that deploy to a cloud provider, which approach is recommended?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Use OpenID Connect to obtain short-lived credentials at run time"
+      },
+      {
+        "id": "o2",
+        "text": "Store long-lived access keys as plaintext env vars"
+      },
+      {
+        "id": "o3",
+        "text": "Embed keys in the action.yml"
+      },
+      {
+        "id": "o4",
+        "text": "Print keys to the job log"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "OpenID Connect lets a workflow exchange a signed token for short-lived cloud credentials, removing the need to store long-lived secrets.",
+    "explanationIncorrect": "Storing long-lived keys as plaintext env vars is exactly the standing-credential risk OIDC eliminates. Embedding keys in action.yml commits secrets into source. Printing keys to the log leaks them, so OIDC-based short-lived credentials are the recommended approach."
+  },
+  {
+    "id": "gha-185",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An enterprise wants to auto-scale self-hosted runners in Kubernetes based on job demand. Which project is commonly used?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Actions Runner Controller (ARC)"
+      },
+      {
+        "id": "o2",
+        "text": "actions/checkout"
+      },
+      {
+        "id": "o3",
+        "text": "The GitHub CLI alone"
+      },
+      {
+        "id": "o4",
+        "text": "Dependabot"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Actions Runner Controller runs on Kubernetes and scales self-hosted runner pods up and down based on the queue of pending jobs.",
+    "explanationIncorrect": "actions/checkout only clones repositories inside a job and does not manage runners. The GitHub CLI is a general command-line tool, not an autoscaler. Dependabot handles dependency updates, so Actions Runner Controller is the tool for autoscaling runners."
+  },
+  {
+    "id": "gha-186",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "You want to enforce that all workflows in an organization run a required security scan without editing each repository's workflows. Which capability helps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Organization required workflows that run on repositories automatically"
+      },
+      {
+        "id": "o2",
+        "text": "A single repository's concurrency group"
+      },
+      {
+        "id": "o3",
+        "text": "A per-repository matrix"
+      },
+      {
+        "id": "o4",
+        "text": "A README badge"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Required workflows configured at the organization level are enforced across selected repositories automatically, ensuring a mandated workflow such as a security scan runs everywhere.",
+    "explanationIncorrect": "A single repository's concurrency group affects only that repo and enforces nothing org-wide. A per-repository matrix fans out one job and cannot mandate a workflow across repos. A README badge is cosmetic, so organization required workflows provide the enforcement."
+  },
+  {
+    "id": "gha-187",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "You need to audit who triggered Actions runs and changes to Actions settings across the enterprise. Where do you look?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The audit log, which records Actions-related events"
+      },
+      {
+        "id": "o2",
+        "text": "The workflow's env block"
+      },
+      {
+        "id": "o3",
+        "text": "The runner's local disk only"
+      },
+      {
+        "id": "o4",
+        "text": "The repository description"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The enterprise and organization audit log captures Actions-related events such as policy changes and run activity for review and compliance.",
+    "explanationIncorrect": "A workflow env block only holds variables and records no audit history. A runner's local disk holds transient job data, not an enterprise audit trail. The repository description is free text, so the audit log is where these events are reviewed."
+  },
+  {
+    "id": "gha-188",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "You want to limit how long any single job can run to control costs on self-hosted runners. Which setting caps job duration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "timeout-minutes on the job"
+      },
+      {
+        "id": "o2",
+        "text": "concurrency on the job"
+      },
+      {
+        "id": "o3",
+        "text": "needs on the job"
+      },
+      {
+        "id": "o4",
+        "text": "permissions on the job"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "timeout-minutes sets the maximum number of minutes a job may run before it is automatically cancelled, bounding runaway cost.",
+    "explanationIncorrect": "concurrency serializes runs but does not cap duration. needs orders jobs and imposes no time limit. permissions controls token scopes, not runtime, so timeout-minutes is the setting that caps job duration."
+  },
+  {
+    "id": "gha-189",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "hard",
+    "stem": "For security, why is it recommended to run untrusted or public-fork workflows on ephemeral self-hosted runners rather than persistent ones?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Ephemeral runners are destroyed after each job, preventing state or secrets from leaking to later jobs"
+      },
+      {
+        "id": "o2",
+        "text": "Ephemeral runners are always faster"
+      },
+      {
+        "id": "o3",
+        "text": "Ephemeral runners need no registration"
+      },
+      {
+        "id": "o4",
+        "text": "Ephemeral runners disable all logging"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An ephemeral runner runs one job then is torn down, so any malicious changes or residual state cannot persist to compromise subsequent jobs on the same machine.",
+    "explanationIncorrect": "Ephemeral runners are not inherently faster, since provisioning adds overhead. They still require registration to receive jobs. They do not disable logging, which remains important for audit, so preventing state carryover between jobs is the security reason."
+  },
+  {
+    "id": "gha-190",
+    "exam": "github-actions",
+    "domain": "Manage GitHub Actions in the enterprise",
+    "difficulty": "medium",
+    "stem": "An organization wants to disable Actions entirely for some repositories while allowing it for others. Where is this controlled?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "In the organization Actions settings, which can enable or disable Actions per selected repositories"
+      },
+      {
+        "id": "o2",
+        "text": "By deleting the .github folder in every repo"
+      },
+      {
+        "id": "o3",
+        "text": "In the runner's operating system settings"
+      },
+      {
+        "id": "o4",
+        "text": "In the branch protection rules only"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Organization Actions settings let administrators enable Actions for all, selected, or no repositories, giving per-repository control.",
+    "explanationIncorrect": "Deleting the .github folder is a manual per-repo hack that users can undo and does not enforce policy. Runner OS settings govern the machine, not organization policy. Branch protection rules guard branches, not whether Actions is enabled, so the organization Actions settings are the correct control."
   }
 ]
