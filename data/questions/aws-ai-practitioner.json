@@ -5098,5 +5098,285 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Reinforcement learning trains an agent through trial and error using rewards, which fits learning to play a game by maximizing cumulative reward.",
     "explanationIncorrect": "Labeling images with known categories is supervised classification. Averaging numeric columns is a simple statistic, not learning. Sorting a list is a deterministic algorithm, so training a rewarded game-playing agent is the reinforcement learning scenario."
+  },
+  {
+    "id": "aip-156",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What is a foundation model in the context of generative AI?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A large model pretrained on broad data that can be adapted to many downstream tasks"
+      },
+      {
+        "id": "o2",
+        "text": "A small model trained for a single narrow task only"
+      },
+      {
+        "id": "o3",
+        "text": "A database of prompts"
+      },
+      {
+        "id": "o4",
+        "text": "A hardware accelerator"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A foundation model is pretrained on large, broad datasets and can be adapted through prompting or fine-tuning to serve many different downstream tasks.",
+    "explanationIncorrect": "A model trained for a single narrow task is the opposite of a broadly adaptable foundation model. A database of prompts is stored text, not a model. A hardware accelerator is physical compute, so a broadly pretrained, adaptable model is the correct definition."
+  },
+  {
+    "id": "aip-157",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which AWS service provides access to multiple foundation models through a single API for building generative AI applications?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Bedrock offers a unified API to access foundation models from Amazon and several providers, simplifying generative AI development.",
+    "explanationIncorrect": "Amazon EBS provides block storage volumes for EC2, not model access. AWS Glue is an ETL and data integration service. Amazon SQS is a message queue, so Amazon Bedrock is the service that exposes foundation models through one API."
+  },
+  {
+    "id": "aip-158",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "What does a token represent when working with large language models?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A chunk of text such as a word or sub-word that the model processes as a unit"
+      },
+      {
+        "id": "o2",
+        "text": "A security credential for the model"
+      },
+      {
+        "id": "o3",
+        "text": "A billing account identifier"
+      },
+      {
+        "id": "o4",
+        "text": "A GPU memory address"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In language models a token is a unit of text, often a word or sub-word piece, and models process and are frequently priced by these tokens.",
+    "explanationIncorrect": "A security credential is unrelated to how models chunk text. A billing account identifier names an account, not a text unit. A GPU memory address refers to hardware memory, so a chunk of text is what a token represents."
+  },
+  {
+    "id": "aip-159",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Raising the temperature parameter when generating text most directly affects what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The randomness and diversity of the output"
+      },
+      {
+        "id": "o2",
+        "text": "The model's training data size"
+      },
+      {
+        "id": "o3",
+        "text": "The GPU clock speed"
+      },
+      {
+        "id": "o4",
+        "text": "The number of model parameters"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Temperature controls how random the sampling is, so higher values produce more varied and creative outputs while lower values are more deterministic.",
+    "explanationIncorrect": "Temperature does not change the model's training data size, which is fixed after training. It does not set GPU clock speed. It does not alter the number of parameters, which is architectural, so output randomness is what temperature affects."
+  },
+  {
+    "id": "aip-160",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What is an embedding in generative AI systems?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A numeric vector representation of text or data capturing semantic meaning"
+      },
+      {
+        "id": "o2",
+        "text": "A compressed video file"
+      },
+      {
+        "id": "o3",
+        "text": "A firewall rule"
+      },
+      {
+        "id": "o4",
+        "text": "A container image"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An embedding maps text or other data into a numeric vector so that semantically similar items are close together in vector space, enabling search and comparison.",
+    "explanationIncorrect": "A compressed video file is media, not a semantic vector. A firewall rule governs network traffic. A container image packages software, so a numeric vector capturing meaning is the definition of an embedding."
+  },
+  {
+    "id": "aip-161",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "Why do large language models sometimes produce confident but factually incorrect statements?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "They generate plausible text based on patterns and can hallucinate content not grounded in facts"
+      },
+      {
+        "id": "o2",
+        "text": "They always query a live encyclopedia"
+      },
+      {
+        "id": "o3",
+        "text": "They cannot output text longer than one sentence"
+      },
+      {
+        "id": "o4",
+        "text": "They only repeat their prompt verbatim"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Language models predict likely next tokens from learned patterns rather than retrieving verified facts, so they can hallucinate fluent yet incorrect content.",
+    "explanationIncorrect": "They do not inherently query a live encyclopedia; base models rely on learned patterns. They can output far more than a single sentence. They do not merely repeat the prompt, since they generate new text, so pattern-based hallucination explains confident errors."
+  },
+  {
+    "id": "aip-162",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which generative AI capability creates new images from a text description?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Text-to-image generation"
+      },
+      {
+        "id": "o2",
+        "text": "Optical character recognition"
+      },
+      {
+        "id": "o3",
+        "text": "Load balancing"
+      },
+      {
+        "id": "o4",
+        "text": "Data warehousing"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Text-to-image generation uses a model to synthesize new images that match a natural-language prompt.",
+    "explanationIncorrect": "Optical character recognition reads text from existing images rather than creating images. Load balancing distributes network traffic. Data warehousing stores and queries analytical data, so text-to-image generation is the described capability."
+  },
+  {
+    "id": "aip-163",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What does the context window of a language model refer to?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The maximum amount of tokens the model can consider at once, including prompt and output"
+      },
+      {
+        "id": "o2",
+        "text": "The physical monitor size"
+      },
+      {
+        "id": "o3",
+        "text": "The number of users allowed"
+      },
+      {
+        "id": "o4",
+        "text": "The training duration in days"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The context window is the token limit the model can attend to in a single request, spanning the prompt and the generated response.",
+    "explanationIncorrect": "It has nothing to do with monitor size, which is hardware. It does not set how many users are allowed. It is not the training duration, which is a separate concept, so the token limit per request is the context window."
+  },
+  {
+    "id": "aip-164",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "A team wants a generative model to answer questions using their private, up-to-date documents without retraining the model. Which approach fits best?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Retrieval-augmented generation that fetches relevant documents and adds them to the prompt"
+      },
+      {
+        "id": "o2",
+        "text": "Pretraining a new foundation model from scratch"
+      },
+      {
+        "id": "o3",
+        "text": "Lowering the temperature to zero"
+      },
+      {
+        "id": "o4",
+        "text": "Increasing the monitor resolution"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Retrieval-augmented generation retrieves relevant private documents at query time and injects them into the prompt, grounding answers without retraining.",
+    "explanationIncorrect": "Pretraining a foundation model from scratch is enormously expensive and unnecessary for this need. Lowering temperature only reduces randomness and adds no new knowledge. Monitor resolution is irrelevant to model knowledge, so retrieval-augmented generation is the best fit."
+  },
+  {
+    "id": "aip-165",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What is prompt engineering?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Crafting and refining input instructions to guide a model toward better outputs"
+      },
+      {
+        "id": "o2",
+        "text": "Rewiring the model's neural weights by hand"
+      },
+      {
+        "id": "o3",
+        "text": "Provisioning GPU clusters"
+      },
+      {
+        "id": "o4",
+        "text": "Encrypting the model file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Prompt engineering is the practice of designing and iterating on the wording, structure, and examples in a prompt to steer the model toward desired results.",
+    "explanationIncorrect": "It does not involve manually rewiring neural weights, which is training, not prompting. It is not about provisioning GPU clusters, which is infrastructure. It is not encrypting the model file, so crafting effective input instructions is what prompt engineering means."
   }
 ]
