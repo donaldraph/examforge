@@ -5944,5 +5944,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "The root module is the set of .tf files in the directory where you run Terraform, and it can call other child modules.",
     "explanationIncorrect": "The first registry module is a child module, not the root. The provider plugin is not a module. The remote backend stores state and is not the root module, so the configuration in the working directory is the root module."
+  },
+  {
+    "id": "tf-185",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "What is a workspace in HCP Terraform used for?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Managing a distinct state and set of variables for a collection of infrastructure"
+      },
+      {
+        "id": "o2",
+        "text": "Formatting configuration files"
+      },
+      {
+        "id": "o3",
+        "text": "Compiling provider plugins"
+      },
+      {
+        "id": "o4",
+        "text": "Storing the CLI binary"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An HCP Terraform workspace holds its own state, variables, and run history for a specific set of infrastructure, enabling isolation and collaboration.",
+    "explanationIncorrect": "Formatting is done by terraform fmt, not a workspace. Provider plugins are not compiled by workspaces. The CLI binary is not stored in a workspace, so managing distinct state and variables is the workspace's role."
+  },
+  {
+    "id": "tf-186",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "Which feature of HCP Terraform runs plans and applies on managed infrastructure instead of a local machine?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Remote operations (remote runs)"
+      },
+      {
+        "id": "o2",
+        "text": "terraform fmt"
+      },
+      {
+        "id": "o3",
+        "text": "Local-only execution"
+      },
+      {
+        "id": "o4",
+        "text": "The dependency lock file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform can execute plans and applies as remote operations on its own infrastructure, providing consistency, logging, and collaboration.",
+    "explanationIncorrect": "terraform fmt only formats code. Local-only execution is the opposite of remote runs. The dependency lock file records provider versions and does not run operations, so remote operations is the correct feature."
+  },
+  {
+    "id": "tf-187",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "Which HCP Terraform capability enforces policies such as required tags or restricted resource types before an apply?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Policy as code with Sentinel or OPA"
+      },
+      {
+        "id": "o2",
+        "text": "terraform validate alone"
+      },
+      {
+        "id": "o3",
+        "text": "The state list command"
+      },
+      {
+        "id": "o4",
+        "text": "The fmt command"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform supports policy as code using Sentinel or Open Policy Agent to enforce guardrails, blocking applies that violate defined policies.",
+    "explanationIncorrect": "terraform validate only checks configuration validity, not organizational policy. terraform state list enumerates resources without enforcing policy. terraform fmt formats code, so policy as code with Sentinel or OPA is the enforcement capability."
+  },
+  {
+    "id": "tf-188",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "How does HCP Terraform help teams manage sensitive variables?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "It stores variables, including sensitive ones, securely and injects them into runs"
+      },
+      {
+        "id": "o2",
+        "text": "It prints all variables to the log"
+      },
+      {
+        "id": "o3",
+        "text": "It requires secrets to be committed to Git"
+      },
+      {
+        "id": "o4",
+        "text": "It disables variables entirely"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform stores workspace variables, marking sensitive ones so their values are hidden and securely provided to runs rather than exposed.",
+    "explanationIncorrect": "It does not print all variables to the log, and sensitive ones are masked. It does not require secrets in Git, which would expose them. It does not disable variables, so securely storing and injecting sensitive variables is how it helps."
+  },
+  {
+    "id": "tf-189",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "What is a benefit of connecting an HCP Terraform workspace to a version control repository?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Runs can be triggered automatically from commits and pull requests"
+      },
+      {
+        "id": "o2",
+        "text": "It formats the code on save"
+      },
+      {
+        "id": "o3",
+        "text": "It removes the need for providers"
+      },
+      {
+        "id": "o4",
+        "text": "It deletes the state file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Connecting a workspace to version control lets HCP Terraform automatically trigger plans on pull requests and applies on merges, enabling a GitOps-style flow.",
+    "explanationIncorrect": "Connecting VCS does not format code on save. It does not remove the need for providers. It does not delete the state file, so automatically triggering runs from commits and pull requests is the benefit."
+  },
+  {
+    "id": "tf-190",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "hard",
+    "stem": "Which feature lets one workspace consume outputs from another workspace's state in HCP Terraform?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The tfe_outputs data source or remote state sharing between workspaces"
+      },
+      {
+        "id": "o2",
+        "text": "The fmt command"
+      },
+      {
+        "id": "o3",
+        "text": "A local variable"
+      },
+      {
+        "id": "o4",
+        "text": "The version command"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "HCP Terraform allows sharing a workspace's outputs so another workspace can consume them, for example via remote state sharing or the tfe_outputs data source.",
+    "explanationIncorrect": "The fmt command only formats code and shares no state. A local variable is scoped to one configuration and cannot read another workspace's outputs. The version command prints a version, so remote state sharing between workspaces is the correct feature."
+  },
+  {
+    "id": "tf-191",
+    "exam": "terraform-associate",
+    "domain": "HCP Terraform",
+    "difficulty": "medium",
+    "stem": "What does the private module registry in HCP Terraform provide?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A place to publish and share versioned internal modules across an organization"
+      },
+      {
+        "id": "o2",
+        "text": "A DNS service"
+      },
+      {
+        "id": "o3",
+        "text": "A container image build farm"
+      },
+      {
+        "id": "o4",
+        "text": "A code formatter"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The private module registry lets an organization publish, version, and discover internal modules for reuse across teams.",
+    "explanationIncorrect": "It is not a DNS service. It is not a container image build farm. It is not a code formatter, so publishing and sharing versioned internal modules is what the private module registry provides."
   }
 ]
