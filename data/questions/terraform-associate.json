@@ -5552,5 +5552,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "A remote backend centralizes state so team members share one source of truth, with locking and access controls that local files lack.",
     "explanationIncorrect": "A remote backend does not format code. It does not remove the need for providers, which are still required. It does not eliminate the plan step, so shared centralized state with locking and access control is the key advantage."
+  },
+  {
+    "id": "tf-171",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "What is a Terraform provider?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A plugin that lets Terraform manage a specific platform's resources via its API"
+      },
+      {
+        "id": "o2",
+        "text": "The state file for a project"
+      },
+      {
+        "id": "o3",
+        "text": "A formatting tool"
+      },
+      {
+        "id": "o4",
+        "text": "A local variable"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A provider is a plugin that implements resource types and data sources for a platform, translating Terraform operations into that platform's API calls.",
+    "explanationIncorrect": "The state file records managed resources but is not a provider. A formatting tool is terraform fmt, not a provider. A local variable is a configuration value, so a plugin that manages a platform's resources is the definition of a provider."
+  },
+  {
+    "id": "tf-172",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "Which block type defines a piece of infrastructure that Terraform will create and manage?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A resource block"
+      },
+      {
+        "id": "o2",
+        "text": "An output block"
+      },
+      {
+        "id": "o3",
+        "text": "A variable block"
+      },
+      {
+        "id": "o4",
+        "text": "A terraform block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A resource block declares an infrastructure object of a given type that Terraform creates, updates, and destroys as needed.",
+    "explanationIncorrect": "An output block exposes values, not infrastructure. A variable block declares inputs. A terraform block configures settings like required providers and backend, so a resource block is the one that defines managed infrastructure."
+  },
+  {
+    "id": "tf-173",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "hard",
+    "stem": "Which block lets you read information about existing infrastructure not managed by this configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A data source block"
+      },
+      {
+        "id": "o2",
+        "text": "A resource block"
+      },
+      {
+        "id": "o3",
+        "text": "An output block"
+      },
+      {
+        "id": "o4",
+        "text": "A provisioner block"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A data source block queries and reads attributes of existing infrastructure so the configuration can reference values it does not manage.",
+    "explanationIncorrect": "A resource block creates and manages infrastructure rather than only reading it. An output block exposes values from the configuration. A provisioner runs actions during create or destroy, so a data source block is the correct way to read existing infrastructure."
+  },
+  {
+    "id": "tf-174",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "Which language is used to write Terraform configuration?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "HashiCorp Configuration Language (HCL)"
+      },
+      {
+        "id": "o2",
+        "text": "YAML only"
+      },
+      {
+        "id": "o3",
+        "text": "Python"
+      },
+      {
+        "id": "o4",
+        "text": "Bash"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform configurations are written in HCL, a declarative language designed to be human-readable while also machine-friendly.",
+    "explanationIncorrect": "Terraform uses HCL rather than requiring YAML, though it can also accept JSON. It is not written in Python. It is not written in Bash, so HCL is the configuration language."
+  },
+  {
+    "id": "tf-175",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "How do you reference an attribute of one resource from another resource in HCL?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Using the resource type and name, such as aws_instance.web.id"
+      },
+      {
+        "id": "o2",
+        "text": "By copying the value manually every time"
+      },
+      {
+        "id": "o3",
+        "text": "By editing the state file"
+      },
+      {
+        "id": "o4",
+        "text": "Only through environment variables"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "You reference another resource's attribute by its address in the form type.name.attribute, which also creates an implicit dependency.",
+    "explanationIncorrect": "Copying values manually loses the dependency and breaks on change. Editing the state file directly is unsafe and unnecessary. Environment variables are not required to reference resource attributes, so using the resource address is the correct way."
+  },
+  {
+    "id": "tf-176",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "hard",
+    "stem": "Terraform determines the order to create resources primarily by what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A dependency graph built from references between resources"
+      },
+      {
+        "id": "o2",
+        "text": "The alphabetical order of resource names"
+      },
+      {
+        "id": "o3",
+        "text": "The order lines appear in the file"
+      },
+      {
+        "id": "o4",
+        "text": "The size of each resource"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Terraform builds a dependency graph from references and implicit or explicit dependencies to determine a correct creation and update order.",
+    "explanationIncorrect": "It does not order resources alphabetically by name. It does not rely on the physical line order in the file. It does not consider resource size, so a dependency graph from references drives the ordering."
+  },
+  {
+    "id": "tf-177",
+    "exam": "terraform-associate",
+    "domain": "Terraform basics",
+    "difficulty": "medium",
+    "stem": "What does declarative infrastructure mean in Terraform?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "You describe the desired end state and Terraform figures out how to reach it"
+      },
+      {
+        "id": "o2",
+        "text": "You write step-by-step imperative commands to run in order"
+      },
+      {
+        "id": "o3",
+        "text": "You must specify the exact API calls yourself"
+      },
+      {
+        "id": "o4",
+        "text": "You manage resources only through the console"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In a declarative model you state the desired end configuration, and Terraform determines the actions needed to reach and maintain that state.",
+    "explanationIncorrect": "Writing step-by-step imperative commands is the opposite of declarative. You do not specify the exact API calls, since providers handle that. Managing only through the console is manual, not declarative code, so describing the desired end state is what declarative means."
   }
 ]
