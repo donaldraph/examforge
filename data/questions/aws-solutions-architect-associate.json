@@ -6293,5 +6293,201 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "DynamoDB Accelerator is a managed in-memory cache for DynamoDB that delivers microsecond read latency for eligible requests.",
     "explanationIncorrect": "Amazon Athena queries S3 data with SQL. AWS Glue is an ETL service. Amazon EFS is a shared file system, so DynamoDB Accelerator is the caching layer for DynamoDB."
+  },
+  {
+    "id": "saa-199",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which construct filters instance-level traffic using stateful rules where return traffic is automatically allowed?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A security group"
+      },
+      {
+        "id": "o2",
+        "text": "A network ACL"
+      },
+      {
+        "id": "o3",
+        "text": "An S3 bucket policy"
+      },
+      {
+        "id": "o4",
+        "text": "An IAM policy"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A security group is a stateful virtual firewall at the instance level, so return traffic for allowed connections is permitted automatically.",
+    "explanationIncorrect": "A network ACL is stateless and operates at the subnet level, requiring explicit return rules. An S3 bucket policy governs S3 access, not instance networking. An IAM policy grants permissions, not packet filtering, so a security group is the correct instance-level control."
+  },
+  {
+    "id": "saa-200",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "hard",
+    "stem": "Private-subnet instances must reach the internet for updates but never be reachable from it. What should you use?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A NAT gateway in a public subnet"
+      },
+      {
+        "id": "o2",
+        "text": "An internet gateway attached to the private instances"
+      },
+      {
+        "id": "o3",
+        "text": "A public IP on each private instance"
+      },
+      {
+        "id": "o4",
+        "text": "A VPC peering connection to the internet"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A NAT gateway lets private instances initiate outbound connections for updates while blocking unsolicited inbound connections from the internet.",
+    "explanationIncorrect": "An internet gateway makes instances directly reachable, breaking the privacy requirement. Public IPs likewise expose them inbound. VPC peering connects VPCs, not the public internet, so a NAT gateway is correct."
+  },
+  {
+    "id": "saa-201",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "Which approach gives an EC2 application temporary, rotating credentials to access S3 securely?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An IAM role attached via the instance profile"
+      },
+      {
+        "id": "o2",
+        "text": "Hardcoded long-term access keys"
+      },
+      {
+        "id": "o3",
+        "text": "The account root credentials"
+      },
+      {
+        "id": "o4",
+        "text": "A shared password file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An IAM role through the instance profile supplies automatically rotated temporary credentials, avoiding stored long-term keys on the instance.",
+    "explanationIncorrect": "Hardcoded long-term keys risk leaking durable credentials. Root credentials should never be used by applications given their unrestricted power. A shared password file is insecure and unauditable, so an IAM role on the instance profile is correct."
+  },
+  {
+    "id": "saa-202",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Secure Architectures",
+    "difficulty": "medium",
+    "stem": "To access S3 from private instances without traversing the public internet or a NAT gateway, what should you create?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "An S3 gateway VPC endpoint"
+      },
+      {
+        "id": "o2",
+        "text": "An internet gateway"
+      },
+      {
+        "id": "o3",
+        "text": "A public IP on each instance"
+      },
+      {
+        "id": "o4",
+        "text": "A Direct Connect to the internet"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A gateway VPC endpoint for S3 routes traffic to S3 privately within the AWS network, avoiding the public internet and NAT charges.",
+    "explanationIncorrect": "An internet gateway sends traffic over the public internet. Public IPs expose instances and still use the internet path. Direct Connect links your on-premises network to AWS, not private instances to S3, so an S3 gateway VPC endpoint is correct."
+  },
+  {
+    "id": "saa-203",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which S3 feature automatically transitions objects to cheaper classes as they age?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Lifecycle policies"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Transfer Acceleration"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Object Lock"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Requester Pays"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Lifecycle policies automatically move objects to lower-cost storage classes or expire them as they age, optimizing storage spend.",
+    "explanationIncorrect": "Transfer Acceleration speeds uploads, not tiering. Object Lock enforces retention for compliance. Requester Pays shifts transfer costs to requesters, so S3 Lifecycle policies are the cost-optimizing feature."
+  },
+  {
+    "id": "saa-204",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "hard",
+    "stem": "A nightly batch job can restart if interrupted. Which EC2 pricing minimizes its cost?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Spot Instances"
+      },
+      {
+        "id": "o2",
+        "text": "On-Demand Instances"
+      },
+      {
+        "id": "o3",
+        "text": "Dedicated Hosts"
+      },
+      {
+        "id": "o4",
+        "text": "A three-year Reserved Instance running 24/7"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Because the batch job tolerates interruption and restart, Spot Instances provide the deepest discount and best fit the fault-tolerant, non-urgent schedule.",
+    "explanationIncorrect": "On-Demand costs far more for interruptible work. Dedicated Hosts are a premium isolation option. A three-year 24/7 Reserved Instance pays for constant capacity a nightly job does not need, so Spot Instances minimize cost."
+  },
+  {
+    "id": "saa-205",
+    "exam": "aws-solutions-architect-associate",
+    "domain": "Design Cost-Optimized Architectures",
+    "difficulty": "medium",
+    "stem": "Which S3 storage class is cheapest for long-term archives that tolerate multi-hour retrieval?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "S3 Glacier Deep Archive"
+      },
+      {
+        "id": "o2",
+        "text": "S3 Standard"
+      },
+      {
+        "id": "o3",
+        "text": "S3 Standard-Infrequent Access"
+      },
+      {
+        "id": "o4",
+        "text": "S3 Intelligent-Tiering frequent tier"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "S3 Glacier Deep Archive offers the lowest storage price for rarely accessed data that can tolerate multi-hour retrieval times.",
+    "explanationIncorrect": "S3 Standard is priced for frequent access and costs much more per GB. Standard-Infrequent Access is cheaper than Standard but pricier than Deep Archive. The Intelligent-Tiering frequent tier is not the lowest-cost archive option, so Glacier Deep Archive is correct."
   }
 ]
