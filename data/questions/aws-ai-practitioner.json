@@ -6218,5 +6218,257 @@
     "correctAnswerId": "o1",
     "explanationCorrect": "Following least privilege, the application should receive only the specific permissions required to invoke the model and access needed resources, limiting risk.",
     "explanationIncorrect": "Granting full administrator access for convenience violates least privilege and widens the blast radius. Sharing a root credential is dangerous and unauditable. Disabling authentication removes access control entirely, so least privilege is the guiding principle."
+  },
+  {
+    "id": "aip-196",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which term describes the target value a supervised model is trained to predict?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "The label"
+      },
+      {
+        "id": "o2",
+        "text": "The feature"
+      },
+      {
+        "id": "o3",
+        "text": "The epoch"
+      },
+      {
+        "id": "o4",
+        "text": "The hyperparameter"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "In supervised learning the label is the known target value the model learns to predict from the input features.",
+    "explanationIncorrect": "A feature is an input attribute, not the target. An epoch is one full pass over the training data. A hyperparameter is a training setting chosen before learning, so the label is the predicted target."
+  },
+  {
+    "id": "aip-197",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "hard",
+    "stem": "A model does poorly on both training and test data. What does this most likely indicate?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Underfitting, meaning the model is too simple to capture the patterns"
+      },
+      {
+        "id": "o2",
+        "text": "Overfitting to the training data"
+      },
+      {
+        "id": "o3",
+        "text": "Perfect generalization"
+      },
+      {
+        "id": "o4",
+        "text": "Data leakage inflating scores"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Poor performance on both training and test data signals underfitting, where the model lacks the capacity or features to learn the underlying patterns.",
+    "explanationIncorrect": "Overfitting shows strong training performance but weak test performance, not poor on both. Perfect generalization would show good performance, not poor. Data leakage tends to inflate scores rather than depress them, so underfitting is indicated."
+  },
+  {
+    "id": "aip-198",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of AI and ML",
+    "difficulty": "medium",
+    "stem": "Which AWS service is the managed platform for the full machine learning lifecycle?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon SageMaker"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Route 53"
+      },
+      {
+        "id": "o3",
+        "text": "AWS CloudTrail"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon SQS"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon SageMaker provides managed capabilities for data preparation, training, tuning, and deployment across the ML lifecycle.",
+    "explanationIncorrect": "Amazon Route 53 is DNS and routing. AWS CloudTrail records API activity for auditing. Amazon SQS is a message queue, so Amazon SageMaker is the managed ML platform."
+  },
+  {
+    "id": "aip-199",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "Which AWS service exposes multiple foundation models through one API for building generative AI apps?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon EBS"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Glue"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon CloudFront"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Amazon Bedrock provides a single API to access foundation models from Amazon and other providers, simplifying generative AI development.",
+    "explanationIncorrect": "Amazon EBS is block storage for EC2. AWS Glue is an ETL service. Amazon CloudFront is a content delivery network, so Amazon Bedrock is the service for accessing foundation models via one API."
+  },
+  {
+    "id": "aip-200",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "hard",
+    "stem": "Why can lowering a model's temperature make outputs more predictable?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Lower temperature reduces sampling randomness, favoring the most likely tokens"
+      },
+      {
+        "id": "o2",
+        "text": "It increases the training data size"
+      },
+      {
+        "id": "o3",
+        "text": "It expands the context window"
+      },
+      {
+        "id": "o4",
+        "text": "It adds more model parameters"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A lower temperature sharpens the token probability distribution so the model more consistently picks high-probability tokens, making output more deterministic.",
+    "explanationIncorrect": "Temperature does not change the training data size, which is fixed after training. It does not expand the context window, a separate limit. It does not add parameters, which are architectural, so reducing sampling randomness is why lower temperature is more predictable."
+  },
+  {
+    "id": "aip-201",
+    "exam": "aws-ai-practitioner",
+    "domain": "Fundamentals of Generative AI",
+    "difficulty": "medium",
+    "stem": "What is an embedding used for in generative AI systems?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Representing text as a numeric vector so similar items are close in vector space"
+      },
+      {
+        "id": "o2",
+        "text": "Compressing video files"
+      },
+      {
+        "id": "o3",
+        "text": "Defining a firewall rule"
+      },
+      {
+        "id": "o4",
+        "text": "Building a container image"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "An embedding maps text or data into a numeric vector so semantic similarity corresponds to closeness in vector space, enabling search and retrieval.",
+    "explanationIncorrect": "Compressing video files is a media task unrelated to embeddings. Defining a firewall rule concerns networking. Building a container image packages software, so representing text as a semantic vector is what an embedding does."
+  },
+  {
+    "id": "aip-202",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Which approach grounds a model's answers in your private documents without retraining the model?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Retrieval-augmented generation"
+      },
+      {
+        "id": "o2",
+        "text": "Pretraining from scratch"
+      },
+      {
+        "id": "o3",
+        "text": "Lowering the temperature only"
+      },
+      {
+        "id": "o4",
+        "text": "Increasing the token price"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Retrieval-augmented generation fetches relevant private documents at query time and adds them to the prompt, grounding answers without retraining.",
+    "explanationIncorrect": "Pretraining from scratch is enormously expensive and unnecessary for grounding on private data. Lowering temperature only reduces randomness and adds no knowledge. Token price is a billing factor, not a grounding technique, so retrieval-augmented generation is correct."
+  },
+  {
+    "id": "aip-203",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "hard",
+    "stem": "Which Bedrock capability lets a model call APIs and orchestrate multi-step tasks to fulfill a request?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Agents for Amazon Bedrock"
+      },
+      {
+        "id": "o2",
+        "text": "Amazon Glacier"
+      },
+      {
+        "id": "o3",
+        "text": "AWS Batch"
+      },
+      {
+        "id": "o4",
+        "text": "Amazon Kinesis"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Agents for Amazon Bedrock orchestrate multi-step tasks and invoke APIs and knowledge sources so the model can take actions to complete a request.",
+    "explanationIncorrect": "Amazon Glacier is archival storage. AWS Batch runs batch compute jobs. Amazon Kinesis streams real-time data, so Agents for Amazon Bedrock is the action-taking capability."
+  },
+  {
+    "id": "aip-204",
+    "exam": "aws-ai-practitioner",
+    "domain": "Applications of Foundation Models",
+    "difficulty": "medium",
+    "stem": "Providing a few labeled examples in the prompt to shape a model's behavior without changing weights is called what?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Few-shot prompting"
+      },
+      {
+        "id": "o2",
+        "text": "Full fine-tuning"
+      },
+      {
+        "id": "o3",
+        "text": "Data sharding"
+      },
+      {
+        "id": "o4",
+        "text": "Hyperparameter search"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Few-shot prompting includes a small number of examples in the prompt so the model infers the desired pattern at inference time without weight updates.",
+    "explanationIncorrect": "Full fine-tuning updates weights on new data, unlike in-prompt examples. Data sharding splits data across storage. Hyperparameter search tunes training settings, so few-shot prompting is the technique described."
   }
 ]
