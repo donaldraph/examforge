@@ -4654,5 +4654,369 @@
       "starter-workflows",
       "templates"
     ]
+  },
+  {
+    "id": "gha-141",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a job to run only when a workflow is triggered by a pull request that targets the main branch. Which key combination expresses this at the workflow trigger level?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on.pull_request.branches with a value of main"
+      },
+      {
+        "id": "o2",
+        "text": "on.push.tags with a value of main"
+      },
+      {
+        "id": "o3",
+        "text": "jobs.<id>.needs set to main"
+      },
+      {
+        "id": "o4",
+        "text": "on.schedule with a cron of main"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The pull_request event accepts a branches filter that scopes runs to PRs whose base branch matches, so branches: [main] fires only for PRs targeting main.",
+    "explanationIncorrect": "The push event's tags filter matches git tags on pushes, not pull request base branches, so it would never react to a PR. The needs key defines job dependencies within a workflow and has nothing to do with which branch triggered the run. A schedule uses cron syntax to run on a timer and cannot reference a branch name at all, so the pull_request branches filter is the only correct mechanism."
+  },
+  {
+    "id": "gha-142",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A workflow needs an environment variable available to every step in every job. Where should you define it so it applies workflow-wide?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "At the top level using the env key"
+      },
+      {
+        "id": "o2",
+        "text": "Inside a single step's run block only"
+      },
+      {
+        "id": "o3",
+        "text": "In the repository's README file"
+      },
+      {
+        "id": "o4",
+        "text": "Under jobs.<id>.strategy"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A top-level env map sets variables for the whole workflow; jobs and steps inherit them unless overridden at a narrower scope.",
+    "explanationIncorrect": "Defining the variable inside one step's run block exposes it only to that shell invocation and no other step. The README is documentation and is never read by the Actions runtime for environment values. The strategy key configures matrix builds and does not set environment variables, so a top-level env map is the correct workflow-wide location."
+  },
+  {
+    "id": "gha-143",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "Two jobs must never run at the same time for a given branch, and a newer run should cancel an in-progress older one. Which feature achieves this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A concurrency group with cancel-in-progress set to true"
+      },
+      {
+        "id": "o2",
+        "text": "A matrix with max-parallel set to 1"
+      },
+      {
+        "id": "o3",
+        "text": "The needs keyword linking the jobs"
+      },
+      {
+        "id": "o4",
+        "text": "timeout-minutes on each job"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "A concurrency block keyed by branch serializes runs in the same group, and cancel-in-progress: true stops the older run when a newer one starts.",
+    "explanationIncorrect": "max-parallel only limits parallelism among the legs of one matrix and does not cancel earlier workflow runs. The needs keyword orders jobs within a single run but does nothing across separate runs. timeout-minutes merely caps how long a job may execute before failing, so only a concurrency group with cancel-in-progress delivers the described behavior."
+  },
+  {
+    "id": "gha-144",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want one job to start only after two other jobs both finish successfully. How do you express this dependency?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Set needs to a list of the two job ids"
+      },
+      {
+        "id": "o2",
+        "text": "Set if to always() on the dependent job"
+      },
+      {
+        "id": "o3",
+        "text": "Put all three jobs in the same step"
+      },
+      {
+        "id": "o4",
+        "text": "Use continue-on-error on the two jobs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The needs key accepts an array of job ids; the dependent job waits until all listed jobs complete successfully before it starts.",
+    "explanationIncorrect": "always() forces a job to run regardless of upstream results, which is the opposite of waiting for success. Jobs are distinct units and cannot be collapsed into a single step. continue-on-error lets a job fail without failing the run but establishes no ordering, so a needs list is the correct dependency mechanism."
+  },
+  {
+    "id": "gha-145",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A workflow should run automatically at 06:00 UTC every day. Which trigger and syntax is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on.schedule with cron '0 6 * * *'"
+      },
+      {
+        "id": "o2",
+        "text": "on.push with cron '0 6 * * *'"
+      },
+      {
+        "id": "o3",
+        "text": "on.workflow_dispatch with time '06:00'"
+      },
+      {
+        "id": "o4",
+        "text": "on.schedule with cron '6 0 * * *'"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Scheduled workflows use on.schedule with POSIX cron, where the fields are minute then hour, so '0 6 * * *' means minute 0 of hour 6 UTC daily.",
+    "explanationIncorrect": "The push event reacts to commits and does not accept cron. workflow_dispatch is a manual trigger and has no time field. The cron '6 0 * * *' places 6 in the minute field and 0 in the hour field, meaning 00:06 UTC, not 06:00, so '0 6 * * *' under schedule is the correct answer."
+  },
+  {
+    "id": "gha-146",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "Within a job, a later step needs a value produced by an earlier step. What is the supported way to pass that value?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "Write name=value to the file at $GITHUB_OUTPUT and read it via steps.<id>.outputs"
+      },
+      {
+        "id": "o2",
+        "text": "Export a shell variable with export in the first step"
+      },
+      {
+        "id": "o3",
+        "text": "Store it in a matrix variable"
+      },
+      {
+        "id": "o4",
+        "text": "Write it to the runner's /etc/hosts file"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "Appending name=value to the $GITHUB_OUTPUT file registers a step output that later steps read through the steps.<id>.outputs context.",
+    "explanationIncorrect": "A plain shell export lives only for that step's process and is gone in the next step's fresh shell. Matrix variables are fixed inputs defined before the job runs, not runtime values from a step. Editing /etc/hosts changes name resolution and carries no workflow data, so writing to $GITHUB_OUTPUT is the supported mechanism for step-to-step values."
+  },
+  {
+    "id": "gha-147",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want a workflow to be startable manually from the Actions tab, optionally accepting a free-text input. Which trigger supports this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "workflow_dispatch with an inputs block"
+      },
+      {
+        "id": "o2",
+        "text": "repository_dispatch only"
+      },
+      {
+        "id": "o3",
+        "text": "push with inputs"
+      },
+      {
+        "id": "o4",
+        "text": "schedule with inputs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "workflow_dispatch enables the manual Run workflow button and can declare an inputs block whose fields appear as a form the user fills in.",
+    "explanationIncorrect": "repository_dispatch is triggered by an external API call rather than the Actions tab button and is aimed at automation, not interactive manual runs. The push event fires on commits and accepts no inputs form. schedule runs on a timer with no manual form, so workflow_dispatch with inputs is the trigger designed for this."
+  },
+  {
+    "id": "gha-148",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A step should run only when the previous steps have all succeeded and the branch is main. Which expression on the step's if key is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "success() && github.ref == 'refs/heads/main'"
+      },
+      {
+        "id": "o2",
+        "text": "failure() || github.ref == 'main'"
+      },
+      {
+        "id": "o3",
+        "text": "always() && github.branch == 'main'"
+      },
+      {
+        "id": "o4",
+        "text": "github.ref = refs/heads/main"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "success() is true when no prior step failed, and github.ref for a branch is the full ref refs/heads/main, so combining them with && meets both conditions.",
+    "explanationIncorrect": "failure() with || would run the step when things fail, which is the wrong intent, and github.ref is never the bare name main. always() ignores prior failures and there is no github.branch context. A single equals is assignment, not comparison, and omits the refs/heads/ prefix, so the success() and full-ref comparison is correct."
+  },
+  {
+    "id": "gha-149",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You need the same set of steps to run once for each of three Node.js versions. Which construct is designed for this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A build matrix under strategy.matrix"
+      },
+      {
+        "id": "o2",
+        "text": "Three copies of the job with different names"
+      },
+      {
+        "id": "o3",
+        "text": "A concurrency group"
+      },
+      {
+        "id": "o4",
+        "text": "The needs keyword"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "strategy.matrix expands a single job definition into one run per combination of the listed values, so listing three Node versions produces three parallel jobs.",
+    "explanationIncorrect": "Manually copying the job three times duplicates maintenance and defeats the purpose of a matrix. A concurrency group controls serialization, not fan-out across versions. The needs keyword orders jobs but does not multiply one job across a value set, so strategy.matrix is the intended construct."
+  },
+  {
+    "id": "gha-150",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "A matrix build has one leg that is known to be flaky, and you want its failure not to fail the entire matrix while other legs still report normally. Which setting targets just that leg?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "matrix.include the flaky combination with continue-on-error set to true via an experimental flag pattern"
+      },
+      {
+        "id": "o2",
+        "text": "Set fail-fast to true"
+      },
+      {
+        "id": "o3",
+        "text": "Set max-parallel to 0"
+      },
+      {
+        "id": "o4",
+        "text": "Remove the strategy block entirely"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "You can add an experimental flag to a specific matrix combination and reference it in that leg's continue-on-error, letting only the flagged leg tolerate failure.",
+    "explanationIncorrect": "Setting fail-fast to true does the opposite by cancelling remaining legs on the first failure. A max-parallel of 0 is invalid and would not run anything. Deleting the strategy block removes the matrix entirely rather than tolerating one leg, so a per-combination continue-on-error flag is the correct targeted approach."
+  },
+  {
+    "id": "gha-151",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "You want to prevent a workflow from running when a push only changes files under the docs/ folder. Which filter accomplishes this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "on.push.paths-ignore listing 'docs/**'"
+      },
+      {
+        "id": "o2",
+        "text": "on.push.branches-ignore listing 'docs/**'"
+      },
+      {
+        "id": "o3",
+        "text": "jobs.<id>.if set to docs"
+      },
+      {
+        "id": "o4",
+        "text": "concurrency keyed on docs"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "paths-ignore skips the workflow when every changed file in the push matches one of the given path globs, so 'docs/**' avoids runs for docs-only changes.",
+    "explanationIncorrect": "branches-ignore filters by branch name, not by which files changed, so a docs glob there is meaningless. A job-level if of docs is not a valid expression and evaluates nothing useful. A concurrency key controls serialization, not whether the run starts, so paths-ignore is the correct path filter."
+  },
+  {
+    "id": "gha-152",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "medium",
+    "stem": "A job must run on the latest Ubuntu image provided by GitHub-hosted runners. Which runs-on value is correct?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "ubuntu-latest"
+      },
+      {
+        "id": "o2",
+        "text": "linux-newest"
+      },
+      {
+        "id": "o3",
+        "text": "self-hosted-ubuntu"
+      },
+      {
+        "id": "o4",
+        "text": "os: ubuntu"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "GitHub-hosted Ubuntu runners are selected with the label ubuntu-latest, which always maps to the current supported Ubuntu image.",
+    "explanationIncorrect": "linux-newest is not a defined runner label and would fail to match any runner. self-hosted-ubuntu implies a self-hosted machine rather than a GitHub-hosted image. The os: ubuntu form is not valid runs-on syntax, so ubuntu-latest is the correct label."
+  },
+  {
+    "id": "gha-153",
+    "exam": "github-actions",
+    "domain": "Author and maintain workflows",
+    "difficulty": "hard",
+    "stem": "You want a job's steps to have only read access to repository contents by default, tightening the automatically provided token. Where do you set this?",
+    "options": [
+      {
+        "id": "o1",
+        "text": "A permissions block set to contents: read"
+      },
+      {
+        "id": "o2",
+        "text": "A secrets block set to read"
+      },
+      {
+        "id": "o3",
+        "text": "runs-on set to read-only"
+      },
+      {
+        "id": "o4",
+        "text": "env.GITHUB_TOKEN set to read"
+      }
+    ],
+    "correctAnswerId": "o1",
+    "explanationCorrect": "The permissions key controls the scopes granted to the automatic GITHUB_TOKEN, and contents: read limits it to reading repository content following least privilege.",
+    "explanationIncorrect": "There is no secrets block that assigns token scopes; secrets store values, not permissions. runs-on selects a runner and has no read-only mode. Manually setting env.GITHUB_TOKEN does not reduce the token's granted scopes, so the permissions block is the correct place to restrict access."
   }
 ]
